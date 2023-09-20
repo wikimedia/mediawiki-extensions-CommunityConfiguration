@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Martin Urbanec"
+		]
+	},
+	"communityconfiguration-desc": "Contains Community configuration logic"
+}

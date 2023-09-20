@@ -1,0 +1,91 @@
+{
+	"name": "CommunityConfiguration",
+	"author": [
+		"Martin Urbanec"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:CommunityConfiguration",
+	"descriptionmsg": "communityconfiguration-desc",
+	"license-name": "GPL-3.0-or-later",
+	"type": "other",
+	"requires": {
+		"MediaWiki": ">= 1.41.0"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\CommunityConfiguration\\": "src/"
+	},
+	"config": {
+		"CommunityConfigurationStorages": {
+			"value": {
+				"static": {
+					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Storage\\StaticStorage",
+					"services": []
+				},
+				"wikipage": {
+					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Storage\\WikiPageStorage",
+					"services": []
+				}
+			}
+		},
+		"CommunityConfigurationValidators": {
+			"value": {
+				"noop": {
+					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Validation\\NoopValidator",
+					"services": []
+				},
+				"jsonschema": {
+					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Validation\\JsonSchemaValidator",
+					"services": []
+				}
+			}
+		},
+		"CommunityConfigurationTypes": {
+			"value": {
+				"mwconfig": {
+					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\MWConfigProvider",
+					"services": []
+				},
+				"data": {
+					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\DataConfigurationProvider",
+					"services": []
+				}
+			}
+		},
+		"CommunityConfigurationProviders": {
+			"value": {
+				"example": {
+					"storage": "static",
+					"validator": "noop",
+					"type": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\DataConfigurationProvider",
+					"services": []
+				},
+				"future": {
+					"storage": {
+						"type": "wikipage",
+						"args": [
+							"MediaWiki:Future.json"
+						]
+					},
+					"validator": {
+						"type": "jsonschema",
+						"args": [
+							"path/to/json/schema.json"
+						]
+					}
+				}
+			}
+		}
+	},
+	"HookHandlers": {
+	},
+	"Hooks": {
+	},
+	"MessagesDirs": {
+		"CommunityConfiguration": [
+			"i18n"
+		]
+	},
+	"ServiceWiringFiles": [
+		"src/ServiceWiring.php"
+	],
+	"manifest_version": 2
+}
