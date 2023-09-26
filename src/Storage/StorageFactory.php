@@ -7,6 +7,10 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
+/**
+ * Create a configuration storage object
+ * @see IConfigurationStore for further documentation
+ */
 class StorageFactory {
 
 	/**

@@ -3,13 +3,16 @@
 namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
 use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Extension\CommunityConfiguration\Storage\StaticStorage;
 use MediaWiki\Extension\CommunityConfiguration\Storage\StorageFactory;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\ObjectFactory\ObjectFactory;
 
+/**
+ * Create a configuration provider
+ * @see IConfigurationProvider for further documentation
+ */
 class ConfigurationProviderFactory {
 
 	/**
@@ -66,7 +69,7 @@ class ConfigurationProviderFactory {
 		$className = $spec['type'];
 		$provider = new $className(...$ctorArgs);
 		if ( !$provider instanceof IConfigurationProvider ) {
-			throw new \LogicException( "$className is not an instance of IConfigurationProvider" );
+			throw new LogicException( "$className is not an instance of IConfigurationProvider" );
 		}
 		return $provider;
 	}

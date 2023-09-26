@@ -25,5 +25,16 @@ interface IValidator {
 	 */
 	public function validate( array $config ): StatusValue;
 
+	/**
+	 * Return list of supported top level keys
+	 *
+	 * This is useful for IConfigurationProvider implementations; this information can be used to
+	 * decide whether a certain configuration request asks for an information that can be
+	 * present (but is missing from the store at the moment), or whether the information cannot
+	 * exist at all (and thus the request is invalid). Example is deciding whether Config::get
+	 * should throw, or return a default value.
+	 *
+	 * @return array List of top level keys names
+	 */
 	public function getSupportedTopLevelKeys(): array;
 }

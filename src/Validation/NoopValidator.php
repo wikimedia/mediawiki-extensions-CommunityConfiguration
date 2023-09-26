@@ -4,6 +4,11 @@ namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
 use StatusValue;
 
+/**
+ * Validator that always passes
+ *
+ * Useful for testing purposes or for configuration providers that can work with arbitrary data.
+ */
 class NoopValidator implements IValidator {
 
 	/**
@@ -13,6 +18,9 @@ class NoopValidator implements IValidator {
 		return StatusValue::newGood();
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getSupportedTopLevelKeys(): array {
 		return [];
 	}
