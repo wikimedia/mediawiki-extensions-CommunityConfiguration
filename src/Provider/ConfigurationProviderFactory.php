@@ -5,7 +5,9 @@ namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\CommunityConfiguration\Storage\StaticStorage;
+use MediaWiki\Extension\CommunityConfiguration\Storage\StorageFactory;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 class ConfigurationProviderFactory {
@@ -20,23 +22,27 @@ class ConfigurationProviderFactory {
 
 	private array $providerSpecs;
 	private array $providers = [];
+	private StorageFactory $storageFactory;
 	private ValidatorFactory $validatorFactory;
-	private ObjectFactory $objectFactory;
+	private MediaWikiServices $services;
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param ObjectFactory $objectFactory
+	 * @param ValidatorFactory $validatorFactory
+	 * @param MediaWikiServices $services
 	 */
 	public function __construct(
 		ServiceOptions $options,
+		StorageFactory $storageFactory,
 		ValidatorFactory $validatorFactory,
-		ObjectFactory $objectFactory
+		MediaWikiServices $services
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->providerSpecs = $options->get( 'CommunityConfigurationProviders' );
 
+		$this->storageFactory = $storageFactory;
 		$this->validatorFactory = $validatorFactory;
-		$this->objectFactory = $objectFactory;
+		$this->services = $services;
 	}
 
 	/**
@@ -46,30 +52,21 @@ class ConfigurationProviderFactory {
 	 * @return IConfigurationProvider
 	 */
 	private function constructProvider( string $name ): IConfigurationProvider {
-		return new DataConfigurationProvider(
-			new StaticStorage(),
-			$this->validatorFactory->newValidator( 'noop' )
-		);
-
-		// TODO: This is not going to work, because DataConfigurationProvider needs
-		// IConfigurationStore and IValidator first, before all other additional services.
 		$spec = $this->providerSpecs[$name];
-		$objectFactorySpec = [
-			'class' => $spec['type']
+		$ctorArgs = [
+			$this->storageFactory->newStorage( $spec['storage'] ),
+			$this->validatorFactory->newValidator( $spec['validator'] )
 		];
-		foreach ( [ 'services', 'args' ] as $property ) {
-			if ( array_key_exists( $property, $spec ) ) {
-				$objectFactorySpec[$property] = $spec[$property];
-			}
-		}
 
-		$provider = $this->objectFactory->createObject(
-			$objectFactorySpec,
-			[ 'assertClass' => IConfigurationProvider::class ]
-		);
+		foreach ( $spec['services'] ?? [] as $serviceName ) {
+			$ctorArgs[] = $this->services->getService( $serviceName );
+		}
+		$ctorArgs = array_merge( $ctorArgs, $spec['args'] ?? [] );
+
+		$className = $spec['type'];
+		$provider = new $className(...$ctorArgs);
 		if ( !$provider instanceof IConfigurationProvider ) {
-			// This is here for phan reasons
-			throw new \LogicException( 'ObjectFactory did not assert class' );
+			throw new \LogicException( "$className is not an instance of IConfigurationProvider" );
 		}
 		return $provider;
 	}

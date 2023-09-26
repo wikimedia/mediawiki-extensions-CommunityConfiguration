@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration;
 
+use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
+use MediaWiki\Extension\CommunityConfiguration\Storage\StorageFactory;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
 use MediaWiki\MediaWikiServices;
@@ -26,7 +28,15 @@ class CommunityConfigurationServices {
 		return new static( $coreServices );
 	}
 
+	public function getConfigurationProviderFactory(): ConfigurationProviderFactory {
+		return $this->coreServices->getService( 'CommunityConfiguration.ProviderFactory' );
+	}
+
 	public function getValidatorFactory(): ValidatorFactory {
 		return $this->coreServices->getService( 'CommunityConfiguration.ValidatorFactory' );
+	}
+
+	public function getStorageFactory(): StorageFactory {
+		return $this->coreServices->getService( 'CommunityConfiguration.StorageFactory' );
 	}
 }

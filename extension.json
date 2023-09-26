@@ -38,18 +38,6 @@
 				}
 			}
 		},
-		"CommunityConfigurationTypes": {
-			"value": {
-				"mwconfig": {
-					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\MWConfigProvider",
-					"services": []
-				},
-				"data": {
-					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\DataConfigurationProvider",
-					"services": []
-				}
-			}
-		},
 		"CommunityConfigurationProviders": {
 			"value": {
 				"example": {
