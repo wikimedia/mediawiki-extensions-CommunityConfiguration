@@ -74,4 +74,13 @@ class ValidatorFactory {
 		}
 		return $this->validators[$name];
 	}
+
+	/**
+	 * Return a list of supported validators
+	 *
+	 * @return string[] List of storage names (supported by newValidator)
+	 */
+	public function getSupportedKeys(): array {
+		return array_keys( $this->validatorSpecs );
+	}
 }

@@ -57,4 +57,13 @@ class StorageFactory {
 		}
 		return $this->storages[$name];
 	}
+
+	/**
+	 * Return a list of supported storage backends
+	 *
+	 * @return string[] List of storage names (supported by newStorage)
+	 */
+	public function getSupportedKeys(): array {
+		return array_keys( $this->storageSpecs );
+	}
 }

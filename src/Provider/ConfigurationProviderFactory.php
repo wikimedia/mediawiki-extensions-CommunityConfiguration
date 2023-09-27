@@ -83,4 +83,13 @@ class ConfigurationProviderFactory {
 		}
 		return $this->providers[$name];
 	}
+
+	/**
+	 * Return a list of supported providers
+	 *
+	 * @return string[] List of storage names (supported by newProvider)
+	 */
+	public function getSupportedKeys(): array {
+		return array_keys( $this->providerSpecs );
+	}
 }
