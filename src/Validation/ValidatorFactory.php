@@ -60,16 +60,22 @@ class ValidatorFactory {
 	 * Construct a new validator
 	 *
 	 * @param string $name Validator key (from CommunityConfigurationValidators)
+	 * @param string $schema Relative (to the extension repository) path of the schema to validate against
 	 * @return IValidator
 	 */
-	public function newValidator( string $name ): IValidator {
+	public function newValidator( string $name, string $schema ): IValidator {
 		if ( !array_key_exists( $name, $this->validatorSpecs ) ) {
 			throw new InvalidArgumentException( "Validator $name is not supported" );
 		}
 		if ( !array_key_exists( $name, $this->validators ) ) {
 			$this->validators[$name] = $this->objectFactory->createObject(
 				$this->validatorSpecs[$name],
-				[ 'assertClass' => IValidator::class ],
+				[
+					'assertClass' => IValidator::class,
+					'extraArgs' => [
+						$schema
+					]
+				],
 			);
 		}
 		return $this->validators[$name];

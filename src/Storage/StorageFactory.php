@@ -43,16 +43,23 @@ class StorageFactory {
 
 	/**
 	 * @param string $name
+	 * // TODO Use Uris?
+	 * @param string $storageLocation
 	 * @return IConfigurationStore
 	 */
-	public function newStorage( string $name ): IConfigurationStore {
+	public function newStorage( string $name, string $storageLocation ): IConfigurationStore {
 		if ( !array_key_exists( $name, $this->storageSpecs ) ) {
 			throw new InvalidArgumentException( "Storage $name is not supported" );
 		}
 		if ( !array_key_exists( $name, $this->storages ) ) {
 			$this->storages[$name] = $this->objectFactory->createObject(
 				$this->storageSpecs[$name],
-				[ 'assertClass' => IConfigurationStore::class ],
+				[
+					'assertClass' => IConfigurationStore::class,
+					'extraArgs' => [
+						$storageLocation
+					]
+				],
 			);
 		}
 		return $this->storages[$name];

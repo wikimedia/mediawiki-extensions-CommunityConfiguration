@@ -57,8 +57,8 @@ class ConfigurationProviderFactory {
 	private function constructProvider( string $name ): IConfigurationProvider {
 		$spec = $this->providerSpecs[$name];
 		$ctorArgs = [
-			$this->storageFactory->newStorage( $spec['storage'] ),
-			$this->validatorFactory->newValidator( $spec['validator'] )
+			$this->storageFactory->newStorage( $spec['storage']['type'], ...$spec['storage']['args'] ),
+			$this->validatorFactory->newValidator( $spec['validator']['type'], ...$spec['validator']['args'] )
 		];
 
 		foreach ( $spec['services'] ?? [] as $serviceName ) {
