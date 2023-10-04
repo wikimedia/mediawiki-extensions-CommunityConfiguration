@@ -30,7 +30,7 @@ class SchemaResolver {
 	 * @param string $schema
 	 * @return string|null
 	 */
-	protected function resolvePath( string $schema ): ?string {
+	public function resolvePath( string $schema ): ?string {
 		$path = $schema;
 		// If the $schema definition does not start with "/" assume it is
 		// relative to the extensions directory

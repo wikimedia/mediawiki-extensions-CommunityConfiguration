@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
-use Opis\JsonSchema\{Errors\ErrorFormatter, Validator};
+use JsonSchema\Validator;
 use Status;
 use StatusValue;
 
@@ -28,24 +28,28 @@ class JsonSchemaValidator implements IValidator {
 	 */
 	public function validate( array $config ): StatusValue {
 		$validator = new Validator();
+		$schemaPath = $this->resolver->resolvePath( $this->schema );
 
-		$schema = $this->resolver->resolve( $this->schema );
-		$validator->resolver()->registerRaw( $schema );
-
-		$result = $validator->validate( (object)$config, $schema->{'$id'} );
-		if ( $result->isValid() ) {
+		// REVIEW Using type array for $config prevents from validating
+		// other valid json data types, eg: string, array. Consider
+		// using a mixed type for config objects or restrict the
+		// root type of configuration schemas to "object".
+		$data = (object)$config;
+		$validator->validate( $data, (object)['$ref' => 'file://' . $schemaPath] );
+		if ( $validator->isValid() ) {
 			return Status::newGood();
 		}
 		$status = new Status();
-		$formattedError = (new ErrorFormatter())->format( $result->error() );
-		$status->fatal(
-			'communityconfiguration-schema-validation-error',
-			array_key_first( $formattedError ),
-			array_values( $formattedError )[0][0],
-			// Pass the inner error with all the details
-			$result->error()
-		);
-		// TODO process $result->subErrors if any
+		foreach ( $validator->getErrors() as $error ) {
+			$status->fatal(
+				'communityconfiguration-schema-validation-error',
+				$error['property'],
+				$error['message'],
+				// Pass the inner error with all the details
+				$error
+			);
+		}
+
 		return $status;
 	}
 

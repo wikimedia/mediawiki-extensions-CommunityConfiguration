@@ -20,6 +20,6 @@
 		"phpcs": "phpcs -sp --cache"
 	},
 	"require": {
-		"opis/json-schema": "^2.3"
+		"justinrainbow/json-schema": "^5.2"
 	}
 }
