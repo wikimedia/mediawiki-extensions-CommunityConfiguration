@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\CommunityConfiguration\Storage;
 
 use InvalidArgumentException;
+use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -26,6 +27,7 @@ class StorageFactory {
 	/** @var IValidator[] validators indexed by name */
 	private array $storages = [];
 	private ObjectFactory $objectFactory;
+	private Config $mainConfig;
 
 	/**
 	 * @param ServiceOptions $options
@@ -33,21 +35,23 @@ class StorageFactory {
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		ObjectFactory $objectFactory
+		ObjectFactory $objectFactory,
+		Config $mainConfig
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->storageSpecs = $options->get( 'CommunityConfigurationStorages' );
 
 		$this->objectFactory = $objectFactory;
+		$this->mainConfig = $mainConfig;
 	}
 
 	/**
 	 * @param string $name
 	 * // TODO Use Uris?
-	 * @param string $storageLocation
+	 * @param string|null $storageLocation
 	 * @return IConfigurationStore
 	 */
-	public function newStorage( string $name, string $storageLocation ): IConfigurationStore {
+	public function newStorage( string $name, string $providerName, ?string $storageLocation ): IConfigurationStore {
 		if ( !array_key_exists( $name, $this->storageSpecs ) ) {
 			throw new InvalidArgumentException( "Storage $name is not supported" );
 		}
@@ -57,6 +61,8 @@ class StorageFactory {
 				[
 					'assertClass' => IConfigurationStore::class,
 					'extraArgs' => [
+						$this->mainConfig,
+						$providerName,
 						$storageLocation
 					]
 				],

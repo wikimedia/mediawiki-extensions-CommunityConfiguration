@@ -1,0 +1,13 @@
+{
+	"$schema": "https://json-schema.org/draft-07/schema#",
+	"$id": "http://example.com/communityconfiguration/test/1.0.0",
+	"type": "object",
+	"properties": {
+		"foo": {
+			"type": "number",
+			"default": 1
+		}
+	},
+	"required": ["foo"],
+	"additionalProperties": false
+}

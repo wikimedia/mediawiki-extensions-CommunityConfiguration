@@ -26,7 +26,8 @@ return [
 	'CommunityConfiguration.StorageFactory' => static function ( MediaWikiServices $services ) {
 		return new StorageFactory(
 			new ServiceOptions( StorageFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
-			$services->getObjectFactory()
+			$services->getObjectFactory(),
+			$services->getMainConfig()
 		);
 	}
 ];

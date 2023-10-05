@@ -4,5 +4,6 @@
 			"Martin Urbanec"
 		]
 	},
-	"communityconfiguration-desc": "{{desc|name=CommunityConfiguration|url=https://www.mediawiki.org/wiki/Extension:CommunityConfiguration}}"
+	"communityconfiguration-desc": "{{desc|name=CommunityConfiguration|url=https://www.mediawiki.org/wiki/Extension:CommunityConfiguration}}",
+	"communityconfiguration-schema-validation-error": "DRAFT: Generic validation error"
 }

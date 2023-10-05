@@ -4,5 +4,6 @@
 			"Martin Urbanec"
 		]
 	},
-	"communityconfiguration-desc": "Contains Community configuration logic"
+	"communityconfiguration-desc": "Contains Community configuration logic",
+	"communityconfiguration-schema-validation-error": "DRAFT: $2. Key: $1"
 }

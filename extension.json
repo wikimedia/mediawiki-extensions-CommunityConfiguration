@@ -14,13 +14,13 @@
 		"MediaWiki\\Extension\\CommunityConfiguration\\": "src/"
 	},
 	"CommunityConfigurationProviders": {
-		"static-example": {
+		"_static-example": {
 			"storage": "static",
 			"validator": "noop",
 			"type": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\DataConfigurationProvider",
 			"services": []
 		},
-		"future": {
+		"_future": {
 			"storage": {
 				"type": "wikipage",
 				"args": [

@@ -48,6 +48,12 @@ class ConfigurationProviderFactory {
 		$this->services = $services;
 	}
 
+
+	private function getConstructType( array $spec, string $constructName ) {
+		return is_string( $spec[ $constructName ] ) ? $spec[ $constructName ] : ( is_array( $spec[ $constructName ] ) ?
+			$spec[ $constructName ]['type'] : null );
+	}
+
 	/**
 	 * Unconditionally construct a provider
 	 *
@@ -56,9 +62,27 @@ class ConfigurationProviderFactory {
 	 */
 	private function constructProvider( string $name ): IConfigurationProvider {
 		$spec = $this->providerSpecs[$name];
+		$storageType = $this->getConstructType( $spec, 'storage' );
+		$validatorType = $this->getConstructType( $spec, 'validator' );
+		if ( $storageType === null ) {
+			throw new InvalidArgumentException(
+				"Wrong type for \"storage\" property for \"$name\" provider. Allowed types are: string, object"
+			);
+		}
+		if ( $validatorType === null ) {
+			throw new InvalidArgumentException(
+				"Wrong type for \"validator\" property for \"$name\" provider. Allowed types are: string, object"
+			);
+		}
+		$storageArgs = is_string( $spec['storage'] ) ?  [ null ] : $spec['storage']['args'];
+		$validatorArgs = is_string( $spec['validator'] ) ?  [ null ] : $spec['validator']['args'];
+
+
+		array_unshift( $storageArgs, $name );
+
 		$ctorArgs = [
-			$this->storageFactory->newStorage( $spec['storage']['type'], ...$spec['storage']['args'] ),
-			$this->validatorFactory->newValidator( $spec['validator']['type'], ...$spec['validator']['args'] )
+			$this->storageFactory->newStorage( $storageType, ...$storageArgs ),
+			$this->validatorFactory->newValidator( $validatorType, ...$validatorArgs )
 		];
 
 		foreach ( $spec['services'] ?? [] as $serviceName ) {
@@ -90,6 +114,10 @@ class ConfigurationProviderFactory {
 	 * @return string[] List of storage names (supported by newProvider)
 	 */
 	public function getSupportedKeys(): array {
-		return array_keys( $this->providerSpecs );
+		// TODO remove array_filter once all provider specs are supported
+		return array_filter( array_keys( $this->providerSpecs ), function( $providerName ) {
+			// HACK prefix with underscore provider names which are not yet supported
+			return !str_starts_with( $providerName, '_');
+		} );
 	}
 }
