@@ -34,7 +34,7 @@
 		}
 	},
 	"CommunityConfigurationProviders": {
-		"example": {
+		"static-example": {
 			"storage": "static",
 			"validator": "noop",
 			"type": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\DataConfigurationProvider",
