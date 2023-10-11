@@ -13,56 +13,49 @@
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\CommunityConfiguration\\": "src/"
 	},
-	"config": {
-		"CommunityConfigurationStorages": {
-			"value": {
-				"static": {
-					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Storage\\StaticStorage",
-					"services": []
-				},
-				"wikipage": {
-					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Storage\\WikiPageStorage",
-					"services": []
-				}
-			}
+	"CommunityConfigurationStorages": {
+		"static": {
+			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Storage\\StaticStorage",
+			"services": []
 		},
-		"CommunityConfigurationValidators": {
-			"value": {
-				"noop": {
-					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Validation\\NoopValidator",
-					"services": []
-				},
-				"jsonschema": {
-					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Validation\\JsonSchemaValidator",
-					"services": []
-				}
-			}
+		"wikipage": {
+			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Storage\\WikiPageStorage",
+			"services": []
+		}
+	},
+	"CommunityConfigurationValidators": {
+		"noop": {
+			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Validation\\NoopValidator",
+			"services": []
 		},
-		"CommunityConfigurationProviders": {
-			"value": {
-				"example": {
-					"storage": "static",
-					"validator": "noop",
-					"type": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\DataConfigurationProvider",
-					"services": []
-				},
-				"future": {
-					"storage": {
-						"type": "wikipage",
-						"args": [
-							"MediaWiki:Future.json"
-						]
-					},
-					"validator": {
-						"type": "jsonschema",
-						"args": [
-							"path/to/json/schema.json"
-						]
-					}
-				}
+		"jsonschema": {
+			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Validation\\JsonSchemaValidator",
+			"services": []
+		}
+	},
+	"CommunityConfigurationProviders": {
+		"example": {
+			"storage": "static",
+			"validator": "noop",
+			"type": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\DataConfigurationProvider",
+			"services": []
+		},
+		"future": {
+			"storage": {
+				"type": "wikipage",
+				"args": [
+					"MediaWiki:Future.json"
+				]
+			},
+			"validator": {
+				"type": "jsonschema",
+				"args": [
+					"path/to/json/schema.json"
+				]
 			}
 		}
 	},
+	"config": {},
 	"HookHandlers": {
 	},
 	"Hooks": {
