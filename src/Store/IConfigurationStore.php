@@ -1,26 +1,26 @@
 <?php
 
-namespace MediaWiki\Extension\CommunityConfiguration\Storage;
+namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
 use StatusValue;
 
 /**
- * Representation of the configuration storage
+ * Representation of the configuration store
  *
- * Storage object defines where/how is a configuration stored and is able to both read from and
+ * Store object defines where/how is a configuration stored and is able to both read from and
  * write to that location. Reads/writes happen at the blob level (meaning all values are inserted
  * at once). This is to maximize the number of use cases CC2.0 can have, and considering most
  * traffic is read (which can be cached) and writes are very rare, it should be fine.
  *
- * Supported storage objects are defined in $wgCommunityConfigurationStorages, which can look
- * like this (dict of ObjectFactory specs keyed by storage name):
+ * Supported store objects are defined in $wgCommunityConfigurationStores, which can look
+ * like this (dict of ObjectFactory specs keyed by store name):
  * {
  *     "static": {
- *         "class": "MediaWiki\\Extension\\CommunityConfiguration\\Storage\\StaticStorage",
+ *         "class": "MediaWiki\\Extension\\CommunityConfiguration\\Store\\StaticStore",
  *         "services": []
  *     },
  *     "wikipage": {
- *         "class": "MediaWiki\\Extension\\CommunityConfiguration\\Storage\\WikiPageStorage",
+ *         "class": "MediaWiki\\Extension\\CommunityConfiguration\\Store\\WikiPageStore",
  *         "services": []
  *     }
  * }

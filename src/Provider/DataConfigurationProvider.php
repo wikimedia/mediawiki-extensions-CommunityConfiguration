@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
-use MediaWiki\Extension\CommunityConfiguration\Storage\IConfigurationStore;
+use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
 use StatusValue;
 

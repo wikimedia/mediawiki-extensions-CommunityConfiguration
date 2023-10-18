@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\CommunityConfiguration\Storage;
+namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
 use InvalidArgumentException;
 use MediaWiki\Config\Config;
@@ -9,23 +9,23 @@ use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
- * Create a configuration storage object
+ * Create a configuration store object
  * @see IConfigurationStore for further documentation
  */
-class StorageFactory {
+class StoreFactory {
 
 	/**
 	 * @var string[]
 	 * @internal for use in ServiceWiring only
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'CommunityConfigurationStorages',
+		'CommunityConfigurationStores',
 	];
 
 	/** @var array ObjectFactory specs for validators, indexed by validator name */
-	private array $storageSpecs;
-	/** @var IValidator[] validators indexed by name */
-	private array $storages = [];
+	private array $storeSpecs;
+	/** @var IConfigurationStore[] validators indexed by name */
+	private array $stores = [];
 	private ObjectFactory $objectFactory;
 	private Config $mainConfig;
 
@@ -39,7 +39,7 @@ class StorageFactory {
 		Config $mainConfig
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->storageSpecs = $options->get( 'CommunityConfigurationStorages' );
+		$this->storeSpecs = $options->get( 'CommunityConfigurationStores' );
 
 		$this->objectFactory = $objectFactory;
 		$this->mainConfig = $mainConfig;
@@ -48,35 +48,35 @@ class StorageFactory {
 	/**
 	 * @param string $name
 	 * // TODO Use Uris?
-	 * @param string|null $storageLocation
+	 * @param string|null $storeLocation
 	 * @return IConfigurationStore
 	 */
-	public function newStorage( string $name, string $providerName, ?string $storageLocation ): IConfigurationStore {
-		if ( !array_key_exists( $name, $this->storageSpecs ) ) {
-			throw new InvalidArgumentException( "Storage $name is not supported" );
+	public function newStore( string $name, string $providerName, ?string $storeLocation ): IConfigurationStore {
+		if ( !array_key_exists( $name, $this->storeSpecs ) ) {
+			throw new InvalidArgumentException( "Store $name is not supported" );
 		}
-		if ( !array_key_exists( $name, $this->storages ) ) {
-			$this->storages[$name] = $this->objectFactory->createObject(
-				$this->storageSpecs[$name],
+		if ( !array_key_exists( $name, $this->stores ) ) {
+			$this->stores[$name] = $this->objectFactory->createObject(
+				$this->storeSpecs[$name],
 				[
 					'assertClass' => IConfigurationStore::class,
 					'extraArgs' => [
 						$this->mainConfig,
 						$providerName,
-						$storageLocation
+						$storeLocation
 					]
 				],
 			);
 		}
-		return $this->storages[$name];
+		return $this->stores[$name];
 	}
 
 	/**
-	 * Return a list of supported storage backends
+	 * Return a list of supported store backends
 	 *
-	 * @return string[] List of storage names (supported by newStorage)
+	 * @return string[] List of store names (supported by newStore)
 	 */
 	public function getSupportedKeys(): array {
-		return array_keys( $this->storageSpecs );
+		return array_keys( $this->storeSpecs );
 	}
 }

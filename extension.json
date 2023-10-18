@@ -15,13 +15,13 @@
 	},
 	"CommunityConfigurationProviders": {
 		"_static-example": {
-			"storage": "static",
+			"store": "static",
 			"validator": "noop",
 			"type": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\DataConfigurationProvider",
 			"services": []
 		},
 		"_future": {
-			"storage": {
+			"store": {
 				"type": "wikipage",
 				"args": [
 					"MediaWiki:Future.json"
@@ -36,14 +36,14 @@
 		}
 	},
 	"config": {
-		"CommunityConfigurationStorages": {
+		"CommunityConfigurationStores": {
 			"value": {
 				"static": {
-					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Storage\\StaticStorage",
+					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Store\\StaticStore",
 					"services": []
 				},
 				"wikipage": {
-					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Storage\\WikiPageStorage",
+					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Store\\WikiPageStore",
 					"services": []
 				}
 			}

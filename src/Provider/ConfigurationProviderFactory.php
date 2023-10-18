@@ -5,7 +5,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Extension\CommunityConfiguration\Storage\StorageFactory;
+use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
 use MediaWiki\MediaWikiServices;
 
@@ -25,7 +25,7 @@ class ConfigurationProviderFactory {
 
 	private array $providerSpecs;
 	private array $providers = [];
-	private StorageFactory $storageFactory;
+	private StoreFactory $storeFactory;
 	private ValidatorFactory $validatorFactory;
 	private MediaWikiServices $services;
 
@@ -35,15 +35,15 @@ class ConfigurationProviderFactory {
 	 * @param MediaWikiServices $services
 	 */
 	public function __construct(
-		ServiceOptions $options,
-		StorageFactory $storageFactory,
-		ValidatorFactory $validatorFactory,
+		ServiceOptions    $options,
+		StoreFactory      $storeFactory,
+		ValidatorFactory  $validatorFactory,
 		MediaWikiServices $services
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->providerSpecs = $options->get( 'CommunityConfigurationProviders' );
 
-		$this->storageFactory = $storageFactory;
+		$this->storeFactory = $storeFactory;
 		$this->validatorFactory = $validatorFactory;
 		$this->services = $services;
 	}
@@ -62,11 +62,11 @@ class ConfigurationProviderFactory {
 	 */
 	private function constructProvider( string $name ): IConfigurationProvider {
 		$spec = $this->providerSpecs[$name];
-		$storageType = $this->getConstructType( $spec, 'storage' );
+		$storeType = $this->getConstructType( $spec, 'store' );
 		$validatorType = $this->getConstructType( $spec, 'validator' );
-		if ( $storageType === null ) {
+		if ( $storeType === null ) {
 			throw new InvalidArgumentException(
-				"Wrong type for \"storage\" property for \"$name\" provider. Allowed types are: string, object"
+				"Wrong type for \"store\" property for \"$name\" provider. Allowed types are: string, object"
 			);
 		}
 		if ( $validatorType === null ) {
@@ -74,14 +74,14 @@ class ConfigurationProviderFactory {
 				"Wrong type for \"validator\" property for \"$name\" provider. Allowed types are: string, object"
 			);
 		}
-		$storageArgs = is_string( $spec['storage'] ) ?  [ null ] : $spec['storage']['args'];
+		$storeArgs = is_string( $spec['store'] ) ?  [ null ] : $spec['store']['args'];
 		$validatorArgs = is_string( $spec['validator'] ) ?  [ null ] : $spec['validator']['args'];
 
 
-		array_unshift( $storageArgs, $name );
+		array_unshift( $storeArgs, $name );
 
 		$ctorArgs = [
-			$this->storageFactory->newStorage( $storageType, ...$storageArgs ),
+			$this->storeFactory->newStore( $storeType, ...$storeArgs ),
 			$this->validatorFactory->newValidator( $validatorType, ...$validatorArgs )
 		];
 
@@ -111,7 +111,7 @@ class ConfigurationProviderFactory {
 	/**
 	 * Return a list of supported providers
 	 *
-	 * @return string[] List of storage names (supported by newProvider)
+	 * @return string[] List of provider names (supported by newProvider)
 	 */
 	public function getSupportedKeys(): array {
 		// TODO remove array_filter once all provider specs are supported

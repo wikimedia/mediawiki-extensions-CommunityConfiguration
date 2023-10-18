@@ -1,12 +1,12 @@
 <?php
 
-namespace MediaWiki\Extension\CommunityConfiguration\Storage;
+namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
 use MediaWiki\Config\Config;
 use StatusValue;
 
 
-class StaticStorage implements IConfigurationStore {
+class StaticStore implements IConfigurationStore {
 
 	private ?string $configLocation;
 	private Config $mainConfig;

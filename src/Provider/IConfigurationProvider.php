@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
-use MediaWiki\Extension\CommunityConfiguration\Storage\IConfigurationStore;
+use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
 use StatusValue;
 
@@ -18,8 +18,8 @@ use StatusValue;
  * Supported configuration providers are defined via $wgCommunityConfigurationProviders, which is
  * a dictionary keyed by provider name; each item must have the following properties:
  *
- *     * storage: name of the configuration storage, or a {"type": "name", "args": [...]} dict if
- *       the storage's constructor needs arguments.
+ *     * store: name of the configuration store, or a {"type": "name", "args": [...]} dict if
+ *       the store's constructor needs arguments.
  *     * validator: name of the validator or a  {"type": "name", "args": [...]} dict if the
  *       validator's constructor needs arguments.
  *     * type: fully-qualified class name (must implement IConfigurationProvider)
