@@ -31,6 +31,7 @@ class ConfigurationProviderFactory {
 
 	/**
 	 * @param ServiceOptions $options
+	 * @param StoreFactory $storeFactory
 	 * @param ValidatorFactory $validatorFactory
 	 * @param MediaWikiServices $services
 	 */
