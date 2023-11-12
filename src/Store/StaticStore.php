@@ -31,10 +31,17 @@ class StaticStore implements IConfigurationStore {
 	/**
 	 * @inheritDoc
 	 */
-	public function loadConfigurationUncached(): array {
-		return [
+	public function loadConfigurationUncached(): StatusValue {
+		return StatusValue::newGood( [
 			$this->name => $this->mainConfig->get( $this->name )
-		];
+		] );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function loadConfiguration(): StatusValue {
+		return $this->loadConfigurationUncached();
 	}
 
 	/**
@@ -43,5 +50,11 @@ class StaticStore implements IConfigurationStore {
 	public function storeConfiguration( array $config ): StatusValue {
 		// TODO: add a proper i18n message
 		return StatusValue::newFatal( 'no-writes' );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function invalidate(): void {
 	}
 }
