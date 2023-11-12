@@ -26,8 +26,7 @@ return [
 	'CommunityConfiguration.StoreFactory' => static function ( MediaWikiServices $services ) {
 		return new StoreFactory(
 			new ServiceOptions( StoreFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
-			$services->getObjectFactory(),
-			$services->getMainConfig()
+			$services->getObjectFactory()
 		);
 	},
 	'CommunityConfiguration.WikiPageStore.Loader' => static function ( MediaWikiServices $services ) {

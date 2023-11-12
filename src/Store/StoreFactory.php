@@ -27,7 +27,6 @@ class StoreFactory {
 	/** @var IConfigurationStore[] validators indexed by name */
 	private array $stores = [];
 	private ObjectFactory $objectFactory;
-	private Config $mainConfig;
 
 	/**
 	 * @param ServiceOptions $options
@@ -35,8 +34,7 @@ class StoreFactory {
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		ObjectFactory $objectFactory,
-		Config $mainConfig
+		ObjectFactory $objectFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->storeSpecs = $options->get( 'CommunityConfigurationStores' );
@@ -46,11 +44,10 @@ class StoreFactory {
 
 	/**
 	 * @param string $name
-	 * // TODO Use Uris?
-	 * @param string|null $storeLocation
+	 * @param array $storeArgs
 	 * @return IConfigurationStore
 	 */
-	public function newStore( string $name, ?string $storeLocation ): IConfigurationStore {
+	public function newStore( string $name, array $storeArgs ): IConfigurationStore {
 		if ( !array_key_exists( $name, $this->storeSpecs ) ) {
 			throw new InvalidArgumentException( "Store $name is not supported" );
 		}
@@ -59,9 +56,7 @@ class StoreFactory {
 				$this->storeSpecs[$name],
 				[
 					'assertClass' => IConfigurationStore::class,
-					'extraArgs' => [
-						$storeLocation
-					]
+					'extraArgs' => $storeArgs,
 				],
 			);
 		}

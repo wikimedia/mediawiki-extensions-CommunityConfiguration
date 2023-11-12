@@ -55,6 +55,4 @@ class JsonSchemaValidator implements IValidator {
 	public function getSupportedTopLevelKeys(): array {
 		return [];
 	}
-
-
 }

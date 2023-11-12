@@ -89,8 +89,8 @@ class ConfigurationProviderFactory {
 		$validatorArgs = is_string( $spec['validator'] ) ?  [] : $spec['validator']['args'];
 
 		$ctorArgs = [
-			$this->storeFactory->newStore( $storeType, ...$storeArgs ),
-			$this->validatorFactory->newValidator( $validatorType, ...$validatorArgs )
+			$this->storeFactory->newStore( $storeType, $storeArgs ),
+			$this->validatorFactory->newValidator( $validatorType, $validatorArgs )
 		];
 
 		$classSpec = $this->getProviderClassSpec( $spec['type'] );
