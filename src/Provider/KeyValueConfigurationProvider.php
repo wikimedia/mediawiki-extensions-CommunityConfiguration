@@ -34,7 +34,9 @@ class KeyValueConfigurationProvider
 	 * @inheritDoc
 	 */
 	public function has( $name ) {
-		if ( !in_array( $name, $this->getValidator()->getSupportedTopLevelKeys() ) ) {
+		// FIXME: IValidator::getSupportedTopLevelKeys() is not implemented yet and always
+		// returns an empty string.
+		if ( false && !in_array( $name, $this->getValidator()->getSupportedTopLevelKeys() ) ) {
 			// This config value is not supported
 			return false;
 		}
