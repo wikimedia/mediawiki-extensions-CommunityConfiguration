@@ -34,7 +34,12 @@ class DataConfigurationProvider implements IConfigurationProvider {
 	 * @inheritDoc
 	 */
 	public function loadValidConfiguration(): StatusValue {
-		$config = $this->getStore()->loadConfigurationUncached();
+		$configStatus = $this->getStore()->loadConfigurationUncached();
+		if ( !$configStatus->isOK() ) {
+			return $configStatus;
+		}
+
+		$config = $configStatus->getValue();
 		$validationStatus = $this->getValidator()->validate( $config );
 		if ( !$validationStatus->isOK() ) {
 			return $validationStatus;
