@@ -35,11 +35,25 @@ interface IConfigurationStore {
 	public function getConfigurationLocation(): ?string;
 
 	/**
+	 * Invalidate internal cache
+	 *
+	 * @return void
+	 */
+	public function invalidate(): void;
+
+	/**
 	 * Load the configuration without any caching
 	 *
-	 * @return array
+	 * @return StatusValue
 	 */
-	public function loadConfigurationUncached(): array;
+	public function loadConfigurationUncached(): StatusValue;
+
+	/**
+	 * Load the configuration (cached)
+	 *
+	 * @return StatusValue
+	 */
+	public function loadConfiguration(): StatusValue;
 
 	/**
 	 * Store the configuration

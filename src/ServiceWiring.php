@@ -29,5 +29,15 @@ return [
 			$services->getObjectFactory(),
 			$services->getMainConfig()
 		);
+	},
+	'CommunityConfiguration.WikiPageStore.Loader' => static function ( MediaWikiServices $services ) {
+		return new \MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Loader(
+			$services->getMainWANObjectCache(),
+			$services->getRevisionLookup(),
+			$services->getTitleFactory()
+		);
+	},
+	'CommunityConfiguration.WikiPageStore.Writer' => static function ( MediaWikiServices $services ) {
+		return new \MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer();
 	}
 ];

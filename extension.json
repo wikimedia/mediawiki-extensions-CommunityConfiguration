@@ -43,7 +43,11 @@
 				},
 				"wikipage": {
 					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Store\\WikiPageStore",
-					"services": []
+					"services": [
+						"TitleFactory",
+						"CommunityConfiguration.WikiPageStore.Loader",
+						"CommunityConfiguration.WikiPageStore.Writer"
+					]
 				}
 			}
 		},
