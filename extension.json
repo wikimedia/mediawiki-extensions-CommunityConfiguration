@@ -79,8 +79,15 @@
 		}
 	},
 	"HookHandlers": {
+		"validation": {
+			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Hooks\\ValidationHooks",
+			"services": [
+				"CommunityConfiguration.ProviderFactory"
+			]
+		}
 	},
 	"Hooks": {
+		"JsonValidateSave": "validation"
 	},
 	"MessagesDirs": {
 		"CommunityConfiguration": [
