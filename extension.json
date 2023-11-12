@@ -17,8 +17,7 @@
 		"_static-example": {
 			"store": "static",
 			"validator": "noop",
-			"type": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\DataConfigurationProvider",
-			"services": []
+			"type": "data"
 		},
 		"_future": {
 			"store": {
@@ -57,6 +56,15 @@
 				"jsonschema": {
 					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Validation\\JsonSchemaValidator",
 					"services": []
+				}
+			}
+		},
+		"CommunityConfigurationProviderClasses": {
+			"value": {
+				"data": {
+					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\DataConfigurationProvider",
+					"services": [],
+					"args": []
 				}
 			}
 		}

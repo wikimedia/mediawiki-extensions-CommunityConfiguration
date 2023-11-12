@@ -21,9 +21,11 @@ class ConfigurationProviderFactory {
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'CommunityConfigurationProviders',
+		'CommunityConfigurationProviderClasses',
 	];
 
 	private array $providerSpecs;
+	private array $classSpecs;
 	private array $providers = [];
 	private StoreFactory $storeFactory;
 	private ValidatorFactory $validatorFactory;
@@ -43,6 +45,7 @@ class ConfigurationProviderFactory {
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->providerSpecs = $options->get( 'CommunityConfigurationProviders' );
+		$this->classSpecs = $options->get( 'CommunityConfigurationProviderClasses' );
 
 		$this->storeFactory = $storeFactory;
 		$this->validatorFactory = $validatorFactory;
@@ -53,6 +56,13 @@ class ConfigurationProviderFactory {
 	private function getConstructType( array $spec, string $constructName ) {
 		return is_string( $spec[ $constructName ] ) ? $spec[ $constructName ] : ( is_array( $spec[ $constructName ] ) ?
 			$spec[ $constructName ]['type'] : null );
+	}
+
+	private function getProviderClassSpec( string $className ): array {
+		if ( !array_key_exists( $className, $this->classSpecs ) ) {
+			throw new InvalidArgumentException( "Provider class $className is not supported" );
+		}
+		return $this->classSpecs[$className];
 	}
 
 	/**
@@ -85,12 +95,14 @@ class ConfigurationProviderFactory {
 			$this->validatorFactory->newValidator( $validatorType, ...$validatorArgs )
 		];
 
+		$classSpec = $this->getProviderClassSpec( $spec['type'] );
+
 		foreach ( $spec['services'] ?? [] as $serviceName ) {
 			$ctorArgs[] = $this->services->getService( $serviceName );
 		}
 		$ctorArgs = array_merge( $ctorArgs, $spec['args'] ?? [] );
 
-		$className = $spec['type'];
+		$className = $classSpec['class'];
 		$provider = new $className(...$ctorArgs);
 		if ( !$provider instanceof IConfigurationProvider ) {
 			throw new LogicException( "$className is not an instance of IConfigurationProvider" );
