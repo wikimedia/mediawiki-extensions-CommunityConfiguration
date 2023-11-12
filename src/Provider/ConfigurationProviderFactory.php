@@ -77,7 +77,6 @@ class ConfigurationProviderFactory {
 		$storeArgs = is_string( $spec['store'] ) ?  [ null ] : $spec['store']['args'];
 		$validatorArgs = is_string( $spec['validator'] ) ?  [ null ] : $spec['validator']['args'];
 
-
 		array_unshift( $storeArgs, $name );
 
 		$ctorArgs = [
