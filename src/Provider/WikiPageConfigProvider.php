@@ -5,8 +5,8 @@ namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 use ConfigException;
 use MediaWiki\Config\Config;
 
-class KeyValueConfigurationProvider
-	extends DataConfigurationProvider
+class WikiPageConfigProvider
+	extends DataProvider
 	implements IConfigurationProvider, Config {
 
 	private function getValidConfigOrNothing(): array {

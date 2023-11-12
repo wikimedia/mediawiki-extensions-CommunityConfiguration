@@ -66,12 +66,12 @@
 		"CommunityConfigurationProviderClasses": {
 			"value": {
 				"data": {
-					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\DataConfigurationProvider",
+					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\DataProvider",
 					"services": [],
 					"args": []
 				},
 				"mw-config": {
-					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\KeyValueConfigurationProvider",
+					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\WikiPageConfigProvider",
 					"services": [],
 					"args": []
 				}

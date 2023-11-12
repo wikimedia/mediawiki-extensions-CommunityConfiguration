@@ -6,7 +6,7 @@ use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
 use StatusValue;
 
-class DataConfigurationProvider implements IConfigurationProvider {
+class DataProvider implements IConfigurationProvider {
 
 	private IConfigurationStore $store;
 	private IValidator $validator;
