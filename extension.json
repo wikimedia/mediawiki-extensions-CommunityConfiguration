@@ -65,6 +65,11 @@
 					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\DataConfigurationProvider",
 					"services": [],
 					"args": []
+				},
+				"mw-config": {
+					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\KeyValueConfigurationProvider",
+					"services": [],
+					"args": []
 				}
 			}
 		}
