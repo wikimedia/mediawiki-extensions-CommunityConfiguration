@@ -21,8 +21,6 @@ class WikiPageStore implements IConfigurationStore {
 	 * @param string|null $configLocation
 	 */
 	public function __construct(
-		Config $mainConfig,
-		string $name,
 		?string $configLocation,
 		TitleFactory $titleFactory,
 		Loader $loader,

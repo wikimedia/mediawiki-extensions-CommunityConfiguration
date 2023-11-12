@@ -85,10 +85,8 @@ class ConfigurationProviderFactory {
 				"Wrong type for \"validator\" property for \"$name\" provider. Allowed types are: string, object"
 			);
 		}
-		$storeArgs = is_string( $spec['store'] ) ?  [ null ] : $spec['store']['args'];
-		$validatorArgs = is_string( $spec['validator'] ) ?  [ null ] : $spec['validator']['args'];
-
-		array_unshift( $storeArgs, $name );
+		$storeArgs = is_string( $spec['store'] ) ?  [] : $spec['store']['args'];
+		$validatorArgs = is_string( $spec['validator'] ) ?  [] : $spec['validator']['args'];
 
 		$ctorArgs = [
 			$this->storeFactory->newStore( $storeType, ...$storeArgs ),

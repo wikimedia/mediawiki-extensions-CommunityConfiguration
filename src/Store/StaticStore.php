@@ -9,16 +9,12 @@ use StatusValue;
 class StaticStore implements IConfigurationStore {
 
 	private ?string $configLocation;
-	private Config $mainConfig;
-	private string $name;
 
 	/**
 	 * @param string|null $configLocation
 	 */
-	public function __construct( Config $mainConfig, string $name, ?string $configLocation ) {
+	public function __construct( ?string $configLocation ) {
 		$this->configLocation = $configLocation;
-		$this->mainConfig = $mainConfig;
-		$this->name = $name;
 	}
 
 	/**
@@ -26,7 +22,7 @@ class StaticStore implements IConfigurationStore {
 	 */
 	public function loadConfigurationUncached(): StatusValue {
 		return StatusValue::newGood( [
-			$this->name => $this->mainConfig->get( $this->name )
+			'FooBar' => 42,
 		] );
 	}
 

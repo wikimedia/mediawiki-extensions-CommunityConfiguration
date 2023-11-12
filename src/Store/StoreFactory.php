@@ -42,7 +42,6 @@ class StoreFactory {
 		$this->storeSpecs = $options->get( 'CommunityConfigurationStores' );
 
 		$this->objectFactory = $objectFactory;
-		$this->mainConfig = $mainConfig;
 	}
 
 	/**
@@ -51,7 +50,7 @@ class StoreFactory {
 	 * @param string|null $storeLocation
 	 * @return IConfigurationStore
 	 */
-	public function newStore( string $name, string $providerName, ?string $storeLocation ): IConfigurationStore {
+	public function newStore( string $name, ?string $storeLocation ): IConfigurationStore {
 		if ( !array_key_exists( $name, $this->storeSpecs ) ) {
 			throw new InvalidArgumentException( "Store $name is not supported" );
 		}
@@ -61,8 +60,6 @@ class StoreFactory {
 				[
 					'assertClass' => IConfigurationStore::class,
 					'extraArgs' => [
-						$this->mainConfig,
-						$providerName,
 						$storeLocation
 					]
 				],
