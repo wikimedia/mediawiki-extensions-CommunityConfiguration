@@ -24,13 +24,6 @@ class StaticStore implements IConfigurationStore {
 	/**
 	 * @inheritDoc
 	 */
-	public function getConfigurationLocation(): ?string {
-		return $this->configLocation;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
 	public function loadConfigurationUncached(): StatusValue {
 		return StatusValue::newGood( [
 			$this->name => $this->mainConfig->get( $this->name )

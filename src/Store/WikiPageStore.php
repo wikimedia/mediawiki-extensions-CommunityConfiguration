@@ -34,14 +34,7 @@ class WikiPageStore implements IConfigurationStore {
 		$this->writer = $writer;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
-	public function getConfigurationLocation(): ?string {
-		return $this->configLocation;
-	}
-
-	private function getConfigurationTitle(): Title {
+	public function getConfigurationTitle(): Title {
 		if ( $this->configTitle === null ) {
 			$this->configTitle = $this->titleFactory->newFromTextThrow( $this->configLocation );
 		}

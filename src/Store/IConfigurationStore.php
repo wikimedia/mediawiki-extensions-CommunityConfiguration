@@ -28,13 +28,6 @@ use StatusValue;
 interface IConfigurationStore {
 
 	/**
-	 * Get the location of the configuration
-	 *
-	 * @return ?string
-	 */
-	public function getConfigurationLocation(): ?string;
-
-	/**
 	 * Invalidate internal cache
 	 *
 	 * @return void
