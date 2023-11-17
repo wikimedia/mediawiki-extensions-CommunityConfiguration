@@ -124,10 +124,6 @@ class ConfigurationProviderFactory {
 	 * @return string[] List of provider names (supported by newProvider)
 	 */
 	public function getSupportedKeys(): array {
-		// TODO remove array_filter once all provider specs are supported
-		return array_filter( array_keys( $this->providerSpecs ), function( $providerName ) {
-			// HACK prefix with underscore provider names which are not yet supported
-			return !str_starts_with( $providerName, '_');
-		} );
+		return array_keys( $this->providerSpecs );
 	}
 }

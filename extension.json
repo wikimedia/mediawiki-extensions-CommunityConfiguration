@@ -14,25 +14,6 @@
 		"MediaWiki\\Extension\\CommunityConfiguration\\": "src/"
 	},
 	"CommunityConfigurationProviders": {
-		"_static-example": {
-			"store": "static",
-			"validator": "noop",
-			"type": "data"
-		},
-		"_future": {
-			"store": {
-				"type": "wikipage",
-				"args": [
-					"MediaWiki:Future.json"
-				]
-			},
-			"validator": {
-				"type": "jsonschema",
-				"args": [
-					"path/to/json/schema.json"
-				]
-			}
-		}
 	},
 	"config": {
 		"CommunityConfigurationStores": {
