@@ -25,7 +25,6 @@ class ValidationHooks implements JsonValidateSaveHook {
 		PageIdentity $pageIdentity,
 		StatusValue $status
 	) {
-		// FIXME avoid constructing providers, index of wiki configs?
 		foreach ( $this->factory->getSupportedKeys() as $providerName ) {
 			$provider = $this->factory->newProvider( $providerName );
 			$store = $provider->getStore();
