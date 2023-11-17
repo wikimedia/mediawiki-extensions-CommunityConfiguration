@@ -33,8 +33,7 @@ class ValidationHooks implements JsonValidateSaveHook {
 				continue;
 			}
 
-			// REVIEW: Calling equals() does not seem to work. Why?
-			if ( $store->getConfigurationTitle()->getId() === $pageIdentity->getId() ) {
+			if ( $pageIdentity->isSamePageAs( $store->getConfigurationTitle() ) ) {
 				$validator = $provider->getValidator();
 				$result = $validator->validate( (array)$content->getData()->getValue() );
 				$status->merge( $result );
