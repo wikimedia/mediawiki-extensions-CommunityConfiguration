@@ -13,8 +13,6 @@
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\CommunityConfiguration\\": "src/"
 	},
-	"CommunityConfigurationProviders": {
-	},
 	"config": {
 		"CommunityConfigurationStores": {
 			"value": {

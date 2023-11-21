@@ -11,7 +11,14 @@ return [
 	'CommunityConfiguration.ProviderFactory' => static function ( MediaWikiServices $services ) {
 		$ccServices = CommunityConfigurationServices::wrap( $services );
 		return new ConfigurationProviderFactory(
-			new ServiceOptions( ConfigurationProviderFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			new ServiceOptions(
+				ConfigurationProviderFactory::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig(),
+				new HashConfig( [
+					'CommunityConfigurationProviders' => ExtensionRegistry::getInstance()
+						->getAttribute('CommunityConfigurationProviders')
+				] )
+			),
 			$ccServices->getStoreFactory(),
 			$ccServices->getValidatorFactory(),
 			$services
