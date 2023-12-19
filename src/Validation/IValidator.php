@@ -37,4 +37,11 @@ interface IValidator {
 	 * @return array List of top level keys names
 	 */
 	public function getSupportedTopLevelKeys(): array;
+
+
+	/**
+	 * Return a SchemaLoader object or null for no schema support
+	 *
+	 */
+	public function getSchemaLoader(): ?SchemaLoader;
 }

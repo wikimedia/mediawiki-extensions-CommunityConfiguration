@@ -11,16 +11,17 @@ use StatusValue;
  */
 class JsonSchemaValidator implements IValidator {
 
-	// REVIEW name it path, create some abstraction?
-	private string $schema;
-	private SchemaResolver $resolver;
+	private SchemaLoader $loader;
 
 	/**
 	 * @param string $schema
 	 */
 	public function __construct( string $schema ) {
-		$this->resolver = new SchemaResolver();
-		$this->schema = $schema;
+		$this->loader = new SchemaLoader( $schema );
+	}
+
+	public function getSchemaLoader(): SchemaLoader {
+		return $this->loader;
 	}
 
 	/**
@@ -28,14 +29,13 @@ class JsonSchemaValidator implements IValidator {
 	 */
 	public function validate( array $config ): StatusValue {
 		$validator = new Validator();
-		$schemaPath = $this->resolver->resolvePath( $this->schema );
 
 		// REVIEW Using type array for $config prevents from validating
 		// other valid json data types, eg: string, array. Consider
 		// using a mixed type for config objects or restrict the
 		// root type of configuration schemas to "object".
 		$data = (object)$config;
-		$validator->validate( $data, (object)['$ref' => 'file://' . $schemaPath] );
+		$validator->validate( $data, (object)['$ref' => 'file://' . $this->loader->getPath()] );
 		if ( $validator->isValid() ) {
 			return Status::newGood();
 		}

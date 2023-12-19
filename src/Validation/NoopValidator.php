@@ -24,4 +24,11 @@ class NoopValidator implements IValidator {
 	public function getSupportedTopLevelKeys(): array {
 		return [];
 	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getSchemaLoader(): ?SchemaLoader {
+		return null;
+	}
 }

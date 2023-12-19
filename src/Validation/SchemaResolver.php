@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
 class SchemaResolver {
 
-	// TODO allow Uris as schema declarations?
 	/**
 	 * @param string $schema
 	 * @return bool|mixed|object|null
