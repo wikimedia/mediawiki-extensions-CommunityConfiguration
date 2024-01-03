@@ -4,6 +4,8 @@
 			"Martin Urbanec"
 		]
 	},
+	"communityconfiguration": "Community Configuration",
 	"communityconfiguration-desc": "Contains Community configuration logic",
+	"communityconfiguration-provider-not-found": "Provider $1 is not found",
 	"communityconfiguration-schema-validation-error": "DRAFT: $2. Key: $1"
 }

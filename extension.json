@@ -57,6 +57,9 @@
 			}
 		}
 	},
+	"ExtensionMessagesFiles": {
+		"CommunityConfigurationAlias": "CommunityConfiguration.alias.php"
+	},
 	"HookHandlers": {
 		"validation": {
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Hooks\\ValidationHooks",
@@ -72,6 +75,14 @@
 		"CommunityConfiguration": [
 			"i18n"
 		]
+	},
+	"SpecialPages": {
+		"CommunityConfiguration": {
+			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Specials\\SpecialCommunityConfiguration",
+			"services": [
+				"CommunityConfiguration.ProviderFactory"
+			]
+		}
 	},
 	"ServiceWiringFiles": [
 		"src/ServiceWiring.php"
