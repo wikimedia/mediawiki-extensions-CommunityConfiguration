@@ -8,13 +8,10 @@ An end to end setup of Community configuration depends on three components:
 
 * This extension, `CommunityConfiguration`
 * The example usage in `CommunityConfigurationExample`
-* Set of changes in `mediawiki/core` that are uploaded in the `sandbox/urbanecm/community-configuration` ([branch info details](https://gerrit.wikimedia.org/g/mediawiki/core/+/refs/heads/sandbox/urbanecm/community-configuration))
 
 To set up Community configuration 2.0, please follow those instructions:
 
 ```
-# checkout required MediaWiki Core changes
-core $ git checkout sandbox/urbanecm/community-configuration
 # clone the necessary extensions
 core $ git clone https://gitlab.wikimedia.org/repos/growth/community-configuration-example extensions/CommunityConfigurationExample
 core $ git clone https://gitlab.wikimedia.org/repos/growth/community-configuration extensions/CommunityConfiguration
