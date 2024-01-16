@@ -4,6 +4,14 @@
 			"Martin Urbanec"
 		]
 	},
+	"communityconfigurationdashboard": "The title of Community Configuration Dashboard special page",
 	"communityconfiguration-desc": "{{desc|name=CommunityConfiguration|url=https://www.mediawiki.org/wiki/Extension:CommunityConfiguration}}",
-	"communityconfiguration-schema-validation-error": "DRAFT: Generic validation error"
+	"communityconfiguration-schema-validation-error": "Generic validation error",
+	"communityconfiguration-guidelines-title": "Title of the first explanatory paragraph in the community configuration dashboard",
+	"communityconfiguration-guidelines-description": "Description in the first explanatory paragraph of the community configuration dashboard",
+	"communityconfiguration-guidelines-guideline1-title": "Title of the first guideline in the community configuration dashboard",
+	"communityconfiguration-guidelines-guideline1-description": "Description of the first guideline in the community configuration dashboard",
+	"communityconfiguration-guidelines-guideline2-title": "Title of the second guideline in the community configuration dashboard",
+	"communityconfiguration-guidelines-guideline2-description": "Description of the second guideline in the community configuration dashboard",
+	"communityconfiguration-providers-list-title": "Title of the list of providers in the community configuration dashboard"
 }

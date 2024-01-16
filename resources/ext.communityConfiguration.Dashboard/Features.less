@@ -1,0 +1,38 @@
+@import 'mediawiki.skin.variables.less';
+@import './variables.less';
+
+.ext-CommunityConfiguration-Features {
+	padding-top: @spacing-100;
+
+	&__Grid {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: @spacing-50;
+		padding-top: @spacing-100;
+		margin: 0 auto;
+	}
+
+	&__Feature {
+		width: @dashboardCardWidth;
+		flex-grow: 1;
+		padding: @spacing-50;
+		border: @border-width-base @border-style-base @border-color-base;
+		border-radius: @border-radius-base;
+
+		a {
+			font-weight: @font-weight-bold;
+		}
+
+		p {
+			font-family: @font-family-system-sans;
+			font-weight: @font-weight-normal;
+			line-height: @line-height-small;
+		}
+
+		&__offset {
+			flex-grow: 1;
+			width: calc( @dashboardCardWidth + ( @spacing-50 * 2 ) + ( @border-width-base * 2 ) );
+		}
+	}
+}
