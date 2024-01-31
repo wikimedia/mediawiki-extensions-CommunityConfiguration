@@ -38,7 +38,6 @@ interface IValidator {
 	 */
 	public function getSupportedTopLevelKeys(): array;
 
-
 	/**
 	 * Return a SchemaLoader object or null for no schema support
 	 *

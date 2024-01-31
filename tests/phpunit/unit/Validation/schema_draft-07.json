@@ -8,6 +8,6 @@
 			"default": 1
 		}
 	},
-	"required": ["foo"],
+	"required": [ "foo" ],
 	"additionalProperties": false
 }

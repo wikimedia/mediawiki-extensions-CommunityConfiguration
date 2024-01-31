@@ -2,9 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
-use MediaWiki\Config\Config;
 use StatusValue;
-
 
 class StaticStore implements IConfigurationStore {
 

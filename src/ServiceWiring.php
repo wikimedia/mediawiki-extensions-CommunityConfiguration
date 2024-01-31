@@ -16,7 +16,7 @@ return [
 				$services->getMainConfig(),
 				new HashConfig( [
 					'CommunityConfigurationProviders' => ExtensionRegistry::getInstance()
-						->getAttribute('CommunityConfigurationProviders')
+						->getAttribute( 'CommunityConfigurationProviders' )
 				] )
 			),
 			$ccServices->getStoreFactory(),

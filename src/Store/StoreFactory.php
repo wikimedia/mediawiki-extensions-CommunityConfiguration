@@ -3,9 +3,7 @@
 namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
 use InvalidArgumentException;
-use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**

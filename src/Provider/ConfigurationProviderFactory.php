@@ -38,9 +38,9 @@ class ConfigurationProviderFactory {
 	 * @param MediaWikiServices $services
 	 */
 	public function __construct(
-		ServiceOptions    $options,
-		StoreFactory      $storeFactory,
-		ValidatorFactory  $validatorFactory,
+		ServiceOptions $options,
+		StoreFactory $storeFactory,
+		ValidatorFactory $validatorFactory,
 		MediaWikiServices $services
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -52,10 +52,24 @@ class ConfigurationProviderFactory {
 		$this->services = $services;
 	}
 
-
+	/**
+	 * @param array $spec
+	 * @param string $constructName
+	 * @return mixed|string|null
+	 */
 	private function getConstructType( array $spec, string $constructName ) {
 		return is_string( $spec[ $constructName ] ) ? $spec[ $constructName ] : ( is_array( $spec[ $constructName ] ) ?
 			$spec[ $constructName ]['type'] : null );
+	}
+
+	/**
+	 * @param array $spec
+	 * @param string $constructName
+	 * @return mixed|string|null
+	 */
+	private function getConstructArgs( array $spec, string $constructName ) {
+		return is_string( $spec[ $constructName ] ) ? $spec[ $constructName ] : ( is_array( $spec[ $constructName ] ) ?
+			$spec[ $constructName ]['args'] : [] );
 	}
 
 	private function getProviderClassSpec( string $className ): array {
@@ -85,8 +99,9 @@ class ConfigurationProviderFactory {
 				"Wrong type for \"validator\" property for \"$name\" provider. Allowed types are: string, object"
 			);
 		}
-		$storeArgs = is_string( $spec['store'] ) ?  [] : $spec['store']['args'];
-		$validatorArgs = is_string( $spec['validator'] ) ?  [] : $spec['validator']['args'];
+
+		$storeArgs = $this->getConstructArgs( $spec, 'store' );
+		$validatorArgs = $this->getConstructArgs( $spec, 'validator' );
 
 		$ctorArgs = [
 			$this->storeFactory->newStore( $storeType, $storeArgs ),
@@ -101,7 +116,7 @@ class ConfigurationProviderFactory {
 		$ctorArgs = array_merge( $ctorArgs, $spec['args'] ?? [] );
 
 		$className = $classSpec['class'];
-		$provider = new $className(...$ctorArgs);
+		$provider = new $className( ...$ctorArgs );
 		if ( !$provider instanceof IConfigurationProvider ) {
 			throw new LogicException( "$className is not an instance of IConfigurationProvider" );
 		}

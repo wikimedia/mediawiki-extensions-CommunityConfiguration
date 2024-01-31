@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
-use MediaWiki\Config\Config;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Loader;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
+use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use StatusValue;
@@ -19,6 +19,9 @@ class WikiPageStore implements IConfigurationStore {
 
 	/**
 	 * @param string|null $configLocation
+	 * @param TitleFactory $titleFactory
+	 * @param Loader $loader
+	 * @param Writer $writer
 	 */
 	public function __construct(
 		?string $configLocation,
@@ -32,8 +35,11 @@ class WikiPageStore implements IConfigurationStore {
 		$this->writer = $writer;
 	}
 
+	/**
+	 * @throws MalformedTitleException
+	 */
 	public function getConfigurationTitle(): Title {
-		if ( $this->configTitle === null ) {
+		if ( $this->configTitle === null && $this->configLocation ) {
 			$this->configTitle = $this->titleFactory->newFromTextThrow( $this->configLocation );
 		}
 		return $this->configTitle;

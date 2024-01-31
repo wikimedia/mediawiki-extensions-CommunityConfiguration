@@ -7,7 +7,8 @@ use MediaWiki\Config\Config;
 
 class WikiPageConfigProvider
 	extends DataProvider
-	implements IConfigurationProvider, Config {
+	implements IConfigurationProvider, Config
+{
 
 	private function getValidConfigOrNothing(): array {
 		$status = $this->loadValidConfiguration();
@@ -36,6 +37,7 @@ class WikiPageConfigProvider
 	public function has( $name ) {
 		// FIXME: IValidator::getSupportedTopLevelKeys() is not implemented yet and always
 		// returns an empty string.
+		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( false && !in_array( $name, $this->getValidator()->getSupportedTopLevelKeys() ) ) {
 			// This config value is not supported
 			return false;
