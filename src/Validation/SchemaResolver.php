@@ -6,9 +6,9 @@ class SchemaResolver {
 
 	/**
 	 * @param string $schema
-	 * @return bool|mixed|object|null
+	 * @return array|null
 	 */
-	public function resolve( string $schema ) {
+	public function resolve( string $schema ): ?array {
 		$path = $this->resolvePath( $schema );
 
 		if ( $path === null || !is_file( $path ) ) {
@@ -20,7 +20,7 @@ class SchemaResolver {
 			return null;
 		}
 
-		$data = json_decode($data, false );
+		$data = json_decode( $data, true );
 
 		return $data;
 	}

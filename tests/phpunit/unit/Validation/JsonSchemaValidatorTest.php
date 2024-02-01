@@ -9,7 +9,6 @@ use MediaWiki\Extension\CommunityConfiguration\Validation\JsonSchemaValidator;
  */
 class JsonSchemaValidatorTest extends \MediaWikiUnitTestCase {
 
-
 	public static function provideJSON(): array {
 		return [
 			[ [ 'foo' => 1 ], true ],
@@ -28,10 +27,5 @@ class JsonSchemaValidatorTest extends \MediaWikiUnitTestCase {
 		$validator = new JsonSchemaValidator( __DIR__ . '/schema_draft-07.json' );
 		$result = $validator->validate( $json );
 		$this->assertEquals( $result->isGood(), $isValid );
-		if ( !$result->isGood() ) {
-			// FIXME use a conventional way to log from unit tests
-			echo json_encode( $result->getErrors(), JSON_PRETTY_PRINT );
-		}
 	}
-
 }

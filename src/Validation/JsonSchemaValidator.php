@@ -35,7 +35,7 @@ class JsonSchemaValidator implements IValidator {
 		// using a mixed type for config objects or restrict the
 		// root type of configuration schemas to "object".
 		$data = (object)$config;
-		$validator->validate( $data, (object)['$ref' => 'file://' . $this->loader->getPath()] );
+		$validator->validate( $data, (object)[ '$ref' => 'file://' . $this->loader->getPath() ] );
 		if ( $validator->isValid() ) {
 			return Status::newGood();
 		}
