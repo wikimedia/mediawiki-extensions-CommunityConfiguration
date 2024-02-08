@@ -1,0 +1,22 @@
+@import 'mediawiki.skin.variables.less';
+@import './variables.less';
+
+.ext-CommunityConfiguration-Guidelines {
+	&__description {
+		width: 100%;
+	}
+
+	&__wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		gap: @spacing-50;
+	}
+
+	&__Guideline {
+		flex: 1;
+		padding: 0 @spacing-50 0 @spacing-50;
+		min-width: @dashboardCardWidth;
+		background-color: @background-color-progressive-subtle;
+		border-radius: @border-radius-base;
+	}
+}

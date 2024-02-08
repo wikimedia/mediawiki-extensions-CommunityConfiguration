@@ -1,0 +1,14 @@
+<section class="ext-CommunityConfiguration-Guidelines">
+	<h3>{{ title }}</h3>
+	<p class="ext-CommunityConfiguration-Guidelines__description">{{ description }}</p>
+	<div class="ext-CommunityConfiguration-Guidelines__wrapper">
+		{{#guidelines}}
+			<div class="ext-CommunityConfiguration-Guidelines__Guideline">
+				<span class="ext-CommunityConfiguration-Guidelines__Guideline__icon ext-CommunityConfiguration-Guidelines__Guideline__icon--{{ icon }} ext-CommunityConfiguration-Guidelines__Guideline__icon--circle-background">
+				</span>
+				<h4>{{ title }}</h4>
+				<p>{{{ description }}}</p>
+			</div>
+		{{/guidelines}}
+	</div>
+</section>

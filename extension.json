@@ -57,6 +57,9 @@
 			}
 		}
 	},
+	"ExtensionMessagesFiles": {
+		"CommunityConfigurationAlias": "CommunityConfiguration.alias.php"
+	},
 	"HookHandlers": {
 		"validation": {
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Hooks\\ValidationHooks",
@@ -73,8 +76,30 @@
 			"i18n"
 		]
 	},
+	"ResourceModules": {
+		"ext.communityConfiguration.Dashboard": {
+			"styles": [
+				"ext.communityConfiguration.Dashboard/variables.less",
+				"ext.communityConfiguration.Dashboard/Guidelines.less",
+				"ext.communityConfiguration.Dashboard/Features.less"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "CommunityConfiguration/resources"
+	},
 	"ServiceWiringFiles": [
 		"src/ServiceWiring.php"
 	],
+	"SpecialPages": {
+		"CommunityConfigurationDashboard": {
+			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Specials\\SpecialCommunityConfigurationDashboard",
+			"services": [
+				"CommunityConfiguration.ProviderFactory",
+				"SpecialPageFactory"
+			]
+		}
+	},
 	"manifest_version": 2
 }
