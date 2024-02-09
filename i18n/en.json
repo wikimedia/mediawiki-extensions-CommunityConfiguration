@@ -4,9 +4,10 @@
 			"Martin Urbanec"
 		]
 	},
+	"communityconfiguration": "Community Configuration",
 	"communityconfiguration-desc": "Contains Community configuration logic",
 	"communityconfiguration-schema-validation-error": "DRAFT: $2. Key: $1",
-	"communityconfigurationdashboard": "Community Configuration Dashboard",
+	"communityconfigurationdashboard": "Community Configuration",
 	"communityconfiguration-guidelines-title": "What is Community Configuration?",
 	"communityconfiguration-guidelines-description": "Community Configuration is a tool that allows communities to set up and control the configuration of different Wikipedia features, helping administrators suit their community specific needs.",
 	"communityconfiguration-guidelines-guideline1-title": "Learn more",

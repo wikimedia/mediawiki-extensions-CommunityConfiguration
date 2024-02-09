@@ -93,6 +93,12 @@
 		"src/ServiceWiring.php"
 	],
 	"SpecialPages": {
+		"CommunityConfiguration": {
+			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Specials\\SpecialCommunityConfiguration",
+			"services": [
+				"SpecialPageFactory"
+			]
+		},
 		"CommunityConfigurationDashboard": {
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Specials\\SpecialCommunityConfigurationDashboard",
 			"services": [

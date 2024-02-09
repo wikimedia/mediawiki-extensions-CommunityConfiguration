@@ -4,6 +4,7 @@
 			"Martin Urbanec"
 		]
 	},
+	"communityconfiguration": "The title of Community Configuration entry point, only shown in Special:SpecialPages.",
 	"communityconfigurationdashboard": "The title of Community Configuration Dashboard special page",
 	"communityconfiguration-desc": "{{desc|name=CommunityConfiguration|url=https://www.mediawiki.org/wiki/Extension:CommunityConfiguration}}",
 	"communityconfiguration-schema-validation-error": "Generic validation error",

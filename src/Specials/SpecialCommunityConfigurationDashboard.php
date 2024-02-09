@@ -28,7 +28,7 @@ class SpecialCommunityConfigurationDashboard extends SpecialPage {
 		ConfigurationProviderFactory $providerFactory,
 		SpecialPageFactory $specialPageFactory
 	) {
-		parent::__construct( 'CommunityConfigurationDashboard' );
+		parent::__construct( 'CommunityConfigurationDashboard', '', false );
 		$this->providerFactory = $providerFactory;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->templateParser = new TemplateParser( __DIR__ . '/templates' );
@@ -36,7 +36,7 @@ class SpecialCommunityConfigurationDashboard extends SpecialPage {
 
 	private function getProviders(): array {
 		$availableProviders = [];
-		$formEditorURL = $this->specialPageFactory->getTitleForAlias( 'CommunityConfigurationDashboard' )->getLinkURL();
+		$formEditorURL = $this->specialPageFactory->getTitleForAlias( 'CommunityConfiguration' )->getLinkURL();
 		foreach ( $this->providerFactory->getSupportedKeys() as $providerName ) {
 			$availableProviders[] = [
 				'href' => $formEditorURL . '/' . $providerName,
