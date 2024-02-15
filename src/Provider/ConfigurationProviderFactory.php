@@ -104,8 +104,8 @@ class ConfigurationProviderFactory {
 		$validatorArgs = $this->getConstructArgs( $spec, 'validator' );
 
 		$ctorArgs = [
-			$this->storeFactory->newStore( $storeType, $storeArgs ),
-			$this->validatorFactory->newValidator( $validatorType, $validatorArgs )
+			$this->storeFactory->newStore( $name, $storeType, $storeArgs ),
+			$this->validatorFactory->newValidator( $name, $validatorType, $validatorArgs )
 		];
 
 		$classSpec = $this->getProviderClassSpec( $spec['type'] );

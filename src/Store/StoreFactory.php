@@ -42,23 +42,25 @@ class StoreFactory {
 
 	/**
 	 * @param string $name
+	 * @param string $type
 	 * @param array $storeArgs
 	 * @return IConfigurationStore
 	 */
-	public function newStore( string $name, array $storeArgs ): IConfigurationStore {
-		if ( !array_key_exists( $name, $this->storeSpecs ) ) {
-			throw new InvalidArgumentException( "Store $name is not supported" );
+	public function newStore( string $name, string $type, array $storeArgs ): IConfigurationStore {
+		if ( !array_key_exists( $type, $this->storeSpecs ) ) {
+			throw new InvalidArgumentException( "Store $type is not supported" );
 		}
-		if ( !array_key_exists( $name, $this->stores ) ) {
-			$this->stores[$name] = $this->objectFactory->createObject(
-				$this->storeSpecs[$name],
+		$storeKey = $name . '_' . $type;
+		if ( !array_key_exists( $storeKey, $this->stores ) ) {
+			$this->stores[$storeKey] = $this->objectFactory->createObject(
+				$this->storeSpecs[$type],
 				[
 					'assertClass' => IConfigurationStore::class,
 					'extraArgs' => $storeArgs,
 				],
 			);
 		}
-		return $this->stores[$name];
+		return $this->stores[$storeKey];
 	}
 
 	/**
