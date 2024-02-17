@@ -100,11 +100,19 @@
 		"CommunityConfiguration": {
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Specials\\SpecialCommunityConfiguration",
 			"services": [
+				"CommunityConfiguration.ProviderFactory",
 				"SpecialPageFactory"
 			]
 		},
 		"CommunityConfigurationDashboard": {
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Specials\\SpecialCommunityConfigurationDashboard",
+			"services": [
+				"CommunityConfiguration.ProviderFactory",
+				"SpecialPageFactory"
+			]
+		},
+		"CommunityConfigurationEditor": {
+			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Specials\\SpecialCommunityConfigurationEditor",
 			"services": [
 				"CommunityConfiguration.ProviderFactory",
 				"SpecialPageFactory"
