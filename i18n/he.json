@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"communityconfiguration": "תצורת קהילה",
+	"communityconfiguration-desc": "מכילה לוגיקה של תצורת קהילה",
+	"communityconfigurationdashboard": "תצורת קהילה",
+	"communityconfiguration-guidelines-title": "מהי תצורת קהילה?",
+	"communityconfiguration-guidelines-description": "תצורת קהילה הוא כלי שמאפשר לקהילות להגדיר ולשלוט בתצורה של תכונות שונות של {{SITENAME}}, ועוזר למפעילים להתאים לצרכים המסוימים של הקהילה שלהם.",
+	"communityconfiguration-guidelines-guideline1-title": "מידע נוסף",
+	"communityconfiguration-guidelines-guideline1-description": "[[mw:Special:MyLanguage/Help:Growth|למידע נוסף]] על תצורת קהילה, מה זה, איך זה עובד, והעבודה השוטפת של הצוות על זה.",
+	"communityconfiguration-guidelines-guideline2-title": "{{GENDER:$1|שלח|שלחי|לשלוח}} לנו משוב",
+	"communityconfiguration-guidelines-guideline2-description": "נשמח לשמוע את המחשבות שלך! {{GENDER:$1|פנה|פני}} אלינו דרך [[mw:Talk:Growth|דף השיחה]] שלנו.",
+	"communityconfiguration-schema-validation-error": "טיוטה: $2. מפתח: $1",
+	"communityconfiguration-providers-list-title": "אפשרויות"
+}

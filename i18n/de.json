@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"communityconfiguration": "Community-Konfiguration",
+	"communityconfiguration-desc": "Enthält Community-Konfigurationslogik",
+	"communityconfigurationdashboard": "Community-Konfiguration",
+	"communityconfiguration-guidelines-title": "Was ist Community-Konfiguration?",
+	"communityconfiguration-guidelines-description": "Community Configuration ist ein Tool, das es Communities ermöglicht, die Konfiguration verschiedener {{SITENAME}}-Funktionen einzurichten und zu steuern und so Administratoren dabei zu helfen, ihre Community-spezifischen Bedürfnisse zu erfüllen.",
+	"communityconfiguration-guidelines-guideline1-title": "Mehr erfahren",
+	"communityconfiguration-guidelines-guideline1-description": "[[mw:Special:MyLanguage/Help:Growth|Erfahre mehr]] über die Community-Konfiguration, was sie ist, wie sie funktioniert und über die laufende Arbeit des Teams daran.",
+	"communityconfiguration-guidelines-guideline2-title": "Sende uns {{GENDER:$1|deine}} Rückmeldung",
+	"communityconfiguration-guidelines-guideline2-description": "Wir würden gerne {{GENDER:$1|deine}} Gedanke erfahren! Kontaktiere uns über unsere [[mw:Talk:Growth|Diskussionsseite]].",
+	"communityconfiguration-schema-validation-error": "ENTWURF: $2. Schlüssel: $1",
+	"communityconfiguration-providers-list-title": "Funktionen"
+}
