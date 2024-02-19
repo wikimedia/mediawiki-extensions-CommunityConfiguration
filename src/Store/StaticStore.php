@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
+use MediaWiki\Permissions\Authority;
 use StatusValue;
 
 class StaticStore implements IConfigurationStore {
@@ -34,7 +35,11 @@ class StaticStore implements IConfigurationStore {
 	/**
 	 * @inheritDoc
 	 */
-	public function storeConfiguration( array $config ): StatusValue {
+	public function storeConfiguration(
+		array $config,
+		Authority $authority,
+		string $summary = ''
+	): StatusValue {
 		// TODO: add a proper i18n message
 		return StatusValue::newFatal( 'no-writes' );
 	}

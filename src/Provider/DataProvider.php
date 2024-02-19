@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
 use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
+use MediaWiki\Permissions\Authority;
 use StatusValue;
 
 class DataProvider implements IConfigurationProvider {
@@ -46,5 +47,27 @@ class DataProvider implements IConfigurationProvider {
 		}
 
 		return StatusValue::newGood( $config );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function storeValidConfiguration(
+		array $newConfig,
+		Authority $authority,
+		string $summary = ''
+	): StatusValue {
+		$validationStatus = $this->getValidator()->validate( $newConfig );
+		if ( !$validationStatus->isOK() ) {
+			return $validationStatus;
+		}
+
+		// TODO: Implement permission control here.
+
+		return $this->getStore()->storeConfiguration(
+			$newConfig,
+			$authority,
+			$summary
+		);
 	}
 }

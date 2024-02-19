@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Loader;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
@@ -72,8 +73,16 @@ class WikiPageStore implements IConfigurationStore {
 	/**
 	 * @inheritDoc
 	 */
-	public function storeConfiguration( array $config ): StatusValue {
-		// TODO: Implement storeConfiguration() method.
-		return StatusValue::newFatal( 'june' );
+	public function storeConfiguration(
+		array $config,
+		Authority $authority,
+		string $summary = ''
+	): StatusValue {
+		return $this->writer->save(
+			$this->getConfigurationTitle(),
+			$config,
+			$authority,
+			$summary
+		)->getStatusValue();
 	}
 }

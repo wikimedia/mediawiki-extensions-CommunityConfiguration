@@ -4,6 +4,8 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
+use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Loader;
+use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
 use MediaWiki\MediaWikiServices;
 
@@ -52,13 +54,17 @@ return [
 		);
 	},
 	'CommunityConfiguration.WikiPageStore.Loader' => static function ( MediaWikiServices $services ) {
-		return new \MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Loader(
+		return new Loader(
 			$services->getMainWANObjectCache(),
 			$services->getRevisionLookup(),
 			$services->getTitleFactory()
 		);
 	},
 	'CommunityConfiguration.WikiPageStore.Writer' => static function ( MediaWikiServices $services ) {
-		return new \MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer();
+		return new Writer(
+			$services->getWikiPageFactory(),
+			$services->getUserFactory(),
+			$services->getHookContainer()
+		);
 	}
 ];

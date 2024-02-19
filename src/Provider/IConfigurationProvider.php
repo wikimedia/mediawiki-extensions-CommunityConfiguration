@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
 use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
+use MediaWiki\Permissions\Authority;
 use StatusValue;
 
 /**
@@ -34,6 +35,10 @@ interface IConfigurationProvider {
 	/**
 	 * Get the associated configuration store
 	 *
+	 * @note Store provides direct access to wherever the configuration is stored. No validation
+	 * or access control is done at the store level. Use loadValidConfiguration() and
+	 * storeValidConfiguration() whenever possible.
+	 *
 	 * @return IConfigurationStore
 	 */
 	public function getStore(): IConfigurationStore;
@@ -51,4 +56,18 @@ interface IConfigurationProvider {
 	 * @return StatusValue if OK, loaded configuration is passed as a value
 	 */
 	public function loadValidConfiguration(): StatusValue;
+
+	/**
+	 * Store configuration while guaranteeing
+	 *
+	 * @param array $newConfig
+	 * @param Authority $authority
+	 * @param string $summary
+	 * @return StatusValue
+	 */
+	public function storeValidConfiguration(
+		array $newConfig,
+		Authority $authority,
+		string $summary = ''
+	): StatusValue;
 }
