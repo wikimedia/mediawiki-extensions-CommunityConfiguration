@@ -9,7 +9,7 @@
 	"communityconfiguration-guidelines-title": "Mi az a közösségi konfiguráció?",
 	"communityconfiguration-guidelines-description": "A közösségi konfiguráció lehetővé teszi a közösségeknek, hogy maguk állítsák be és felügyeljék különböző {{SITENAME}}-funkciók konfigurációját, ezzel segítve az adminisztrátoroknak az adott közösség igényeinek kielégítésében.",
 	"communityconfiguration-guidelines-guideline1-title": "Tudj meg többet",
-	"communityconfiguration-guidelines-guideline1-description": "[[mw:Help:Growth|Tudj meg többet]] a közösségi konfigurációról, a mibenlétéről, működéséről és a csapat folyamatban lévő munkájáról.",
+	"communityconfiguration-guidelines-guideline1-description": "[[mw:Special:MyLanguage/Help:Growth|Tudj meg többet]] a közösségi konfigurációról, a mibenlétéről, működéséről és a csapat folyamatban lévő munkájáról.",
 	"communityconfiguration-guidelines-guideline2-title": "{{GENDER:$1|Visszajelzés}}",
 	"communityconfiguration-guidelines-guideline2-description": "Szeretnénk hallani a {{GENDER:$1|gondolataid}}! Elérhetsz minket a [[mw:Talk:Growth|vitalapunkon]].",
 	"communityconfiguration-providers-list-title": "Funkciók"
