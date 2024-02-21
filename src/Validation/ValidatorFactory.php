@@ -59,24 +59,27 @@ class ValidatorFactory {
 	/**
 	 * Construct a new validator
 	 *
-	 * @param string $name Validator key (from CommunityConfigurationValidators)
+	 * @param string $name Provider name (from CommunityConfigurationProviders attribute)
+	 * @param string $type Validator key (from CommunityConfigurationValidators)
 	 * @param array $validatorArgs
 	 * @return IValidator
 	 */
-	public function newValidator( string $name, array $validatorArgs ): IValidator {
-		if ( !array_key_exists( $name, $this->validatorSpecs ) ) {
-			throw new InvalidArgumentException( "Validator $name is not supported" );
+	public function newValidator( string $name, string $type, array $validatorArgs ): IValidator {
+		if ( !array_key_exists( $type, $this->validatorSpecs ) ) {
+			throw new InvalidArgumentException( "Validator $type is not supported" );
 		}
-		if ( !array_key_exists( $name, $this->validators ) ) {
-			$this->validators[$name] = $this->objectFactory->createObject(
-				$this->validatorSpecs[$name],
+		$validatorKey = $name . '_' . $type;
+		if ( !array_key_exists( $validatorKey, $this->validators ) ) {
+			$this->validators[$validatorKey] = $this->objectFactory->createObject(
+				$this->validatorSpecs[$type],
 				[
 					'assertClass' => IValidator::class,
 					'extraArgs' => $validatorArgs,
 				],
 			);
 		}
-		return $this->validators[$name];
+
+		return $this->validators[$validatorKey];
 	}
 
 	/**
