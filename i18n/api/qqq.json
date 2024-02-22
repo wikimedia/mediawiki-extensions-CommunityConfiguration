@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"apihelp-communityconfigurationedit-summary": "{{doc-apihelp-summary|communityconfigurationedit}}",
+	"apihelp-communityconfigurationedit-param-provider": "{{doc-apihelp-param|communityconfigurationedit|provider}}",
+	"apihelp-communityconfigurationedit-param-content": "{{doc-apihelp-param|communityconfigurationedit|content}}",
+	"apihelp-communityconfigurationedit-param-summary": "{{doc-apihelp-param|communityconfigurationedit|summary}}"
+}

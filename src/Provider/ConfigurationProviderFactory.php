@@ -84,6 +84,7 @@ class ConfigurationProviderFactory {
 	 *
 	 * @param string $name
 	 * @return IConfigurationProvider
+	 * @throws InvalidArgumentException when the definition of provider is invalid
 	 */
 	private function constructProvider( string $name ): IConfigurationProvider {
 		$spec = $this->providerSpecs[$name];
@@ -123,6 +124,11 @@ class ConfigurationProviderFactory {
 		return $provider;
 	}
 
+	/**
+	 * @param string $name
+	 * @return IConfigurationProvider
+	 * @throws InvalidArgumentException when provider $name is not registered
+	 */
 	public function newProvider( string $name ): IConfigurationProvider {
 		if ( !array_key_exists( $name, $this->providerSpecs ) ) {
 			throw new InvalidArgumentException( "Provider $name is not supported" );
