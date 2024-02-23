@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
+use MediaWiki\Permissions\Authority;
 use StatusValue;
 
 /**
@@ -24,6 +25,10 @@ use StatusValue;
  *         "services": []
  *     }
  * }
+ *
+ * Configuration store provides direct access to the underlying store. There is no validation,
+ * permission control or similar. Unless you are certain this is what you need, consider using
+ * IConfigurationProvider's methods instead.
  */
 interface IConfigurationStore {
 
@@ -53,7 +58,13 @@ interface IConfigurationStore {
 	 *
 	 * @note Permissions are the caller's responsibility
 	 * @param array $config
+	 * @param Authority $authority
+	 * @param string $summary Short (human-written) summary of the change
 	 * @return StatusValue
 	 */
-	public function storeConfiguration( array $config ): StatusValue;
+	public function storeConfiguration(
+		array $config,
+		Authority $authority,
+		string $summary = ''
+	): StatusValue;
 }
