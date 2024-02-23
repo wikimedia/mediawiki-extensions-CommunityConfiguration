@@ -29,9 +29,7 @@ class ApiEditTest extends ApiTestCase {
 					],
 					'validator' => [
 						'type' => 'noop',
-						'args' => [],
 					],
-					'type' => 'data',
 				],
 			],
 		] );

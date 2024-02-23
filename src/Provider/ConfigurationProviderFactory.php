@@ -15,6 +15,9 @@ use MediaWiki\MediaWikiServices;
  */
 class ConfigurationProviderFactory {
 
+	/** @var string */
+	private const DEFAULT_PROVIDER_TYPE = 'data';
+
 	/**
 	 * @var string[]
 	 * @internal for use in ServiceWiring only
@@ -69,7 +72,7 @@ class ConfigurationProviderFactory {
 	 */
 	private function getConstructArgs( array $spec, string $constructName ) {
 		return is_string( $spec[ $constructName ] ) ? $spec[ $constructName ] : ( is_array( $spec[ $constructName ] ) ?
-			$spec[ $constructName ]['args'] : [] );
+			( $spec[ $constructName ]['args'] ?? [] ) : [] );
 	}
 
 	private function getProviderClassSpec( string $className ): array {
@@ -109,7 +112,7 @@ class ConfigurationProviderFactory {
 			$this->validatorFactory->newValidator( $name, $validatorType, $validatorArgs )
 		];
 
-		$classSpec = $this->getProviderClassSpec( $spec['type'] );
+		$classSpec = $this->getProviderClassSpec( $spec['type'] ?? self::DEFAULT_PROVIDER_TYPE );
 
 		foreach ( $spec['services'] ?? [] as $serviceName ) {
 			$ctorArgs[] = $this->services->getService( $serviceName );
