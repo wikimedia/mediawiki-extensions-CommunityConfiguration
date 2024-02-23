@@ -6,7 +6,7 @@ use FormatJson;
 use JsonContent;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\SimpleAuthority;
@@ -27,7 +27,7 @@ class WriterTest extends MediaWikiUnitTestCase {
 	private function getWikiPageFactory(
 		PageUpdater $updater,
 		Authority $authority,
-		LinkTarget $configPage
+		PageIdentity $configPage
 	) {
 		$wikiPage = $this->createMock( WikiPage::class );
 		$wikiPage->expects( $this->once() )
@@ -36,7 +36,7 @@ class WriterTest extends MediaWikiUnitTestCase {
 			->willReturn( $updater );
 		$wikiPageFactoryMock = $this->createMock( WikiPageFactory::class );
 		$wikiPageFactoryMock->expects( $this->once() )
-			->method( 'newFromLinkTarget' )
+			->method( 'newFromTitle' )
 			->with( $configPage )
 			->willReturn( $wikiPage );
 		return $wikiPageFactoryMock;
@@ -44,14 +44,15 @@ class WriterTest extends MediaWikiUnitTestCase {
 
 	public static function provideSaveOK() {
 		return [
-			[ 'tag', [] ],
-			[ [ 'tag-1', 'tag-2' ], [ 'autopatrol' ] ],
-			[ [ 'tag-1', 'tag-2' ], [] ],
+			[ 'tag', [ 'edit' ] ],
+			[ [ 'tag-1', 'tag-2' ], [ 'edit', 'autopatrol' ] ],
+			[ [ 'tag-1', 'tag-2' ], [ 'edit' ] ],
 		];
 	}
 
 	/**
 	 * @covers ::save
+	 * @covers ::doSave
 	 * @dataProvider provideSaveOK
 	 * @param array|string $tags
 	 * @param array $permissions
@@ -64,7 +65,7 @@ class WriterTest extends MediaWikiUnitTestCase {
 		);
 		$newContent = [ 'Foo' => 42 ];
 
-		$configPageMock = $this->createNoOpMock( LinkTarget::class );
+		$configPageMock = $this->createNoOpMock( PageIdentity::class );
 
 		$updater = $this->createMock( PageUpdater::class );
 		$updater->expects( $this->once() )

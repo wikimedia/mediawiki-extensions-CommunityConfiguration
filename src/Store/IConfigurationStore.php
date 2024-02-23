@@ -26,9 +26,10 @@ use StatusValue;
  *     }
  * }
  *
- * Configuration store provides direct access to the underlying store. There is no validation,
- * permission control or similar. Unless you are certain this is what you need, consider using
- * IConfigurationProvider's methods instead.
+ * Configuration store does not provide validation; ensure you validate the config via an
+ * appropriate IValidator instance (ideally through IConfigurationProvider::getValidator). Unless you
+ * are certain this is what you need, consider using IConfigurationProvider's methods for
+ * writing configuration instead.
  */
 interface IConfigurationStore {
 
