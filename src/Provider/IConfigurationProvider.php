@@ -51,11 +51,18 @@ interface IConfigurationProvider {
 	public function getValidator(): IValidator;
 
 	/**
-	 * Load configuration that is guaranteed to be valid
+	 * Load (possibly cached) configuration that is guaranteed to be valid
 	 *
 	 * @return StatusValue if OK, loaded configuration is passed as a value
 	 */
 	public function loadValidConfiguration(): StatusValue;
+
+	/**
+	 * Load (uncached) configuration that is guaranteed to be valid
+	 *
+	 * @return StatusValue if OK, loaded configuration is passed as a value
+	 */
+	public function loadValidConfigurationUncached(): StatusValue;
 
 	/**
 	 * Store configuration while guaranteeing
