@@ -2,27 +2,26 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
+use LogicException;
 use MediaWiki\Permissions\Authority;
 use StatusValue;
 
 class StaticStore implements IConfigurationStore {
 
-	private ?string $configLocation;
+	private array $config;
 
 	/**
-	 * @param string|null $configLocation
+	 * @param array $config
 	 */
-	public function __construct( ?string $configLocation ) {
-		$this->configLocation = $configLocation;
+	public function __construct( array $config = [] ) {
+		$this->config = $config;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function loadConfigurationUncached(): StatusValue {
-		return StatusValue::newGood( [
-			'FooBar' => 42,
-		] );
+		return StatusValue::newGood( $this->config );
 	}
 
 	/**
@@ -34,14 +33,14 @@ class StaticStore implements IConfigurationStore {
 
 	/**
 	 * @inheritDoc
+	 * @return never
 	 */
 	public function storeConfiguration(
 		array $config,
 		Authority $authority,
 		string $summary = ''
 	): StatusValue {
-		// TODO: add a proper i18n message
-		return StatusValue::newFatal( 'no-writes' );
+		throw new LogicException( 'Static store cannot be edited' );
 	}
 
 	/**
