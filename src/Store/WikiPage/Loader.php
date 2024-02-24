@@ -97,10 +97,11 @@ class Loader implements IDBAccessObject, ICustomReadConstants {
 	private function loadFromWanCache( LinkTarget $configPage, int $flags = 0 ) {
 		return $this->cache->getWithSetCallback(
 			$this->makeCacheKey( $configPage ),
-			// Cache config for a day; cache is invalidated by ConfigHooks::onPageSaveComplete
-			// and WikiPageConfigWriter::save when config files are changed.,
+			// Cache config for a day; cache is invalidated by WikiPageStore::storeConfiguration
+			// when changing the config file.
 			ExpirationAwareness::TTL_DAY,
 			function ( $oldValue, &$ttl ) use ( $configPage, $flags ) {
+				$flags = $this->removeCustomFlags( $flags );
 				$result = $this->fetchConfig( $configPage, $flags );
 				if ( !$result->isOK() ) {
 					// error should not be cached
