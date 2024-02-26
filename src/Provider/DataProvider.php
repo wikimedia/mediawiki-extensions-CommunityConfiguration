@@ -32,21 +32,39 @@ class DataProvider implements IConfigurationProvider {
 	}
 
 	/**
-	 * @inheritDoc
+	 * Process a StatusValue returned from IConfigurationStore
+	 *
+	 * This ensures the configuration in $storeStatus is valid.
+	 *
+	 * @param StatusValue $storeStatus Status coming from IConfigurationStore::loadConfiguration(Uncached).
+	 * @return StatusValue
 	 */
-	public function loadValidConfiguration(): StatusValue {
-		$configStatus = $this->getStore()->loadConfigurationUncached();
-		if ( !$configStatus->isOK() ) {
-			return $configStatus;
+	private function validateConfiguration( StatusValue $storeStatus ): StatusValue {
+		if ( !$storeStatus->isOK() ) {
+			return $storeStatus;
 		}
 
-		$config = $configStatus->getValue();
+		$config = $storeStatus->getValue();
 		$validationStatus = $this->getValidator()->validate( $config );
 		if ( !$validationStatus->isOK() ) {
 			return $validationStatus;
 		}
 
 		return StatusValue::newGood( $config );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function loadValidConfiguration(): StatusValue {
+		return $this->validateConfiguration( $this->getStore()->loadConfiguration() );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function loadValidConfigurationUncached(): StatusValue {
+		return $this->validateConfiguration( $this->getStore()->loadConfigurationUncached() );
 	}
 
 	/**
