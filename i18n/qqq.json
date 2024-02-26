@@ -1,8 +1,6 @@
 {
 	"@metadata": {
-		"authors": [
-			"Martin Urbanec"
-		]
+		"authors": []
 	},
 	"communityconfiguration": "The title of Community Configuration entry point, only shown in Special:SpecialPages.",
 	"communityconfiguration-desc": "{{desc|name=CommunityConfiguration|url=https://www.mediawiki.org/wiki/Extension:CommunityConfiguration}}",

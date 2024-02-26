@@ -1,7 +1,8 @@
 {
 	"name": "CommunityConfiguration",
 	"author": [
-		"Martin Urbanec"
+		"Martin Urbanec",
+		"Sergio Gimeno"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:CommunityConfiguration",
 	"descriptionmsg": "communityconfiguration-desc",
