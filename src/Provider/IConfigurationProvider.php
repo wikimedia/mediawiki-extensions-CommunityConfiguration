@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
 use MediaWiki\Permissions\Authority;
+use Psr\Log\LoggerAwareInterface;
 use StatusValue;
 
 /**
@@ -30,7 +31,17 @@ use StatusValue;
  *     * args: if present, has to be an array of arguments (arguments are passed to __construct
  *       after all services).
  */
-interface IConfigurationProvider {
+interface IConfigurationProvider extends LoggerAwareInterface {
+
+	/**
+	 * Get a provider's name (under which it is defined)
+	 *
+	 * This is intended for logging outputs, to make it possible to determine which provider
+	 * caused a given log message, so that the issue can be debugged and fixed.
+	 *
+	 * @return string
+	 */
+	public function getName(): string;
 
 	/**
 	 * Get the associated configuration store

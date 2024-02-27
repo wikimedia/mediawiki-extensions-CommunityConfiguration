@@ -5,16 +5,34 @@ namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
 use MediaWiki\Permissions\Authority;
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\NullLogger;
 use StatusValue;
 
 class DataProvider implements IConfigurationProvider {
+	use LoggerAwareTrait;
 
+	private string $providerName;
 	private IConfigurationStore $store;
 	private IValidator $validator;
 
-	public function __construct( IConfigurationStore $store, IValidator $validator ) {
+	public function __construct(
+		string $providerName,
+		IConfigurationStore $store,
+		IValidator $validator
+	) {
+		$this->providerName = $providerName;
 		$this->store = $store;
 		$this->validator = $validator;
+
+		$this->setLogger( new NullLogger() );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getName(): string {
+		return $this->providerName;
 	}
 
 	/**

@@ -7,6 +7,7 @@ use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -108,6 +109,7 @@ class ConfigurationProviderFactory {
 		$validatorArgs = $this->getConstructArgs( $spec, 'validator' );
 
 		$ctorArgs = [
+			$name,
 			$this->storeFactory->newStore( $name, $storeType, $storeArgs ),
 			$this->validatorFactory->newValidator( $name, $validatorType, $validatorArgs )
 		];
@@ -124,6 +126,7 @@ class ConfigurationProviderFactory {
 		if ( !$provider instanceof IConfigurationProvider ) {
 			throw new LogicException( "$className is not an instance of IConfigurationProvider" );
 		}
+		$provider->setLogger( LoggerFactory::getInstance( 'CommunityConfiguration' ) );
 		return $provider;
 	}
 
