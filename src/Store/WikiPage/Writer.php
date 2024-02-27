@@ -9,9 +9,10 @@ use JsonContent;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -41,7 +42,11 @@ class Writer {
 	}
 
 	/**
-	 * @param LinkTarget $configPage
+	 * Save a new version to the configuration page
+	 *
+	 * No permission changes or validation is performed.
+	 *
+	 * @param PageIdentity $configPage
 	 * @param array $newConfig
 	 * @param Authority $performer
 	 * @param string $summary
@@ -49,8 +54,8 @@ class Writer {
 	 * @param array|string $tags Tag(s) to apply (defaults to none)
 	 * @return Status
 	 */
-	public function save(
-		LinkTarget $configPage,
+	public function doSave(
+		PageIdentity $configPage,
 		array $newConfig,
 		Authority $performer,
 		string $summary = '',
@@ -66,7 +71,7 @@ class Writer {
 		$content = new JsonContent( FormatJson::encode( $newConfig ) );
 
 		// Give AbuseFilter et al. a chance to block the edit (T346235)
-		$page = $this->wikiPageFactory->newFromLinkTarget( $configPage );
+		$page = $this->wikiPageFactory->newFromTitle( $configPage );
 		$status->merge( $this->runEditFilterMergedContentHook(
 			$performer,
 			$page->getTitle(),
@@ -98,6 +103,42 @@ class Writer {
 		$status->merge( $updater->getStatus() );
 
 		return $status;
+	}
+
+	/**
+	 * Save a new version of the configuration page
+	 *
+	 * Permissions are verified.
+	 *
+	 * @param PageIdentity $configPage
+	 * @param array $newConfig
+	 * @param Authority $performer
+	 * @param string $summary
+	 * @param bool $minor
+	 * @param array|string $tags Tag(s) to apply (defaults to none)
+	 * @return Status
+	 */
+	public function save(
+		PageIdentity $configPage,
+		array $newConfig,
+		Authority $performer,
+		string $summary = '',
+		bool $minor = false,
+		$tags = []
+	): Status {
+		$permissionStatus = PermissionStatus::newGood();
+		if ( !$performer->authorizeWrite( 'edit', $configPage, $permissionStatus ) ) {
+			return Status::wrap( $permissionStatus );
+		}
+
+		return $this->doSave(
+			$configPage,
+			$newConfig,
+			$performer,
+			$summary,
+			$minor,
+			$tags
+		);
 	}
 
 	/**
