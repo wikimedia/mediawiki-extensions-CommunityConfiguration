@@ -6,6 +6,7 @@ $specialPageAliases = [];
 $specialPageAliases['en'] = [
 	'CommunityConfiguration' => [ 'CommunityConfiguration' ],
 	'CommunityConfigurationDashboard' => [ 'CommunityConfigurationDashboard' ],
+	'CommunityConfigurationEditor' => [ 'CommunityConfigurationEditor' ],
 ];
 
 /** Norwegian Bokmål (norsk bokmål) */

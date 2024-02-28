@@ -4,13 +4,17 @@
 	},
 	"communityconfiguration": "Community Configuration",
 	"communityconfiguration-desc": "Contains Community configuration logic",
-	"communityconfigurationdashboard": "Community Configuration",
 	"communityconfiguration-guidelines-title": "What is Community Configuration?",
 	"communityconfiguration-guidelines-description": "Community Configuration is a tool that allows communities to set up and control the configuration of different {{SITENAME}} features, helping administrators suit their community specific needs.",
 	"communityconfiguration-guidelines-guideline1-title": "Learn more",
 	"communityconfiguration-guidelines-guideline1-description": "[[mw:Special:MyLanguage/Help:Growth|Learn more]] about Community Configuration, what it is, how it works, and the team’s ongoing work on it.",
 	"communityconfiguration-guidelines-guideline2-title": "Send us {{GENDER:$1|your}} feedback",
 	"communityconfiguration-guidelines-guideline2-description": "We would love to hear {{GENDER:$1|your}} thoughts! Reach out to us through our [[mw:Talk:Growth|talk page]].",
+	"communityconfiguration-invalid-stored-config-error": "Failed to load a valid configuration",
 	"communityconfiguration-schema-validation-error": "DRAFT: $2. Key: $1",
-	"communityconfiguration-providers-list-title": "Features"
+	"communityconfiguration-providers-list-title": "Features",
+	"communityconfiguration-provider-not-found": "Provider $1 is not found",
+	"communityconfiguration-unknown-error": "DRAFT: Something went wrong, submit an issue in Phabricator?",
+	"communityconfigurationdashboard": "Community Configuration",
+	"communityconfigurationeditor": "Editing '$1'"
 }
