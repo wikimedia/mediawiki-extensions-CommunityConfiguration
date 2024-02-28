@@ -78,11 +78,13 @@ class WikiPageStore implements IConfigurationStore {
 		Authority $authority,
 		string $summary = ''
 	): StatusValue {
-		return $this->writer->save(
+		$status = $this->writer->save(
 			$this->getConfigurationTitle(),
 			$config,
 			$authority,
 			$summary
 		)->getStatusValue();
+		$this->invalidate();
+		return $status;
 	}
 }

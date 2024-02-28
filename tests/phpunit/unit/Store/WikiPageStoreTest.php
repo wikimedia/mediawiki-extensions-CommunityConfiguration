@@ -120,10 +120,15 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 			->with( $titleMock, $newConfig, $authority, $summary )
 			->willReturn( $statusMock );
 
+		$loaderMock = $this->createMock( Loader::class );
+		$loaderMock->expects( $this->once() )
+			->method( 'invalidate' )
+			->with( $titleMock );
+
 		$store = new WikiPageStore(
 			'MediaWiki:Foo.json',
 			$titleFactoryMock,
-			$this->createNoOpMock( Loader::class ),
+			$loaderMock,
 			$writerMock
 		);
 		$this->assertSame(
