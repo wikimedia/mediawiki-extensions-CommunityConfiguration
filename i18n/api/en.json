@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"apihelp-communityconfigurationedit-summary": "Change the content of a configuration provider in Community configuration",
+	"apihelp-communityconfigurationedit-param-provider": "Provider key",
+	"apihelp-communityconfigurationedit-param-content": "The current content of the provider will be replaced with this one. Use JSON to serialize the new content.",
+	"apihelp-communityconfigurationedit-param-summary": "Edit summary"
+}

@@ -77,7 +77,8 @@
 	},
 	"MessagesDirs": {
 		"CommunityConfiguration": [
-			"i18n"
+			"i18n",
+			"i18n/api"
 		]
 	},
 	"ResourceModules": {
@@ -96,6 +97,14 @@
 	"ServiceWiringFiles": [
 		"src/ServiceWiring.php"
 	],
+	"APIModules": {
+		"communityconfigurationedit": {
+			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Api\\ApiEdit",
+			"services": [
+				"CommunityConfiguration.ProviderFactory"
+			]
+		}
+	},
 	"SpecialPages": {
 		"CommunityConfiguration": {
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Specials\\SpecialCommunityConfiguration",
