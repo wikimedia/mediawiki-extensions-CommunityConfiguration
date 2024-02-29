@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
+use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
 use StatusValue;
 
 /**
@@ -26,21 +27,9 @@ interface IValidator {
 	public function validate( array $config ): StatusValue;
 
 	/**
-	 * Return list of supported top level keys
+	 * Return a SchemaBuilder object or null for no schema support
 	 *
-	 * This is useful for IConfigurationProvider implementations; this information can be used to
-	 * decide whether a certain configuration request asks for an information that can be
-	 * present (but is missing from the store at the moment), or whether the information cannot
-	 * exist at all (and thus the request is invalid). Example is deciding whether Config::get
-	 * should throw, or return a default value.
-	 *
-	 * @return array List of top level keys names
+	 * @return SchemaBuilder|null
 	 */
-	public function getSupportedTopLevelKeys(): array;
-
-	/**
-	 * Return a SchemaLoader object or null for no schema support
-	 *
-	 */
-	public function getSchemaLoader(): ?SchemaLoader;
+	public function getSchemaBuilder(): ?SchemaBuilder;
 }

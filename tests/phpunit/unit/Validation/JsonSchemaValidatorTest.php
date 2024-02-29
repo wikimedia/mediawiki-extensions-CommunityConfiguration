@@ -11,10 +11,9 @@ class JsonSchemaValidatorTest extends \MediaWikiUnitTestCase {
 
 	public static function provideJSON(): array {
 		return [
-			[ [ 'foo' => 1 ], true ],
-			[ [ 'foo' => 'baz' ], false ],
-			[ [ 'foo' => 1, 'bar' => 1 ], false ],
-			[ [ 'bar' => 1 ], false ],
+			'OK' => [ [ 'Foo' => 1 ], true ],
+			'wrong type' => [ [ 'Foo' => 'baz' ], false ],
+			'additional property' => [ [ 'Foo' => 1, 'Bar' => 1 ], false ],
 		];
 	}
 
@@ -24,7 +23,7 @@ class JsonSchemaValidatorTest extends \MediaWikiUnitTestCase {
 	 * @dataProvider provideJSON
 	 */
 	public function testValidate( array $json, bool $isValid ) {
-		$validator = new JsonSchemaValidator( __DIR__ . '/schema_draft-07.json' );
+		$validator = new JsonSchemaValidator( JsonSchemaForTesting::class );
 		$result = $validator->validate( $json );
 		$this->assertEquals( $result->isGood(), $isValid );
 	}

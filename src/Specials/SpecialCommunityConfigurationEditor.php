@@ -67,7 +67,7 @@ class SpecialCommunityConfigurationEditor extends SpecialPage {
 			}
 			$out->addJsConfigVars( [
 				'communityConfigurationData' => [
-					'schema' => $this->provider->getValidator()->getSchemaLoader()->getSchema(),
+					'schema' => $this->provider->getValidator()->getSchemaBuilder()->getRootSchema(),
 					'data' => $config->getValue()
 				]
 			] );

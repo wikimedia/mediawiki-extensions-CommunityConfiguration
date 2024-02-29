@@ -4,6 +4,8 @@ namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
 use InvalidArgumentException;
 use JsonSchema\Validator;
+use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
+use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
 use Status;
 use StatusValue;
 use stdClass;
@@ -13,17 +15,20 @@ use stdClass;
  */
 class JsonSchemaValidator implements IValidator {
 
-	private SchemaLoader $loader;
+	private JsonSchemaBuilder $jsonSchemaBuilder;
 
 	/**
-	 * @param string $schema
+	 * @param string $schemaClassName
 	 */
-	public function __construct( string $schema ) {
-		$this->loader = new SchemaLoader( $schema );
+	public function __construct( string $schemaClassName ) {
+		$this->jsonSchemaBuilder = new JsonSchemaBuilder( $schemaClassName );
 	}
 
-	public function getSchemaLoader(): SchemaLoader {
-		return $this->loader;
+	/**
+	 * @inheritDoc
+	 */
+	public function getSchemaBuilder(): ?SchemaBuilder {
+		return $this->jsonSchemaBuilder;
 	}
 
 	/**
@@ -80,7 +85,7 @@ class JsonSchemaValidator implements IValidator {
 		$data = $this->arrayToStdClass( $config );
 		$validator->validate(
 			$data,
-			(object)[ '$ref' => 'file://' . $this->loader->getPath() ]
+			$this->arrayToStdClass( $this->jsonSchemaBuilder->getRootSchema() )
 		);
 		if ( $validator->isValid() ) {
 			return Status::newGood();
@@ -97,12 +102,5 @@ class JsonSchemaValidator implements IValidator {
 		}
 
 		return $status;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function getSupportedTopLevelKeys(): array {
-		return [];
 	}
 }

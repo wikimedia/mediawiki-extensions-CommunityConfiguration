@@ -34,14 +34,21 @@ class WikiPageConfigProvider
 		return $this->getValidConfigOrNothing()[$name];
 	}
 
+	private function getSupportedConfigVariableNames(): ?array {
+		$schemaBuilder = $this->getValidator()->getSchemaBuilder();
+		if ( $schemaBuilder === null ) {
+			return null;
+		}
+
+		return array_keys( $schemaBuilder->getRootProperties() );
+	}
+
 	/**
 	 * @inheritDoc
 	 */
 	public function has( $name ) {
-		// FIXME: IValidator::getSupportedTopLevelKeys() is not implemented yet and always
-		// returns an empty string.
-		// @phan-suppress-next-line PhanImpossibleCondition
-		if ( false && !in_array( $name, $this->getValidator()->getSupportedTopLevelKeys() ) ) {
+		$allowlist = $this->getSupportedConfigVariableNames();
+		if ( $allowlist && !in_array( $name, $allowlist ) ) {
 			// This config value is not supported
 			return false;
 		}

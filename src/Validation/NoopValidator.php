@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
+use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
 use StatusValue;
 
 /**
@@ -21,14 +22,7 @@ class NoopValidator implements IValidator {
 	/**
 	 * @inheritDoc
 	 */
-	public function getSupportedTopLevelKeys(): array {
-		return [];
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function getSchemaLoader(): ?SchemaLoader {
+	public function getSchemaBuilder(): ?SchemaBuilder {
 		return null;
 	}
 }
