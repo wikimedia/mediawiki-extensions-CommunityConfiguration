@@ -6,7 +6,6 @@
 	},
 	"communityconfiguration": "Поставки на заедницата",
 	"communityconfiguration-desc": "Логика на поставување на Поставки на заедницата",
-	"communityconfigurationdashboard": "Поставки на заедницата",
 	"communityconfiguration-guidelines-title": "Што е „Поставки на заедницата“?",
 	"communityconfiguration-guidelines-description": "Поставки на заедницата е алатка која им овозможува на заедници да ја задаваат и контролираат поставеноста на различни функции на {{SITENAME}}, помоагајќи им на администраторите да одговорат на потребите на таа конкретна заедница.",
 	"communityconfiguration-guidelines-guideline1-title": "Дознајте повеќе",
@@ -14,5 +13,6 @@
 	"communityconfiguration-guidelines-guideline2-title": "Дајте ни {{GENDER:$1|ваше}} мислење",
 	"communityconfiguration-guidelines-guideline2-description": "Би сакале да ги чуеме {{GENDER:$1|вашите}} согледувања! Пишете ни на [[mw:Talk:Growth|разговорната страница]].",
 	"communityconfiguration-schema-validation-error": "НАЦРТ: $2. Клуч: $1",
-	"communityconfiguration-providers-list-title": "Функции"
+	"communityconfiguration-providers-list-title": "Функции",
+	"communityconfigurationdashboard": "Поставки на заедницата"
 }

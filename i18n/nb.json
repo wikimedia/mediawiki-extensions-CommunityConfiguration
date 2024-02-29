@@ -6,7 +6,6 @@
 	},
 	"communityconfiguration": "Fellesskapskonfigurasjon",
 	"communityconfiguration-desc": "Inneholder logikk for fellesskapskonfigurasjon",
-	"communityconfigurationdashboard": "Fellesskapskonfigurasjon",
 	"communityconfiguration-guidelines-title": "Hva er fellesskapskonfigurasjon?",
 	"communityconfiguration-guidelines-description": "Fellesskapskonfigurasjon er et verktøy som lar wikifellesskaper sette opp og kontrollere konfigurasjonen av forskjellige {{SITENAME}}-funksjoner, og lar administratorer tilpasse funksjonene til sitt wikifellesskap.",
 	"communityconfiguration-guidelines-guideline1-title": "Lær mer",
@@ -14,5 +13,6 @@
 	"communityconfiguration-guidelines-guideline2-title": "Gi oss {{GENDER:$1|din}} tilbakemelding",
 	"communityconfiguration-guidelines-guideline2-description": "Vi vil gjerne høre hva {{GENDER:$1|du}} tenker! Ta kontakt med oss på [[mw:Talk:Growth|diskusjonssiden]].",
 	"communityconfiguration-schema-validation-error": "UTKAST: $2. Nøkkel: $1",
-	"communityconfiguration-providers-list-title": "Funksjoner"
+	"communityconfiguration-providers-list-title": "Funksjoner",
+	"communityconfigurationdashboard": "Fellesskapskonfigurasjon"
 }

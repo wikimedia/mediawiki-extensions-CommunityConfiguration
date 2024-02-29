@@ -6,7 +6,6 @@
 	},
 	"communityconfiguration": "Topluluk Yapılandırması",
 	"communityconfiguration-desc": "Topluluk yapılandırma mantığını içerir",
-	"communityconfigurationdashboard": "Topluluk Yapılandırması",
 	"communityconfiguration-guidelines-title": "Topluluk Yapılandırması nedir?",
 	"communityconfiguration-guidelines-description": "Topluluk Yapılandırması, toplulukların farklı {{SITENAME}}  özelliklerinin yapılandırmasını kurmasına ve kontrol etmesine olanak tanıyarak hizmetlilerin topluluğa özgü ihtiyaçlarını karşılamalarına yardımcı olan bir araçtır.",
 	"communityconfiguration-guidelines-guideline1-title": "Daha fazla bilgi",
@@ -14,5 +13,6 @@
 	"communityconfiguration-guidelines-guideline2-title": "Bize geri bildirimde bulunun!",
 	"communityconfiguration-guidelines-guideline2-description": "Düşüncelerinizi duymayı çok isteriz! [[mw:Talk:Growth|Tartışma sayfamızdan]] bize ulaşın.",
 	"communityconfiguration-schema-validation-error": "TASLAK: $2. Anahtar: $1",
-	"communityconfiguration-providers-list-title": "Özellikler"
+	"communityconfiguration-providers-list-title": "Özellikler",
+	"communityconfigurationdashboard": "Topluluk Yapılandırması"
 }
