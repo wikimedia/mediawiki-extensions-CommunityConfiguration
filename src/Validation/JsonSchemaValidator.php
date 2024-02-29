@@ -24,6 +24,17 @@ class JsonSchemaValidator implements IValidator {
 		return $this->loader;
 	}
 
+	private function arrayToStdClass( array $config ): \stdClass {
+		$res = new \stdClass();
+		foreach ( $config as $key => $value ) {
+			if ( is_array( $value ) ) {
+				$value = $this->arrayToStdClass( $value );
+			}
+			$res->$key = $value;
+		}
+		return $res;
+	}
+
 	/**
 	 * @inheritDoc
 	 */
@@ -34,8 +45,11 @@ class JsonSchemaValidator implements IValidator {
 		// other valid json data types, eg: string, array. Consider
 		// using a mixed type for config objects or restrict the
 		// root type of configuration schemas to "object".
-		$data = (object)$config;
-		$validator->validate( $data, (object)[ '$ref' => 'file://' . $this->loader->getPath() ] );
+		$data = $this->arrayToStdClass( $config );
+		$validator->validate(
+			$data,
+			(object)[ '$ref' => 'file://' . $this->loader->getPath() ]
+		);
 		if ( $validator->isValid() ) {
 			return Status::newGood();
 		}
