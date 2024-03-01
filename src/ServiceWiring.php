@@ -1,12 +1,14 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Extension\CommunityConfiguration\Access\WikiPageConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Loader;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 return [
@@ -52,6 +54,16 @@ return [
 			new ServiceOptions( StoreFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getObjectFactory()
 		);
+	},
+	'CommunityConfiguration.WikiPageConfigReader' => static function ( MediaWikiServices $services ) {
+		$ccServices = CommunityConfigurationServices::wrap( $services );
+		$reader = new WikiPageConfigReader(
+			$services->getLocalServerObjectCache(),
+			$ccServices->getConfigurationProviderFactory(),
+			$services->getMainConfig()
+		);
+		$reader->setLogger( LoggerFactory::getInstance( 'CommunityConfiguration' ) );
+		return $reader;
 	},
 	'CommunityConfiguration.WikiPageStore.Loader' => static function ( MediaWikiServices $services ) {
 		return new Loader(

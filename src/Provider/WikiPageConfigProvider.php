@@ -34,7 +34,12 @@ class WikiPageConfigProvider
 		return $this->getValidConfigOrNothing()[$name];
 	}
 
-	private function getSupportedConfigVariableNames(): ?array {
+	/**
+	 * Get a list of supported config variables
+	 *
+	 * @return array|null Null if all variables are supported
+	 */
+	public function getSupportedConfigVariableNames(): ?array {
 		$schemaBuilder = $this->getValidator()->getSchemaBuilder();
 		if ( $schemaBuilder === null ) {
 			return null;

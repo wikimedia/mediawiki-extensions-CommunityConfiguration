@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration;
 
+use MediaWiki\Extension\CommunityConfiguration\Access\WikiPageConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
@@ -37,5 +38,9 @@ class CommunityConfigurationServices {
 
 	public function getStoreFactory(): StoreFactory {
 		return $this->coreServices->getService( 'CommunityConfiguration.StoreFactory' );
+	}
+
+	public function getWikiPageConfigReader(): WikiPageConfigReader {
+		return $this->coreServices->getService( 'CommunityConfiguration.WikiPageConfigReader' );
 	}
 }
