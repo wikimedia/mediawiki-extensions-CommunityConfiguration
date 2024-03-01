@@ -12,7 +12,11 @@
 	"communityconfiguration-guidelines-guideline1-description": "[[mw:Special:MyLanguage/Help:Growth|Дознајте повеќе]] за Поставки на заедницата: што се, како работат и тековната работа на екипата посветена на нив.",
 	"communityconfiguration-guidelines-guideline2-title": "Дајте ни {{GENDER:$1|ваше}} мислење",
 	"communityconfiguration-guidelines-guideline2-description": "Би сакале да ги чуеме {{GENDER:$1|вашите}} согледувања! Пишете ни на [[mw:Talk:Growth|разговорната страница]].",
+	"communityconfiguration-invalid-stored-config-error": "Не успеав да вчитам важечка поставеност",
 	"communityconfiguration-schema-validation-error": "НАЦРТ: $2. Клуч: $1",
 	"communityconfiguration-providers-list-title": "Функции",
-	"communityconfigurationdashboard": "Поставки на заедницата"
+	"communityconfiguration-provider-not-found": "Не го пронајдов услужникот $1",
+	"communityconfiguration-unknown-error": "НАЦРТ: Нешто тргна наопаку. Да го поснесам проблемот на Фабрикатор?",
+	"communityconfigurationdashboard": "Поставки на заедницата",
+	"communityconfigurationeditor": "Уредување на „$1“"
 }

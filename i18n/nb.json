@@ -12,7 +12,11 @@
 	"communityconfiguration-guidelines-guideline1-description": "[[mw:Special:MyLanguage/Help:Growth|Lær mer]] om fellesskapskonfigurasjon, hva det er, hvordan det funker, og om teamet som utvikler det.",
 	"communityconfiguration-guidelines-guideline2-title": "Gi oss {{GENDER:$1|din}} tilbakemelding",
 	"communityconfiguration-guidelines-guideline2-description": "Vi vil gjerne høre hva {{GENDER:$1|du}} tenker! Ta kontakt med oss på [[mw:Talk:Growth|diskusjonssiden]].",
+	"communityconfiguration-invalid-stored-config-error": "Kunne ikke laste en gyldig konfigurasjon",
 	"communityconfiguration-schema-validation-error": "UTKAST: $2. Nøkkel: $1",
 	"communityconfiguration-providers-list-title": "Funksjoner",
-	"communityconfigurationdashboard": "Fellesskapskonfigurasjon"
+	"communityconfiguration-provider-not-found": "Leverandøren $1 ble ikke funnet",
+	"communityconfiguration-unknown-error": "UTKAST: Noe gikk galt. Vil du sende inn en sak på Phabricator?",
+	"communityconfigurationdashboard": "Fellesskapskonfigurasjon",
+	"communityconfigurationeditor": "Redigerer «$1»"
 }

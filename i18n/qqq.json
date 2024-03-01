@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Jon Harald Søby"
+		]
 	},
 	"communityconfiguration": "The title of Community Configuration entry point, only shown in Special:SpecialPages.",
 	"communityconfiguration-desc": "{{desc|name=CommunityConfiguration|url=https://www.mediawiki.org/wiki/Extension:CommunityConfiguration}}",
@@ -13,8 +15,8 @@
 	"communityconfiguration-invalid-stored-config-error": "Error message shown when the Community configuration editor is unable to load a valid configuration",
 	"communityconfiguration-schema-validation-error": "Generic validation error",
 	"communityconfiguration-providers-list-title": "Title of the list of providers in the community configuration dashboard",
-	"communityconfiguration-provider-not-found": "Error for the configuration editor when a given provider is not found.\n\nParameters: * $1 - The name of the provider",
+	"communityconfiguration-provider-not-found": "Error for the configuration editor when a given provider is not found.\n\nParameters:\n* $1 - The name of the provider",
 	"communityconfiguration-unknown-error": "Generic error message for server errors in community configuration special page",
 	"communityconfigurationdashboard": "The title of Community Configuration Dashboard special page",
-	"communityconfigurationeditor": "Title for the configuration editor of a given provider.\n\nParameters: * $1 - The name of the provider"
+	"communityconfigurationeditor": "Title for the configuration editor of a given provider.\n\nParameters:\n* $1 - The name of the provider"
 }
