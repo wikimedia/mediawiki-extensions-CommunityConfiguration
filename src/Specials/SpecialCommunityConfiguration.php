@@ -30,6 +30,7 @@ class SpecialCommunityConfiguration extends SpecialPage {
 	 * @param string|null $subPage
 	 */
 	public function execute( $subPage ) {
+		parent::execute( $subPage );
 		$out = $this->getContext()->getOutput();
 
 		$this->setCommunityConfigurationSpecialPages();
@@ -49,7 +50,6 @@ class SpecialCommunityConfiguration extends SpecialPage {
 				'communityconfiguration-unknown-error'
 			)->text() ) );
 		}
-		parent::execute( $subPage );
 	}
 
 	/**
