@@ -12,7 +12,11 @@
 	"communityconfiguration-guidelines-guideline1-description": "[[mw:Special:MyLanguage/Help:Growth|اعرف المزيد]] حول إعدادات المجتمع، وما هي، وكيف تعمل، والعمل الحالي للفريق عليها.",
 	"communityconfiguration-guidelines-guideline2-title": "{{GENDER:$1|أرسل|أرسلي}} لنا تعليقاتك",
 	"communityconfiguration-guidelines-guideline2-description": "نحن نحب أن نسمع أفكارك! {{GENDER:$1|تواصل|تواصلي}} معنا بواسطة [[mw:Talk:Growth|صفحة النقاش]].",
-	"communityconfiguration-schema-validation-error": "المُسَوَّدَة: $2. المفتاح: $1",
+	"communityconfiguration-invalid-stored-config-error": "فشل في تحميل إعداد صالح",
+	"communityconfiguration-schema-validation-error": "مُسَوَّدَة: $2. المفتاح: $1",
 	"communityconfiguration-providers-list-title": "المزايا",
-	"communityconfigurationdashboard": "إعدادات المجتمع"
+	"communityconfiguration-provider-not-found": "لم يتم العثور على الموفِّر $1",
+	"communityconfiguration-unknown-error": "مُسَوَّدَة: حدث خطأ ما، هل تريدون إبلاغ المشكلة في فابريكاتور؟",
+	"communityconfigurationdashboard": "إعدادات المجتمع",
+	"communityconfigurationeditor": "تعديل '$1'"
 }

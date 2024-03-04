@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Volvox"
+		]
+	},
+	"communityconfiguration-schema-validation-error": "ENTWORF: $2. Schlëssel: $1",
+	"communityconfigurationeditor": "„$1“ änneren"
+}
