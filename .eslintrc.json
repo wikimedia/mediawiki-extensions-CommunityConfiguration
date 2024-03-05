@@ -18,6 +18,7 @@
 			],
 			"rules": {
 				"max-len": "off",
+				"template-curly-spacing": "off",
 				"vue/component-name-in-template-casing": [
 					"error",
 					"kebab-case"
@@ -38,7 +39,10 @@
 			],
 			"extends": [
 				"wikimedia/client-es6"
-			]
+			],
+			"rules": {
+				"template-curly-spacing": "off"
+			}
 		},
 		{
 			"files": [
