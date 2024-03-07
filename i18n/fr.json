@@ -1,9 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"MacOS Weed",
 			"SleaY"
 		]
 	},
 	"communityconfiguration-guidelines-guideline1-title": "En savoir plus",
-	"communityconfiguration-providers-list-title": "Fonctionnalités"
+	"communityconfiguration-guidelines-guideline2-title": "Donnez-nous {{GENDER:$1|votre}} avis !",
+	"communityconfiguration-schema-validation-error": "BROUILLON : $2. Clé : $1",
+	"communityconfiguration-providers-list-title": "Fonctionnalités",
+	"communityconfigurationeditor": "Modification de « $1 »"
 }
