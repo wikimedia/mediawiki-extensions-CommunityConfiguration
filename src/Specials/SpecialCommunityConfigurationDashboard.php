@@ -38,10 +38,11 @@ class SpecialCommunityConfigurationDashboard extends SpecialPage {
 		$availableProviders = [];
 		$formEditorURL = $this->specialPageFactory->getTitleForAlias( 'CommunityConfiguration' )->getLinkURL();
 		foreach ( $this->providerFactory->getSupportedKeys() as $providerName ) {
+			$lowerCaseProviderName = strtolower( $providerName );
 			$availableProviders[] = [
 				'href' => $formEditorURL . '/' . $providerName,
-				'title' => $this->msg( 'communityconfiguration-' . $providerName . '-title' ),
-				'description' => $this->msg( 'communityconfiguration-' . $providerName . '-description' )
+				'title' => $this->msg( 'communityconfiguration-' . $lowerCaseProviderName . '-title' ),
+				'description' => $this->msg( 'communityconfiguration-' . $lowerCaseProviderName . '-description' )
 			];
 		}
 		return $availableProviders;
