@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"communityconfiguration": "Configuration del communitate",
+	"communityconfiguration-desc": "Contine logica pro le configuration del communitate",
+	"communityconfiguration-guidelines-title": "Que es Configuration del communitate?",
+	"communityconfiguration-guidelines-description": "Configuration del communitate es un instrumento que permitte que communitates defini e controla le configuration de varie functionalitates de {{SITENAME}}. Isto adjuta le administratores a satisfacer le besonios specific de lor communitate.",
+	"communityconfiguration-guidelines-guideline1-title": "Leger plus"
+}
