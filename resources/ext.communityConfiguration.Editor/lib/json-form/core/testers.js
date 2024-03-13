@@ -32,8 +32,10 @@ function schemaTypeIs( expectedType ) {
  * Default testers for simple types
  */
 const isBooleanControl = schemaTypeIs( 'boolean' );
+const isStringControl = schemaTypeIs( 'string' );
 
 module.exports = exports = {
-	rankWith,
-	isBooleanControl
+	isBooleanControl,
+	isStringControl,
+	rankWith
 };

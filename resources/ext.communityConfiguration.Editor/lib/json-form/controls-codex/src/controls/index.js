@@ -1,7 +1,9 @@
 const BooleanControl = require( './BooleanControl.vue' );
+const StringControl = require( './StringControl.vue' );
 const {
 	rankWith,
-	isBooleanControl
+	isBooleanControl,
+	isStringControl
 } = require( '../../config/index.js' );
 
 const rankRenderer = ( renderer, tester ) => ( {
@@ -11,6 +13,7 @@ const rankRenderer = ( renderer, tester ) => ( {
 
 module.exports = exports = {
 	controls: [
-		rankRenderer( BooleanControl, isBooleanControl )
+		rankRenderer( BooleanControl, isBooleanControl ),
+		rankRenderer( StringControl, isStringControl )
 	]
 };
