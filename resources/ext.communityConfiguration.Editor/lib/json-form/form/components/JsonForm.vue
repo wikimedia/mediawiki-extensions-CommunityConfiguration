@@ -25,6 +25,10 @@ module.exports = exports = {
 		};
 	},
 	props: {
+		config: {
+			type: Object,
+			required: true
+		},
 		schema: {
 			type: Object,
 			required: true
@@ -43,6 +47,7 @@ module.exports = exports = {
 		// TODO consider using more performant deep clone functions
 		const dataClone = JSON.parse( JSON.stringify( props.data ) );
 		const data = reactive( dataClone );
+
 		function onSubmit( evt ) {
 			evt.preventDefault();
 			emit( 'submit', data );
@@ -52,9 +57,10 @@ module.exports = exports = {
 			onSubmit,
 			jsonform: {
 				data,
+				config: props.config,
 				renderers: props.renderers,
 				schema: props.schema,
-				uischema: buildUISchema( props.schema )
+				uischema: buildUISchema( props.schema, props.config )
 			}
 		};
 	}

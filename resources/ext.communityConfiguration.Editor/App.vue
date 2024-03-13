@@ -1,9 +1,10 @@
 <template>
 	<div class="ext-communityConfiguration-App">
 		<json-form
+			:config="editorFormConfig"
 			:data="configData"
-			:schema="schema"
 			:renderers="renderers"
+			:schema="schema"
 			@submit="onSubmit"
 		>
 			<template #submit>
@@ -36,6 +37,7 @@ module.exports = exports = {
 		const configData = inject( 'CONFIG_DATA' );
 		const schema = inject( 'JSON_SCHEMA' );
 		const providerName = inject( 'PROVIDER_NAME' );
+		const editorFormConfig = inject( 'EDITOR_FORM_CONFIG' );
 		const isLoading = ref( false );
 
 		function onSubmit( newData ) {
@@ -60,6 +62,7 @@ module.exports = exports = {
 
 		return {
 			configData,
+			editorFormConfig,
 			isLoading,
 			onSubmit,
 			renderers,

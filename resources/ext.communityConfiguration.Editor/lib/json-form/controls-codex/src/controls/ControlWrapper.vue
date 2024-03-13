@@ -1,20 +1,19 @@
 <template>
 	<div :id="name" class="ext-communityConfiguration-ControlWrapper">
 		<cdx-field>
-			<slot :control-label="controlLabel">
+			<slot :control-label="( controlLabel && controlLabel.exists() ) ? controlLabel.text() : ''">
 			</slot>
-			<template v-if="labelText" #label>
-				{{ labelText }}
+			<template v-if="label && label.exists()" #label>
+				{{ label.text() }}
 			</template>
-			<template v-if="helpText" #help-text>
-				{{ helpText }}
+			<template v-if="helpText && helpText.exists()" #help-text>
+				{{ helpText.text() }}
 			</template>
 		</cdx-field>
 	</div>
 </template>
 
 <script>
-const { inject } = require( 'vue' );
 const { CdxField } = require( '@wikimedia/codex' );
 
 // @vue/component
@@ -27,38 +26,21 @@ module.exports = exports = {
 		name: {
 			type: String,
 			required: true
-		}
-	},
-	setup: function () {
-		const providerName = inject( 'PROVIDER_NAME' );
-		const translationKeyPrefix = `communityconfiguration-${providerName}`;
-		return {
-			translationKeyPrefix
-		};
-	},
-	computed: {
-		controlLabel() {
-			// Messages that can be used here:
-			// * communityconfiguration-<provider_name>-label-<some_field>-control-label
-			return this.$i18n(
-				`${this.translationKeyPrefix}-${this.name}-control-label`.toLocaleLowerCase()
-			).text();
 		},
-		labelText() {
-			// Messages that can be used here:
-			// * communityconfiguration-<provider_name>-label-<some_field>
-			// * communityconfiguration-<provider_name>-label-<another_field>
-			return this.$i18n(
-				`${this.translationKeyPrefix}-${this.name}-label`.toLocaleLowerCase()
-			).text();
+		// mw.Message
+		label: {
+			type: Object,
+			required: true
 		},
-		helpText() {
-			// Messages that can be used here:
-			// * communityconfiguration-<provider_name>-<some_field>
-			// * communityconfiguration-<provider_name>-<another_field>
-			const localizationKey = `${this.translationKeyPrefix}-${this.name}-help`;
-
-			return this.$i18n( localizationKey.toLocaleLowerCase() ).text();
+		// mw.Message
+		controlLabel: {
+			type: Object,
+			default: null
+		},
+		// mw.Message
+		helpText: {
+			type: Object,
+			default: null
 		}
 	}
 };

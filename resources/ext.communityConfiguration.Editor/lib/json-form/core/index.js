@@ -1,4 +1,5 @@
 const { buildUISchema } = require( './uischema.js' );
+const { getControlsTextKeys } = require( './i18n.js' );
 const {
 	rankWith,
 	isBooleanControl,
@@ -8,6 +9,7 @@ const {
 
 module.exports = exports = {
 	buildUISchema,
+	getControlsTextKeys,
 	rankWith,
 	isBooleanControl,
 	isNumberControl,

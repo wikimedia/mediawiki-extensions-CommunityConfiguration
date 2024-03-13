@@ -69,7 +69,10 @@ class SpecialCommunityConfigurationEditor extends SpecialPage {
 				'communityConfigurationData' => [
 					'providerName' => $subPage,
 					'schema' => $this->provider->getValidator()->getSchemaBuilder()->getRootSchema(),
-					'data' => $config->getValue()
+					'data' => $config->getValue(),
+					'config' => [
+						'i18nPrefix' => "communityconfiguration-$subPage"
+					]
 				]
 			] );
 			$out->addModules( [ 'ext.communityConfiguration.Editor' ] );

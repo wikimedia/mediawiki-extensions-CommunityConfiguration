@@ -26,7 +26,12 @@ module.exports = exports = {
 		CdxCheckbox,
 		ControlWrapper
 	},
-	props: Object.assign( {}, rendererProps(), {} ),
+	props: Object.assign( {}, rendererProps(), {
+		controlLabel: {
+			type: String,
+			required: true
+		}
+	} ),
 	setup: function ( props ) {
 		return useCodexControl( useJsonFormControl( props ) );
 	}

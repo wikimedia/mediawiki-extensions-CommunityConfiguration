@@ -14,11 +14,16 @@ function useCodexControl( input ) {
 		input.handleChange( newVal );
 	};
 
+	const controlWrapper = {
+		name: input.control.uischema.name,
+		label: input.control.uischema.label,
+		controlLabel: input.control.uischema.controlLabel,
+		helpText: input.control.uischema.helpText
+	};
+
 	return Object.assign( {}, input, {
 		onChange,
-		controlWrapper: {
-			name: input.control.uischema.name
-		}
+		controlWrapper
 	} );
 }
 
