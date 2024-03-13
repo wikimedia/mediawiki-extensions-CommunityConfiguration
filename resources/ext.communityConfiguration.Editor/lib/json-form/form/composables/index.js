@@ -14,10 +14,15 @@ function useJsonFormControl( props ) {
 	if ( !jsonform ) {
 		throw new Error( "'jsonform' couldn't be injected. Are you within <JsonForm>?" );
 	}
-
+	const {
+		required
+	} = props.uischema;
 	return {
 		control: Object.assign( {}, props, {
-			modelValue: jsonform.data[ props.uischema.name ]
+			modelValue: jsonform.data[ props.uischema.name ],
+			otherAttrs: {
+				required
+			}
 		} ),
 		handleChange( newVal ) {
 			jsonform.data[ props.uischema.name ] = newVal;

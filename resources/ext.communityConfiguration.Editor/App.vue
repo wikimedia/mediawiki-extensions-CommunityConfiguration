@@ -4,10 +4,15 @@
 			:data="configData"
 			:schema="schema"
 			:renderers="renderers"
+			@submit="onSubmit"
 		>
 			<template #submit>
-				<cdx-button action="progressive" weight="primary">
-					Submit
+				<cdx-button
+					action="progressive"
+					weight="primary"
+					:disabled="isLoading"
+				>
+					{{ isLoading ? 'Sending...' : 'Submit' }}
 				</cdx-button>
 			</template>
 		</json-form>
@@ -15,7 +20,7 @@
 </template>
 
 <script>
-const { inject } = require( 'vue' );
+const { inject, ref } = require( 'vue' );
 const { CdxButton } = require( '@wikimedia/codex' );
 const { JsonForm } = require( './lib/json-form/form/index.js' );
 const { renderers } = require( './lib/json-form/controls-codex/src/index.js' );
@@ -30,9 +35,33 @@ module.exports = exports = {
 	setup: function () {
 		const configData = inject( 'CONFIG_DATA' );
 		const schema = inject( 'JSON_SCHEMA' );
+		const providerName = inject( 'PROVIDER_NAME' );
+		const isLoading = ref( false );
+
+		function onSubmit( newData ) {
+			isLoading.value = true;
+			new mw.Api().postWithToken( 'csrf', {
+				action: 'communityconfigurationedit',
+				provider: providerName,
+				content: JSON.stringify( newData ),
+				// TODO: instead of directly submitting the data show the Edit summary
+				// dialog and prompt for summary text (T354463).
+				summary: 'Editor MVP test'
+			} ).then( () => {
+				isLoading.value = false;
+				// TODO: show edit saved toast/notification (T359928)
+			} ).catch( ( err ) => {
+				// eslint-disable-next-line no-console
+				console.error( err );
+				isLoading.value = false;
+				// TODO: show error toast/notification (T359928)
+			} );
+		}
 
 		return {
 			configData,
+			isLoading,
+			onSubmit,
 			renderers,
 			schema
 		};
