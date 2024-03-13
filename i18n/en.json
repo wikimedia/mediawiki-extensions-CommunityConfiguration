@@ -33,5 +33,6 @@
 	"communityconfiguration-edit-summary-dialog-label": "Edit summary",
 	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Your}} changes were successfully saved",
 	"communityconfiguration-editor-client-data-submission-error": "Something went wrong while saving {{GENDER:$1|your}} changes. Please try again later.",
-	"communityconfiguration-editor-message-dismiss-button-label": "Close"
+	"communityconfiguration-editor-message-dismiss-button-label": "Close",
+	"communityconfiguration-page-title-control-no-results": "No results found."
 }

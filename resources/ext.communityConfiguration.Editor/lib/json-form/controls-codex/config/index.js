@@ -1,6 +1,7 @@
 const {
 	buildUISchema,
 	rankWith,
+	schemaRefIs,
 	isBooleanControl,
 	isNumberControl,
 	isStringControl,
@@ -21,6 +22,7 @@ module.exports = exports = {
 	isNumberControl,
 	isObjectControl,
 	rankWith,
+	schemaRefIs,
 	rendererProps,
 	useJsonFormControl,
 	useJsonFormRenderer

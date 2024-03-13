@@ -5,13 +5,13 @@ const {
 	isObjectControl
 } = require( '../../config/index.js' );
 
-const rankRenderer = ( renderer, tester ) => ( {
+const rankRenderer = ( rank, renderer, tester ) => ( {
 	renderer,
-	tester: rankWith( 1, tester )
+	tester: rankWith( rank, tester )
 } );
 
 module.exports = exports = {
 	complex: [
-		rankRenderer( ObjectControl, isObjectControl )
+		rankRenderer( 1, ObjectControl, isObjectControl )
 	]
 };

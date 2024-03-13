@@ -19,6 +19,7 @@ function useCodexControl( input ) {
 		label: input.control.uischema.label,
 		controlLabel: input.control.uischema.controlLabel,
 		helpText: input.control.uischema.helpText
+		// TODO: add "required"
 	};
 
 	return Object.assign( {}, input, {
@@ -27,6 +28,15 @@ function useCodexControl( input ) {
 	} );
 }
 
+const debounce = ( fn, time ) => {
+	let timeout;
+	return function () {
+		clearTimeout( timeout );
+		timeout = setTimeout( fn.bind( this, ...arguments ), time );
+	};
+};
+
 module.exports = exports = {
+	debounce,
 	useCodexControl
 };

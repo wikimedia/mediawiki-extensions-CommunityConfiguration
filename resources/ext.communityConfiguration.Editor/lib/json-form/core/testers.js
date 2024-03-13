@@ -70,6 +70,6 @@ module.exports = exports = {
 	isStringControl,
 	extractRef,
 	rankWith,
-	schemaTypeIs,
-	schemaRefIs
+	schemaRefIs,
+	schemaTypeIs
 };
