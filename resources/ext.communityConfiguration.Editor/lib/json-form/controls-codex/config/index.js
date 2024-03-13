@@ -1,6 +1,7 @@
 const {
 	rankWith,
-	isBooleanControl
+	isBooleanControl,
+	isStringControl
 } = require( '../../core/index.js' );
 const {
 	rendererProps,
@@ -9,6 +10,7 @@ const {
 
 module.exports = exports = {
 	isBooleanControl,
+	isStringControl,
 	rankWith,
 	rendererProps,
 	useJsonFormControl

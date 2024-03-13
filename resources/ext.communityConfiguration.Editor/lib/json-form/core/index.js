@@ -1,11 +1,13 @@
 const { buildUISchema } = require( './uischema.js' );
 const {
 	rankWith,
-	isBooleanControl
+	isBooleanControl,
+	isStringControl
 } = require( './testers.js' );
 
 module.exports = exports = {
 	buildUISchema,
 	rankWith,
-	isBooleanControl
+	isBooleanControl,
+	isStringControl
 };
