@@ -121,6 +121,7 @@
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/mediawiki/index.js",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/mediawiki/constants.js",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/mediawiki/PageTitleControl.vue",
+				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/mediawiki/NamespacesControl.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/controls/index.js",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/controls/ControlWrapper.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/controls/BooleanControl.vue",
