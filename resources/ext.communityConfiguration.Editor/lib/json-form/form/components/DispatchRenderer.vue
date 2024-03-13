@@ -39,13 +39,16 @@ module.exports = exports = {
 			// FIXME: how to tell eslint about the props
 			// eslint-disable-next-line vue/no-undef-properties
 			const renderer = maxBy( this.renderer.renderers, ( r ) => {
-				return r.tester( this.renderer.uischema, this.renderer.schema );
+				// FIXME: how to tell eslint about the props
+				// eslint-disable-next-line vue/no-undef-properties
+				return r.tester( this.renderer.uischema, this.renderer.schema, this.rootSchema );
 			} );
 			if (
 				renderer === undefined ||
 				renderer.tester(
 					this.renderer.uischema,
-					this.renderer.schema
+					this.renderer.schema,
+					this.rootSchema
 				) === -1
 			) {
 				// REVIEW should we fail for unkown controls? Render something?
