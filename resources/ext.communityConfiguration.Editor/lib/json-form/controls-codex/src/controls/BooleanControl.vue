@@ -1,6 +1,10 @@
 <template>
 	<control-wrapper v-slot="slotProps" v-bind="controlWrapper">
-		<cdx-checkbox v-model="control.modelValue" @update:model-value="onChange">
+		<cdx-checkbox
+			v-bind="control.otherAttrs"
+			v-model="control.modelValue"
+			@update:model-value="onChange"
+		>
 			{{ slotProps.controlLabel }}
 		</cdx-checkbox>
 	</control-wrapper>

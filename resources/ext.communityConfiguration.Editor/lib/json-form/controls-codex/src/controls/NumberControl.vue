@@ -1,6 +1,7 @@
 <template>
 	<control-wrapper v-bind="controlWrapper">
 		<cdx-text-input
+			v-bind="control.otherAttrs"
 			v-model="control.modelValue"
 			input-type="number"
 			@update:model-value="onChange"

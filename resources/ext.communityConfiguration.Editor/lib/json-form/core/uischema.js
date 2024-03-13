@@ -11,7 +11,8 @@ function buildUISchema( schema ) {
 	for ( const prop in schema.properties ) {
 		elements.push( {
 			name: prop,
-			type: 'Control'
+			type: 'Control',
+			required: schema.required && schema.required.indexOf( prop ) !== -1
 		} );
 	}
 	return { elements };

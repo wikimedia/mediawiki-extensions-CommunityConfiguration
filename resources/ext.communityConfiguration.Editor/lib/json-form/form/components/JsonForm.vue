@@ -9,6 +9,7 @@
 </template>
 
 <script>
+const { reactive } = require( 'vue' );
 const FormLayout = require( './FormLayout.vue' );
 const { buildUISchema } = require( '../../core/index.js' );
 
@@ -37,17 +38,20 @@ module.exports = exports = {
 			type: Array
 		}
 	},
-	setup: function ( props ) {
+	emits: [ 'submit' ],
+	setup( props, { emit } ) {
+		// TODO consider using more performant deep clone functions
+		const dataClone = JSON.parse( JSON.stringify( props.data ) );
+		const data = reactive( dataClone );
 		function onSubmit( evt ) {
 			evt.preventDefault();
-			// TODO: perform real submit or API call
-			// eslint-disable-next-line no-console
-			console.log( props.data );
+			emit( 'submit', data );
 		}
+
 		return {
 			onSubmit,
 			jsonform: {
-				data: props.data,
+				data,
 				renderers: props.renderers,
 				schema: props.schema,
 				uischema: buildUISchema( props.schema )
