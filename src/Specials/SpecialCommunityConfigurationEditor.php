@@ -67,10 +67,12 @@ class SpecialCommunityConfigurationEditor extends SpecialPage {
 			}
 			$out->addJsConfigVars( [
 				'communityConfigurationData' => [
+					'providerName' => $subPage,
 					'schema' => $this->provider->getValidator()->getSchemaBuilder()->getRootSchema(),
 					'data' => $config->getValue()
 				]
 			] );
+			$out->addModules( [ 'ext.communityConfiguration.Editor' ] );
 			$out->addHTML( Html::element( 'div', [ 'id' => 'ext-communityConfiguration-app-root' ] ) );
 		}
 	}
