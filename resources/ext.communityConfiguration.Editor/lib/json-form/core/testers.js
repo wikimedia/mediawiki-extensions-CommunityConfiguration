@@ -34,10 +34,12 @@ function schemaTypeIs( expectedType ) {
 const isBooleanControl = schemaTypeIs( 'boolean' );
 const isStringControl = schemaTypeIs( 'string' );
 const isNumberControl = schemaTypeIs( 'number' );
+const isObjectControl = schemaTypeIs( 'object' );
 
 module.exports = exports = {
 	isBooleanControl,
 	isNumberControl,
+	isObjectControl,
 	isStringControl,
 	rankWith
 };

@@ -4,7 +4,8 @@ const {
 	rankWith,
 	isBooleanControl,
 	isNumberControl,
-	isStringControl
+	isStringControl,
+	isObjectControl
 } = require( './testers.js' );
 
 module.exports = exports = {
@@ -13,5 +14,6 @@ module.exports = exports = {
 	rankWith,
 	isBooleanControl,
 	isNumberControl,
+	isObjectControl,
 	isStringControl
 };

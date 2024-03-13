@@ -1,19 +1,27 @@
 const {
+	buildUISchema,
 	rankWith,
 	isBooleanControl,
 	isNumberControl,
-	isStringControl
+	isStringControl,
+	isObjectControl
 } = require( '../../core/index.js' );
 const {
 	rendererProps,
-	useJsonFormControl
+	useJsonFormControl,
+	useJsonFormRenderer,
+	DispatchRenderer
 } = require( '../../form/index.js' );
 
 module.exports = exports = {
+	buildUISchema,
+	DispatchRenderer,
 	isBooleanControl,
 	isStringControl,
 	isNumberControl,
+	isObjectControl,
 	rankWith,
 	rendererProps,
-	useJsonFormControl
+	useJsonFormControl,
+	useJsonFormRenderer
 };
