@@ -16,5 +16,12 @@
 	"communityconfiguration-provider-not-found": "Provider $1 is not found",
 	"communityconfiguration-unknown-error": "DRAFT: Something went wrong, submit an issue in Phabricator?",
 	"communityconfigurationdashboard": "Community Configuration",
-	"communityconfigurationeditor": "Editing '$1'"
+	"communityconfigurationeditor": "Editing '$1'",
+	"communityconfiguration-edit-summary-reminder": "<b>Reminder</b>: This change may impact a large number of community members, please consider indicating why {{GENDER:$1|you}} are making the change and linking to any related community discussion if appropriate.",
+	"communityconfiguration-edit-summary-dialog-title": "Save changes for $1",
+	"communityconfiguration-edit-summary-dialog-title-span": "&#32;(optional)",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Describe the changes that were made in the configuration",
+	"communityconfiguration-edit-summary-dialog-save-button": "Save changes",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Cancel",
+	"communityconfiguration-edit-summary-dialog-label": "Edit summary"
 }

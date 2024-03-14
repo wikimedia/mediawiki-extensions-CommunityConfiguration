@@ -51,6 +51,14 @@
 			"env": {
 				"jest": true
 			}
+		},
+		{
+			"files": [
+				"jest.setup.js"
+			],
+			"extends": [
+				"wikimedia/server"
+			]
 		}
 	]
 }

@@ -96,6 +96,7 @@
 			"packageFiles": [
 				"ext.communityConfiguration.Editor/init.js",
 				"ext.communityConfiguration.Editor/App.vue",
+				"ext.communityConfiguration.Editor/EditSummaryDialog.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/core/index.js",
 				"ext.communityConfiguration.Editor/lib/json-form/core/uischema.js",
 				"ext.communityConfiguration.Editor/lib/json-form/core/i18n.js",
@@ -118,11 +119,19 @@
 			"styles": [
 			],
 			"messages": [
+				"communityconfiguration-edit-summary-reminder",
+				"communityconfiguration-edit-summary-dialog-title",
+				"communityconfiguration-edit-summary-dialog-placeholder",
+				"communityconfiguration-edit-summary-dialog-save-button",
+				"communityconfiguration-edit-summary-dialog-cancel-button",
+				"communityconfiguration-edit-summary-dialog-title-span",
+				"communityconfiguration-edit-summary-dialog-label"
 			],
 			"dependencies": [
 				"mediawiki.api",
 				"vue",
-				"@wikimedia/codex"
+				"@wikimedia/codex",
+				"mediawiki.jqueryMsg"
 			]
 		}
 	},

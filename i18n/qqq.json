@@ -18,5 +18,12 @@
 	"communityconfiguration-provider-not-found": "Error for the configuration editor when a given provider is not found.\n\nParameters:\n* $1 - The name of the provider",
 	"communityconfiguration-unknown-error": "Generic error message for server errors in community configuration special page",
 	"communityconfigurationdashboard": "The title of Community Configuration Dashboard special page",
-	"communityconfigurationeditor": "Title for the configuration editor of a given provider.\n\nParameters:\n* $1 - The name of the provider"
+	"communityconfigurationeditor": "Title for the configuration editor of a given provider.\n\nParameters:\n* $1 - The name of the provider",
+	"communityconfiguration-edit-summary-reminder": "The message is displayed as a reminder in the edit summary dialog.\n\nParameters:\n* $1 - gender",
+	"communityconfiguration-edit-summary-dialog-title": "Title for the dialog where users can enter a summary of their edit and save changes.\n\nParameters:\n* $1 - The provider name title",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Placeholder text inside the edit summary input field, prompting users to describe the changes they made.",
+	"communityconfiguration-edit-summary-dialog-save-button": "Label for the button in the edit summary dialog that saves the edit summary.",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Label for the button in the edit summary dialog that cancels the action and closes the dialog.",
+	"communityconfiguration-edit-summary-dialog-title-span": "Label for the edit summary input field used to show that providing an edit summary is not mandatory.\n\nPrefix it with <kbd>&amp;#32;</kbd> if words are separated by spaces in your language (which is true for most languages).",
+	"communityconfiguration-edit-summary-dialog-label": "Label text for the edit summary dialog"
 }

@@ -47,7 +47,7 @@ module.exports = {
 		'./resources/ext.communityConfiguration.Editor'
 	],
 	setupFiles: [
-		// './jest.setup.js'
+		'./jest.setup.js'
 	],
 	setupFilesAfterEnv: [
 		// './jest.setupAfterEnv.js'
