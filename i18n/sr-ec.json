@@ -6,5 +6,6 @@
 	},
 	"communityconfiguration-guidelines-guideline1-title": "Сазнајте више",
 	"communityconfiguration-guidelines-guideline2-title": "Дајте нам {{GENDER:$1|Ваше}} мишљење!",
+	"communityconfiguration-schema-validation-error": "НАЦРТ: $2. Клуч: $1",
 	"communityconfiguration-providers-list-title": "Могућности"
 }
