@@ -2,7 +2,11 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Schema;
 
-interface JsonSchema {
+/**
+ * @note This is only a class to let extending classes override (some) constants defined within
+ * this class.
+ */
+abstract class JsonSchema {
 
 	/**
 	 * @var string Default schema standard
@@ -14,6 +18,7 @@ interface JsonSchema {
 
 	/**
 	 * @var string Version of the schema
+	 * @stable to override
 	 *
 	 * This is included in the $id field of the schema. Feel free to override in implementations.
 	 */

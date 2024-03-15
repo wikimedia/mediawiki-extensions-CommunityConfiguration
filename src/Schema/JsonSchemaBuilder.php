@@ -24,7 +24,7 @@ class JsonSchemaBuilder implements SchemaBuilder {
 	 */
 	public function getRootSchema(): array {
 		$reflectionClass = new ReflectionClass( $this->className );
-		if ( !$reflectionClass->implementsInterface( JsonSchema::class ) ) {
+		if ( !$reflectionClass->isSubclassOf( JsonSchema::class ) ) {
 			throw new InvalidArgumentException(
 				__CLASS__ . ' needs to be used with a class that implements '
 					. JsonSchema::class . '.'
