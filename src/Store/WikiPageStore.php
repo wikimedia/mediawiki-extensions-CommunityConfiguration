@@ -74,7 +74,7 @@ class WikiPageStore implements IConfigurationStore {
 	 * @inheritDoc
 	 */
 	public function storeConfiguration(
-		array $config,
+		$config,
 		Authority $authority,
 		string $summary = ''
 	): StatusValue {

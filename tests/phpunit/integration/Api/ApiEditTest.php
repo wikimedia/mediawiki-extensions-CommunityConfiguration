@@ -6,6 +6,7 @@ use ApiUsageException;
 use FormatJson;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Tests\Api\ApiTestCase;
+use stdClass;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Api\ApiEdit
@@ -36,7 +37,8 @@ class ApiEditTest extends ApiTestCase {
 	}
 
 	public function testExecuteOK() {
-		$newConfig = [ 'Foo' => 42 ];
+		$newConfig = new stdClass();
+		$newConfig->Foo = 42;
 		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()
 			->newProvider( 'foo' );
@@ -55,7 +57,7 @@ class ApiEditTest extends ApiTestCase {
 		$this->assertSame( 'success', $ret[0]['communityconfigurationedit']['result'] );
 		$status = $provider->loadValidConfiguration();
 		$this->assertTrue( $status->isOK() );
-		$this->assertSame(
+		$this->assertEquals(
 			$newConfig,
 			$status->getValue()
 		);

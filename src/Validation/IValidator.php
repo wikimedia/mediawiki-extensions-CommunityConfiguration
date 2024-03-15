@@ -21,10 +21,10 @@ interface IValidator {
 	 * by WikiPageConfigLoader before returning the config (this is to ensure invalid config
 	 * is never used).
 	 *
-	 * @param array $config Associative array representing config that's going to be validated
+	 * @param mixed $config Associative array representing config that's going to be validated
 	 * @return StatusValue
 	 */
-	public function validate( array $config ): StatusValue;
+	public function validate( $config ): StatusValue;
 
 	/**
 	 * Return a SchemaBuilder object or null for no schema support

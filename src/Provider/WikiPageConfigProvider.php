@@ -4,20 +4,24 @@ namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
 use ConfigException;
 use MediaWiki\Config\Config;
+use stdClass;
 
 class WikiPageConfigProvider
 	extends DataProvider
 	implements IConfigurationProvider, Config
 {
 
-	private function getValidConfigOrNothing(): array {
+	/**
+	 * @return stdClass
+	 */
+	private function getValidConfigOrNothing() {
 		$status = $this->loadValidConfiguration();
 		if ( !$status->isOK() ) {
 			$this->logger->error(
 				'CommunityConfiguration provider ' . $this->getName() . ' failed to load; '
 				. 'stored configuration is not valid.'
 			);
-			return [];
+			return new stdClass();
 		}
 
 		return $status->getValue();
@@ -31,7 +35,7 @@ class WikiPageConfigProvider
 			throw new ConfigException( 'Key ' . $name . ' was not found.' );
 		}
 
-		return $this->getValidConfigOrNothing()[$name];
+		return $this->getValidConfigOrNothing()->{$name};
 	}
 
 	/**
@@ -58,6 +62,6 @@ class WikiPageConfigProvider
 			return false;
 		}
 
-		return array_key_exists( $name, $this->getValidConfigOrNothing() );
+		return property_exists( $this->getValidConfigOrNothing(), $name );
 	}
 }

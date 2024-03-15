@@ -47,7 +47,7 @@ class Writer {
 	 * No permission changes or validation is performed.
 	 *
 	 * @param PageIdentity $configPage
-	 * @param array $newConfig
+	 * @param mixed $newConfig
 	 * @param Authority $performer
 	 * @param string $summary
 	 * @param bool $minor
@@ -56,7 +56,7 @@ class Writer {
 	 */
 	public function doSave(
 		PageIdentity $configPage,
-		array $newConfig,
+		$newConfig,
 		Authority $performer,
 		string $summary = '',
 		bool $minor = false,
@@ -65,10 +65,17 @@ class Writer {
 		// REVIEW: Should this validate $configPage is an acceptable target?
 
 		// Sort config alphabetically
-		ksort( $newConfig, SORT_STRING );
+
+		$configSorted = get_object_vars( $newConfig );
+		uasort( $configSorted, static function ( $a, $b ): int {
+			if ( $a == $b ) {
+				return 0;
+			}
+			return ( $a > $b ) ? -1 : 1;
+		} );
 
 		$status = Status::newGood();
-		$content = new JsonContent( FormatJson::encode( $newConfig ) );
+		$content = new JsonContent( FormatJson::encode( $configSorted ) );
 
 		// Give AbuseFilter et al. a chance to block the edit (T346235)
 		$page = $this->wikiPageFactory->newFromTitle( $configPage );
@@ -111,7 +118,7 @@ class Writer {
 	 * Permissions are verified.
 	 *
 	 * @param PageIdentity $configPage
-	 * @param array $newConfig
+	 * @param mixed $newConfig The configuration value to store. Can be any JSON serializable type
 	 * @param Authority $performer
 	 * @param string $summary
 	 * @param bool $minor
@@ -120,7 +127,7 @@ class Writer {
 	 */
 	public function save(
 		PageIdentity $configPage,
-		array $newConfig,
+		$newConfig,
 		Authority $performer,
 		string $summary = '',
 		bool $minor = false,

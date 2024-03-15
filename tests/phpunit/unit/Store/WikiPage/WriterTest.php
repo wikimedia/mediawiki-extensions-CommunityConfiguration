@@ -17,6 +17,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use RecentChange;
+use stdClass;
 use WikiPage;
 
 /**
@@ -63,7 +64,8 @@ class WriterTest extends MediaWikiUnitTestCase {
 			new UserIdentityValue( 1, 'Admin' ),
 			$permissions
 		);
-		$newContent = [ 'Foo' => 42 ];
+		$newContent = new stdClass();
+		$newContent->Foo = 42;
 
 		$configPageMock = $this->createNoOpMock( PageIdentity::class );
 

@@ -89,7 +89,7 @@ class DataProvider implements IConfigurationProvider {
 	 * @inheritDoc
 	 */
 	public function storeValidConfiguration(
-		array $newConfig,
+		$newConfig,
 		Authority $authority,
 		string $summary = ''
 	): StatusValue {

@@ -24,7 +24,7 @@ class JsonSchemaValidatorTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testValidate( array $json, bool $isValid ) {
 		$validator = new JsonSchemaValidator( JsonSchemaForTesting::class );
-		$result = $validator->validate( $json );
+		$result = $validator->validate( (object)$json );
 		$this->assertEquals( $result->isGood(), $isValid );
 	}
 }

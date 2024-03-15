@@ -16,6 +16,7 @@ class StoreFactoryTest extends MediaWikiIntegrationTestCase {
 
 	private const STORE_EXTRA_ARGS = [
 		'wikipage' => [ 'MediaWiki:Foo.json' ],
+		'static' => [ [] ]
 	];
 
 	private function getStoreSpecs(): array {

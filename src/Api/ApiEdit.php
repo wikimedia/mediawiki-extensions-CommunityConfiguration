@@ -57,7 +57,7 @@ class ApiEdit extends ApiBase {
 			$this->dieWithException( $e );
 		}
 
-		$newConfigStatus = FormatJson::parse( $params['content'], FormatJson::FORCE_ASSOC );
+		$newConfigStatus = FormatJson::parse( $params['content'] );
 		if ( !$newConfigStatus->isOK() ) {
 			$this->dieStatus( $newConfigStatus );
 		}

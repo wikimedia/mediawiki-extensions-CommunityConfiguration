@@ -75,17 +75,12 @@ class JsonSchemaValidator implements IValidator {
 	/**
 	 * @inheritDoc
 	 */
-	public function validate( array $config ): StatusValue {
+	public function validate( $config ): StatusValue {
 		$validator = new Validator();
 
-		// REVIEW Using type array for $config prevents from validating
-		// other valid json data types, eg: string, array. Consider
-		// using a mixed type for config objects or restrict the
-		// root type of configuration schemas to "object".
-		$data = $this->arrayToStdClass( $config );
 		$validator->validate(
-			$data,
-			$this->arrayToStdClass( $this->jsonSchemaBuilder->getRootSchema() )
+			$config,
+			$this->jsonSchemaBuilder->getRootSchema()
 		);
 		if ( $validator->isValid() ) {
 			return Status::newGood();

@@ -11,9 +11,9 @@ class StaticStore implements IConfigurationStore {
 	private array $config;
 
 	/**
-	 * @param array $config
+	 * @param mixed $config
 	 */
-	public function __construct( array $config = [] ) {
+	public function __construct( $config ) {
 		$this->config = $config;
 	}
 
@@ -36,7 +36,7 @@ class StaticStore implements IConfigurationStore {
 	 * @return never
 	 */
 	public function storeConfiguration(
-		array $config,
+		$config,
 		Authority $authority,
 		string $summary = ''
 	): StatusValue {
