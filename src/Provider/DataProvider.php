@@ -8,6 +8,7 @@ use MediaWiki\Permissions\Authority;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use StatusValue;
+use stdClass;
 
 class DataProvider implements IConfigurationProvider {
 	use LoggerAwareTrait;
@@ -54,15 +55,10 @@ class DataProvider implements IConfigurationProvider {
 	 *
 	 * This ensures the configuration in $storeStatus is valid.
 	 *
-	 * @param StatusValue $storeStatus Status coming from IConfigurationStore::loadConfiguration(Uncached).
+	 * @param stdClass $config
 	 * @return StatusValue
 	 */
-	private function validateConfiguration( StatusValue $storeStatus ): StatusValue {
-		if ( !$storeStatus->isOK() ) {
-			return $storeStatus;
-		}
-
-		$config = $storeStatus->getValue();
+	private function validateConfiguration( stdClass $config ): StatusValue {
 		$validationStatus = $this->getValidator()->validate( $config );
 		if ( !$validationStatus->isOK() ) {
 			return $validationStatus;
@@ -72,17 +68,50 @@ class DataProvider implements IConfigurationProvider {
 	}
 
 	/**
+	 * Process a store status
+	 *
+	 * Common logic for both loadValidConfiguration() and loadValidConfigurationUncached().
+	 *
+	 * This function:
+	 *     (1) Enhances config with defaults
+	 *     (2) Validates the configuration against the schema
+	 *
+	 * @param StatusValue $storeStatus Result of IConfigurationStore::loadConfiguration(Uncached)
+	 * @return StatusValue
+	 */
+	private function processStoreStatus( StatusValue $storeStatus ): StatusValue {
+		if ( !$storeStatus->isOK() ) {
+			return $storeStatus;
+		}
+
+		$config = $storeStatus->getValue();
+
+		// enhance $config with defaults (if possible)
+		$schemaBuilder = $this->getValidator()->getSchemaBuilder();
+		if ( $schemaBuilder ) {
+			$defaultsMap = $schemaBuilder->getDefaultsMap();
+			foreach ( $defaultsMap as $propertyName => $defaultValue ) {
+				if ( $defaultValue !== null && !isset( $config->$propertyName ) ) {
+					$config->$propertyName = $defaultValue;
+				}
+			}
+		}
+
+		return $this->validateConfiguration( $config );
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	public function loadValidConfiguration(): StatusValue {
-		return $this->validateConfiguration( $this->getStore()->loadConfiguration() );
+		return $this->processStoreStatus( $this->getStore()->loadConfiguration() );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function loadValidConfigurationUncached(): StatusValue {
-		return $this->validateConfiguration( $this->getStore()->loadConfigurationUncached() );
+		return $this->processStoreStatus( $this->getStore()->loadConfigurationUncached() );
 	}
 
 	/**

@@ -23,6 +23,14 @@ interface JsonSchema {
 	public const TYPE = 'type';
 	public const ADDITIONAL_PROPERTIES = 'additionalProperties';
 
+	/**
+	 * @var string To define a default value for the property
+	 *
+	 * Only supported on the root-level. Defaults for objects need to be defined at their root
+	 * level.
+	 */
+	public const DEFAULT = 'default';
+
 	public const TYPE_OBJECT = 'object';
 	public const TYPE_STRING = 'string';
 	public const TYPE_NUMBER = 'number';
