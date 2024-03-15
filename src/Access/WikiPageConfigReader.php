@@ -31,8 +31,52 @@ class WikiPageConfigReader implements Config {
 		$this->setLogger( new NullLogger() );
 	}
 
+	private function addWikiPageConfigProviderKeysToMap(
+		WikiPageConfigProvider $provider,
+		array &$map
+	): void {
+		$supportedConfigKeys = $provider->getSupportedConfigVariableNames();
+		foreach ( $supportedConfigKeys as $configKey ) {
+			if ( isset( $map[$configKey] ) ) {
+				throw new ConfigException(
+					'Config variable ' . $configKey
+					. ' is registered by multiple CommunityConfiguration providers.'
+				);
+			}
+			$map[$configKey] = $provider->getName();
+		}
+	}
+
 	/**
+	 * Calculate the config key => configuration provider map
+	 *
 	 * @return string[]
+	 */
+	private function computeVariableToProviderMap(): array {
+		$map = [];
+		$providerKeys = $this->providerFactory->getSupportedKeys();
+		foreach ( $providerKeys as $providerKey ) {
+			$provider = $this->providerFactory->newProvider( $providerKey );
+			if ( $provider instanceof WikiPageConfigProvider ) {
+				$this->addWikiPageConfigProviderKeysToMap( $provider, $map );
+			} else {
+				// TODO: Add some support for other providers
+				$this->logger->warning(
+					__CLASS__ . ' skipped {provider}, because '
+					. 'getSupportedConfigVariableNames() returned null.',
+					[ 'provider' => $provider->getName() ]
+				);
+			}
+		}
+		return $map;
+	}
+
+	/**
+	 * Get the cached variable to configuration provider map
+	 *
+	 * This is used to determine which config key can be handled by which configuration provider.
+	 *
+	 * @return string[] Config key => provider key
 	 */
 	private function getVariableToProviderMap(): array {
 		return $this->cache->getWithSetCallback(
@@ -41,39 +85,18 @@ class WikiPageConfigReader implements Config {
 			),
 			ExpirationAwareness::TTL_DAY,
 			function () {
-				$map = [];
-				foreach ( $this->providerFactory->getSupportedKeys() as $providerKey ) {
-					$provider = $this->providerFactory->newProvider( $providerKey );
-					if ( $provider instanceof WikiPageConfigProvider ) {
-						$supportedKeys = $provider->getSupportedConfigVariableNames();
-						if ( $supportedKeys !== null ) {
-							foreach ( $supportedKeys as $supportedKey ) {
-								if ( isset( $map[$supportedKey] ) ) {
-									throw new ConfigException(
-										'Config variable ' . $supportedKey
-										. ' is registered by multiple CommunityConfiguration providers.'
-									);
-								}
-								$map[$supportedKey] = $providerKey;
-							}
-						} else {
-							// TODO: When getSupportedConfigVariableNames() returns null, all
-							// configuration keys are supported. Instead of skipping, consult all
-							// of them?
-							$this->logger->warning(
-								__CLASS__ . ' skipped {provider}, because '
-									. 'getSupportedConfigVariableNames() returned null.',
-								[ 'provider' => $provider->getName() ]
-							);
-						}
-					}
-				}
-				return $map;
+				return $this->computeVariableToProviderMap();
 			}
 		);
 	}
 
-	private function getWikiPageConfigProvider( string $providerKey ): WikiPageConfigProvider {
+	/**
+	 * Create a configuration provider from given key and ensure it is a WikiPageConfigProvider
+	 *
+	 * @param string $providerKey
+	 * @return WikiPageConfigProvider
+	 */
+	private function getWikiPageConfigProviderByName( string $providerKey ): WikiPageConfigProvider {
 		$provider = $this->providerFactory->newProvider( $providerKey );
 		if ( !$provider instanceof WikiPageConfigProvider ) {
 			throw new LogicException(
@@ -84,26 +107,31 @@ class WikiPageConfigReader implements Config {
 	}
 
 	/**
-	 * @inheritDoc
+	 * Get Config instance to handle requests for $name config key
+	 *
+	 * @param string $name
+	 * @return Config
 	 */
-	public function get( $name ) {
+	private function getConfigByVariableName( string $name ): Config {
 		$map = $this->getVariableToProviderMap();
 		if ( isset( $map[$name] ) ) {
-			return $this->getWikiPageConfigProvider( $map[$name] )->get( $name );
+			return $this->getWikiPageConfigProviderByName( $map[$name] );
 		} else {
-			return $this->fallbackConfig->get( $name );
+			return $this->fallbackConfig;
 		}
 	}
 
 	/**
 	 * @inheritDoc
 	 */
+	public function get( $name ) {
+		return $this->getConfigByVariableName( $name )->get( $name );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
 	public function has( $name ) {
-		$map = $this->getVariableToProviderMap();
-		if ( isset( $map[$name] ) ) {
-			return $this->getWikiPageConfigProvider( $map[$name] )->has( $name );
-		} else {
-			return $this->fallbackConfig->has( $name );
-		}
+		return $this->getConfigByVariableName( $name )->has( $name );
 	}
 }
