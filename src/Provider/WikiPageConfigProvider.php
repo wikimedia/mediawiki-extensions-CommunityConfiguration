@@ -14,14 +14,15 @@ class WikiPageConfigProvider
 	/**
 	 * @return stdClass
 	 */
-	private function getValidConfigOrNothing() {
+	private function getValidConfigOrDefaults(): stdClass {
 		$status = $this->loadValidConfiguration();
 		if ( !$status->isOK() ) {
 			$this->logger->error(
 				'CommunityConfiguration provider ' . $this->getName() . ' failed to load; '
 				. 'stored configuration is not valid.'
 			);
-			return new stdClass();
+
+			return $this->getValidator()->getSchemaBuilder()->getDefaultsMap();
 		}
 
 		return $status->getValue();
@@ -35,7 +36,7 @@ class WikiPageConfigProvider
 			throw new ConfigException( 'Key ' . $name . ' was not found.' );
 		}
 
-		return $this->getValidConfigOrNothing()->{$name};
+		return $this->getValidConfigOrDefaults()->{$name};
 	}
 
 	/**
@@ -62,6 +63,6 @@ class WikiPageConfigProvider
 			return false;
 		}
 
-		return property_exists( $this->getValidConfigOrNothing(), $name );
+		return property_exists( $this->getValidConfigOrDefaults(), $name );
 	}
 }
