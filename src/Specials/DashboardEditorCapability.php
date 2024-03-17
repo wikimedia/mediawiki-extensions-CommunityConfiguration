@@ -2,16 +2,17 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Specials;
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Html\TemplateParser;
-use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\Title\Title;
 
-class SpecialCommunityConfigurationDashboard extends SpecialPage {
+class DashboardEditorCapability extends AbstractEditorCapability {
 
-	private TemplateParser $templateParser;
 	private ConfigurationProviderFactory $providerFactory;
 	private SpecialPageFactory $specialPageFactory;
+	private TemplateParser $templateParser;
 
 	private const GUIDELINES = [
 		[
@@ -25,22 +26,22 @@ class SpecialCommunityConfigurationDashboard extends SpecialPage {
 	];
 
 	public function __construct(
-		ConfigurationProviderFactory $providerFactory,
-		SpecialPageFactory $specialPageFactory
+		IContextSource $ctx,
+		Title $parentTitle,
+		ConfigurationProviderFactory $providerFactory
 	) {
-		parent::__construct( 'CommunityConfigurationDashboard', '', false );
+		parent::__construct( $ctx, $parentTitle );
+
 		$this->providerFactory = $providerFactory;
-		$this->specialPageFactory = $specialPageFactory;
 		$this->templateParser = new TemplateParser( __DIR__ . '/templates' );
 	}
 
 	private function getProviders(): array {
 		$availableProviders = [];
-		$formEditorURL = $this->specialPageFactory->getTitleForAlias( 'CommunityConfiguration' )->getLinkURL();
 		foreach ( $this->providerFactory->getSupportedKeys() as $providerName ) {
 			$lowerCaseProviderName = strtolower( $providerName );
 			$availableProviders[] = [
-				'href' => $formEditorURL . '/' . $providerName,
+				'href' => $this->getParentTitle()->getSubpage( $providerName )->getLinkURL(),
 				'title' => $this->msg( 'communityconfiguration-' . $lowerCaseProviderName . '-title' ),
 				'description' => $this->msg( 'communityconfiguration-' . $lowerCaseProviderName . '-description' )
 			];
@@ -49,9 +50,9 @@ class SpecialCommunityConfigurationDashboard extends SpecialPage {
 	}
 
 	/**
-	 * @param string|null $subPage
+	 * @inheritDoc
 	 */
-	public function execute( $subPage ) {
+	public function execute( ?string $subpage ): void {
 		$out = $this->getContext()->getOutput();
 		$out->addModuleStyles( [ 'codex-styles' ] );
 		$out->addModuleStyles( [ 'ext.communityConfiguration.Dashboard' ] );
@@ -69,6 +70,5 @@ class SpecialCommunityConfigurationDashboard extends SpecialPage {
 		];
 		$templateHtml = $this->templateParser->processTemplate( 'Layout', $data );
 		$out->addHTML( $templateHtml );
-		parent::execute( $subPage );
 	}
 }
