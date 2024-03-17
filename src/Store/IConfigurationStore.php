@@ -58,13 +58,13 @@ interface IConfigurationStore {
 	 * Store the configuration
 	 *
 	 * @note Permissions are the caller's responsibility
-	 * @param array $config
+	 * @param mixed $config The configuration value to store. Can be any JSON serializable type
 	 * @param Authority $authority
 	 * @param string $summary Short (human-written) summary of the change
 	 * @return StatusValue
 	 */
 	public function storeConfiguration(
-		array $config,
+		$config,
 		Authority $authority,
 		string $summary = ''
 	): StatusValue;

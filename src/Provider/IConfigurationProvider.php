@@ -78,13 +78,13 @@ interface IConfigurationProvider extends LoggerAwareInterface {
 	/**
 	 * Store configuration while guaranteeing
 	 *
-	 * @param array $newConfig
+	 * @param mixed $newConfig The configuration value to store. Can be any JSON serializable type
 	 * @param Authority $authority
 	 * @param string $summary
 	 * @return StatusValue
 	 */
 	public function storeValidConfiguration(
-		array $newConfig,
+		$newConfig,
 		Authority $authority,
 		string $summary = ''
 	): StatusValue;

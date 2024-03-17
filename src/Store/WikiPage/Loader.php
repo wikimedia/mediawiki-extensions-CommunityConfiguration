@@ -17,6 +17,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\TitleFactory;
 use StatusValue;
+use stdClass;
 use WANObjectCache;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 
@@ -130,7 +131,8 @@ class Loader implements IDBAccessObject, ICustomReadConstants {
 		if ( !$revision ) {
 			// The configuration page does not exist. Pretend it does not contain anything (failure
 			// mode and empty-page behavior is equal, see T325236).
-			return StatusValue::newGood( [] );
+			// Top-level types different from object will require a corresponding empty value. eg: [] for arrays.
+			return StatusValue::newGood( new stdClass() );
 		}
 
 		$content = $revision->getContent( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC );
@@ -139,7 +141,7 @@ class Loader implements IDBAccessObject, ICustomReadConstants {
 				'The configuration title has no content or is not JSON content.'
 			) );
 		}
-		return FormatJson::parse( $content->getText(), FormatJson::FORCE_ASSOC );
+		return FormatJson::parse( $content->getText() );
 	}
 
 }
