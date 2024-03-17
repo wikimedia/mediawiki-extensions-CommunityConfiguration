@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Schema;
 
+use stdClass;
+
 interface SchemaBuilder {
 
 	/**
@@ -17,8 +19,15 @@ interface SchemaBuilder {
 	/**
 	 * Return a list of properties supported by the schema
 	 *
-	 * @return string[] Map of property name => schema (that describes just that said property).
+	 * @return array Map of property name => schema (that describes just that said property).
 	 * Precise format of the schema is implementation-defined.
 	 */
 	public function getRootProperties(): array;
+
+	/**
+	 * Return default values for root-level properties
+	 *
+	 * @return stdClass
+	 */
+	public function getDefaultsMap(): stdClass;
 }
