@@ -22,7 +22,7 @@ const ControlWrapper = require( './ControlWrapper.vue' );
 
 // @vue/component
 module.exports = exports = defineComponent( {
-	name: 'StringControl',
+	name: 'NumberControl',
 	components: {
 		CdxTextInput,
 		ControlWrapper

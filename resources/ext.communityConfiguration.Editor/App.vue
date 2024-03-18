@@ -1,5 +1,13 @@
 <template>
 	<div class="ext-communityConfiguration-App">
+		<editor-message
+			v-if="showMessage"
+			:status="messageStatus"
+			:message="message"
+			:message-detail="messageDetail"
+			:file-bug-url="editorFormConfig.bugReportToolURL"
+		>
+		</editor-message>
 		<json-form
 			:config="editorFormConfig"
 			:data="configData"
@@ -13,7 +21,10 @@
 					weight="primary"
 					:disabled="isLoading"
 				>
-					{{ isLoading ? 'Sending...' : 'Submit' }}
+					{{ isLoading ?
+						$i18n( 'communityconfiguration-editor-form-submit-button-loading-text' ).text() :
+						$i18n( 'communityconfiguration-editor-form-submit-button-text' ).text()
+					}}
 				</cdx-button>
 			</template>
 		</json-form>
@@ -27,21 +38,25 @@
 </template>
 
 <script>
-const { inject, ref } = require( 'vue' );
+const { inject, ref, onErrorCaptured } = require( 'vue' );
 const { CdxButton } = require( '@wikimedia/codex' );
+const EditorMessage = require( './EditorMessage.vue' );
 const { JsonForm } = require( './lib/json-form/form/index.js' );
 const { renderers } = require( './lib/json-form/controls-codex/src/index.js' );
 const EditSummaryDialog = require( './EditSummaryDialog.vue' );
+let errorsDisplayed = 0;
 
 // @vue/component
 module.exports = exports = {
 	name: 'App',
 	components: {
-		JsonForm,
 		CdxButton,
-		EditSummaryDialog
+		EditSummaryDialog,
+		EditorMessage,
+		JsonForm
 	},
 	setup: function () {
+		const i18n = inject( 'i18n' );
 		const configData = inject( 'CONFIG_DATA' );
 		const schema = inject( 'JSON_SCHEMA' );
 		const providerName = inject( 'PROVIDER_NAME' );
@@ -49,6 +64,10 @@ module.exports = exports = {
 		const isLoading = ref( false );
 		const editSummaryOpen = ref( false );
 		const summary = ref( '' );
+		const showMessage = ref( false );
+		const messageStatus = ref( null );
+		const message = ref( '' );
+		const messageDetail = ref( null );
 		let tempFormData = null;
 
 		function onSubmit( formData ) {
@@ -81,17 +100,40 @@ module.exports = exports = {
 			summary.value = '';
 		}
 
+		onErrorCaptured( ( err, component, info ) => {
+			// Show only the first error
+			if ( errorsDisplayed ) {
+				return;
+			}
+			// HACK: component._.type.name is an implementation detail Vue.js might
+			// refactor. Could not find other way to get the component name from the instance
+			const componentName = component._ && component._.type.name;
+			message.value = i18n(
+				'communityconfiguration-editor-client-generic-error-description',
+				componentName,
+				info
+			).text();
+			messageDetail.value = err;
+			messageStatus.value = 'error';
+			showMessage.value = true;
+			errorsDisplayed++;
+		} );
+
 		return {
 			configData,
 			doSubmit,
 			editSummaryOpen,
 			editorFormConfig,
 			isLoading,
+			message,
+			messageDetail,
+			messageStatus,
 			onSubmit,
 			providerName,
 			renderers,
 			schema,
-			summary
+			summary,
+			showMessage
 		};
 	}
 };

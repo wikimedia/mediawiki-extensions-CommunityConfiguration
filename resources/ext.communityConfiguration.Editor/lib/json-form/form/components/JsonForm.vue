@@ -15,6 +15,7 @@ const { buildUISchema } = require( '../../core/index.js' );
 
 // @vue/component
 module.exports = exports = {
+	name: 'JsonForm',
 	components: {
 		FormLayout
 	},

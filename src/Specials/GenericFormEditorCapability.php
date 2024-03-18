@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\CommunityConfiguration\Specials;
 
 use LogicException;
+use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Html\Html;
@@ -13,17 +14,20 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 
 	private ConfigurationProviderFactory $providerFactory;
 	private LinkRenderer $linkRenderer;
+	private Config $wikiConfig;
 
 	public function __construct(
 		IContextSource $ctx,
 		Title $parentTitle,
 		ConfigurationProviderFactory $providerFactory,
-		LinkRenderer $linkRenderer
+		LinkRenderer $linkRenderer,
+		Config $wikiConfig
 	) {
 		parent::__construct( $ctx, $parentTitle );
 
 		$this->providerFactory = $providerFactory;
 		$this->linkRenderer = $linkRenderer;
+		$this->wikiConfig = $wikiConfig;
 	}
 
 	/**
@@ -64,7 +68,8 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 				'schema' => $provider->getValidator()->getSchemaBuilder()->getRootSchema(),
 				'data' => $config->getValue(),
 				'config' => [
-					'i18nPrefix' => "communityconfiguration-" . strtolower( $subpage )
+					'i18nPrefix' => "communityconfiguration-" . strtolower( $subpage ),
+					'bugReportToolURL' => $this->wikiConfig->get( 'CommunityConfigurationBugReportingToolURL' )
 				]
 			]
 		] );

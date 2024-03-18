@@ -1,3 +1,6 @@
+jest.mock( './icons.json', () => ( {
+	cdxIconLinkExternal: 'link external'
+} ), { virtual: true } );
 const { mount } = require( '@vue/test-utils' );
 const App = require( './App.vue' );
 const { JsonForm } = require( './lib/json-form/form/index.js' );
@@ -8,9 +11,19 @@ describe( 'ext.communityConfiguration.Editor App', () => {
 	it( 'displays the app', () => {
 		const wrapper = mount( App, {
 			global: {
+				mocks: {
+					// TODO provide it as global mock/provider in jest config
+					$i18n: jest.fn( () => ( {
+						text: jest.fn()
+					} ) )
+				},
 				provide: {
 					CONFIG_DATA,
-					JSON_SCHEMA
+					JSON_SCHEMA,
+					PROVIDER_NAME: 'SomeProvider',
+					EDITOR_FORM_CONFIG: {},
+					// TODO provide it as global mock/provider in jest config
+					i18n: jest.fn()
 				}
 			}
 		} );
