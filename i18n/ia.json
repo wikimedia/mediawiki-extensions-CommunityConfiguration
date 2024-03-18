@@ -8,5 +8,15 @@
 	"communityconfiguration-desc": "Contine logica pro le configuration del communitate",
 	"communityconfiguration-guidelines-title": "Que es Configuration del communitate?",
 	"communityconfiguration-guidelines-description": "Configuration del communitate es un instrumento que permitte que communitates defini e controla le configuration de varie functionalitates de {{SITENAME}}. Isto adjuta le administratores a satisfacer le besonios specific de lor communitate.",
-	"communityconfiguration-guidelines-guideline1-title": "Leger plus"
+	"communityconfiguration-guidelines-guideline1-title": "Leger plus",
+	"communityconfiguration-guidelines-guideline1-description": "[[mw:Special:MyLanguage/Help:Growth|Lege plus]] sur le configuration communitari, lo que es, como functiona, e le labor continue del equipa de illo.",
+	"communityconfiguration-guidelines-guideline2-title": "Invia nos {{GENDER:$1|tu}} opinion",
+	"communityconfiguration-guidelines-guideline2-description": "Nos amarea saper lo que {{GENDER:$1|tu}} pensa! Contacta nos sur nostre [[mw:Talk:Growth|pagina de discussion]].",
+	"communityconfiguration-invalid-stored-config-error": "Non esseva possibile cargar un configuration valide",
+	"communityconfiguration-schema-validation-error": "PROVISORI: $2. Clave: $1",
+	"communityconfiguration-providers-list-title": "Functionalitate",
+	"communityconfiguration-provider-not-found": "Le fornitor $1 non ha essite trovate",
+	"communityconfiguration-unknown-error": "PROVISORI: Un error ha occurrite. Considera signalar le problema sur Phabricator.",
+	"communityconfigurationdashboard": "Configuration del communitate",
+	"communityconfigurationeditor": "Modification de ‘$1’"
 }
