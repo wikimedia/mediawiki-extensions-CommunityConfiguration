@@ -72,6 +72,7 @@ module.exports = exports = {
 
 .ext-communityConfiguration-JsonForm {
 	margin-top: @spacing-50;
+
 	&__submit {
 		margin-top: @spacing-50;
 	}

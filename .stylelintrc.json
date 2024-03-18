@@ -1,3 +1,9 @@
 {
-	"extends": "stylelint-config-wikimedia"
+	"extends": [
+		"stylelint-config-wikimedia",
+		"stylelint-config-recommended-vue"
+	],
+	"rules": {
+		"selector-class-pattern": "^(ext-communityConfiguration-)"
+	}
 }
