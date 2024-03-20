@@ -3,7 +3,8 @@
 	"private": true,
 	"scripts": {
 		"test": "grunt test && npm run test:jest",
-		"test:jest": "jest"
+		"test:jest": "jest --silent",
+		"coverage": "npm run test:jest"
 	},
 	"devDependencies": {
 		"@babel/preset-env": "^7.23.9",
