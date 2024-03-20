@@ -21,6 +21,16 @@ function getControlsTextKeys( schema, config ) {
 	return keys;
 }
 
+function getEditorTextKeys( schema, config ) {
+	const titleKey = `${config.i18nTextKeyPrefix}-title`;
+	const descKey = `${config.i18nTextKeyPrefix}-description`;
+	return [
+		titleKey,
+		descKey,
+		...getControlsTextKeys( schema, config )
+	];
+}
+
 function getControlTextProps( prop, prefix ) {
 	function getControlTextKeyByType( type ) {
 		const textKey = prop.label || mapPropToTextKey( prop, type, prefix );
@@ -48,6 +58,6 @@ function getControlTextProps( prop, prefix ) {
 }
 
 module.exports = exports = {
-	getControlsTextKeys,
+	getEditorTextKeys,
 	getControlTextProps
 };

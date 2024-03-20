@@ -1,7 +1,7 @@
 ( function () {
 	'use strict';
 	const Vue = require( 'vue' );
-	const { getControlsTextKeys } = require( './lib/json-form/core/index.js' );
+	const { getEditorTextKeys } = require( './lib/json-form/core/index.js' );
 
 	/**
 	 * Load Editor messages from the MW api
@@ -29,7 +29,7 @@
 		if ( !config ) {
 			throw new Error( 'ext.communityConfiguration.Editor can only run with a config' );
 		}
-		const editorMessages = getControlsTextKeys( config.schema, {
+		const editorMessages = getEditorTextKeys( config.schema, {
 			i18nTextKeyPrefix: config.config.i18nPrefix
 		} );
 		return loadMessages( editorMessages ).then( () => config );

@@ -64,7 +64,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 				'schema' => $provider->getValidator()->getSchemaBuilder()->getRootSchema(),
 				'data' => $config->getValue(),
 				'config' => [
-					'i18nPrefix' => "communityconfiguration-$subpage"
+					'i18nPrefix' => "communityconfiguration-" . strtolower( $subpage )
 				]
 			]
 		] );
