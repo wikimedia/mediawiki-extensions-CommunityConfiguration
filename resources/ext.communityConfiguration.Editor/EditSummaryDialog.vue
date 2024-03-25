@@ -17,6 +17,7 @@
 			<template #label>
 				{{ $i18n( 'communityconfiguration-edit-summary-dialog-label' ).text() }}
 				<span class="cdx-label__label__optional-flag">
+					{{ $i18n( 'word-separator' ).text() }}
 					{{ $i18n( 'communityconfiguration-edit-summary-dialog-title-span' ).text() }}</span>
 			</template>
 			<template #help-text>
