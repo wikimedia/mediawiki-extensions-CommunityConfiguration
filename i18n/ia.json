@@ -18,5 +18,12 @@
 	"communityconfiguration-provider-not-found": "Le fornitor $1 non ha essite trovate",
 	"communityconfiguration-unknown-error": "PROVISORI: Un error ha occurrite. Considera signalar le problema sur Phabricator.",
 	"communityconfigurationdashboard": "Configuration del communitate",
-	"communityconfigurationeditor": "Modification de ‘$1’"
+	"communityconfigurationeditor": "Modification de ‘$1’",
+	"communityconfiguration-edit-summary-reminder": "<b>Rememoration</b>: Iste cambiamento pote influentiar un grande numero de membros del communitate. Per favor considera explicar proque {{GENDER:$1|tu}} apporta iste cambiamento, forniente ligamines a omne discussion communitari pertinente si es appropriate.",
+	"communityconfiguration-edit-summary-dialog-title": "Salveguardar cambiamentos pro $1",
+	"communityconfiguration-edit-summary-dialog-title-span": "&#32;(optional)",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Describe le cambiamentos apportate in le configuration",
+	"communityconfiguration-edit-summary-dialog-save-button": "Salveguardar cambiamentos",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Cancellar",
+	"communityconfiguration-edit-summary-dialog-label": "Summario del modification"
 }
