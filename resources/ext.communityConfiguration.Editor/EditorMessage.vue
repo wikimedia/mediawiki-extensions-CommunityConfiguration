@@ -10,31 +10,23 @@
 		<p v-if="messageDetail.stack">
 			{{ messageDetail.stack }}
 		</p>
-		<p v-if="bugURL">
-			{{ $i18n( 'communityconfiguration-editor-client-file-bug' ).text() }}
-			<a
-				class="ext-communityConfiguration-EditorMessage__link"
-				target="_blank"
-				:href="bugURL"
-			>
-				{{ $i18n( 'communityconfiguration-editor-client-file-bug-link-content' ).text() }}
-				<cdx-icon :icon="cdxIconLinkExternal"></cdx-icon>
-			</a>
+		<p
+			v-if="bugURL"
+			v-i18n-html:communityconfiguration-editor-client-file-bug="[ bugURL ]"
+		>
 		</p>
 	</cdx-message>
 </template>
 
 <script>
-const { CdxMessage, CdxIcon } = require( '@wikimedia/codex' );
-const { cdxIconLinkExternal } = require( './icons.json' );
+const { CdxMessage } = require( '@wikimedia/codex' );
 const { configurePhabricatorURL } = require( './utils.js' );
 
 // @vue/component
 module.exports = exports = {
 	name: 'EditorMessage',
 	components: {
-		CdxMessage,
-		CdxIcon
+		CdxMessage
 	},
 	props: {
 		fileBugUrl: {
@@ -66,24 +58,9 @@ module.exports = exports = {
 			`${props.messageDetail.stack.slice( 0, 800 )}...`
 		);
 		return {
-			bugURL,
-			cdxIconLinkExternal
+			bugURL
 		};
 	}
 };
 
 </script>
-
-<style lang="less">
-@import 'mediawiki.skin.variables.less';
-
-.ext-communityConfiguration-EditorMessage {
-	&__link {
-		.cdx-mixin-link();
-		// stylelint-disable-next-line selector-class-pattern
-		.cdx-icon {
-			color: inherit;
-		}
-	}
-}
-</style>
