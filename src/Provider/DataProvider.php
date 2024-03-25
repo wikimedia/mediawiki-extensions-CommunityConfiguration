@@ -4,7 +4,9 @@ namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
 use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
+use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
+use MessageLocalizer;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use StatusValue;
@@ -34,6 +36,16 @@ class DataProvider implements IConfigurationProvider {
 	 */
 	public function getId(): string {
 		return $this->providerName;
+	}
+
+	/**
+	 * @param MessageLocalizer $localizer
+	 * @inheritDoc
+	 */
+	public function getName( MessageLocalizer $localizer ): Message {
+		return $localizer->msg(
+			sprintf( 'communityconfiguration-%s-title', $this->getId() )
+		);
 	}
 
 	/**

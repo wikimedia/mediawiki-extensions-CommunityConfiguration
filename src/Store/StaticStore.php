@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
 use LogicException;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use StatusValue;
 
@@ -59,5 +60,12 @@ class StaticStore implements IConfigurationStore {
 	 * @inheritDoc
 	 */
 	public function invalidate(): void {
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getInfoPageLinkTarget(): ?LinkTarget {
+		return null;
 	}
 }

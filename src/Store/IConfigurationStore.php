@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use StatusValue;
 
@@ -32,6 +33,11 @@ use StatusValue;
  * writing configuration instead.
  */
 interface IConfigurationStore {
+
+	/**
+	 * @return LinkTarget|null
+	 */
+	public function getInfoPageLinkTarget(): ?LinkTarget;
 
 	/**
 	 * Invalidate internal cache

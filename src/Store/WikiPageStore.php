@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Loader;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Status\Status;
@@ -46,6 +47,13 @@ class WikiPageStore implements IConfigurationStore {
 			$this->configTitle = $this->titleFactory->newFromTextThrow( $this->configLocation );
 		}
 		return $this->configTitle;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getInfoPageLinkTarget(): ?LinkTarget {
+		return $this->getConfigurationTitle();
 	}
 
 	/**

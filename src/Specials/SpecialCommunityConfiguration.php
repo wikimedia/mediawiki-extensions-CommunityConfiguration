@@ -29,6 +29,7 @@ class SpecialCommunityConfiguration extends SpecialPage {
 			'services' => [
 				'CommunityConfiguration.ProviderFactory',
 				'LinkRenderer',
+				'FormatterFactory',
 			]
 		]
 	];

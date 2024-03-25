@@ -4,7 +4,9 @@ namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
 use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
+use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
+use MessageLocalizer;
 use Psr\Log\LoggerAwareInterface;
 use StatusValue;
 
@@ -42,6 +44,16 @@ interface IConfigurationProvider extends LoggerAwareInterface {
 	 * @return string
 	 */
 	public function getId(): string;
+
+	/**
+	 * Get a human-readable name for the provider
+	 *
+	 * This is intended to be displayed to users when displaying an message/error
+	 * concerning a particular provider.
+	 *
+	 * @return Message
+	 */
+	public function getName( MessageLocalizer $localizer ): Message;
 
 	/**
 	 * Get the associated configuration store
