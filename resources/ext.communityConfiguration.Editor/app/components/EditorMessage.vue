@@ -20,7 +20,7 @@
 
 <script>
 const { CdxMessage } = require( '@wikimedia/codex' );
-const { configurePhabricatorURL } = require( './utils.js' );
+const { configurePhabricatorURL } = require( '../utils.js' );
 
 // @vue/component
 module.exports = exports = {

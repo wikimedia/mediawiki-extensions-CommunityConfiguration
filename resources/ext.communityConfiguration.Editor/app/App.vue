@@ -40,10 +40,10 @@
 <script>
 const { inject, ref, onErrorCaptured } = require( 'vue' );
 const { CdxButton } = require( '@wikimedia/codex' );
-const EditorMessage = require( './EditorMessage.vue' );
-const { JsonForm } = require( './lib/json-form/form/index.js' );
-const { renderers } = require( './lib/json-form/controls-codex/src/index.js' );
-const EditSummaryDialog = require( './EditSummaryDialog.vue' );
+const { JsonForm } = require( '../lib/json-form/form/index.js' );
+const { renderers } = require( '../lib/json-form/controls-codex/src/index.js' );
+const EditorMessage = require( './components/EditorMessage.vue' );
+const EditSummaryDialog = require( './components/EditSummaryDialog.vue' );
 let errorsDisplayed = 0;
 
 // @vue/component

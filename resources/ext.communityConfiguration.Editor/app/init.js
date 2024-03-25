@@ -1,7 +1,7 @@
 ( function () {
 	'use strict';
 	const Vue = require( 'vue' );
-	const { getEditorTextKeys } = require( './lib/json-form/core/index.js' );
+	const { getEditorTextKeys } = require( '../lib/json-form/core/index.js' );
 
 	/**
 	 * Load Editor messages from the MW api

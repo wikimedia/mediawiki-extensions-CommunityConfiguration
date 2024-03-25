@@ -3,7 +3,7 @@ jest.mock( './icons.json', () => ( {
 } ), { virtual: true } );
 const { mount } = require( '@vue/test-utils' );
 const App = require( './App.vue' );
-const { JsonForm } = require( './lib/json-form/form/index.js' );
+const { JsonForm } = require( '../lib/json-form/form/index.js' );
 
 describe( 'ext.communityConfiguration.Editor App', () => {
 	const CONFIG_DATA = { some: 'data' };
