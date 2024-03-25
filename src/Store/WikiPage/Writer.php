@@ -12,7 +12,6 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -54,7 +53,7 @@ class Writer {
 	 * @param array|string $tags Tag(s) to apply (defaults to none)
 	 * @return Status
 	 */
-	public function doSave(
+	public function save(
 		PageIdentity $configPage,
 		$newConfig,
 		Authority $performer,
@@ -65,7 +64,6 @@ class Writer {
 		// REVIEW: Should this validate $configPage is an acceptable target?
 
 		// Sort config alphabetically
-
 		$configSorted = get_object_vars( $newConfig );
 		uasort( $configSorted, static function ( $a, $b ): int {
 			if ( $a == $b ) {
@@ -110,42 +108,6 @@ class Writer {
 		$status->merge( $updater->getStatus() );
 
 		return $status;
-	}
-
-	/**
-	 * Save a new version of the configuration page
-	 *
-	 * Permissions are verified.
-	 *
-	 * @param PageIdentity $configPage
-	 * @param mixed $newConfig The configuration value to store. Can be any JSON serializable type
-	 * @param Authority $performer
-	 * @param string $summary
-	 * @param bool $minor
-	 * @param array|string $tags Tag(s) to apply (defaults to none)
-	 * @return Status
-	 */
-	public function save(
-		PageIdentity $configPage,
-		$newConfig,
-		Authority $performer,
-		string $summary = '',
-		bool $minor = false,
-		$tags = []
-	): Status {
-		$permissionStatus = PermissionStatus::newGood();
-		if ( !$performer->authorizeWrite( 'edit', $configPage, $permissionStatus ) ) {
-			return Status::wrap( $permissionStatus );
-		}
-
-		return $this->doSave(
-			$configPage,
-			$newConfig,
-			$performer,
-			$summary,
-			$minor,
-			$tags
-		);
 	}
 
 	/**

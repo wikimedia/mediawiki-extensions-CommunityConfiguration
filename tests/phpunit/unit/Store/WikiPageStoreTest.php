@@ -133,7 +133,7 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 		);
 		$this->assertSame(
 			$statusValue,
-			$store->storeConfiguration( $newConfig, $authority, $summary )
+			$store->doStoreConfiguration( $newConfig, $authority, $summary )
 		);
 	}
 }

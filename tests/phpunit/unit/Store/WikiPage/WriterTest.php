@@ -53,7 +53,6 @@ class WriterTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @covers ::save
-	 * @covers ::doSave
 	 * @dataProvider provideSaveOK
 	 * @param array|string $tags
 	 * @param array $permissions

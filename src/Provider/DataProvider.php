@@ -127,8 +127,6 @@ class DataProvider implements IConfigurationProvider {
 			return $validationStatus;
 		}
 
-		// TODO: Implement permission control here.
-
 		return $this->getStore()->storeConfiguration(
 			$newConfig,
 			$authority,

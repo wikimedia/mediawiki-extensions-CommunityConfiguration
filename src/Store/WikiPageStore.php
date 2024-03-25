@@ -5,6 +5,8 @@ namespace MediaWiki\Extension\CommunityConfiguration\Store;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Loader;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
@@ -73,7 +75,7 @@ class WikiPageStore implements IConfigurationStore {
 	/**
 	 * @inheritDoc
 	 */
-	public function storeConfiguration(
+	public function doStoreConfiguration(
 		$config,
 		Authority $authority,
 		string $summary = ''
@@ -86,5 +88,21 @@ class WikiPageStore implements IConfigurationStore {
 		)->getStatusValue();
 		$this->invalidate();
 		return $status;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function storeConfiguration(
+		$config,
+		Authority $authority,
+		string $summary = ''
+	): StatusValue {
+		$permissionStatus = PermissionStatus::newGood();
+		if ( !$authority->authorizeWrite( 'edit', $this->getConfigurationTitle(), $permissionStatus ) ) {
+			return Status::wrap( $permissionStatus );
+		}
+
+		return $this->doStoreConfiguration( $config, $authority, $summary );
 	}
 }
