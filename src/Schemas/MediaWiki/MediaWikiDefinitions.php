@@ -10,6 +10,14 @@ class MediaWikiDefinitions extends JsonSchema {
 		self::TYPE => self::TYPE_STRING
 	];
 
+	public const PageTitles = [
+		self::TYPE => self::TYPE_ARRAY,
+		self::ITEMS => [
+			self::REF => [ 'class' => self::class, 'field' => 'PageTitle' ]
+		]
+	];
+
+	// REVIEW: maybe create a Namespace type and reference it like PageTitles
 	public const Namespaces = [
 		self::TYPE => self::TYPE_ARRAY,
 		self::ITEMS => [
