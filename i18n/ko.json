@@ -5,7 +5,7 @@
 		]
 	},
 	"communityconfiguration-edit-summary-dialog-title": "$1의 변경사항 저장",
-	"communityconfiguration-edit-summary-dialog-title-span": "&#32;(선택 사항)",
+	"communityconfiguration-edit-summary-dialog-title-span": "(선택 사항)",
 	"communityconfiguration-edit-summary-dialog-save-button": "변경사항 저장",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "취소",
 	"communityconfiguration-edit-summary-dialog-label": "편집 요약"

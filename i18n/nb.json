@@ -6,6 +6,10 @@
 	},
 	"communityconfiguration": "Fellesskapskonfigurasjon",
 	"communityconfiguration-desc": "Inneholder logikk for fellesskapskonfigurasjon",
+	"communityconfiguration-editor-client-generic-error": "Noe gikk galt under lasting av konfigurasjonsredigeringen. Prøv igjen senere.",
+	"communityconfiguration-editor-client-generic-error-description": "En feil oppsto i «$2» i komponenten $1. Se detaljer nedenfor:",
+	"communityconfiguration-editor-form-submit-button-text": "Lagre endringer",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Sender …",
 	"communityconfiguration-guidelines-title": "Hva er fellesskapskonfigurasjon?",
 	"communityconfiguration-guidelines-description": "Fellesskapskonfigurasjon er et verktøy som lar wikifellesskaper sette opp og kontrollere konfigurasjonen av forskjellige {{SITENAME}}-funksjoner, og lar administratorer tilpasse funksjonene til sitt wikifellesskap.",
 	"communityconfiguration-guidelines-guideline1-title": "Lær mer",
@@ -18,5 +22,11 @@
 	"communityconfiguration-provider-not-found": "Leverandøren $1 ble ikke funnet",
 	"communityconfiguration-unknown-error": "UTKAST: Noe gikk galt. Vil du sende inn en sak på Phabricator?",
 	"communityconfigurationdashboard": "Fellesskapskonfigurasjon",
-	"communityconfigurationeditor": "Redigerer «$1»"
+	"communityconfigurationeditor": "Redigerer «$1»",
+	"communityconfiguration-edit-summary-reminder": "<b>Husk:</b> Denne endringen kan ha stor innvirkning på brukerne, så angi hvorfor {{GENDER:$1|du}} gjør endringen, og lenk til relevante diskusjoner om det er aktuelt.",
+	"communityconfiguration-edit-summary-dialog-title": "Lagre endringer for $1",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Beskriv endringene som ble gjort i konfigurasjonen",
+	"communityconfiguration-edit-summary-dialog-save-button": "Lagre endringer",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Avbryt",
+	"communityconfiguration-edit-summary-dialog-label": "Redigeringsforklaring"
 }

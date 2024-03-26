@@ -1,15 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Jon Harald Søby"
 		]
 	},
 	"communityconfiguration": "The title of Community Configuration entry point, only shown in Special:SpecialPages.",
 	"communityconfiguration-desc": "{{desc|name=CommunityConfiguration|url=https://www.mediawiki.org/wiki/Extension:CommunityConfiguration}}",
 	"communityconfiguration-editor-client-generic-error": "A generic error message for client loading failures. Prompts the user to try again later.",
-	"communityconfiguration-editor-client-generic-error-description": "A generic error message pointing to the Vue component that failed and the instance method that threw the error.\n\nParameters:\n* $1 - the component name\n* $2 the method in the component instance",
-	"communityconfiguration-editor-client-file-bug": "A partial message displayed to the user when an error occurs on the client editor and filing a bug is welcome.",
-	"communityconfiguration-editor-client-file-bug-link-content": "A descriptive message in a link prompting the user to file a bug",
+	"communityconfiguration-editor-client-generic-error-description": "A generic error message pointing to the Vue component that failed and the instance method that threw the error.\n\nParameters:\n* $1 - the component name\n* $2 - the method in the component instance",
+	"communityconfiguration-editor-client-file-bug": "A partial message displayed to the user when an error occurs on the client editor, and filing a bug is welcome.\n\nAppears before {{msg-mw|Communityconfiguration-editor-client-file-bug-link-content}}\n\nFIXME: Lego message. See [https://phabricator.wikimedia.org/T360927 T360927].",
+	"communityconfiguration-editor-client-file-bug-link-content": "A descriptive message in a link prompting the user to file a bug.\n\nAppears after {{msg-mw|Communityconfiguration-editor-client-file-bug}}\n\nFIXME: Lego message. See [https://phabricator.wikimedia.org/T360927 T360927].",
 	"communityconfiguration-editor-form-submit-button-text": "Text for the form data submission button",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Text for the form data submission button while an updating is being sent",
 	"communityconfiguration-guidelines-title": "Title of the first explanatory paragraph in the community configuration dashboard",
@@ -31,5 +32,5 @@
 	"communityconfiguration-edit-summary-dialog-placeholder": "Placeholder text inside the edit summary input field, prompting users to describe the changes they made.",
 	"communityconfiguration-edit-summary-dialog-save-button": "Label for the button in the edit summary dialog that saves the edit summary.",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Label for the button in the edit summary dialog that cancels the action and closes the dialog.",
-	"communityconfiguration-edit-summary-dialog-label": "Label text for the edit summary dialog"
+	"communityconfiguration-edit-summary-dialog-label": "Label text for the edit summary dialog.\n\nAppears before {{msg-mw|Communityconfiguration-edit-summary-dialog-title-span}}\n\nFIXME: Lego message. See [https://phabricator.wikimedia.org/T360828 T360828]."
 }

@@ -6,6 +6,12 @@
 	},
 	"communityconfiguration": "Поставки на заедницата",
 	"communityconfiguration-desc": "Логика на поставување на Поставки на заедницата",
+	"communityconfiguration-editor-client-generic-error": "Нешто тргна наопаку при вчитувањето на уредникот на поставување. Обидете се подоцна.",
+	"communityconfiguration-editor-client-generic-error-description": "Се јави гршека во „$2“ во составницата $1. Поподробно подолу:",
+	"communityconfiguration-editor-client-file-bug": "Ако проблемот продолжи, препорачуваме",
+	"communityconfiguration-editor-client-file-bug-link-content": "&#32;пополнување на проблем во алатката за пријавување на грешки.",
+	"communityconfiguration-editor-form-submit-button-text": "Зачувај промени",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Испраќам...",
 	"communityconfiguration-guidelines-title": "Што е „Поставки на заедницата“?",
 	"communityconfiguration-guidelines-description": "Поставки на заедницата е алатка која им овозможува на заедници да ја задаваат и контролираат поставеноста на различни функции на {{SITENAME}}, помоагајќи им на администраторите да одговорат на потребите на таа конкретна заедница.",
 	"communityconfiguration-guidelines-guideline1-title": "Дознајте повеќе",
@@ -18,5 +24,12 @@
 	"communityconfiguration-provider-not-found": "Не го пронајдов услужникот $1",
 	"communityconfiguration-unknown-error": "НАЦРТ: Нешто тргна наопаку. Да го поснесам проблемот на Фабрикатор?",
 	"communityconfigurationdashboard": "Поставки на заедницата",
-	"communityconfigurationeditor": "Уредување на „$1“"
+	"communityconfigurationeditor": "Уредување на „$1“",
+	"communityconfiguration-edit-summary-reminder": "<b>Потсетник</b>: Оваа промена може да засегне голем број на членови на заедницата. Препорачуваме да посочите дека {{GENDER:$1|правите}} промена и да ставите врска до дискусија на заедницата, ако ја има.",
+	"communityconfiguration-edit-summary-dialog-title": "Зачувајте промени за $1",
+	"communityconfiguration-edit-summary-dialog-title-span": "(незадолжително)",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Опишете ги направените промени во поставеноста",
+	"communityconfiguration-edit-summary-dialog-save-button": "Зачувај промени",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Откажи",
+	"communityconfiguration-edit-summary-dialog-label": "Опис на уредувањето"
 }

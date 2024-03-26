@@ -21,7 +21,7 @@
 	"communityconfigurationdashboard": "Community Configuration",
 	"communityconfigurationeditor": "„$1“ änneren",
 	"communityconfiguration-edit-summary-dialog-title": "Ännerunge fir $1 späicheren",
-	"communityconfiguration-edit-summary-dialog-title-span": "&#32;(fakultativ)",
+	"communityconfiguration-edit-summary-dialog-title-span": "(fakultativ)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Beschreift d'Ännerungen, déi an den Astellunge gemaach goufen",
 	"communityconfiguration-edit-summary-dialog-save-button": "Ännerunge späicheren",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Ofbriechen",

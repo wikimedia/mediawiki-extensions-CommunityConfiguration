@@ -4,12 +4,14 @@
 			"Milicevic01"
 		]
 	},
+	"communityconfiguration-editor-form-submit-button-text": "Сачувај измене",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Шаљем...",
 	"communityconfiguration-guidelines-guideline1-title": "Сазнајте више",
 	"communityconfiguration-guidelines-guideline2-title": "Дајте нам {{GENDER:$1|Ваше}} мишљење!",
 	"communityconfiguration-schema-validation-error": "НАЦРТ: $2. Клуч: $1",
 	"communityconfiguration-providers-list-title": "Могућности",
 	"communityconfiguration-edit-summary-dialog-title": "Сачувај измене за $1",
-	"communityconfiguration-edit-summary-dialog-title-span": "&#32;(необавезно)",
+	"communityconfiguration-edit-summary-dialog-title-span": "(необавезно)",
 	"communityconfiguration-edit-summary-dialog-save-button": "Сачувај измене",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Откажи",
 	"communityconfiguration-edit-summary-dialog-label": "Опис измене"
