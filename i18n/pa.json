@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kuldeepburjbhalaike"
+		]
+	},
+	"communityconfiguration-editor-form-submit-button-text": "ਤਬਦੀਲੀਆਂ ਸਾਂਭੋ",
+	"communityconfiguration-editor-form-submit-button-loading-text": "ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ...",
+	"communityconfiguration-edit-summary-dialog-title": "$1 ਲਈ ਤਬਦੀਲੀਆਂ ਸੰਭਾਲੋ",
+	"communityconfiguration-edit-summary-dialog-title-span": "(ਵਿਕਲਪਿਕ)",
+	"communityconfiguration-edit-summary-dialog-save-button": "ਤਬਦੀਲੀਆਂ ਸਾਂਭੋ",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "ਰੱਦ ਕਰੋ"
+}

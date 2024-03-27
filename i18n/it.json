@@ -4,6 +4,7 @@
 			"Beta16"
 		]
 	},
+	"communityconfiguration-editor-form-submit-button-text": "Salva modifiche",
 	"communityconfiguration-edit-summary-dialog-title": "Salva modifiche per $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(facoltativo)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Descrivi le modifiche apportate alla configurazione",
