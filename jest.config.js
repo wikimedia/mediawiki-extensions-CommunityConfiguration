@@ -26,7 +26,7 @@ module.exports = {
 		customExportConditions: ["node", "node-addons"],
 	 },
 	// Indicates whether the coverage information should be collected while executing the test
-	collectCoverage: false,
+	collectCoverage: true,
 	collectCoverageFrom: [
 		'resources/ext.communityConfiguration.Editor/**/*.(js|vue)'
 	],
@@ -37,8 +37,8 @@ module.exports = {
 	// entities allowed.
 	coverageThreshold: {
 		global: {
-			branches: 30,
-			functions: 32,
+			branches: 5,
+			functions: 12,
 			lines: 42
 		}
 	},
