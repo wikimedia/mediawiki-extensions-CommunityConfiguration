@@ -146,7 +146,9 @@
 				"communityconfiguration-editor-client-file-bug",
 				"communityconfiguration-editor-form-submit-button-text",
 				"communityconfiguration-editor-form-submit-button-loading-text",
-				"word-separator"
+				"word-separator",
+				"communityconfiguration-editor-client-success-message",
+				"communityconfiguration-editor-client-data-submission-error"
 			],
 			"dependencies": [
 				"mediawiki.api",

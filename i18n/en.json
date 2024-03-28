@@ -30,5 +30,8 @@
 	"communityconfiguration-edit-summary-dialog-placeholder": "Describe the changes that were made in the configuration",
 	"communityconfiguration-edit-summary-dialog-save-button": "Save changes",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Cancel",
-	"communityconfiguration-edit-summary-dialog-label": "Edit summary"
+	"communityconfiguration-edit-summary-dialog-label": "Edit summary",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Your}} changes were successfully saved",
+	"communityconfiguration-editor-client-data-submission-error": "Something went wrong while saving {{GENDER:$1|your}} changes. Please try again later.",
+	"communityconfiguration-editor-message-dismiss-button-label": "Close"
 }

@@ -3,10 +3,23 @@
 		<editor-message
 			v-if="showMessage"
 			:status="messageStatus"
-			:message="message"
-			:message-detail="messageDetail"
-			:file-bug-url="editorFormConfig.bugReportToolURL"
 		>
+			<template v-if="messageStatus === 'success'" #success>
+				<p>{{ $i18n( 'communityconfiguration-editor-client-success-message' ).text() }}</p>
+			</template>
+			<template v-if="messageStatus === 'error'" #error>
+				<p v-if="errorTitle">
+					<strong>{{ errorTitle }}</strong>
+				</p>
+				<p>{{ message }}</p>
+				<p v-if="messageDetail && messageDetail.stack">
+					{{ messageDetail.stack }}
+				</p>
+				<p v-else-if="messageDetail">
+					{{ messageDetail }}
+				</p>
+				<p v-if="bugURL" v-i18n-html:communityconfiguration-editor-client-file-bug="[ bugURL ]"></p>
+			</template>
 		</editor-message>
 		<json-form
 			:config="editorFormConfig"
@@ -38,12 +51,13 @@
 </template>
 
 <script>
-const { inject, ref, onErrorCaptured } = require( 'vue' );
+const { computed, inject, ref, unref, onErrorCaptured } = require( 'vue' );
 const { CdxButton } = require( '@wikimedia/codex' );
 const { JsonForm } = require( '../lib/json-form/form/index.js' );
 const { renderers } = require( '../lib/json-form/controls-codex/src/index.js' );
 const EditorMessage = require( './components/EditorMessage.vue' );
 const EditSummaryDialog = require( './components/EditSummaryDialog.vue' );
+const { configurePhabricatorURL } = require( './utils.js' );
 let errorsDisplayed = 0;
 
 // @vue/component
@@ -67,16 +81,38 @@ module.exports = exports = {
 		const showMessage = ref( false );
 		const messageStatus = ref( null );
 		const message = ref( '' );
+		const errorTitle = ref( '' );
 		const messageDetail = ref( null );
 		let tempFormData = null;
 
+		const bugURL = computed( () => {
+			if ( !editorFormConfig.bugReportToolURL ) {
+				return null;
+			}
+			return configurePhabricatorURL(
+				editorFormConfig.bugReportToolURL,
+				messageDetail ? unref( messageDetail ).toString() : '',
+				message.value,
+				messageDetail.value && messageDetail.value.stack ? `${ messageDetail.value.stack.slice( 0, 800 ) }...` : ''
+			);
+		} );
 		function onSubmit( formData ) {
 			tempFormData = formData;
 			editSummaryOpen.value = true;
 		}
 
+		function showError( titleText, messageText, error ) {
+			showMessage.value = true;
+			messageStatus.value = 'error';
+			errorTitle.value = titleText || '';
+			message.value = messageText;
+			messageDetail.value = error;
+			// TODO: log errors to logstash
+		}
+
 		function doSubmit() {
 			isLoading.value = true;
+			showMessage.value = false;
 			new mw.Api().postWithToken( 'csrf', {
 				action: 'communityconfigurationedit',
 				provider: providerName,
@@ -84,13 +120,14 @@ module.exports = exports = {
 				summary: summary.value
 			} ).then( () => {
 				isLoading.value = false;
+				showMessage.value = true;
+				messageStatus.value = 'success';
 				resetForm();
-				// TODO: show edit saved toast/notification (T359928)
-			} ).catch( ( err ) => {
-				// eslint-disable-next-line no-console
-				console.error( err );
+			} ).catch( ( errorCode, response ) => {
 				isLoading.value = false;
-				// TODO: show error toast/notification (T359928)
+				showError(
+					'', i18n(
+						'communityconfiguration-editor-client-data-submission-error' ).text(), response.error.info );
 			} );
 		}
 
@@ -108,22 +145,25 @@ module.exports = exports = {
 			// HACK: component._.type.name is an implementation detail Vue.js might
 			// refactor. Could not find other way to get the component name from the instance
 			const componentName = component._ && component._.type.name;
-			message.value = i18n(
-				'communityconfiguration-editor-client-generic-error-description',
-				componentName,
-				info
-			).text();
-			messageDetail.value = err;
-			messageStatus.value = 'error';
-			showMessage.value = true;
+			showError(
+				i18n( 'communityconfiguration-editor-client-generic-error' ).text(),
+				i18n(
+					'communityconfiguration-editor-client-generic-error-description',
+					componentName,
+					info
+				).text(),
+				err
+			);
 			errorsDisplayed++;
 		} );
 
 		return {
+			bugURL,
 			configData,
 			doSubmit,
 			editSummaryOpen,
 			editorFormConfig,
+			errorTitle,
 			isLoading,
 			message,
 			messageDetail,
@@ -132,8 +172,8 @@ module.exports = exports = {
 			providerName,
 			renderers,
 			schema,
-			summary,
-			showMessage
+			showMessage,
+			summary
 		};
 	}
 };
