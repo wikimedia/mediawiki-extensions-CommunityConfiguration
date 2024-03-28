@@ -9,7 +9,6 @@
 	"communityconfiguration-editor-client-generic-error": "حدث خطأ ما في أثناء تحميل محرر الإعدادات. الرجاء معاودة المحاولة في وقت لاحق.",
 	"communityconfiguration-editor-client-generic-error-description": "حدث خطأ في '$2' في المكون $1. انظروا إلى التفاصيل أدناه:",
 	"communityconfiguration-editor-client-file-bug": "إذا استمرّت المشكلة فانظروا",
-	"communityconfiguration-editor-client-file-bug-link-content": "&#32;إيداع مشكلة في أداة تقرير الأخطاء.",
 	"communityconfiguration-editor-form-submit-button-text": "حفظ التغييرات",
 	"communityconfiguration-editor-form-submit-button-loading-text": "جارٍ الإرسال...",
 	"communityconfiguration-guidelines-title": "ما هي إعدادات المجتمع؟",

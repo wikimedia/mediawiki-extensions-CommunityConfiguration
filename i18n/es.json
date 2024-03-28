@@ -4,6 +4,7 @@
 			"Eulalio"
 		]
 	},
+	"communityconfiguration-editor-client-file-bug": "Si el problema persiste, considere [ $1 rellene un asunto] en la herramienta de informe de errores.",
 	"communityconfiguration-edit-summary-reminder": "<b>Reminder</b>: este cambio puede afectar a una gran cantidad de miembros de la comunidad. Considere indicar el motivo {{GENDER:$1| usted}} está realizando el cambio y vinculando a cualquier discusión comunitaria relacionada, si corresponde.",
 	"communityconfiguration-edit-summary-dialog-title": "Guardar cambios por $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(opcional)",
