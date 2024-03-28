@@ -18,7 +18,7 @@ class WikiPageConfigProvider
 		$status = $this->loadValidConfiguration();
 		if ( !$status->isOK() ) {
 			$this->logger->error(
-				'CommunityConfiguration provider ' . $this->getName() . ' failed to load; '
+				'CommunityConfiguration provider ' . $this->getId() . ' failed to load; '
 				. 'stored configuration is not valid.'
 			);
 

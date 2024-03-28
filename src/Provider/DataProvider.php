@@ -32,7 +32,7 @@ class DataProvider implements IConfigurationProvider {
 	/**
 	 * @inheritDoc
 	 */
-	public function getName(): string {
+	public function getId(): string {
 		return $this->providerName;
 	}
 

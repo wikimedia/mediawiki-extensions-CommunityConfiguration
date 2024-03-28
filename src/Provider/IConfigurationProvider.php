@@ -34,14 +34,14 @@ use StatusValue;
 interface IConfigurationProvider extends LoggerAwareInterface {
 
 	/**
-	 * Get a provider's name (under which it is defined)
+	 * Get a provider's ID (key under which it is defined)
 	 *
 	 * This is intended for logging outputs, to make it possible to determine which provider
 	 * caused a given log message, so that the issue can be debugged and fixed.
 	 *
 	 * @return string
 	 */
-	public function getName(): string;
+	public function getId(): string;
 
 	/**
 	 * Get the associated configuration store

@@ -43,7 +43,7 @@ class WikiPageConfigReader implements Config {
 					. ' is registered by multiple CommunityConfiguration providers.'
 				);
 			}
-			$map[$configKey] = $provider->getName();
+			$map[$configKey] = $provider->getId();
 		}
 	}
 
@@ -64,7 +64,7 @@ class WikiPageConfigReader implements Config {
 				$this->logger->warning(
 					__CLASS__ . ' skipped {provider}, because '
 					. 'getSupportedConfigVariableNames() returned null.',
-					[ 'provider' => $provider->getName() ]
+					[ 'provider' => $provider->getId() ]
 				);
 			}
 		}
