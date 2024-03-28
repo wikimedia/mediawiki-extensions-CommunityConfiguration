@@ -98,11 +98,11 @@
 		},
 		"ext.communityConfiguration.Editor": {
 			"packageFiles": [
-				"ext.communityConfiguration.Editor/init.js",
-				"ext.communityConfiguration.Editor/utils.js",
-				"ext.communityConfiguration.Editor/App.vue",
-				"ext.communityConfiguration.Editor/EditSummaryDialog.vue",
-				"ext.communityConfiguration.Editor/EditorMessage.vue",
+				"ext.communityConfiguration.Editor/app/init.js",
+				"ext.communityConfiguration.Editor/app/utils.js",
+				"ext.communityConfiguration.Editor/app/App.vue",
+				"ext.communityConfiguration.Editor/app/components/EditSummaryDialog.vue",
+				"ext.communityConfiguration.Editor/app/components/EditorMessage.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/core/index.js",
 				"ext.communityConfiguration.Editor/lib/json-form/core/uischema.js",
 				"ext.communityConfiguration.Editor/lib/json-form/core/i18n.js",
@@ -124,7 +124,7 @@
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/controls/NumberControl.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/controls/StringControl.vue",
 				{
-					"name": "ext.communityConfiguration.Editor/icons.json",
+					"name": "ext.communityConfiguration.Editor/app/icons.json",
 					"callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
 					"callbackParam": [
 						"cdxIconLinkExternal"
