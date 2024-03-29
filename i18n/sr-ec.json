@@ -8,6 +8,7 @@
 	"communityconfiguration-editor-form-submit-button-loading-text": "Шаљем...",
 	"communityconfiguration-guidelines-guideline1-title": "Сазнајте више",
 	"communityconfiguration-guidelines-guideline2-title": "Дајте нам {{GENDER:$1|Ваше}} мишљење!",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Детаљи грешке",
 	"communityconfiguration-schema-validation-error": "НАЦРТ: $2. Клуч: $1",
 	"communityconfiguration-providers-list-title": "Могућности",
 	"communityconfiguration-edit-summary-dialog-title": "Сачувај измене за $1",
