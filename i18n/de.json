@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Brettchenweber"
+			"Brettchenweber",
+			"TomatoCake"
 		]
 	},
 	"communityconfiguration": "Community-Konfiguration",
@@ -10,7 +11,7 @@
 	"communityconfiguration-editor-client-generic-error-description": "In „$2“ in der Komponente $1 ist ein Fehler aufgetreten. Einzelheiten siehe unten:",
 	"communityconfiguration-editor-client-file-bug": "Wenn das Problem weiterhin besteht, [$1 erstelle bitte einen Fehlerbericht] im Bugtracker.",
 	"communityconfiguration-editor-form-submit-button-text": "Änderungen speichern",
-	"communityconfiguration-editor-form-submit-button-loading-text": "Senden …",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Senden…",
 	"communityconfiguration-guidelines-title": "Was ist Community-Konfiguration?",
 	"communityconfiguration-guidelines-description": "Community Configuration ist ein Tool, das es Communities ermöglicht, die Konfiguration verschiedener {{SITENAME}}-Funktionen einzurichten und zu steuern und so Administratoren dabei zu helfen, ihre Community-spezifischen Bedürfnisse zu erfüllen.",
 	"communityconfiguration-guidelines-guideline1-title": "Mehr erfahren",
@@ -18,7 +19,7 @@
 	"communityconfiguration-guidelines-guideline2-title": "Sende uns {{GENDER:$1|deine}} Rückmeldung",
 	"communityconfiguration-guidelines-guideline2-description": "Wir würden gerne {{GENDER:$1|deine}} Gedanke erfahren! Kontaktiere uns über unsere [[mw:Talk:Growth|Diskussionsseite]].",
 	"communityconfiguration-invalid-stored-config-error": "Es konnte keine gültige Konfiguration vom Anbieter $1 (Code <tt>$2</tt>) geladen werden.",
-	"communityconfiguration-invalid-stored-config-error-with-link": "Es konnte keine gültige Konfiguration vom Anbieter $1 (Code <tt>$2</tt>) geladen werden, siehe $3 .",
+	"communityconfiguration-invalid-stored-config-error-with-link": "Es konnte keine gültige Konfiguration vom Anbieter $1 (Code <tt>$2</tt>) geladen werden, siehe $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Fehlerdetails",
 	"communityconfiguration-schema-validation-error": "ENTWURF: $2. Schlüssel: $1",
 	"communityconfiguration-providers-list-title": "Funktionen",
