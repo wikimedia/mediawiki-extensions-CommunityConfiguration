@@ -34,6 +34,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			DataProvider::class,
 			new DataProvider(
 				'ProviderId',
+				false,
 				$this->createNoOpMock( IConfigurationStore::class ),
 				$this->createNoOpMock( IValidator::class )
 			)
@@ -46,6 +47,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 	public function testGetId() {
 		$provider = new DataProvider(
 			'ProviderId',
+			true,
 			$this->createNoOpMock( IConfigurationStore::class ),
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -70,6 +72,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
+			true,
 			$this->createNoOpMock( IConfigurationStore::class ),
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -89,6 +92,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$validatorMock = $this->createNoOpMock( IValidator::class );
 		$provider = new DataProvider(
 			'ProviderId',
+			true,
 			$storeMock,
 			$validatorMock
 		);
@@ -127,6 +131,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
+			true,
 			new StaticStore( new stdClass() ),
 			$validatorMock
 		);
@@ -152,6 +157,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
+			false,
 			new StaticStore( $config ),
 			$validatorMock
 		);
@@ -173,6 +179,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
+			true,
 			$storeMock,
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -193,6 +200,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
+			true,
 			$storeMock,
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -218,6 +226,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
+			true,
 			$storeMock,
 			$validatorMock
 		);
@@ -241,6 +250,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
+			true,
 			$storeMock,
 			$validatorMock
 		);
@@ -248,4 +258,39 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$status = $provider->storeValidConfiguration( (object)[ 'Foo' => 42 ], $authority );
 		$this->assertStatusError( 'june', $status );
 	}
+
+	/**
+	 * @covers ::__construct
+	 * @covers ::shouldSkipDashboardListing
+	 */
+	public function testShouldSkipDashboardFlagTrue() {
+		$provider = new DataProvider(
+			'exampleProvider',
+			true,
+			$this->createNoOpMock( IConfigurationStore::class ),
+			$this->createNoOpMock( IValidator::class )
+		);
+		$this->assertTrue(
+			$provider->shouldSkipDashboardListing(),
+			'shouldSkipDashboardListing should return true when shouldSkipDashboard is set to true'
+		);
+	}
+
+	/**
+	 * @covers ::__construct
+	 * @covers ::shouldSkipDashboardListing
+	 */
+	public function testShouldSkipDashboardFlagFalse() {
+		$provider = new DataProvider(
+			'exampleProvider',
+			false,
+			$this->createNoOpMock( IConfigurationStore::class ),
+			$this->createNoOpMock( IValidator::class )
+		);
+		$this->assertFalse(
+			$provider->shouldSkipDashboardListing(),
+			'shouldSkipDashboardListing should return false when shouldSkipDashboard is set to false'
+		);
+	}
+
 }

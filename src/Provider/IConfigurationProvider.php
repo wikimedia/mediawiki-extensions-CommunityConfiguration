@@ -100,4 +100,11 @@ interface IConfigurationProvider extends LoggerAwareInterface {
 		Authority $authority,
 		string $summary = ''
 	): StatusValue;
+
+	/**
+	 * Determines whether this provider should be displayed on the dashboard.
+	 *
+	 * @return bool True if the provider should be skipped on the dashboard, false otherwise.
+	 */
+	public function shouldSkipDashboardListing(): bool;
 }

@@ -7,6 +7,7 @@ use LogicException;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
@@ -80,10 +81,12 @@ class SpecialCommunityConfiguration extends SpecialPage {
 			$capabilityName = self::CAPABILITY_DASHBOARD;
 		} else {
 			if ( !$this->isProviderSupported( $subPage ) ) {
-				$out->addHTML( Html::rawElement( 'p', [ 'class' => 'error' ], $this->msg(
-					'communityconfiguration-provider-not-found',
-					$subPage
-				)->parse() ) );
+				$this->showErrorMessage( $out, 'communityconfiguration-provider-not-found', $subPage );
+				return;
+			}
+			// If not displayed on the dashboard, it doesn't necessarily mean it's not supported.
+			if ( !$this->shouldBeDisplayedOnDashboard( $subPage ) ) {
+				$this->showErrorMessage( $out, 'communityconfiguration-provider-not-found', $subPage );
 				return;
 			}
 
@@ -96,10 +99,37 @@ class SpecialCommunityConfiguration extends SpecialPage {
 	}
 
 	/**
+	 * Show an error message on the output page
+	 *
+	 * @param OutputPage $out
+	 * @param string $messageKey
+	 * @param string $subPage
+	 * @return void
+	 */
+	private function showErrorMessage( OutputPage $out, string $messageKey, $subPage ) {
+		$out->addHTML( Html::rawElement( 'p', [ 'class' => 'error' ], $this->msg(
+			$messageKey,
+			$subPage
+		)->parse() ) );
+	}
+
+	/**
 	 * @param string $providerName The name of the provider as registered in extension.json
 	 * @return bool
 	 */
 	private function isProviderSupported( string $providerName ): bool {
 		return in_array( $providerName, $this->providerFactory->getSupportedKeys() );
 	}
+
+	/**
+	 * Determines if a provider should be displayed on the dashboard.
+	 *
+	 * @param string $providerName The name of the provider
+	 * @return bool
+	 */
+	private function shouldBeDisplayedOnDashboard( string $providerName ): bool {
+		$provider = $this->providerFactory->newProvider( $providerName );
+		return !$provider->shouldSkipDashboardListing();
+	}
+
 }
