@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\CommunityConfiguration\Schema;
 
 use InvalidArgumentException;
 use MediaWiki\Settings\Source\ReflectionSchemaSource;
-use MediaWiki\Settings\Source\SettingsSource;
 use ReflectionClass;
 use ReflectionException;
 use stdClass;
@@ -17,7 +16,7 @@ class JsonSchemaBuilder implements SchemaBuilder {
 		$this->className = $className;
 	}
 
-	private function getSettingsSource(): SettingsSource {
+	private function getSettingsSource(): ReflectionSchemaSource {
 		return new ReflectionSchemaSource( $this->className );
 	}
 
@@ -36,16 +35,13 @@ class JsonSchemaBuilder implements SchemaBuilder {
 
 		$schemaUriConstant = $reflectionClass->getReflectionConstant( 'SCHEMA_URI' );
 		$schemaVersionConstant = $reflectionClass->getReflectionConstant( 'VERSION' );
-		$settingsSource = $this->getSettingsSource()->load();
-		return [
+
+		return array_merge( [
 			'$schema' => $schemaUriConstant ? $schemaUriConstant->getValue() : JsonSchema::SCHEMA_URI,
 			'$id' => str_replace( '\\', '/', $this->className ) . '/'
 				. ( $schemaVersionConstant ? $schemaVersionConstant->getValue() : JsonSchema::VERSION ),
-			JsonSchema::TYPE => JsonSchema::TYPE_OBJECT,
-			JsonSchema::PROPERTIES => $settingsSource['config-schema'] ?? [],
-			JsonSchema::DEFS => $settingsSource['schema-definitions'] ?? [],
 			JsonSchema::ADDITIONAL_PROPERTIES => false,
-		];
+		], $this->getSettingsSource()->loadAsSchema() );
 	}
 
 	/**
