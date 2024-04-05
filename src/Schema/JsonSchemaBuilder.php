@@ -6,6 +6,7 @@ use InvalidArgumentException;
 use MediaWiki\Settings\Source\ReflectionSchemaSource;
 use MediaWiki\Settings\Source\SettingsSource;
 use ReflectionClass;
+use ReflectionException;
 use stdClass;
 
 class JsonSchemaBuilder implements SchemaBuilder {
@@ -22,6 +23,7 @@ class JsonSchemaBuilder implements SchemaBuilder {
 
 	/**
 	 * @inheritDoc
+	 * @throws ReflectionException
 	 */
 	public function getRootSchema(): array {
 		$reflectionClass = new ReflectionClass( $this->className );
@@ -34,12 +36,14 @@ class JsonSchemaBuilder implements SchemaBuilder {
 
 		$schemaUriConstant = $reflectionClass->getReflectionConstant( 'SCHEMA_URI' );
 		$schemaVersionConstant = $reflectionClass->getReflectionConstant( 'VERSION' );
+		$settingsSource = $this->getSettingsSource()->load();
 		return [
 			'$schema' => $schemaUriConstant ? $schemaUriConstant->getValue() : JsonSchema::SCHEMA_URI,
 			'$id' => str_replace( '\\', '/', $this->className ) . '/'
 				. ( $schemaVersionConstant ? $schemaVersionConstant->getValue() : JsonSchema::VERSION ),
 			JsonSchema::TYPE => JsonSchema::TYPE_OBJECT,
-			JsonSchema::PROPERTIES => $this->getSettingsSource()->load()['config-schema'] ?? [],
+			JsonSchema::PROPERTIES => $settingsSource['config-schema'] ?? [],
+			JsonSchema::DEFS => $settingsSource['schema-definitions'] ?? [],
 			JsonSchema::ADDITIONAL_PROPERTIES => false,
 		];
 	}

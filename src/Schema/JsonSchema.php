@@ -27,6 +27,8 @@ abstract class JsonSchema {
 	public const PROPERTIES = 'properties';
 	public const TYPE = 'type';
 	public const ADDITIONAL_PROPERTIES = 'additionalProperties';
+	public const REF = '$ref';
+	public const DEFS = '$defs';
 
 	/**
 	 * @var string To define a default value for the property

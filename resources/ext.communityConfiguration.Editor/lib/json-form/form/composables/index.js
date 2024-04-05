@@ -1,4 +1,5 @@
-const { inject } = require( 'vue' );
+const { inject, computed } = require( 'vue' );
+const { extractRef } = require( '../../core/index.js' );
 
 /**
  * Check wether a given object has a property specified by a key.
@@ -65,9 +66,11 @@ function getDefaultValueForType( type ) {
  * @param {string} scope the path to a given property
  * in the data schema, eg: #/someProp/properties/someNestedProp
  * @param {Object} schema the data schema of the target option
+ * @param {Object|undefined} definitions any additional definitions the root schema
+ * contains in $defs.
  * @return {*} The value of the target option
  */
-function getConfigValueByScope( state, scope, schema ) {
+function getConfigValueByScope( state, scope, schema, definitions = {} ) {
 	if ( !scope ) {
 		return;
 	}
@@ -77,7 +80,15 @@ function getConfigValueByScope( state, scope, schema ) {
 	const result = valuePath.reduce( ( acc, curr ) => {
 		// If a property is informed return whatever value it contains,
 		// otherwise fallback to a valid "empty" value for the schema type.
-		return hasOwn( acc, curr ) ? acc[ curr ] : getDefaultValueForType( schema.type );
+		if ( hasOwn( acc, curr ) ) {
+			return acc[ curr ];
+		} else if ( schema.type ) {
+			return getDefaultValueForType( schema.type );
+		} else if ( schema.$ref ) {
+			const refDefinition = definitions[ extractRef( schema.$ref ) ];
+			return getDefaultValueForType( refDefinition.type );
+		}
+		return null;
 	}, state );
 	return result;
 }
@@ -117,7 +128,9 @@ function useJsonFormControl( props ) {
 		required,
 		scope
 	} = props.uischema;
-	const modelValue = getConfigValueByScope( jsonform.data, scope, props.schema );
+	const modelValue = computed( () => {
+		return getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs );
+	} );
 	return {
 		control: Object.assign( {}, props, {
 			modelValue,
