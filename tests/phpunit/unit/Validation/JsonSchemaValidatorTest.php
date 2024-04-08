@@ -2,12 +2,34 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
+use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
 use MediaWiki\Extension\CommunityConfiguration\Validation\JsonSchemaValidator;
+use MediaWikiUnitTestCase;
 
 /**
  * @coversDefaultClass \MediaWiki\Extension\CommunityConfiguration\Validation\JsonSchemaValidator
  */
-class JsonSchemaValidatorTest extends \MediaWikiUnitTestCase {
+class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
+
+	/**
+	 * @covers ::__construct
+	 */
+	public function testConstruct() {
+		$this->assertInstanceOf(
+			JsonSchemaValidator::class,
+			new JsonSchemaValidator( JsonSchemaForTesting::class )
+		);
+	}
+
+	/**
+	 * @covers ::getSchemaBuilder
+	 */
+	public function testGetSchemaBuilder() {
+		$this->assertInstanceOf(
+			JsonSchemaBuilder::class,
+			( new JsonSchemaValidator( JsonSchemaForTesting::class ) )->getSchemaBuilder()
+		);
+	}
 
 	public static function provideJSON(): array {
 		return [
