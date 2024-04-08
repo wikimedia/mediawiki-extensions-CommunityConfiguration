@@ -32,5 +32,9 @@
 	"communityconfiguration-edit-summary-dialog-placeholder": "נא לתאר את השינויים בתצורה",
 	"communityconfiguration-edit-summary-dialog-save-button": "שמירת השינויים",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "ביטול",
-	"communityconfiguration-edit-summary-dialog-label": "תקציר העריכה"
+	"communityconfiguration-edit-summary-dialog-label": "תקציר העריכה",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|השינויים}} שלך נשמרו",
+	"communityconfiguration-editor-client-data-submission-error": "משהו השתבש במהלך שמירת השינויים {{GENDER:$1|שלך}}. נא לנסות שוב מאוחר יותר.",
+	"communityconfiguration-editor-message-dismiss-button-label": "סגירה",
+	"communityconfiguration-page-title-control-no-results": "לא נמצאו תוצאות."
 }

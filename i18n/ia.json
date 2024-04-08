@@ -32,5 +32,9 @@
 	"communityconfiguration-edit-summary-dialog-placeholder": "Describe le cambiamentos apportate in le configuration",
 	"communityconfiguration-edit-summary-dialog-save-button": "Salveguardar cambiamentos",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Cancellar",
-	"communityconfiguration-edit-summary-dialog-label": "Summario del modification"
+	"communityconfiguration-edit-summary-dialog-label": "Summario del modification",
+	"communityconfiguration-editor-client-success-message": "Le modificationes ha essite salveguardate.{{GENDER:$1|}}",
+	"communityconfiguration-editor-client-data-submission-error": "Un error ha occurrite durante le salveguarda del modificationes. Per favor tenta lo de novo plus tarde.{{GENDER:$1|}}",
+	"communityconfiguration-editor-message-dismiss-button-label": "Clauder",
+	"communityconfiguration-page-title-control-no-results": "Nulle resultato trovate."
 }

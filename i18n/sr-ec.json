@@ -15,5 +15,8 @@
 	"communityconfiguration-edit-summary-dialog-title-span": "(необавезно)",
 	"communityconfiguration-edit-summary-dialog-save-button": "Сачувај измене",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Откажи",
-	"communityconfiguration-edit-summary-dialog-label": "Опис измене"
+	"communityconfiguration-edit-summary-dialog-label": "Опис измене",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Ваше}} измене су сачуване",
+	"communityconfiguration-editor-message-dismiss-button-label": "Затвори",
+	"communityconfiguration-page-title-control-no-results": "Нема резултата."
 }

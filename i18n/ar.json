@@ -32,5 +32,9 @@
 	"communityconfiguration-edit-summary-dialog-placeholder": "وصف التغييرات التي تم إجراؤها في الإعدادات",
 	"communityconfiguration-edit-summary-dialog-save-button": "حفظ التغييرات",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "إلغاء",
-	"communityconfiguration-edit-summary-dialog-label": "ملخص التعديل"
+	"communityconfiguration-edit-summary-dialog-label": "ملخص التعديل",
+	"communityconfiguration-editor-client-success-message": "تمّ حفظ {{GENDER:$1|تغييراتكَ|تغييراتكِ}}",
+	"communityconfiguration-editor-client-data-submission-error": "حدث خطأ ما أثناء حفظ {{GENDER:$1|تغييراتك}}. الرجاء معاودة المحاولة في وقت لاحق.",
+	"communityconfiguration-editor-message-dismiss-button-label": "إغلاق",
+	"communityconfiguration-page-title-control-no-results": "لم يتم العثور على نتائج."
 }

@@ -8,5 +8,7 @@
 	"communityconfiguration-provider-not-found": "N'eo ket bet kavet ar pourchaser \"$1\"",
 	"communityconfigurationeditor": "Oc'h aozañ \"$1\"",
 	"communityconfiguration-edit-summary-dialog-title-span": "(diret)",
-	"communityconfiguration-edit-summary-dialog-cancel-button": "Nullañ"
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Nullañ",
+	"communityconfiguration-editor-message-dismiss-button-label": "Serriñ",
+	"communityconfiguration-page-title-control-no-results": "N'eus bet kavet disoc'h ebet."
 }

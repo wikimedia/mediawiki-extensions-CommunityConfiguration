@@ -33,5 +33,9 @@
 	"communityconfiguration-edit-summary-dialog-placeholder": "Beschreibe die Änderungen, die an der Konfiguration vorgenommen wurden",
 	"communityconfiguration-edit-summary-dialog-save-button": "Änderungen speichern",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Abbrechen",
-	"communityconfiguration-edit-summary-dialog-label": "Bearbeitungszusammenfassung"
+	"communityconfiguration-edit-summary-dialog-label": "Bearbeitungszusammenfassung",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Deine}} Änderungen wurden gespeichert",
+	"communityconfiguration-editor-client-data-submission-error": "Beim Speichern {{GENDER:$1|deiner}} Änderungen ist ein Fehler aufgetreten. Bitte versuche es später noch einmal.",
+	"communityconfiguration-editor-message-dismiss-button-label": "Schließen",
+	"communityconfiguration-page-title-control-no-results": "Keine Ergebnisse gefunden."
 }

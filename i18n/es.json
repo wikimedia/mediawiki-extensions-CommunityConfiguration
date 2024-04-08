@@ -18,5 +18,9 @@
 	"communityconfiguration-edit-summary-dialog-placeholder": "Describir los cambios que se realizaron en la configuración.",
 	"communityconfiguration-edit-summary-dialog-save-button": "Guardar cambios",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Cancelar",
-	"communityconfiguration-edit-summary-dialog-label": "Editar resumen"
+	"communityconfiguration-edit-summary-dialog-label": "Editar resumen",
+	"communityconfiguration-editor-client-success-message": "Se guardaron {{GENDER:$1| Tus}} cambios",
+	"communityconfiguration-editor-client-data-submission-error": "Algo salió mal al guardar {{GENDER:$1| tus}} cambios. Por favor, inténtelo de nuevo más tarde.",
+	"communityconfiguration-editor-message-dismiss-button-label": "Cerrar",
+	"communityconfiguration-page-title-control-no-results": "No se encontraron resultados"
 }

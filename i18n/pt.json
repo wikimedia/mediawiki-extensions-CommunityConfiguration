@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"B3rnas"
+		]
+	},
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1| As suas}} alterações foram salvas",
+	"communityconfiguration-page-title-control-no-results": "Não foram encontrados resultados."
+}
