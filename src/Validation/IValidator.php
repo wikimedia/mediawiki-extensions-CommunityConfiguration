@@ -14,6 +14,7 @@ use StatusValue;
  * validator.
  */
 interface IValidator {
+
 	/**
 	 * Validate passed config strictly
 	 *
@@ -60,4 +61,13 @@ interface IValidator {
 	 * @throws LogicException if called when areSchemasSupported() returns false
 	 */
 	public function getSchemaBuilder(): SchemaBuilder;
+
+	/**
+	 * Return current version for the schema
+	 *
+	 * Only safe to call when areSchemasSupported() returns true.
+	 *
+	 * @return string|null
+	 */
+	public function getSchemaVersion(): ?string;
 }

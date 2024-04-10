@@ -36,6 +36,7 @@ class StaticStoreTest extends MediaWikiUnitTestCase {
 
 		( new StaticStore( (object)[] ) )->storeConfiguration(
 			(object)[ 'Foo' => 1 ],
+			null,
 			new UltimateAuthority( new UserIdentityValue( 1, 'Admin' ) )
 		);
 	}

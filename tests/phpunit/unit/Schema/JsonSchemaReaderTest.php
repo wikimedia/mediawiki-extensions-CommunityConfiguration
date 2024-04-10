@@ -5,7 +5,9 @@ namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 use InvalidArgumentException;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader;
+use MediaWiki\Settings\Source\ReflectionSchemaSource;
 use MediaWikiUnitTestCase;
+use ReflectionClass;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader
@@ -49,17 +51,17 @@ class JsonSchemaReaderTest extends MediaWikiUnitTestCase {
 
 	public static function provideGetSchemaVersion() {
 		return [
-			[ '1.0.0', JsonSchemaForTesting::class ],
+			[ null, JsonSchemaForTesting::class ],
 			[ '1.0.1', JsonSchemaForTestingNewerVersion::class ],
 		];
 	}
 
 	/**
-	 * @param string $expected
+	 * @param string|null $expected
 	 * @param string $className
 	 * @dataProvider provideGetSchemaVersion
 	 */
-	public function testGetSchemaVersion( string $expected, string $className ) {
+	public function testGetSchemaVersion( ?string $expected, string $className ) {
 		$this->assertSame(
 			$expected,
 			( new JsonSchemaReader( $className ) )->getVersion()
@@ -69,7 +71,7 @@ class JsonSchemaReaderTest extends MediaWikiUnitTestCase {
 	public static function provideGetSchemaId() {
 		return [
 			[
-				'MediaWiki/Extension/CommunityConfiguration/Tests/JsonSchemaForTesting/1.0.0',
+				'MediaWiki/Extension/CommunityConfiguration/Tests/JsonSchemaForTesting',
 				JsonSchemaForTesting::class
 			],
 			[
@@ -91,7 +93,7 @@ class JsonSchemaReaderTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public static function provideGetSchemaUri() {
+	public static function provideJsonSchemaClasses(): array {
 		return [
 			[ JsonSchemaForTesting::class ],
 			[ JsonSchemaForTestingNewerVersion::class ],
@@ -100,12 +102,39 @@ class JsonSchemaReaderTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @param string $className
-	 * @dataProvider provideGetSchemaUri
+	 * @dataProvider provideJsonSchemaClasses
 	 */
 	public function testGetSchemaUri( string $className ) {
 		$this->assertSame(
 			JsonSchema::JSON_SCHEMA_VERSION,
 			( new JsonSchemaReader( $className ) )->getJsonSchemaVersion()
+		);
+	}
+
+	/**
+	 * @param string $className
+	 * @dataProvider provideJsonSchemaClasses
+	 */
+	public function testGetReflectionClass( string $className ) {
+		$reflectionClass = ( new JsonSchemaReader( $className ) )->getReflectionClass();
+		$this->assertInstanceOf(
+			ReflectionClass::class,
+			$reflectionClass
+		);
+		$this->assertSame(
+			$className,
+			$reflectionClass->getName()
+		);
+	}
+
+	/**
+	 * @param string $className
+	 * @dataProvider provideJsonSchemaClasses
+	 */
+	public function testGetReflectionSchemaSource( string $className ) {
+		$this->assertInstanceOf(
+			ReflectionSchemaSource::class,
+			( new JsonSchemaReader( $className ) )->getReflectionSchemaSource()
 		);
 	}
 }

@@ -6,6 +6,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Provider\WikiPageConfigProvider;
+use MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore;
 use MediaWiki\Tests\Unit\FakeQqxMessageLocalizer;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
@@ -70,6 +71,7 @@ class WikiPageConfigProviderIntegrationTest extends MediaWikiIntegrationTestCase
 		$this->assertEquals( (object)[
 			'FeatureEnabled' => true,
 			'FeatureActivationRegex' => $customRegex,
+			WikiPageStore::VERSION_FIELD_NAME => '1.0.0',
 		], $configPage->getContent()->getData()->value );
 	}
 

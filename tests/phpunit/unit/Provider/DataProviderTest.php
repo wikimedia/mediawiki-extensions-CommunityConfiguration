@@ -179,18 +179,26 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( 'june', $provider->loadValidConfigurationUncached() );
 	}
 
-	public function testStoreConfigValid() {
+	public function testStoreConfigValidNoSchemaSupport() {
 		$authority = new UltimateAuthority( new UserIdentityValue( 1, 'Admin' ) );
 
 		$storeMock = $this->createMock( IConfigurationStore::class );
+		$storeMock->expects( $this->never() )
+			->method( $this->anythingBut( 'storeConfiguration' ) );
 		$storeMock->expects( $this->once() )
 			->method( 'storeConfiguration' )
+			->with( (object)[ 'Foo' => 42 ], null, $authority, '' )
 			->willReturn( StatusValue::newGood() );
 
 		$validatorMock = $this->createMock( IValidator::class );
+		$validatorMock->expects( $this->never() )
+			->method( $this->anythingBut( 'validateStrictly', 'areSchemasSupported' ) );
 		$validatorMock->expects( $this->once() )
 			->method( 'validateStrictly' )
 			->willReturn( StatusValue::newGood() );
+		$validatorMock->expects( $this->once() )
+			->method( 'areSchemasSupported' )
+			->willReturn( false );
 
 		$provider = new DataProvider(
 			'ProviderId',
@@ -200,6 +208,48 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		);
 
 		$status = $provider->storeValidConfiguration( (object)[ 'Foo' => 42 ], $authority );
+		$this->assertStatusOK( $status );
+	}
+
+	public function testStoreConfigValidWithSchemaSupport() {
+		$authority = new UltimateAuthority( new UserIdentityValue( 1, 'Admin' ) );
+		$configData = (object)[ 'Foo' => 42 ];
+		$version = '1.0.0';
+
+		$storeMock = $this->createMock( IConfigurationStore::class );
+		$storeMock->expects( $this->never() )
+			->method( $this->anythingBut( 'storeConfiguration' ) );
+		$storeMock->expects( $this->once() )
+			->method( 'storeConfiguration' )
+			->with(
+				$configData,
+				$version,
+				$authority,
+				'summary'
+			)
+			->willReturn( StatusValue::newGood() );
+
+		$validatorMock = $this->createMock( IValidator::class );
+		$validatorMock->expects( $this->never() )
+			->method( $this->anythingBut( 'validateStrictly', 'areSchemasSupported', 'getSchemaVersion' ) );
+		$validatorMock->expects( $this->once() )
+			->method( 'validateStrictly' )
+			->willReturn( StatusValue::newGood() );
+		$validatorMock->expects( $this->once() )
+			->method( 'areSchemasSupported' )
+			->willReturn( true );
+		$validatorMock->expects( $this->once() )
+			->method( 'getSchemaVersion' )
+			->willReturn( $version );
+
+		$provider = new DataProvider(
+			'foo',
+			[ 'skipDashboardListing' => false ],
+			$storeMock,
+			$validatorMock
+		);
+
+		$status = $provider->storeValidConfiguration( $configData, $authority, 'summary' );
 		$this->assertStatusOK( $status );
 	}
 

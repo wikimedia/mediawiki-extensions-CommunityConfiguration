@@ -47,6 +47,13 @@ interface IConfigurationStore {
 	public function invalidate(): void;
 
 	/**
+	 * Get version for the currently stored data
+	 *
+	 * @return string|null null if version was not stored
+	 */
+	public function getVersion(): ?string;
+
+	/**
 	 * Load the configuration without any caching
 	 *
 	 * @return StatusValue
@@ -66,12 +73,14 @@ interface IConfigurationStore {
 	 * Permissions are checked by the store.
 	 *
 	 * @param mixed $config The configuration value to store. Can be any JSON serializable type.
+	 * @param string|null $version Version of the data (null means store no version data)
 	 * @param Authority $authority
 	 * @param string $summary
 	 * @return mixed
 	 */
 	public function storeConfiguration(
 		$config,
+		?string $version,
 		Authority $authority,
 		string $summary = ''
 	);

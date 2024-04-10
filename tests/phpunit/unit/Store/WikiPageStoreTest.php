@@ -45,7 +45,10 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 			->with( 'MediaWiki:Foo.json' )
 			->willReturn( $titleMock );
 
-		$statusValue = StatusValue::newGood();
+		$statusValue = StatusValue::newGood( (object)[
+			'Foo' => 42,
+			WikiPageStore::VERSION_FIELD_NAME => '2.0.0',
+		] );
 		$loaderMock = $this->createMock( Loader::class );
 		$loaderMock->expects( $this->once() )
 			->method( 'load' )
@@ -58,7 +61,10 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 			$loaderMock,
 			$this->createNoOpMock( Writer::class )
 		);
-		$this->assertSame( $statusValue, $store->loadConfigurationUncached() );
+
+		$loadStatus = $store->loadConfigurationUncached();
+		$this->assertStatusOK( $loadStatus );
+		$this->assertStatusValue( (object)[ 'Foo' => 42 ], $loadStatus );
 	}
 
 	public function testLoadConfiguration() {
@@ -69,7 +75,10 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 			->with( 'MediaWiki:Foo.json' )
 			->willReturn( $titleMock );
 
-		$statusValue = StatusValue::newGood();
+		$statusValue = StatusValue::newGood( (object)[
+			'Foo' => 42,
+			WikiPageStore::VERSION_FIELD_NAME => '2.0.0',
+		] );
 		$loaderMock = $this->createMock( Loader::class );
 		$loaderMock->expects( $this->once() )
 			->method( 'load' )
@@ -82,7 +91,9 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 			$loaderMock,
 			$this->createNoOpMock( Writer::class )
 		);
-		$this->assertSame( $statusValue, $store->loadConfiguration() );
+		$loadStatus = $store->loadConfiguration();
+		$this->assertStatusOK( $loadStatus );
+		$this->assertStatusValue( (object)[ 'Foo' => 42 ], $loadStatus );
 	}
 
 	public function testStoreConfiguration() {
@@ -121,7 +132,34 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 		);
 		$this->assertSame(
 			$statusValue,
-			$store->storeConfiguration( $newConfig, $authority, $summary )
+			$store->storeConfiguration( $newConfig, null, $authority, $summary )
 		);
+	}
+
+	public function testGetVersion() {
+		$titleMock = $this->createNoOpMock( Title::class );
+		$titleFactoryMock = $this->createMock( TitleFactory::class );
+		$titleFactoryMock->expects( $this->once() )
+			->method( 'newFromTextThrow' )
+			->with( 'MediaWiki:Foo.json' )
+			->willReturn( $titleMock );
+
+		$statusValue = StatusValue::newGood( (object)[
+			'Foo' => 42,
+			WikiPageStore::VERSION_FIELD_NAME => '2.0.0',
+		] );
+		$loaderMock = $this->createMock( Loader::class );
+		$loaderMock->expects( $this->once() )
+			->method( 'load' )
+			->with( $titleMock, 0 )
+			->willReturn( $statusValue );
+
+		$store = new WikiPageStore(
+			'MediaWiki:Foo.json',
+			$titleFactoryMock,
+			$loaderMock,
+			$this->createNoOpMock( Writer::class )
+		);
+		$this->assertSame( '2.0.0', $store->getVersion() );
 	}
 }

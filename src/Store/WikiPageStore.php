@@ -15,6 +15,8 @@ use StatusValue;
 
 class WikiPageStore implements IConfigurationStore {
 
+	public const VERSION_FIELD_NAME = '$version';
+
 	private ?string $configLocation;
 	private ?Title $configTitle = null;
 	private TitleFactory $titleFactory;
@@ -63,21 +65,43 @@ class WikiPageStore implements IConfigurationStore {
 		$this->loader->invalidate( $this->getConfigurationTitle() );
 	}
 
+	public static function removeVersionDataFromStatus( StatusValue $status ): StatusValue {
+		$data = $status->getValue();
+		if ( $data ) {
+			unset( $data->{self::VERSION_FIELD_NAME} );
+			$status->setResult( $status->isOK(), $data );
+		}
+		return $status;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getVersion(): ?string {
+		$status = $this->loader->load( $this->getConfigurationTitle() );
+		if ( !$status->isOK() ) {
+			return null;
+		}
+		return $status->getValue()->{self::VERSION_FIELD_NAME} ?? null;
+	}
+
 	/**
 	 * @inheritDoc
 	 */
 	public function loadConfigurationUncached(): StatusValue {
-		return $this->loader->load(
+		return self::removeVersionDataFromStatus( $this->loader->load(
 			$this->getConfigurationTitle(),
 			ICustomReadConstants::READ_UNCACHED
-		);
+		) );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function loadConfiguration(): StatusValue {
-		return $this->loader->load( $this->getConfigurationTitle() );
+		return self::removeVersionDataFromStatus(
+			$this->loader->load( $this->getConfigurationTitle() )
+		);
 	}
 
 	/**
@@ -85,12 +109,17 @@ class WikiPageStore implements IConfigurationStore {
 	 */
 	public function storeConfiguration(
 		$config,
+		?string $version,
 		Authority $authority,
 		string $summary = ''
 	): StatusValue {
 		$permissionStatus = PermissionStatus::newGood();
 		if ( !$authority->authorizeWrite( 'edit', $this->getConfigurationTitle(), $permissionStatus ) ) {
 			return Status::wrap( $permissionStatus );
+		}
+
+		if ( $version ) {
+			$config->{self::VERSION_FIELD_NAME} = $version;
 		}
 
 		$status = $this->writer->save(

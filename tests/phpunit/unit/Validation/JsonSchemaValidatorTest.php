@@ -247,4 +247,12 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 			'isGood() of permissive validation should return the correct result'
 		);
 	}
+
+	public function testGetSchemaVersion() {
+		$validator = new JsonSchemaValidator( JsonSchemaForTesting::class );
+		$this->assertSame(
+			JsonSchemaForTesting::VERSION,
+			$validator->getSchemaVersion()
+		);
+	}
 }

@@ -17,12 +17,12 @@ abstract class JsonSchema {
 	public const JSON_SCHEMA_VERSION = 'https://json-schema.org/draft-04/schema#';
 
 	/**
-	 * @var string Version of the schema
+	 * @var string|null Version of the schema (or null if versions are not used)
 	 * @stable to override
 	 *
 	 * This is included in the $id field of the schema. Feel free to override in implementations.
 	 */
-	public const VERSION = '1.0.0';
+	public const VERSION = null;
 
 	public const PROPERTIES = 'properties';
 	public const TYPE = 'type';

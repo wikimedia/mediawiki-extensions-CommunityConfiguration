@@ -41,4 +41,12 @@ class NoopValidator implements IValidator {
 	public function getSchemaBuilder(): SchemaBuilder {
 		throw new LogicException( __METHOD__ . ' is not supported' );
 	}
+
+	/**
+	 * @inheritDoc
+	 * @return never
+	 */
+	public function getSchemaVersion(): ?string {
+		throw new LogicException( __METHOD__ . ' is not supported' );
+	}
 }
