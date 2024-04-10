@@ -4,5 +4,9 @@
 			"Jeeputer"
 		]
 	},
-	"communityconfigurationeditor": "در حال ویرایش «$1»"
+	"communityconfigurationeditor": "در حال ویرایش «$1»",
+	"communityconfiguration-editor-client-success-message": "تغییرات {{GENDER:$1|شما}} ذخیره شد",
+	"communityconfiguration-editor-client-data-submission-error": "هنگام ذخیره‌سازی تغییرات {{GENDER:$1|شما}} خطایی رخ داد. لطفاً بعداً دوباره تلاش کنید.",
+	"communityconfiguration-editor-message-dismiss-button-label": "بستن",
+	"communityconfiguration-page-title-control-no-results": "نتیجه‌ای یافت نشد."
 }
