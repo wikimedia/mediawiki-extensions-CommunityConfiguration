@@ -44,18 +44,18 @@ class WikiPageConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		// when nothing is configured, defaults are returned (and if there are no defaults,
 		// the variable is omitted).
-		$this->assertFalse( $reader->has( 'Foo' ) );
+		$this->assertFalse( $reader->has( 'Number' ) );
 		$this->assertTrue( $reader->has( 'NumberWithDefault' ) );
 		$this->assertSame( 0, $reader->get( 'NumberWithDefault' ) );
 
 		// after changing the value, the new ones are returned
 		$config = new stdClass();
-		$config->Foo = 21;
+		$config->Number = 21;
 		$config->NumberWithDefault = 42;
 		$provider->storeValidConfiguration( $config, $authority );
 
-		$this->assertTrue( $reader->has( 'Foo' ) );
-		$this->assertSame( 21, $reader->get( 'Foo' ) );
+		$this->assertTrue( $reader->has( 'Number' ) );
+		$this->assertSame( 21, $reader->get( 'Number' ) );
 		$this->assertTrue( $reader->has( 'NumberWithDefault' ) );
 		$this->assertSame( 42, $reader->get( 'NumberWithDefault' ) );
 	}

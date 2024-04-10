@@ -45,7 +45,7 @@ class ApiEditTest extends ApiTestCase {
 			[
 				'action' => 'communityconfigurationedit',
 				'provider' => 'foo',
-				'content' => FormatJson::encode( [ 'Foo' => 42 ] ),
+				'content' => FormatJson::encode( [ 'Number' => 42 ] ),
 				'summary' => 'testing'
 			],
 			null,
@@ -56,7 +56,7 @@ class ApiEditTest extends ApiTestCase {
 		$status = $provider->loadValidConfiguration();
 		$this->assertTrue( $status->isOK() );
 		$this->assertEquals(
-			(object)[ 'Foo' => 42, 'NumberWithDefault' => 0 ],
+			(object)[ 'Number' => 42, 'NumberWithDefault' => 0 ],
 			$status->getValue()
 		);
 	}
@@ -69,7 +69,7 @@ class ApiEditTest extends ApiTestCase {
 			[
 				'action' => 'communityconfigurationedit',
 				'provider' => 'bar',
-				'content' => FormatJson::encode( [ 'Foo' => 42 ] ),
+				'content' => FormatJson::encode( [ 'Number' => 42 ] ),
 				'summary' => 'testing'
 			],
 			null,
@@ -101,7 +101,7 @@ class ApiEditTest extends ApiTestCase {
 			[
 				'action' => 'communityconfigurationedit',
 				'provider' => 'foo',
-				'content' => FormatJson::encode( [ 'Foo' => 'not a number' ] ),
+				'content' => FormatJson::encode( [ 'Number' => 'not a number' ] ),
 				'summary' => 'testing'
 			],
 			null,
@@ -116,7 +116,7 @@ class ApiEditTest extends ApiTestCase {
 			[
 				'action' => 'communityconfigurationedit',
 				'provider' => 'foo',
-				'content' => FormatJson::encode( [ 'Foo' => 42 ] ),
+				'content' => FormatJson::encode( [ 'Number' => 42 ] ),
 				'summary' => 'testing'
 			],
 			null,

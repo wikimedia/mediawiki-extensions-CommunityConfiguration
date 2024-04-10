@@ -27,6 +27,7 @@ class ValidationHooksTest extends MediaWikiIntegrationTestCase {
 						]
 					],
 				],
+				// used to test ValidationHooks does not have issues with other stores than wikipage
 				'bar' => [
 					'store' => [
 						'type' => 'static',
@@ -44,21 +45,21 @@ class ValidationHooksTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusOK( $this->editPage(
 			'MediaWiki:Bar.json',
 			FormatJson::encode( [
-				'Foo' => 'value',
-				'Bar' => 42,
+				'Number' => 'value',
+				'Foo' => 42,
 			] )
 		) );
 	}
 
 	public function testValidSave() {
 		$this->assertStatusOK( $this->editPage( 'MediaWiki:Foo.json', FormatJson::encode( [
-			'Foo' => 42,
+			'Number' => 42,
 		] ) ) );
 	}
 
 	public function testInvalidSave() {
 		$status = $this->editPage( 'MediaWiki:Foo.json', FormatJson::encode( [
-			'Foo' => 'value',
+			'Number' => 'value',
 		] ) );
 		$this->assertStatusError(
 			'communityconfiguration-schema-validation-error',

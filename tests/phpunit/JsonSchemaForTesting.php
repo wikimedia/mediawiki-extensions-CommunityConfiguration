@@ -7,7 +7,7 @@ use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 // phpcs:disable Generic.NamingConventions.UpperCaseConstantName.ClassConstantNotUpperCase
 class JsonSchemaForTesting extends JsonSchema {
 
-	public const Foo = [
+	public const Number = [
 		JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
 	];
 
