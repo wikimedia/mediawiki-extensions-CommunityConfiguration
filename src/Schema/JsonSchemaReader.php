@@ -6,7 +6,7 @@ use InvalidArgumentException;
 use MediaWiki\Settings\Source\ReflectionSchemaSource;
 use ReflectionClass;
 
-class JsonSchemaReader {
+class JsonSchemaReader implements SchemaReader {
 
 	private ReflectionClass $class;
 
@@ -40,12 +40,12 @@ class JsonSchemaReader {
 		return new ReflectionSchemaSource( $this->class->getName() );
 	}
 
-	public function isJsonSchema(): bool {
+	public function isSchema(): bool {
 		return $this->class->isSubclassOf( JsonSchema::class );
 	}
 
-	public function assertIsJsonSchema(): void {
-		if ( !$this->isJsonSchema() ) {
+	public function assertIsSchema(): void {
+		if ( !$this->isSchema() ) {
 			throw new InvalidArgumentException(
 				__CLASS__ . ' needs to be used with a class that implements '
 				. JsonSchema::class . '.'
@@ -59,7 +59,7 @@ class JsonSchemaReader {
 	 * @return mixed
 	 */
 	private function getConstantValue( string $constantName, $default ) {
-		$this->assertIsJsonSchema();
+		$this->assertIsSchema();
 		$const = $this->class->getReflectionConstant( $constantName );
 		return $const ? $const->getValue() : $default;
 	}
@@ -72,11 +72,23 @@ class JsonSchemaReader {
 		return $this->getConstantValue( 'VERSION', JsonSchema::VERSION );
 	}
 
+	public function getNextVersion(): ?string {
+		return $this->getConstantValue( 'SCHEMA_NEXT_VERSION', JsonSchema::SCHEMA_NEXT_VERSION );
+	}
+
+	public function getPreviousVersion(): ?string {
+		return $this->getConstantValue( 'SCHEMA_PREVIOUS_VERSION', JsonSchema::SCHEMA_PREVIOUS_VERSION );
+	}
+
 	public function getSchemaId(): string {
 		$schemaId = str_replace( '\\', '/', $this->class->getName() );
 		if ( $this->getVersion() ) {
 			$schemaId .= '/' . $this->getVersion();
 		}
 		return $schemaId;
+	}
+
+	public function getSchemaConverterId(): ?string {
+		return $this->getConstantValue( 'SCHEMA_CONVERTER', JsonSchema::SCHEMA_CONVERTER );
 	}
 }

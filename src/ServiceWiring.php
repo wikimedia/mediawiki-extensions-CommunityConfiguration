@@ -9,6 +9,8 @@ use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabili
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\MessagesProcessor;
 use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
+use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaConverterFactory;
+use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaMigrator;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\Extension\CommunityConfiguration\Utils;
@@ -63,6 +65,17 @@ return [
 		return new ValidatorFactory(
 			new ServiceOptions( ValidatorFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getObjectFactory()
+		);
+	},
+	'CommunityConfiguration.SchemaConverterFactory' => static function ( MediaWikiServices $services ) {
+		return new SchemaConverterFactory(
+			$services->getObjectFactory()
+		);
+	},
+	'CommunityConfiguration.SchemaMigrator' => static function ( MediaWikiServices $services ) {
+		$ccServices = CommunityConfigurationServices::wrap( $services );
+		return new SchemaMigrator(
+			$ccServices->getSchemaConverterFactory()
 		);
 	},
 	'CommunityConfiguration.StoreFactory' => static function ( MediaWikiServices $services ) {

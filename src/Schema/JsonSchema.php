@@ -24,6 +24,32 @@ abstract class JsonSchema {
 	 */
 	public const VERSION = null;
 
+	/**
+	 * @var string|null Classname of a ISchemaConverter
+	 * @stable to override
+	 *
+	 * @see ISchemaConverter
+	 */
+	public const SCHEMA_CONVERTER = null;
+
+	/**
+	 * @var string|null A version of the next schema version (or null, when not
+	 * available/supported).
+	 * @stable to override
+	 *
+	 * Versions need to be comparable via PHP's version_compare.
+	 */
+	public const SCHEMA_NEXT_VERSION = null;
+
+	/**
+	 * @var string|null A version of the previous schema version (or null, when not
+	 * available/supported).
+	 * @stable to override
+	 *
+	 * Versions need to be comparable via PHP's version_compare.
+	 */
+	public const SCHEMA_PREVIOUS_VERSION = null;
+
 	/*
 	 * JSON-schema draft-04 supported vocabulary
 	 */

@@ -20,6 +20,12 @@ class JsonSchemaBuilder implements SchemaBuilder {
 		$this->versionManager = new JsonSchemaVersionManager( $this->jsonSchema );
 	}
 
+	/**
+	 * Get schema reader for given version
+	 *
+	 * @param string|null $version
+	 * @return JsonSchemaReader
+	 */
 	private function getJsonSchemaReader( ?string $version = null ): JsonSchemaReader {
 		if ( $version === null ) {
 			return $this->jsonSchema;
@@ -33,10 +39,31 @@ class JsonSchemaBuilder implements SchemaBuilder {
 	/**
 	 * @inheritDoc
 	 */
+	public function getSchemaName(): string {
+		return $this->getJsonSchemaReader()->getSchemaId();
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getVersionManager(): SchemaVersionManager {
+		return $this->versionManager;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getSchemaReader(): SchemaReader {
+		return $this->jsonSchema;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
 	public function getRootSchema( ?string $version = null ): array {
 		$start = microtime( true );
 		$reader = $this->getJsonSchemaReader( $version );
-		$reader->assertIsJsonSchema();
+		$reader->assertIsSchema();
 
 		$result = array_merge( [
 			'$schema' => $this->jsonSchema->getJsonSchemaVersion(),

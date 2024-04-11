@@ -30,7 +30,7 @@ class JsonSchemaReaderTest extends MediaWikiUnitTestCase {
 	public function testIsJsonSchema( bool $expected, string $className ) {
 		$this->assertSame(
 			$expected,
-			( new JsonSchemaReader( $className ) )->isJsonSchema()
+			( new JsonSchemaReader( $className ) )->isSchema()
 		);
 	}
 
@@ -46,7 +46,7 @@ class JsonSchemaReaderTest extends MediaWikiUnitTestCase {
 			$this->expectException( InvalidArgumentException::class );
 		}
 
-		( new JsonSchemaReader( $className ) )->assertIsJsonSchema();
+		( new JsonSchemaReader( $className ) )->assertIsSchema();
 	}
 
 	public static function provideGetSchemaVersion() {

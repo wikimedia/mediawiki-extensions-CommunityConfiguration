@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Schema;
 
-class JsonSchemaVersionManager {
+class JsonSchemaVersionManager implements SchemaVersionManager {
 
 	private const VERSIONS_NAMESPACE = 'Migrations';
 
@@ -23,7 +23,11 @@ class JsonSchemaVersionManager {
 		return $baseName . '\\' . self::VERSIONS_NAMESPACE . '\\' . $schemaName . '_';
 	}
 
-	public function getVersionForSchema( string $version ): JsonSchemaReader {
+	/**
+	 * @inheritDoc
+	 * @return JsonSchemaReader
+	 */
+	public function getVersionForSchema( string $version ): SchemaReader {
 		if ( $version == $this->jsonSchema->getVersion() ) {
 			return $this->jsonSchema;
 		}

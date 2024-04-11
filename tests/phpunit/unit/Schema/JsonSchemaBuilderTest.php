@@ -29,13 +29,14 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 			] );
 
 		$schemaReader = $this->createNoOpMock( JsonSchemaReader::class, [
-			'assertIsJsonSchema',
+			'assertIsSchema',
 			'getJsonSchemaVersion',
 			'getSchemaId',
 			'getReflectionSchemaSource',
 		] );
+
 		$schemaReader->expects( $this->exactly( 2 ) )
-			->method( 'assertIsJsonSchema' );
+			->method( 'assertIsSchema' );
 		$schemaReader->expects( $this->exactly( 2 ) )
 			->method( 'getJsonSchemaVersion' )
 			->willReturn( 'schema/version' );

@@ -6,6 +6,8 @@ use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
 use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
+use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaConverterFactory;
+use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaMigrator;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
@@ -45,6 +47,14 @@ class CommunityConfigurationServices {
 
 	public function getMediaWikiConfigReader(): MediaWikiConfigReader {
 		return $this->coreServices->getService( 'CommunityConfiguration.MediaWikiConfigReader' );
+	}
+
+	public function getSchemaConverterFactory(): SchemaConverterFactory {
+		return $this->coreServices->getService( 'CommunityConfiguration.SchemaConverterFactory' );
+	}
+
+	public function getSchemaMigrator(): SchemaMigrator {
+		return $this->coreServices->getService( 'CommunityConfiguration.SchemaMigrator' );
 	}
 
 	public function getStoreFactory(): StoreFactory {

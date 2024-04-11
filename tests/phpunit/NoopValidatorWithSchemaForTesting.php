@@ -5,6 +5,8 @@ namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 use EmptyIterator;
 use Iterator;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
+use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaReader;
+use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaVersionManager;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidationStatus;
 use stdClass;
@@ -57,6 +59,27 @@ class NoopValidatorWithSchemaForTesting implements IValidator {
 			 */
 			public function getDefaultsMap( ?string $version = null ): stdClass {
 				return (object)[];
+			}
+
+			/**
+			 * @inheritDoc
+			 */
+			public function getSchemaName(): string {
+				return '';
+			}
+
+			/**
+			 * @inheritDoc
+			 */
+			public function getVersionManager(): SchemaVersionManager {
+				throw new \LogicException();
+			}
+
+			/**
+			 * @inheritDoc
+			 */
+			public function getSchemaReader(): SchemaReader {
+				throw new \LogicException();
 			}
 		};
 	}

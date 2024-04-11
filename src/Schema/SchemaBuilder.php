@@ -11,6 +11,28 @@ use stdClass;
 interface SchemaBuilder {
 
 	/**
+	 * Get schema name (a string that can be used to identify one schema from another)
+	 *
+	 * @return string
+	 */
+	public function getSchemaName(): string;
+
+	/**
+	 * Construct a SchemaVersionManager
+	 *
+	 * @return SchemaVersionManager
+	 */
+	public function getVersionManager(): SchemaVersionManager;
+
+	/**
+	 * Construct a SchemaReader (for the latest version)
+	 *
+	 * @see SchemaBuilder::getVersionManager() if you need a specific version of SchemaReader.
+	 * @return SchemaReader
+	 */
+	public function getSchemaReader(): SchemaReader;
+
+	/**
 	 * Get the schema as a PHP associative array
 	 *
 	 * This method looks at the associated PHP class and builds the PHP associative
