@@ -13,5 +13,7 @@
 	"communityconfiguration-edit-summary-dialog-title-span": "(ঐচ্ছিক)",
 	"communityconfiguration-edit-summary-dialog-save-button": "পরিবর্তন সংরক্ষণ করুন",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "বাতিল",
-	"communityconfiguration-edit-summary-dialog-label": "সম্পাদনা সারাংশ"
+	"communityconfiguration-edit-summary-dialog-label": "সম্পাদনা সারাংশ",
+	"communityconfiguration-editor-message-dismiss-button-label": "বন্ধ করুন",
+	"communityconfiguration-page-title-control-no-results": "কোনও ফলাফল পাওয়া যায়নি।"
 }
