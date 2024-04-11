@@ -28,7 +28,14 @@ class JsonSchemaValidator implements IValidator {
 	/**
 	 * @inheritDoc
 	 */
-	public function getSchemaBuilder(): ?SchemaBuilder {
+	public function areSchemasSupported(): bool {
+		return true;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getSchemaBuilder(): SchemaBuilder {
 		return $this->jsonSchemaBuilder;
 	}
 

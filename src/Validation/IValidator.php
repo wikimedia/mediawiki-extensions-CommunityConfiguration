@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
+use LogicException;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
 use StatusValue;
 
@@ -27,9 +28,19 @@ interface IValidator {
 	public function validate( $config ): StatusValue;
 
 	/**
-	 * Return a SchemaBuilder object or null for no schema support
+	 * Are configuration schemas supported?
 	 *
-	 * @return SchemaBuilder|null
+	 * @return bool
 	 */
-	public function getSchemaBuilder(): ?SchemaBuilder;
+	public function areSchemasSupported(): bool;
+
+	/**
+	 * Return a SchemaBuilder object
+	 *
+	 * Callers need to check areSchemasSupported() returns true first.
+	 *
+	 * @return SchemaBuilder
+	 * @throws LogicException if called when areSchemasSupported() returns false
+	 */
+	public function getSchemaBuilder(): SchemaBuilder;
 }
