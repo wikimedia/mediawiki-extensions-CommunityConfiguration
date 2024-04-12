@@ -6,7 +6,6 @@ use ApiUsageException;
 use FormatJson;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Tests\Api\ApiTestCase;
-use stdClass;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Api\ApiEdit
@@ -29,7 +28,8 @@ class ApiEditTest extends ApiTestCase {
 						'args' => [ 'MediaWiki:Foo.json' ],
 					],
 					'validator' => [
-						'type' => 'noop',
+						'type' => 'jsonschema',
+						'args' => [ JsonSchemaForTesting::class ],
 					],
 				],
 			],
@@ -37,8 +37,6 @@ class ApiEditTest extends ApiTestCase {
 	}
 
 	public function testExecuteOK() {
-		$newConfig = new stdClass();
-		$newConfig->Foo = 42;
 		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()
 			->newProvider( 'foo' );
@@ -47,7 +45,7 @@ class ApiEditTest extends ApiTestCase {
 			[
 				'action' => 'communityconfigurationedit',
 				'provider' => 'foo',
-				'content' => FormatJson::encode( $newConfig ),
+				'content' => FormatJson::encode( [ 'Foo' => 42 ] ),
 				'summary' => 'testing'
 			],
 			null,
@@ -58,7 +56,7 @@ class ApiEditTest extends ApiTestCase {
 		$status = $provider->loadValidConfiguration();
 		$this->assertTrue( $status->isOK() );
 		$this->assertEquals(
-			$newConfig,
+			(object)[ 'Foo' => 42, 'NumberWithDefault' => 0 ],
 			$status->getValue()
 		);
 	}
@@ -89,6 +87,21 @@ class ApiEditTest extends ApiTestCase {
 				'action' => 'communityconfigurationedit',
 				'provider' => 'foo',
 				'content' => 'most certainly not valid JSON',
+				'summary' => 'testing'
+			],
+			null,
+			$this->getTestSysop()->getAuthority(),
+			'csrf'
+		);
+	}
+
+	public function testInvalidJSON() {
+		$this->expectException( ApiUsageException::class );
+		$this->doApiRequestWithToken(
+			[
+				'action' => 'communityconfigurationedit',
+				'provider' => 'foo',
+				'content' => FormatJson::encode( [ 'Foo' => 'not a number' ] ),
 				'summary' => 'testing'
 			],
 			null,
