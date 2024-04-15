@@ -29,6 +29,7 @@ abstract class JsonSchema {
 	public const ADDITIONAL_PROPERTIES = 'additionalProperties';
 	public const REF = '$ref';
 	public const DEFS = '$defs';
+	public const ITEMS = 'items';
 
 	/**
 	 * @var string To define a default value for the property
@@ -39,6 +40,7 @@ abstract class JsonSchema {
 	public const DEFAULT = 'default';
 
 	public const TYPE_OBJECT = 'object';
+	public const TYPE_ARRAY = 'array';
 	public const TYPE_STRING = 'string';
 	public const TYPE_NUMBER = 'number';
 	public const TYPE_BOOLEAN = 'boolean';

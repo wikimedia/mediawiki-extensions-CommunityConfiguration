@@ -9,4 +9,11 @@ class MediaWikiDefinitions extends JsonSchema {
 	public const PageTitle = [
 		self::TYPE => self::TYPE_STRING
 	];
+
+	public const Namespaces = [
+		self::TYPE => self::TYPE_ARRAY,
+		self::ITEMS => [
+			self::TYPE => self::TYPE_NUMBER
+		]
+	];
 }

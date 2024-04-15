@@ -2,6 +2,37 @@ jest.mock( './icons.json', () => ( {
 	cdxIconLinkExternal: 'link external'
 } ), { virtual: true } );
 const { mount } = require( '@vue/test-utils' );
+// FIXME the mock needs to be set before the require(App.vue)
+// statement, move the read of mw.config.get( 'wgFormattedNamespaces' )
+// in NamespacesControl out of the component load code path.
+global.mw.config.get.mockImplementation( ( key ) => {
+	switch ( key ) {
+		case 'wgFormattedNamespaces':
+			return {
+				0: '',
+				1: 'Talk',
+				2: 'User',
+				3: 'User talk',
+				4: 'Dev',
+				5: 'Dev talk',
+				6: 'File',
+				7: 'File talk',
+				8: 'MediaWiki',
+				9: 'MediaWiki talk',
+				10: 'Template',
+				11: 'Template talk',
+				12: 'Help',
+				13: 'Help talk',
+				14: 'Category',
+				15: 'Category talk',
+				2600: 'Topic',
+				'-2': 'Media',
+				'-1': 'Special'
+			};
+		default:
+			throw new Error( 'Unkown key: ' + key );
+	}
+} );
 const App = require( './App.vue' );
 const { JsonForm } = require( '../lib/json-form/form/index.js' );
 
