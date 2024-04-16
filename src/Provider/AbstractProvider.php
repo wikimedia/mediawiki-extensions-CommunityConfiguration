@@ -41,7 +41,7 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	 */
 	public function getName( MessageLocalizer $localizer ): Message {
 		return $localizer->msg(
-			sprintf( 'communityconfiguration-%s-title', $this->getId() )
+			sprintf( 'communityconfiguration-%s-title', strtolower( $this->getId() ) )
 		);
 	}
 
