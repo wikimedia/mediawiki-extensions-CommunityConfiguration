@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use stdClass;
 
@@ -58,5 +59,18 @@ class WikiPageConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 21, $reader->get( 'Number' ) );
 		$this->assertTrue( $reader->has( 'NumberWithDefault' ) );
 		$this->assertSame( 42, $reader->get( 'NumberWithDefault' ) );
+	}
+
+	public function testCoreVariable() {
+		$ccServices = CommunityConfigurationServices::wrap( $this->getServiceContainer() );
+		$reader = $ccServices->getWikiPageConfigReader();
+
+		// variable that is not in the schema is processed by GlobalVarConfig, which should have
+		// DBname for example
+		$this->assertTrue( $reader->has( MainConfigNames::DBname ) );
+		$this->assertSame(
+			$this->getDb()->getDBname(),
+			$reader->get( MainConfigNames::DBname )
+		);
 	}
 }
