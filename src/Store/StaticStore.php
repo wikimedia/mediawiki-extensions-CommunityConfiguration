@@ -6,15 +6,16 @@ use LogicException;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use StatusValue;
+use stdClass;
 
 class StaticStore implements IConfigurationStore {
 
-	private array $config;
+	private stdClass $config;
 
 	/**
-	 * @param mixed $config
+	 * @param stdClass $config
 	 */
-	public function __construct( $config ) {
+	public function __construct( stdClass $config ) {
 		$this->config = $config;
 	}
 

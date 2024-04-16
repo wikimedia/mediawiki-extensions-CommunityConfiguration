@@ -15,7 +15,7 @@
 		"MediaWiki\\Extension\\CommunityConfiguration\\": "src/"
 	},
 	"TestAutoloadClasses": {
-		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\JsonSchemaForTesting": "tests/phpunit/unit/Validation/JsonSchemaForTesting.php"
+		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\JsonSchemaForTesting": "tests/phpunit/JsonSchemaForTesting.php"
 	},
 	"config": {
 		"CommunityConfigurationBugReportingToolURL": {

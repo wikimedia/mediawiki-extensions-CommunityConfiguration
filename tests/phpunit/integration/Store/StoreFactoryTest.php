@@ -14,10 +14,16 @@ class StoreFactoryTest extends MediaWikiIntegrationTestCase {
 
 	private ?array $storeSpecs = null;
 
-	private const STORE_EXTRA_ARGS = [
-		'wikipage' => [ 'MediaWiki:Foo.json' ],
-		'static' => [ [] ]
-	];
+	private function getExtraArgsForStore( string $name ): array {
+		switch ( $name ) {
+			case 'wikipage':
+				return [ 'MediaWiki:Foo.json' ];
+			case 'static':
+				return [ (object)[] ];
+			default:
+				return [];
+		}
+	}
 
 	private function getStoreSpecs(): array {
 		if ( !$this->storeSpecs ) {
@@ -40,7 +46,7 @@ class StoreFactoryTest extends MediaWikiIntegrationTestCase {
 				IConfigurationStore::class,
 				$factory->newStore(
 					$storeName, $storeName,
-					self::STORE_EXTRA_ARGS[$storeName] ?? []
+					$this->getExtraArgsForStore( $storeName )
 				)
 			);
 
@@ -49,7 +55,7 @@ class StoreFactoryTest extends MediaWikiIntegrationTestCase {
 				IConfigurationStore::class,
 				$factory->newStore(
 					$storeName . '-second', $storeName,
-					self::STORE_EXTRA_ARGS[$storeName] ?? []
+					$this->getExtraArgsForStore( $storeName )
 				)
 			);
 		}
