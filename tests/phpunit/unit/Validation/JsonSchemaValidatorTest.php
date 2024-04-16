@@ -33,9 +33,9 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 
 	public static function provideJSON(): array {
 		return [
-			'OK' => [ [ 'Foo' => 1 ], true ],
-			'wrong type' => [ [ 'Foo' => 'baz' ], false ],
-			'additional property' => [ [ 'Foo' => 1, 'Bar' => 1 ], false ],
+			'OK' => [ [ 'Number' => 1 ], true ],
+			'wrong type' => [ [ 'Number' => 'baz' ], false ],
+			'additional property' => [ [ 'Number' => 1, 'Bar' => 1 ], false ],
 		];
 	}
 
