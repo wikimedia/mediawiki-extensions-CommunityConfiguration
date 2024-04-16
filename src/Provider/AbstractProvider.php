@@ -12,16 +12,16 @@ use Psr\Log\NullLogger;
 abstract class AbstractProvider implements IConfigurationProvider {
 	use LoggerAwareTrait;
 
-	private string $providerName;
+	private string $providerId;
 	private IConfigurationStore $store;
 	private IValidator $validator;
 
 	public function __construct(
-		string $providerName,
+		string $providerId,
 		IConfigurationStore $store,
 		IValidator $validator
 	) {
-		$this->providerName = $providerName;
+		$this->providerId = $providerId;
 		$this->store = $store;
 		$this->validator = $validator;
 
@@ -32,7 +32,7 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	 * @inheritDoc
 	 */
 	public function getId(): string {
-		return $this->providerName;
+		return $this->providerId;
 	}
 
 	/**
