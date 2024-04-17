@@ -1,0 +1,12 @@
+{
+	"$schema": "https://json-schema.org/draft-04/schema#",
+	"$id": "CommunityConfiguration/Config/Schemas/TestJsonSchema/1.0.0",
+	"additionalProperties": false,
+	"type": "object",
+	"properties": {
+		"ExampleString": {
+			"type": "string",
+			"default": null
+		}
+	}
+}
