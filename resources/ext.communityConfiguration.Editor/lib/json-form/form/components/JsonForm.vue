@@ -61,7 +61,7 @@ module.exports = exports = {
 				config: props.config,
 				renderers: props.renderers,
 				schema: props.schema,
-				uischema: buildUISchema( props.schema, props.config )
+				uischema: buildUISchema( props.schema, props.config, '', dataClone )
 			}
 		};
 	}

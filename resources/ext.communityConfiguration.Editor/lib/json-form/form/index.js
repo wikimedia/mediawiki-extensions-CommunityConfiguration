@@ -4,6 +4,7 @@ const {
 	rendererProps
 } = require( './composables/props.js' );
 const {
+	useJsonFormArrayControl,
 	useJsonFormControl,
 	useJsonFormRenderer
 } = require( './composables/index.js' );
@@ -12,6 +13,7 @@ module.exports = exports = {
 	DispatchRenderer,
 	JsonForm,
 	rendererProps,
+	useJsonFormArrayControl,
 	useJsonFormControl,
 	useJsonFormRenderer
 };

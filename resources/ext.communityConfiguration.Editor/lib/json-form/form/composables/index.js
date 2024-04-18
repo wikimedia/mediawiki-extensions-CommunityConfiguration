@@ -1,5 +1,5 @@
-const { inject, computed } = require( 'vue' );
-const { extractRef } = require( '../../core/index.js' );
+const { inject, computed, unref } = require( 'vue' );
+const { buildUISubSchema, extractRef } = require( '../../core/index.js' );
 
 /**
  * Check wether a given object has a property specified by a key.
@@ -74,7 +74,7 @@ function getConfigValueByScope( state, scope, schema, definitions = {} ) {
 	if ( !scope ) {
 		return;
 	}
-	const valuePath = scope.split( '/properties/' );
+	const valuePath = scope.replace( /\/properties/g, '' ).split( '/' );
 	// Drop the inital # from the path
 	valuePath.shift();
 	const result = valuePath.reduce( ( acc, curr ) => {
@@ -97,7 +97,7 @@ function setConfigValueByScope( state, scope, newVal ) {
 	if ( !scope ) {
 		return;
 	}
-	const valuePath = scope.split( '/properties/' );
+	const valuePath = scope.replace( /\/properties/g, '' ).split( '/' );
 	// Drop the inital # from the path
 	valuePath.shift();
 	// REVIEW: when the user "empties" an input, text or number, newVal
@@ -145,6 +145,51 @@ function useJsonFormControl( props ) {
 }
 
 /**
+ * Provides bindings for 'ArrayControl' elements.
+ *
+ * Access bindings via the `control` object.
+ *
+ * @param {Object} props
+ * @return {{ control: Object, childUISchema: Object }} Control bindings
+ */
+function useJsonFormArrayControl( props ) {
+	const jsonform = inject( 'jsonform' );
+
+	if ( !jsonform ) {
+		throw new Error( "'jsonform' couldn't be injected. Are you within <JsonForm>?" );
+	}
+	const {
+		required,
+		scope
+	} = props.uischema;
+	const modelValue = computed( () => {
+		return getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs );
+	} );
+
+	// Treat all array children as if they are simple controls,
+	// if they array items are objects or arrays the appropriate
+	// renderer will be dispatched to inspect the nested subschemas.
+	const childUISchema = buildUISubSchema(
+		props.schema,
+		props.uischema.name,
+		props.uischema.scope,
+		// TODO determine if an array item is required based on min/maxItems, T358659
+		false,
+		jsonform.config.i18nPrefix,
+		unref( modelValue )
+	);
+	return {
+		childUISchema,
+		control: Object.assign( {}, props, {
+			modelValue,
+			otherAttrs: {
+				required
+			}
+		} )
+	};
+}
+
+/**
  * Provides bindings which can be used for any renderer, so far only 'Control'.
  *
  * Access bindings via the provided 'renderer' object.
@@ -158,9 +203,15 @@ const useJsonFormRenderer = ( props ) => {
 	if ( !jsonform ) {
 		throw new Error( "'jsonform' couldn't be injected. Are you within <JsonForm>?" );
 	}
-
+	let schema = props.schema;
+	if ( props.schema.type === 'array' ) {
+		schema = schema.items;
+	}
+	if ( props.schema.type === 'object' ) {
+		schema = props.schema.properties[ props.uischema.name ];
+	}
 	const renderer = {
-		schema: props.schema.properties[ props.uischema.name ],
+		schema,
 		renderers: jsonform.renderers
 	};
 
@@ -171,6 +222,7 @@ const useJsonFormRenderer = ( props ) => {
 };
 
 module.exports = exports = {
+	useJsonFormArrayControl,
 	useJsonFormControl,
 	useJsonFormRenderer
 };

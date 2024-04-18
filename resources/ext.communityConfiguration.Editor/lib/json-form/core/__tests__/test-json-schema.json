@@ -7,6 +7,13 @@
 		"ExampleString": {
 			"type": "string",
 			"default": null
+		},
+		"ExampleArray": {
+			"type": "array",
+			"default": null,
+			"items": {
+				"type": "string"
+			}
 		}
 	}
 }
