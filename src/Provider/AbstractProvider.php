@@ -16,14 +16,31 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	private IConfigurationStore $store;
 	private IValidator $validator;
 
+	/**
+	 * Indicates whether this provider should be skipped on the dashboard.
+	 *
+	 * @var bool
+	 */
+	private bool $shouldSkipDashboard;
+
+	/**
+	 * Constructs a new instance of a provider.
+	 *
+	 * @param string $providerId
+	 * @param bool $shouldSkipDashboard Whether the provider should be skipped on the dashboard.
+	 * @param IConfigurationStore $store The store used by the provider.
+	 * @param IValidator $validator The validator used by the provider.
+	 */
 	public function __construct(
 		string $providerId,
+		bool $shouldSkipDashboard,
 		IConfigurationStore $store,
 		IValidator $validator
 	) {
 		$this->providerId = $providerId;
 		$this->store = $store;
 		$this->validator = $validator;
+		$this->shouldSkipDashboard = $shouldSkipDashboard;
 
 		$this->setLogger( new NullLogger() );
 	}
@@ -57,5 +74,14 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	 */
 	public function getValidator(): IValidator {
 		return $this->validator;
+	}
+
+	/**
+	 * Determines whether the provider should be skipped in the dashboard listing.
+	 *
+	 * @return bool True if the provider should be skipped in the dashboard listing, false otherwise.
+	 */
+	public function shouldSkipDashboardListing(): bool {
+		return $this->shouldSkipDashboard;
 	}
 }

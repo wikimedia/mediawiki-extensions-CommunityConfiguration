@@ -93,6 +93,7 @@ class ConfigurationProviderFactory {
 	private function constructProvider( string $name ): IConfigurationProvider {
 		$spec = $this->providerSpecs[$name];
 		$storeType = $this->getConstructType( $spec, 'store' );
+
 		$validatorType = $this->getConstructType( $spec, 'validator' );
 		if ( $storeType === null ) {
 			throw new InvalidArgumentException(
@@ -104,12 +105,12 @@ class ConfigurationProviderFactory {
 				"Wrong type for \"validator\" property for \"$name\" provider. Allowed types are: string, object"
 			);
 		}
-
 		$storeArgs = $this->getConstructArgs( $spec, 'store' );
 		$validatorArgs = $this->getConstructArgs( $spec, 'validator' );
 
 		$ctorArgs = [
 			$name,
+			$spec['skipDashboardListing'] ?? false,
 			$this->storeFactory->newStore( $name, $storeType, $storeArgs ),
 			$this->validatorFactory->newValidator( $name, $validatorType, $validatorArgs )
 		];

@@ -39,6 +39,10 @@ class DashboardEditorCapability extends AbstractEditorCapability {
 	private function getProviders(): array {
 		$availableProviders = [];
 		foreach ( $this->providerFactory->getSupportedKeys() as $providerName ) {
+			$provider = $this->providerFactory->newProvider( $providerName );
+			if ( $provider->shouldSkipDashboardListing() ) {
+				continue;
+			}
 			$lowerCaseProviderName = strtolower( $providerName );
 			$availableProviders[] = [
 				'href' => $this->getParentTitle()->getSubpage( $providerName )->getLinkURL(),
