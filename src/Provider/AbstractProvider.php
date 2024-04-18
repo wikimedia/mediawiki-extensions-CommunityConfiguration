@@ -5,9 +5,11 @@ namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
 use MediaWiki\Message\Message;
+use MediaWiki\Permissions\Authority;
 use MessageLocalizer;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
+use StatusValue;
 
 abstract class AbstractProvider implements IConfigurationProvider {
 	use LoggerAwareTrait;
@@ -83,5 +85,27 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	 */
 	public function shouldSkipDashboardListing(): bool {
 		return $this->shouldSkipDashboard;
+	}
+
+	/**
+	 * Store configuration, after possibly manipulating it
+	 *
+	 * Can be used by providers to manipulate $newConfig before letting it get saved.
+	 *
+	 * @param mixed $newConfig The configuration value to store. Can be any JSON serializable type
+	 * @param Authority $authority
+	 * @param string $summary
+	 * @return StatusValue
+	 */
+	protected function storeConfiguration(
+		$newConfig,
+		Authority $authority,
+		string $summary = ''
+	): StatusValue {
+		return $this->getStore()->storeConfiguration(
+			$newConfig,
+			$authority,
+			$summary
+		);
 	}
 }
