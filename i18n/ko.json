@@ -4,9 +4,13 @@
 			"Ykhwong"
 		]
 	},
+	"communityconfiguration-editor-form-submit-button-text": "변경사항 저장",
+	"communityconfiguration-editor-form-submit-button-loading-text": "보내는 중...",
 	"communityconfiguration-edit-summary-dialog-title": "$1의 변경사항 저장",
 	"communityconfiguration-edit-summary-dialog-title-span": "(선택 사항)",
 	"communityconfiguration-edit-summary-dialog-save-button": "변경사항 저장",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "취소",
-	"communityconfiguration-edit-summary-dialog-label": "편집 요약"
+	"communityconfiguration-edit-summary-dialog-label": "편집 요약",
+	"communityconfiguration-editor-message-dismiss-button-label": "닫기",
+	"communityconfiguration-page-title-control-no-results": "결과가 없습니다."
 }
