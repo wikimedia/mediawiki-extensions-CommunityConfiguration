@@ -45,9 +45,8 @@ class DataProvider extends AbstractProvider {
 		$config = $storeStatus->getValue();
 
 		// enhance $config with defaults (if possible)
-		$schemaBuilder = $this->getValidator()->getSchemaBuilder();
-		if ( $schemaBuilder ) {
-			$defaultsMap = $schemaBuilder->getDefaultsMap();
+		if ( $this->getValidator()->areSchemasSupported() ) {
+			$defaultsMap = $this->getValidator()->getSchemaBuilder()->getDefaultsMap();
 			foreach ( $defaultsMap as $propertyName => $defaultValue ) {
 				if ( $defaultValue !== null && !isset( $config->$propertyName ) ) {
 					$config->$propertyName = $defaultValue;

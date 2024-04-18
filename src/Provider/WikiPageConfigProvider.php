@@ -22,7 +22,9 @@ class WikiPageConfigProvider
 				. 'stored configuration is not valid.'
 			);
 
-			return $this->getValidator()->getSchemaBuilder()->getDefaultsMap();
+			return $this->getValidator()->areSchemasSupported()
+				? $this->getValidator()->getSchemaBuilder()->getDefaultsMap()
+				: new stdClass();
 		}
 
 		return $status->getValue();
@@ -45,12 +47,11 @@ class WikiPageConfigProvider
 	 * @return array|null Null if all variables are supported
 	 */
 	public function getSupportedConfigVariableNames(): ?array {
-		$schemaBuilder = $this->getValidator()->getSchemaBuilder();
-		if ( $schemaBuilder === null ) {
+		if ( !$this->getValidator()->areSchemasSupported() ) {
 			return null;
 		}
 
-		return array_keys( $schemaBuilder->getRootProperties() );
+		return array_keys( $this->getValidator()->getSchemaBuilder()->getRootProperties() );
 	}
 
 	/**

@@ -123,6 +123,9 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$validatorMock = $this->createMock( JsonSchemaValidator::class );
 		$validatorMock->expects( $this->exactly( 2 ) )
+			->method( 'areSchemasSupported' )
+			->willReturn( true );
+		$validatorMock->expects( $this->exactly( 2 ) )
 			->method( 'getSchemaBuilder' )
 			->willReturn( $schemaBuilderMock );
 		$validatorMock->expects( $this->exactly( 2 ) )
