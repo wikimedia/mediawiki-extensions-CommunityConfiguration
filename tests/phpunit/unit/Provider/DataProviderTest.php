@@ -33,7 +33,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertInstanceOf(
 			DataProvider::class,
 			new DataProvider(
-				'foo',
+				'ProviderId',
 				$this->createNoOpMock( IConfigurationStore::class ),
 				$this->createNoOpMock( IValidator::class )
 			)
@@ -45,13 +45,13 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetId() {
 		$provider = new DataProvider(
-			'foo',
+			'ProviderId',
 			$this->createNoOpMock( IConfigurationStore::class ),
 			$this->createNoOpMock( IValidator::class )
 		);
 
 		$this->assertSame(
-			'foo',
+			'ProviderId',
 			$provider->getId()
 		);
 	}
@@ -65,11 +65,11 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$localizer = $this->createMock( DerivativeContext::class );
 		$localizer->expects( $this->once() )
 			->method( 'msg' )
-			->with( 'communityconfiguration-foo-title' )
+			->with( 'communityconfiguration-providerid-title' )
 			->willReturn( $messageMock );
 
 		$provider = new DataProvider(
-			'foo',
+			'ProviderId',
 			$this->createNoOpMock( IConfigurationStore::class ),
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -88,7 +88,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$storeMock = $this->createNoOpMock( IConfigurationStore::class );
 		$validatorMock = $this->createNoOpMock( IValidator::class );
 		$provider = new DataProvider(
-			'foo',
+			'ProviderId',
 			$storeMock,
 			$validatorMock
 		);
@@ -126,7 +126,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( StatusValue::newGood() );
 
 		$provider = new DataProvider(
-			'foo',
+			'ProviderId',
 			new StaticStore( new stdClass() ),
 			$validatorMock
 		);
@@ -151,7 +151,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( StatusValue::newFatal( 'june' ) );
 
 		$provider = new DataProvider(
-			'foo',
+			'ProviderId',
 			new StaticStore( $config ),
 			$validatorMock
 		);
@@ -172,7 +172,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( StatusValue::newFatal( 'june' ) );
 
 		$provider = new DataProvider(
-			'foo',
+			'ProviderId',
 			$storeMock,
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -192,7 +192,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( StatusValue::newFatal( 'june' ) );
 
 		$provider = new DataProvider(
-			'foo',
+			'ProviderId',
 			$storeMock,
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -217,7 +217,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( StatusValue::newGood() );
 
 		$provider = new DataProvider(
-			'foo',
+			'ProviderId',
 			$storeMock,
 			$validatorMock
 		);
@@ -240,7 +240,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( StatusValue::newFatal( 'june' ) );
 
 		$provider = new DataProvider(
-			'foo',
+			'ProviderId',
 			$storeMock,
 			$validatorMock
 		);
