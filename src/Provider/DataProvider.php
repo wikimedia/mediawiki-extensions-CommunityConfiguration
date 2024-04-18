@@ -84,7 +84,7 @@ class DataProvider extends AbstractProvider {
 			return $validationStatus;
 		}
 
-		return $this->getStore()->storeConfiguration(
+		return $this->storeConfiguration(
 			$newConfig,
 			$authority,
 			$summary
