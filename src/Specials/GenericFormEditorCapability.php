@@ -112,6 +112,14 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 				]
 			]
 		] );
+		$infoTextKey = 'communityconfiguration-' . strtolower( $subpage ) . '-info-text';
+		if ( !$this->msg( $infoTextKey )->isDisabled() ) {
+			$out->addHTML( Html::rawElement(
+				'div',
+				[ 'class' => 'communityconfiguration-info-section' ],
+				$this->msg( $infoTextKey )->parseAsBlock()
+			) );
+		}
 		$out->addModules( [ 'ext.communityConfiguration.Editor' ] );
 		$out->addHTML( Html::element( 'div', [ 'id' => 'ext-communityConfiguration-app-root' ] ) );
 	}
