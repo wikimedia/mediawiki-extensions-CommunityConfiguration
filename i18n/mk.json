@@ -32,5 +32,9 @@
 	"communityconfiguration-edit-summary-dialog-placeholder": "Опишете ги направените промени во поставеноста",
 	"communityconfiguration-edit-summary-dialog-save-button": "Зачувај промени",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Откажи",
-	"communityconfiguration-edit-summary-dialog-label": "Опис на уредувањето"
+	"communityconfiguration-edit-summary-dialog-label": "Опис на уредувањето",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Вашите}} промени се зачувани",
+	"communityconfiguration-editor-client-data-submission-error": "Се појави проблем при зачувувањето на {{GENDER:$1|вашите}} промени. Обидете се подоцна.",
+	"communityconfiguration-editor-message-dismiss-button-label": "Затвори",
+	"communityconfiguration-page-title-control-no-results": "Не пронајдов ништо."
 }
