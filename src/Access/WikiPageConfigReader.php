@@ -63,7 +63,7 @@ class WikiPageConfigReader implements Config {
 				// TODO: Add some support for other providers
 				$this->logger->warning(
 					__CLASS__ . ' skipped {provider}, because '
-					. 'getSupportedConfigVariableNames() returned null.',
+					. 'it is not a WikiPageConfigProvider.',
 					[ 'provider' => $provider->getId() ]
 				);
 			}
