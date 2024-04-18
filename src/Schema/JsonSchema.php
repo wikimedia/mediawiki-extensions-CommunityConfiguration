@@ -14,7 +14,7 @@ abstract class JsonSchema {
 	 * JsonSchemaBuilder supports overriding this, but it might not support future versions of
 	 * JSONSchema.
 	 */
-	public const SCHEMA_URI = 'https://json-schema.org/draft-04/schema#';
+	public const JSON_SCHEMA_VERSION = 'https://json-schema.org/draft-04/schema#';
 
 	/**
 	 * @var string Version of the schema

@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
 use JsonSchema\Validator;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
+use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
 use Status;
 use StatusValue;
@@ -13,13 +14,15 @@ use StatusValue;
  */
 class JsonSchemaValidator implements IValidator {
 
+	private JsonSchemaReader $jsonSchema;
 	private JsonSchemaBuilder $jsonSchemaBuilder;
 
 	/**
 	 * @param string $schemaClassName
 	 */
 	public function __construct( string $schemaClassName ) {
-		$this->jsonSchemaBuilder = new JsonSchemaBuilder( $schemaClassName );
+		$this->jsonSchema = new JsonSchemaReader( $schemaClassName );
+		$this->jsonSchemaBuilder = new JsonSchemaBuilder( $this->jsonSchema );
 	}
 
 	/**

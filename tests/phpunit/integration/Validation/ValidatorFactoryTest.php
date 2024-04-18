@@ -15,7 +15,7 @@ class ValidatorFactoryTest extends MediaWikiIntegrationTestCase {
 	private ?array $validatorSpecs = null;
 
 	private const VALIDATOR_EXTRA_ARGS = [
-		'jsonschema' => [ 'schema.json' ],
+		'jsonschema' => [ JsonSchemaForTesting::class ],
 	];
 
 	private function getValidatorSpecs(): array {
