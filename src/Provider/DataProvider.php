@@ -17,12 +17,12 @@ class DataProvider extends AbstractProvider {
 	 * @return StatusValue
 	 */
 	private function validateConfiguration( stdClass $config ): StatusValue {
-		$validationStatus = $this->getValidator()->validate( $config );
+		$validationStatus = $this->getValidator()->validatePermissively( $config );
 		if ( !$validationStatus->isOK() ) {
 			return $validationStatus;
 		}
 
-		return StatusValue::newGood( $config );
+		return $validationStatus->setResult( true, $config );
 	}
 
 	/**
@@ -79,8 +79,8 @@ class DataProvider extends AbstractProvider {
 		Authority $authority,
 		string $summary = ''
 	): StatusValue {
-		$validationStatus = $this->getValidator()->validate( $newConfig );
-		if ( !$validationStatus->isOK() ) {
+		$validationStatus = $this->getValidator()->validateStrictly( $newConfig );
+		if ( !$validationStatus->isGood() ) {
 			return $validationStatus;
 		}
 

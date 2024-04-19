@@ -15,17 +15,34 @@ use StatusValue;
  */
 interface IValidator {
 	/**
-	 * Validate passed config
+	 * Validate passed config strictly
+	 *
+	 * All validations errors from the library will make this validation fail.
 	 *
 	 * This is executed by WikiPageConfigWriter _before_ writing a config (for edits made
-	 * via GrowthExperiments-provided interface), by ConfigHooks for manual edits and
-	 * by WikiPageConfigLoader before returning the config (this is to ensure invalid config
-	 * is never used).
+	 * via GrowthExperiments-provided interface), and by ConfigHooks for manual edits.
 	 *
 	 * @param mixed $config Associative array representing config that's going to be validated
 	 * @return StatusValue
 	 */
-	public function validate( $config ): StatusValue;
+	public function validateStrictly( $config ): StatusValue;
+
+	/**
+	 * Validate passed config permissively
+	 *
+	 * This will not return a fatal StatusValue if required attributes are missing or if there are extra attributes,
+	 * but it will add warnings instead.
+	 * It will still return a fatal StatusValue for all other types of errors,
+	 * for example if a value is of the wrong type.
+	 *
+	 * This is used by WikiPageConfigLoader before returning the config (this is to ensure invalid config is never used)
+	 *
+	 * When writing a config, use @see validateStrictly() instead of this.
+	 *
+	 * @param mixed $config Associative array representing config that's going to be validated
+	 * @return StatusValue
+	 */
+	public function validatePermissively( $config ): StatusValue;
 
 	/**
 	 * Are configuration schemas supported?

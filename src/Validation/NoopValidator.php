@@ -16,7 +16,14 @@ class NoopValidator implements IValidator {
 	/**
 	 * @inheritDoc
 	 */
-	public function validate( $config ): StatusValue {
+	public function validateStrictly( $config ): StatusValue {
+		return StatusValue::newGood();
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function validatePermissively( $config ): StatusValue {
 		return StatusValue::newGood();
 	}
 

@@ -59,7 +59,23 @@ class JsonSchemaValidator implements IValidator {
 	/**
 	 * @inheritDoc
 	 */
-	public function validate( $config ): StatusValue {
+	public function validateStrictly( $config ): StatusValue {
+		return $this->validate( $config, false );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function validatePermissively( $config ): StatusValue {
+		return $this->validate( $config, true );
+	}
+
+	/**
+	 * @param mixed $config
+	 * @param bool $modeForReading
+	 * @return StatusValue
+	 */
+	private function validate( $config, bool $modeForReading ): StatusValue {
 		$validator = new Validator();
 
 		$validator->validate(
@@ -71,13 +87,21 @@ class JsonSchemaValidator implements IValidator {
 		}
 		$status = new Status();
 		foreach ( $validator->getErrors() as $error ) {
-			$status->fatal(
-				'communityconfiguration-schema-validation-error',
-				$error['property'],
-				$error['message'],
-				// Pass the inner error with all the details
-				$error
-			);
+			if ( $modeForReading && in_array( $error['constraint'], [ 'required', 'additionalProp' ] ) ) {
+				$status->warning(
+					'communityconfiguration-schema-validation-error',
+					$error['property'],
+					$error['message'],
+					$error
+				);
+			} else {
+				$status->fatal(
+					'communityconfiguration-schema-validation-error',
+					$error['property'],
+					$error['message'],
+					$error
+				);
+			}
 		}
 
 		return $status;

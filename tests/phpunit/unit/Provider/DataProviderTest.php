@@ -129,7 +129,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->method( 'getSchemaBuilder' )
 			->willReturn( $schemaBuilderMock );
 		$validatorMock->expects( $this->exactly( 2 ) )
-			->method( 'validate' )
+			->method( 'validatePermissively' )
 			->willReturn( StatusValue::newGood() );
 
 		$provider = new DataProvider(
@@ -154,7 +154,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$validatorMock = $this->createMock( IValidator::class );
 		$validatorMock->expects( $this->exactly( 2 ) )
-			->method( 'validate' )
+			->method( 'validatePermissively' )
 			->with( $config )
 			->willReturn( StatusValue::newFatal( 'june' ) );
 
@@ -224,7 +224,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$validatorMock = $this->createMock( IValidator::class );
 		$validatorMock->expects( $this->once() )
-			->method( 'validate' )
+			->method( 'validateStrictly' )
 			->willReturn( StatusValue::newGood() );
 
 		$provider = new DataProvider(
@@ -248,7 +248,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$validatorMock = $this->createMock( IValidator::class );
 		$validatorMock->expects( $this->once() )
-			->method( 'validate' )
+			->method( 'validateStrictly' )
 			->willReturn( StatusValue::newFatal( 'june' ) );
 
 		$provider = new DataProvider(

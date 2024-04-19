@@ -76,6 +76,35 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 		], $jsConfigVars['config'] );
 	}
 
+	public function testLoadsOkForConfigWithExtraProp() {
+		[
+			'testContext' => $testContext,
+			'genericFormEditorCapability' => $genericFormEditorCapability,
+		] = $this->getGenericFormEditorCapability( json_encode( [ 'Extra' => 'not in Schema' ] ) );
+
+		$mockLogger = $this->createMock( LoggerInterface::class );
+		$mockLogger->expects( $this->once() )
+			->method( 'warning' );
+		$genericFormEditorCapability->setLogger( $mockLogger );
+
+		$genericFormEditorCapability->execute( self::PROVIDER_ID );
+
+		$output = $testContext->getOutput();
+		$this->assertThatHamcrest(
+			'Shows the anchor to load the vue editor',
+			$output->getHTML(),
+			is( htmlPiece( havingChild(
+				tagMatchingOutline( '<div id="ext-communityConfiguration-app-root"></div>' )
+			) ) )
+		);
+		$jsConfigVars = $output->getJsConfigVars()['communityConfigurationData'];
+		$this->assertEquals( (object)[
+			// default value
+			'FeatureEnabled' => false,
+			'Extra' => 'not in Schema',
+		], $jsConfigVars['data'] );
+	}
+
 	public function testShowsErrorForInvalidConfig() {
 		[
 			'testContext' => $testContext,

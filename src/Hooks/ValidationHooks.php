@@ -35,7 +35,7 @@ class ValidationHooks implements JsonValidateSaveHook {
 
 			if ( $pageIdentity->isSamePageAs( $store->getConfigurationTitle() ) ) {
 				$validator = $provider->getValidator();
-				$result = $validator->validate( $content->getData()->getValue() );
+				$result = $validator->validateStrictly( $content->getData()->getValue() );
 				$status->merge( $result );
 			}
 		}

@@ -101,7 +101,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		) );
 
 		$config = $this->provider->loadValidConfigurationUncached();
-		if ( !$config->isGood() ) {
+		if ( !$config->isOK() ) {
 			$this->displayValidationError( $config );
 			$this->logger->error(
 				'Failed to load valid config from ' . $subpage,
@@ -110,6 +110,17 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 				]
 			);
 			return;
+		}
+
+		$validationWarnings = $config->getMessages();
+		if ( $validationWarnings !== [] ) {
+			$this->logger->warning(
+				__METHOD__ . ': Loaded config with warnings for {subpage}',
+				[
+					'subpage' => $subpage,
+					'warnings' => $validationWarnings
+				]
+			);
 		}
 
 		$out->addJsConfigVars( [
