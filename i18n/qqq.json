@@ -26,7 +26,7 @@
 	"communityconfiguration-provider-not-found": "Error for the configuration editor when a given provider is not found.\n\nParameters:\n* $1 - The name of the provider",
 	"communityconfiguration-unknown-error": "Generic error message for server errors in community configuration special page",
 	"communityconfigurationdashboard": "The title of Community Configuration Dashboard special page",
-	"communityconfigurationeditor": "Title for the configuration editor of a given provider.\n\nParameters:\n* $1 - The name of the provider",
+	"communityconfigurationeditor": "Title for the configuration editor of a given provider.\n\nParameters:\n* $1 - The localized name of the provider, see for example {{msg-mw|communityconfiguration-mentorship-title}} or {{msg-mw|communityconfiguration-growthhomepage-title}}",
 	"communityconfiguration-edit-summary-reminder": "The message is displayed as a reminder in the edit summary dialog.\n\nParameters:\n* $1 - gender",
 	"communityconfiguration-edit-summary-dialog-title": "Title for the dialog where users can enter a summary of their edit and save changes.\n\nParameters:\n* $1 - The provider name title",
 	"communityconfiguration-edit-summary-dialog-title-span": "Label for the edit summary input field. Used to show that providing an edit summary is not mandatory.\n\nAppears after {{msg-mw|Communityconfiguration-edit-summary-dialog-label}} (the two messages are separated by {{msg-mw|word-separator}}).\n\n(See [https://phabricator.wikimedia.org/T360828 T360828].)",
