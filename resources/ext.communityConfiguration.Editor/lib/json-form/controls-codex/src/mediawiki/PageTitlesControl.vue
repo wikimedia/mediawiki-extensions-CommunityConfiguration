@@ -1,36 +1,39 @@
 <template>
 	<control-wrapper v-bind="controlWrapper">
-		<cdx-lookup
-			v-model:selected="selection"
-			:initial-input-value="initialValue"
+		<cdx-chip-input
+			ref="input"
+			v-model:input-chips="selection"
+			:initial-value="initialValue"
+			remove-button-label="remove"
+			@update:input-chips="onChipSelectionChange"
+		></cdx-chip-input>
+		<cdx-menu
+			v-model:selected="selectedValue"
+			v-model:expanded="expanded"
 			:menu-items="menuItems"
-			:menu-config="menuConfig"
-			@input="onInput"
-			@update:selected="onChange"
-		>
-			<template #no-results>
-				{{ $i18n( 'communityconfiguration-page-title-control-no-results' ).text() }}
-			</template>
-		</cdx-lookup>
+			@update:selected="onItemSelected"
+		></cdx-menu>
 	</control-wrapper>
 </template>
 
 <script>
-const { ref, unref } = require( 'vue' );
-const { CdxLookup } = require( '@wikimedia/codex' );
+const { ref, unref, onMounted } = require( 'vue' );
+const { CdxChipInput, CdxMenu } = require( '@wikimedia/codex' );
 const {
 	rendererProps,
 	useJsonFormControl
 } = require( '../../config/index.js' );
-const { search } = require( './api.js' );
 const { debounce, useCodexControl } = require( '../utils.js' );
+const { search } = require( './api.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
+const chipToPageTitle = ( { value } ) => value;
 
 // @vue/component
 module.exports = exports = {
-	name: 'PageTitleControl',
+	name: 'PageTitlesControl',
 	components: {
-		CdxLookup,
+		CdxChipInput,
+		CdxMenu,
 		ControlWrapper
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
@@ -40,17 +43,23 @@ module.exports = exports = {
 			controlWrapper,
 			onChange
 		} = useCodexControl( useJsonFormControl( props ) );
-		const initialValue = unref( control.modelValue );
-		const selection = ref( null );
+		const input = ref();
+		const expanded = ref( false );
 		const menuItems = ref( [] );
 		const currentSearchTerm = ref( '' );
+		const initialValue = unref( control.modelValue ).map( ( pageTitle ) => ( {
+			value: pageTitle,
+			label: pageTitle
+		} ) );
+		const selection = ref( initialValue );
 
 		/**
-		 * Handle lookup input.
+		 * Handle onKeyUp.
 		 *
 		 * @param {string} value
 		 */
-		const onInput = debounce( function ( value ) {
+		const onKeyUp = debounce( function ( evt ) {
+			const value = evt.srcElement.value;
 			// Internally track the current search term.
 			currentSearchTerm.value = value;
 
@@ -83,6 +92,7 @@ module.exports = exports = {
 
 					// Update menuItems.
 					menuItems.value = results;
+					expanded.value = true;
 				} )
 				.catch( () => {
 					// On error, set results to empty.
@@ -90,19 +100,34 @@ module.exports = exports = {
 				} );
 		}, 300 );
 
-		const menuConfig = {
-			visibleItemLimit: 6
-		};
+		onMounted( () => {
+			input.value.input.addEventListener( 'keyup', onKeyUp );
+		} );
 
 		return {
 			controlWrapper,
-			onChange,
+			expanded,
+			input,
 			selection,
 			initialValue,
 			menuItems,
-			menuConfig,
-			onInput
+			onChipSelectionChange( newVal ) {
+				// map ChipInputItem model back to config model
+				onChange( newVal.map( chipToPageTitle ) );
+			},
+			onItemSelected( itemValue ) {
+				const index = menuItems.value.findIndex( ( menuItem ) => menuItem.value === itemValue );
+				selection.value = [ ...selection.value, {
+					label: menuItems.value[ index ].label,
+					value: menuItems.value[ index ].value
+				} ];
+				onChange( selection.value.map( chipToPageTitle ) );
+				currentSearchTerm.value = '';
+				// HACK, bettwer way to remove the user typed text in ChipInput?
+				input.value.inputValue = '';
+			}
 		};
 	}
 };
+
 </script>
