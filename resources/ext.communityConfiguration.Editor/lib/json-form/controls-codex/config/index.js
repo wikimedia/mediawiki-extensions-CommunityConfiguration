@@ -1,7 +1,9 @@
 const {
 	buildUISchema,
+	buildUISubSchema,
 	rankWith,
 	schemaRefIs,
+	isArrayControl,
 	isBooleanControl,
 	isNumberControl,
 	isStringControl,
@@ -9,6 +11,7 @@ const {
 } = require( '../../core/index.js' );
 const {
 	rendererProps,
+	useJsonFormArrayControl,
 	useJsonFormControl,
 	useJsonFormRenderer,
 	DispatchRenderer
@@ -16,7 +19,9 @@ const {
 
 module.exports = exports = {
 	buildUISchema,
+	buildUISubSchema,
 	DispatchRenderer,
+	isArrayControl,
 	isBooleanControl,
 	isStringControl,
 	isNumberControl,
@@ -24,6 +29,7 @@ module.exports = exports = {
 	rankWith,
 	schemaRefIs,
 	rendererProps,
+	useJsonFormArrayControl,
 	useJsonFormControl,
 	useJsonFormRenderer
 };

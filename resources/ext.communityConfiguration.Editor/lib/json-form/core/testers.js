@@ -62,8 +62,10 @@ const isBooleanControl = schemaTypeIs( 'boolean' );
 const isStringControl = schemaTypeIs( 'string' );
 const isNumberControl = schemaTypeIs( 'number' );
 const isObjectControl = schemaTypeIs( 'object' );
+const isArrayControl = schemaTypeIs( 'array' );
 
 module.exports = exports = {
+	isArrayControl,
 	isBooleanControl,
 	isNumberControl,
 	isObjectControl,

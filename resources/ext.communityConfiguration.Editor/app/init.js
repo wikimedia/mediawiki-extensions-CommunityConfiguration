@@ -29,7 +29,7 @@
 		if ( !config ) {
 			throw new Error( 'ext.communityConfiguration.Editor can only run with a config' );
 		}
-		const editorMessages = getEditorTextKeys( config.schema, {
+		const editorMessages = getEditorTextKeys( config.schema, config.data, {
 			i18nTextKeyPrefix: config.config.i18nPrefix
 		} );
 		return loadMessages( editorMessages ).then( () => config );

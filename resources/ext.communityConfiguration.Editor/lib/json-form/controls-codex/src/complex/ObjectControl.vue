@@ -24,7 +24,7 @@
 </template>
 
 <script>
-const { inject } = require( 'vue' );
+const { inject, unref } = require( 'vue' );
 const { CdxField } = require( '@wikimedia/codex' );
 const {
 	rendererProps,
@@ -51,7 +51,8 @@ module.exports = exports = {
 				// eslint-disable-next-line vue/no-undef-properties
 				i18nPrefix: `${jsonform.config.i18nPrefix}-${props.uischema.name}`
 			} ),
-			props.uischema.scope
+			props.uischema.scope,
+			unref( control.modelValue )
 		);
 		return {
 			control,
