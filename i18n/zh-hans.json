@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"沈澄心"
+		]
+	},
+	"communityconfiguration": "社区配置",
+	"communityconfiguration-editor-form-submit-button-text": "保存更改",
+	"communityconfiguration-editor-form-submit-button-loading-text": "正在发送...",
+	"communityconfiguration-guidelines-guideline1-title": "了解更多",
+	"communityconfiguration-guidelines-guideline2-title": "向我们发送{{GENDER:$1|你的}}反馈",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "错误详情",
+	"communityconfiguration-providers-list-title": "功能",
+	"communityconfigurationdashboard": "社区配置",
+	"communityconfigurationeditor": "正在编辑$1",
+	"communityconfiguration-edit-summary-dialog-title": "保存$1的更改",
+	"communityconfiguration-edit-summary-dialog-title-span": "（可选）",
+	"communityconfiguration-edit-summary-dialog-placeholder": "描述配置中所做的更改",
+	"communityconfiguration-edit-summary-dialog-save-button": "保存更改",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "取消",
+	"communityconfiguration-edit-summary-dialog-label": "编辑摘要",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|您的}}更改已保存",
+	"communityconfiguration-editor-client-data-submission-error": "保存{{GENDER:$1|你的}}更改时出错。请稍后重试。",
+	"communityconfiguration-editor-message-dismiss-button-label": "关闭",
+	"communityconfiguration-page-title-control-no-results": "未找到结果。"
+}

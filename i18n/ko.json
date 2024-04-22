@@ -6,6 +6,7 @@
 	},
 	"communityconfiguration-editor-form-submit-button-text": "변경사항 저장",
 	"communityconfiguration-editor-form-submit-button-loading-text": "보내는 중...",
+	"communityconfigurationeditor": "$1 편집 중",
 	"communityconfiguration-edit-summary-dialog-title": "$1의 변경사항 저장",
 	"communityconfiguration-edit-summary-dialog-title-span": "(선택 사항)",
 	"communityconfiguration-edit-summary-dialog-save-button": "변경사항 저장",

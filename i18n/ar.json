@@ -25,7 +25,7 @@
 	"communityconfiguration-provider-not-found": "لم يتم العثور على الموفِّر $1",
 	"communityconfiguration-unknown-error": "مُسَوَّدَة: حدث خطأ ما، هل تريدون إبلاغ المشكلة في فابريكاتور؟",
 	"communityconfigurationdashboard": "إعدادات المجتمع",
-	"communityconfigurationeditor": "تعديل '$1'",
+	"communityconfigurationeditor": "تعديل $1",
 	"communityconfiguration-edit-summary-reminder": "<b>تذكير</b>: قد يؤثر هذا التغيير على عدد كبير من أعضاء المجتمع، يرجى الإشارة إلى سبب {{GENDER:$1|قيامك}} بإجراء التغيير والرابط لأي مناقشة مجتمعية ذات صلة إذا كان ذلك مناسبًا.",
 	"communityconfiguration-edit-summary-dialog-title": "حفظ التغييرات لـ $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(اختياري)",

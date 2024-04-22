@@ -25,7 +25,7 @@
 	"communityconfiguration-provider-not-found": "Pembekal $1 tidak ditemui",
 	"communityconfiguration-unknown-error": "DRAF: Terdapat masalah berlaku, serahkan isu tersebut ke Phabricator?",
 	"communityconfigurationdashboard": "Konfigurasi Komuniti",
-	"communityconfigurationeditor": "Menyunting '$1'",
+	"communityconfigurationeditor": "Menyunting $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Peringatan</b>: Perubahan ini mungkin memberi kesan kepada sebilangan besar ahli komuniti, sila pertimbangkan untuk menunjukkan sebab {{GENDER:$1| anda}} membuat perubahan tersebut dan pautkan kepada sebarang perbincangan komuniti yang berkaitan jika sesuai.",
 	"communityconfiguration-edit-summary-dialog-title": "Simpan perubahan untuk $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(pilihan)",

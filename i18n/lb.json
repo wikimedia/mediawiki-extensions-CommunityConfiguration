@@ -21,7 +21,7 @@
 	"communityconfiguration-provider-not-found": "De Provider $1 gouf net fonnt",
 	"communityconfiguration-unknown-error": "BROUILLON: Et huet eppes net funktionéiert, e Probleem am Phabricator mellen?",
 	"communityconfigurationdashboard": "Community Configuration",
-	"communityconfigurationeditor": "„$1“ änneren",
+	"communityconfigurationeditor": "$1 änneren",
 	"communityconfiguration-edit-summary-dialog-title": "Ännerunge fir $1 späicheren",
 	"communityconfiguration-edit-summary-dialog-title-span": "(fakultativ)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Beschreift d'Ännerungen, déi an den Astellunge gemaach goufen",
