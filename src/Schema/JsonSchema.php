@@ -27,6 +27,7 @@ abstract class JsonSchema {
 	public const PROPERTIES = 'properties';
 	public const TYPE = 'type';
 	public const ADDITIONAL_PROPERTIES = 'additionalProperties';
+	public const REQUIRED = 'required';
 	public const REF = '$ref';
 	public const DEFS = '$defs';
 	public const ITEMS = 'items';

@@ -73,6 +73,41 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 			[ 'Number' => 1, 'Bar' => 1 ],
 			false,
 		];
+
+		yield 'required and set' => [
+			new class() extends JsonSchema {
+				public const Number = [
+					JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+					JsonSchema::REQUIRED => true,
+				];
+			},
+			[ 'Number' => 10 ],
+			true,
+		];
+
+		yield 'required and not set' => [
+			new class() extends JsonSchema {
+				public const Number = [
+					JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+					JsonSchema::REQUIRED => true,
+				];
+			},
+			[],
+			false,
+		];
+
+		// Doesn't really make sense, but it is good to know that `required` takes precedence if both are in fact set.
+		yield 'required with default and not set' => [
+			new class() extends JsonSchema {
+				public const Number = [
+					JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+					JsonSchema::DEFAULT => 10,
+					JsonSchema::REQUIRED => true,
+				];
+			},
+			[],
+			false,
+		];
 	}
 
 	/**
