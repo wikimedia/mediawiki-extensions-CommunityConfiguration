@@ -5,6 +5,8 @@
 			v-model:input-chips="selection"
 			:initial-value="initialValue"
 			remove-button-label="remove"
+			@blur="onBlur"
+			@focus="expanded = true"
 			@update:input-chips="onChipSelectionChange"
 		></cdx-chip-input>
 		<cdx-menu
@@ -66,6 +68,7 @@ module.exports = exports = {
 			// Do nothing if we have no input.
 			if ( !value ) {
 				menuItems.value = [];
+				expanded.value = false;
 				return;
 			}
 
@@ -111,6 +114,10 @@ module.exports = exports = {
 			selection,
 			initialValue,
 			menuItems,
+			onBlur() {
+				expanded.value = false;
+				currentSearchTerm.value = '';
+			},
 			onChipSelectionChange( newVal ) {
 				// map ChipInputItem model back to config model
 				onChange( newVal.map( chipToPageTitle ) );
