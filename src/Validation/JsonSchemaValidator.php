@@ -2,7 +2,9 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
+use InvalidArgumentException;
 use JsonSchema\Validator;
+use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
@@ -18,10 +20,25 @@ class JsonSchemaValidator implements IValidator {
 	private JsonSchemaBuilder $jsonSchemaBuilder;
 
 	/**
-	 * @param string $schemaClassName
+	 * @param JsonSchema|string $classNameOrClassInstance JsonSchema derived class name (instance only allowed in tests)
 	 */
-	public function __construct( string $schemaClassName ) {
-		$this->jsonSchema = new JsonSchemaReader( $schemaClassName );
+	public function __construct( $classNameOrClassInstance ) {
+		// @codeCoverageIgnoreStart
+		if ( is_object( $classNameOrClassInstance ) ) {
+			if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+				throw new InvalidArgumentException(
+					'JsonSchema should never be instantiated in production code'
+				);
+			}
+			if ( !( $classNameOrClassInstance instanceof JsonSchema ) ) {
+				throw new InvalidArgumentException(
+					get_class( $classNameOrClassInstance ) . ' must be instance of ' . JsonSchema::class
+				);
+			}
+		}
+		// @codeCoverageIgnoreEnd
+
+		$this->jsonSchema = new JsonSchemaReader( $classNameOrClassInstance );
 		$this->jsonSchemaBuilder = new JsonSchemaBuilder( $this->jsonSchema );
 	}
 

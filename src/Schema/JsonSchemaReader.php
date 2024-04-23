@@ -10,8 +10,26 @@ class JsonSchemaReader {
 
 	private ReflectionClass $class;
 
-	public function __construct( string $className ) {
-		$this->class = new ReflectionClass( $className );
+	/**
+	 * @param JsonSchema|string $classNameOrClassInstance JsonSchema derived class name (instance only allowed in tests)
+	 */
+	public function __construct( $classNameOrClassInstance ) {
+		// @codeCoverageIgnoreStart
+		if ( is_object( $classNameOrClassInstance ) ) {
+			if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+				throw new InvalidArgumentException(
+					'JsonSchema should never be instantiated in production code'
+				);
+			}
+			if ( !( $classNameOrClassInstance instanceof JsonSchema ) ) {
+				throw new InvalidArgumentException(
+					get_class( $classNameOrClassInstance ) . ' must be instance of ' . JsonSchema::class
+				);
+			}
+		}
+		// @codeCoverageIgnoreEnd
+
+		$this->class = new ReflectionClass( $classNameOrClassInstance );
 	}
 
 	public function getReflectionSchemaSource(): ReflectionSchemaSource {
