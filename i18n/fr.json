@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Alien333",
 			"MacOS Weed",
 			"SleaY"
 		]
@@ -9,5 +10,5 @@
 	"communityconfiguration-guidelines-guideline2-title": "Donnez-nous {{GENDER:$1|votre}} avis !",
 	"communityconfiguration-schema-validation-error": "BROUILLON : $2. Clé : $1",
 	"communityconfiguration-providers-list-title": "Fonctionnalités",
-	"communityconfigurationeditor": "Modification de « $1 »"
+	"communityconfigurationeditor": "Modification de $1"
 }
