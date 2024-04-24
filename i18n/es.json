@@ -12,6 +12,7 @@
 	"communityconfiguration-invalid-stored-config-error": "No se pudo cargar una configuración válida del proveedor $1 (código <tt>$2</tt>).",
 	"communityconfiguration-invalid-stored-config-error-with-link": "No se pudo cargar una configuración válida del proveedor $1 (código <tt>$2</tt>), ver $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Error de detalles",
+	"communityconfigurationeditor": "Edición de «$1»",
 	"communityconfiguration-edit-summary-reminder": "<b>Reminder</b>: este cambio puede afectar a una gran cantidad de miembros de la comunidad. Considere indicar el motivo {{GENDER:$1| usted}} está realizando el cambio y vinculando a cualquier discusión comunitaria relacionada, si corresponde.",
 	"communityconfiguration-edit-summary-dialog-title": "Guardar cambios por $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(opcional)",

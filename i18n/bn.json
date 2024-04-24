@@ -9,7 +9,7 @@
 	"communityconfiguration-guidelines-guideline1-title": "আরও জানুন",
 	"communityconfiguration-guidelines-guideline2-title": "আমাদের {{GENDER:$1|আপনার}} প্রতিক্রিয়া জানান",
 	"communityconfiguration-providers-list-title": "বৈশিষ্ট্যাবলী",
-	"communityconfigurationeditor": "সম্পাদনা করছেন '$1'",
+	"communityconfigurationeditor": "সম্পাদনা করছেন $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(ঐচ্ছিক)",
 	"communityconfiguration-edit-summary-dialog-save-button": "পরিবর্তন সংরক্ষণ করুন",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "বাতিল",

@@ -6,9 +6,27 @@
 			"SleaY"
 		]
 	},
+	"communityconfiguration": "COnfiguration de communauté",
+	"communityconfiguration-editor-client-file-bug": "Si le problème persiste, envisagez de [ $1 remplir un problème] dans l'outil de rapport de bugs.",
+	"communityconfiguration-editor-form-submit-button-text": "Enregistrer les modifications",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Envoi...",
+	"communityconfiguration-guidelines-title": "Qu'est-ce que la Configuration de Communauté ?",
 	"communityconfiguration-guidelines-guideline1-title": "En savoir plus",
 	"communityconfiguration-guidelines-guideline2-title": "Donnez-nous {{GENDER:$1|votre}} avis !",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Détails de l'erreur",
 	"communityconfiguration-schema-validation-error": "BROUILLON : $2. Clé : $1",
 	"communityconfiguration-providers-list-title": "Fonctionnalités",
-	"communityconfigurationeditor": "Modification de $1"
+	"communityconfiguration-provider-not-found": "Le fournisseur $1 est introuvable",
+	"communityconfigurationdashboard": "COnfiguration de communauté",
+	"communityconfigurationeditor": "Modification de $1",
+	"communityconfiguration-edit-summary-dialog-title": "Enregistrez les modifications pour $1",
+	"communityconfiguration-edit-summary-dialog-title-span": "(facultatif)",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Décrivez les modifications apportées à la configuration",
+	"communityconfiguration-edit-summary-dialog-save-button": "Enregistrer les modifications",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Annuler",
+	"communityconfiguration-edit-summary-dialog-label": "Résumé de modification",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Vos}} modifications ont été enregistrées",
+	"communityconfiguration-editor-client-data-submission-error": "Une erreur s'est produite lors de l'enregistrement de {{GENDER:$1|vos}} modifications. Veuillez réessayer plus tard.",
+	"communityconfiguration-editor-message-dismiss-button-label": "Fermer",
+	"communityconfiguration-page-title-control-no-results": "Aucun résultat trouvé."
 }
