@@ -1,5 +1,9 @@
 <template>
-	<control-wrapper v-slot="slotProps" v-bind="controlWrapper">
+	<control-wrapper
+		v-slot="slotProps"
+		v-bind="controlWrapper"
+		:is-fieldset="true"
+	>
 		<cdx-checkbox
 			v-bind="control.otherAttrs"
 			v-model="control.modelValue.value"

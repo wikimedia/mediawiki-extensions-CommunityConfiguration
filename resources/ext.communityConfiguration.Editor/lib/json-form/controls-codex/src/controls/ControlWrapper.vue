@@ -1,6 +1,6 @@
 <template>
 	<div :id="name" class="ext-communityConfiguration-ControlWrapper">
-		<cdx-field>
+		<cdx-field :is-fieldset="isFieldset">
 			<slot :control-label="( controlLabel && controlLabel.exists() ) ? controlLabel.text() : ''">
 			</slot>
 			<template v-if="label && label.exists()" #label>
@@ -41,6 +41,10 @@ module.exports = exports = {
 		helpText: {
 			type: Object,
 			default: null
+		},
+		isFieldset: {
+			type: Boolean,
+			default: false
 		}
 	}
 };

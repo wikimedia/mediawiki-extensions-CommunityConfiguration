@@ -9,7 +9,7 @@ const mwMessageFake = jest.fn( ( textReturnValue ) => {
 } );
 
 const BooleanControl = require( './BooleanControl.vue' );
-const { CdxCheckbox } = require( '@wikimedia/codex' );
+const { CdxCheckbox, CdxField } = require( '@wikimedia/codex' );
 
 describe( 'BooleanControl', () => {
 
@@ -18,12 +18,13 @@ describe( 'BooleanControl', () => {
 
 	it( 'shows the control label and can be toggled', async () => {
 		const controlLabelText = 'localized text on the label for the checkbox';
+		const labelText = 'localized title text for the section containing the checkbox';
 		const uischema = {
 			name: BoolFieldName,
 			scope: `#/properties/${ BoolFieldName }`,
 			type: 'Control',
 			controlLabel: mwMessageFake( controlLabelText ),
-			label: mwMessageFake( '<not asserted>' )
+			label: mwMessageFake( labelText )
 		};
 		const schema = {
 			type: 'boolean',
@@ -50,6 +51,9 @@ describe( 'BooleanControl', () => {
 
 		const checkboxId = wrapper.find( 'input[type="checkbox"]' ).getRootNodes()[ 0 ].id;
 		expect( wrapper.get( `[for=${ checkboxId }]` ).getRootNodes()[ 0 ].textContent ).toBe( controlLabelText );
+
+		expect( wrapper.getComponent( CdxField ).props( 'isFieldset' ) ).toEqual( true );
+		expect( wrapper.get( 'legend' ).getRootNodes()[ 0 ].textContent ).toBe( labelText );
 
 		expect( wrapper.getComponent( CdxCheckbox ).props( 'modelValue' ) ).toEqual( true );
 
