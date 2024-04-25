@@ -15,6 +15,15 @@ use StatusValue;
 
 class GenericFormEditorCapability extends AbstractEditorCapability {
 
+	public const SPEC = [
+		'class' => self::class,
+		'services' => [
+			'CommunityConfiguration.ProviderFactory',
+			'LinkRenderer',
+			'FormatterFactory',
+		]
+	];
+
 	private ConfigurationProviderFactory $providerFactory;
 	private LinkRenderer $linkRenderer;
 	private StatusFormatter $statusFormatter;

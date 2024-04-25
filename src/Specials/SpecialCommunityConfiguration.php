@@ -25,14 +25,7 @@ class SpecialCommunityConfiguration extends SpecialPage {
 				'CommunityConfiguration.ProviderFactory',
 			]
 		],
-		self::CAPABILITY_EDITOR => [
-			'class' => GenericFormEditorCapability::class,
-			'services' => [
-				'CommunityConfiguration.ProviderFactory',
-				'LinkRenderer',
-				'FormatterFactory',
-			]
-		]
+		self::CAPABILITY_EDITOR => GenericFormEditorCapability::SPEC,
 	];
 
 	public function __construct(
