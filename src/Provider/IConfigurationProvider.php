@@ -102,9 +102,10 @@ interface IConfigurationProvider extends LoggerAwareInterface {
 	): StatusValue;
 
 	/**
-	 * Determines whether this provider should be displayed on the dashboard.
+	 * Retrieves the value of a specified option for a configuration provider.
 	 *
-	 * @return bool True if the provider should be skipped on the dashboard, false otherwise.
+	 * @param string $optionName The name of the option to retrieve.
+	 * @return mixed|null The value of the specified option, or null if not available.
 	 */
-	public function shouldSkipDashboardListing(): bool;
+	public function getOptionValue( string $optionName );
 }

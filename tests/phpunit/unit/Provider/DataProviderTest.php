@@ -30,15 +30,17 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 	 * @covers ::__construct
 	 */
 	public function testConstruct() {
+		$provider = new DataProvider(
+			'ProviderId',
+			[ 'skipDashboardListing' => false ],
+			$this->createNoOpMock( IConfigurationStore::class ),
+			$this->createNoOpMock( IValidator::class )
+		);
 		$this->assertInstanceOf(
 			DataProvider::class,
-			new DataProvider(
-				'ProviderId',
-				false,
-				$this->createNoOpMock( IConfigurationStore::class ),
-				$this->createNoOpMock( IValidator::class )
-			)
+			$provider
 		);
+		$this->assertFalse( $provider->getOptionValue( 'skipDashboardListing' ) );
 	}
 
 	/**
@@ -47,7 +49,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 	public function testGetId() {
 		$provider = new DataProvider(
 			'ProviderId',
-			true,
+			[ 'skipDashboardListing' => true ],
 			$this->createNoOpMock( IConfigurationStore::class ),
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -72,7 +74,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
-			true,
+			[ 'skipDashboardListing' => true ],
 			$this->createNoOpMock( IConfigurationStore::class ),
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -92,7 +94,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$validatorMock = $this->createNoOpMock( IValidator::class );
 		$provider = new DataProvider(
 			'ProviderId',
-			true,
+			[ 'skipDashboardListing' => true ],
 			$storeMock,
 			$validatorMock
 		);
@@ -134,7 +136,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
-			true,
+			[ 'skipDashboardListing' => true ],
 			new StaticStore( new stdClass() ),
 			$validatorMock
 		);
@@ -160,7 +162,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
-			false,
+			[ 'skipDashboardListing' => false ],
 			new StaticStore( $config ),
 			$validatorMock
 		);
@@ -182,7 +184,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
-			true,
+			[ 'skipDashboardListing' => true ],
 			$storeMock,
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -203,7 +205,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
-			true,
+			[ 'skipDashboardListing' => true ],
 			$storeMock,
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -229,7 +231,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
-			true,
+			[ 'skipDashboardListing' => true ],
 			$storeMock,
 			$validatorMock
 		);
@@ -253,7 +255,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
-			true,
+			[ 'skipDashboardListing' => true ],
 			$storeMock,
 			$validatorMock
 		);
@@ -263,37 +265,16 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::__construct
-	 * @covers ::shouldSkipDashboardListing
+	 * @covers ::getOptionValue
 	 */
-	public function testShouldSkipDashboardFlagTrue() {
+	public function testGetOption() {
 		$provider = new DataProvider(
-			'exampleProvider',
-			true,
+			'ProviderId',
+			[ 'skipDashboardListing' => true ],
 			$this->createNoOpMock( IConfigurationStore::class ),
 			$this->createNoOpMock( IValidator::class )
 		);
-		$this->assertTrue(
-			$provider->shouldSkipDashboardListing(),
-			'shouldSkipDashboardListing should return true when shouldSkipDashboard is set to true'
-		);
+		$this->assertTrue( $provider->getOptionValue( 'skipDashboardListing' ) );
+		$this->assertNull( $provider->getOptionValue( 'nonExistentOption' ) );
 	}
-
-	/**
-	 * @covers ::__construct
-	 * @covers ::shouldSkipDashboardListing
-	 */
-	public function testShouldSkipDashboardFlagFalse() {
-		$provider = new DataProvider(
-			'exampleProvider',
-			false,
-			$this->createNoOpMock( IConfigurationStore::class ),
-			$this->createNoOpMock( IValidator::class )
-		);
-		$this->assertFalse(
-			$provider->shouldSkipDashboardListing(),
-			'shouldSkipDashboardListing should return false when shouldSkipDashboard is set to false'
-		);
-	}
-
 }

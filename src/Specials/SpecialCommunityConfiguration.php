@@ -122,7 +122,7 @@ class SpecialCommunityConfiguration extends SpecialPage {
 	 */
 	private function shouldBeDisplayedOnDashboard( string $providerName ): bool {
 		$provider = $this->providerFactory->newProvider( $providerName );
-		return !$provider->shouldSkipDashboardListing();
+		return !$provider->getOptionValue( 'skipDashboardListing' );
 	}
 
 }

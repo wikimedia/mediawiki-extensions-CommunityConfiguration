@@ -46,7 +46,9 @@ class SpecialCommunityConfigurationTest extends SpecialPageTestBase {
 						'args' => [ JsonSchemaForTesting::class ],
 					],
 					'type' => 'data',
-					'skipDashboardListing' => true,
+					'options' => [
+						'skipDashboardListing' => true,
+					]
 				],
 			],
 		] );
