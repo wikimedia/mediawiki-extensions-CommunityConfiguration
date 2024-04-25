@@ -45,7 +45,8 @@ describe( 'UISchema', () => {
 			'testenvironment-someprovider-examplestring-label',
 			'testenvironment-someprovider-examplearray-label',
 			'testenvironment-someprovider-examplearray-0-label',
-			'testenvironment-someprovider-examplearray-1-label'
+			'testenvironment-someprovider-examplearray-1-label',
+			'testenvironment-someprovider-exampleobject-label'
 		];
 		global.mw.Message = jest.fn( ( messages, key ) => ( {
 			exists: jest.fn( () => messages.includes( key ) ),
@@ -72,5 +73,90 @@ describe( 'UISchema', () => {
 					break;
 			}
 		}
+	} );
+
+	describe( 'extra property handling', () => {
+		it( 'drops extra properties from the data object main level', () => {
+			const testJsonConfigWithExtraData = {
+				ExampleString: 'Some string',
+				ExampleArray: [
+					'Some string',
+					'Some other string'
+				],
+				Extra: 'should be dropped',
+				ExampleObject: {
+					ExampleBoolean: true,
+					NestedExtra: 'remains untouched in this iteration'
+				}
+			};
+			const expectedData = {
+				ExampleString: 'Some string',
+				ExampleArray: [
+					'Some string',
+					'Some other string'
+				],
+				ExampleObject: {
+					ExampleBoolean: true,
+					NestedExtra: 'remains untouched in this iteration'
+				}
+			};
+
+			buildUISchema( testJsonSchema, editorConfig, '', testJsonConfigWithExtraData );
+
+			expect( testJsonConfigWithExtraData ).toEqual( expectedData );
+		} );
+
+		it( 'keeps extra properties when they are explicitly allowed', () => {
+			const testSchema = {
+				type: 'object',
+				default: null,
+				properties: {
+					ExampleBoolean: {
+						type: 'boolean',
+						default: false
+					},
+					ExampleNumber: {
+						type: 'number',
+						default: null
+					}
+				},
+				additionalProperties: true
+			};
+			const testData = {
+				ExampleBoolean: true,
+				NestedExtra: 'remains untouched because it is allowed'
+			};
+			const expectedData = { ...testData };
+
+			buildUISchema( testSchema, editorConfig, '', testData );
+
+			expect( testData ).toEqual( expectedData );
+		} );
+
+		it( 'keeps extra properties when `additionalProperties` is not set', () => {
+			const testSchema = {
+				type: 'object',
+				default: null,
+				properties: {
+					ExampleBoolean: {
+						type: 'boolean',
+						default: false
+					},
+					ExampleNumber: {
+						type: 'number',
+						default: null
+					}
+				}
+			};
+			const testData = {
+				ExampleBoolean: true,
+				NestedExtra: 'remains untouched because it is implicitly allowed'
+			};
+			const expectedData = { ...testData };
+
+			buildUISchema( testSchema, editorConfig, '', testData );
+
+			expect( testData ).toEqual( expectedData );
+		} );
 	} );
 } );

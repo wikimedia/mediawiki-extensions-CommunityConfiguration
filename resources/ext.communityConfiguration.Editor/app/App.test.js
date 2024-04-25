@@ -39,7 +39,7 @@ const { JsonForm } = require( '../lib/json-form/form/index.js' );
 
 describe( 'ext.communityConfiguration.Editor App', () => {
 	const CONFIG_DATA = { some: 'data' };
-	const JSON_SCHEMA = { some: 'schema' };
+	const JSON_SCHEMA = { some: 'schema', properties: {} };
 	it( 'displays the app', () => {
 		const wrapper = mount( App, {
 			global: {

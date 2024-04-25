@@ -22,6 +22,16 @@ function buildUISchema( schema, config, initialScope = '', data = {} ) {
 		) );
 	}
 
+	if ( schema.additionalProperties === false ) {
+		const dataPropertiesNotInSchema = Object.keys( data ).filter(
+			( key ) => !schema.properties[ key ]
+		);
+		for ( const extraProp of dataPropertiesNotInSchema ) {
+			// TODO: consider adding a textual representation of the extra property to the elements
+			delete data[ extraProp ];
+		}
+	}
+
 	return { elements };
 }
 

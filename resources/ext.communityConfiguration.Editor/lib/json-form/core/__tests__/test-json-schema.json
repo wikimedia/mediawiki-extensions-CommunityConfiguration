@@ -14,6 +14,21 @@
 			"items": {
 				"type": "string"
 			}
+		},
+		"ExampleObject": {
+			"type": "object",
+			"default": null,
+			"properties": {
+				"ExampleBoolean": {
+					"type": "boolean",
+					"default": false
+				},
+				"ExampleNumber": {
+					"type": "number",
+					"default": null
+				}
+			},
+			"additionalProperties": false
 		}
 	}
 }
