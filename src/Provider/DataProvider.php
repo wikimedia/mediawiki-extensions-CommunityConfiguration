@@ -25,6 +25,24 @@ class DataProvider extends AbstractProvider {
 		return $validationStatus->setResult( true, $config );
 	}
 
+	private function enhanceConfigPreValidation( stdClass $config ): stdClass {
+		// enhance $config with defaults (if possible)
+		if ( $this->getValidator()->areSchemasSupported() ) {
+			$defaultsMap = $this->getValidator()->getSchemaBuilder()->getDefaultsMap();
+			foreach ( $defaultsMap as $propertyName => $defaultValue ) {
+				if ( $defaultValue !== null && !isset( $config->$propertyName ) ) {
+					$config->$propertyName = $defaultValue;
+				}
+			}
+		}
+
+		return $config;
+	}
+
+	protected function addAutocomputedProperties( stdClass $config ): stdClass {
+		return $config;
+	}
+
 	/**
 	 * Process a store status
 	 *
@@ -42,19 +60,15 @@ class DataProvider extends AbstractProvider {
 			return $storeStatus;
 		}
 
-		$config = $storeStatus->getValue();
-
-		// enhance $config with defaults (if possible)
-		if ( $this->getValidator()->areSchemasSupported() ) {
-			$defaultsMap = $this->getValidator()->getSchemaBuilder()->getDefaultsMap();
-			foreach ( $defaultsMap as $propertyName => $defaultValue ) {
-				if ( $defaultValue !== null && !isset( $config->$propertyName ) ) {
-					$config->$propertyName = $defaultValue;
-				}
-			}
+		$result = $this->validateConfiguration(
+			$this->enhanceConfigPreValidation( $storeStatus->getValue() )
+		);
+		if ( !$result->isOK() ) {
+			// an issue occurred, return the StatusValue
+			return $result;
 		}
 
-		return $this->validateConfiguration( $config );
+		return $result->setResult( true, $this->addAutocomputedProperties( $result->getValue() ) );
 	}
 
 	/**
