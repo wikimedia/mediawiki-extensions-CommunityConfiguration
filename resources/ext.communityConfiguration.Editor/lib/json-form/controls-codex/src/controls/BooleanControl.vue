@@ -2,7 +2,7 @@
 	<control-wrapper v-slot="slotProps" v-bind="controlWrapper">
 		<cdx-checkbox
 			v-bind="control.otherAttrs"
-			v-model="control.modelValue"
+			v-model="control.modelValue.value"
 			@update:model-value="onChange"
 		>
 			{{ slotProps.controlLabel }}
@@ -26,12 +26,7 @@ module.exports = exports = {
 		CdxCheckbox,
 		ControlWrapper
 	},
-	props: Object.assign( {}, rendererProps(), {
-		controlLabel: {
-			type: String,
-			required: true
-		}
-	} ),
+	props: Object.assign( {}, rendererProps() ),
 	setup: function ( props ) {
 		return useCodexControl( useJsonFormControl( props ) );
 	}
