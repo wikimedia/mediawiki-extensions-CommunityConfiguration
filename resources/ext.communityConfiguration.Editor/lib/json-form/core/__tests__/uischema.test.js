@@ -1,3 +1,4 @@
+'use strict';
 const { buildUISchema } = require( '../uischema.js' );
 const testJsonSchema = require( './test-json-schema.json' );
 const editorConfig = {
@@ -22,7 +23,7 @@ function assertUISchemaElementDefaults( subschemaName, uischema ) {
 	expect( uiSchemaElement.scope ).toBeDefined();
 	expect( uiSchemaElement.label ).toBeDefined();
 	expect( uiSchemaElement.label.text() ).toBe(
-		`testenvironment-someprovider-${subschemaName.toLowerCase()}-label`
+		`testenvironment-someprovider-${ subschemaName.toLowerCase() }-label`
 	);
 	// TODO assert control label and help text
 }
@@ -32,7 +33,7 @@ function assertUISchemaArrayDefaults( subschemaName, uischema ) {
 	expect( uiSchemaElement.labels ).toBeDefined();
 	uiSchemaElement.labels.forEach( ( label, index ) => {
 		expect( label.text() ).toBe(
-			`testenvironment-someprovider-${subschemaName.toLowerCase()}-${index}-label`
+			`testenvironment-someprovider-${ subschemaName.toLowerCase() }-${ index }-label`
 		);
 		// TODO assert control label and help text
 	} );
@@ -47,7 +48,7 @@ describe( 'UISchema', () => {
 			'testenvironment-someprovider-examplearray-1-label'
 		];
 		global.mw.Message = jest.fn( ( messages, key ) => ( {
-			exists: jest.fn( () => messages.indexOf( key ) !== -1 ),
+			exists: jest.fn( () => messages.includes( key ) ),
 			text: jest.fn( () => key ),
 			parse: jest.fn( () => key )
 		} ) );

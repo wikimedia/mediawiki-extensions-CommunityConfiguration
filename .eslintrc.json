@@ -50,6 +50,13 @@
 			],
 			"env": {
 				"jest": true
+			},
+			"extends": [
+				"wikimedia/server"
+			],
+			"rules": {
+				"es-x/no-array-prototype-includes": "off",
+				"es-x/no-rest-spread-properties": "off"
 			}
 		},
 		{

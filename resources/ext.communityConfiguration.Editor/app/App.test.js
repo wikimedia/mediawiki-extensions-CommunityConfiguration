@@ -1,3 +1,4 @@
+'use strict';
 jest.mock( './icons.json', () => ( {
 	cdxIconLinkExternal: 'link external'
 } ), { virtual: true } );
