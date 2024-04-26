@@ -85,6 +85,8 @@ function getConfigValueByScope( state, scope, schema, definitions = {} ) {
 		} else if ( schema.type ) {
 			return getDefaultValueForType( schema.type );
 		} else if ( schema.$ref ) {
+			// Should never get here when used with CommunityConfiguration2.0 schemas
+			// which do not contain references
 			const refDefinition = definitions[ extractRef( schema.$ref ) ];
 			return getDefaultValueForType( refDefinition.type );
 		}

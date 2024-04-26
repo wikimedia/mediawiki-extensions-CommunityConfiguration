@@ -27,10 +27,7 @@ function rankWith( rank, tester ) {
  * @return {Function} A tester function for the associated type
  */
 function schemaTypeIs( expectedType ) {
-	return ( _uischema, schema, rootSchema ) => {
-		if ( schema.$ref ) {
-			return rootSchema.$defs[ extractRef( schema.$ref ) ].type === expectedType;
-		}
+	return ( _uischema, schema ) => {
 		if ( schema.type ) {
 			return schema.type === expectedType;
 		}
@@ -39,17 +36,17 @@ function schemaTypeIs( expectedType ) {
 }
 
 /**
- * Tester function to check whether the given schema property is of
- * the expected ref. The referenced definition MUST exists or the
- * function will error out.
+ * Tester function to check whether the given schema has
+ * the expected control.
  *
- * @param {string} definitionName the expected $ref of the schema
+ * @param {string} controlName the expected value of the control
+ * property in the schema. In practice, a PHP fully qualified class name.
  * @return {Function} A tester function for the associated type
  */
-function schemaRefIs( definitionName ) {
+function schemaControlIs( controlName ) {
 	return ( _uischema, schema ) => {
-		if ( schema.$ref ) {
-			return extractRef( schema.$ref ) === definitionName;
+		if ( schema.control ) {
+			return schema.control === controlName;
 		}
 		return false;
 	};
@@ -72,6 +69,6 @@ module.exports = exports = {
 	isStringControl,
 	extractRef,
 	rankWith,
-	schemaRefIs,
+	schemaControlIs,
 	schemaTypeIs
 };

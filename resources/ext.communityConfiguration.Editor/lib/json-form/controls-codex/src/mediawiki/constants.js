@@ -1,7 +1,7 @@
-const definitionsClassNamespace = 'MediaWiki.Extension.CommunityConfiguration.Schemas.MediaWiki.MediaWikiDefinitions';
-const PAGE_TITLE = `${definitionsClassNamespace}::PageTitle`;
-const PAGE_TITLES = `${definitionsClassNamespace}::PageTitles`;
-const NAMESPACES = `${definitionsClassNamespace}::Namespaces`;
+const definitionsClassNamespace = 'MediaWiki\\Extension\\CommunityConfiguration\\Controls';
+const PAGE_TITLE = `${definitionsClassNamespace}\\PageTitleControl`;
+const PAGE_TITLES = `${definitionsClassNamespace}\\PageTitlesControl`;
+const NAMESPACES = `${definitionsClassNamespace}\\NamespacesControl`;
 
 const MEDIAWIKI_DEFINITIONS = {
 	PAGE_TITLE,

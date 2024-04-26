@@ -19,7 +19,7 @@ function getControlsTextKeys( schema, data, config ) {
 		keys.push( labelKey );
 		keys.push( mapPropToTextKey( config.i18nTextKeyPrefix, prop, 'control-label' ) );
 		keys.push( mapPropToTextKey( config.i18nTextKeyPrefix, prop, 'help-text' ) );
-		if ( schema.properties[ prop ].type === 'array' && data[ prop ] ) {
+		if ( schema.properties[ prop ].type === 'array' && data && data[ prop ] ) {
 			const arrayLabels = data[ prop ].map( ( _, index ) =>
 				mapPropToTextKey( config.i18nTextKeyPrefix, prop, `${index}-label` )
 			);
@@ -32,8 +32,12 @@ function getControlsTextKeys( schema, data, config ) {
 					schema.properties[ prop ].items, data[ prop ][ 0 ], newConfig
 				) );
 			}
-			return keys.concat( arrayLabels );
+			keys.concat( arrayLabels );
 		}
+		// FIXME: inspecting the property type only for objects won't work
+		// for other complex types as array. A possible solution is to
+		// separate getControlsTextKeys top level loop over properties
+		// from the recursive processing of each subschema. Left for T363477
 		if ( schema.properties[ prop ].type === 'object' && maxDepth ) {
 			maxDepth--;
 			const newConfig = Object.assign( {}, config, {
