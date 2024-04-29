@@ -11,42 +11,60 @@ function mapPropToTextKey( ...fragments ) {
 	return fragments.join( '-' ).toLocaleLowerCase();
 }
 
-function getControlsTextKeys( schema, data, config ) {
-	let maxDepth = 2;
-	const keys = [];
-	for ( const prop in schema.properties ) {
-		const labelKey = mapPropToTextKey( config.i18nTextKeyPrefix, prop, 'label' );
-		keys.push( labelKey );
-		keys.push( mapPropToTextKey( config.i18nTextKeyPrefix, prop, 'control-label' ) );
-		keys.push( mapPropToTextKey( config.i18nTextKeyPrefix, prop, 'help-text' ) );
-		if ( schema.properties[ prop ].type === 'array' && data && data[ prop ] ) {
-			const arrayLabels = data[ prop ].map( ( _, index ) =>
-				mapPropToTextKey( config.i18nTextKeyPrefix, prop, `${index}-label` )
-			);
-			if ( schema.properties[ prop ].items.type === 'object' ) {
-				maxDepth--;
-				const newConfig = Object.assign( {}, config, {
-					i18nTextKeyPrefix: mapPropToTextKey( config.i18nTextKeyPrefix, prop )
-				} );
-				return keys.concat( arrayLabels ).concat( getControlsTextKeys(
-					schema.properties[ prop ].items, data[ prop ][ 0 ], newConfig
-				) );
+function doGetControlTextKeys( propName, schema, data, config ) {
+	let keys = [];
+	keys.push( mapPropToTextKey( config.i18nTextKeyPrefix, propName, 'label' ) );
+	keys.push( mapPropToTextKey( config.i18nTextKeyPrefix, propName, 'control-label' ) );
+	keys.push( mapPropToTextKey( config.i18nTextKeyPrefix, propName, 'help-text' ) );
+	const newConfig = Object.assign( {}, config, {
+		i18nTextKeyPrefix: `${config.i18nTextKeyPrefix}-${propName}`
+	} );
+	const fallbackData = schema.type === 'array' ? [] : {};
+	const propData = ( data && data[ propName ] ) || fallbackData;
+	if ( schema.type === 'object' ) {
+		for ( const prop in schema.properties ) {
+			keys = [
+				...keys,
+				...doGetControlTextKeys( prop, schema.properties[ prop ], propData, newConfig )
+			];
+		}
+	}
+	if ( schema.type === 'array' && !schema.control ) {
+		let arrayLabels = propData.map( ( _, index ) =>
+			mapPropToTextKey( config.i18nTextKeyPrefix, propName, `${index}-label` )
+		);
+		if ( schema.items.type === 'object' ) {
+			for ( const prop in schema.items.properties ) {
+				const arrayItemsFallbackData = schema.type === 'array' ? [] : {};
+				const arrayItemsData = ( data && data[ prop ] ) || arrayItemsFallbackData;
+				arrayLabels = [
+					...arrayLabels,
+					...doGetControlTextKeys( prop, schema.items, arrayItemsData, newConfig )
+				];
 			}
-			keys.concat( arrayLabels );
+
 		}
-		// FIXME: inspecting the property type only for objects won't work
-		// for other complex types as array. A possible solution is to
-		// separate getControlsTextKeys top level loop over properties
-		// from the recursive processing of each subschema. Left for T363477
-		if ( schema.properties[ prop ].type === 'object' && maxDepth ) {
-			maxDepth--;
-			const newConfig = Object.assign( {}, config, {
-				i18nTextKeyPrefix: `${config.i18nTextKeyPrefix}-${prop}`
-			} );
-			return keys.concat(
-				getControlsTextKeys( schema.properties[ prop ], data[ prop ], newConfig )
-			);
-		}
+		keys = [ ...keys, ...arrayLabels ];
+	}
+	return keys;
+}
+
+/**
+ * Generates all message keys that may be used in the form for the
+ * given schema.
+ *
+ * @param {Object} schema An object representing a JSON schema
+ * @param {Object} data The configuration data for the given schema
+ * @param {Object} config The editor form configuration
+ * @return {Array<string>} An array of message keys
+ */
+function getControlsTextKeys( schema, data = {}, config = {} ) {
+	let keys = [];
+	for ( const prop in schema.properties ) {
+		const propKeys = doGetControlTextKeys(
+			prop, schema.properties[ prop ], data[ prop ], config
+		);
+		keys = [ ...keys, ...propKeys ];
 	}
 	return keys;
 }
