@@ -8,8 +8,8 @@ const {
 	isObjectControl,
 	extractRef,
 	rankWith,
-	schemaTypeIs,
-	schemaRefIs
+	schemaControlIs,
+	schemaTypeIs
 } = require( './testers.js' );
 
 module.exports = exports = {
@@ -23,6 +23,6 @@ module.exports = exports = {
 	isStringControl,
 	extractRef,
 	rankWith,
-	schemaTypeIs,
-	schemaRefIs
+	schemaControlIs,
+	schemaTypeIs
 };

@@ -22,7 +22,7 @@ class JsonSchemaBuilder implements SchemaBuilder {
 			'$schema' => $this->jsonSchema->getJsonSchemaVersion(),
 			'$id' => $this->jsonSchema->getSchemaId(),
 			JsonSchema::ADDITIONAL_PROPERTIES => false,
-		], $this->jsonSchema->getReflectionSchemaSource()->loadAsSchema() );
+		], $this->jsonSchema->getReflectionSchemaSource()->loadAsSchema( true ) );
 	}
 
 	/**

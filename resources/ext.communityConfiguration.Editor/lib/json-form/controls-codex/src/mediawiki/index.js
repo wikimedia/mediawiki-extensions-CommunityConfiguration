@@ -5,7 +5,7 @@ const NamespacesControl = require( './NamespacesControl.vue' );
 
 const {
 	rankWith,
-	schemaRefIs
+	schemaControlIs
 } = require( '../../config/index.js' );
 
 const rankRenderer = ( rank, renderer, tester ) => ( {
@@ -13,9 +13,9 @@ const rankRenderer = ( rank, renderer, tester ) => ( {
 	tester: rankWith( rank, tester )
 } );
 
-const isPageTitleControl = schemaRefIs( MEDIAWIKI_DEFINITIONS.PAGE_TITLE );
-const isPageTitlesControl = schemaRefIs( MEDIAWIKI_DEFINITIONS.PAGE_TITLES );
-const isNamespacesControl = schemaRefIs( MEDIAWIKI_DEFINITIONS.NAMESPACES );
+const isPageTitleControl = schemaControlIs( MEDIAWIKI_DEFINITIONS.PAGE_TITLE );
+const isPageTitlesControl = schemaControlIs( MEDIAWIKI_DEFINITIONS.PAGE_TITLES );
+const isNamespacesControl = schemaControlIs( MEDIAWIKI_DEFINITIONS.NAMESPACES );
 
 module.exports = exports = {
 	mediawiki: [
