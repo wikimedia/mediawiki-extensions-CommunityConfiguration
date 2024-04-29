@@ -35,6 +35,12 @@ function schemaTypeIs( expectedType ) {
 	};
 }
 
+function isEnumControl( _uischema, schema ) {
+	const validEnumTypes = [ 'string', 'number' ];
+	// TODO: replace this indexOf with includes, once eslint config is updated
+	return validEnumTypes.indexOf( schema.type ) !== -1 && Array.isArray( schema.enum );
+}
+
 /**
  * Tester function to check whether the given schema has
  * the expected control.
@@ -67,6 +73,7 @@ module.exports = exports = {
 	isNumberControl,
 	isObjectControl,
 	isStringControl,
+	isEnumControl,
 	extractRef,
 	rankWith,
 	schemaControlIs,

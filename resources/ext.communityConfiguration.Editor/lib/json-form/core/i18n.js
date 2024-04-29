@@ -46,6 +46,11 @@ function doGetControlTextKeys( propName, schema, data, config ) {
 		}
 		keys = [ ...keys, ...arrayLabels ];
 	}
+	if ( schema.enum ) {
+		schema.enum.forEach( ( enumValue ) => {
+			keys.push( mapPropToTextKey( config.i18nTextKeyPrefix, propName, 'option', enumValue, 'label' ) );
+		} );
+	}
 	return keys;
 }
 
@@ -106,6 +111,14 @@ function getControlTextProps( prop, prefix, schema, data ) {
 	if ( schema.type === 'array' && data ) {
 		const labels = data.map( ( _, index ) => getControlTextKeyByType( `${index}-label` ) );
 		Object.assign( textProps, { labels } );
+	}
+
+	if ( schema.enum ) {
+		const enumLabels = schema.enum.reduce( ( carry, enumValue ) => {
+			carry[ enumValue ] = mapPropToTextKey( prefix, prop, 'option', enumValue, 'label' );
+			return carry;
+		}, {} );
+		Object.assign( textProps, { enumLabels } );
 	}
 
 	return textProps;

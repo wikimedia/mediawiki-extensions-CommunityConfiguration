@@ -31,6 +31,7 @@ abstract class JsonSchema {
 	public const REF = '$ref';
 	public const DEFS = '$defs';
 	public const ITEMS = 'items';
+	public const ENUM = 'enum';
 
 	/**
 	 * @var string To define a default value for the property

@@ -120,6 +120,7 @@
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/utils.js",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/complex/index.js",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/complex/ArrayControl.vue",
+				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/complex/EnumControl.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/complex/ObjectControl.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/mediawiki/index.js",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/mediawiki/api.js",

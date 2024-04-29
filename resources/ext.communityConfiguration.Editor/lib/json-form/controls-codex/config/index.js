@@ -7,6 +7,7 @@ const {
 	isBooleanControl,
 	isNumberControl,
 	isStringControl,
+	isEnumControl,
 	isObjectControl
 } = require( '../../core/index.js' );
 const {
@@ -24,6 +25,7 @@ module.exports = exports = {
 	isArrayControl,
 	isBooleanControl,
 	isStringControl,
+	isEnumControl,
 	isNumberControl,
 	isObjectControl,
 	rankWith,
