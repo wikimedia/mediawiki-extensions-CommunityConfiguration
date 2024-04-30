@@ -227,8 +227,16 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 
 		$strictValidationResult = $validator->validateStrictly( (object)$json );
 
-		$this->assertSame( $expectedIsStrictlyValid, $strictValidationResult->isGood() );
-		$this->assertSame( $expectedIsStrictlyValid, $strictValidationResult->isOK() );
+		$this->assertSame(
+			$expectedIsStrictlyValid,
+			$strictValidationResult->isGood(),
+			'isGood() of strict validation should return the correct result'
+		);
+		$this->assertSame(
+			$expectedIsStrictlyValid,
+			$strictValidationResult->isOK(),
+			'isOK() of strict validation should return the correct result'
+		);
 
 		$permissiveValidationResult = $validator->validatePermissively( (object)$json );
 		$actualMessageConstraints = array_map(
@@ -237,7 +245,15 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 		);
 
 		$this->assertSame( $expectedMessageConstraints, $actualMessageConstraints );
-		$this->assertSame( $expectedIsPermissivelyOk, $permissiveValidationResult->isOk() );
-		$this->assertSame( $expectedIsPermissivelyGood, $permissiveValidationResult->isGood() );
+		$this->assertSame(
+			$expectedIsPermissivelyOk,
+			$permissiveValidationResult->isOk(),
+			'isOK() of permissive validation should return the correct result'
+		);
+		$this->assertSame(
+			$expectedIsPermissivelyGood,
+			$permissiveValidationResult->isGood(),
+			'isGood() of permissive validation should return the correct result'
+		);
 	}
 }
