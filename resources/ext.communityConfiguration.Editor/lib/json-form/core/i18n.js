@@ -11,6 +11,15 @@ function mapPropToTextKey( ...fragments ) {
 	return fragments.join( '-' ).toLocaleLowerCase();
 }
 
+const getFallbackDataForType = ( type ) => {
+	return type === 'array' ? [] : type === 'object' ? {} : null;
+};
+
+const getDataForType = ( type, data, prop = null ) => {
+	const result = data && data[ prop ];
+	return result || getFallbackDataForType( type );
+};
+
 function doGetControlTextKeys( propName, schema, data, config ) {
 	let keys = [];
 	keys.push( mapPropToTextKey( config.i18nTextKeyPrefix, propName, 'label' ) );
@@ -19,10 +28,9 @@ function doGetControlTextKeys( propName, schema, data, config ) {
 	const newConfig = Object.assign( {}, config, {
 		i18nTextKeyPrefix: `${config.i18nTextKeyPrefix}-${propName}`
 	} );
-	const fallbackData = schema.type === 'array' ? [] : {};
-	const propData = ( data && data[ propName ] ) || fallbackData;
 	if ( schema.type === 'object' ) {
 		for ( const prop in schema.properties ) {
+			const propData = getDataForType( schema.properties[ prop ].type, data, prop );
 			keys = [
 				...keys,
 				...doGetControlTextKeys( prop, schema.properties[ prop ], propData, newConfig )
@@ -30,19 +38,24 @@ function doGetControlTextKeys( propName, schema, data, config ) {
 		}
 	}
 	if ( schema.type === 'array' && !schema.control ) {
-		let arrayLabels = propData.map( ( _, index ) =>
+		let arrayLabels = data.map( ( _, index ) =>
 			mapPropToTextKey( config.i18nTextKeyPrefix, propName, `${index}-label` )
 		);
 		if ( schema.items.type === 'object' ) {
 			for ( const prop in schema.items.properties ) {
-				const arrayItemsFallbackData = schema.type === 'array' ? [] : {};
-				const arrayItemsData = ( data && data[ prop ] ) || arrayItemsFallbackData;
+				const arrayItemsData = getDataForType(
+					schema.items.properties[ prop ].type, data, prop
+				);
 				arrayLabels = [
 					...arrayLabels,
-					...doGetControlTextKeys( prop, schema.items, arrayItemsData, newConfig )
+					...doGetControlTextKeys(
+						prop,
+						schema.items.properties[ prop ],
+						arrayItemsData,
+						newConfig
+					)
 				];
 			}
-
 		}
 		keys = [ ...keys, ...arrayLabels ];
 	}
@@ -66,8 +79,9 @@ function doGetControlTextKeys( propName, schema, data, config ) {
 function getControlsTextKeys( schema, data = {}, config = {} ) {
 	let keys = [];
 	for ( const prop in schema.properties ) {
+		const propData = getDataForType( schema.properties[ prop ].type, data, prop );
 		const propKeys = doGetControlTextKeys(
-			prop, schema.properties[ prop ], data[ prop ], config
+			prop, schema.properties[ prop ], propData, config
 		);
 		keys = [ ...keys, ...propKeys ];
 	}
@@ -125,6 +139,8 @@ function getControlTextProps( prop, prefix, schema, data ) {
 }
 
 module.exports = exports = {
+	// only for testing purposes
+	getControlsTextKeys,
 	getEditorTextKeys,
 	getControlTextProps
 };
