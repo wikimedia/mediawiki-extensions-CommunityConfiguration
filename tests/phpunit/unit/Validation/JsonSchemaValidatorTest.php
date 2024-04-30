@@ -173,6 +173,34 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 			true,
 			false,
 		];
+
+		yield 'enum with correct value' => [
+			new class() extends JsonSchema {
+				public const OneOfThese = [
+					JsonSchema::TYPE => JsonSchema::TYPE_STRING,
+					JsonSchema::ENUM => [ 'foo', 'bar' ],
+				];
+			},
+			[ 'OneOfThese' => 'foo' ],
+			true,
+			[],
+			true,
+			true,
+		];
+
+		yield 'enum with incorrect value' => [
+			new class() extends JsonSchema {
+				public const OneOfThese = [
+					JsonSchema::TYPE => JsonSchema::TYPE_STRING,
+					JsonSchema::ENUM => [ 'foo', 'bar' ],
+				];
+			},
+			[ 'OneOfThese' => 'not in list' ],
+			false,
+			[ 'enum' ],
+			true,
+			false,
+		];
 	}
 
 	/**

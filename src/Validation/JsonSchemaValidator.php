@@ -87,7 +87,7 @@ class JsonSchemaValidator implements IValidator {
 		}
 		$status = new Status();
 		foreach ( $validator->getErrors() as $error ) {
-			if ( $modeForReading && in_array( $error['constraint'], [ 'required', 'additionalProp' ] ) ) {
+			if ( $modeForReading && in_array( $error['constraint'], [ 'required', 'additionalProp', 'enum' ] ) ) {
 				$status->warning(
 					'communityconfiguration-schema-validation-error',
 					$error['property'],
