@@ -20,9 +20,9 @@ const isNamespacesControl = schemaControlIs( MEDIAWIKI_DEFINITIONS.NAMESPACES );
 module.exports = exports = {
 	mediawiki: [
 		// renderers ranked based on schema refs need to have
-		// > 1 rank to precede basic type renderers
-		rankRenderer( 2, PageTitleControl, isPageTitleControl ),
-		rankRenderer( 2, PageTitlesControl, isPageTitlesControl ),
-		rankRenderer( 2, NamespacesControl, isNamespacesControl )
+		// > 2 rank to precede basic type renderers (rank 1) and enums (rank 2)
+		rankRenderer( 3, PageTitleControl, isPageTitleControl ),
+		rankRenderer( 3, PageTitlesControl, isPageTitlesControl ),
+		rankRenderer( 3, NamespacesControl, isNamespacesControl )
 	]
 };
