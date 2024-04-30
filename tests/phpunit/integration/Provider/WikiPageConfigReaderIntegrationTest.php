@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
+use MediaWiki\Config\ConfigException;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
@@ -72,5 +73,41 @@ class WikiPageConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase {
 			$this->getDb()->getDBname(),
 			$reader->get( MainConfigNames::DBname )
 		);
+	}
+
+	public function testMultipleRegistration() {
+		$this->setMwGlobals( [
+			'wgCommunityConfigurationProviders' => [
+				'foo' => [
+					'store' => [
+						'type' => 'wikipage',
+						'args' => [ 'MediaWiki:Foo.json' ],
+					],
+					'validator' => [
+						'type' => 'jsonschema',
+						'args' => [ JsonSchemaForTesting::class ]
+					],
+					'type' => 'mw-config',
+				],
+				'bar' => [
+					'store' => [
+						'type' => 'wikipage',
+						'args' => [ 'MediaWiki:Bar.json' ],
+					],
+					'validator' => [
+						'type' => 'jsonschema',
+						'args' => [ JsonSchemaForTesting::class ]
+					],
+					'type' => 'mw-config',
+				],
+			],
+		] );
+
+		$this->expectException( ConfigException::class );
+		$this->expectExceptionMessage( 'is registered by multiple CommunityConfiguration providers' );
+
+		CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+			->getWikiPageConfigReader()
+			->get( 'Number' );
 	}
 }
