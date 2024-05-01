@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eulalio"
+			"Eulalio",
+			"Martin Urbanec (WMF)"
 		]
 	},
 	"communityconfiguration-editor-client-generic-error": "Algo salió mal al cargar el editor de configuración. Por favor, inténtelo de nuevo más tarde.",
 	"communityconfiguration-editor-client-generic-error-description": "Se produjo un error en '$2' en el componente $1. Ver los detalles abajo:",
-	"communityconfiguration-editor-client-file-bug": "Si el problema persiste, considere [ $1 rellene un asunto] en la herramienta de informe de errores.",
+	"communityconfiguration-editor-client-file-bug": "Si el problema persiste, considere [$1 rellene un asunto] en la herramienta de informe de errores.",
 	"communityconfiguration-editor-form-submit-button-text": "Guardar cambios",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Enviando...",
 	"communityconfiguration-invalid-stored-config-error": "No se pudo cargar una configuración válida del proveedor $1 (código <tt>$2</tt>).",
