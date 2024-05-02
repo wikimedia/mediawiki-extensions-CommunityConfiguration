@@ -83,6 +83,12 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		$this->provider = $this->providerFactory->newProvider( $subpage );
 
 		$out = $this->getContext()->getOutput();
+
+		$linkTarget = $this->provider->getStore()->getInfoPageLinkTarget();
+		if ( $linkTarget !== null ) {
+			$out->getSkin()->setRelevantTitle( Title::newFromLinkTarget( $linkTarget ) );
+		}
+
 		$out->setPageTitle( $this->msg(
 			'communityconfigurationeditor',
 			$this->provider->getName( $this )->escaped()
