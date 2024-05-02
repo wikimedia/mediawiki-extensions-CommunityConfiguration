@@ -57,7 +57,8 @@
 			"rules": {
 				"es-x/no-array-prototype-includes": "off",
 				"es-x/no-rest-spread-properties": "off",
-				"es-x/no-async-functions": "off"
+				"es-x/no-async-functions": "off",
+				"template-curly-spacing": "off"
 			}
 		},
 		{
