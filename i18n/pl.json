@@ -1,9 +1,39 @@
 {
 	"@metadata": {
 		"authors": [
-			"WaldiSt"
+			"WaldiSt",
+			"Msz2001"
 		]
 	},
+	"communityconfiguration": "Konfiguracja przez społeczność",
+	"communityconfiguration-desc": "Zawiera logikę stojącą za konfiguracją przez społeczność",
+	"communityconfiguration-editor-client-generic-error": "Coś poszło nie tak podczas ładowania edytora konfiguracji. Spróbuj ponownie później.",
+	"communityconfiguration-editor-client-generic-error-description": "Wystąpił błąd w „$2” w komponencie „$1”. Szczegóły poniżej:",
+	"communityconfiguration-editor-form-submit-button-text": "Zapisz zmiany",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Wysyłanie...",
+	"communityconfiguration-guidelines-title": "Czym jest konfiguracja przez społeczność?",
+	"communityconfiguration-guidelines-description": "Konfiguracja przez społeczność to narzędzie, pozwalające społeczności ustawiać i kontrolować ustawienia różnych funkcji oprogramowania {{GRAMMAR:D.lp|{{SITENAME}}}}, pomagając administratorom w dostosować je do potrzeb społeczności.",
+	"communityconfiguration-guidelines-guideline1-title": "Dowiedz się więcej",
+	"communityconfiguration-guidelines-guideline1-description": "[[mw:Special:MyLanguage/Help:Growth|Dowiedz się więcej]] o konfiguracji przez społeczność, o tym, czym jest, jak działa i o trwającej pracy zespołu nad nią.",
+	"communityconfiguration-guidelines-guideline2-title": "Przekaż nam {{GENDER:$1|swoją}} opinię",
+	"communityconfiguration-guidelines-guideline2-description": "Bardzo chcielibyśmy poznać {{GENDER:$1|Twoje}} przemyślenia! Skontaktuj się z nami za pośrednictwem naszej [[mw:Talk:Growth|strony dyskusji]].",
+	"communityconfiguration-invalid-stored-config-error": "Nie udało się załadować prawidłowej konfiguracji od dostawcy „$1” (kod <tt>$2</tt>).",
+	"communityconfiguration-invalid-stored-config-error-with-link": "Nie udało się załadować prawidłowej konfiguracji od dostawcy „$1” (kod <tt>$2</tt>), zobacz $3.",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Szczegóły błędu",
+	"communityconfiguration-schema-validation-error": "SZKIC: $2. Klucz: $1",
+	"communityconfiguration-providers-list-title": "Funkcje",
+	"communityconfiguration-provider-not-found": "Nie znaleziono dostawcy „$1”",
+	"communityconfiguration-unknown-error": "SZKIC: Coś poszło nie tak. Zgłoś błąd na Phabricatorze.",
+	"communityconfigurationdashboard": "Konfiguracja przez społeczność",
+	"communityconfiguration-edit-summary-reminder": "<b>Uwaga</b>: Ta zmiana może mieć wpływ na dużą liczbę członków społeczności, rozważ wskazanie przyczyny, dla której {{GENDER:$1|wprowadzasz}} zmianę i, jeśli to konieczne, podaj link do odpowiedniej dyskusji w społeczności.",
+	"communityconfiguration-edit-summary-dialog-title": "Zapisz zmiany w $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(opcjonalne)",
-	"communityconfiguration-edit-summary-dialog-cancel-button": "Anuluj"
+	"communityconfiguration-edit-summary-dialog-placeholder": "Opis zmiany w konfiguracji",
+	"communityconfiguration-edit-summary-dialog-save-button": "Zapisz zmiany",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Anuluj",
+	"communityconfiguration-edit-summary-dialog-label": "Opis zmian",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Twoje}} zmiany zostały zapisane",
+	"communityconfiguration-editor-client-data-submission-error": "Coś poszło nie tak podczas zapisywania {{GENDER:$1|Twoich}} zmian. Spróbuj ponownie później.",
+	"communityconfiguration-editor-message-dismiss-button-label": "Zamknij",
+	"communityconfiguration-page-title-control-no-results": "Nie znaleziono wyników."
 }
