@@ -3,6 +3,7 @@ const { getEditorTextKeys } = require( './i18n.js' );
 const {
 	isArrayControl,
 	isBooleanControl,
+	isIntegerControl,
 	isNumberControl,
 	isStringControl,
 	isEnumControl,
@@ -19,6 +20,7 @@ module.exports = exports = {
 	getEditorTextKeys,
 	isArrayControl,
 	isBooleanControl,
+	isIntegerControl,
 	isNumberControl,
 	isObjectControl,
 	isStringControl,
