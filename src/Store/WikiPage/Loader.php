@@ -17,13 +17,14 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\TitleFactory;
 use StatusValue;
-use stdClass;
 use WANObjectCache;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 
 class Loader implements IDBAccessObject, ICustomReadConstants {
 
 	use CustomReadConstantsTrait;
+
+	private const CACHE_VERSION = 1;
 
 	private WANObjectCache $cache;
 	private HashBagOStuff $inProcessCache;
@@ -47,6 +48,7 @@ class Loader implements IDBAccessObject, ICustomReadConstants {
 	 */
 	private function makeCacheKey( LinkTarget $configPage ) {
 		return $this->cache->makeKey( __CLASS__,
+			self::CACHE_VERSION,
 			$configPage->getNamespace(), $configPage->getDBkey() );
 	}
 
@@ -63,8 +65,9 @@ class Loader implements IDBAccessObject, ICustomReadConstants {
 	 * Load the configured page, with caching.
 	 * @param LinkTarget $configPage
 	 * @param int $flags bit field, see self::READ_XXX
-	 * @return array|StatusValue The content of the configuration page (as JSON
-	 *   data in PHP-native format), or a StatusValue on error.
+	 * @return StatusValue A StatusValue wrapping the content of the configuration page (as JSON
+	 *   data in PHP-native format), or an error. Returned StatusValue should be treated as
+	 * 	 immutable.
 	 */
 	public function load( LinkTarget $configPage, int $flags = 0 ) {
 		if (
@@ -78,13 +81,25 @@ class Loader implements IDBAccessObject, ICustomReadConstants {
 
 		// WANObjectCache has an in-process cache (pcTTL), but it is not subject
 		// to invalidation, which breaks WikiPageConfigLoaderTest.
-		return $this->inProcessCache->getWithSetCallback(
+		$result = $this->inProcessCache->getWithSetCallback(
 			$this->makeCacheKey( $configPage ),
 			ExpirationAwareness::TTL_INDEFINITE,
 			function () use ( $configPage, $flags ) {
 				return $this->loadFromWanCache( $configPage, $flags );
 			}
 		);
+
+		if ( $result->isOK() ) {
+			// Deserialize the data at the very last step, to ensure each caller gets their own
+			// copy of the data. This is to avoid cache pollution; see LoaderIntegrationTest and
+			// T364101 for more details.
+			return FormatJson::parse( $result->getValue() );
+		}
+
+		// Return a (shallow) clone of the (cached) StatusValue. This is necessary, as
+		// StatusValue objects are mutable and cached in the in-process cache. Omitting this is
+		// likely to result in a cache pollution problem similar to T364101.
+		return clone $result;
 	}
 
 	/**
@@ -92,8 +107,8 @@ class Loader implements IDBAccessObject, ICustomReadConstants {
 	 *
 	 * @param LinkTarget $configPage
 	 * @param int $flags bit field, see self::READ_XXX
-	 * @return array|StatusValue The content of the configuration page (as JSON
-	 *   data in PHP-native format), or a StatusValue on error.
+	 * @return StatusValue A StatusValue wrapping the content of the configuration page (as JSON
+	 *   data in PHP-native format), or an error.
 	 */
 	private function loadFromWanCache( LinkTarget $configPage, int $flags = 0 ) {
 		return $this->cache->getWithSetCallback(
@@ -120,7 +135,7 @@ class Loader implements IDBAccessObject, ICustomReadConstants {
 	 *
 	 * @param LinkTarget $configPage
 	 * @param int $flags bit field, see IDBAccessObject::READ_XXX; do NOT pass READ_UNCACHED
-	 * @return StatusValue Status object, with the configuration (as JSON data) on success.
+	 * @return StatusValue Status object, with the configuration (as JSON ext) on success.
 	 */
 	private function fetchConfig( LinkTarget $configPage, int $flags ) {
 		if ( $configPage->isExternal() ) {
@@ -132,7 +147,7 @@ class Loader implements IDBAccessObject, ICustomReadConstants {
 			// The configuration page does not exist. Pretend it does not contain anything (failure
 			// mode and empty-page behavior is equal, see T325236).
 			// Top-level types different from object will require a corresponding empty value. eg: [] for arrays.
-			return StatusValue::newGood( new stdClass() );
+			return StatusValue::newGood( '{}' );
 		}
 
 		$content = $revision->getContent( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC );
@@ -141,7 +156,10 @@ class Loader implements IDBAccessObject, ICustomReadConstants {
 				'The configuration title has no content or is not JSON content.'
 			) );
 		}
-		return FormatJson::parse( $content->getText() );
-	}
 
+		// Do not return the parsed JSON just yet, to ensure each caller gets their own copy of
+		// deserialized data. This needs to happen to avoid cache pollution. See
+		// LoaderIntegrationTest and T364101 for more details.
+		return StatusValue::newGood( $content->getText() );
+	}
 }
