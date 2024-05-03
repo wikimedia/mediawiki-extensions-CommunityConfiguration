@@ -40,7 +40,7 @@ class DashboardEditorCapability extends AbstractEditorCapability {
 		$availableProviders = [];
 		foreach ( $this->providerFactory->getSupportedKeys() as $providerName ) {
 			$provider = $this->providerFactory->newProvider( $providerName );
-			if ( $provider->shouldSkipDashboardListing() ) {
+			if ( $provider->getOptionValue( 'skipDashboardListing' ) ) {
 				continue;
 			}
 			$lowerCaseProviderName = strtolower( $providerName );

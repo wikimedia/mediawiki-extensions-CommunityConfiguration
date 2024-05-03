@@ -17,33 +17,29 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	private string $providerId;
 	private IConfigurationStore $store;
 	private IValidator $validator;
-
-	/**
-	 * Indicates whether this provider should be skipped on the dashboard.
-	 *
-	 * @var bool
-	 */
-	private bool $shouldSkipDashboard;
+	private array $options;
 
 	/**
 	 * Constructs a new instance of a provider.
 	 *
-	 * @param string $providerId
-	 * @param bool $shouldSkipDashboard Whether the provider should be skipped on the dashboard.
+	 * @param string $providerId The unique identifier for the provider.
+	 * @param array $options
+	 * 		Configuration options for the provider, may be structured as follows:
+	 * 		- 'skipDashboardListing' (bool, optional): Indicates whether this provider
+	 * 			should be skipped on the dashboard.
 	 * @param IConfigurationStore $store The store used by the provider.
 	 * @param IValidator $validator The validator used by the provider.
 	 */
 	public function __construct(
 		string $providerId,
-		bool $shouldSkipDashboard,
+		array $options,
 		IConfigurationStore $store,
 		IValidator $validator
 	) {
 		$this->providerId = $providerId;
 		$this->store = $store;
 		$this->validator = $validator;
-		$this->shouldSkipDashboard = $shouldSkipDashboard;
-
+		$this->options = $options;
 		$this->setLogger( new NullLogger() );
 	}
 
@@ -79,15 +75,6 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	}
 
 	/**
-	 * Determines whether the provider should be skipped in the dashboard listing.
-	 *
-	 * @return bool True if the provider should be skipped in the dashboard listing, false otherwise.
-	 */
-	public function shouldSkipDashboardListing(): bool {
-		return $this->shouldSkipDashboard;
-	}
-
-	/**
 	 * Store configuration, after possibly manipulating it
 	 *
 	 * Can be used by providers to manipulate $newConfig before letting it get saved.
@@ -107,5 +94,12 @@ abstract class AbstractProvider implements IConfigurationProvider {
 			$authority,
 			$summary
 		);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getOptionValue( string $optionName ) {
+		return $this->options[ $optionName ] ?? null;
 	}
 }

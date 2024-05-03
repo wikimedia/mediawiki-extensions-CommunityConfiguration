@@ -110,7 +110,7 @@ class ConfigurationProviderFactory {
 
 		$ctorArgs = [
 			$name,
-			$spec['skipDashboardListing'] ?? false,
+			$spec['options'] ?? [],
 			$this->storeFactory->newStore( $name, $storeType, $storeArgs ),
 			$this->validatorFactory->newValidator( $name, $validatorType, $validatorArgs )
 		];
