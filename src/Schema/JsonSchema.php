@@ -44,6 +44,7 @@ abstract class JsonSchema {
 	public const TYPE_OBJECT = 'object';
 	public const TYPE_ARRAY = 'array';
 	public const TYPE_STRING = 'string';
+	public const TYPE_INTEGER = 'integer';
 	public const TYPE_NUMBER = 'number';
 	public const TYPE_BOOLEAN = 'boolean';
 }

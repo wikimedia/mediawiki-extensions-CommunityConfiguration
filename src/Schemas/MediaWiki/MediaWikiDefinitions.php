@@ -28,7 +28,7 @@ class MediaWikiDefinitions extends JsonSchema {
 	public const Namespaces = [
 		self::TYPE => self::TYPE_ARRAY,
 		self::ITEMS => [
-			self::TYPE => self::TYPE_NUMBER
+			self::TYPE => self::TYPE_INTEGER
 		],
 		self::DEFAULT => [],
 		'control' => NamespacesControl::class
