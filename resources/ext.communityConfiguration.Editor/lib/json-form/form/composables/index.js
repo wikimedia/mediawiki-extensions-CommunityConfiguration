@@ -133,12 +133,16 @@ function useJsonFormControl( props ) {
 	const modelValue = computed( () => {
 		return getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs );
 	} );
+	const otherAttrs = { required };
+	const schemaTypeIsInteger = props.schema.type === 'integer';
+	const schemaTypeIsNumber = props.schema.type === 'number';
+	if ( schemaTypeIsInteger || schemaTypeIsNumber ) {
+		otherAttrs.step = schemaTypeIsInteger ? 1 : 'any';
+	}
 	return {
 		control: Object.assign( {}, props, {
 			modelValue,
-			otherAttrs: {
-				required
-			}
+			otherAttrs
 		} ),
 		handleChange( newVal ) {
 			setConfigValueByScope( jsonform.data, scope, newVal );
