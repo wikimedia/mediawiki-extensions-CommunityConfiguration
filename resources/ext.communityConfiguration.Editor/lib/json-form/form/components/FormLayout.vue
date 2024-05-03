@@ -1,10 +1,10 @@
 <template>
-	<div>
-		<div v-for="( element, index ) in uischema.elements" :key="`${element.name}-${index}`">
-			<dispatch-renderer :schema="schema" :uischema="element">
-			</dispatch-renderer>
-		</div>
-	</div>
+	<dispatch-renderer
+		v-for="( element, index ) in uischema.elements"
+		:key="`${element.name}-${index}`"
+		:schema="schema"
+		:uischema="element"
+	></dispatch-renderer>
 </template>
 
 <script>
