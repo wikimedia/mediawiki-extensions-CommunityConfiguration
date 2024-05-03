@@ -40,7 +40,7 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 					JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
 				];
 			},
-			[ 'Number' => 1 ],
+			[ 'Number' => 1.2 ],
 			true,
 			[],
 			true,
