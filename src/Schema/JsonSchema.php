@@ -41,6 +41,8 @@ abstract class JsonSchema {
 	 */
 	public const DEFAULT = 'default';
 
+	public const DYNAMIC_DEFAULT = 'dynamicDefault';
+
 	public const TYPE_OBJECT = 'object';
 	public const TYPE_ARRAY = 'array';
 	public const TYPE_STRING = 'string';

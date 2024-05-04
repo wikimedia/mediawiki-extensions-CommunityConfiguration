@@ -33,12 +33,27 @@ class JsonSchemaBuilder implements SchemaBuilder {
 	}
 
 	/**
+	 * Get a default from a JSON schema specification
+	 *
+	 * Takes into account dynamic defaults.
+	 *
+	 * @param array $specification
+	 * @return mixed
+	 */
+	private function getDefaultFromSpecification( array $specification ) {
+		if ( isset( $specification[JsonSchema::DYNAMIC_DEFAULT] ) ) {
+			return call_user_func( $specification[JsonSchema::DYNAMIC_DEFAULT]['callback'] );
+		}
+		return $specification['default'] ?? null;
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	public function getDefaultsMap(): stdClass {
 		$res = new stdClass();
 		foreach ( $this->getRootProperties() as $key => $specification ) {
-			$res->{$key} = $specification['default'] ?? null;
+			$res->{$key} = $this->getDefaultFromSpecification( $specification );
 		}
 		return $res;
 	}
