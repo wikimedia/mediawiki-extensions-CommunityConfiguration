@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\CommunityConfiguration\Specials;
+namespace MediaWiki\Extension\CommunityConfiguration\EditorCapabilities;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Message\Message;
@@ -10,7 +10,7 @@ use MessageSpecifier;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 
-abstract class AbstractEditorCapability implements MessageLocalizer {
+abstract class AbstractEditorCapability implements IEditorCapability, MessageLocalizer {
 	use LoggerAwareTrait;
 
 	private IContextSource $ctx;
@@ -28,7 +28,7 @@ abstract class AbstractEditorCapability implements MessageLocalizer {
 	 *
 	 * @return IContextSource
 	 */
-	final public function getContext(): IContextSource {
+	final protected function getContext(): IContextSource {
 		return $this->ctx;
 	}
 
@@ -40,7 +40,7 @@ abstract class AbstractEditorCapability implements MessageLocalizer {
 	 *
 	 * @return Title
 	 */
-	final public function getParentTitle(): Title {
+	final protected function getParentTitle(): Title {
 		return $this->parentTitle;
 	}
 
@@ -55,16 +55,4 @@ abstract class AbstractEditorCapability implements MessageLocalizer {
 	public function msg( $key, ...$params ) {
 		return $this->getContext()->msg( $key, ...$params );
 	}
-
-	/**
-	 * Code that executes the capability
-	 *
-	 * This method should render whatever interface is needed to create the capability. It will
-	 * be called from SpecialPage::execute, and it can assume it has complete control over the
-	 * special page.
-	 *
-	 * @param string|null $subpage
-	 * @return void
-	 */
-	abstract public function execute( ?string $subpage ): void;
 }

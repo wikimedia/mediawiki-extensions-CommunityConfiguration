@@ -68,6 +68,24 @@
 					"args": []
 				}
 			}
+		},
+		"CommunityConfigurationEditorCapabilities": {
+			"value": {
+				"dashboard": {
+					"class": "MediaWiki\\Extension\\CommunityConfiguration\\EditorCapabilities\\DashboardEditorCapability",
+					"services": [
+						"CommunityConfiguration.ProviderFactory"
+					]
+				},
+				"generic-editor": {
+					"class": "MediaWiki\\Extension\\CommunityConfiguration\\EditorCapabilities\\GenericFormEditorCapability",
+					"services": [
+						"CommunityConfiguration.ProviderFactory",
+						"LinkRenderer",
+						"FormatterFactory"
+					]
+				}
+			}
 		}
 	},
 	"ExtensionMessagesFiles": {
@@ -189,7 +207,7 @@
 		"CommunityConfiguration": {
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Specials\\SpecialCommunityConfiguration",
 			"services": [
-				"ObjectFactory",
+				"CommunityConfiguration.EditorCapabilityFactory",
 				"CommunityConfiguration.ProviderFactory"
 			]
 		}

@@ -8,14 +8,14 @@ use HamcrestPHPUnitIntegration;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Extension\CommunityConfiguration\Specials\GenericFormEditorCapability;
+use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\GenericFormEditorCapability;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LoggerInterface;
 
 /**
- * @covers \MediaWiki\Extension\CommunityConfiguration\Specials\GenericFormEditorCapability
+ * @covers \MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\GenericFormEditorCapability
  * @group Database
  */
 class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
@@ -24,11 +24,20 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 	private const PROVIDER_ID = 'CommunityFeatureOverrides';
 	private const CONFIG_PAGE_TITLE = 'MediaWiki:CommunityFeatureOverrides.json';
 
+	private const SPEC = [
+		'class' => GenericFormEditorCapability::class,
+		'services' => [
+			'CommunityConfiguration.ProviderFactory',
+			'LinkRenderer',
+			'FormatterFactory'
+		]
+	];
+
 	public function testCreation() {
 		$objectFactory = $this->getServiceContainer()->getObjectFactory();
 
 		$sut = $objectFactory->createObject(
-			GenericFormEditorCapability::SPEC,
+			self::SPEC,
 			[
 				'extraArgs' => [ $this->getContext(), Title::newFromText( 'Special:CommunityConfiguration' ) ],
 			]
@@ -166,7 +175,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 		return [
 			'testContext' => $testContext,
 			'genericFormEditorCapability' => $this->getServiceContainer()->getObjectFactory()->createObject(
-				GenericFormEditorCapability::SPEC,
+				self::SPEC,
 				[
 					'extraArgs' => [ $testContext, Title::newFromText( 'Special:CommunityConfiguration' ) ],
 				]

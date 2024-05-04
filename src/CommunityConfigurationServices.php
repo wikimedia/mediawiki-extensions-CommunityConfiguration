@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\CommunityConfiguration;
 
 use MediaWiki\Extension\CommunityConfiguration\Access\WikiPageConfigReader;
+use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Loader;
@@ -28,6 +29,10 @@ class CommunityConfigurationServices {
 	 */
 	public static function wrap( MediaWikiServices $coreServices ) {
 		return new static( $coreServices );
+	}
+
+	public function getEditorCapabilityFactory(): EditorCapabilityFactory {
+		return $this->coreServices->getService( 'CommunityConfiguration.EditorCapabilityFactory' );
 	}
 
 	public function getConfigurationProviderFactory(): ConfigurationProviderFactory {
