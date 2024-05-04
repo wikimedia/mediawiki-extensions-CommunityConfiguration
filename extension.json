@@ -185,6 +185,14 @@
 			]
 		}
 	},
+	"APIMetaModules": {
+		"communityconfiguration": {
+			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Api\\ApiQueryRead",
+			"services": [
+				"CommunityConfiguration.ProviderFactory"
+			]
+		}
+	},
 	"SpecialPages": {
 		"CommunityConfiguration": {
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Specials\\SpecialCommunityConfiguration",

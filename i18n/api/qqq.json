@@ -5,5 +5,7 @@
 	"apihelp-communityconfigurationedit-summary": "{{doc-apihelp-summary|communityconfigurationedit}}",
 	"apihelp-communityconfigurationedit-param-provider": "{{doc-apihelp-param|communityconfigurationedit|provider}}",
 	"apihelp-communityconfigurationedit-param-content": "{{doc-apihelp-param|communityconfigurationedit|content}}",
-	"apihelp-communityconfigurationedit-param-summary": "{{doc-apihelp-param|communityconfigurationedit|summary}}"
+	"apihelp-communityconfigurationedit-param-summary": "{{doc-apihelp-param|communityconfigurationedit|summary}}",
+	"apihelp-query+communityconfiguration-summary": "{{doc-apihelp-summary|query+communityconfiguration}}",
+	"apihelp-query+communityconfiguration-param-provider": "{{doc-apihelp-param|query+communityconfiguration|provider}}"
 }
