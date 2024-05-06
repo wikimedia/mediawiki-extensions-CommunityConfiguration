@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nemoralis"
+		]
+	},
+	"communityconfiguration": "İcma Konfiqurasiyası",
+	"communityconfiguration-desc": "İcma konfiqurasiya məntiqini ehtiva edir",
+	"communityconfiguration-editor-client-generic-error": "Konfiqurasiya redaktorunu yükləyərkən xəta baş verdi. Zəhmət olmasa bir az sonra yenə cəhd edin.",
+	"communityconfiguration-editor-client-generic-error-description": "$1 komponentindəki '$2' metodunda xəta baş verdi. Aşağıdakı təfərrüatlara nəzər yetirin:",
+	"communityconfiguration-editor-client-file-bug": "Problem davam edərsə, xəta bildirmə alətində [$1 bildirməyi] nəzərdən keçirin.",
+	"communityconfiguration-editor-form-submit-button-text": "Dəyişiklikləri yadda saxla",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Göndərilir...",
+	"communityconfiguration-guidelines-title": "İcma Konfiqurasiyası nədir?",
+	"communityconfiguration-guidelines-description": "İcma Konfiqurasiyası icmalara müxtəlif {{SITENAME}} funksiyalarının konfiqurasiyasını qurmağa və idarə etməyə imkan verən alətdir və inzibatçılara icmanın xüsusi ehtiyaclarını ödəməyə kömək edir.",
+	"communityconfiguration-guidelines-guideline1-title": "Daha ətraflı",
+	"communityconfiguration-guidelines-guideline1-description": "İcma Konfiqurasiyası, onun nə olduğu, necə işlədiyi və komandanın bununla bağlı davam edən işi haqqında [[mw:Special:MyLanguage/Help:Growth|ətraflı öyrənin]]",
+	"communityconfiguration-guidelines-guideline2-title": "Rəy {{GENDER:$1|göndərin}}",
+	"communityconfiguration-guidelines-guideline2-description": "{{GENDER:$1|Fikirlərinizi}} eşitmək istəyirik! [[mw:Talk:Growth|müzakirə səhifəmiz]] vasitəsilə bizimlə əlaqə saxlayın.",
+	"communityconfiguration-invalid-stored-config-error": "$1 (kod <tt>$2</tt> ) provayderindən etibarlı konfiqurasiyanı yükləmək alınmadı.",
+	"communityconfiguration-invalid-stored-config-error-with-link": "$1 (kod <tt>$2</tt> ) provayderindən etibarlı konfiqurasiyanı yükləmək alınmadı, $3 səhifəsinə baxın.",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Xəta təfərrüatları",
+	"communityconfiguration-schema-validation-error": "QARALAMA: $2. Açar: $1",
+	"communityconfiguration-providers-list-title": "Xüsusiyyətlər",
+	"communityconfiguration-provider-not-found": "Provayder $1 tapılmadı",
+	"communityconfiguration-unknown-error": "QARALAMA: Nəsə xəta baş verdi, Phabricator-da bildirilsin?",
+	"communityconfigurationdashboard": "İcma Konfiqurasiyası",
+	"communityconfigurationeditor": "$1 redaktə edilir",
+	"communityconfiguration-edit-summary-reminder": "<b>Xatırlatma</b>: Bu dəyişiklik çoxlu sayda icma üzvlərinə təsir edə bilər, zəhmət olmasa dəyişiklik etmə {{GENDER:$1|səbəbinizi}} qeyd edin və uyğun olarsa, hər hansı əlaqəli icma müzakirəsinə keçid əlavə edin.",
+	"communityconfiguration-edit-summary-dialog-title": "$1 üçün dəyişiklikləri yadda saxlayın",
+	"communityconfiguration-edit-summary-dialog-title-span": "(məcburi deyil)",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Konfiqurasiyada edilən dəyişiklikləri təsvir edin",
+	"communityconfiguration-edit-summary-dialog-save-button": "Dəyişiklikləri yadda saxla",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "İmtina",
+	"communityconfiguration-edit-summary-dialog-label": "Dəyişikliklərin izahı",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Dəyişiklikləriniz}} yadda saxlandı",
+	"communityconfiguration-editor-client-data-submission-error": "{{GENDER:$1|Dəyişikliklərinizi}} yadda saxlayarkən xəta baş verdi. Zəhmət olmasa birazdan yenidən cəhd edin.",
+	"communityconfiguration-editor-message-dismiss-button-label": "Bağla",
+	"communityconfiguration-page-title-control-no-results": "Heç bir nəticə tapılmadı."
+}
