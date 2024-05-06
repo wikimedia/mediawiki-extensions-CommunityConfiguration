@@ -91,6 +91,15 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 			$this->getParentTitle()
 		) );
 
+		$helpPage = $this->provider->getOptionValue( 'helpPage' );
+		$helpURL = $this->provider->getOptionValue( 'helpURL' );
+
+		if ( $helpPage ) {
+			$out->addHelpLink( $helpPage );
+		} elseif ( $helpURL ) {
+			$out->addHelpLink( $helpURL, true );
+		}
+
 		$config = $this->provider->loadValidConfigurationUncached();
 		if ( !$config->isOK() ) {
 			$this->displayValidationError( $config );
