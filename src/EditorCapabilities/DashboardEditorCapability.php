@@ -1,9 +1,10 @@
 <?php
 
-namespace MediaWiki\Extension\CommunityConfiguration\Specials;
+namespace MediaWiki\Extension\CommunityConfiguration\EditorCapabilities;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
+use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
@@ -40,7 +41,7 @@ class DashboardEditorCapability extends AbstractEditorCapability {
 		$availableProviders = [];
 		foreach ( $this->providerFactory->getSupportedKeys() as $providerName ) {
 			$provider = $this->providerFactory->newProvider( $providerName );
-			if ( $provider->getOptionValue( 'skipDashboardListing' ) ) {
+			if ( $provider->getOptionValue( IConfigurationProvider::OPTION_SKIP_DASHBOARD_LISTING ) ) {
 				continue;
 			}
 			$lowerCaseProviderName = strtolower( $providerName );

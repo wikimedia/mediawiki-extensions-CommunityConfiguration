@@ -55,10 +55,10 @@ class SpecialCommunityConfigurationTest extends SpecialPageTestBase {
 	}
 
 	protected function newSpecialPage(): SpecialCommunityConfiguration {
-		$coreServices = $this->getServiceContainer();
+		$ccServices = CommunityConfigurationServices::wrap( $this->getServiceContainer() );
 		return new SpecialCommunityConfiguration(
-			$coreServices->getObjectFactory(),
-			CommunityConfigurationServices::wrap( $coreServices )->getConfigurationProviderFactory()
+			$ccServices->getEditorCapabilityFactory(),
+			$ccServices->getConfigurationProviderFactory()
 		);
 	}
 

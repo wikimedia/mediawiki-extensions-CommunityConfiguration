@@ -37,9 +37,9 @@ abstract class AbstractProvider implements IConfigurationProvider {
 		IValidator $validator
 	) {
 		$this->providerId = $providerId;
+		$this->options = $options;
 		$this->store = $store;
 		$this->validator = $validator;
-		$this->options = $options;
 		$this->setLogger( new NullLogger() );
 	}
 

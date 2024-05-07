@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\CommunityConfiguration\Specials;
+namespace MediaWiki\Extension\CommunityConfiguration\EditorCapabilities;
 
 use LogicException;
 use MediaWiki\Context\IContextSource;
@@ -14,15 +14,6 @@ use MediaWiki\Title\Title;
 use StatusValue;
 
 class GenericFormEditorCapability extends AbstractEditorCapability {
-
-	public const SPEC = [
-		'class' => self::class,
-		'services' => [
-			'CommunityConfiguration.ProviderFactory',
-			'LinkRenderer',
-			'FormatterFactory',
-		]
-	];
 
 	private ConfigurationProviderFactory $providerFactory;
 	private LinkRenderer $linkRenderer;

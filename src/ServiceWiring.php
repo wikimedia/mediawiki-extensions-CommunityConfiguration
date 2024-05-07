@@ -3,6 +3,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\CommunityConfiguration\Access\WikiPageConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
+use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Loader;
@@ -13,6 +14,20 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 return [
+	'CommunityConfiguration.EditorCapabilityFactory' => static function ( MediaWikiServices $services ) {
+		return new EditorCapabilityFactory(
+			new ServiceOptions(
+				EditorCapabilityFactory::CONSTRUCTOR_OPTIONS,
+				new HashConfig( [
+					'CommunityConfigurationEditorCapabilities' => Utils::getMergedAttribute(
+						$services->getMainConfig(),
+						'CommunityConfigurationEditorCapabilities'
+					)
+				] )
+			),
+			$services->getObjectFactory()
+		);
+	},
 	'CommunityConfiguration.ProviderFactory' => static function ( MediaWikiServices $services ) {
 		$ccServices = CommunityConfigurationServices::wrap( $services );
 		return new ConfigurationProviderFactory(

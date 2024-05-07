@@ -35,6 +35,9 @@ use StatusValue;
  */
 interface IConfigurationProvider extends LoggerAwareInterface {
 
+	public const OPTION_SKIP_DASHBOARD_LISTING = 'skipDashboardListing';
+	public const OPTION_EDITOR_CAPABILITY = 'editorCapability';
+
 	/**
 	 * Get a provider's ID (key under which it is defined)
 	 *
