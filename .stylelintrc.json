@@ -4,6 +4,6 @@
 		"stylelint-config-recommended-vue"
 	],
 	"rules": {
-		"selector-class-pattern": "^(ext-communityConfiguration-)"
+		"selector-class-pattern": "^(ext-communityConfiguration-|client-nojs|client-js)"
 	}
 }

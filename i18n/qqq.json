@@ -37,5 +37,7 @@
 	"communityconfiguration-editor-client-success-message": "The message is displayed when the configuration form has been successfully saved.\n\nParameters:\n* $1 - gender",
 	"communityconfiguration-editor-client-data-submission-error": "The message is displayed when an error occurs while saving changes to the configuration form. \\n\\nParameters:\\n* $1 - gender\"",
 	"communityconfiguration-editor-message-dismiss-button-label": "Label text for the close icon in a success/error message.",
-	"communityconfiguration-page-title-control-no-results": "Descriptive text when the page title control does not find results matching the users input"
+	"communityconfiguration-page-title-control-no-results": "Descriptive text when the page title control does not find results matching the users input",
+	"communityconfiguration-editor-loading-info-text": "Text shown while the Javascript editor form is loading in a Community configuration provider page",
+	"communityconfiguration-editor-nojs-fallback-text": "Text shown if the user browser does not have Javascript support"
 }

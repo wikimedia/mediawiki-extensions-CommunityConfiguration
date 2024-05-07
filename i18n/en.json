@@ -34,5 +34,7 @@
 	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Your}} changes were saved",
 	"communityconfiguration-editor-client-data-submission-error": "Something went wrong while saving {{GENDER:$1|your}} changes. Please try again later.",
 	"communityconfiguration-editor-message-dismiss-button-label": "Close",
-	"communityconfiguration-page-title-control-no-results": "No results found."
+	"communityconfiguration-page-title-control-no-results": "No results found.",
+	"communityconfiguration-editor-loading-info-text": "The configuration editor is loading",
+	"communityconfiguration-editor-nojs-fallback-text": "The configuration editor requires JavaScript. Please enable JavaScript to be able to use it."
 }
