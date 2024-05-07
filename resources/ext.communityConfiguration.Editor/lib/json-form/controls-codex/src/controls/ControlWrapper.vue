@@ -1,16 +1,14 @@
 <template>
-	<div :id="name" class="ext-communityConfiguration-ControlWrapper">
-		<cdx-field :is-fieldset="isFieldset">
-			<slot :control-label="( controlLabel && controlLabel.exists() ) ? controlLabel.text() : ''">
-			</slot>
-			<template v-if="label && label.exists()" #label>
-				{{ label.text() }}
-			</template>
-			<template v-if="helpText && helpText.exists()" #help-text>
-				{{ helpText.text() }}
-			</template>
-		</cdx-field>
-	</div>
+	<cdx-field :id="name" :is-fieldset="isFieldset">
+		<slot :control-label="( controlLabel && controlLabel.exists() ) ? controlLabel.text() : ''">
+		</slot>
+		<template v-if="label && label.exists()" #label>
+			{{ label.text() }}
+		</template>
+		<template v-if="helpText && helpText.exists()" #help-text>
+			{{ helpText.text() }}
+		</template>
+	</cdx-field>
 </template>
 
 <script>
@@ -49,11 +47,3 @@ module.exports = exports = {
 	}
 };
 </script>
-
-<style lang="less">
-@import 'mediawiki.skin.variables.less';
-
-.ext-communityConfiguration-ControlWrapper {
-	margin-top: @spacing-50;
-}
-</style>

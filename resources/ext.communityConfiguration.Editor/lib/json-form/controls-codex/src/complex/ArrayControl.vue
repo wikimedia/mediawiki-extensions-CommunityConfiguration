@@ -1,17 +1,17 @@
 <template>
-	<div>
-		<!-- REVIEW: maybe apply same pattern than in ObjectControl and only
-		wrap the fields in an cdx-field when a label is informed -->
-		<cdx-field :is-fieldset="true">
-			<div v-for="( element, index ) in data" :key="`${control.uischema.name}-${index}`">
-				<dispatch-renderer :schema="control.schema" :uischema="indexedChildUISchema( index )">
-				</dispatch-renderer>
-			</div>
-			<template v-if="control.uischema.label && control.uischema.label.exists()" #label>
-				{{ control.uischema.label.text() }}
-			</template>
-		</cdx-field>
-	</div>
+	<!-- REVIEW: maybe apply same pattern than in ObjectControl and only
+	wrap the fields in an cdx-field when a label is informed -->
+	<cdx-field :is-fieldset="true">
+		<dispatch-renderer
+			v-for="( element, index ) in data"
+			:key="`${control.uischema.name}-${index}`"
+			:schema="control.schema"
+			:uischema="indexedChildUISchema( index )"
+		></dispatch-renderer>
+		<template v-if="control.uischema.label && control.uischema.label.exists()" #label>
+			{{ control.uischema.label.text() }}
+		</template>
+	</cdx-field>
 </template>
 
 <script>

@@ -1,26 +1,25 @@
 <template>
-	<div>
-		<cdx-field
-			v-if="control.uischema.label && control.uischema.label.exists()"
-			:is-fieldset="true"
-		>
-			<div v-for="( element, index ) in detailUiSchema.elements" :key="`${element.name}-${index}`">
-				<dispatch-renderer :schema="schema" :uischema="element">
-				</dispatch-renderer>
-			</div>
-			<template #label>
-				{{ control.uischema.label.text() }}
-			</template>
-		</cdx-field>
-		<div
+	<cdx-field
+		v-if="control.uischema.label && control.uischema.label.exists()"
+		:is-fieldset="true"
+	>
+		<dispatch-renderer
 			v-for="( element, index ) in detailUiSchema.elements"
-			v-else
 			:key="`${element.name}-${index}`"
-		>
-			<dispatch-renderer :schema="schema" :uischema="element">
-			</dispatch-renderer>
-		</div>
-	</div>
+			:schema="schema"
+			:uischema="element"
+		></dispatch-renderer>
+		<template #label>
+			{{ control.uischema.label.text() }}
+		</template>
+	</cdx-field>
+	<dispatch-renderer
+		v-for="( element, index ) in detailUiSchema.elements"
+		v-else
+		:key="`${element.name}-${index}`"
+		:schema="schema"
+		:uischema="element"
+	></dispatch-renderer>
 </template>
 
 <script>
