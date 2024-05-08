@@ -134,7 +134,40 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 				$this->msg( $infoTextKey )->parseAsBlock()
 			) );
 		}
+		$out->addModuleStyles( [ 'ext.communityConfiguration.Editor.styles' ] );
 		$out->addModules( [ 'ext.communityConfiguration.Editor' ] );
+
+		$out->addHTML( Html::rawElement(
+			'div',
+			[ 'class' => 'ext-communityConfiguration-LoadingBar' ],
+			implode( "\n", [
+				Html::rawElement(
+					'p',
+					[],
+					$this->msg( 'communityconfiguration-editor-loading-info-text' )
+				),
+				Html::rawElement(
+					'div',
+					[],
+					Html::rawElement(
+						'div',
+						[
+							'class' => 'cdx-progress-bar',
+							'role' => 'progressbar'
+						],
+						Html::rawElement(
+							'div',
+							[ 'class' => 'cdx-progress-bar__bar' ]
+						)
+					)
+				)
+			] )
+		) );
+		$out->addHTML( Html::rawElement(
+			'p',
+			[ 'class' => 'ext-communityConfiguration-NoJSFallback' ],
+			$this->msg( 'communityconfiguration-editor-nojs-fallback-text' )
+		) );
 		$out->addHTML( Html::element( 'div', [ 'id' => 'ext-communityConfiguration-app-root' ] ) );
 	}
 }

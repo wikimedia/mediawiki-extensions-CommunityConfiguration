@@ -116,6 +116,11 @@
 				"ext.communityConfiguration.Dashboard/Features.less"
 			]
 		},
+		"ext.communityConfiguration.Editor.styles": {
+			"styles": [
+				"ext.communityConfiguration.Editor/styles/bootstrap.less"
+			]
+		},
 		"ext.communityConfiguration.Editor": {
 			"packageFiles": [
 				"ext.communityConfiguration.Editor/app/init.js",

@@ -63,7 +63,14 @@
 	};
 
 	getServerData().then(
-		( serverData ) => createApp( serverData ),
+		( serverData ) => {
+			// Hide loading animation
+			document.getElementsByClassName( 'ext-communityConfiguration-LoadingBar' )
+				.item( 0 )
+				.remove();
+
+			createApp( serverData );
+		},
 		// eslint-disable-next-line no-console
 		( err ) => console.error( err )
 	);
