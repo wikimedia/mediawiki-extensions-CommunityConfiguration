@@ -36,5 +36,7 @@
 	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|השינויים}} שלך נשמרו",
 	"communityconfiguration-editor-client-data-submission-error": "משהו השתבש במהלך שמירת השינויים {{GENDER:$1|שלך}}. נא לנסות שוב מאוחר יותר.",
 	"communityconfiguration-editor-message-dismiss-button-label": "סגירה",
-	"communityconfiguration-page-title-control-no-results": "לא נמצאו תוצאות."
+	"communityconfiguration-page-title-control-no-results": "לא נמצאו תוצאות.",
+	"communityconfiguration-editor-loading-info-text": "עורך התצורה נטען",
+	"communityconfiguration-editor-nojs-fallback-text": "עורך התצורה דורש JavaScript. נא להפעיל JavaScript כדי שיהיה אפשר להשתמש בו."
 }

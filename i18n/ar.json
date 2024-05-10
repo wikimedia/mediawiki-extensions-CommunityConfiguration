@@ -36,5 +36,7 @@
 	"communityconfiguration-editor-client-success-message": "تمّ حفظ {{GENDER:$1|تغييراتكَ|تغييراتكِ}}",
 	"communityconfiguration-editor-client-data-submission-error": "حدث خطأ ما أثناء حفظ {{GENDER:$1|تغييراتك}}. الرجاء معاودة المحاولة في وقت لاحق.",
 	"communityconfiguration-editor-message-dismiss-button-label": "إغلاق",
-	"communityconfiguration-page-title-control-no-results": "لم يتم العثور على نتائج."
+	"communityconfiguration-page-title-control-no-results": "لم يتم العثور على نتائج.",
+	"communityconfiguration-editor-loading-info-text": "جارٍ تحميل محرر الإعدادات",
+	"communityconfiguration-editor-nojs-fallback-text": "يتطلب محرر الإعدادات جافا سكريبت. الرجاء تفعيل جافا سكريبت لاستخدامه."
 }

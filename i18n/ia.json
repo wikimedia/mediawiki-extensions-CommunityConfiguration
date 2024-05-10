@@ -36,5 +36,7 @@
 	"communityconfiguration-editor-client-success-message": "Le modificationes ha essite salveguardate.{{GENDER:$1|}}",
 	"communityconfiguration-editor-client-data-submission-error": "Un error ha occurrite durante le salveguarda del modificationes. Per favor tenta lo de novo plus tarde.{{GENDER:$1|}}",
 	"communityconfiguration-editor-message-dismiss-button-label": "Clauder",
-	"communityconfiguration-page-title-control-no-results": "Nulle resultato trovate."
+	"communityconfiguration-page-title-control-no-results": "Nulle resultato trovate.",
+	"communityconfiguration-editor-loading-info-text": "Le editor de configuration se carga",
+	"communityconfiguration-editor-nojs-fallback-text": "Le editor de configuration require JavaScript. Per favor activa JavaScript pro poter usar lo."
 }
