@@ -27,6 +27,13 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	 * 		Configuration options for the provider, may be structured as follows:
 	 * 		- 'skipDashboardListing' (bool, optional): Indicates whether this provider
 	 * 			should be skipped on the dashboard.
+	 * 		- 'helpPage' (string, optional): Title of the help page of the feature on mediawiki.org.
+	 * 			e.g., Help:Growth/Mentorship'
+	 * 		- 'helpURL' (string, optional): Full URL to a help resource.
+	 * 			'helpURL' should be used if the help content is on a specific section of a page or is an external help
+	 * 			resource, e.g., 'https://www.mediawiki.org/wiki/Special:MyLanguage/Page#Section'. 'helpURL' should be a
+	 * 			full URL pointing to that section with an anchor.
+	 * 		- At most one of helpURL and helpPage should be provided, not both.
 	 * @param IConfigurationStore $store The store used by the provider.
 	 * @param IValidator $validator The validator used by the provider.
 	 */
