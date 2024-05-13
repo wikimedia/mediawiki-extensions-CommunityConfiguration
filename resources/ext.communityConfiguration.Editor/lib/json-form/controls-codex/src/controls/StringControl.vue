@@ -3,6 +3,7 @@
 		<cdx-text-input
 			v-bind="control.otherAttrs"
 			v-model="control.modelValue"
+			:placeholder="control.uischema.placeholder"
 			@update:model-value="onChange"
 		>
 		</cdx-text-input>

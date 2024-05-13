@@ -4,6 +4,7 @@
 			v-bind="control.otherAttrs"
 			v-model="control.modelValue"
 			input-type="number"
+			:placeholder="control.uischema.placeholder"
 			@update:model-value="onChange"
 		>
 		</cdx-text-input>

@@ -27,8 +27,10 @@ const TEST_DATA = [
 		expectedSubControlKeys: [
 			'testenvironment-someprovider-exampleobject-foo-label',
 			'testenvironment-someprovider-exampleobject-foo-help-text',
+			'testenvironment-someprovider-exampleobject-foo-placeholder',
 			'testenvironment-someprovider-exampleobject-bar-label',
-			'testenvironment-someprovider-exampleobject-bar-help-text'
+			'testenvironment-someprovider-exampleobject-bar-help-text',
+			'testenvironment-someprovider-exampleobject-bar-placeholder'
 		]
 	},
 	{
@@ -67,8 +69,10 @@ const TEST_DATA = [
 		expectedSubControlKeys: [
 			'testenvironment-someprovider-examplearray-foo-label',
 			'testenvironment-someprovider-examplearray-foo-help-text',
+			'testenvironment-someprovider-examplearray-foo-placeholder',
 			'testenvironment-someprovider-examplearray-bar-label',
-			'testenvironment-someprovider-examplearray-bar-help-text'
+			'testenvironment-someprovider-examplearray-bar-help-text',
+			'testenvironment-someprovider-examplearray-bar-placeholder'
 		]
 	},
 	{
@@ -84,7 +88,8 @@ const TEST_DATA = [
 		config: {},
 		expected: [
 			'testenvironment-someprovider-basicstringinput-label',
-			'testenvironment-someprovider-basicstringinput-help-text'
+			'testenvironment-someprovider-basicstringinput-help-text',
+			'testenvironment-someprovider-basicstringinput-placeholder'
 		],
 		expectedSubControlKeys: []
 	},
@@ -101,7 +106,8 @@ const TEST_DATA = [
 		config: {},
 		expected: [
 			'testenvironment-someprovider-basicnumberinput-label',
-			'testenvironment-someprovider-basicnumberinput-help-text'
+			'testenvironment-someprovider-basicnumberinput-help-text',
+			'testenvironment-someprovider-basicnumberinput-placeholder'
 		],
 		expectedSubControlKeys: []
 	},
@@ -118,7 +124,8 @@ const TEST_DATA = [
 		config: {},
 		expected: [
 			'testenvironment-someprovider-basicintegerinput-label',
-			'testenvironment-someprovider-basicintegerinput-help-text'
+			'testenvironment-someprovider-basicintegerinput-help-text',
+			'testenvironment-someprovider-basicintegerinput-placeholder'
 		],
 		expectedSubControlKeys: []
 	},

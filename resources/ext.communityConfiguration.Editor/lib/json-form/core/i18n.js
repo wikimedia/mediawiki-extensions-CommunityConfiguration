@@ -29,30 +29,36 @@ function getMessageOrNull( key ) {
 function getStringControlMessages( prefix, propName, asMessageObject ) {
 	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
 	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
+	const placeholderKey = mapPropToTextKey( prefix, propName, 'placeholder' );
 	if ( asMessageObject ) {
 		return {
 			label: getMessageOrNull( labelKey ),
-			helpText: getMessageOrNull( helpTextLabelKey )
+			helpText: getMessageOrNull( helpTextLabelKey ),
+			placeholder: getMessageOrNull( placeholderKey )
 		};
 	}
 	return [
 		labelKey,
-		helpTextLabelKey
+		helpTextLabelKey,
+		placeholderKey
 	];
 }
 
 function getNumberControlMessages( prefix, propName, asMessageObject ) {
 	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
 	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
+	const placeholderKey = mapPropToTextKey( prefix, propName, 'placeholder' );
 	if ( asMessageObject ) {
 		return {
 			label: getMessageOrNull( labelKey ),
-			helpText: getMessageOrNull( helpTextLabelKey )
+			helpText: getMessageOrNull( helpTextLabelKey ),
+			placeholder: getMessageOrNull( placeholderKey )
 		};
 	}
 	return [
 		labelKey,
-		helpTextLabelKey
+		helpTextLabelKey,
+		placeholderKey
 	];
 }
 
