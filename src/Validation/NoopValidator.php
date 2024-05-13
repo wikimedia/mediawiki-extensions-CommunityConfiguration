@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
+use Iterator;
 use LogicException;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
 
@@ -46,6 +47,14 @@ class NoopValidator implements IValidator {
 	 * @return never
 	 */
 	public function getSchemaVersion(): ?string {
+		throw new LogicException( __METHOD__ . ' is not supported' );
+	}
+
+	/**
+	 * @inheritDoc
+	 * @return never
+	 */
+	public function getSchemaIterator(): Iterator {
 		throw new LogicException( __METHOD__ . ' is not supported' );
 	}
 }

@@ -3,9 +3,11 @@
 namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
 use InvalidArgumentException;
+use Iterator;
 use JsonSchema\Validator;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
+use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaIterator;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
 
@@ -16,6 +18,7 @@ class JsonSchemaValidator implements IValidator {
 
 	private JsonSchemaReader $jsonSchema;
 	private JsonSchemaBuilder $jsonSchemaBuilder;
+	private Iterator $jsonSchemaIterator;
 
 	/**
 	 * @param JsonSchema|string $classNameOrClassInstance JsonSchema derived class name (instance only allowed in tests)
@@ -38,6 +41,7 @@ class JsonSchemaValidator implements IValidator {
 
 		$this->jsonSchema = new JsonSchemaReader( $classNameOrClassInstance );
 		$this->jsonSchemaBuilder = new JsonSchemaBuilder( $this->jsonSchema );
+		$this->jsonSchemaIterator = new JsonSchemaIterator( $this->jsonSchema );
 	}
 
 	/**
@@ -110,5 +114,9 @@ class JsonSchemaValidator implements IValidator {
 	 */
 	public function getSchemaVersion(): ?string {
 		return $this->jsonSchema->getVersion();
+	}
+
+	public function getSchemaIterator(): Iterator {
+		return $this->jsonSchemaIterator;
 	}
 }

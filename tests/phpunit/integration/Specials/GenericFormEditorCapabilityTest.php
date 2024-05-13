@@ -31,6 +31,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 			'LinkRenderer',
 			'FormatterFactory',
 			'CommunityConfiguration.HookRunner',
+			'CommunityConfiguration.MessagesProcessor',
 		]
 	];
 
@@ -86,6 +87,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertSame( [
 			'i18nPrefix' => 'communityconfiguration-' . strtolower( self::PROVIDER_ID ),
+			'i18nMessages' => [],
 			'feedbackURL' => 'https://bug-reporting.tool',
 			'canEdit' => false,
 		], $jsConfigVars['config'] );

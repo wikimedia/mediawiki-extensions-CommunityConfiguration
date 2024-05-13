@@ -261,38 +261,6 @@ function doGetControlTextKeys( propName, schema, data, config ) {
 	throw new Error( `Prop ${ propName }: Unsupported schema type: ${ JSON.stringify( schema ) }` );
 }
 
-/**
- * Generates all message keys that may be used in the form for the
- * given schema.
- *
- * @param {Object} schema An object representing a JSON schema
- * @param {Object} data The configuration data for the given schema
- * @param {Object} config The editor form configuration
- * @return {Array<string>} An array of message keys
- */
-function getControlsTextKeys( schema, data = {}, config = {} ) {
-	let keys = [];
-	for ( const prop in schema.properties ) {
-		const propData = getDataForType( schema.properties[ prop ].type, data, prop );
-		const propKeys = doGetControlTextKeys(
-			prop, schema.properties[ prop ], propData, config
-		);
-		keys = [ ...keys, ...propKeys ];
-	}
-	const uniqueKeys = [ ...new Set( keys ) ];
-	return uniqueKeys;
-}
-
-function getEditorTextKeys( schema, data, config ) {
-	const titleKey = `${config.i18nTextKeyPrefix}-title`;
-	const descKey = `${config.i18nTextKeyPrefix}-description`;
-	return [
-		titleKey,
-		descKey,
-		...getControlsTextKeys( schema, data, config )
-	];
-}
-
 function getControlTextProps( prop, prefix, schema, data ) {
 	if ( schema.type === 'string' && schema.enum === undefined && schema.control === undefined ) {
 		return getStringControlMessages( prefix, prop, true );
@@ -326,8 +294,5 @@ function getControlTextProps( prop, prefix, schema, data ) {
 }
 
 module.exports = exports = {
-	// only for testing purposes
-	getControlsTextKeys,
-	getEditorTextKeys,
 	getControlTextProps
 };

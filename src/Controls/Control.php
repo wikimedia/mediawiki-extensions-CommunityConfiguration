@@ -1,5 +1,6 @@
 <?php
 namespace MediaWiki\Extension\CommunityConfiguration\Controls;
 
-class Control {
+abstract class Control {
+	public const MESSAGES = [];
 }

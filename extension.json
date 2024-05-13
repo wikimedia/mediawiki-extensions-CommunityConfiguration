@@ -84,7 +84,8 @@
 						"CommunityConfiguration.ProviderFactory",
 						"LinkRenderer",
 						"FormatterFactory",
-						"CommunityConfiguration.HookRunner"
+						"CommunityConfiguration.HookRunner",
+						"CommunityConfiguration.MessagesProcessor"
 					]
 				}
 			}
