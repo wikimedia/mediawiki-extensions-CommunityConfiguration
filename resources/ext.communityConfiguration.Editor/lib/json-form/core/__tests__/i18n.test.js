@@ -22,15 +22,12 @@ const TEST_DATA = [
 		config: {},
 		expected: [
 			'testenvironment-someprovider-exampleobject-label',
-			'testenvironment-someprovider-exampleobject-control-label',
 			'testenvironment-someprovider-exampleobject-help-text'
 		],
 		expectedSubControlKeys: [
 			'testenvironment-someprovider-exampleobject-foo-label',
-			'testenvironment-someprovider-exampleobject-foo-control-label',
 			'testenvironment-someprovider-exampleobject-foo-help-text',
 			'testenvironment-someprovider-exampleobject-bar-label',
-			'testenvironment-someprovider-exampleobject-bar-control-label',
 			'testenvironment-someprovider-exampleobject-bar-help-text'
 		]
 	},
@@ -63,17 +60,14 @@ const TEST_DATA = [
 		},
 		expected: [
 			'testenvironment-someprovider-examplearray-label',
-			'testenvironment-someprovider-examplearray-control-label',
 			'testenvironment-someprovider-examplearray-help-text',
 			'testenvironment-someprovider-examplearray-0-label',
 			'testenvironment-someprovider-examplearray-1-label'
 		],
 		expectedSubControlKeys: [
 			'testenvironment-someprovider-examplearray-foo-label',
-			'testenvironment-someprovider-examplearray-foo-control-label',
 			'testenvironment-someprovider-examplearray-foo-help-text',
 			'testenvironment-someprovider-examplearray-bar-label',
-			'testenvironment-someprovider-examplearray-bar-control-label',
 			'testenvironment-someprovider-examplearray-bar-help-text'
 		]
 	},
@@ -90,7 +84,6 @@ const TEST_DATA = [
 		config: {},
 		expected: [
 			'testenvironment-someprovider-basicstringinput-label',
-			'testenvironment-someprovider-basicstringinput-control-label',
 			'testenvironment-someprovider-basicstringinput-help-text'
 		],
 		expectedSubControlKeys: []
@@ -108,7 +101,6 @@ const TEST_DATA = [
 		config: {},
 		expected: [
 			'testenvironment-someprovider-basicnumberinput-label',
-			'testenvironment-someprovider-basicnumberinput-control-label',
 			'testenvironment-someprovider-basicnumberinput-help-text'
 		],
 		expectedSubControlKeys: []
@@ -126,7 +118,6 @@ const TEST_DATA = [
 		config: {},
 		expected: [
 			'testenvironment-someprovider-basicintegerinput-label',
-			'testenvironment-someprovider-basicintegerinput-control-label',
 			'testenvironment-someprovider-basicintegerinput-help-text'
 		],
 		expectedSubControlKeys: []
@@ -163,7 +154,6 @@ const TEST_DATA = [
 		config: {},
 		expected: [
 			'testenvironment-someprovider-stringenum-label',
-			'testenvironment-someprovider-stringenum-control-label',
 			'testenvironment-someprovider-stringenum-help-text',
 			'testenvironment-someprovider-stringenum-option-fire-label',
 			'testenvironment-someprovider-stringenum-option-water-label',
@@ -186,7 +176,6 @@ const TEST_DATA = [
 		config: {},
 		expected: [
 			'testenvironment-someprovider-numberenum-label',
-			'testenvironment-someprovider-numberenum-control-label',
 			'testenvironment-someprovider-numberenum-help-text',
 			'testenvironment-someprovider-numberenum-option-1-label',
 			'testenvironment-someprovider-numberenum-option-7-label',
@@ -216,7 +205,6 @@ const TEST_DATA = [
 		},
 		expected: [
 			'testenvironment-someprovider-pagetitles-label',
-			'testenvironment-someprovider-pagetitles-control-label',
 			'testenvironment-someprovider-pagetitles-help-text'
 		],
 		expectedSubControlKeys: []
@@ -240,7 +228,6 @@ const TEST_DATA = [
 		},
 		expected: [
 			'testenvironment-someprovider-namespaces-label',
-			'testenvironment-someprovider-namespaces-control-label',
 			'testenvironment-someprovider-namespaces-help-text'
 		],
 		expectedSubControlKeys: []

@@ -20,51 +20,212 @@ const getDataForType = ( type, data, prop = null ) => {
 	return result || getFallbackDataForType( type );
 };
 
-function doGetControlTextKeys( propName, schema, data, config ) {
-	let keys = [];
-	keys.push( mapPropToTextKey( config.i18nTextKeyPrefix, propName, 'label' ) );
-	keys.push( mapPropToTextKey( config.i18nTextKeyPrefix, propName, 'control-label' ) );
-	keys.push( mapPropToTextKey( config.i18nTextKeyPrefix, propName, 'help-text' ) );
-	const newConfig = Object.assign( {}, config, {
-		i18nTextKeyPrefix: `${config.i18nTextKeyPrefix}-${propName}`
+function getMessageOrNull( key ) {
+	// eslint-disable-next-line mediawiki/msg-doc
+	const msg = new mw.Message( mw.messages, key );
+	return msg.exists() ? msg : null;
+}
+
+function getStringControlMessages( prefix, propName, asMessageObject ) {
+	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
+	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
+	if ( asMessageObject ) {
+		return {
+			label: getMessageOrNull( labelKey ),
+			helpText: getMessageOrNull( helpTextLabelKey )
+		};
+	}
+	return [
+		labelKey,
+		helpTextLabelKey
+	];
+}
+
+function getNumberControlMessages( prefix, propName, asMessageObject ) {
+	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
+	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
+	if ( asMessageObject ) {
+		return {
+			label: getMessageOrNull( labelKey ),
+			helpText: getMessageOrNull( helpTextLabelKey )
+		};
+	}
+	return [
+		labelKey,
+		helpTextLabelKey
+	];
+}
+
+function getBooleanControlMessages( prefix, propName, asMessageObject ) {
+	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
+	const controlLabelKey = mapPropToTextKey( prefix, propName, 'control-label' );
+	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
+	if ( asMessageObject ) {
+		return {
+			label: getMessageOrNull( labelKey ),
+			controlLabel: getMessageOrNull( controlLabelKey ),
+			helpText: getMessageOrNull( helpTextLabelKey )
+		};
+	}
+	return [
+		labelKey,
+		controlLabelKey,
+		helpTextLabelKey
+	];
+}
+
+function getEnumControlMessages( prefix, propName, enumValues, asMessageObject ) {
+	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
+	const helpTextKey = mapPropToTextKey( prefix, propName, 'help-text' );
+	const enumLabels = enumValues.reduce( ( carry, enumValue ) => {
+		carry[ enumValue ] = mapPropToTextKey( prefix, propName, 'option', enumValue, 'label' );
+		return carry;
+	}, {} );
+	if ( asMessageObject ) {
+		const textProps = {
+			label: getMessageOrNull( labelKey ),
+			helpText: getMessageOrNull( helpTextKey )
+		};
+		Object.assign( textProps, { enumLabels } );
+		return textProps;
+	}
+	return [
+		labelKey,
+		helpTextKey,
+		// eslint-disable-next-line es-x/no-object-values
+		...Object.values( enumLabels )
+	];
+}
+
+function getObjectControlMessages( prefix, propName, objectProperties, data, asMessageObject ) {
+	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
+	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
+
+	if ( asMessageObject ) {
+		return {
+			label: getMessageOrNull( labelKey ),
+			helpText: getMessageOrNull( helpTextLabelKey )
+		};
+	}
+
+	const newConfig = Object.assign( {}, data, {
+		i18nTextKeyPrefix: `${ prefix }-${ propName }`
 	} );
-	if ( schema.type === 'object' ) {
-		for ( const prop in schema.properties ) {
-			const propData = getDataForType( schema.properties[ prop ].type, data, prop );
-			keys = [
-				...keys,
-				...doGetControlTextKeys( prop, schema.properties[ prop ], propData, newConfig )
+	let keys = [
+		labelKey,
+		helpTextLabelKey
+	];
+	for ( const prop in objectProperties ) {
+		const propData = getDataForType( objectProperties[ prop ].type, data, prop );
+		keys = [
+			...keys,
+			...doGetControlTextKeys( prop, objectProperties[ prop ], propData, newConfig )
+		];
+	}
+	return keys;
+}
+
+function getArrayControlMessages( prefix, propName, arrayItems, data, asMessageObject ) {
+	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
+	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
+	if ( !data ) {
+		data = [];
+	}
+	const itemLabels = data.map( ( _, index ) =>
+		mapPropToTextKey( prefix, propName, `${ index }-label` )
+	);
+
+	if ( asMessageObject ) {
+		return {
+			label: getMessageOrNull( labelKey ),
+			helpText: getMessageOrNull( helpTextLabelKey ),
+			labels: itemLabels.map( ( key ) => getMessageOrNull( key ) )
+		};
+	}
+
+	let arrayLabels = [
+		labelKey,
+		helpTextLabelKey,
+		...itemLabels
+	];
+	if ( arrayItems.type === 'object' ) {
+		const newConfig = Object.assign( {}, data, {
+			i18nTextKeyPrefix: `${ prefix }-${ propName }`
+		} );
+		for ( const prop in arrayItems.properties ) {
+			const arrayItemsData = getDataForType(
+				arrayItems.properties[ prop ].type, data, prop
+			);
+			arrayLabels = [
+				...arrayLabels,
+				...doGetControlTextKeys(
+					prop,
+					arrayItems.properties[ prop ],
+					arrayItemsData,
+					newConfig
+				)
 			];
 		}
 	}
-	if ( schema.type === 'array' && !schema.control ) {
-		let arrayLabels = data.map( ( _, index ) =>
-			mapPropToTextKey( config.i18nTextKeyPrefix, propName, `${index}-label` )
-		);
-		if ( schema.items.type === 'object' ) {
-			for ( const prop in schema.items.properties ) {
-				const arrayItemsData = getDataForType(
-					schema.items.properties[ prop ].type, data, prop
-				);
-				arrayLabels = [
-					...arrayLabels,
-					...doGetControlTextKeys(
-						prop,
-						schema.items.properties[ prop ],
-						arrayItemsData,
-						newConfig
-					)
-				];
-			}
-		}
-		keys = [ ...keys, ...arrayLabels ];
+
+	return arrayLabels;
+}
+
+// eslint-disable-next-line jsdoc/require-returns,jsdoc/require-param
+/**
+ * TODO: this knows nothing about the specific control and should ideally not live in this file
+ */
+function getCustomControlMessages( prefix, propName, asMessageObject ) {
+	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
+	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
+	if ( asMessageObject ) {
+		return {
+			label: getMessageOrNull( labelKey ),
+			helpText: getMessageOrNull( helpTextLabelKey )
+		};
+	}
+	return [
+		labelKey,
+		helpTextLabelKey
+	];
+}
+
+function doGetControlTextKeys( propName, schema, data, config ) {
+	if ( schema.type === 'string' && schema.enum === undefined ) {
+		/* eslint-disable-next-line es-x/no-object-values */
+		return Object.values( getStringControlMessages( config.i18nTextKeyPrefix, propName ) );
+	}
+	if ( ( schema.type === 'number' || schema.type === 'integer' ) && schema.enum === undefined ) {
+		/* eslint-disable-next-line es-x/no-object-values */
+		return Object.values( getNumberControlMessages( config.i18nTextKeyPrefix, propName ) );
+	}
+	if ( schema.type === 'boolean' ) {
+		return getBooleanControlMessages( config.i18nTextKeyPrefix, propName );
 	}
 	if ( schema.enum ) {
-		schema.enum.forEach( ( enumValue ) => {
-			keys.push( mapPropToTextKey( config.i18nTextKeyPrefix, propName, 'option', enumValue, 'label' ) );
-		} );
+		return getEnumControlMessages( config.i18nTextKeyPrefix, propName, schema.enum );
 	}
-	return keys;
+	if ( schema.type === 'object' ) {
+		return getObjectControlMessages(
+			config.i18nTextKeyPrefix,
+			propName,
+			schema.properties,
+			data
+		);
+	}
+	if ( schema.type === 'array' && !schema.control ) {
+		return getArrayControlMessages(
+			config.i18nTextKeyPrefix,
+			propName,
+			schema.items,
+			data
+		);
+	}
+	if ( schema.control ) {
+		return getCustomControlMessages( config.i18nTextKeyPrefix, propName );
+	}
+
+	throw new Error( `Prop ${ propName }: Unsupported schema type: ${ JSON.stringify( schema ) }` );
 }
 
 /**
@@ -99,43 +260,29 @@ function getEditorTextKeys( schema, data, config ) {
 }
 
 function getControlTextProps( prop, prefix, schema, data ) {
-	function getControlTextKeyByType( type ) {
-		const textKey = prop.label || mapPropToTextKey( prefix, prop, type );
-		// FIXME should probably use some kind of injection to not break in non-MW
-		// Messages that can be used here:
-		// * communityconfiguration-<provider_name>-<some_field>-label
-		// * communityconfiguration-<provider_name>-<some_field>-control-label
-		const msg = new mw.Message( mw.messages, textKey );
-		return msg.exists() ? msg : null;
+	if ( schema.type === 'string' && schema.enum === undefined ) {
+		return getStringControlMessages( prefix, prop, true );
 	}
-	const textProps = {};
-	const label = getControlTextKeyByType( 'label' );
-	const controlLabel = getControlTextKeyByType( 'control-label' );
-	const helpText = getControlTextKeyByType( 'help-text' );
-	if ( label ) {
-		Object.assign( textProps, { label } );
+	if ( ( schema.type === 'number' || schema.type === 'integer' ) && schema.enum === undefined ) {
+		return getNumberControlMessages( prefix, prop, true );
 	}
-	if ( controlLabel ) {
-		Object.assign( textProps, { controlLabel } );
+	if ( schema.type === 'boolean' ) {
+		return getBooleanControlMessages( prefix, prop, true );
 	}
-	if ( helpText ) {
-		Object.assign( textProps, { helpText } );
-	}
-
-	if ( schema.type === 'array' && data ) {
-		const labels = data.map( ( _, index ) => getControlTextKeyByType( `${index}-label` ) );
-		Object.assign( textProps, { labels } );
-	}
-
 	if ( schema.enum ) {
-		const enumLabels = schema.enum.reduce( ( carry, enumValue ) => {
-			carry[ enumValue ] = mapPropToTextKey( prefix, prop, 'option', enumValue, 'label' );
-			return carry;
-		}, {} );
-		Object.assign( textProps, { enumLabels } );
+		return getEnumControlMessages( prefix, prop, schema.enum, true );
+	}
+	if ( schema.type === 'object' ) {
+		return getObjectControlMessages( prefix, prop, schema.properties, data, true );
+	}
+	if ( schema.type === 'array' && !schema.control ) {
+		return getArrayControlMessages( prefix, prop, schema.items, data, true );
+	}
+	if ( schema.control ) {
+		return getCustomControlMessages( prefix, prop, true );
 	}
 
-	return textProps;
+	throw new Error( `Prop ${prop}: Unsupported schema type: ${JSON.stringify( schema ) }` );
 }
 
 module.exports = exports = {
