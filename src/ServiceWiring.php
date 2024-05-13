@@ -6,7 +6,6 @@ use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
-use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Loader;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\Extension\CommunityConfiguration\Utils;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
@@ -71,13 +70,6 @@ return [
 		);
 		$reader->setLogger( LoggerFactory::getInstance( 'CommunityConfiguration' ) );
 		return $reader;
-	},
-	'CommunityConfiguration.WikiPageStore.Loader' => static function ( MediaWikiServices $services ) {
-		return new Loader(
-			$services->getMainWANObjectCache(),
-			$services->getRevisionLookup(),
-			$services->getTitleFactory()
-		);
 	},
 	'CommunityConfiguration.WikiPageStore.Writer' => static function ( MediaWikiServices $services ) {
 		return new Writer(
