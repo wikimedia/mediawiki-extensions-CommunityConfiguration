@@ -7,5 +7,7 @@
 	"communityconfiguration-invalid-stored-config-error": "Ni bilo mogoče naložiti veljavne konfiguracije",
 	"communityconfiguration-provider-not-found": "Ponudnika $1 ni bilo mogoče najti",
 	"communityconfiguration-unknown-error": "OSNUTEK: Nekaj je šlo kaj narobe. Želite sporočiti težavo v Phabricatorju?",
-	"communityconfigurationeditor": "Urejanje »$1«"
+	"communityconfigurationeditor": "Urejanje »$1«",
+	"communityconfiguration-editor-loading-info-text": "Urejevalnik konfiguracije se nalaga",
+	"communityconfiguration-editor-nojs-fallback-text": "Urejevalnik konfiguracije zahteva JavaScript. Omogočite JavaScript, da ga boste lahko uporabljali."
 }
