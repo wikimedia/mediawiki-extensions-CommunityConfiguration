@@ -5,6 +5,7 @@
 			:initial-input-value="initialValue"
 			:menu-items="menuItems"
 			:menu-config="menuConfig"
+			:placeholder="uischema.placeholder"
 			@input="onInput"
 			@update:selected="onChange"
 		>
@@ -101,7 +102,8 @@ module.exports = exports = {
 			initialValue,
 			menuItems,
 			menuConfig,
-			onInput
+			onInput,
+			uischema: control.uischema
 		};
 	}
 };
