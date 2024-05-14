@@ -39,5 +39,6 @@
 	"communityconfiguration-editor-message-dismiss-button-label": "Label text for the close icon in a success/error message.",
 	"communityconfiguration-page-title-control-no-results": "Descriptive text when the page title control does not find results matching the users input",
 	"communityconfiguration-editor-loading-info-text": "Text shown while the Javascript editor form is loading in a Community configuration provider page",
-	"communityconfiguration-editor-nojs-fallback-text": "Text shown if the user browser does not have Javascript support"
+	"communityconfiguration-editor-nojs-fallback-text": "Text shown if the user browser does not have Javascript support",
+	"communityconfiguration-editor-navigation-tab-viewform": "Label for the tab in the navigation menu that allows users to view the configuration form for a specific provider in community configuration."
 }

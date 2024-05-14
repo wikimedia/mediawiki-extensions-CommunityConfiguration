@@ -97,10 +97,15 @@
 			"services": [
 				"CommunityConfiguration.ProviderFactory"
 			]
+		},
+		"navigation": {
+			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Hooks\\NavigationHooks",
+			"services": [ "CommunityConfiguration.ProviderFactory" ]
 		}
 	},
 	"Hooks": {
-		"JsonValidateSave": "validation"
+		"JsonValidateSave": "validation",
+		"SkinTemplateNavigation::Universal": "navigation"
 	},
 	"MessagesDirs": {
 		"CommunityConfiguration": [
