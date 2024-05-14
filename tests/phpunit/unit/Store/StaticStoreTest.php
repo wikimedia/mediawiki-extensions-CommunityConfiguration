@@ -39,14 +39,4 @@ class StaticStoreTest extends MediaWikiUnitTestCase {
 			new UltimateAuthority( new UserIdentityValue( 1, 'Admin' ) )
 		);
 	}
-
-	public function testNoDoChanges() {
-		$this->expectException( LogicException::class );
-		$this->expectExceptionMessage( 'Static store cannot be edited' );
-
-		( new StaticStore( (object)[] ) )->doStoreConfiguration(
-			(object)[ 'Foo' => 1 ],
-			new UltimateAuthority( new UserIdentityValue( 1, 'Admin' ) )
-		);
-	}
 }

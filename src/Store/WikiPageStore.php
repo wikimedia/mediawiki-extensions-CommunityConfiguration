@@ -83,24 +83,6 @@ class WikiPageStore implements IConfigurationStore {
 	/**
 	 * @inheritDoc
 	 */
-	public function doStoreConfiguration(
-		$config,
-		Authority $authority,
-		string $summary = ''
-	): StatusValue {
-		$status = $this->writer->save(
-			$this->getConfigurationTitle(),
-			$config,
-			$authority,
-			$summary
-		)->getStatusValue();
-		$this->invalidate();
-		return $status;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
 	public function storeConfiguration(
 		$config,
 		Authority $authority,
@@ -111,6 +93,13 @@ class WikiPageStore implements IConfigurationStore {
 			return Status::wrap( $permissionStatus );
 		}
 
-		return $this->doStoreConfiguration( $config, $authority, $summary );
+		$status = $this->writer->save(
+			$this->getConfigurationTitle(),
+			$config,
+			$authority,
+			$summary
+		)->getStatusValue();
+		$this->invalidate();
+		return $status;
 	}
 }

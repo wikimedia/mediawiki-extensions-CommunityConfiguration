@@ -75,20 +75,4 @@ interface IConfigurationStore {
 		Authority $authority,
 		string $summary = ''
 	);
-
-	/**
-	 * Store the configuration
-	 *
-	 * The method ignores any permission checks; they need to be checked by the caller.
-	 *
-	 * @param mixed $config The configuration value to store. Can be any JSON serializable type.
-	 * @param Authority $authority
-	 * @param string $summary Short (human-written) summary of the change
-	 * @return StatusValue
-	 */
-	public function doStoreConfiguration(
-		$config,
-		Authority $authority,
-		string $summary = ''
-	): StatusValue;
 }
