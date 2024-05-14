@@ -5,15 +5,19 @@ namespace MediaWiki\Extension\CommunityConfiguration\Hooks;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore;
 use MediaWiki\Hook\SkinTemplateNavigation__UniversalHook;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\MalformedTitleException;
-use MediaWiki\Title\Title;
 use SkinTemplate;
 
 class NavigationHooks implements SkinTemplateNavigation__UniversalHook {
 	private ConfigurationProviderFactory $providerFactory;
+	private SpecialPageFactory $specialPageFactory;
 
-	public function __construct( ConfigurationProviderFactory $providerFactory ) {
+	public function __construct(
+		ConfigurationProviderFactory $providerFactory, SpecialPageFactory $specialPageFactory ) {
 		$this->providerFactory = $providerFactory;
+		$this->specialPageFactory = $specialPageFactory;
 	}
 
 	/**
@@ -27,47 +31,43 @@ class NavigationHooks implements SkinTemplateNavigation__UniversalHook {
 	 */
 	public function onSkinTemplateNavigation__Universal( $sktemplate, &$links ): void {
 		$title = $sktemplate->getTitle();
-		$relevantTitle = $sktemplate->getRelevantTitle();
-		if ( $title === null || $relevantTitle === null ) {
-			return;
-		}
-		$dbKeyParts = explode( '/', $title->getDBkey() );
-		$providerName = $dbKeyParts[1] ?? null;
-
-		if ( $title->getContentModel() === CONTENT_MODEL_JSON && $title->getNamespace() === NS_MEDIAWIKI ) {
-			$subpageText = $title->getSubpageText();
+		if ( $title->getContentModel() === CONTENT_MODEL_JSON ) {
 			foreach ( $this->providerFactory->getSupportedKeys() as $providerKey ) {
 				$provider = $this->providerFactory->newProvider( $providerKey );
 				$store = $provider->getStore();
-				if ( $store instanceof WikiPageStore && $store->getConfigurationTitle()->getDBkey() === $subpageText ) {
-					$specialPageTitle = Title::makeTitleSafe(
-						NS_SPECIAL, "CommunityConfiguration/$providerKey" );
-					if ( $specialPageTitle ) {
-						$configurationUrl = $specialPageTitle->getFullURL();
-						$links['views']['viewform'] = [
-							'class' => '',
-							'href' => $configurationUrl,
-							'text' => $sktemplate->msg(
-								'communityconfiguration-editor-navigation-tab-viewform' )->text()
-						];
-						break;
-					}
+				if ( $store instanceof WikiPageStore &&
+					$store->getConfigurationTitle()->equals( $title ) ) {
+					$specialPageTitle = SpecialPage::getTitleFor( 'CommunityConfiguration', $providerKey );
+					$links['views']['viewform'] = [
+						'class' => '',
+						'href' => $specialPageTitle->getLocalURL(),
+						'text' => $sktemplate->msg(
+							'communityconfiguration-editor-navigation-tab-viewform' )->text()
+					];
+					break;
 				}
 			}
 		}
-		if ( $providerName && in_array( $providerName, $this->providerFactory->getSupportedKeys() ) ) {
-			unset( $links['associated-pages']['mediawiki'] );
-			unset( $links['associated-pages']['mediawiki_talk'] );
-			// Remove View link as it points to the JSON config page (text: "Read")
+
+		[ $specialPageCanonicalName, $providerId ] = $this->specialPageFactory->resolveAlias( $title->getText() );
+		if ( $specialPageCanonicalName === 'CommunityConfiguration'
+			&& $providerId && in_array(
+				$providerId, $this->providerFactory->getSupportedKeys() ) && $title->getNamespace() === NS_SPECIAL ) {
+			// Unset Message and Discussion
+			$links['associated-pages'] = [];
+			// Unset Actions 'Move' and 'Delete'
+			unset( $links['actions']['delete'] );
+			unset( $links['actions']['move'] );
+			unset( $links['actions']['protect'] );
+			// Unset Views 'Edit' and 'Read'
 			unset( $links['views']['view'] );
-			// Remove View link as it points to the JSON config page (text: "View source")
 			unset( $links['views']['viewsource'] );
-			$links['views']['edit'] = [
+			unset( $links['views']['edit'] );
+			$links['views']['viewform'] = [
 				'class' => 'selected',
-				'href' => $sktemplate->getTitle()->getLocalURL(),
-				'text' => $sktemplate->msg( 'communityconfiguration-editor-navigation-tab-viewform' )->text()
+				'href'  => $title->getLocalURL(),
+				'text'  => $sktemplate->msg( 'communityconfiguration-editor-navigation-tab-viewform' )->text()
 			];
-			ksort( $links['views'] );
 		}
 	}
 }
