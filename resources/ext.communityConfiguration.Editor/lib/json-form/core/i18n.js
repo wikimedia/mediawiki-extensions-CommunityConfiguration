@@ -1,3 +1,5 @@
+const { schemaControlIs } = require( './testers.js' );
+
 /**
  * Build a message key from N strings, hyphen separated
  * and lowercased.
@@ -177,11 +179,7 @@ function getArrayControlMessages( prefix, propName, arrayItems, data, asMessageO
 	return arrayLabels;
 }
 
-// eslint-disable-next-line jsdoc/require-returns,jsdoc/require-param
-/**
- * TODO: this knows nothing about the specific control and should ideally not live in this file
- */
-function getCustomControlMessages( prefix, propName, asMessageObject ) {
+function getCustomMultiSelectControlMessages( prefix, propName, asMessageObject ) {
 	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
 	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
 	if ( asMessageObject ) {
@@ -196,8 +194,25 @@ function getCustomControlMessages( prefix, propName, asMessageObject ) {
 	];
 }
 
+function getCustomPageTitleControlMessages( prefix, propName, asMessageObject ) {
+	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
+	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
+	const noResultsKey = 'communityconfiguration-page-title-control-no-results';
+	if ( asMessageObject ) {
+		return {
+			label: getMessageOrNull( labelKey ),
+			helpText: getMessageOrNull( helpTextLabelKey )
+		};
+	}
+	return [
+		labelKey,
+		helpTextLabelKey,
+		noResultsKey
+	];
+}
+
 function doGetControlTextKeys( propName, schema, data, config ) {
-	if ( schema.type === 'string' && schema.enum === undefined ) {
+	if ( schema.type === 'string' && schema.enum === undefined && schema.control === undefined ) {
 		/* eslint-disable-next-line es-x/no-object-values */
 		return Object.values( getStringControlMessages( config.i18nTextKeyPrefix, propName ) );
 	}
@@ -227,8 +242,14 @@ function doGetControlTextKeys( propName, schema, data, config ) {
 			data
 		);
 	}
-	if ( schema.control ) {
-		return getCustomControlMessages( config.i18nTextKeyPrefix, propName );
+	if ( schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl' )( null, schema ) ) {
+		return getCustomPageTitleControlMessages( config.i18nTextKeyPrefix, propName );
+	}
+	if (
+		schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitlesControl' )( null, schema ) ||
+		schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\NamespacesControl' )( null, schema )
+	) {
+		return getCustomMultiSelectControlMessages( config.i18nTextKeyPrefix, propName );
 	}
 
 	throw new Error( `Prop ${ propName }: Unsupported schema type: ${ JSON.stringify( schema ) }` );
@@ -266,7 +287,7 @@ function getEditorTextKeys( schema, data, config ) {
 }
 
 function getControlTextProps( prop, prefix, schema, data ) {
-	if ( schema.type === 'string' && schema.enum === undefined ) {
+	if ( schema.type === 'string' && schema.enum === undefined && schema.control === undefined ) {
 		return getStringControlMessages( prefix, prop, true );
 	}
 	if ( ( schema.type === 'number' || schema.type === 'integer' ) && schema.enum === undefined ) {
@@ -284,8 +305,14 @@ function getControlTextProps( prop, prefix, schema, data ) {
 	if ( schema.type === 'array' && !schema.control ) {
 		return getArrayControlMessages( prefix, prop, schema.items, data, true );
 	}
-	if ( schema.control ) {
-		return getCustomControlMessages( prefix, prop, true );
+	if ( schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl' )( null, schema ) ) {
+		return getCustomPageTitleControlMessages( prefix, prop, true );
+	}
+	if (
+		schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitlesControl' )( null, schema ) ||
+		schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\NamespacesControl' )( null, schema )
+	) {
+		return getCustomMultiSelectControlMessages( prefix, prop, true );
 	}
 
 	throw new Error( `Prop ${prop}: Unsupported schema type: ${JSON.stringify( schema ) }` );
