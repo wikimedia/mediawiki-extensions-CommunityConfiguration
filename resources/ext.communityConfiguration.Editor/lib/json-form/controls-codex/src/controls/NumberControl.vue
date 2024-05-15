@@ -4,6 +4,8 @@
 			v-bind="control.otherAttrs"
 			v-model="control.modelValue"
 			input-type="number"
+			:min="control.schema.minimum || null"
+			:max="control.schema.maximum || null"
 			:placeholder="control.uischema.placeholder"
 			@update:model-value="onChange"
 		>

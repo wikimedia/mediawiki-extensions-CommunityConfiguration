@@ -28,6 +28,8 @@ abstract class JsonSchema {
 	public const TYPE = 'type';
 	public const ADDITIONAL_PROPERTIES = 'additionalProperties';
 	public const REQUIRED = 'required';
+	public const MINIMUM = 'minimum';
+	public const MAXIMUM = 'maximum';
 	public const REF = '$ref';
 	public const DEFS = '$defs';
 	public const ITEMS = 'items';
