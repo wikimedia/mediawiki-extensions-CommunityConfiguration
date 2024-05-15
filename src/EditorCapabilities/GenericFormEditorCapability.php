@@ -89,9 +89,9 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 			$out->getSkin()->setRelevantTitle( Title::newFromLinkTarget( $linkTarget ) );
 		}
 
-		$out->setPageTitle( $this->msg(
+		$out->setPageTitleMsg( $this->msg(
 			'communityconfigurationeditor',
-			$this->provider->getName( $this )->escaped()
+			$this->provider->getName( $this )
 		) );
 		$out->addSubtitle( '&lt; ' . $this->linkRenderer->makeLink(
 			$this->getParentTitle()
