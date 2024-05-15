@@ -30,7 +30,15 @@ module.exports = exports = defineComponent( {
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
-		return useCodexControl( useJsonFormControl( props ) );
+		const codexControl = useCodexControl( useJsonFormControl( props ) );
+		return Object.assign( {}, codexControl, {
+			onChange( newVal ) {
+				if ( newVal === '' ) {
+					newVal = undefined;
+				}
+				codexControl.onChange( newVal );
+			}
+		} );
 	}
 } );
 </script>
