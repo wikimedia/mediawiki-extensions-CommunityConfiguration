@@ -192,6 +192,27 @@ const TEST_DATA = [
 		expectedSubControlKeys: []
 	},
 	{
+		testType: 'pagetitle',
+		schema: {
+			type: 'object',
+			properties: {
+				pageTitle: {
+					type: 'string',
+					control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl',
+					default: ''
+				}
+			}
+		},
+		config: {},
+		expected: [
+			'testenvironment-someprovider-pagetitle-label',
+			'testenvironment-someprovider-pagetitle-help-text'
+		],
+		expectedSubControlKeys: [
+			'communityconfiguration-page-title-control-no-results'
+		]
+	},
+	{
 		testType: 'pagetitles',
 		schema: {
 			type: 'object',
@@ -223,6 +244,7 @@ const TEST_DATA = [
 			properties: {
 				namespaces: {
 					type: 'array',
+					control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\NamespacesControl',
 					default: [],
 					items: {
 						type: 'integer'
