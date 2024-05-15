@@ -39,5 +39,6 @@
 	"communityconfiguration-editor-message-dismiss-button-label": "Schließen",
 	"communityconfiguration-page-title-control-no-results": "Keine Ergebnisse gefunden.",
 	"communityconfiguration-editor-loading-info-text": "Der Konfigurationseditor wird geladen",
-	"communityconfiguration-editor-nojs-fallback-text": "Der Konfigurationseditor erfordert JavaScript. Bitte aktiviere JavaScript, um ihn verwenden zu können."
+	"communityconfiguration-editor-nojs-fallback-text": "Der Konfigurationseditor erfordert JavaScript. Bitte aktiviere JavaScript, um ihn verwenden zu können.",
+	"communityconfiguration-editor-navigation-tab-viewform": "Formular anzeigen"
 }

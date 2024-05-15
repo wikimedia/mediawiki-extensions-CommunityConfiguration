@@ -36,5 +36,7 @@
 	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Dəyişiklikləriniz}} yadda saxlandı",
 	"communityconfiguration-editor-client-data-submission-error": "{{GENDER:$1|Dəyişikliklərinizi}} yadda saxlayarkən xəta baş verdi. Zəhmət olmasa birazdan yenidən cəhd edin.",
 	"communityconfiguration-editor-message-dismiss-button-label": "Bağla",
-	"communityconfiguration-page-title-control-no-results": "Heç bir nəticə tapılmadı."
+	"communityconfiguration-page-title-control-no-results": "Heç bir nəticə tapılmadı.",
+	"communityconfiguration-editor-loading-info-text": "Konfiqurasiya redaktoru yüklənir",
+	"communityconfiguration-editor-nojs-fallback-text": "Konfiqurasiya redaktoru JavaScript tələb edir. Zəhmət olmasa istifadə edə bilmək üçün JavaScript-i aktivləşdirin."
 }
