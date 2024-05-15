@@ -8,14 +8,11 @@ use MediaWiki\Extension\CommunityConfiguration\Validation\JsonSchemaValidator;
 use MediaWikiUnitTestCase;
 
 /**
- * @coversDefaultClass \MediaWiki\Extension\CommunityConfiguration\Validation\JsonSchemaValidator
+ * @covers \MediaWiki\Extension\CommunityConfiguration\Validation\JsonSchemaValidator
  * // phpcs:disable Generic.NamingConventions.UpperCaseConstantName.ClassConstantNotUpperCase
  */
 class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 
-	/**
-	 * @covers ::__construct
-	 */
 	public function testConstruct() {
 		$this->assertInstanceOf(
 			JsonSchemaValidator::class,
@@ -23,9 +20,6 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::getSchemaBuilder
-	 */
 	public function testGetSchemaBuilder() {
 		$this->assertInstanceOf(
 			JsonSchemaBuilder::class,
@@ -210,9 +204,6 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 	 * @param array $expectedMessageConstraints the constraints provided by the library for why validation fails
 	 * @param bool $expectedIsPermissivelyOk
 	 * @param bool $expectedIsPermissivelyGood
-	 * @covers ::validate
-	 * @covers ::validateStrictly
-	 * @covers ::validatePermissively
 	 * @dataProvider provideJSON
 	 */
 	public function testValidate(

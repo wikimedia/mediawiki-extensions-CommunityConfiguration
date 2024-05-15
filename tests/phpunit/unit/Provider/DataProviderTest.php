@@ -17,7 +17,8 @@ use StatusValue;
 use stdClass;
 
 /**
- * @coversDefaultClass \MediaWiki\Extension\CommunityConfiguration\Provider\DataProvider
+ * @covers \MediaWiki\Extension\CommunityConfiguration\Provider\DataProvider
+ * @covers \MediaWiki\Extension\CommunityConfiguration\Provider\AbstractProvider
  */
 class DataProviderTest extends MediaWikiUnitTestCase {
 
@@ -26,9 +27,6 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertStatusValue( $expectedConfig, $configStatus );
 	}
 
-	/**
-	 * @covers ::__construct
-	 */
 	public function testConstruct() {
 		$provider = new DataProvider(
 			'ProviderId',
@@ -43,9 +41,6 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $provider->getOptionValue( 'skipDashboardListing' ) );
 	}
 
-	/**
-	 * @covers ::getId
-	 */
 	public function testGetId() {
 		$provider = new DataProvider(
 			'ProviderId',
@@ -60,9 +55,6 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::getName
-	 */
 	public function testGetName() {
 		$messageMock = $this->createNoOpMock( Message::class );
 
@@ -85,10 +77,6 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::getStore
-	 * @covers ::getValidator
-	 */
 	public function testGetObjects() {
 		$storeMock = $this->createNoOpMock( IConfigurationStore::class );
 		$validatorMock = $this->createNoOpMock( IValidator::class );
@@ -109,12 +97,6 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::loadValidConfigurationUncached
-	 * @covers ::loadValidConfiguration
-	 * @covers ::processStoreStatus
-	 * @covers ::validateConfiguration
-	 */
 	public function testLoadConfig() {
 		$defaultConfig = (object)[ 'Foo' => 42, 'Bar' => 'string' ];
 
@@ -145,12 +127,6 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertConfigStatusOK( $defaultConfig, $provider->loadValidConfigurationUncached() );
 	}
 
-	/**
-	 * @covers ::loadValidConfigurationUncached
-	 * @covers ::loadValidConfiguration
-	 * @covers ::processStoreStatus
-	 * @covers ::validateConfiguration
-	 */
 	public function testLoadInvalidConfig() {
 		$config = (object)[ 'Foo' => 42 ];
 
@@ -171,11 +147,6 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( 'june', $provider->loadValidConfigurationUncached() );
 	}
 
-	/**
-	 * @covers ::loadValidConfiguration
-	 * @covers ::processStoreStatus
-	 * @covers ::validateConfiguration
-	 */
 	public function testLoadFailedStoreCached() {
 		$storeMock = $this->createMock( IConfigurationStore::class );
 		$storeMock->expects( $this->once() )
@@ -192,11 +163,6 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( 'june', $provider->loadValidConfiguration() );
 	}
 
-	/**
-	 * @covers ::loadValidConfiguration
-	 * @covers ::processStoreStatus
-	 * @covers ::validateConfiguration
-	 */
 	public function testLoadFailedStoreUncached() {
 		$storeMock = $this->createMock( IConfigurationStore::class );
 		$storeMock->expects( $this->once() )
@@ -213,9 +179,6 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( 'june', $provider->loadValidConfigurationUncached() );
 	}
 
-	/**
-	 * @covers ::storeValidConfiguration
-	 */
 	public function testStoreConfigValid() {
 		$authority = new UltimateAuthority( new UserIdentityValue( 1, 'Admin' ) );
 
@@ -240,9 +203,6 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertStatusOK( $status );
 	}
 
-	/**
-	 * @covers ::storeValidConfiguration
-	 */
 	public function testStoreConfigInvalid() {
 		$authority = new UltimateAuthority( new UserIdentityValue( 1, 'Admin' ) );
 
@@ -264,9 +224,6 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( 'june', $status );
 	}
 
-	/**
-	 * @covers ::getOptionValue
-	 */
 	public function testGetOption() {
 		$provider = new DataProvider(
 			'ProviderId',

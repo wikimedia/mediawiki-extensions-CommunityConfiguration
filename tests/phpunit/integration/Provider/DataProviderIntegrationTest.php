@@ -7,6 +7,7 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Provider\DataProvider
+ * @covers \MediaWiki\Extension\CommunityConfiguration\Provider\AbstractProvider
  * @group Database
  */
 class DataProviderIntegrationTest extends MediaWikiIntegrationTestCase {
