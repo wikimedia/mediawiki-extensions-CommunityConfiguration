@@ -206,7 +206,8 @@ const TEST_DATA = [
 		config: {},
 		expected: [
 			'testenvironment-someprovider-pagetitle-label',
-			'testenvironment-someprovider-pagetitle-help-text'
+			'testenvironment-someprovider-pagetitle-help-text',
+			'testenvironment-someprovider-pagetitle-placeholder'
 		],
 		expectedSubControlKeys: [
 			'communityconfiguration-page-title-control-no-results'
@@ -235,7 +236,9 @@ const TEST_DATA = [
 			'testenvironment-someprovider-pagetitles-label',
 			'testenvironment-someprovider-pagetitles-help-text'
 		],
-		expectedSubControlKeys: []
+		expectedSubControlKeys: [
+			'mw-widgets-titlesmultiselect-placeholder'
+		]
 	},
 	{
 		testType: 'namespaces',
@@ -259,7 +262,9 @@ const TEST_DATA = [
 			'testenvironment-someprovider-namespaces-label',
 			'testenvironment-someprovider-namespaces-help-text'
 		],
-		expectedSubControlKeys: []
+		expectedSubControlKeys: [
+			'mw-widgets-titlesmultiselect-placeholder'
+		]
 	}
 ];
 
@@ -296,7 +301,7 @@ describe( 'i18n.getEditorTextKeys()', () => {
 	const expectedMessages = [
 		'testenvironment-someprovider-title',
 		'testenvironment-someprovider-description',
-		...expectedSchemaMessages
+		...new Set( expectedSchemaMessages )
 	];
 	it( 'should produce all necessary form labels for the given schema', () => {
 		const actual = getEditorTextKeys( rootSchema, config, {

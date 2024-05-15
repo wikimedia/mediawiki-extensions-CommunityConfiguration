@@ -4,6 +4,7 @@
 			ref="input"
 			v-model:input-chips="selection"
 			:initial-value="initialValue"
+			:placeholder="$i18n( 'mw-widgets-titlesmultiselect-placeholder' ).text()"
 			remove-button-label="remove"
 			@blur="onBlur"
 			@focus="expanded = true"

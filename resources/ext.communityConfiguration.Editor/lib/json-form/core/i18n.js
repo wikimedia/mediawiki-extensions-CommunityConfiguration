@@ -190,23 +190,27 @@ function getCustomMultiSelectControlMessages( prefix, propName, asMessageObject 
 	}
 	return [
 		labelKey,
-		helpTextLabelKey
+		helpTextLabelKey,
+		'mw-widgets-titlesmultiselect-placeholder'
 	];
 }
 
 function getCustomPageTitleControlMessages( prefix, propName, asMessageObject ) {
 	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
 	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
+	const placeholderKey = mapPropToTextKey( prefix, propName, 'placeholder' );
 	const noResultsKey = 'communityconfiguration-page-title-control-no-results';
 	if ( asMessageObject ) {
 		return {
 			label: getMessageOrNull( labelKey ),
-			helpText: getMessageOrNull( helpTextLabelKey )
+			helpText: getMessageOrNull( helpTextLabelKey ),
+			placeholder: getMessageOrNull( placeholderKey )
 		};
 	}
 	return [
 		labelKey,
 		helpTextLabelKey,
+		placeholderKey,
 		noResultsKey
 	];
 }
@@ -273,7 +277,8 @@ function getControlsTextKeys( schema, data = {}, config = {} ) {
 		);
 		keys = [ ...keys, ...propKeys ];
 	}
-	return keys;
+	const uniqueKeys = [ ...new Set( keys ) ];
+	return uniqueKeys;
 }
 
 function getEditorTextKeys( schema, data, config ) {
