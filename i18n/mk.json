@@ -38,5 +38,6 @@
 	"communityconfiguration-editor-message-dismiss-button-label": "Затвори",
 	"communityconfiguration-page-title-control-no-results": "Не пронајдов ништо.",
 	"communityconfiguration-editor-loading-info-text": "Уредникот на поставки се вчитува",
-	"communityconfiguration-editor-nojs-fallback-text": "На уредникот на поставки му е потребен JavaScript. Овозможете JavaScript за да го користите."
+	"communityconfiguration-editor-nojs-fallback-text": "На уредникот на поставки му е потребен JavaScript. Овозможете JavaScript за да го користите.",
+	"communityconfiguration-editor-navigation-tab-viewform": "Погл. образецот"
 }
