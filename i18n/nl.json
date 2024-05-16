@@ -39,5 +39,6 @@
 	"communityconfiguration-editor-message-dismiss-button-label": "Sluiten",
 	"communityconfiguration-page-title-control-no-results": "Geen resultaten gevonden.",
 	"communityconfiguration-editor-loading-info-text": "De configuratie-editor wordt geladen",
-	"communityconfiguration-editor-nojs-fallback-text": "De configuratie-editor vereist JavaScript. Schakel JavaScript in om deze te kunnen gebruiken."
+	"communityconfiguration-editor-nojs-fallback-text": "De configuratie-editor vereist JavaScript. Schakel JavaScript in om deze te kunnen gebruiken.",
+	"communityconfiguration-editor-navigation-tab-viewform": "Formulier bekijken"
 }

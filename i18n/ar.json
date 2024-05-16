@@ -38,5 +38,6 @@
 	"communityconfiguration-editor-message-dismiss-button-label": "إغلاق",
 	"communityconfiguration-page-title-control-no-results": "لم يتم العثور على نتائج.",
 	"communityconfiguration-editor-loading-info-text": "جارٍ تحميل محرر الإعدادات",
-	"communityconfiguration-editor-nojs-fallback-text": "يتطلب محرر الإعدادات جافا سكريبت. الرجاء تفعيل جافا سكريبت لاستخدامه."
+	"communityconfiguration-editor-nojs-fallback-text": "يتطلب محرر الإعدادات جافا سكريبت. الرجاء تفعيل جافا سكريبت لاستخدامه.",
+	"communityconfiguration-editor-navigation-tab-viewform": "عرض النموذج"
 }

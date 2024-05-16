@@ -31,5 +31,6 @@
 	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Är}} Ännerunge goufen gespäichert",
 	"communityconfiguration-editor-client-data-submission-error": "Beim Späichere vun {{GENDER:$1:Ären}} Ännerungen ass eppes schif gaangen. Probéiert wgl. méi spéit nach eng Kéier.",
 	"communityconfiguration-editor-message-dismiss-button-label": "Zoumaachen",
-	"communityconfiguration-page-title-control-no-results": "Keng Resultater fonnt."
+	"communityconfiguration-page-title-control-no-results": "Keng Resultater fonnt.",
+	"communityconfiguration-editor-navigation-tab-viewform": "Formulaire weisen"
 }

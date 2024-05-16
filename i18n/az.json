@@ -38,5 +38,6 @@
 	"communityconfiguration-editor-message-dismiss-button-label": "Bağla",
 	"communityconfiguration-page-title-control-no-results": "Heç bir nəticə tapılmadı.",
 	"communityconfiguration-editor-loading-info-text": "Konfiqurasiya redaktoru yüklənir",
-	"communityconfiguration-editor-nojs-fallback-text": "Konfiqurasiya redaktoru JavaScript tələb edir. Zəhmət olmasa istifadə edə bilmək üçün JavaScript-i aktivləşdirin."
+	"communityconfiguration-editor-nojs-fallback-text": "Konfiqurasiya redaktoru JavaScript tələb edir. Zəhmət olmasa istifadə edə bilmək üçün JavaScript-i aktivləşdirin.",
+	"communityconfiguration-editor-navigation-tab-viewform": "Formaya bax"
 }
