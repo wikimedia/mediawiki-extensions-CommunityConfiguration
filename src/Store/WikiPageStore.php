@@ -186,4 +186,18 @@ class WikiPageStore extends AbstractJsonStore {
 		$this->invalidate();
 		return $status;
 	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function probablyCanEdit( Authority $authority ): bool {
+		return $authority->probablyCan( 'edit', $this->getConfigurationTitle() );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function definitelyCanEdit( Authority $authority ): bool {
+		return $authority->definitelyCan( 'edit', $this->getConfigurationTitle() );
+	}
 }

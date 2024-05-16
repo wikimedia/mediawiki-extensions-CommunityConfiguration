@@ -1,8 +1,9 @@
 <template>
 	<div class="ext-communityConfiguration-App">
 		<editor-message
-			v-if="showMessage"
-			:status="messageStatus"
+			v-if="showMessage || !canEdit"
+			:status="messageStatus ? messageStatus : undefined"
+			:is-dismissable="canEdit"
 		>
 			<template v-if="messageStatus === 'success'" #success>
 				<p>{{ $i18n( 'communityconfiguration-editor-client-success-message' ).text() }}</p>
@@ -35,6 +36,9 @@
 					v-i18n-html:communityconfiguration-editor-client-post-feedback="[ editorFormConfig.feedbackURL ]"
 				></p>
 			</template>
+			<p v-if="!canEdit">
+				{{ $i18n( 'communityconfiguration-editor-client-notice-message' ).text() }}
+			</p>
 		</editor-message>
 		<json-form
 			:config="editorFormConfig"
@@ -44,10 +48,18 @@
 			@submit="onSubmit"
 		>
 			<template #submit>
+				<cdx-message
+					v-if="!canEdit"
+					inline
+					:icon="cdxIconInfoFilled"
+					class="ext-communityConfiguration-FooterMessage"
+				>
+					<p>{{ $i18n( 'communityconfiguration-editor-client-notice-footer-message' ).text() }}</p>
+				</cdx-message>
 				<cdx-button
 					action="progressive"
 					weight="primary"
-					:disabled="isLoading"
+					:disabled="isLoading || !canEdit"
 				>
 					{{ isLoading ?
 						$i18n( 'communityconfiguration-editor-form-submit-button-loading-text' ).text() :
@@ -67,7 +79,8 @@
 
 <script>
 const { inject, ref, onErrorCaptured } = require( 'vue' );
-const { CdxButton } = require( '@wikimedia/codex' );
+const { CdxButton, CdxMessage } = require( '@wikimedia/codex' );
+const { cdxIconInfoFilled } = require( './icons.json' );
 const { JsonForm } = require( '../lib/json-form/form/index.js' );
 const { renderers } = require( '../lib/json-form/controls-codex/src/index.js' );
 const EditorMessage = require( './components/EditorMessage.vue' );
@@ -79,6 +92,7 @@ module.exports = exports = {
 	name: 'App',
 	components: {
 		CdxButton,
+		CdxMessage,
 		EditSummaryDialog,
 		EditorMessage,
 		JsonForm
@@ -89,6 +103,7 @@ module.exports = exports = {
 		const schema = inject( 'JSON_SCHEMA' );
 		const providerId = inject( 'PROVIDER_ID' );
 		const editorFormConfig = inject( 'EDITOR_FORM_CONFIG' );
+		const canEdit = inject( 'CAN_EDIT' );
 		const isLoading = ref( false );
 		const editSummaryOpen = ref( false );
 		const summary = ref( '' );
@@ -172,6 +187,8 @@ module.exports = exports = {
 		} );
 
 		return {
+			canEdit,
+			cdxIconInfoFilled,
 			configData,
 			doSubmit,
 			editSummaryOpen,
@@ -191,3 +208,11 @@ module.exports = exports = {
 	}
 };
 </script>
+
+<style lang="less">
+@import 'mediawiki.skin.variables.less';
+
+.ext-communityConfiguration-FooterMessage {
+	margin-bottom: @spacing-50;
+}
+</style>

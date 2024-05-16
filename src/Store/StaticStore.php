@@ -62,4 +62,18 @@ class StaticStore implements IConfigurationStore {
 	public function getInfoPageLinkTarget(): ?LinkTarget {
 		return null;
 	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function probablyCanEdit( Authority $authority ): bool {
+		return false;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function definitelyCanEdit( Authority $authority ): bool {
+		return false;
+	}
 }

@@ -38,5 +38,7 @@
 	"communityconfiguration-page-title-control-no-results": "No results found.",
 	"communityconfiguration-editor-loading-info-text": "The configuration editor is loading",
 	"communityconfiguration-editor-nojs-fallback-text": "The configuration editor requires JavaScript. Please enable JavaScript to be able to use it.",
-	"communityconfiguration-editor-navigation-tab-viewform": "View form"
+	"communityconfiguration-editor-navigation-tab-viewform": "View form",
+	"communityconfiguration-editor-client-notice-message": "This page is protected. Configuration for this feature is only editable by administrators.",
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|You}} cannot save changes to this form because configuration for this feature is only editable by administrators."
 }

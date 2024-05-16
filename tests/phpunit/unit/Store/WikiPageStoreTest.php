@@ -26,6 +26,39 @@ use Wikimedia\TestingAccessWrapper;
  */
 class WikiPageStoreTest extends MediaWikiUnitTestCase {
 
+	/**
+	 * @var TitleFactory
+	 */
+	private $titleFactoryMock;
+
+	/**
+	 * @var WANObjectCache
+	 */
+	private $cache;
+
+	/**
+	 * @var RevisionLookup
+	 */
+	private $revisionLookupMock;
+
+	/**
+	 * @var Writer
+	 */
+	private $writerMock;
+
+	/**
+	 * TODO: Review and update existing tests to utilize the centralized setup from this `setUp` method.
+	 * Will be done as part of technical debt introduced by changes to the test setup,
+	 * ensuring all tests leverage the consistent setup.
+	 */
+	protected function setUp(): void {
+		parent::setUp();
+		$this->titleFactoryMock = $this->createMock( TitleFactory::class );
+		$this->cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$this->revisionLookupMock = $this->createNoOpMock( RevisionLookup::class );
+		$this->writerMock = $this->createNoOpMock( Writer::class );
+	}
+
 	private function getRevisionLookupMock( Title $title, $config ) {
 		$revisionRecordMock = $this->createMock( RevisionRecord::class );
 		$revisionRecordMock->expects( $this->once() )
