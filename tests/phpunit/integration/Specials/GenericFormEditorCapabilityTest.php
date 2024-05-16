@@ -47,6 +47,10 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testLoadsOkForNonExistingConfigPage() {
+		$this->setMwGlobals( [
+			'wgCommunityConfigurationBugReportingToolURL' => 'https://bug-reporting.tool',
+		] );
+
 		[
 			'testContext' => $testContext,
 			'genericFormEditorCapability' => $genericFormEditorCapability,
@@ -81,7 +85,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertSame( [
 			'i18nPrefix' => 'communityconfiguration-' . strtolower( self::PROVIDER_ID ),
-			'bugReportToolURL' => null,
+			'bugReportToolURL' => 'https://bug-reporting.tool',
 		], $jsConfigVars['config'] );
 	}
 
