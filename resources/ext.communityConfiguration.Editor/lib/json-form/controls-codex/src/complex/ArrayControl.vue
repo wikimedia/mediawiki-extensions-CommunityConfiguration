@@ -1,7 +1,7 @@
 <template>
 	<!-- REVIEW: maybe apply same pattern than in ObjectControl and only
 	wrap the fields in an cdx-field when a label is informed -->
-	<cdx-field :is-fieldset="true">
+	<cdx-field :id="control.uischema.name" :is-fieldset="true">
 		<dispatch-renderer
 			v-for="( element, index ) in data"
 			:key="`${control.uischema.name}-${index}`"
