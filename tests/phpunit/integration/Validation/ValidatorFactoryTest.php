@@ -8,7 +8,7 @@ use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @coversDefaultClass \MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory
+ * @covers \MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory
  */
 class ValidatorFactoryTest extends MediaWikiIntegrationTestCase {
 
@@ -26,10 +26,6 @@ class ValidatorFactoryTest extends MediaWikiIntegrationTestCase {
 		return $this->validatorSpecs;
 	}
 
-	/**
-	 * @covers ::newValidator
-	 * @return void
-	 */
 	public function testConstructValidator() {
 		$factory = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getValidatorFactory();
@@ -54,10 +50,6 @@ class ValidatorFactoryTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	/**
-	 * @covers ::newValidator
-	 * @return void
-	 */
 	public function testNonexistentValidator() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Validator nonexistent is not supported' );
@@ -67,9 +59,6 @@ class ValidatorFactoryTest extends MediaWikiIntegrationTestCase {
 			->newValidator( 'nonexistent', 'nonexistent', [] );
 	}
 
-	/**
-	 * @covers ::getSupportedKeys
-	 */
 	public function testSupportedKeys() {
 		$this->assertSame(
 			array_keys( $this->getValidatorSpecs() ),

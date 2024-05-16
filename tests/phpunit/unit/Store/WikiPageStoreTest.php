@@ -15,13 +15,10 @@ use MediaWikiUnitTestCase;
 use StatusValue;
 
 /**
- * @coversDefaultClass \MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore
+ * @covers \MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore
  */
 class WikiPageStoreTest extends MediaWikiUnitTestCase {
 
-	/**
-	 * @covers ::getConfigurationTitle
-	 */
 	public function testGetConfigurationTitle() {
 		$titleMock = $this->createNoOpMock( Title::class );
 		$titleFactoryMock = $this->createMock( TitleFactory::class );
@@ -40,9 +37,6 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $titleMock, $store->getConfigurationTitle() );
 	}
 
-	/**
-	 * @covers ::loadConfigurationUncached
-	 */
 	public function testLoadConfigurationUncached() {
 		$titleMock = $this->createNoOpMock( Title::class );
 		$titleFactoryMock = $this->createMock( TitleFactory::class );
@@ -67,9 +61,6 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $statusValue, $store->loadConfigurationUncached() );
 	}
 
-	/**
-	 * @covers ::loadConfiguration
-	 */
 	public function testLoadConfiguration() {
 		$titleMock = $this->createNoOpMock( Title::class );
 		$titleFactoryMock = $this->createMock( TitleFactory::class );
@@ -94,9 +85,6 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $statusValue, $store->loadConfiguration() );
 	}
 
-	/**
-	 * @covers ::storeConfiguration
-	 */
 	public function testStoreConfiguration() {
 		$newConfig = [ 'Foo' => 42, 'Bar' => 123 ];
 		$authority = new UltimateAuthority( new UserIdentityValue( 1, 'Admin' ) );

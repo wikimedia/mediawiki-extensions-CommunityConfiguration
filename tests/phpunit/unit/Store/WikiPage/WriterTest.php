@@ -21,7 +21,7 @@ use stdClass;
 use WikiPage;
 
 /**
- * @coversDefaultClass \MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer
+ * @covers \MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer
  */
 class WriterTest extends MediaWikiUnitTestCase {
 
@@ -52,7 +52,6 @@ class WriterTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::save
 	 * @dataProvider provideSaveOK
 	 * @param array|string $tags
 	 * @param array $permissions

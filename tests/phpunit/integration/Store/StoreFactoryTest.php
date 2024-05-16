@@ -8,7 +8,7 @@ use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @coversDefaultClass \MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory
+ * @covers \MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory
  */
 class StoreFactoryTest extends MediaWikiIntegrationTestCase {
 
@@ -33,10 +33,6 @@ class StoreFactoryTest extends MediaWikiIntegrationTestCase {
 		return $this->storeSpecs;
 	}
 
-	/**
-	 * @covers ::newStore
-	 * @return void
-	 */
 	public function testConstructStore() {
 		$factory = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getStoreFactory();
@@ -61,10 +57,6 @@ class StoreFactoryTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	/**
-	 * @covers ::newStore
-	 * @return void
-	 */
 	public function testNonexistentStore() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Store nonexistent is not supported' );
@@ -74,10 +66,6 @@ class StoreFactoryTest extends MediaWikiIntegrationTestCase {
 			->newStore( 'nonexistent', 'nonexistent', [] );
 	}
 
-	/**
-	 * @covers ::getSupportedKeys
-	 * @return void
-	 */
 	public function testGetSupportedKeys() {
 		$this->assertSame(
 			array_keys( $this->getStoreSpecs() ),
