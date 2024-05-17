@@ -98,6 +98,9 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	): StatusValue {
 		return $this->getStore()->storeConfiguration(
 			$newConfig,
+			$this->getValidator()->areSchemasSupported()
+				? $this->getValidator()->getSchemaVersion()
+				: null,
 			$authority,
 			$summary
 		);

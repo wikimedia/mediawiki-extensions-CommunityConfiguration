@@ -19,6 +19,10 @@ class StaticStore implements IConfigurationStore {
 		$this->config = $config;
 	}
 
+	public function getVersion(): ?string {
+		return null;
+	}
+
 	/**
 	 * @inheritDoc
 	 */
@@ -39,6 +43,7 @@ class StaticStore implements IConfigurationStore {
 	 */
 	public function storeConfiguration(
 		$config,
+		?string $version,
 		Authority $authority,
 		string $summary = ''
 	): StatusValue {

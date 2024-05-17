@@ -7,5 +7,7 @@
 	"apihelp-communityconfigurationedit-param-content": "{{doc-apihelp-param|communityconfigurationedit|content}}",
 	"apihelp-communityconfigurationedit-param-summary": "{{doc-apihelp-param|communityconfigurationedit|summary}}",
 	"apihelp-query+communityconfiguration-summary": "{{doc-apihelp-summary|query+communityconfiguration}}",
-	"apihelp-query+communityconfiguration-param-provider": "{{doc-apihelp-param|query+communityconfiguration|provider}}"
+	"apihelp-query+communityconfiguration-param-provider": "{{doc-apihelp-param|query+communityconfiguration|provider}}",
+	"apihelp-query+communityconfiguration-param-assertversion": "{{doc-apihelp-param|query+communityconfiguration|assertversion}}",
+	"apierror-communityconfiguration-version-assertion-failure": "{{doc-apierror}}\n\nParameter:\n* $1 - received version\n* $2 - expected version"
 }

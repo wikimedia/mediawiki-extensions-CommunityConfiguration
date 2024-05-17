@@ -54,9 +54,28 @@ class ApiQueryRead extends ApiQueryBase {
 			$this->dieStatus( $loadedConfig );
 		}
 
-		$this->getResult()->addValue( null, $this->getModuleName(), [
+		$version = $provider->getStore()->getVersion();
+		// intentionally outside the $version if, because if the client wants a specific
+		// version only, and no version data is available, then it's reasonable to treat that as
+		// a version mismatch
+		if ( $version !== $params['assertversion'] ) {
+			$this->dieWithError( [
+				'apierror-communityconfiguration-version-assertion-failure',
+					$version,
+					$params['assertversion']
+				]
+			);
+		}
+
+		$result = [
 			'data' => $loadedConfig->getValue(),
-		] );
+		];
+
+		if ( $version ) {
+			$result['version'] = $version;
+		}
+
+		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
 
 	/**
@@ -68,7 +87,10 @@ class ApiQueryRead extends ApiQueryBase {
 				ParamValidator::PARAM_TYPE =>
 					$this->configurationProviderFactory->getSupportedKeys(),
 				ParamValidator::PARAM_REQUIRED => true,
-			]
+			],
+			'assertversion' => [
+				ParamValidator::PARAM_TYPE => 'string',
+			],
 		];
 	}
 }

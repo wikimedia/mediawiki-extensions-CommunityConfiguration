@@ -56,7 +56,10 @@ class ApiEditTest extends ApiTestCase {
 		$status = $provider->loadValidConfiguration();
 		$this->assertTrue( $status->isOK() );
 		$this->assertEquals(
-			(object)[ 'Number' => 42, 'NumberWithDefault' => 0 ],
+			(object)[
+				'Number' => 42,
+				'NumberWithDefault' => 0,
+			],
 			$status->getValue()
 		);
 	}

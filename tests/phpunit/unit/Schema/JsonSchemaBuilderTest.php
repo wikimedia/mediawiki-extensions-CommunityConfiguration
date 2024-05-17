@@ -20,7 +20,11 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 			->willReturn( [
 				'type' => 'object',
 				'$defs' => [],
-				'properties' => [],
+				'properties' => [
+					'ExampleNumber' => [
+						JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+					],
+				],
 			] );
 
 		$schemaReader = $this->createNoOpMock( JsonSchemaReader::class, [
@@ -42,16 +46,25 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 			->willReturn( $schemaSource );
 
 		$builder = new JsonSchemaBuilder( $schemaReader );
-		$this->assertSame( [
+
+		$this->assertEquals( [
 			'$schema' => 'schema/version',
 			'$id' => 'schema/id',
 			JsonSchema::ADDITIONAL_PROPERTIES => false,
 			'type' => 'object',
 			'$defs' => [],
-			'properties' => [],
+			'properties' => [
+				'ExampleNumber' => [
+					JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+				],
+			],
 		], $builder->getRootSchema() );
 
-		$this->assertSame( [], $builder->getRootProperties() );
+		$this->assertEquals( [
+			'ExampleNumber' => [
+				JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+			],
+		], $builder->getRootProperties() );
 	}
 
 	public function testDefaultsMap() {

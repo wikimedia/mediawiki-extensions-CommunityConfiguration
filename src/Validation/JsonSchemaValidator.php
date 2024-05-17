@@ -106,4 +106,11 @@ class JsonSchemaValidator implements IValidator {
 
 		return $status;
 	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getSchemaVersion(): ?string {
+		return $this->jsonSchema->getVersion();
+	}
 }

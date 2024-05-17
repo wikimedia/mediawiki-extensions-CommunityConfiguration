@@ -32,6 +32,10 @@ class JsonSchemaReader {
 		$this->class = new ReflectionClass( $classNameOrClassInstance );
 	}
 
+	public function getReflectionClass(): ReflectionClass {
+		return $this->class;
+	}
+
 	public function getReflectionSchemaSource(): ReflectionSchemaSource {
 		return new ReflectionSchemaSource( $this->class->getName() );
 	}
@@ -64,11 +68,15 @@ class JsonSchemaReader {
 		return $this->getConstantValue( 'JSON_SCHEMA_VERSION', JsonSchema::JSON_SCHEMA_VERSION );
 	}
 
-	public function getVersion(): string {
+	public function getVersion(): ?string {
 		return $this->getConstantValue( 'VERSION', JsonSchema::VERSION );
 	}
 
 	public function getSchemaId(): string {
-		return str_replace( '\\', '/', $this->class->getName() ) . '/' . $this->getVersion();
+		$schemaId = str_replace( '\\', '/', $this->class->getName() );
+		if ( $this->getVersion() ) {
+			$schemaId .= '/' . $this->getVersion();
+		}
+		return $schemaId;
 	}
 }
