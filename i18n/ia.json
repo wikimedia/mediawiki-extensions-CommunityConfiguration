@@ -38,5 +38,6 @@
 	"communityconfiguration-editor-message-dismiss-button-label": "Clauder",
 	"communityconfiguration-page-title-control-no-results": "Nulle resultato trovate.",
 	"communityconfiguration-editor-loading-info-text": "Le editor de configuration se carga",
-	"communityconfiguration-editor-nojs-fallback-text": "Le editor de configuration require JavaScript. Per favor activa JavaScript pro poter usar lo."
+	"communityconfiguration-editor-nojs-fallback-text": "Le editor de configuration require JavaScript. Per favor activa JavaScript pro poter usar lo.",
+	"communityconfiguration-editor-navigation-tab-viewform": "Vider formulario"
 }
