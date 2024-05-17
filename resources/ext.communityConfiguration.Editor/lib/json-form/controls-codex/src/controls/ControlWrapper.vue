@@ -27,12 +27,12 @@ module.exports = exports = {
 		},
 		// mw.Message
 		label: {
-			type: Object,
-			required: true
+			type: [ Object, null ],
+			default: null
 		},
 		// mw.Message
 		controlLabel: {
-			type: Object,
+			type: [ Object, null ],
 			default: null
 		},
 		// mw.Message
