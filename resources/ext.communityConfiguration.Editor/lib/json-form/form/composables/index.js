@@ -1,4 +1,4 @@
-const { inject, computed, unref } = require( 'vue' );
+const { inject, computed, unref, ref } = require( 'vue' );
 const { buildUISubSchema, extractRef } = require( '../../core/index.js' );
 
 /**
@@ -130,9 +130,9 @@ function useJsonFormControl( props ) {
 		required,
 		scope
 	} = props.uischema;
-	const modelValue = computed( () => {
-		return getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs );
-	} );
+	const modelValue = ref(
+		getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs )
+	);
 	const otherAttrs = { required };
 	const schemaTypeIsInteger = props.schema.type === 'integer';
 	const schemaTypeIsNumber = props.schema.type === 'number';
