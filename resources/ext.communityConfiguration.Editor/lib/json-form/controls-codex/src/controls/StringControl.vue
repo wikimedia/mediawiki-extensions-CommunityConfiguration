@@ -2,7 +2,7 @@
 	<control-wrapper v-bind="controlWrapper">
 		<cdx-text-input
 			v-bind="control.otherAttrs"
-			v-model="control.modelValue"
+			v-model="control.modelValue.value"
 			:placeholder="control.uischema.placeholder"
 			@update:model-value="onChange"
 		>
