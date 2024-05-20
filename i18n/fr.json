@@ -4,11 +4,12 @@
 			"Alien333",
 			"MacOS Weed",
 			"Sergi0",
-			"SleaY"
+			"SleaY",
+			"Wladek92"
 		]
 	},
 	"communityconfiguration": "COnfiguration de communauté",
-	"communityconfiguration-editor-client-file-bug": "Si le problème persiste, envisagez de [$1 remplir un problème] dans l'outil de rapport de bugs.",
+	"communityconfiguration-editor-client-file-bug": "Si le problème persiste, envisagez de [$1 remplir un ticket] dans l'outil de rapport de bogues.",
 	"communityconfiguration-editor-form-submit-button-text": "Enregistrer les modifications",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Envoi...",
 	"communityconfiguration-guidelines-title": "Qu'est-ce que la Configuration de Communauté ?",
