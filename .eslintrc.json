@@ -9,6 +9,9 @@
 	"env": {
 		"commonjs": true
 	},
+	"ignorePatterns": [
+		"coverage/**"
+	],
 	"overrides": [
 		{
 			"files": "resources/**/*.vue",
