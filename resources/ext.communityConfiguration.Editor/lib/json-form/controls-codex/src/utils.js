@@ -15,7 +15,7 @@ function useCodexControl( input ) {
 	};
 
 	const controlWrapper = {
-		name: input.control.uischema.name,
+		id: input.control.pointer,
 		label: input.control.uischema.label,
 		controlLabel: input.control.uischema.controlLabel,
 		helpText: input.control.uischema.helpText

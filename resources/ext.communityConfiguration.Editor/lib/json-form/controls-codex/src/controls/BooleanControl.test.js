@@ -53,6 +53,7 @@ describe( 'BooleanControl', () => {
 		expect( wrapper.get( `[for=${ checkboxId }]` ).getRootNodes()[ 0 ].textContent ).toBe( controlLabelText );
 
 		expect( wrapper.getComponent( CdxField ).props( 'isFieldset' ) ).toEqual( true );
+		expect( wrapper.getComponent( CdxField ).attributes( 'id' ) ).toEqual( BoolFieldName );
 		expect( wrapper.get( 'legend' ).getRootNodes()[ 0 ].textContent ).toBe( labelText );
 
 		expect( wrapper.getComponent( CdxCheckbox ).props( 'modelValue' ) ).toEqual( true );

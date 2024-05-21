@@ -38,7 +38,7 @@ describe( 'useJsonFormControl', () => {
 	describe( 'otherAttributes', () => {
 		it( 'sets step to `any` for number type', () => {
 			const props = {
-				uischema: {},
+				uischema: { scope: '#/properties/number' },
 				schema: { type: 'number' },
 				renderers: []
 			};
@@ -54,7 +54,7 @@ describe( 'useJsonFormControl', () => {
 
 		it( 'sets step to `1` for integer type', () => {
 			const props = {
-				uischema: {},
+				uischema: { scope: '#/properties/number' },
 				schema: { type: 'integer' },
 				renderers: []
 			};
@@ -70,7 +70,7 @@ describe( 'useJsonFormControl', () => {
 
 		it( 'sets `required`', () => {
 			const props = {
-				uischema: { required: true },
+				uischema: { required: true, scope: '#/properties/number' },
 				schema: {},
 				renderers: []
 			};
@@ -84,6 +84,40 @@ describe( 'useJsonFormControl', () => {
 			expect( result.control.otherAttrs.required ).toBe( true );
 		} );
 	} );
+
+	describe( 'pointer handling', () => {
+		it( 'sets pointer for toplevel control', () => {
+			const props = {
+				uischema: { scope: '#/properties/numberName' },
+				schema: {},
+				renderers: []
+			};
+			const jsonform = {
+				schema: {}
+			};
+			const [ result ] = withSetup(
+				() => useJsonFormControl( props ),
+				{ jsonform }
+			);
+			expect( result.control.pointer ).toBe( 'numberName' );
+		} );
+
+		it( 'constructs pointer for nested control', () => {
+			const props = {
+				uischema: { scope: '#/properties/ArrayName/0/properties/NumberName' },
+				schema: {},
+				renderers: []
+			};
+			const jsonform = {
+				schema: {}
+			};
+			const [ result ] = withSetup(
+				() => useJsonFormControl( props ),
+				{ jsonform }
+			);
+			expect( result.control.pointer ).toBe( 'ArrayName.0.NumberName' );
+		} );
+	} );
 } );
 
 describe( 'useJsonFormArrayControl', () => {
@@ -95,10 +129,9 @@ describe( 'useJsonFormArrayControl', () => {
 	} );
 
 	describe( 'otherAttributes', () => {
-
 		it( 'sets `required`', () => {
 			const props = {
-				uischema: { required: true },
+				uischema: { required: true, scope: '#/properties/number' },
 				schema: {
 					type: 'array'
 				},
@@ -115,6 +148,29 @@ describe( 'useJsonFormArrayControl', () => {
 				{ jsonform }
 			);
 			expect( result.control.otherAttrs.required ).toBe( true );
+		} );
+	} );
+
+	describe( 'pointer handling', () => {
+		it( 'sets pointer', () => {
+			const props = {
+				uischema: { scope: '#/properties/arrayName' },
+				schema: {
+					type: 'array'
+				},
+				renderers: []
+			};
+			const jsonform = {
+				schema: {},
+				config: {
+					i18nPrefix: 'i18n-prefix'
+				}
+			};
+			const [ result ] = withSetup(
+				() => useJsonFormArrayControl( props ),
+				{ jsonform }
+			);
+			expect( result.control.pointer ).toBe( 'arrayName' );
 		} );
 	} );
 } );

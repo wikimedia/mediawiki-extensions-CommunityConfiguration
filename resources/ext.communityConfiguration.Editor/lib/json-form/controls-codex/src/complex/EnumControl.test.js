@@ -60,6 +60,11 @@ function getMountOptions( configDataObject = null, schema = null ) {
 }
 describe( 'EnumControl', () => {
 
+	it( 'has an id on its field', () => {
+		const wrapper = mount( EnumControl, getMountOptions() );
+		expect( wrapper.getComponent( CdxField ).attributes( 'id' ) ).toEqual( EnumFieldName );
+	} );
+
 	it( 'gets the labels from the uischema', () => {
 		const wrapper = mount( EnumControl, getMountOptions() );
 

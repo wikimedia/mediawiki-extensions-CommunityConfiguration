@@ -1,7 +1,7 @@
 <template>
 	<cdx-field
 		v-if="control.uischema.label && control.uischema.label.exists()"
-		:id="control.uischema.name"
+		:id="control.pointer"
 		:is-fieldset="true"
 	>
 		<dispatch-renderer

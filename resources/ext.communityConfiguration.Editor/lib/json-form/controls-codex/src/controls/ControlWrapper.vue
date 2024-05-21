@@ -1,5 +1,5 @@
 <template>
-	<cdx-field :id="name" :is-fieldset="isFieldset">
+	<cdx-field :id="id" :is-fieldset="isFieldset">
 		<slot :control-label="( controlLabel && controlLabel.exists() ) ? controlLabel.text() : ''">
 		</slot>
 		<template v-if="label && label.exists()" #label>
@@ -21,7 +21,7 @@ module.exports = exports = {
 		CdxField
 	},
 	props: {
-		name: {
+		id: {
 			type: String,
 			required: true
 		},

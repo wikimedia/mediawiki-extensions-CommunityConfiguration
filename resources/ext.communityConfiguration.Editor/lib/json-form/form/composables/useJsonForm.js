@@ -112,6 +112,13 @@ function setConfigValueByScope( state, scope, newVal ) {
 	updateObjProp( state, newVal, valuePath.join( '.' ) );
 }
 
+function scopeToJsonPointer( scope ) {
+	return scope
+		.replace( '#/properties/', '' )
+		.replace( '/properties/', '.' )
+		.replace( '/', '.' );
+}
+
 /**
  * Provides bindings for 'Control' elements.
  *
@@ -133,6 +140,7 @@ function useJsonFormControl( props ) {
 	const modelValue = ref(
 		getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs )
 	);
+	const pointer = scopeToJsonPointer( scope );
 	const otherAttrs = { required };
 	const schemaTypeIsInteger = props.schema.type === 'integer';
 	const schemaTypeIsNumber = props.schema.type === 'number';
@@ -142,6 +150,7 @@ function useJsonFormControl( props ) {
 	return {
 		control: Object.assign( {}, props, {
 			modelValue,
+			pointer,
 			otherAttrs
 		} ),
 		handleChange( newVal ) {
@@ -171,6 +180,7 @@ function useJsonFormArrayControl( props ) {
 	const modelValue = computed( () => {
 		return getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs );
 	} );
+	const pointer = scopeToJsonPointer( scope );
 
 	// Treat all array children as if they are simple controls,
 	// if they array items are objects or arrays the appropriate
@@ -188,6 +198,7 @@ function useJsonFormArrayControl( props ) {
 		childUISchema,
 		control: Object.assign( {}, props, {
 			modelValue,
+			pointer,
 			otherAttrs: {
 				required
 			}
