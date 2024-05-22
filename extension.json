@@ -36,8 +36,9 @@
 				"wikipage": {
 					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Store\\WikiPageStore",
 					"services": [
+						"MainWANObjectCache",
 						"TitleFactory",
-						"CommunityConfiguration.WikiPageStore.Loader",
+						"RevisionLookup",
 						"CommunityConfiguration.WikiPageStore.Writer"
 					]
 				}

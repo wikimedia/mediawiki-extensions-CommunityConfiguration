@@ -2,42 +2,54 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
-use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Loader;
+use ApiRawMessage;
+use JsonContent;
+use LogicException;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use StatusValue;
+use WANObjectCache;
 
-class WikiPageStore implements IConfigurationStore {
+class WikiPageStore extends AbstractJsonStore {
+
+	private const CACHE_VERSION = 1;
 
 	public const VERSION_FIELD_NAME = '$version';
 
 	private ?string $configLocation;
 	private ?Title $configTitle = null;
 	private TitleFactory $titleFactory;
-	private Loader $loader;
+	private RevisionLookup $revisionLookup;
 	private Writer $writer;
 
 	/**
 	 * @param string|null $configLocation
+	 * @param WANObjectCache $cache
 	 * @param TitleFactory $titleFactory
-	 * @param Loader $loader
+	 * @param RevisionLookup $revisionLookup
 	 * @param Writer $writer
 	 */
 	public function __construct(
 		?string $configLocation,
+		WANObjectCache $cache,
 		TitleFactory $titleFactory,
-		Loader $loader,
+		RevisionLookup $revisionLookup,
 		Writer $writer
 	) {
+		parent::__construct( $cache );
+
 		$this->configLocation = $configLocation;
 		$this->titleFactory = $titleFactory;
-		$this->loader = $loader;
+		$this->revisionLookup = $revisionLookup;
 		$this->writer = $writer;
 	}
 
@@ -58,13 +70,75 @@ class WikiPageStore implements IConfigurationStore {
 		return $this->getConfigurationTitle();
 	}
 
+	protected function makeCacheKey(): string {
+		$configPage = $this->getConfigurationTitle();
+		return $this->cache->makeKey( __CLASS__,
+			self::CACHE_VERSION,
+			$configPage->getNamespace(), $configPage->getDBkey() );
+	}
+
 	/**
 	 * @inheritDoc
 	 */
-	public function invalidate(): void {
-		$this->loader->invalidate( $this->getConfigurationTitle() );
+	protected function fetchJsonBlob(): StatusValue {
+		$configPage = $this->getConfigurationTitle();
+
+		if ( $configPage->isExternal() ) {
+			throw new LogicException( 'Config page should not be external' );
+		}
+
+		$revision = $this->revisionLookup->getRevisionByTitle( $configPage );
+		if ( !$revision ) {
+			// The configuration page does not exist. Pretend it does not contain anything (failure
+			// mode and empty-page behavior is equal, see T325236).
+			// Top-level types different from object will require a corresponding empty value. eg: [] for arrays.
+			return StatusValue::newGood( '{}' );
+		}
+
+		$content = $revision->getContent( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC );
+		if ( !$content instanceof JsonContent ) {
+			return StatusValue::newFatal( new ApiRawMessage(
+				'The configuration title has no content or is not JSON content.'
+			) );
+		}
+
+		// Do not return the parsed JSON just yet, to ensure each caller gets their own copy of
+		// deserialized data. This needs to happen to avoid cache pollution. See T364101 for more
+		// details.
+		return StatusValue::newGood( $content->getText() );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @param bool $dropVersion Should version be dropped from the result?
+	 */
+	public function loadConfiguration( bool $dropVersion = true ): StatusValue {
+		$result = parent::loadConfiguration();
+		if ( $dropVersion ) {
+			$result = self::removeVersionDataFromStatus( $result );
+		}
+		return $result;
+	}
+
+	/**
+	 * @inheritDoc
+	 * @param bool $dropVersion Should version be dropped from the result?
+	 */
+	public function loadConfigurationUncached( bool $dropVersion = true ): StatusValue {
+		$result = parent::loadConfigurationUncached();
+		if ( $dropVersion ) {
+			$result = self::removeVersionDataFromStatus( $result );
+		}
+		return $result;
+	}
+
+	/**
+	 * Remove version data from status returned by the WikiPageStore
+	 *
+	 * @internal Only public to be used from ValidationHooks
+	 * @param StatusValue $status as returned by WikiPageStore::loadConfiguration(Uncached)
+	 * @return StatusValue
+	 */
 	public static function removeVersionDataFromStatus( StatusValue $status ): StatusValue {
 		$data = $status->getValue();
 		if ( $data ) {
@@ -78,30 +152,11 @@ class WikiPageStore implements IConfigurationStore {
 	 * @inheritDoc
 	 */
 	public function getVersion(): ?string {
-		$status = $this->loader->load( $this->getConfigurationTitle() );
+		$status = $this->loadConfiguration( false );
 		if ( !$status->isOK() ) {
 			return null;
 		}
 		return $status->getValue()->{self::VERSION_FIELD_NAME} ?? null;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function loadConfigurationUncached(): StatusValue {
-		return self::removeVersionDataFromStatus( $this->loader->load(
-			$this->getConfigurationTitle(),
-			ICustomReadConstants::READ_UNCACHED
-		) );
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function loadConfiguration(): StatusValue {
-		return self::removeVersionDataFromStatus(
-			$this->loader->load( $this->getConfigurationTitle() )
-		);
 	}
 
 	/**

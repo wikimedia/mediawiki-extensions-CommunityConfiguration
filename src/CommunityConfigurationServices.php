@@ -6,7 +6,6 @@ use MediaWiki\Extension\CommunityConfiguration\Access\WikiPageConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
-use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Loader;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
 use MediaWiki\MediaWikiServices;
@@ -49,10 +48,6 @@ class CommunityConfigurationServices {
 
 	public function getWikiPageConfigReader(): WikiPageConfigReader {
 		return $this->coreServices->getService( 'CommunityConfiguration.WikiPageConfigReader' );
-	}
-
-	public function getWikiPageStoreLoader(): Loader {
-		return $this->coreServices->getService( 'CommunityConfiguration.WikiPageStore.Loader' );
 	}
 
 	public function getWikiPageStoreWriter(): Writer {
