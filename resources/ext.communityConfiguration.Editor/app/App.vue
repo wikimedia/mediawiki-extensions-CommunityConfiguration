@@ -12,12 +12,24 @@
 					<strong>{{ errorTitle }}</strong>
 				</p>
 				<p>{{ message }}</p>
-				<p v-if="messageDetail && messageDetail.stack">
-					{{ messageDetail.stack }}
-				</p>
-				<p v-else-if="messageDetail">
-					{{ messageDetail }}
-				</p>
+				<div v-if="messageDetail && messageDetail.length">
+					<!-- eslint-disable vue/no-v-html -- MediaWiki guarantees the HTML is safe -->
+					<p
+						v-for="( error, index ) in messageDetail"
+						:key="index"
+						v-html="error.message"
+					>
+					</p>
+					<!-- eslint-enable vue/no-v-html  -->
+				</div>
+				<div v-else>
+					<p v-if="messageDetail && messageDetail.stack">
+						{{ messageDetail.stack }}
+					</p>
+					<p v-else-if="messageDetail">
+						{{ messageDetail }}
+					</p>
+				</div>
 				<p v-if="bugURL" v-i18n-html:communityconfiguration-editor-client-file-bug="[ bugURL ]"></p>
 			</template>
 		</editor-message>
@@ -117,7 +129,9 @@ module.exports = exports = {
 				action: 'communityconfigurationedit',
 				provider: providerName,
 				content: JSON.stringify( tempFormData ),
-				summary: summary.value
+				summary: summary.value,
+				formatversion: 2,
+				errorformat: 'html'
 			} ).then( () => {
 				isLoading.value = false;
 				showMessage.value = true;
@@ -125,9 +139,18 @@ module.exports = exports = {
 				resetForm();
 			} ).catch( ( errorCode, response ) => {
 				isLoading.value = false;
+				let error = response.docref;
+				if ( response.errors && response.errors.length ) {
+					error = response.errors.map( ( err ) => ( {
+						message: err.html || errorCode,
+						isHtml: !!err.html
+					} ) );
+				}
 				showError(
-					'', i18n(
-						'communityconfiguration-editor-client-data-submission-error' ).text(), response.error.info );
+					'',
+					i18n( 'communityconfiguration-editor-client-data-submission-error' ).text(),
+					error
+				);
 			} );
 		}
 
