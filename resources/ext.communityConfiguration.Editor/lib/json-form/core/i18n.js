@@ -191,7 +191,9 @@ function getCustomMultiSelectControlMessages( prefix, propName, asMessageObject 
 	return [
 		labelKey,
 		helpTextLabelKey,
-		'mw-widgets-titlesmultiselect-placeholder'
+		'mw-widgets-titlesmultiselect-placeholder',
+		// TODO can be removed after T345386 is resolved
+		'communityconfiguration-editor-chip-control-aria-chip-description'
 	];
 }
 

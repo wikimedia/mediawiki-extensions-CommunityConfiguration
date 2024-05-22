@@ -237,7 +237,8 @@ const TEST_DATA = [
 			'testenvironment-someprovider-pagetitles-help-text'
 		],
 		expectedSubControlKeys: [
-			'mw-widgets-titlesmultiselect-placeholder'
+			'mw-widgets-titlesmultiselect-placeholder',
+			'communityconfiguration-editor-chip-control-aria-chip-description'
 		]
 	},
 	{
@@ -263,7 +264,8 @@ const TEST_DATA = [
 			'testenvironment-someprovider-namespaces-help-text'
 		],
 		expectedSubControlKeys: [
-			'mw-widgets-titlesmultiselect-placeholder'
+			'mw-widgets-titlesmultiselect-placeholder',
+			'communityconfiguration-editor-chip-control-aria-chip-description'
 		]
 	}
 ];

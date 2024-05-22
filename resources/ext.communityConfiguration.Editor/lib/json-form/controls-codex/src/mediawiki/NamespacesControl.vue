@@ -5,6 +5,7 @@
 			v-model:input-chips="selection"
 			:initial-value="initialValue"
 			:placeholder="$i18n( 'mw-widgets-titlesmultiselect-placeholder' ).text()"
+			:chip-aria-description="$i18n( 'communityconfiguration-editor-chip-control-aria-chip-description' ).text()"
 			remove-button-label="remove"
 			@blur="onBlur"
 			@focus="expanded = true"
@@ -68,6 +69,7 @@ module.exports = exports = {
 			onChange
 		} = useCodexControl( useJsonFormControl( props ) );
 		const input = ref();
+		const selectedValue = ref( null );
 		const currentSearchTerm = ref( '' );
 		const expanded = ref( false );
 		const initialValue = unref( control.modelValue ).map( namespaceToMenuItem );
@@ -102,6 +104,9 @@ module.exports = exports = {
 			menuItems,
 			onKeyDown,
 			selection,
+			// Not read as we use an updaet event handler onItemSelected instead of watching
+			// selectedValue. Needed to avoid CdxMenu prop validation warnings.
+			selectedValue,
 			onBlur() {
 				expanded.value = false;
 				currentSearchTerm.value = '';

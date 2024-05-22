@@ -7,6 +7,7 @@
 	},
 	"communityconfiguration": "The title of Community Configuration entry point, only shown in Special:SpecialPages.",
 	"communityconfiguration-desc": "{{desc|name=CommunityConfiguration|url=https://www.mediawiki.org/wiki/Extension:CommunityConfiguration}}",
+	"communityconfiguration-editor-chip-control-aria-chip-description": "Accessibility text explaining how to interact with the input chips.",
 	"communityconfiguration-editor-client-generic-error": "A generic error message for client loading failures. Prompts the user to try again later.",
 	"communityconfiguration-editor-client-generic-error-description": "A generic error message pointing to the Vue component that failed and the instance method that threw the error.\n\nParameters:\n* $1 - the component name\n* $2 - the method in the component instance",
 	"communityconfiguration-editor-client-file-bug": "A message displayed to the user when an error occurs on the client editor and filing a bug is welcome.",
