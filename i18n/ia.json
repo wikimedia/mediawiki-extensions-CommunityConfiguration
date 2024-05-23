@@ -6,6 +6,7 @@
 	},
 	"communityconfiguration": "Configuration del communitate",
 	"communityconfiguration-desc": "Contine logica pro le configuration del communitate",
+	"communityconfiguration-editor-chip-control-aria-chip-description": "Preme ‘Enter’ pro modificar o ‘Delete’ pro eliminar",
 	"communityconfiguration-editor-client-generic-error": "Un error ha occurrite durante le cargamento del editor de configuration. Per favor essaya lo de novo plus tarde.",
 	"communityconfiguration-editor-client-generic-error-description": "Un error ha occurrite in ‘$2’ in le componente $1. Vide le detalios sequente:",
 	"communityconfiguration-editor-client-file-bug": "Si le problema persiste, considera [$1 signalar un problema] con le instrumento de signalamento de defectos.",

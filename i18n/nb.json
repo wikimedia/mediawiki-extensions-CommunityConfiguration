@@ -14,9 +14,9 @@
 	"communityconfiguration-guidelines-title": "Hva er fellesskapskonfigurasjon?",
 	"communityconfiguration-guidelines-description": "Fellesskapskonfigurasjon er et verktøy som lar wikifellesskaper sette opp og kontrollere konfigurasjonen av forskjellige {{SITENAME}}-funksjoner, og lar administratorer tilpasse funksjonene til sitt wikifellesskap.",
 	"communityconfiguration-guidelines-guideline1-title": "Lær mer",
-	"communityconfiguration-guidelines-guideline1-description": "[[mw:Special:MyLanguage/Help:Growth|Lær mer]] om fellesskapskonfigurasjon, hva det er, hvordan det funker, og om teamet som utvikler det.",
+	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Growth Lær mer] om fellesskapskonfigurasjon, hva det er, hvordan det funker, og om teamet som utvikler det.",
 	"communityconfiguration-guidelines-guideline2-title": "Gi oss {{GENDER:$1|din}} tilbakemelding",
-	"communityconfiguration-guidelines-guideline2-description": "Vi vil gjerne høre hva {{GENDER:$1|du}} tenker! Ta kontakt med oss på [[mw:Talk:Growth|diskusjonssiden]].",
+	"communityconfiguration-guidelines-guideline2-description": "Vi vil gjerne høre hva {{GENDER:$1|du}} tenker! Ta kontakt med oss på [https://www.mediawiki.org/wiki/Talk:Growth diskusjonssiden].",
 	"communityconfiguration-invalid-stored-config-error": "Kunne ikke laste en gyldig konfigurasjon fra $1-leverandøren (kode <tt>$2</tt>).",
 	"communityconfiguration-invalid-stored-config-error-with-link": "Kunne ikke laste gyldig konfigurasjon fra $1-leverandøren (kode <tt>$2</tt>), se $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Feildetaljer",
@@ -36,5 +36,8 @@
 	"communityconfiguration-editor-client-success-message": "Endringene {{GENDER:$1|$1}} dine ble lagret",
 	"communityconfiguration-editor-client-data-submission-error": "Noe gikk galt under lagring av endringene {{GENDER:$1|dine}}. Prøv igjen senere.",
 	"communityconfiguration-editor-message-dismiss-button-label": "Lukk",
-	"communityconfiguration-page-title-control-no-results": "Ingen resultater funnet."
+	"communityconfiguration-page-title-control-no-results": "Ingen resultater funnet.",
+	"communityconfiguration-editor-loading-info-text": "Konfigurasjonsredigeringsprogrammet laster",
+	"communityconfiguration-editor-nojs-fallback-text": "Konfigurasjonsredigeringsprogrammet krever JavaScript. Aktiver JavaScript for å kunne bruke det.",
+	"communityconfiguration-editor-navigation-tab-viewform": "Vis skjema"
 }

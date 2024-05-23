@@ -7,6 +7,7 @@
 	},
 	"communityconfiguration": "Community-Konfiguration",
 	"communityconfiguration-desc": "Enthält Community-Konfigurationslogik",
+	"communityconfiguration-editor-chip-control-aria-chip-description": "Drücke die Eingabetaste zum Bearbeiten oder die Löschtaste zum Entfernen",
 	"communityconfiguration-editor-client-generic-error": "Beim Laden des Konfigurationseditors ist ein Fehler aufgetreten. Bitte versuche es später noch einmal.",
 	"communityconfiguration-editor-client-generic-error-description": "In „$2“ in der Komponente $1 ist ein Fehler aufgetreten. Einzelheiten siehe unten:",
 	"communityconfiguration-editor-client-file-bug": "Wenn das Problem weiterhin besteht, [$1 erstelle bitte einen Fehlerbericht] im Bugtracker.",
