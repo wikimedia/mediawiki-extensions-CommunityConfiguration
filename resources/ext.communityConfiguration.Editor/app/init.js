@@ -56,7 +56,7 @@
 		const app = Vue.createMwApp( wrapper );
 		app.provide( 'CONFIG_DATA', data.data );
 		app.provide( 'JSON_SCHEMA', data.schema );
-		app.provide( 'PROVIDER_NAME', data.providerName );
+		app.provide( 'PROVIDER_ID', data.providerId );
 		app.provide( 'EDITOR_FORM_CONFIG', data.config );
 		app.mount( '#ext-communityConfiguration-app-root' );
 		return app;

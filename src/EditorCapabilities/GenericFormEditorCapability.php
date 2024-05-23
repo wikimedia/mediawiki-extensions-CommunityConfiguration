@@ -131,7 +131,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 
 		$out->addJsConfigVars( [
 			'communityConfigurationData' => [
-				'providerName' => $subpage,
+				'providerId' => $subpage,
 				'schema' => $this->provider->getValidator()->getSchemaBuilder()->getRootSchema(),
 				'data' => $config->getValue(),
 				'config' => [

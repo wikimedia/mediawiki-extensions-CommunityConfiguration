@@ -56,7 +56,7 @@
 		<edit-summary-dialog
 			v-model:open="editSummaryOpen"
 			v-model:summary="summary"
-			:provider-name="providerName"
+			:provider-id="providerId"
 			@primary="doSubmit"
 		></edit-summary-dialog>
 	</div>
@@ -85,7 +85,7 @@ module.exports = exports = {
 		const i18n = inject( 'i18n' );
 		const configData = inject( 'CONFIG_DATA' );
 		const schema = inject( 'JSON_SCHEMA' );
-		const providerName = inject( 'PROVIDER_NAME' );
+		const providerId = inject( 'PROVIDER_ID' );
 		const editorFormConfig = inject( 'EDITOR_FORM_CONFIG' );
 		const isLoading = ref( false );
 		const editSummaryOpen = ref( false );
@@ -127,7 +127,7 @@ module.exports = exports = {
 			showMessage.value = false;
 			new mw.Api().postWithToken( 'csrf', {
 				action: 'communityconfigurationedit',
-				provider: providerName,
+				provider: providerId,
 				content: JSON.stringify( tempFormData ),
 				summary: summary.value,
 				formatversion: 2,
@@ -192,7 +192,7 @@ module.exports = exports = {
 			messageDetail,
 			messageStatus,
 			onSubmit,
-			providerName,
+			providerId,
 			renderers,
 			schema,
 			showMessage,

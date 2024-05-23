@@ -52,7 +52,7 @@ describe( 'ext.communityConfiguration.Editor App', () => {
 				provide: {
 					CONFIG_DATA,
 					JSON_SCHEMA,
-					PROVIDER_NAME: 'SomeProvider',
+					PROVIDER_ID: 'SomeProvider',
 					EDITOR_FORM_CONFIG: {},
 					// TODO provide it as global mock/provider in jest config
 					i18n: jest.fn()
