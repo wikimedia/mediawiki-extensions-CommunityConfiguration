@@ -3,10 +3,13 @@
 		"authors": [
 			"MacOS Weed",
 			"SleaY",
-			"Alien333"
+			"Alien333",
+			"Sergi0",
+			"Trizek (WMF)",
+			"Wladek92"
 		]
 	},
-	"communityconfiguration": "COnfiguration de communauté",
+	"communityconfiguration": "Configuration communautaire",
 	"communityconfiguration-editor-client-file-bug": "Si le problème persiste, envisagez de [ $1 remplir un problème] dans l'outil de rapport de bugs.",
 	"communityconfiguration-editor-form-submit-button-text": "Enregistrer les modifications",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Envoi...",
@@ -17,7 +20,7 @@
 	"communityconfiguration-schema-validation-error": "BROUILLON : $2. Clé : $1",
 	"communityconfiguration-providers-list-title": "Fonctionnalités",
 	"communityconfiguration-provider-not-found": "Le fournisseur $1 est introuvable",
-	"communityconfigurationdashboard": "COnfiguration de communauté",
+	"communityconfigurationdashboard": "Configuration communautaire",
 	"communityconfigurationeditor": "Modification de « $1 »",
 	"communityconfiguration-edit-summary-dialog-title": "Enregistrez les modifications pour $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(facultatif)",
