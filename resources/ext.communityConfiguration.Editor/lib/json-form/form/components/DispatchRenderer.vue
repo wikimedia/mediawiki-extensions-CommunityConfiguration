@@ -4,7 +4,7 @@
 
 <script>
 const { rendererProps } = require( '../composables/props.js' );
-const { useJsonFormRenderer } = require( '../composables/index.js' );
+const { useJsonFormRenderer } = require( '../composables/useJsonForm.js' );
 /**
  * Iterate over an array of elements to compute the highest ranked
  * element based on a criterion.

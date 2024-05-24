@@ -7,7 +7,7 @@ const {
 	useJsonFormArrayControl,
 	useJsonFormControl,
 	useJsonFormRenderer
-} = require( './composables/index.js' );
+} = require( './composables/useJsonForm.js' );
 
 module.exports = exports = {
 	DispatchRenderer,
