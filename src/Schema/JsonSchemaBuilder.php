@@ -55,9 +55,17 @@ class JsonSchemaBuilder implements SchemaBuilder {
 	 */
 	private function getDefaultFromSpecification( array $specification ) {
 		if ( isset( $specification[JsonSchema::DYNAMIC_DEFAULT] ) ) {
-			return call_user_func( $specification[JsonSchema::DYNAMIC_DEFAULT]['callback'] );
+			$result = call_user_func( $specification[JsonSchema::DYNAMIC_DEFAULT]['callback'] );
+		} else {
+			$result = $specification['default'] ?? null;
 		}
-		return $specification['default'] ?? null;
+
+		if ( $specification[JsonSchema::TYPE] === JsonSchema::TYPE_OBJECT ) {
+			// Convert the value to an object when TYPE_OBJECT is expected
+			$result = (object)$result;
+		}
+
+		return $result;
 	}
 
 	/**
