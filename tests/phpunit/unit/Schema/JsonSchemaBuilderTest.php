@@ -73,13 +73,20 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 			->method( 'loadAsSchema' )
 			->willReturn( [
 				'properties' => [
-					'foo' => [
+					'number' => [
 						'type' => 'number',
 						'default' => 42,
 					],
-					'bar' => [
+					'string' => [
 						'type' => 'string',
 						'default' => 'bar',
+					],
+					'object' => [
+						'type' => 'object',
+						'default' => [
+							'foo' => 1,
+							'bar' => 2,
+						],
 					]
 				],
 			] );
@@ -91,8 +98,12 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 
 		$builder = new JsonSchemaBuilder( $schemaReader );
 		$this->assertEquals( (object)[
-			'foo' => 42,
-			'bar' => 'bar',
+			'number' => 42,
+			'string' => 'bar',
+			'object' => (object)[
+				'foo' => 1,
+				'bar' => 2,
+			]
 		], $builder->getDefaultsMap() );
 	}
 }
