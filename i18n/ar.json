@@ -6,6 +6,7 @@
 	},
 	"communityconfiguration": "إعدادات المجتمع",
 	"communityconfiguration-desc": "يحتوي على منطق إعدادات المجتمع",
+	"communityconfiguration-editor-chip-control-aria-chip-description": "الضغط على إدخال للتعديل أو على حذف للإزالة",
 	"communityconfiguration-editor-client-generic-error": "حدث خطأ ما في أثناء تحميل محرر الإعدادات. الرجاء معاودة المحاولة في وقت لاحق.",
 	"communityconfiguration-editor-client-generic-error-description": "حدث خطأ في '$2' في المكون $1. انظروا إلى التفاصيل أدناه:",
 	"communityconfiguration-editor-client-file-bug": "إذا استمرت المشكلة، ففكِّروا في [$1 إنشاء تقرير] في أداة الإبلاغ عن الأخطاء.",

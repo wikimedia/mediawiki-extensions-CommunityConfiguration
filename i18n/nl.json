@@ -7,6 +7,7 @@
 	},
 	"communityconfiguration": "Gemeenschapsconfiguratie",
 	"communityconfiguration-desc": "Bevat logica voor de gemeenschapsconfiguratie",
+	"communityconfiguration-editor-chip-control-aria-chip-description": "Druk op Enter om te bewerken of op Delete om te verwijderen",
 	"communityconfiguration-editor-client-generic-error": "Er is iets misgegaan bij het laden van de configuratie-editor. Probeer het later opnieuw.",
 	"communityconfiguration-editor-client-generic-error-description": "Er is een fout opgetreden in ‘$2’ in component $1. Zie de onderstaande details:",
 	"communityconfiguration-editor-client-file-bug": "Als het probleem zich blijft voordoen, overweeg dan [$1 een probleem te melden] in de bugrapportagetool.",
