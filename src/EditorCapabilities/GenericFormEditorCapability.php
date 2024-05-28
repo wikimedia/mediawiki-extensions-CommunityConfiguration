@@ -81,6 +81,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		}
 
 		$this->provider = $this->providerFactory->newProvider( $subpage );
+		$providerId = $this->provider->getId();
 
 		$out = $this->getContext()->getOutput();
 
@@ -110,7 +111,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		if ( !$config->isOK() ) {
 			$this->displayValidationError( $config );
 			$this->logger->error(
-				'Failed to load valid config from ' . $subpage,
+				'Failed to load valid config from ' . $providerId,
 				[
 					'errors' => $config->getErrors()
 				]
@@ -121,9 +122,9 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		$validationWarnings = $config->getMessages();
 		if ( $validationWarnings !== [] ) {
 			$this->logger->warning(
-				__METHOD__ . ': Loaded config with warnings for {subpage}',
+				__METHOD__ . ': Loaded config with warnings for {provider}',
 				[
-					'subpage' => $subpage,
+					'provider' => $providerId,
 					'warnings' => $validationWarnings
 				]
 			);
@@ -131,7 +132,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 
 		$out->addJsConfigVars( [
 			'communityConfigurationData' => [
-				'providerId' => $subpage,
+				'providerId' => $providerId,
 				'schema' => $this->provider->getValidator()->getSchemaBuilder()->getRootSchema(),
 				'data' => $config->getValue(),
 				'config' => [
@@ -141,7 +142,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 				]
 			]
 		] );
-		$infoTextKey = 'communityconfiguration-' . strtolower( $subpage ) . '-info-text';
+		$infoTextKey = 'communityconfiguration-' . strtolower( $providerId ) . '-info-text';
 		if ( !$this->msg( $infoTextKey )->isDisabled() ) {
 			$out->addHTML( Html::rawElement(
 				'div',

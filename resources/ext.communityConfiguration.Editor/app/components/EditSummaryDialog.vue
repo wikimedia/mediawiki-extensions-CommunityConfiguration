@@ -1,7 +1,7 @@
 <template>
 	<cdx-dialog
 		v-model:open="wrappedIsDialogOpen"
-		:title="$i18n( 'communityconfiguration-edit-summary-dialog-title', providerTitle ).text()"
+		:title="$i18n( 'communityconfiguration-edit-summary-dialog-title', providerName ).text()"
 		:primary-action="{
 			label: $i18n( 'communityconfiguration-edit-summary-dialog-save-button' ).text(), actionType: 'progressive' }"
 		:default-action="{ label: $i18n( 'communityconfiguration-edit-summary-dialog-cancel-button' ).text() }"
@@ -56,7 +56,7 @@ module.exports = defineComponent( {
 		const wrappedIsDialogOpen = useModelWrapper( toRef( props, 'open' ), emit, 'update:open' );
 		const wrappedEditSummary = useModelWrapper( toRef( props, 'summary' ), emit, 'update:summary' );
 		const i18n = inject( 'i18n' );
-		const providerTitle = computed(
+		const providerName = computed(
 			() => i18n( `communityconfiguration-${props.providerId.toLowerCase()}-title` ).text()
 		);
 
@@ -71,7 +71,7 @@ module.exports = defineComponent( {
 
 		return {
 			closeDialog,
-			providerTitle,
+			providerName,
 			saveChanges,
 			wrappedEditSummary,
 			wrappedIsDialogOpen,

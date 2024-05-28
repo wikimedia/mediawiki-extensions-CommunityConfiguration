@@ -86,33 +86,33 @@ class ConfigurationProviderFactory {
 	/**
 	 * Unconditionally construct a provider
 	 *
-	 * @param string $name
+	 * @param string $providerId The provider's key as set in extension.json
 	 * @return IConfigurationProvider
 	 * @throws InvalidArgumentException when the definition of provider is invalid
 	 */
-	private function constructProvider( string $name ): IConfigurationProvider {
-		$spec = $this->providerSpecs[$name];
+	private function constructProvider( string $providerId ): IConfigurationProvider {
+		$spec = $this->providerSpecs[$providerId];
 		$storeType = $this->getConstructType( $spec, 'store' );
 
 		$validatorType = $this->getConstructType( $spec, 'validator' );
 		if ( $storeType === null ) {
 			throw new InvalidArgumentException(
-				"Wrong type for \"store\" property for \"$name\" provider. Allowed types are: string, object"
+				"Wrong type for \"store\" property for \"$providerId\" provider. Allowed types are: string, object"
 			);
 		}
 		if ( $validatorType === null ) {
 			throw new InvalidArgumentException(
-				"Wrong type for \"validator\" property for \"$name\" provider. Allowed types are: string, object"
+				"Wrong type for \"validator\" property for \"$providerId\" provider. Allowed types are: string, object"
 			);
 		}
 		$storeArgs = $this->getConstructArgs( $spec, 'store' );
 		$validatorArgs = $this->getConstructArgs( $spec, 'validator' );
 
 		$ctorArgs = [
-			$name,
+			$providerId,
 			$spec['options'] ?? [],
-			$this->storeFactory->newStore( $name, $storeType, $storeArgs ),
-			$this->validatorFactory->newValidator( $name, $validatorType, $validatorArgs )
+			$this->storeFactory->newStore( $providerId, $storeType, $storeArgs ),
+			$this->validatorFactory->newValidator( $providerId, $validatorType, $validatorArgs )
 		];
 
 		$classSpec = $this->getProviderClassSpec( $spec['type'] ?? self::DEFAULT_PROVIDER_TYPE );
@@ -132,18 +132,18 @@ class ConfigurationProviderFactory {
 	}
 
 	/**
-	 * @param string $name
+	 * @param string $providerId The provider's key as set in extension.json
 	 * @return IConfigurationProvider
 	 * @throws InvalidArgumentException when provider $name is not registered
 	 */
-	public function newProvider( string $name ): IConfigurationProvider {
-		if ( !array_key_exists( $name, $this->providerSpecs ) ) {
-			throw new InvalidArgumentException( "Provider $name is not supported" );
+	public function newProvider( string $providerId ): IConfigurationProvider {
+		if ( !array_key_exists( $providerId, $this->providerSpecs ) ) {
+			throw new InvalidArgumentException( "Provider $providerId is not supported" );
 		}
-		if ( !array_key_exists( $name, $this->providers ) ) {
-			$this->providers[$name] = $this->constructProvider( $name );
+		if ( !array_key_exists( $providerId, $this->providers ) ) {
+			$this->providers[$providerId] = $this->constructProvider( $providerId );
 		}
-		return $this->providers[$name];
+		return $this->providers[$providerId];
 	}
 
 	/**
