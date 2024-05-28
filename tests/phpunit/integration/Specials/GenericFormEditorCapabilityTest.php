@@ -75,7 +75,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 			) ) )
 		);
 		$jsConfigVars = $output->getJsConfigVars()['communityConfigurationData'];
-		$this->assertSame( self::PROVIDER_ID, $jsConfigVars['providerName'] );
+		$this->assertSame( self::PROVIDER_ID, $jsConfigVars['providerId'] );
 		$this->assertEquals(
 			(object)[
 				// default value

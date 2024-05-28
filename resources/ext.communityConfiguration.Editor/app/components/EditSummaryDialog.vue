@@ -1,7 +1,7 @@
 <template>
 	<cdx-dialog
 		v-model:open="wrappedIsDialogOpen"
-		:title="$i18n( 'communityconfiguration-edit-summary-dialog-title', providerNameTitle ).text()"
+		:title="$i18n( 'communityconfiguration-edit-summary-dialog-title', providerTitle ).text()"
 		:primary-action="{
 			label: $i18n( 'communityconfiguration-edit-summary-dialog-save-button' ).text(), actionType: 'progressive' }"
 		:default-action="{ label: $i18n( 'communityconfiguration-edit-summary-dialog-cancel-button' ).text() }"
@@ -46,7 +46,7 @@ module.exports = defineComponent( {
 		 * Generates the title of the edit summary dialog dynamically
 		 * based on the provider's name.
 		 */
-		providerName: {
+		providerId: {
 			type: String,
 			required: true
 		}
@@ -56,8 +56,8 @@ module.exports = defineComponent( {
 		const wrappedIsDialogOpen = useModelWrapper( toRef( props, 'open' ), emit, 'update:open' );
 		const wrappedEditSummary = useModelWrapper( toRef( props, 'summary' ), emit, 'update:summary' );
 		const i18n = inject( 'i18n' );
-		const providerNameTitle = computed(
-			() => i18n( `communityconfiguration-${props.providerName.toLowerCase()}-title` ).text()
+		const providerTitle = computed(
+			() => i18n( `communityconfiguration-${props.providerId.toLowerCase()}-title` ).text()
 		);
 
 		function saveChanges() {
@@ -71,7 +71,7 @@ module.exports = defineComponent( {
 
 		return {
 			closeDialog,
-			providerNameTitle,
+			providerTitle,
 			saveChanges,
 			wrappedEditSummary,
 			wrappedIsDialogOpen,
