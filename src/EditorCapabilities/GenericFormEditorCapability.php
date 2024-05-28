@@ -136,8 +136,8 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 				'data' => $config->getValue(),
 				'config' => [
 					'i18nPrefix' => "communityconfiguration-" . strtolower( $subpage ),
-					'bugReportToolURL' => $this->getContext()->getConfig()
-						->get( 'CommunityConfigurationBugReportingToolURL' )
+					'feedbackURL' => $this->getContext()->getConfig()
+						->get( 'CommunityConfigurationFeedbackURL' )
 				]
 			]
 		] );
