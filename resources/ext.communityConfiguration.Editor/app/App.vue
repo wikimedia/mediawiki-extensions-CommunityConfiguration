@@ -30,7 +30,10 @@
 						{{ messageDetail }}
 					</p>
 				</div>
-				<p v-if="bugURL" v-i18n-html:communityconfiguration-editor-client-file-bug="[ bugURL ]"></p>
+				<p
+					v-if="editorFormConfig.feedbackURL"
+					v-i18n-html:communityconfiguration-editor-client-post-feedback="[ editorFormConfig.feedbackURL ]"
+				></p>
 			</template>
 		</editor-message>
 		<json-form
@@ -63,13 +66,12 @@
 </template>
 
 <script>
-const { computed, inject, ref, unref, onErrorCaptured } = require( 'vue' );
+const { inject, ref, onErrorCaptured } = require( 'vue' );
 const { CdxButton } = require( '@wikimedia/codex' );
 const { JsonForm } = require( '../lib/json-form/form/index.js' );
 const { renderers } = require( '../lib/json-form/controls-codex/src/index.js' );
 const EditorMessage = require( './components/EditorMessage.vue' );
 const EditSummaryDialog = require( './components/EditSummaryDialog.vue' );
-const { configurePhabricatorURL } = require( './utils.js' );
 let errorsDisplayed = 0;
 
 // @vue/component
@@ -97,17 +99,6 @@ module.exports = exports = {
 		const messageDetail = ref( null );
 		let tempFormData = null;
 
-		const bugURL = computed( () => {
-			if ( !editorFormConfig.bugReportToolURL ) {
-				return null;
-			}
-			return configurePhabricatorURL(
-				editorFormConfig.bugReportToolURL,
-				messageDetail ? unref( messageDetail ).toString() : '',
-				message.value,
-				messageDetail.value && messageDetail.value.stack ? `${ messageDetail.value.stack.slice( 0, 800 ) }...` : ''
-			);
-		} );
 		function onSubmit( formData ) {
 			tempFormData = formData;
 			editSummaryOpen.value = true;
@@ -181,7 +172,6 @@ module.exports = exports = {
 		} );
 
 		return {
-			bugURL,
 			configData,
 			doSubmit,
 			editSummaryOpen,

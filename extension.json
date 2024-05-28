@@ -20,8 +20,8 @@
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\JsonSchemaForTestingNewerVersion": "tests/phpunit/JsonSchemaForTestingNewerVersion.php"
 	},
 	"config": {
-		"CommunityConfigurationBugReportingToolURL": {
-			"description": "The URL to use for links targetting the bug report tool for the extension.",
+		"CommunityConfigurationFeedbackURL": {
+			"description": "The URL to use for links targetting the feedback page for the extension.",
 			"value": null
 		},
 		"CommunityConfigurationProviders": {
@@ -130,7 +130,6 @@
 		"ext.communityConfiguration.Editor": {
 			"packageFiles": [
 				"ext.communityConfiguration.Editor/app/init.js",
-				"ext.communityConfiguration.Editor/app/utils.js",
 				"ext.communityConfiguration.Editor/app/App.vue",
 				"ext.communityConfiguration.Editor/app/components/EditSummaryDialog.vue",
 				"ext.communityConfiguration.Editor/app/components/EditorMessage.vue",
@@ -182,7 +181,7 @@
 				"communityconfiguration-edit-summary-dialog-label",
 				"communityconfiguration-editor-client-generic-error",
 				"communityconfiguration-editor-client-generic-error-description",
-				"communityconfiguration-editor-client-file-bug",
+				"communityconfiguration-editor-client-post-feedback",
 				"communityconfiguration-editor-form-submit-button-text",
 				"communityconfiguration-editor-form-submit-button-loading-text",
 				"communityconfiguration-editor-client-success-message",

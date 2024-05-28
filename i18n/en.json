@@ -7,7 +7,7 @@
 	"communityconfiguration-editor-chip-control-aria-chip-description": "Press Enter to edit or Delete to remove",
 	"communityconfiguration-editor-client-generic-error": "Something went wrong while loading the configuration editor. Please try again later.",
 	"communityconfiguration-editor-client-generic-error-description": "An error occurred in '$2' in component $1. See details below:",
-	"communityconfiguration-editor-client-file-bug": "If the problem persists, consider [$1 filling an issue] in the bug reporting tool.",
+	"communityconfiguration-editor-client-post-feedback": "If the problem persists, consider [$1 leaving feedback] in the talk page.",
 	"communityconfiguration-editor-form-submit-button-text": "Save changes",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Sending...",
 	"communityconfiguration-guidelines-title": "What is Community Configuration?",

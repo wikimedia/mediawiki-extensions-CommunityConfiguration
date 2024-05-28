@@ -10,7 +10,7 @@
 	"communityconfiguration-editor-chip-control-aria-chip-description": "Accessibility text explaining how to interact with the input chips.",
 	"communityconfiguration-editor-client-generic-error": "A generic error message for client loading failures. Prompts the user to try again later.",
 	"communityconfiguration-editor-client-generic-error-description": "A generic error message pointing to the Vue component that failed and the instance method that threw the error.\n\nParameters:\n* $1 - the component name\n* $2 - the method in the component instance",
-	"communityconfiguration-editor-client-file-bug": "A message displayed to the user when an error occurs on the client editor and filing a bug is welcome.",
+	"communityconfiguration-editor-client-post-feedback": "A message displayed to the user when an error occurs on the client editor and leaving feedback is welcome.",
 	"communityconfiguration-editor-form-submit-button-text": "Text for the form data submission button",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Text for the form data submission button while an updating is being sent",
 	"communityconfiguration-guidelines-title": "Title of the first explanatory paragraph in the community configuration dashboard",
