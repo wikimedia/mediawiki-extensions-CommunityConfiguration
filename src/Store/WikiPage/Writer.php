@@ -64,16 +64,10 @@ class Writer {
 		// REVIEW: Should this validate $configPage is an acceptable target?
 
 		// Sort config alphabetically
-		$configSorted = get_object_vars( $newConfig );
-		uasort( $configSorted, static function ( $a, $b ): int {
-			if ( $a == $b ) {
-				return 0;
-			}
-			return ( $a > $b ) ? -1 : 1;
-		} );
-
+		$configSorted = (array)clone $newConfig;
+		ksort( $configSorted );
 		$status = Status::newGood();
-		$content = new JsonContent( FormatJson::encode( $configSorted ) );
+		$content = new JsonContent( FormatJson::encode( (object)$configSorted ) );
 
 		// Give AbuseFilter et al. a chance to block the edit (T346235)
 		$page = $this->wikiPageFactory->newFromTitle( $configPage );

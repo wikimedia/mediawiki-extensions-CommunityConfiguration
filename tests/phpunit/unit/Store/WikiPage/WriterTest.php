@@ -63,7 +63,8 @@ class WriterTest extends MediaWikiUnitTestCase {
 			$permissions
 		);
 		$newContent = new stdClass();
-		$newContent->Number = 42;
+		$newContent->ANumber = 42;
+		$newContent->ZString = 'some value';
 
 		$configPageMock = $this->createNoOpMock( PageIdentity::class );
 
