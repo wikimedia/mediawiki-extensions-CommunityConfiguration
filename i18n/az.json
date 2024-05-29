@@ -14,7 +14,7 @@
 	"communityconfiguration-guidelines-title": "İcma Konfiqurasiyası nədir?",
 	"communityconfiguration-guidelines-description": "İcma Konfiqurasiyası icmalara müxtəlif {{SITENAME}} funksiyalarının konfiqurasiyasını qurmağa və idarə etməyə imkan verən alətdir və inzibatçılara icmanın xüsusi ehtiyaclarını ödəməyə kömək edir.",
 	"communityconfiguration-guidelines-guideline1-title": "Daha ətraflı",
-	"communityconfiguration-guidelines-guideline1-description": "İcma Konfiqurasiyası, onun nə olduğu, necə işlədiyi və komandanın bununla bağlı davam edən işi haqqında [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Growth ətraflı öyrənin]",
+	"communityconfiguration-guidelines-guideline1-description": "İcma Konfiqurasiyası, onun nə olduğu, necə işlədiyi və komandanın bununla bağlı davam edən işi haqqında [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration ətraflı öyrənin]",
 	"communityconfiguration-guidelines-guideline2-title": "Rəy {{GENDER:$1|göndərin}}",
 	"communityconfiguration-guidelines-guideline2-description": "{{GENDER:$1|Fikirlərinizi}} eşitmək istəyirik! [https://www.mediawiki.org/wiki/Talk:Growth Müzakirə səhifəmiz] vasitəsilə bizimlə əlaqə saxlayın.",
 	"communityconfiguration-invalid-stored-config-error": "$1 (kod <tt>$2</tt> ) provayderindən etibarlı konfiqurasiyanı yükləmək alınmadı.",

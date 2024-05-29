@@ -14,7 +14,7 @@
 	"communityconfiguration-guidelines-title": "מהי תצורת קהילה?",
 	"communityconfiguration-guidelines-description": "תצורת קהילה הוא כלי שמאפשר לקהילות להגדיר ולשלוט בתצורה של תכונות שונות של {{SITENAME}}, ועוזר למפעילים להתאים לצרכים המסוימים של הקהילה שלהם.",
 	"communityconfiguration-guidelines-guideline1-title": "מידע נוסף",
-	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Growth למידע נוסף] על תצורת קהילה, מה זה, איך זה עובד, והעבודה השוטפת של הצוות על זה.",
+	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration למידע נוסף] על תצורת קהילה, מה זה, איך זה עובד, והעבודה השוטפת של הצוות על זה.",
 	"communityconfiguration-guidelines-guideline2-title": "{{GENDER:$1|שלח|שלחי|לשלוח}} לנו משוב",
 	"communityconfiguration-guidelines-guideline2-description": "נשמח לשמוע את המחשבות שלך! {{GENDER:$1|פנה|פני}} אלינו דרך [https://www.mediawiki.org/wiki/Talk:Growth דף השיחה] שלנו.",
 	"communityconfiguration-invalid-stored-config-error": "טעינת תצורה תקינה מספק $1 (קוד <tt>$2</tt>) נכשלה.",
