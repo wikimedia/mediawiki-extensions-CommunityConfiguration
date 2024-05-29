@@ -9,7 +9,6 @@
 	"communityconfiguration-editor-chip-control-aria-chip-description": "Redaktə etmək üçün Enter, silmək üçün Delete düyməsinə basın",
 	"communityconfiguration-editor-client-generic-error": "Konfiqurasiya redaktorunu yükləyərkən xəta baş verdi. Zəhmət olmasa bir az sonra yenə cəhd edin.",
 	"communityconfiguration-editor-client-generic-error-description": "$1 komponentindəki '$2' metodunda xəta baş verdi. Aşağıdakı təfərrüatlara nəzər yetirin:",
-	"communityconfiguration-editor-client-file-bug": "Problem davam edərsə, xəta bildirmə alətində [$1 bildirməyi] nəzərdən keçirin.",
 	"communityconfiguration-editor-form-submit-button-text": "Dəyişiklikləri yadda saxla",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Göndərilir...",
 	"communityconfiguration-guidelines-title": "İcma Konfiqurasiyası nədir?",

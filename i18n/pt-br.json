@@ -4,7 +4,6 @@
 			"Lc97"
 		]
 	},
-	"communityconfiguration-editor-client-file-bug": "Caso o problema persista considere [$1 digite um problema] na ferramenta informação de erros.",
 	"communityconfiguration-invalid-stored-config-error": "Falha ao carregar uma configuração valida do $1 (code <tt>$2</tt>) provedor.",
 	"communityconfiguration-invalid-stored-config-error-with-link": "Falha ao salvar uma configuração válida do $1 (code <tt>$2</tt>) provedor, veja $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Detalhes do erro"

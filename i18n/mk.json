@@ -9,7 +9,6 @@
 	"communityconfiguration-editor-chip-control-aria-chip-description": "Стиснете на Enter за да уредите или Delete за да отстраните",
 	"communityconfiguration-editor-client-generic-error": "Нешто тргна наопаку при вчитувањето на уредникот на поставување. Обидете се подоцна.",
 	"communityconfiguration-editor-client-generic-error-description": "Се јави гршека во „$2“ во составницата $1. Поподробно подолу:",
-	"communityconfiguration-editor-client-file-bug": "Ако проблемот продолжи, препорачуваме [$1 да поднесете извештај за проблем] во алатката за пријавување на грешки.",
 	"communityconfiguration-editor-form-submit-button-text": "Зачувај промени",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Испраќам...",
 	"communityconfiguration-guidelines-title": "Што е „Поставки на заедницата“?",

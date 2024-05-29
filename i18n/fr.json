@@ -10,7 +10,6 @@
 		]
 	},
 	"communityconfiguration": "Configuration communautaire",
-	"communityconfiguration-editor-client-file-bug": "Si le problème persiste, envisagez de [$1 remplir un ticket] dans l'outil de rapport de bogues.",
 	"communityconfiguration-editor-form-submit-button-text": "Enregistrer les modifications",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Envoi...",
 	"communityconfiguration-guidelines-title": "Qu'est-ce que la Configuration de Communauté ?",

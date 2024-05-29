@@ -8,7 +8,6 @@
 	"communityconfiguration-desc": "Mengandungi logik konfigurasi Komuniti",
 	"communityconfiguration-editor-client-generic-error": "Kesilapan telah berlaku semasa memuatkan alat sunting konfigurasi. Sila cuba sebentar lagi.",
 	"communityconfiguration-editor-client-generic-error-description": "Ralat berlaku dalam '$2' pada komponen $1. Lihat butiran di bawah:",
-	"communityconfiguration-editor-client-file-bug": "Jika masalah berterusan pertimbangkan [$1 memfailkan isu] melalui alat pelaporan pepijat.",
 	"communityconfiguration-editor-form-submit-button-text": "Simpan perubahan",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Menghantar...",
 	"communityconfiguration-guidelines-title": "Apakah itu Konfigurasi Komuniti?",

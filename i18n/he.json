@@ -9,7 +9,6 @@
 	"communityconfiguration-editor-chip-control-aria-chip-description": "יש ללחוץ Enter כדי לערוך או על Delete כדי להסיר",
 	"communityconfiguration-editor-client-generic-error": "משהו השתבש בעת טעינת עורך התצורה. נא לנסות שוב מאוחר יותר.",
 	"communityconfiguration-editor-client-generic-error-description": "אירעה שגיאה ב\"$2\" ברכיב $1. ר' פרטים למטה:",
-	"communityconfiguration-editor-client-file-bug": "אם הבעיה נמשכת, נא לשקול [$1 לדווח אותה] בכלי דיווח הבאגים.",
 	"communityconfiguration-editor-form-submit-button-text": "שמירת השינויים",
 	"communityconfiguration-editor-form-submit-button-loading-text": "שליחה...",
 	"communityconfiguration-guidelines-title": "מהי תצורת קהילה?",

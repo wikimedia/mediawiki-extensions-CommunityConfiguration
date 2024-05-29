@@ -9,7 +9,6 @@
 	"communityconfiguration-desc": "Zawiera logikę stojącą za konfiguracją przez społeczność",
 	"communityconfiguration-editor-client-generic-error": "Coś poszło nie tak podczas ładowania edytora konfiguracji. Spróbuj ponownie później.",
 	"communityconfiguration-editor-client-generic-error-description": "Wystąpił błąd w „$2” w komponencie „$1”. Szczegóły poniżej:",
-	"communityconfiguration-editor-client-file-bug": "Jeśli problem będzie się powtarzał, rozważ [$1 zgłoszenie go] w narzędziu do raportowania błędów.",
 	"communityconfiguration-editor-form-submit-button-text": "Zapisz zmiany",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Wysyłanie...",
 	"communityconfiguration-guidelines-title": "Czym jest konfiguracja przez społeczność?",
