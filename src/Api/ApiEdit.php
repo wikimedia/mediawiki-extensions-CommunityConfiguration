@@ -7,6 +7,7 @@ use ApiMain;
 use FormatJson;
 use InvalidArgumentException;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
+use MediaWiki\Extension\CommunityConfiguration\Validation\ValidationStatus;
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerAwareTrait;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -67,7 +68,26 @@ class ApiEdit extends ApiBase {
 			$this->getAuthority(),
 			$params['summary']
 		);
+
 		if ( !$status->isOK() ) {
+			if ( $status instanceof ValidationStatus ) {
+				$errorData = $status->getValidationErrorsData();
+				$lastIndex = count( $errorData ) - 1;
+				foreach ( $status->getMessages() as $index => $errorMessageSpecifier ) {
+					if ( $index === $lastIndex ) {
+						$this->dieWithError(
+							$errorMessageSpecifier,
+							null,
+							$errorData[$index]
+						);
+					}
+					$this->addError(
+						$errorMessageSpecifier,
+						null,
+						$errorData[$index]
+					);
+				}
+			}
 			$this->dieStatus( $status );
 		}
 
