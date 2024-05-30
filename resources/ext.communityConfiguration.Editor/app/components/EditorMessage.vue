@@ -1,16 +1,12 @@
 <template>
 	<cdx-message
 		class="ext-communityConfiguration-EditorMessage"
-		:dismiss-button-label="isDismissable && $i18n(
-			'communityconfiguration-editor-message-dismiss-button-label' ).text()"
+		:dismiss-button-label="isDismissable ? $i18n(
+			'communityconfiguration-editor-message-dismiss-button-label' ).text() : ''"
 		:type="status"
 		:fade-in="true"
 		:auto-dismiss="status === 'success'"
 	>
-		<slot name="success">
-		</slot>
-		<slot name="error">
-		</slot>
 		<slot></slot>
 	</cdx-message>
 </template>

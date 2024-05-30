@@ -1,45 +1,11 @@
 <template>
 	<div class="ext-communityConfiguration-App">
-		<editor-message
-			v-if="showMessage || !canEdit"
-			:status="messageStatus ? messageStatus : undefined"
-			:is-dismissable="canEdit"
-		>
-			<template v-if="messageStatus === 'success'" #success>
-				<p>{{ $i18n( 'communityconfiguration-editor-client-success-message' ).text() }}</p>
-			</template>
-			<template v-if="messageStatus === 'error'" #error>
-				<p v-if="errorTitle">
-					<strong>{{ errorTitle }}</strong>
-				</p>
-				<p>{{ message }}</p>
-				<div v-if="messageDetail && messageDetail.length">
-					<!-- eslint-disable vue/no-v-html -- MediaWiki guarantees the HTML is safe -->
-					<p
-						v-for="( error, index ) in messageDetail"
-						:key="index"
-						v-html="error.message"
-					>
-					</p>
-					<!-- eslint-enable vue/no-v-html  -->
-				</div>
-				<div v-else>
-					<p v-if="messageDetail && messageDetail.stack">
-						{{ messageDetail.stack }}
-					</p>
-					<p v-else-if="messageDetail">
-						{{ messageDetail }}
-					</p>
-				</div>
-				<p
-					v-if="editorFormConfig.feedbackURL"
-					v-i18n-html:communityconfiguration-editor-client-post-feedback="[ editorFormConfig.feedbackURL ]"
-				></p>
-			</template>
-			<p v-if="!canEdit">
-				{{ $i18n( 'communityconfiguration-editor-client-notice-message' ).text() }}
-			</p>
-		</editor-message>
+		<missing-permissions-notice-message v-if="!canEdit"></missing-permissions-notice-message>
+		<component
+			:is="editorStatusMessage.type"
+			v-if="editorStatusMessage"
+			v-bind="editorStatusMessage.props"
+		></component>
 		<json-form
 			:config="editorFormConfig"
 			:data="configData"
@@ -78,12 +44,18 @@
 </template>
 
 <script>
-const { inject, ref, onErrorCaptured } = require( 'vue' );
+const { inject, ref, computed, onErrorCaptured } = require( 'vue' );
 const { CdxButton, CdxMessage } = require( '@wikimedia/codex' );
 const { cdxIconInfoFilled } = require( './icons.json' );
 const { JsonForm } = require( '../lib/json-form/form/index.js' );
 const { renderers } = require( '../lib/json-form/controls-codex/src/index.js' );
-const EditorMessage = require( './components/EditorMessage.vue' );
+const SuccessMessage = require( './components/SuccessMessage.vue' );
+const MissingPermissionsNoticeMessage = require( './components/MissingPermissionsNoticeMessage.vue' );
+const ValidationErrorMessage = require( './components/ValidationErrorMessage.vue' );
+const PermissionsErrorMessage = require( './components/PermissionsErrorMessage.vue' );
+const GenericSubmitErrorMessage = require( './components/GenericSubmitErrorMessage.vue' );
+const NetworkErrorMessage = require( './components/NetworkErrorMessage.vue' );
+const ClientErrorMessage = require( './components/ClientErrorMessage.vue' );
 const EditSummaryDialog = require( './components/EditSummaryDialog.vue' );
 let errorsDisplayed = 0;
 
@@ -94,11 +66,16 @@ module.exports = exports = {
 		CdxButton,
 		CdxMessage,
 		EditSummaryDialog,
-		EditorMessage,
+		SuccessMessage,
+		MissingPermissionsNoticeMessage,
+		ValidationErrorMessage,
+		PermissionsErrorMessage,
+		GenericSubmitErrorMessage,
+		NetworkErrorMessage,
+		ClientErrorMessage,
 		JsonForm
 	},
 	setup: function () {
-		const i18n = inject( 'i18n' );
 		const configData = inject( 'CONFIG_DATA' );
 		const schema = inject( 'JSON_SCHEMA' );
 		const providerId = inject( 'PROVIDER_ID' );
@@ -107,11 +84,88 @@ module.exports = exports = {
 		const isLoading = ref( false );
 		const editSummaryOpen = ref( false );
 		const summary = ref( '' );
-		const showMessage = ref( false );
-		const messageStatus = ref( null );
-		const message = ref( '' );
-		const errorTitle = ref( '' );
-		const messageDetail = ref( null );
+		const clientError = ref( null );
+		const submitOutcome = ref( null );
+
+		function isValidationErrorResponse( errors ) {
+			if ( !errors || !Array.isArray( errors ) ) {
+				return false;
+			}
+			const errorMessageCodes = errors.map( ( err ) => err.code );
+			return errorMessageCodes.every( ( code ) => code === 'communityconfiguration-schema-validation-error' );
+		}
+
+		function isPermissionsErrorResponse( errors ) {
+			if ( !errors || !Array.isArray( errors ) ) {
+				return false;
+			}
+			return errors.length === 2 &&
+				errors[ 0 ].code === 'protectednamespace-interface' &&
+				errors[ 1 ].code === 'sitejsonprotected';
+		}
+		const editorStatusMessage = computed( () => {
+			// TODO: maybe this should be an array instead so that we can show multiple messages?
+
+			if ( clientError.value ) {
+				return {
+					type: 'ClientErrorMessage',
+					props: {
+						componentName: clientError.value.componentName,
+						info: clientError.value.info,
+						err: clientError.value.err,
+						feedbackURL: editorFormConfig.feedbackURL
+					}
+				};
+			}
+
+			if ( submitOutcome.value && submitOutcome.value.success ) {
+				return {
+					type: 'SuccessMessage'
+				};
+			}
+
+			if ( submitOutcome.value && submitOutcome.value.error ) {
+				if ( submitOutcome.value.error.code === 'http' ) {
+					return {
+						type: 'NetworkErrorMessage'
+					};
+				}
+				const errorResponse = submitOutcome.value.error.response;
+				if ( isValidationErrorResponse( errorResponse.errors ) ) {
+					const errorDataWithFieldId = errorResponse.errors.map( ( { data } ) => {
+						data.formFieldId = data.pointer
+							.slice( 1 ) // Remove leading '/'
+							.replace( /\//g, '.' );
+						return data;
+					} );
+					return {
+						type: 'ValidationErrorMessage',
+						props: {
+							errors: errorDataWithFieldId,
+							feedbackURL: editorFormConfig.feedbackURL
+						}
+					};
+				}
+				if ( isPermissionsErrorResponse( errorResponse.errors ) ) {
+					return {
+						type: 'PermissionsErrorMessage',
+						props: { errors: errorResponse.errors }
+					};
+				}
+
+				// FIXME: make more generic -> no network error
+				return {
+					type: 'GenericSubmitErrorMessage',
+					props: {
+						errorResponse,
+						errorCode: submitOutcome.value.error.code,
+						feedbackURL: editorFormConfig.feedbackURL
+					}
+				};
+			}
+
+			return null;
+		} );
 		let tempFormData = null;
 
 		function onSubmit( formData ) {
@@ -119,18 +173,9 @@ module.exports = exports = {
 			editSummaryOpen.value = true;
 		}
 
-		function showError( titleText, messageText, error ) {
-			showMessage.value = true;
-			messageStatus.value = 'error';
-			errorTitle.value = titleText || '';
-			message.value = messageText;
-			messageDetail.value = error;
-			// TODO: log errors to logstash
-		}
-
 		function doSubmit() {
 			isLoading.value = true;
-			showMessage.value = false;
+			submitOutcome.value = null;
 			new mw.Api().postWithToken( 'csrf', {
 				action: 'communityconfigurationedit',
 				provider: providerId,
@@ -140,23 +185,11 @@ module.exports = exports = {
 				errorformat: 'html'
 			} ).then( () => {
 				isLoading.value = false;
-				showMessage.value = true;
-				messageStatus.value = 'success';
+				submitOutcome.value = { success: true };
 				resetForm();
 			} ).catch( ( errorCode, response ) => {
 				isLoading.value = false;
-				let error = response.docref;
-				if ( response.errors && response.errors.length ) {
-					error = response.errors.map( ( err ) => ( {
-						message: err.html || errorCode,
-						isHtml: !!err.html
-					} ) );
-				}
-				showError(
-					'',
-					i18n( 'communityconfiguration-editor-client-data-submission-error' ).text(),
-					error
-				);
+				submitOutcome.value = { error: { code: errorCode, response } };
 			} );
 		}
 
@@ -174,35 +207,23 @@ module.exports = exports = {
 			// HACK: component._.type.name is an implementation detail Vue.js might
 			// refactor. Could not find other way to get the component name from the instance
 			const componentName = component._ && component._.type.name;
-			showError(
-				i18n( 'communityconfiguration-editor-client-generic-error' ).text(),
-				i18n(
-					'communityconfiguration-editor-client-generic-error-description',
-					componentName,
-					info
-				).text(),
-				err
-			);
+			clientError.value = { err, info, componentName };
 			errorsDisplayed++;
 		} );
 
 		return {
 			canEdit,
 			cdxIconInfoFilled,
+			editorStatusMessage,
 			configData,
 			doSubmit,
 			editSummaryOpen,
 			editorFormConfig,
-			errorTitle,
 			isLoading,
-			message,
-			messageDetail,
-			messageStatus,
 			onSubmit,
 			providerId,
 			renderers,
 			schema,
-			showMessage,
 			summary
 		};
 	}
