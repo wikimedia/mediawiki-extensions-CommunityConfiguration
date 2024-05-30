@@ -1,11 +1,6 @@
 <template>
 	<div class="ext-communityConfiguration-App">
 		<missing-permissions-notice-message v-if="!canEdit"></missing-permissions-notice-message>
-		<component
-			:is="editorStatusMessage.type"
-			v-if="editorStatusMessage"
-			v-bind="editorStatusMessage.props"
-		></component>
 		<json-form
 			:config="editorFormConfig"
 			:data="configData"
@@ -15,6 +10,12 @@
 			@submit="onSubmit"
 		>
 			<template #submit>
+				<component
+					:is="editorStatusMessage.type"
+					v-if="editorStatusMessage"
+					v-bind="editorStatusMessage.props"
+					class="ext-communityConfiguration-FooterMessage"
+				></component>
 				<cdx-message
 					v-if="!canEdit"
 					inline
