@@ -147,10 +147,21 @@ function useJsonFormControl( props ) {
 	if ( schemaTypeIsInteger || schemaTypeIsNumber ) {
 		otherAttrs.step = schemaTypeIsInteger ? 1 : 'any';
 	}
+	const statusMessages = computed( () => {
+		const validationError = jsonform.errors.value.find(
+			( error ) => error.formFieldId === pointer
+		);
+		if ( validationError ) {
+			return { error: validationError.messageLiteral };
+		}
+		return {};
+	} );
+
 	return {
 		control: Object.assign( {}, props, {
 			modelValue,
 			pointer,
+			statusMessages,
 			otherAttrs
 		} ),
 		handleChange( newVal ) {
@@ -181,6 +192,15 @@ function useJsonFormArrayControl( props ) {
 		return getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs );
 	} );
 	const pointer = scopeToJsonPointer( scope );
+	const statusMessages = computed( () => {
+		const validationError = jsonform.errors.value.find(
+			( error ) => error.formFieldId === pointer
+		);
+		if ( validationError ) {
+			return { error: validationError.messageLiteral };
+		}
+		return {};
+	} );
 
 	// Treat all array children as if they are simple controls,
 	// if they array items are objects or arrays the appropriate
@@ -199,6 +219,7 @@ function useJsonFormArrayControl( props ) {
 		control: Object.assign( {}, props, {
 			modelValue,
 			pointer,
+			statusMessages,
 			otherAttrs: {
 				required
 			}

@@ -9,6 +9,7 @@
 		<json-form
 			:config="editorFormConfig"
 			:data="configData"
+			:errors="validationErrors"
 			:renderers="renderers"
 			:schema="schema"
 			@submit="onSubmit"
@@ -95,6 +96,22 @@ module.exports = exports = {
 			return errorMessageCodes.every( ( code ) => code === 'communityconfiguration-schema-validation-error' );
 		}
 
+		const validationErrors = computed( () => {
+			if ( !submitOutcome.value || !submitOutcome.value.error ) {
+				return [];
+			}
+			const errorResponse = submitOutcome.value.error.response;
+			if ( !isValidationErrorResponse( errorResponse.errors ) ) {
+				return [];
+			}
+			return errorResponse.errors.map( ( { data } ) => {
+				data.formFieldId = data.pointer
+					.slice( 1 ) // Remove leading '/'
+					.replace( /\//g, '.' );
+				return data;
+			} );
+		} );
+
 		function isPermissionsErrorResponse( errors ) {
 			if ( !errors || !Array.isArray( errors ) ) {
 				return false;
@@ -125,27 +142,24 @@ module.exports = exports = {
 			}
 
 			if ( submitOutcome.value && submitOutcome.value.error ) {
+
 				if ( submitOutcome.value.error.code === 'http' ) {
 					return {
 						type: 'NetworkErrorMessage'
 					};
 				}
-				const errorResponse = submitOutcome.value.error.response;
-				if ( isValidationErrorResponse( errorResponse.errors ) ) {
-					const errorDataWithFieldId = errorResponse.errors.map( ( { data } ) => {
-						data.formFieldId = data.pointer
-							.slice( 1 ) // Remove leading '/'
-							.replace( /\//g, '.' );
-						return data;
-					} );
+
+				if ( validationErrors.value.length ) {
 					return {
 						type: 'ValidationErrorMessage',
 						props: {
-							errors: errorDataWithFieldId,
+							errors: validationErrors.value,
 							feedbackURL: editorFormConfig.feedbackURL
 						}
 					};
 				}
+
+				const errorResponse = submitOutcome.value.error.response;
 				if ( isPermissionsErrorResponse( errorResponse.errors ) ) {
 					return {
 						type: 'PermissionsErrorMessage',
@@ -166,6 +180,7 @@ module.exports = exports = {
 
 			return null;
 		} );
+
 		let tempFormData = null;
 
 		function onSubmit( formData ) {
@@ -224,7 +239,8 @@ module.exports = exports = {
 			providerId,
 			renderers,
 			schema,
-			summary
+			summary,
+			validationErrors
 		};
 	}
 };

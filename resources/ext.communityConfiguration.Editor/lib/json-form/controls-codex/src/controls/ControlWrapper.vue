@@ -1,5 +1,10 @@
 <template>
-	<cdx-field :id="id" :is-fieldset="isFieldset">
+	<cdx-field
+		:id="id"
+		:status="statusMessages.value.error ? 'error' : 'default'"
+		:messages="statusMessages.value"
+		:is-fieldset="isFieldset"
+	>
 		<slot :control-label="( controlLabel && controlLabel.exists() ) ? controlLabel.text() : ''">
 		</slot>
 		<template v-if="label && label.exists()" #label>
@@ -43,6 +48,10 @@ module.exports = exports = {
 		isFieldset: {
 			type: Boolean,
 			default: false
+		},
+		statusMessages: {
+			type: Object,
+			default: () => ( {} )
 		}
 	}
 };
