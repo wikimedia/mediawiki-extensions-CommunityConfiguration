@@ -4,6 +4,7 @@
 			"Dirruw'o"
 		]
 	},
+	"communityconfiguration-editor-client-post-feedback": "Если проблема не устранена, рассмотрите вариант [Оставить отзыв $1 ] на странице обсуждения.",
 	"communityconfiguration-invalid-stored-config-error": "Не удалось загрузить действительную конфигурацию от поставщика $1 (код <tt>$2</tt> ).",
 	"communityconfiguration-invalid-stored-config-error-with-link": "Не удалось загрузить действительную конфигурацию от поставщика $1 (код <tt>$2</tt> ) провайдер, смотрите $3",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Детали ошибки",

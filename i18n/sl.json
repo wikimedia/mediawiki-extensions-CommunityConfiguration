@@ -4,6 +4,8 @@
 			"Eleassar"
 		]
 	},
+	"communityconfiguration-guidelines-guideline1-title": "Več o tem",
+	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Growth Izvedite več] o konfiguraciji skupnosti, kaj je, kako deluje in ekipi, ki trenutno dela na tem.",
 	"communityconfiguration-invalid-stored-config-error": "Ni bilo mogoče naložiti veljavne konfiguracije",
 	"communityconfiguration-provider-not-found": "Ponudnika $1 ni bilo mogoče najti",
 	"communityconfiguration-unknown-error": "OSNUTEK: Nekaj je šlo kaj narobe. Želite sporočiti težavo v Phabricatorju?",

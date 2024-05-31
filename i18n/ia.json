@@ -9,6 +9,7 @@
 	"communityconfiguration-editor-chip-control-aria-chip-description": "Preme ‘Enter’ pro modificar o ‘Delete’ pro eliminar",
 	"communityconfiguration-editor-client-generic-error": "Un error ha occurrite durante le cargamento del editor de configuration. Per favor essaya lo de novo plus tarde.",
 	"communityconfiguration-editor-client-generic-error-description": "Un error ha occurrite in ‘$2’ in le componente $1. Vide le detalios sequente:",
+	"communityconfiguration-editor-client-post-feedback": "Si le problema persiste, considera [$1 lassar un commentario] sur le pagina de discussion.",
 	"communityconfiguration-editor-form-submit-button-text": "Salveguardar modificationes",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Invia…",
 	"communityconfiguration-guidelines-title": "Que es Configuration del communitate?",

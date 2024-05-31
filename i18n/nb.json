@@ -8,6 +8,7 @@
 	"communityconfiguration-desc": "Inneholder logikk for fellesskapskonfigurasjon",
 	"communityconfiguration-editor-client-generic-error": "Noe gikk galt under lasting av konfigurasjonsredigeringen. Prøv igjen senere.",
 	"communityconfiguration-editor-client-generic-error-description": "En feil oppsto i «$2» i komponenten $1. Se detaljer nedenfor:",
+	"communityconfiguration-editor-client-post-feedback": "Legg gjerne igjen [$1 tilbakemelding] hvis problemet fortsetter.",
 	"communityconfiguration-editor-form-submit-button-text": "Lagre endringer",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Sender …",
 	"communityconfiguration-guidelines-title": "Hva er fellesskapskonfigurasjon?",
