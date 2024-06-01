@@ -17,7 +17,6 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use RecentChange;
-use stdClass;
 use WikiPage;
 
 /**
@@ -62,9 +61,13 @@ class WriterTest extends MediaWikiUnitTestCase {
 			new UserIdentityValue( 1, 'Admin' ),
 			$permissions
 		);
-		$newContent = new stdClass();
-		$newContent->ANumber = 42;
-		$newContent->ZString = 'some value';
+		$newContentData = [
+			'ANumber' => 42,
+			'BObject' => [ 'Foo' => 1, 'Bar' => 2 ],
+			'ZString' => 'some value',
+		];
+		// recursively convert arrays to PHP objects
+		$newContent = json_decode( json_encode( $newContentData ) );
 
 		$configPageMock = $this->createNoOpMock( PageIdentity::class );
 
@@ -112,6 +115,12 @@ class WriterTest extends MediaWikiUnitTestCase {
 			false,
 			$tags
 		);
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
+
+		// assert $newContent was not modified
+		$this->assertEquals(
+			json_decode( json_encode( $newContentData ) ),
+			$newContent
+		);
 	}
 }
