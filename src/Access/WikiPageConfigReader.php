@@ -61,7 +61,7 @@ class WikiPageConfigReader implements Config {
 				$this->addWikiPageConfigProviderKeysToMap( $provider, $map );
 			} else {
 				// TODO: Add some support for other providers
-				$this->logger->warning(
+				$this->logger->debug(
 					__CLASS__ . ' skipped {provider}, because '
 					. 'it is not a WikiPageConfigProvider.',
 					[ 'provider' => $provider->getId() ]
