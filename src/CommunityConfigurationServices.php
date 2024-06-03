@@ -50,11 +50,6 @@ class CommunityConfigurationServices {
 		return $this->coreServices->getService( 'CommunityConfiguration.ValidatorFactory' );
 	}
 
-	public function getWikiPageConfigReader(): MediaWikiConfigReader {
-		wfDeprecated( __METHOD__, '1.43' );
-		return $this->getMediaWikiConfigReader();
-	}
-
 	public function getWikiPageStoreWriter(): Writer {
 		return $this->coreServices->getService( 'CommunityConfiguration.WikiPageStore.Writer' );
 	}

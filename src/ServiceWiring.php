@@ -71,10 +71,6 @@ return [
 			$services->getObjectFactory()
 		);
 	},
-	'CommunityConfiguration.WikiPageConfigReader' => static function ( MediaWikiServices $services ) {
-		wfDeprecatedMsg( 'Service CommunityConfiguration.WikiPageConfigReader is deprecated', '1.43' );
-		return CommunityConfigurationServices::wrap( $services )->getMediaWikiConfigReader();
-	},
 	'CommunityConfiguration.WikiPageStore.Writer' => static function ( MediaWikiServices $services ) {
 		return new Writer(
 			$services->getWikiPageFactory(),
