@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration;
 
-use MediaWiki\Extension\CommunityConfiguration\Access\WikiPageConfigReader;
+use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
@@ -38,16 +38,21 @@ class CommunityConfigurationServices {
 		return $this->coreServices->getService( 'CommunityConfiguration.ProviderFactory' );
 	}
 
-	public function getValidatorFactory(): ValidatorFactory {
-		return $this->coreServices->getService( 'CommunityConfiguration.ValidatorFactory' );
+	public function getMediaWikiConfigReader(): MediaWikiConfigReader {
+		return $this->coreServices->getService( 'CommunityConfiguration.MediaWikiConfigReader' );
 	}
 
 	public function getStoreFactory(): StoreFactory {
 		return $this->coreServices->getService( 'CommunityConfiguration.StoreFactory' );
 	}
 
-	public function getWikiPageConfigReader(): WikiPageConfigReader {
-		return $this->coreServices->getService( 'CommunityConfiguration.WikiPageConfigReader' );
+	public function getValidatorFactory(): ValidatorFactory {
+		return $this->coreServices->getService( 'CommunityConfiguration.ValidatorFactory' );
+	}
+
+	public function getWikiPageConfigReader(): MediaWikiConfigReader {
+		wfDeprecated( __METHOD__, '1.43' );
+		return $this->getMediaWikiConfigReader();
 	}
 
 	public function getWikiPageStoreWriter(): Writer {

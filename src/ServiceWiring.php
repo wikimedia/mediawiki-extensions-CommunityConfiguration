@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Extension\CommunityConfiguration\Access\WikiPageConfigReader;
+use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
@@ -49,6 +49,16 @@ return [
 			$services
 		);
 	},
+	'CommunityConfiguration.MediaWikiConfigReader' => static function ( MediaWikiServices $services ) {
+		$ccServices = CommunityConfigurationServices::wrap( $services );
+		$reader = new MediaWikiConfigReader(
+			$services->getLocalServerObjectCache(),
+			$ccServices->getConfigurationProviderFactory(),
+			$services->getMainConfig()
+		);
+		$reader->setLogger( LoggerFactory::getInstance( 'CommunityConfiguration' ) );
+		return $reader;
+	},
 	'CommunityConfiguration.ValidatorFactory' => static function ( MediaWikiServices $services ) {
 		return new ValidatorFactory(
 			new ServiceOptions( ValidatorFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
@@ -62,14 +72,8 @@ return [
 		);
 	},
 	'CommunityConfiguration.WikiPageConfigReader' => static function ( MediaWikiServices $services ) {
-		$ccServices = CommunityConfigurationServices::wrap( $services );
-		$reader = new WikiPageConfigReader(
-			$services->getLocalServerObjectCache(),
-			$ccServices->getConfigurationProviderFactory(),
-			$services->getMainConfig()
-		);
-		$reader->setLogger( LoggerFactory::getInstance( 'CommunityConfiguration' ) );
-		return $reader;
+		wfDeprecatedMsg( 'Service CommunityConfiguration.WikiPageConfigReader is deprecated', '1.43' );
+		return CommunityConfigurationServices::wrap( $services )->getMediaWikiConfigReader();
 	},
 	'CommunityConfiguration.WikiPageStore.Writer' => static function ( MediaWikiServices $services ) {
 		return new Writer(

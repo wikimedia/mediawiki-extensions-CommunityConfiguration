@@ -6,7 +6,7 @@ use InvalidArgumentException;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Provider\DataProvider;
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
-use MediaWiki\Extension\CommunityConfiguration\Provider\WikiPageConfigProvider;
+use MediaWiki\Extension\CommunityConfiguration\Provider\MediaWikiConfigProvider;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -16,7 +16,7 @@ class ConfigurationProviderFactoryTest extends MediaWikiIntegrationTestCase {
 
 	private const TYPE_TO_CLASS_MAP = [
 		'data' => DataProvider::class,
-		'mw-config' => WikiPageConfigProvider::class,
+		'mw-config' => MediaWikiConfigProvider::class,
 	];
 
 	public static function provideProviderTypes() {

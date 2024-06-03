@@ -64,7 +64,7 @@
 					"args": []
 				},
 				"mw-config": {
-					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\WikiPageConfigProvider",
+					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\MediaWikiConfigProvider",
 					"services": [],
 					"args": []
 				}

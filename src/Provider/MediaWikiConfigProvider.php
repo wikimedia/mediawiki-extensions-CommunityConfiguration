@@ -6,7 +6,7 @@ use ConfigException;
 use MediaWiki\Config\Config;
 use stdClass;
 
-class WikiPageConfigProvider
+class MediaWikiConfigProvider
 	extends DataProvider
 	implements IConfigurationProvider, Config
 {

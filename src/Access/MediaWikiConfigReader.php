@@ -7,12 +7,12 @@ use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
-use MediaWiki\Extension\CommunityConfiguration\Provider\WikiPageConfigProvider;
+use MediaWiki\Extension\CommunityConfiguration\Provider\MediaWikiConfigProvider;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 
-class WikiPageConfigReader implements Config {
+class MediaWikiConfigReader implements Config {
 	use LoggerAwareTrait;
 
 	private BagOStuff $cache;
@@ -31,8 +31,8 @@ class WikiPageConfigReader implements Config {
 		$this->setLogger( new NullLogger() );
 	}
 
-	private function addWikiPageConfigProviderKeysToMap(
-		WikiPageConfigProvider $provider,
+	private function addMediaWikiConfigProviderKeysToMap(
+		MediaWikiConfigProvider $provider,
 		array &$map
 	): void {
 		$supportedConfigKeys = $provider->getSupportedConfigVariableNames();
@@ -57,13 +57,13 @@ class WikiPageConfigReader implements Config {
 		$providerKeys = $this->providerFactory->getSupportedKeys();
 		foreach ( $providerKeys as $providerKey ) {
 			$provider = $this->providerFactory->newProvider( $providerKey );
-			if ( $provider instanceof WikiPageConfigProvider ) {
-				$this->addWikiPageConfigProviderKeysToMap( $provider, $map );
+			if ( $provider instanceof MediaWikiConfigProvider ) {
+				$this->addMediaWikiConfigProviderKeysToMap( $provider, $map );
 			} else {
 				// TODO: Add some support for other providers
 				$this->logger->debug(
 					__CLASS__ . ' skipped {provider}, because '
-					. 'it is not a WikiPageConfigProvider.',
+					. 'it is not a MediaWikiConfigProvider.',
 					[ 'provider' => $provider->getId() ]
 				);
 			}
@@ -91,16 +91,16 @@ class WikiPageConfigReader implements Config {
 	}
 
 	/**
-	 * Create a configuration provider from given key and ensure it is a WikiPageConfigProvider
+	 * Create a configuration provider from given key and ensure it is a MediaWikiConfigProvider
 	 *
 	 * @param string $providerKey
-	 * @return WikiPageConfigProvider
+	 * @return MediaWikiConfigProvider
 	 */
-	private function getWikiPageConfigProviderByName( string $providerKey ): WikiPageConfigProvider {
+	private function getMediaWikiConfigProviderByName( string $providerKey ): MediaWikiConfigProvider {
 		$provider = $this->providerFactory->newProvider( $providerKey );
-		if ( !$provider instanceof WikiPageConfigProvider ) {
+		if ( !$provider instanceof MediaWikiConfigProvider ) {
 			throw new LogicException(
-				$providerKey . ' is expected to be a WikiPageConfigProvider'
+				$providerKey . ' is expected to be a MediaWikiConfigProvider'
 			);
 		}
 		return $provider;
@@ -115,7 +115,7 @@ class WikiPageConfigReader implements Config {
 	private function getConfigByVariableName( string $name ): Config {
 		$map = $this->getVariableToProviderMap();
 		if ( isset( $map[$name] ) ) {
-			return $this->getWikiPageConfigProviderByName( $map[$name] );
+			return $this->getMediaWikiConfigProviderByName( $map[$name] );
 		} else {
 			return $this->fallbackConfig;
 		}

@@ -9,10 +9,10 @@ use MediaWikiIntegrationTestCase;
 use stdClass;
 
 /**
- * @covers \MediaWiki\Extension\CommunityConfiguration\Access\WikiPageConfigReader
+ * @covers \MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader
  * @group Database
  */
-class WikiPageConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase {
+class MediaWikiConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	private const PROVIDER_ID = 'foo';
 
@@ -42,7 +42,7 @@ class WikiPageConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase {
 		$ccServices = CommunityConfigurationServices::wrap( $this->getServiceContainer() );
 		$provider = $ccServices->getConfigurationProviderFactory()
 			->newProvider( self::PROVIDER_ID );
-		$reader = $ccServices->getWikiPageConfigReader();
+		$reader = $ccServices->getMediaWikiConfigReader();
 
 		// when nothing is configured, defaults are returned (and if there are no defaults,
 		// the variable is omitted).
@@ -64,7 +64,7 @@ class WikiPageConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	public function testCoreVariable() {
 		$ccServices = CommunityConfigurationServices::wrap( $this->getServiceContainer() );
-		$reader = $ccServices->getWikiPageConfigReader();
+		$reader = $ccServices->getMediaWikiConfigReader();
 
 		// variable that is not in the schema is processed by GlobalVarConfig, which should have
 		// DBname for example
@@ -107,7 +107,7 @@ class WikiPageConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->expectExceptionMessage( 'is registered by multiple CommunityConfiguration providers' );
 
 		CommunityConfigurationServices::wrap( $this->getServiceContainer() )
-			->getWikiPageConfigReader()
+			->getMediaWikiConfigReader()
 			->get( 'Number' );
 	}
 }

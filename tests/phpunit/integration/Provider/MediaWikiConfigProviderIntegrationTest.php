@@ -5,7 +5,7 @@ declare( strict_types = 1 );
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
-use MediaWiki\Extension\CommunityConfiguration\Provider\WikiPageConfigProvider;
+use MediaWiki\Extension\CommunityConfiguration\Provider\MediaWikiConfigProvider;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore;
 use MediaWiki\Tests\Unit\FakeQqxMessageLocalizer;
 use MediaWiki\Title\Title;
@@ -13,10 +13,10 @@ use MediaWikiIntegrationTestCase;
 use WikiPage;
 
 /**
- * @covers \MediaWiki\Extension\CommunityConfiguration\Provider\WikiPageConfigProvider
+ * @covers \MediaWiki\Extension\CommunityConfiguration\Provider\MediaWikiConfigProvider
  * @group Database
  */
-class WikiPageConfigProviderIntegrationTest extends MediaWikiIntegrationTestCase {
+class MediaWikiConfigProviderIntegrationTest extends MediaWikiIntegrationTestCase {
 	private const PROVIDER_ID = 'CommunityFeatureOverrides';
 	private const CONFIG_PAGE_TITLE = 'MediaWiki:CommunityFeatureOverrides.json';
 
@@ -44,7 +44,7 @@ class WikiPageConfigProviderIntegrationTest extends MediaWikiIntegrationTestCase
 		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()
 			->newProvider( self::PROVIDER_ID );
-		$this->assertInstanceOf( WikiPageConfigProvider::class, $provider );
+		$this->assertInstanceOf( MediaWikiConfigProvider::class, $provider );
 
 		$this->assertSame( self::PROVIDER_ID, $provider->getId() );
 		$this->assertSame(
@@ -79,8 +79,8 @@ class WikiPageConfigProviderIntegrationTest extends MediaWikiIntegrationTestCase
 		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()
 			->newProvider( self::PROVIDER_ID );
-		if ( !( $provider instanceof WikiPageConfigProvider ) ) {
-			$this->fail( 'Provider should be an instance of WikiPageConfigProvider' );
+		if ( !( $provider instanceof MediaWikiConfigProvider ) ) {
+			$this->fail( 'Provider should be an instance of MediaWikiConfigProvider' );
 		}
 
 		$this->assertTrue(
@@ -108,8 +108,8 @@ class WikiPageConfigProviderIntegrationTest extends MediaWikiIntegrationTestCase
 		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()
 			->newProvider( self::PROVIDER_ID );
-		if ( !( $provider instanceof WikiPageConfigProvider ) ) {
-			$this->fail( 'Provider should be an instance of WikiPageConfigProvider' );
+		if ( !( $provider instanceof MediaWikiConfigProvider ) ) {
+			$this->fail( 'Provider should be an instance of MediaWikiConfigProvider' );
 		}
 
 		$sysopAuthority = $this->getTestSysop()->getAuthority();
