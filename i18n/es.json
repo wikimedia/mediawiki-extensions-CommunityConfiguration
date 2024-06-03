@@ -3,6 +3,7 @@
 		"authors": [
 			"Eulalio",
 			"Martin Urbanec (WMF)",
+			"No se",
 			"Zapipedia (WMF)"
 		]
 	},
@@ -16,7 +17,7 @@
 	"communityconfiguration-guidelines-title": "¿Qué es la Configuración de la Comunidad?",
 	"communityconfiguration-guidelines-description": "Configuración de la Comunidad es una herramienta que permite a las comunidades establecer y controlar la configuración de diferentes funcionalidades de {{SITENAME}}, apoyando a las personas bibliotecarias a adaptarse a las necesidades específicas de su comunidad.",
 	"communityconfiguration-guidelines-guideline1-title": "Aprender más",
-	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Learn more] sobre la Configuración de la Communidad, qué es, cómo funciona, y en qué estamos trabajando.",
+	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Aprende más] sobre la Configuración de la Communidad, qué es, cómo funciona, y en qué estamos trabajando.",
 	"communityconfiguration-guidelines-guideline2-title": "Envíanos tu feedback",
 	"communityconfiguration-guidelines-guideline2-description": "¡Nos gustaría conocer tu opinión! Contáctanos en [https://www.mediawiki.org/wiki/Talk:Growth talk page].",
 	"communityconfiguration-invalid-stored-config-error": "No se pudo cargar una configuración válida del proveedor $1 (código <tt>$2</tt>).",
