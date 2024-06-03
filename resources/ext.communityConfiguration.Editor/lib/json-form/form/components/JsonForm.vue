@@ -2,7 +2,7 @@
 	<form class="ext-communityConfiguration-JsonForm" @submit="onSubmit">
 		<form-layout :schema="schema" :uischema="jsonform.uischema">
 		</form-layout>
-		<div class="ext-communityConfiguration-JsonForm__submit">
+		<div class="ext-communityConfiguration-JsonForm__footer">
 			<slot name="submit"></slot>
 		</div>
 	</form>
@@ -74,8 +74,13 @@ module.exports = exports = {
 .ext-communityConfiguration-JsonForm {
 	margin-top: @spacing-50;
 
-	&__submit {
-		margin-top: @spacing-50;
+	&__footer {
+		margin-top: @spacing-200;
+		position: sticky;
+		bottom: 0;
+		padding: @spacing-100 @spacing-100 @spacing-100 0;
+		background-color: @background-color-base;
+		border-top: @border-subtle;
 	}
 }
 </style>
