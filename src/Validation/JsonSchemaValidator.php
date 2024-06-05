@@ -8,8 +8,6 @@ use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
-use Status;
-use StatusValue;
 
 /**
  * JSON Schema validator.
@@ -59,23 +57,23 @@ class JsonSchemaValidator implements IValidator {
 	/**
 	 * @inheritDoc
 	 */
-	public function validateStrictly( $config ): StatusValue {
+	public function validateStrictly( $config ): ValidationStatus {
 		return $this->validate( $config, false );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function validatePermissively( $config ): StatusValue {
+	public function validatePermissively( $config ): ValidationStatus {
 		return $this->validate( $config, true );
 	}
 
 	/**
 	 * @param mixed $config
 	 * @param bool $modeForReading
-	 * @return StatusValue
+	 * @return ValidationStatus
 	 */
-	private function validate( $config, bool $modeForReading ): StatusValue {
+	private function validate( $config, bool $modeForReading ): ValidationStatus {
 		$validator = new Validator();
 
 		$validator->validate(
@@ -83,23 +81,23 @@ class JsonSchemaValidator implements IValidator {
 			$this->jsonSchemaBuilder->getRootSchema()
 		);
 		if ( $validator->isValid() ) {
-			return Status::newGood();
+			return ValidationStatus::newGood();
 		}
-		$status = new Status();
+		$status = new ValidationStatus();
 		foreach ( $validator->getErrors() as $error ) {
 			if ( $modeForReading && in_array( $error['constraint'], [ 'required', 'additionalProp', 'enum' ] ) ) {
-				$status->warning(
-					'communityconfiguration-schema-validation-error',
+				$status->addWarning(
 					$error['property'],
+					$error['pointer'],
 					$error['message'],
-					$error
+					[ 'constraint' => $error['constraint'] ],
 				);
 			} else {
-				$status->fatal(
-					'communityconfiguration-schema-validation-error',
+				$status->addFatal(
 					$error['property'],
+					$error['pointer'],
 					$error['message'],
-					$error
+					[ 'constraint' => $error['constraint'] ],
 				);
 			}
 		}

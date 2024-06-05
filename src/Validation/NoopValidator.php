@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
 use LogicException;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
-use StatusValue;
 
 /**
  * Validator that always passes
@@ -16,15 +15,15 @@ class NoopValidator implements IValidator {
 	/**
 	 * @inheritDoc
 	 */
-	public function validateStrictly( $config ): StatusValue {
-		return StatusValue::newGood();
+	public function validateStrictly( $config ): ValidationStatus {
+		return ValidationStatus::newGood();
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function validatePermissively( $config ): StatusValue {
-		return StatusValue::newGood();
+	public function validatePermissively( $config ): ValidationStatus {
+		return ValidationStatus::newGood();
 	}
 
 	/**

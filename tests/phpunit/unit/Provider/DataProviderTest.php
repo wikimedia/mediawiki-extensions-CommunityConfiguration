@@ -9,6 +9,7 @@ use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWiki\Extension\CommunityConfiguration\Store\StaticStore;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
 use MediaWiki\Extension\CommunityConfiguration\Validation\JsonSchemaValidator;
+use MediaWiki\Extension\CommunityConfiguration\Validation\ValidationStatus;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\UserIdentityValue;
@@ -114,7 +115,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( $schemaBuilderMock );
 		$validatorMock->expects( $this->exactly( 2 ) )
 			->method( 'validatePermissively' )
-			->willReturn( StatusValue::newGood() );
+			->willReturn( ValidationStatus::newGood() );
 
 		$provider = new DataProvider(
 			'ProviderId',
@@ -134,7 +135,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$validatorMock->expects( $this->exactly( 2 ) )
 			->method( 'validatePermissively' )
 			->with( $config )
-			->willReturn( StatusValue::newFatal( 'june' ) );
+			->willReturn( ValidationStatus::newFatal( 'june' ) );
 
 		$provider = new DataProvider(
 			'ProviderId',
@@ -151,7 +152,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$storeMock = $this->createMock( IConfigurationStore::class );
 		$storeMock->expects( $this->once() )
 			->method( 'loadConfiguration' )
-			->willReturn( StatusValue::newFatal( 'june' ) );
+			->willReturn( ValidationStatus::newFatal( 'june' ) );
 
 		$provider = new DataProvider(
 			'ProviderId',
@@ -167,7 +168,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$storeMock = $this->createMock( IConfigurationStore::class );
 		$storeMock->expects( $this->once() )
 			->method( 'loadConfigurationUncached' )
-			->willReturn( StatusValue::newFatal( 'june' ) );
+			->willReturn( ValidationStatus::newFatal( 'june' ) );
 
 		$provider = new DataProvider(
 			'ProviderId',
@@ -195,7 +196,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->method( $this->anythingBut( 'validateStrictly', 'areSchemasSupported' ) );
 		$validatorMock->expects( $this->once() )
 			->method( 'validateStrictly' )
-			->willReturn( StatusValue::newGood() );
+			->willReturn( ValidationStatus::newGood() );
 		$validatorMock->expects( $this->once() )
 			->method( 'areSchemasSupported' )
 			->willReturn( false );
@@ -234,7 +235,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->method( $this->anythingBut( 'validateStrictly', 'areSchemasSupported', 'getSchemaVersion' ) );
 		$validatorMock->expects( $this->once() )
 			->method( 'validateStrictly' )
-			->willReturn( StatusValue::newGood() );
+			->willReturn( ValidationStatus::newGood() );
 		$validatorMock->expects( $this->once() )
 			->method( 'areSchemasSupported' )
 			->willReturn( true );
@@ -261,7 +262,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$validatorMock = $this->createMock( IValidator::class );
 		$validatorMock->expects( $this->once() )
 			->method( 'validateStrictly' )
-			->willReturn( StatusValue::newFatal( 'june' ) );
+			->willReturn( ValidationStatus::newFatal( 'june' ) );
 
 		$provider = new DataProvider(
 			'ProviderId',
