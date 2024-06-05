@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
 use LogicException;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
-use StatusValue;
 
 /**
  * Validator that can validate a config page
@@ -24,9 +23,9 @@ interface IValidator {
 	 * via GrowthExperiments-provided interface), and by ConfigHooks for manual edits.
 	 *
 	 * @param mixed $config Associative array representing config that's going to be validated
-	 * @return StatusValue
+	 * @return ValidationStatus
 	 */
-	public function validateStrictly( $config ): StatusValue;
+	public function validateStrictly( $config ): ValidationStatus;
 
 	/**
 	 * Validate passed config permissively
@@ -41,9 +40,9 @@ interface IValidator {
 	 * When writing a config, use @see validateStrictly() instead of this.
 	 *
 	 * @param mixed $config Associative array representing config that's going to be validated
-	 * @return StatusValue
+	 * @return ValidationStatus
 	 */
-	public function validatePermissively( $config ): StatusValue;
+	public function validatePermissively( $config ): ValidationStatus;
 
 	/**
 	 * Are configuration schemas supported?
