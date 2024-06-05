@@ -38,12 +38,12 @@ class NavigationHooks implements SkinTemplateNavigation__UniversalHook {
 				if ( $store instanceof WikiPageStore &&
 					$store->getConfigurationTitle()->equals( $title ) ) {
 					$specialPageTitle = SpecialPage::getTitleFor( 'CommunityConfiguration', $providerKey );
-					$links['views']['viewform'] = [
+					$links['views'] = self::arrayInsertAfterView( $links['views'], [ 'viewform' => [
 						'class' => '',
 						'href' => $specialPageTitle->getLocalURL(),
 						'text' => $sktemplate->msg(
 							'communityconfiguration-editor-navigation-tab-viewform' )->text()
-					];
+					] ] );
 					break;
 				}
 			}
@@ -63,11 +63,25 @@ class NavigationHooks implements SkinTemplateNavigation__UniversalHook {
 			unset( $links['views']['view'] );
 			unset( $links['views']['viewsource'] );
 			unset( $links['views']['edit'] );
-			$links['views']['viewform'] = [
+			$links['views'] = array_merge( [ 'viewform' => [
 				'class' => 'selected',
 				'href'  => $title->getLocalURL(),
 				'text'  => $sktemplate->msg( 'communityconfiguration-editor-navigation-tab-viewform' )->text()
-			];
+			] ], $links['views'] );
 		}
+	}
+
+	/**
+	 * @param array $array
+	 * @param mixed $insert
+	 * @return array
+	 */
+	private static function arrayInsertAfterView( array $array, $insert ): array {
+		$pos = array_search( 'view', array_keys( $array ) );
+		return array_merge(
+			array_slice( $array, 0, $pos + 1 ),
+			$insert,
+			array_slice( $array, $pos )
+		);
 	}
 }
