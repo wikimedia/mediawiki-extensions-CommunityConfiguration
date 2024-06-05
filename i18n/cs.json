@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Martin Urbanec (WMF)"
+		]
+	},
+	"communityconfiguration": "Komunitní konfigurace",
+	"communityconfiguration-desc": "Logika pro komunitní konfiguraci.",
+	"communityconfiguration-editor-client-generic-error": "Při načítání editoru konfigurace se něco pokazilo. Prosím zkuste to znovu později.",
+	"communityconfiguration-editor-client-generic-error-description": "V komponentě '$1' v '$2' nastala chyba, viz detaily níže:",
+	"communityconfiguration-editor-client-post-feedback": "Pokud tento problém přetrvává, [$1 ozvěte se] na diskusní stránce.",
+	"communityconfiguration-editor-form-submit-button-text": "Uložit změny",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Odesílání...",
+	"communityconfiguration-guidelines-title": "Co je komunitní konfigurace?",
+	"communityconfiguration-guidelines-guideline1-title": "Více informací",
+	"communityconfiguration-guidelines-guideline2-title": "Pošlete nám {{GENDER:$1|vaši}} zpětnou vazbu",
+	"communityconfiguration-invalid-stored-config-error": "Z poskytovatele $1 (kód <tt>$2</tt>) se nepodařilo načíst platnou konfiguraci.",
+	"communityconfiguration-invalid-stored-config-error-with-link": "Z poskytovatele $1 (kód <tt>$2</tt>) se nepodařilo načíst platnou konfiguraci, viz $3",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Podrobnosti o chybě",
+	"communityconfiguration-providers-list-title": "Funkce",
+	"communityconfiguration-provider-not-found": "Poskytovatel $1 nenalezen.",
+	"communityconfigurationdashboard": "Komunitní konfigurace",
+	"communityconfigurationeditor": "Editace $1",
+	"communityconfiguration-edit-summary-dialog-title": "Uložit změny pro $1",
+	"communityconfiguration-edit-summary-dialog-title-span": "(volitelné)",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Popište změny, které jste v konfiguraci provedli",
+	"communityconfiguration-edit-summary-dialog-save-button": "Uložit změny",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Storno",
+	"communityconfiguration-edit-summary-dialog-label": "Shrnutí editace",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Vaše}} změny byly uloženy.",
+	"communityconfiguration-editor-client-data-submission-error": "Při ukládání {{GENDER:$1|vašich}} změn se něco nepodařilo. Zkuste to znovu později.",
+	"communityconfiguration-editor-message-dismiss-button-label": "Zavřít",
+	"communityconfiguration-page-title-control-no-results": "Nenalezeny žádné výsledky.",
+	"communityconfiguration-editor-loading-info-text": "Editor konfigurace se načítá",
+	"communityconfiguration-editor-nojs-fallback-text": "Editor konfigurace vyžaduje JavaScript. Povolte JavaScript, abyste jej mohli používat.",
+	"communityconfiguration-editor-navigation-tab-viewform": "Zobrazit formulář"
+}

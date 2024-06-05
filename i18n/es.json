@@ -12,6 +12,7 @@
 	"communityconfiguration-editor-chip-control-aria-chip-description": "Por favor, haz clic en Editar o Quitar",
 	"communityconfiguration-editor-client-generic-error": "Algo salió mal al cargar el editor de configuración. Por favor, inténtalo de nuevo más tarde.",
 	"communityconfiguration-editor-client-generic-error-description": "Se produjo un error en '$2' en el componente $1. Ver los detalles abajo:",
+	"communityconfiguration-editor-client-post-feedback": "Si el problema persiste, considera [$1 dejar aviso] en la página de discusión.",
 	"communityconfiguration-editor-form-submit-button-text": "Guardar cambios",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Enviando...",
 	"communityconfiguration-guidelines-title": "¿Qué es la Configuración de la Comunidad?",
