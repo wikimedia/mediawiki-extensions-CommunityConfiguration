@@ -58,6 +58,7 @@
 		app.provide( 'JSON_SCHEMA', data.schema );
 		app.provide( 'PROVIDER_ID', data.providerId );
 		app.provide( 'EDITOR_FORM_CONFIG', data.config );
+		app.provide( 'CAN_EDIT', data.config.canEdit );
 		app.mount( '#ext-communityConfiguration-app-root' );
 		return app;
 	};

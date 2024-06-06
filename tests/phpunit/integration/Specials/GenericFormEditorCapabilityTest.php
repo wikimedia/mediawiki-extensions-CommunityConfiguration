@@ -86,6 +86,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [
 			'i18nPrefix' => 'communityconfiguration-' . strtolower( self::PROVIDER_ID ),
 			'feedbackURL' => 'https://bug-reporting.tool',
+			'canEdit' => false,
 		], $jsConfigVars['config'] );
 	}
 

@@ -165,7 +165,8 @@
 					"name": "ext.communityConfiguration.Editor/app/icons.json",
 					"callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
 					"callbackParam": [
-						"cdxIconLinkExternal"
+						"cdxIconLinkExternal",
+						"cdxIconInfoFilled"
 					]
 				}
 			],
@@ -187,7 +188,9 @@
 				"communityconfiguration-editor-client-success-message",
 				"communityconfiguration-editor-client-data-submission-error",
 				"communityconfiguration-editor-message-dismiss-button-label",
-				"word-separator"
+				"word-separator",
+				"communityconfiguration-editor-client-notice-message",
+				"communityconfiguration-editor-client-notice-footer-message"
 			],
 			"dependencies": [
 				"mediawiki.api",

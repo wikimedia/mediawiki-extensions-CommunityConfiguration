@@ -84,4 +84,27 @@ interface IConfigurationStore {
 		Authority $authority,
 		string $summary = ''
 	);
+
+	/**
+	 * Authorize a given authority to edit the configuration.
+	 *
+	 * This method offers a fast, lightweight check,
+	 * It is intended for determining which UI elements should be offered to the user.
+	 * It provides a check similar to Authority::probablyCan
+	 *
+	 * @param Authority $authority The authority whose permissions are to be checked.
+	 * @return bool True if the authority is authorized to edit the configuration, otherwise false.
+	 */
+	public function probablyCanEdit( Authority $authority ): bool;
+
+	/**
+	 * Authorize a given authority to edit the configuration.
+	 *
+	 * This method performs a thorough check. It is intended to be used when a user is intending to
+	 * edit the configuration, but has not yet committed to it. It provides a check similar to Authority::definitelyCan
+	 *
+	 * @param Authority $authority The authority whose permissions are to be checked.
+	 * @return bool True if the authority is authorized to edit the configuration, otherwise false.
+	 */
+	public function definitelyCanEdit( Authority $authority ): bool;
 }

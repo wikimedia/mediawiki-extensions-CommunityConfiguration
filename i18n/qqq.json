@@ -41,5 +41,7 @@
 	"communityconfiguration-page-title-control-no-results": "Descriptive text when the page title control does not find results matching the users input",
 	"communityconfiguration-editor-loading-info-text": "Text shown while the Javascript editor form is loading in a Community configuration provider page",
 	"communityconfiguration-editor-nojs-fallback-text": "Text shown if the user browser does not have Javascript support",
-	"communityconfiguration-editor-navigation-tab-viewform": "Label for the tab in the navigation menu that allows users to view the configuration form for a specific provider in community configuration."
+	"communityconfiguration-editor-navigation-tab-viewform": "Label for the tab in the navigation menu that allows users to view the configuration form for a specific provider in community configuration.",
+	"communityconfiguration-editor-client-notice-message": "The message is displayed to users when they do not have the right to update values on the configuration form.\n\nUsers with the `edit` permission can update form values",
+	"communityconfiguration-editor-client-notice-footer-message": "The message is displayed just above the disabled submit button on the configuration form when the submit action is not available to a user."
 }

@@ -63,3 +63,27 @@ describe( 'ext.communityConfiguration.Editor App', () => {
 		expect( wrapper.getComponent( JsonForm ).props( 'data' ) ).toEqual( CONFIG_DATA );
 	} );
 } );
+
+describe( 'Notice Messages', () => {
+	it( 'displays notice message when user cannot edit', () => {
+		const wrapper = mount( App, {
+			global: {
+				mocks: {
+					$i18n: jest.fn( ( key ) => {
+						return { text: () => key };
+					} )
+				},
+				provide: {
+					CONFIG_DATA: {},
+					JSON_SCHEMA: {},
+					PROVIDER_ID: 'SomeProvider',
+					EDITOR_FORM_CONFIG: {},
+					CAN_EDIT: false
+				}
+			}
+		} );
+
+		expect( wrapper.html() ).toContain( 'communityconfiguration-editor-client-notice-message' );
+		expect( wrapper.html() ).toContain( 'communityconfiguration-editor-client-notice-footer-message' );
+	} );
+} );

@@ -129,7 +129,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 				]
 			);
 		}
-
+		$canEdit = $this->provider->getStore()->definitelyCanEdit( $this->getContext()->getAuthority() );
 		$out->addJsConfigVars( [
 			'communityConfigurationData' => [
 				'providerId' => $providerId,
@@ -138,7 +138,8 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 				'config' => [
 					'i18nPrefix' => "communityconfiguration-" . strtolower( $subpage ),
 					'feedbackURL' => $this->getContext()->getConfig()
-						->get( 'CommunityConfigurationFeedbackURL' )
+						->get( 'CommunityConfigurationFeedbackURL' ),
+					'canEdit' => $canEdit
 				]
 			]
 		] );
