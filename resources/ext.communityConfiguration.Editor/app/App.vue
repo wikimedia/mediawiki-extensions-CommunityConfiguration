@@ -78,6 +78,7 @@ module.exports = exports = {
 		JsonForm
 	},
 	setup: function () {
+		const writingRepository = inject( 'WRITING_REPOSITORY' );
 		const configData = inject( 'CONFIG_DATA' );
 		const schema = inject( 'JSON_SCHEMA' );
 		const providerId = inject( 'PROVIDER_ID' );
@@ -192,18 +193,13 @@ module.exports = exports = {
 		function doSubmit() {
 			isLoading.value = true;
 			submitOutcome.value = null;
-			new mw.Api().postWithToken( 'csrf', {
-				action: 'communityconfigurationedit',
-				provider: providerId,
-				content: JSON.stringify( tempFormData ),
-				summary: summary.value,
-				formatversion: 2,
-				errorformat: 'html'
-			} ).then( () => {
+			writingRepository.writeConfigurationData(
+				providerId, tempFormData, summary.value
+			).then( () => {
 				isLoading.value = false;
 				submitOutcome.value = { success: true };
 				resetForm();
-			} ).catch( ( errorCode, response ) => {
+			} ).catch( ( [ errorCode, response ] ) => {
 				isLoading.value = false;
 				submitOutcome.value = { error: { code: errorCode, response } };
 			} );

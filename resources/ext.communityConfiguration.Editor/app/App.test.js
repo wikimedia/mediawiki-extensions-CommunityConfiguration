@@ -36,6 +36,8 @@ global.mw.config.get.mockImplementation( ( key ) => {
 } );
 const App = require( './App.vue' );
 const { JsonForm } = require( '../lib/json-form/form/index.js' );
+const EditSummaryDialog = require( './components/EditSummaryDialog.vue' );
+const EditorMessage = require( './components/EditorMessage.vue' );
 
 describe( 'ext.communityConfiguration.Editor App', () => {
 	const CONFIG_DATA = { some: 'data' };
@@ -61,5 +63,128 @@ describe( 'Notice Messages', () => {
 
 		expect( wrapper.html() ).toContain( 'communityconfiguration-editor-client-notice-message' );
 		expect( wrapper.html() ).toContain( 'communityconfiguration-editor-client-notice-footer-message' );
+	} );
+} );
+
+describe( 'submit results', () => {
+	it( 'shows a success message if submitting was successful', async () => {
+		const wrapper = mount( App, {
+			global: global.getGlobalAppMountingOptions(
+				{
+					WRITING_REPOSITORY: {
+						writeConfigurationData: jest.fn().mockResolvedValue( {} )
+					}
+				}
+			)
+		} );
+
+		await wrapper.getComponent( EditSummaryDialog ).vm.$emit( 'primary' );
+		await wrapper.vm.$nextTick();
+
+		expect( wrapper.html() ).toContain( 'communityconfiguration-editor-client-success-message' );
+		expect( wrapper.getComponent( EditorMessage ).props( 'status' ) ).toBe( 'success' );
+	} );
+
+	it( 'shows a generic error if there is an internal server error', async () => {
+		const errorCode = 'internal_api_error_RuntimeException';
+		const htmlErrorMessage = '[183c02467dd6df6e8690dc68] Exception caught: Did not work';
+		const trace = 'Trace';
+		const response = {
+			errors: [
+				{
+					code: errorCode,
+					html: htmlErrorMessage,
+					data: {
+						errorclass: 'RuntimeException'
+					}
+				}
+			],
+			trace
+		};
+		const wrapper = mount( App, {
+			global: global.getGlobalAppMountingOptions(
+				{
+					WRITING_REPOSITORY: {
+						writeConfigurationData: jest.fn().mockRejectedValue(
+							[ errorCode, response ]
+						)
+					}
+				}
+			)
+		} );
+
+		await wrapper.getComponent( EditSummaryDialog ).vm.$emit( 'primary' );
+		// It really needs two. ¯\_(ツ)_/¯
+		await wrapper.vm.$nextTick();
+		await wrapper.vm.$nextTick();
+
+		expect( wrapper.html() ).toContain( 'communityconfiguration-editor-client-data-submission-error' );
+		expect( wrapper.html() ).toContain( errorCode );
+		expect( wrapper.html() ).toContain( htmlErrorMessage );
+		expect( wrapper.html() ).toContain( trace );
+		// TODO: assert feedback URL?
+		expect( wrapper.getComponent( EditorMessage ).props( 'status' ) ).toBe( 'error' );
+	} );
+
+	it( 'shows a generic error if there is no network', async () => {
+		const xhr = {};
+		const textStatus = 'error';
+		const exception = '';
+		const errorCode = 'http';
+		const wrapper = mount( App, {
+			global: global.getGlobalAppMountingOptions(
+				{
+					WRITING_REPOSITORY: {
+						writeConfigurationData: jest.fn().mockRejectedValue(
+							[ errorCode, { xhr, textStatus, exception } ]
+						)
+					}
+				}
+			)
+		} );
+
+		await wrapper.getComponent( EditSummaryDialog ).vm.$emit( 'primary' );
+		await wrapper.vm.$nextTick();
+		await wrapper.vm.$nextTick();
+
+		expect( wrapper.html() ).toContain( 'communityconfiguration-editor-client-data-submission-error' );
+		expect( wrapper.html() ).toContain( errorCode );
+		expect( wrapper.getComponent( EditorMessage ).props( 'status' ) ).toBe( 'error' );
+	} );
+
+	it( 'shows a permissions error if user is missing rights', async () => {
+		const response = {
+			errors: [
+				{
+					code: 'protectednamespace-interface',
+					html: 'This page provides interface text for the software on this wiki, and is protected to prevent abuse. To add or change translations for all wikis, please use <a rel="nofollow" class="external text" href="https://translatewiki.net/">translatewiki.net</a>, the MediaWiki localisation project.',
+					module: 'communityconfigurationedit'
+				},
+				{
+					code: 'sitejsonprotected',
+					html: 'You do not have permission to edit this JSON page because it may affect all visitors.',
+					module: 'communityconfigurationedit'
+				}
+			]
+		};
+		const wrapper = mount( App, {
+			global: global.getGlobalAppMountingOptions(
+				{
+					WRITING_REPOSITORY: {
+						writeConfigurationData: jest.fn().mockRejectedValue(
+							[ 'protectednamespace-interface', response ]
+						)
+					}
+				}
+			)
+		} );
+
+		await wrapper.getComponent( EditSummaryDialog ).vm.$emit( 'primary' );
+		await wrapper.vm.$nextTick();
+		await wrapper.vm.$nextTick();
+
+		expect( wrapper.html() ).toContain( response.errors[ 0 ].html );
+		expect( wrapper.html() ).toContain( response.errors[ 0 ].html );
+		expect( wrapper.getComponent( EditorMessage ).props( 'status' ) ).toBe( 'error' );
 	} );
 } );

@@ -61,6 +61,9 @@ global.getGlobalAppMountingOptions = function ( provide = {}, directives = {}, m
 			PROVIDER_ID: 'SomeProvider',
 			EDITOR_FORM_CONFIG: {},
 			CAN_EDIT: true,
+			WRITING_REPOSITORY: {
+				writeConfigurationData: jest.fn()
+			},
 			...provide
 		},
 		directives,

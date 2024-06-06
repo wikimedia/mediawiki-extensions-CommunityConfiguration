@@ -2,6 +2,7 @@
 	'use strict';
 	const Vue = require( 'vue' );
 	const { getEditorTextKeys } = require( '../lib/json-form/core/index.js' );
+	const MwApiCommunityConfigurationWritingRepository = require( './MwApiCommunityConfigurationWritingRepository.js' );
 
 	/**
 	 * Load Editor messages from the MW api
@@ -52,8 +53,10 @@
 	 * @return {Object} A Vue app instance
 	 */
 	const createApp = ( data ) => {
+		const writingRepository = new MwApiCommunityConfigurationWritingRepository( new mw.Api() );
 		const wrapper = require( './App.vue' );
 		const app = Vue.createMwApp( wrapper );
+		app.provide( 'WRITING_REPOSITORY', writingRepository );
 		app.provide( 'CONFIG_DATA', data.data );
 		app.provide( 'JSON_SCHEMA', data.schema );
 		app.provide( 'PROVIDER_ID', data.providerId );
