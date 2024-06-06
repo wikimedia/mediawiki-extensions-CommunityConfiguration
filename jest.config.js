@@ -50,6 +50,6 @@ module.exports = {
 		'./jest.setup.js'
 	],
 	setupFilesAfterEnv: [
-		// './jest.setupAfterEnv.js'
+		'./jest.setupAfterEnv.js'
 	]
 };

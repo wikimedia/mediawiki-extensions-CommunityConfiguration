@@ -28,12 +28,11 @@
 </template>
 
 <script>
-
-const { defineComponent, toRef, inject, computed } = require( 'vue' );
+const { toRef, inject, computed } = require( 'vue' );
 const { CdxDialog, CdxField, CdxTextArea, useModelWrapper } = require( '@wikimedia/codex' );
 
 // @vue/component
-module.exports = defineComponent( {
+module.exports = exports = {
 	name: 'EditSummaryDialog',
 	components: {
 		CdxDialog,
@@ -79,5 +78,5 @@ module.exports = defineComponent( {
 		};
 
 	}
-} );
+};
 </script>

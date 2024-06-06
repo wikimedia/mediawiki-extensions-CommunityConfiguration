@@ -43,10 +43,13 @@ describe( 'ext.communityConfiguration.Editor App', () => {
 	it( 'displays the app', () => {
 		const wrapper = mount( App, {
 			global: {
+				directives: {
+					'i18n-html': jest.fn()
+				},
 				mocks: {
 					// TODO provide it as global mock/provider in jest config
-					$i18n: jest.fn( () => ( {
-						text: jest.fn()
+					$i18n: jest.fn( ( key ) => ( {
+						text: () => key
 					} ) )
 				},
 				provide: {
@@ -54,8 +57,11 @@ describe( 'ext.communityConfiguration.Editor App', () => {
 					JSON_SCHEMA,
 					PROVIDER_ID: 'SomeProvider',
 					EDITOR_FORM_CONFIG: {},
+					CAN_EDIT: true,
 					// TODO provide it as global mock/provider in jest config
-					i18n: jest.fn()
+					i18n: jest.fn( ( key ) => {
+						return { text: () => key };
+					} )
 				}
 			}
 		} );
@@ -68,6 +74,9 @@ describe( 'Notice Messages', () => {
 	it( 'displays notice message when user cannot edit', () => {
 		const wrapper = mount( App, {
 			global: {
+				directives: {
+					'i18n-html': jest.fn()
+				},
 				mocks: {
 					$i18n: jest.fn( ( key ) => {
 						return { text: () => key };
@@ -78,7 +87,10 @@ describe( 'Notice Messages', () => {
 					JSON_SCHEMA: {},
 					PROVIDER_ID: 'SomeProvider',
 					EDITOR_FORM_CONFIG: {},
-					CAN_EDIT: false
+					CAN_EDIT: false,
+					i18n: jest.fn( ( key ) => {
+						return { text: () => key };
+					} )
 				}
 			}
 		} );

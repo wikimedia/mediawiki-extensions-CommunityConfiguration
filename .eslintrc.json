@@ -66,7 +66,8 @@
 		},
 		{
 			"files": [
-				"jest.setup.js"
+				"jest.setup.js",
+				"jest.setupAfterEnv.js"
 			],
 			"extends": [
 				"wikimedia/server"
