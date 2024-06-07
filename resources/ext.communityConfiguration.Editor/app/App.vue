@@ -20,7 +20,7 @@
 					v-if="!canEdit"
 					inline
 					:icon="cdxIconInfoFilled"
-					class="ext-communityConfiguration-FooterMessage"
+					class="ext-communityConfiguration-FooterPermissionsMessage"
 				>
 					<p>{{ $i18n( 'communityconfiguration-editor-client-notice-footer-message' ).text() }}</p>
 				</cdx-message>
@@ -247,6 +247,10 @@ module.exports = exports = {
 @import 'mediawiki.skin.variables.less';
 
 .ext-communityConfiguration-FooterMessage {
+	margin-bottom: @spacing-100;
+}
+
+.ext-communityConfiguration-FooterPermissionsMessage {
 	margin-bottom: @spacing-50;
 }
 </style>
