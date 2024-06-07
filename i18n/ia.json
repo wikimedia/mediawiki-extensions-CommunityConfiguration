@@ -40,5 +40,7 @@
 	"communityconfiguration-page-title-control-no-results": "Nulle resultato trovate.",
 	"communityconfiguration-editor-loading-info-text": "Le editor de configuration se carga",
 	"communityconfiguration-editor-nojs-fallback-text": "Le editor de configuration require JavaScript. Per favor activa JavaScript pro poter usar lo.",
-	"communityconfiguration-editor-navigation-tab-viewform": "Vider formulario"
+	"communityconfiguration-editor-navigation-tab-viewform": "Vider formulario",
+	"communityconfiguration-editor-client-notice-message": "Iste pagina es protegite. Le configuration de iste function pote solmente esser modificate per administratores.",
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Tu}} non pote salveguardar le cambiamentos in iste formulario perque le configuration de iste function pote solmente esser modificate per administratores."
 }
