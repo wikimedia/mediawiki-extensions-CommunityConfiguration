@@ -3,12 +3,13 @@
 namespace MediaWiki\Extension\CommunityConfiguration\Store\WikiPage;
 
 use Content;
-use DerivativeContext;
-use FormatJson;
-use JsonContent;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\JsonContent;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
@@ -17,7 +18,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 use RecentChange;
-use RequestContext;
 
 class Writer {
 

@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
-use FormatJson;
 use HashBagOStuff;
-use JsonContent;
 use LogicException;
+use MediaWiki\Content\JsonContent;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;

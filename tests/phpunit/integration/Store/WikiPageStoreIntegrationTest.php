@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
-use FormatJson;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore;
+use MediaWiki\Json\FormatJson;
 use MediaWikiIntegrationTestCase;
 use StatusValue;
 use stdClass;

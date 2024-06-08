@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
-use ConfigException;
 use MediaWiki\Config\Config;
+use MediaWiki\Config\ConfigException;
 use stdClass;
 
 class MediaWikiConfigProvider

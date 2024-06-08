@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;

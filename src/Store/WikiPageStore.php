@@ -3,8 +3,8 @@
 namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
 use ApiRawMessage;
-use JsonContent;
 use LogicException;
+use MediaWiki\Content\JsonContent;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;

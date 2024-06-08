@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
-use FormatJson;
-use JsonContent;
+use MediaWiki\Content\JsonContent;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;

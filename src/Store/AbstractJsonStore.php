@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
-use FormatJson;
 use HashBagOStuff;
+use MediaWiki\Json\FormatJson;
 use StatusValue;
 use WANObjectCache;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;

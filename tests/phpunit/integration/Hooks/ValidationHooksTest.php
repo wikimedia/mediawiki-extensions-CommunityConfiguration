@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
-use FormatJson;
+use MediaWiki\Json\FormatJson;
 use MediaWikiIntegrationTestCase;
 
 /**

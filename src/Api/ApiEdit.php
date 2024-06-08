@@ -4,10 +4,10 @@ namespace MediaWiki\Extension\CommunityConfiguration\Api;
 
 use ApiBase;
 use ApiMain;
-use FormatJson;
 use InvalidArgumentException;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidationStatus;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerAwareTrait;
 use Wikimedia\ParamValidator\ParamValidator;

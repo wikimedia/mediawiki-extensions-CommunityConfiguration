@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Hooks;
 
-use JsonContent;
 use MediaWiki\Content\Hook\JsonValidateSaveHook;
+use MediaWiki\Content\JsonContent;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore;
 use MediaWiki\Page\PageIdentity;
