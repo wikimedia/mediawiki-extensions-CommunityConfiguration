@@ -1,5 +1,6 @@
 'use strict';
 const { mount } = require( '@vue/test-utils' );
+const { ref } = require( 'vue' );
 
 const mwMessageFake = jest.fn( ( textReturnValue ) => {
 	return {
@@ -34,7 +35,8 @@ describe( 'BooleanControl', () => {
 			uischema,
 			renderers: null,
 			schema,
-			data: CONFIG_DATA
+			data: CONFIG_DATA,
+			errors: ref( [] )
 		};
 		const wrapper = mount( BooleanControl, {
 			props: {

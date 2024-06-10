@@ -1,5 +1,6 @@
 'use strict';
 const { mount } = require( '@vue/test-utils' );
+const { ref } = require( 'vue' );
 
 const mwMessageFake = jest.fn( ( textReturnValue ) => {
 	return {
@@ -36,7 +37,8 @@ function getMountOptions( configDataObject = null, schema = null ) {
 		uischema,
 		renderers: null,
 		schema,
-		data: configDataObject || {}
+		data: configDataObject || {},
+		errors: ref( [] )
 	};
 
 	return {
