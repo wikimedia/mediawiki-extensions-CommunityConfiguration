@@ -11,6 +11,7 @@
 	"communityconfiguration-editor-client-generic-error": "Beim Laden des Konfigurationseditors ist ein Fehler aufgetreten. Bitte versuche es später noch einmal.",
 	"communityconfiguration-editor-client-generic-error-description": "In „$2“ in der Komponente $1 ist ein Fehler aufgetreten. Einzelheiten siehe unten:",
 	"communityconfiguration-editor-client-post-feedback": "Wenn das Problem weiterhin besteht, ziehe in Erwägung, [$1 Feedback auf der Diskussionsseite] zu hinterlassen.",
+	"communityconfiguration-editor-client-validation-errors": "Es gibt {{PLURAL:$1|$1 Fehler}} in dem Formular:",
 	"communityconfiguration-editor-form-submit-button-text": "Änderungen speichern",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Senden…",
 	"communityconfiguration-guidelines-title": "Was ist Community-Konfiguration?",

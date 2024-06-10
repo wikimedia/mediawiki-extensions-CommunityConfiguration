@@ -10,6 +10,7 @@
 	"communityconfiguration-editor-client-generic-error": "Нешто тргна наопаку при вчитувањето на уредникот на поставување. Обидете се подоцна.",
 	"communityconfiguration-editor-client-generic-error-description": "Се јави гршека во „$2“ во составницата $1. Поподробно подолу:",
 	"communityconfiguration-editor-client-post-feedback": "Ако проблемот продолжи да се јавува, ви препорачуваме да [$1 да пишете] на разговорната страница.",
+	"communityconfiguration-editor-client-validation-errors": "Има $1 {{PLURAL:$1|грешка|грешки}} во образецот:",
 	"communityconfiguration-editor-form-submit-button-text": "Зачувај промени",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Испраќам...",
 	"communityconfiguration-guidelines-title": "Што е „Поставки на заедницата“?",
@@ -40,5 +41,7 @@
 	"communityconfiguration-page-title-control-no-results": "Не пронајдов ништо.",
 	"communityconfiguration-editor-loading-info-text": "Уредникот на поставки се вчитува",
 	"communityconfiguration-editor-nojs-fallback-text": "На уредникот на поставки му е потребен JavaScript. Овозможете JavaScript за да го користите.",
-	"communityconfiguration-editor-navigation-tab-viewform": "Погл. образецот"
+	"communityconfiguration-editor-navigation-tab-viewform": "Погл. образецот",
+	"communityconfiguration-editor-client-notice-message": "Оваа страница е заштитена. Поставките за оваа функција можат да ги менуваат само администратори.",
+	"communityconfiguration-editor-client-notice-footer-message": "Не {{GENDER:$1|можете}} да ги зачувате промените на овој образец бидејќи поставките за оваа функција можат да ги менуваат само администратори."
 }
