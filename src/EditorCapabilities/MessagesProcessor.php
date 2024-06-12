@@ -151,6 +151,8 @@ class MessagesProcessor {
 					!isset( $schema->{JsonSchema::CONTROL} )
 				) {
 					$messages[] = $schemaBaseKey . '-item-label';
+					$messages[] = $schemaBaseKey . '-add-element-button-label';
+					$messages[] = 'communityconfiguration-editor-array-fallback-add-element-button-label';
 				}
 			}
 		}

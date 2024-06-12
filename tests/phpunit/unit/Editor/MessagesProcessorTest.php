@@ -97,6 +97,8 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-numberarray-label',
 				'pfx-pid-numberarray-help-text',
 				'pfx-pid-numberarray-item-label',
+				'pfx-pid-numberarray-add-element-button-label',
+				'communityconfiguration-editor-array-fallback-add-element-button-label',
 			],
 			[]
 		];
@@ -166,6 +168,8 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-examplearray-label',
 				'pfx-pid-examplearray-item-label',
 				'pfx-pid-examplearray-help-text',
+				'pfx-pid-examplearray-add-element-button-label',
+				'communityconfiguration-editor-array-fallback-add-element-button-label',
 			],
 			[
 				'pfx-pid-examplearray-foo-label',

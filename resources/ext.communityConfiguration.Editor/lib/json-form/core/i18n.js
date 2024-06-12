@@ -125,19 +125,22 @@ function getArrayControlMessages( prefix, propName, arrayItems, asMessageObject 
 	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
 	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
 	const itemLabelKey = mapPropToTextKey( prefix, propName, 'item-label' );
+	const addElementButtonLabelKey = mapPropToTextKey( prefix, propName, 'add-element-button-label' );
 
 	if ( asMessageObject ) {
 		return {
 			label: getMessageOrNull( labelKey ),
 			helpText: getMessageOrNull( helpTextLabelKey ),
-			itemLabel: getMessageOrNull( itemLabelKey )
+			itemLabel: getMessageOrNull( itemLabelKey ),
+			addElementButtonLabel: getMessageOrNull( addElementButtonLabelKey )
 		};
 	}
 
 	let arrayLabels = [
 		labelKey,
 		helpTextLabelKey,
-		itemLabelKey
+		itemLabelKey,
+		addElementButtonLabelKey
 	];
 	if ( arrayItems.type === 'object' ) {
 		const newConfig = { i18nTextKeyPrefix: `${ prefix }-${ propName }` };

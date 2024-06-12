@@ -9,7 +9,7 @@
 	>
 		<div
 			v-for="( element, index ) in data"
-			:key="`${control.uischema.name}-${index}`"
+			:key="`${control.uischema.name}-${index}-${forceRerenderCounter}`"
 			class="ext-communityConfiguration-ArrayControl__item-wrapper"
 		>
 			<dispatch-renderer
@@ -17,15 +17,39 @@
 				:schema="control.schema"
 				:uischema="indexedChildUISchema( index )"
 			></dispatch-renderer>
+			<cdx-button
+				class="ext-communityConfiguration-ArrayControl__item-wrapper__delete-button"
+				data-test-id="array-control-delete-element-button"
+				:aria-label="$i18n( 'communityconfiguration-editor-array-remove-element-label-screen-reader' )"
+				type="button"
+				weight="quiet"
+				@click="() => onDeleteElementClick( index )"
+			>
+				<cdx-icon :icon="cdxIconTrash"></cdx-icon>
+			</cdx-button>
 		</div>
 		<template v-if="control.uischema.label && control.uischema.label.exists()" #label>
 			{{ control.uischema.label.text() }}
 		</template>
 	</cdx-field>
+	<cdx-button
+		type="button"
+		data-test-id="array-control-add-element-button"
+		@click="onAddElementClick"
+	>
+		<cdx-icon :icon="cdxIconAdd"></cdx-icon>
+		{{
+			control.uischema.addElementButtonLabel !== null ?
+				control.uischema.addElementButtonLabel.text() :
+				$i18n( 'communityconfiguration-editor-array-fallback-add-element-button-label' )
+		}}
+	</cdx-button>
 </template>
 
 <script>
-const { CdxField } = require( '@wikimedia/codex' );
+const { ref } = require( 'vue' );
+const { CdxField, CdxButton, CdxIcon } = require( '@wikimedia/codex' );
+const { cdxIconAdd, cdxIconTrash } = require( '../../../../icons.json' );
 const {
 	rendererProps,
 	DispatchRenderer,
@@ -37,11 +61,33 @@ module.exports = exports = {
 	name: 'ArrayControl',
 	components: {
 		CdxField,
+		CdxButton,
+		CdxIcon,
 		DispatchRenderer
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
-		return useJsonFormArrayControl( props );
+		const { control, addEmptyElement, removeElement, indexedChildUISchema, data } = useJsonFormArrayControl( props );
+
+		const forceRerenderCounter = ref( 0 );
+
+		function onAddElementClick() {
+			addEmptyElement();
+		}
+		function onDeleteElementClick( index ) {
+			removeElement( index );
+			forceRerenderCounter.value += 1;
+		}
+
+		return {
+			control,
+			indexedChildUISchema,
+			data,
+			cdxIconAdd, cdxIconTrash,
+			onAddElementClick,
+			onDeleteElementClick,
+			forceRerenderCounter
+		};
 	}
 };
 </script>
@@ -53,6 +99,13 @@ module.exports = exports = {
 	border: @border-subtle;
 	padding: @spacing-100;
 	margin-bottom: @spacing-50;
+	position: relative;
+
+	&__delete-button {
+		position: absolute;
+		top: @spacing-100;
+		right: @spacing-100;
+	}
 
 	&__item {
 		// stylelint-disable-next-line selector-class-pattern

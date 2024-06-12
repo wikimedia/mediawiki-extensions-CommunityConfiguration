@@ -175,6 +175,14 @@
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/controls/NumberControl.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/controls/StringControl.vue",
 				{
+					"name": "ext.communityConfiguration.Editor/lib/icons.json",
+					"callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
+					"callbackParam": [
+						"cdxIconAdd",
+						"cdxIconTrash"
+					]
+				},
+				{
 					"name": "ext.communityConfiguration.Editor/app/icons.json",
 					"callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
 					"callbackParam": [
@@ -199,6 +207,7 @@
 				"communityconfiguration-editor-client-validation-errors",
 				"communityconfiguration-editor-form-submit-button-text",
 				"communityconfiguration-editor-form-submit-button-loading-text",
+				"communityconfiguration-editor-array-remove-element-label-screen-reader",
 				"communityconfiguration-editor-client-success-message",
 				"communityconfiguration-editor-client-data-submission-error",
 				"communityconfiguration-editor-message-dismiss-button-label",

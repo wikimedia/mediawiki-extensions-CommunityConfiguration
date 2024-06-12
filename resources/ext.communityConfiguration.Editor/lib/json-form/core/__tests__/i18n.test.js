@@ -63,7 +63,8 @@ const TEST_DATA = [
 		expected: [
 			'testenvironment-someprovider-examplearray-label',
 			'testenvironment-someprovider-examplearray-help-text',
-			'testenvironment-someprovider-examplearray-item-label'
+			'testenvironment-someprovider-examplearray-item-label',
+			'testenvironment-someprovider-examplearray-add-element-button-label'
 		],
 		expectedSubControlKeys: [
 			'testenvironment-someprovider-examplearray-foo-label',

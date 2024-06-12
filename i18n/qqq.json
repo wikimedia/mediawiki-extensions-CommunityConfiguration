@@ -14,6 +14,8 @@
 	"communityconfiguration-editor-client-validation-errors": "First line of the overall error message shown when there are validation errors. Below that line there is a list of links to each field with an error. The fields have a specific inline message about what is wrong with them. \n\nParameters:\n* $1 - The number of fields with errors",
 	"communityconfiguration-editor-form-submit-button-text": "Text for the form data submission button",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Text for the form data submission button while an updating is being sent",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Screen reader accessible label for the icon-only buttons that remove an element from an array.",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "In a community configuration form: Label for the button to add another element to a list of uniform input fieldsets. Clicking the button results in an additional set of input fields appearing.",
 	"communityconfiguration-guidelines-title": "Title of the first explanatory paragraph in the community configuration dashboard",
 	"communityconfiguration-guidelines-description": "Description in the first explanatory paragraph of the community configuration dashboard",
 	"communityconfiguration-guidelines-guideline1-title": "Title of the first guideline in the community configuration dashboard",

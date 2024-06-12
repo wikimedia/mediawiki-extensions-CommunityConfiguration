@@ -1,4 +1,4 @@
-const { inject, computed, unref, ref } = require( 'vue' );
+const { inject, computed, ref } = require( 'vue' );
 const { buildUISubSchema, extractRef } = require( '../../core/index.js' );
 
 /**
@@ -189,6 +189,7 @@ function useJsonFormArrayControl( props ) {
 		required,
 		scope
 	} = props.uischema;
+
 	const modelValue = computed( () => {
 		return getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs );
 	} );
@@ -225,7 +226,7 @@ function useJsonFormArrayControl( props ) {
 	}
 	return {
 		indexedChildUISchema,
-		data: unref( modelValue ),
+		data: modelValue,
 		control: Object.assign( {}, props, {
 			modelValue,
 			pointer,
@@ -233,7 +234,17 @@ function useJsonFormArrayControl( props ) {
 			otherAttrs: {
 				required
 			}
-		} )
+		} ),
+		addEmptyElement() {
+			const emptyValue = getDefaultValueForType( props.schema.items.type );
+			setConfigValueByScope( jsonform.data, scope, [ ...modelValue.value, emptyValue ] );
+		},
+		removeElement( index ) {
+			setConfigValueByScope( jsonform.data, scope, [
+				...modelValue.value.slice( 0, index ),
+				...modelValue.value.slice( index + 1 )
+			] );
+		}
 	};
 }
 
