@@ -25,7 +25,6 @@
 </template>
 
 <script>
-const { unref } = require( 'vue' );
 const { CdxField } = require( '@wikimedia/codex' );
 const {
 	rendererProps,
@@ -42,17 +41,7 @@ module.exports = exports = {
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
-		const arrayControl = useJsonFormArrayControl( props );
-		function indexedChildUISchema( index ) {
-			return Object.assign( {}, arrayControl.childUISchema, {
-				scope: `${arrayControl.childUISchema.scope}/${index}`,
-				label: arrayControl.childUISchema.labels[ index ]
-			} );
-		}
-		return Object.assign( {}, arrayControl, {
-			indexedChildUISchema,
-			data: unref( arrayControl.control.modelValue )
-		} );
+		return useJsonFormArrayControl( props );
 	}
 };
 </script>

@@ -47,7 +47,7 @@ describe( 'useJsonFormControl', () => {
 			};
 			const [ result ] = withSetup(
 				() => useJsonFormControl( props ),
-				{ jsonform }
+				{ jsonform, i18n: global.mw.Message }
 			);
 			expect( result.control.otherAttrs.step ).toBe( 'any' );
 		} );
@@ -63,7 +63,7 @@ describe( 'useJsonFormControl', () => {
 			};
 			const [ result ] = withSetup(
 				() => useJsonFormControl( props ),
-				{ jsonform }
+				{ jsonform, i18n: global.mw.Message }
 			);
 			expect( result.control.otherAttrs.step ).toBe( 1 );
 		} );
@@ -79,7 +79,7 @@ describe( 'useJsonFormControl', () => {
 			};
 			const [ result ] = withSetup(
 				() => useJsonFormControl( props ),
-				{ jsonform }
+				{ jsonform, i18n: global.mw.Message }
 			);
 			expect( result.control.otherAttrs.required ).toBe( true );
 		} );
@@ -97,7 +97,7 @@ describe( 'useJsonFormControl', () => {
 			};
 			const [ result ] = withSetup(
 				() => useJsonFormControl( props ),
-				{ jsonform }
+				{ jsonform, i18n: global.mw.Message }
 			);
 			expect( result.control.pointer ).toBe( 'numberName' );
 		} );
@@ -113,7 +113,7 @@ describe( 'useJsonFormControl', () => {
 			};
 			const [ result ] = withSetup(
 				() => useJsonFormControl( props ),
-				{ jsonform }
+				{ jsonform, i18n: global.mw.Message }
 			);
 			expect( result.control.pointer ).toBe( 'ArrayName.0.NumberName' );
 		} );
@@ -145,7 +145,7 @@ describe( 'useJsonFormArrayControl', () => {
 			};
 			const [ result ] = withSetup(
 				() => useJsonFormArrayControl( props ),
-				{ jsonform }
+				{ jsonform, i18n: global.mw.Message }
 			);
 			expect( result.control.otherAttrs.required ).toBe( true );
 		} );
@@ -168,7 +168,7 @@ describe( 'useJsonFormArrayControl', () => {
 			};
 			const [ result ] = withSetup(
 				() => useJsonFormArrayControl( props ),
-				{ jsonform }
+				{ jsonform, i18n: global.mw.Message }
 			);
 			expect( result.control.pointer ).toBe( 'arrayName' );
 		} );

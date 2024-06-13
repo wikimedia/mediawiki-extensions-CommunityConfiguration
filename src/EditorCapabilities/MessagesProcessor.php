@@ -25,15 +25,12 @@ class MessagesProcessor {
 	 * @param string $providerId
 	 * @param Iterator $schema
 	 * @param string $messagePrefix
-	 * @param array $config
 	 * @return array
 	 */
-	public function getMessages(
-		string $providerId, Iterator $schema, string $messagePrefix = '', array $config = []
-	): array {
+	public function getMessages( string $providerId, Iterator $schema, string $messagePrefix = '' ): array {
 		$messages = [];
 		if ( $schema instanceof JsonSchemaIterator ) {
-			$keys = $this->computeEditorMessageKeys( $providerId, $schema, $messagePrefix, $config );
+			$keys = $this->computeEditorMessageKeys( $providerId, $schema, $messagePrefix );
 			foreach ( $keys as $key ) {
 				$msg = $this->messageLocalizer->msg( $key );
 				if ( $msg->exists() ) {
@@ -84,11 +81,10 @@ class MessagesProcessor {
 	 * @param string $providerId
 	 * @param JsonSchemaIterator $schemas
 	 * @param string $messagePrefix
-	 * @param array $config
 	 * @return array
 	 */
 	private function computeEditorMessageKeys(
-		string $providerId, JsonSchemaIterator $schemas, string $messagePrefix = '', $config = []
+		string $providerId, JsonSchemaIterator $schemas, string $messagePrefix = ''
 	): array {
 		$messages = [];
 		foreach ( $schemas as $sub_schema ) {
@@ -147,31 +143,14 @@ class MessagesProcessor {
 			) {
 				$messages[] = $schemaBaseKey . '-label';
 				$messages[] = $schemaBaseKey . '-help-text';
-				// Add per items label to support current status quo, can
-				// be removed once we introduce array management
 				if (
 					$schema->{JsonSchema::TYPE} === JsonSchema::TYPE_ARRAY &&
 					// Arrays of strings are rendered on a single field with chips
 					$schema->{JsonSchema::ITEMS}->{JsonSchema::TYPE} !== JsonSchema::TYPE_STRING &&
-					$config
+					// Assume array types with a custom control will handle its own item labels
+					!isset( $schema->{JsonSchema::CONTROL} )
 				) {
-					$normalizedPointer = str_replace( [ '#/', 'properties/' ], '', $pointer );
-					$value = array_reduce( explode( "/", $normalizedPointer ), static function (
-						$carry, $item
-					) {
-						if ( is_object( $carry ) && isset( $carry->{$item} ) ) {
-							return $carry->{$item};
-						}
-						if ( is_array( $carry ) && isset( $carry[$item] ) ) {
-							return $carry[$item];
-						}
-						// If we find no value in config return valid fallback value
-						return [];
-					}, $config );
-
-					$messages = array_merge( $messages, array_map( static function ( $index ) use ( $schemaBaseKey ) {
-						return $schemaBaseKey . '-' . $index . '-label';
-					}, array_keys( $value ) ) );
+					$messages[] = $schemaBaseKey . '-item-label';
 				}
 			}
 		}

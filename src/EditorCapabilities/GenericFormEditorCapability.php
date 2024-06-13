@@ -149,8 +149,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 					'i18nMessages' => $this->messagesProcessor->getMessages(
 						$providerId,
 						$this->provider->getValidator()->getSchemaIterator(),
-						'communityconfiguration',
-						(array)$config->getValue()
+						'communityconfiguration'
 					),
 					'feedbackURL' => $this->getContext()->getConfig()
 						->get( 'CommunityConfigurationFeedbackURL' ),

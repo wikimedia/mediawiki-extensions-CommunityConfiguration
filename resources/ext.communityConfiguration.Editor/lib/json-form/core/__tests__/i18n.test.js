@@ -63,8 +63,7 @@ const TEST_DATA = [
 		expected: [
 			'testenvironment-someprovider-examplearray-label',
 			'testenvironment-someprovider-examplearray-help-text',
-			'testenvironment-someprovider-examplearray-0-label',
-			'testenvironment-someprovider-examplearray-1-label'
+			'testenvironment-someprovider-examplearray-item-label'
 		],
 		expectedSubControlKeys: [
 			'testenvironment-someprovider-examplearray-foo-label',
@@ -295,8 +294,7 @@ describe( 'i18n.getControlTextProps()', () => {
 			const actualData = getControlTextProps(
 				propName,
 				'testenvironment-someprovider',
-				controlSchema,
-				testData.config[ propName ] || {}
+				controlSchema
 			);
 
 			expect(
