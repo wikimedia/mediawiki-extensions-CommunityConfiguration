@@ -7,12 +7,17 @@
 		:messages="control.statusMessages.value"
 		:is-fieldset="true"
 	>
-		<dispatch-renderer
+		<div
 			v-for="( element, index ) in data"
 			:key="`${control.uischema.name}-${index}`"
-			:schema="control.schema"
-			:uischema="indexedChildUISchema( index )"
-		></dispatch-renderer>
+			class="ext-communityConfiguration-ArrayControl__item-wrapper"
+		>
+			<dispatch-renderer
+				class="ext-communityConfiguration-ArrayControl__item-wrapper__item"
+				:schema="control.schema"
+				:uischema="indexedChildUISchema( index )"
+			></dispatch-renderer>
+		</div>
 		<template v-if="control.uischema.label && control.uischema.label.exists()" #label>
 			{{ control.uischema.label.text() }}
 		</template>
@@ -51,3 +56,32 @@ module.exports = exports = {
 	}
 };
 </script>
+
+<style lang="less">
+@import 'mediawiki.skin.variables.less';
+
+.ext-communityConfiguration-ArrayControl__item-wrapper {
+	border: @border-subtle;
+	padding: @spacing-100;
+	margin-bottom: @spacing-50;
+
+	&__item {
+		// stylelint-disable-next-line selector-class-pattern
+		.cdx-field__control {
+			display: flex;
+			align-items: baseline;
+			justify-content: space-evenly;
+			gap: @spacing-100;
+			flex-wrap: wrap;
+
+			> * {
+				flex: 1;
+			}
+			// stylelint-disable-next-line selector-class-pattern
+			.cdx-lookup {
+				width: 100%;
+			}
+		}
+	}
+}
+</style>
