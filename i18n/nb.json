@@ -6,9 +6,11 @@
 	},
 	"communityconfiguration": "Fellesskapskonfigurasjon",
 	"communityconfiguration-desc": "Inneholder logikk for fellesskapskonfigurasjon",
+	"communityconfiguration-editor-chip-control-aria-chip-description": "Trykk Enter for å redigere eller Delete for å fjerne",
 	"communityconfiguration-editor-client-generic-error": "Noe gikk galt under lasting av konfigurasjonsredigeringen. Prøv igjen senere.",
 	"communityconfiguration-editor-client-generic-error-description": "En feil oppsto i «$2» i komponenten $1. Se detaljer nedenfor:",
 	"communityconfiguration-editor-client-post-feedback": "Legg gjerne igjen [$1 tilbakemelding] hvis problemet fortsetter.",
+	"communityconfiguration-editor-client-validation-errors": "Det er {{PLURAL:$1|en|$1}} feil i skjemaet:",
 	"communityconfiguration-editor-form-submit-button-text": "Lagre endringer",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Sender …",
 	"communityconfiguration-guidelines-title": "Hva er fellesskapskonfigurasjon?",
@@ -39,5 +41,7 @@
 	"communityconfiguration-page-title-control-no-results": "Ingen resultater funnet.",
 	"communityconfiguration-editor-loading-info-text": "Konfigurasjonsredigeringsprogrammet laster",
 	"communityconfiguration-editor-nojs-fallback-text": "Konfigurasjonsredigeringsprogrammet krever JavaScript. Aktiver JavaScript for å kunne bruke det.",
-	"communityconfiguration-editor-navigation-tab-viewform": "Vis skjema"
+	"communityconfiguration-editor-navigation-tab-viewform": "Vis skjema",
+	"communityconfiguration-editor-client-notice-message": "Denne siden er beskyttet. Konfigurasjonen for denne funksjonen kan kun redigeres av administratorer.",
+	"communityconfiguration-editor-client-notice-footer-message": "{{GNDER:$1|Du}} kan ikke lagre endringer i dette skjemaet fordi det kun kan redigeres av administratorer."
 }
