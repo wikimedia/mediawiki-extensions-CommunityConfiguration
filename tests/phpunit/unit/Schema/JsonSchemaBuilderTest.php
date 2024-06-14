@@ -81,14 +81,40 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 						'type' => 'string',
 						'default' => 'bar',
 					],
-					'object' => [
+					'objectArray' => [
 						'type' => 'object',
 						'default' => [
 							'foo' => 1,
 							'bar' => 2,
 						],
-					]
-				],
+					],
+					'objectSubschema' => [
+						'type' => 'object',
+						'properties' => [
+							'abc' => [
+								'type' => 'number',
+								'default' => 123,
+							],
+							'xyz' => [
+								'type' => 'string',
+								'default' => 'str',
+							],
+						]
+					],
+					'objectBoth' => [
+						'type' => 'object',
+						'properties' => [
+							'foo' => [
+								'type' => 'number',
+								'default' => 42,
+							]
+						],
+						'default' => [
+							'foo' => 1,
+							'bar' => 2,
+						],
+					],
+				]
 			] );
 
 		$schemaReader = $this->createMock( JsonSchemaReader::class );
@@ -100,10 +126,18 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( (object)[
 			'number' => 42,
 			'string' => 'bar',
-			'object' => (object)[
+			'objectArray' => (object)[
 				'foo' => 1,
 				'bar' => 2,
-			]
+			],
+			'objectSubschema' => (object)[
+				'abc' => '123',
+				'xyz' => 'str',
+			],
+			'objectBoth' => (object)[
+				'foo' => 42,
+				'bar' => 2,
+			],
 		], $builder->getDefaultsMap() );
 	}
 }

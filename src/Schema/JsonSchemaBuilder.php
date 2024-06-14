@@ -50,19 +50,26 @@ class JsonSchemaBuilder implements SchemaBuilder {
 	 *
 	 * Takes into account dynamic defaults.
 	 *
-	 * @param array $specification
+	 * @param array $schema
 	 * @return mixed
 	 */
-	private function getDefaultFromSpecification( array $specification ) {
-		if ( isset( $specification[JsonSchema::DYNAMIC_DEFAULT] ) ) {
-			$result = call_user_func( $specification[JsonSchema::DYNAMIC_DEFAULT]['callback'] );
+	private function getDefaultFromSchema( array $schema ) {
+		if ( isset( $schema[JsonSchema::DYNAMIC_DEFAULT] ) ) {
+			$result = call_user_func( $schema[JsonSchema::DYNAMIC_DEFAULT]['callback'] );
 		} else {
-			$result = $specification['default'] ?? null;
+			$result = $schema['default'] ?? null;
 		}
 
-		if ( $specification[JsonSchema::TYPE] === JsonSchema::TYPE_OBJECT ) {
+		if ( $schema[JsonSchema::TYPE] === JsonSchema::TYPE_OBJECT ) {
 			// Convert the value to an object when TYPE_OBJECT is expected
 			$result = (object)$result;
+		}
+
+		// process defaults for objects recursively
+		if ( is_object( $result ) ) {
+			foreach ( $schema['properties'] ?? [] as $name => $subSchema ) {
+				$result->{$name} = $this->getDefaultFromSchema( $subSchema );
+			}
 		}
 
 		return $result;
@@ -74,7 +81,7 @@ class JsonSchemaBuilder implements SchemaBuilder {
 	public function getDefaultsMap( ?string $version = null ): stdClass {
 		$res = new stdClass();
 		foreach ( $this->getRootProperties( $version ) as $key => $specification ) {
-			$res->{$key} = $this->getDefaultFromSpecification( $specification );
+			$res->{$key} = $this->getDefaultFromSchema( $specification );
 		}
 		return $res;
 	}
