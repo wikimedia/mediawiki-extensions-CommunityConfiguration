@@ -29,7 +29,8 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 		'services' => [
 			'CommunityConfiguration.ProviderFactory',
 			'LinkRenderer',
-			'FormatterFactory'
+			'FormatterFactory',
+			'CommunityConfiguration.HookRunner',
 		]
 	];
 
