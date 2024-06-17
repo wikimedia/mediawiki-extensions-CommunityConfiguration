@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\EditorCapabilities;
 
 use LogicException;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
 use MediaWiki\Html\Html;
@@ -19,19 +20,22 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 	private LinkRenderer $linkRenderer;
 	private StatusFormatter $statusFormatter;
 	private IConfigurationProvider $provider;
+	private HookRunner $hookRunner;
 
 	public function __construct(
 		IContextSource $ctx,
 		Title $parentTitle,
 		ConfigurationProviderFactory $providerFactory,
 		LinkRenderer $linkRenderer,
-		FormatterFactory $formatterFactory
+		FormatterFactory $formatterFactory,
+		HookRunner $hookRunner
 	) {
 		parent::__construct( $ctx, $parentTitle );
 
 		$this->providerFactory = $providerFactory;
 		$this->linkRenderer = $linkRenderer;
 		$this->statusFormatter = $formatterFactory->getStatusFormatter( $ctx );
+		$this->hookRunner = $hookRunner;
 	}
 
 	/**
@@ -129,11 +133,13 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 				]
 			);
 		}
+		$rootSchema = $this->provider->getValidator()->getSchemaBuilder()->getRootSchema();
+		$this->hookRunner->onCommunityConfigurationSchemaBeforeEditor( $this->provider, $rootSchema );
 		$canEdit = $this->provider->getStore()->definitelyCanEdit( $this->getContext()->getAuthority() );
 		$out->addJsConfigVars( [
 			'communityConfigurationData' => [
 				'providerId' => $providerId,
-				'schema' => $this->provider->getValidator()->getSchemaBuilder()->getRootSchema(),
+				'schema' => $rootSchema,
 				'data' => $config->getValue(),
 				'config' => [
 					'i18nPrefix' => "communityconfiguration-" . strtolower( $subpage ),

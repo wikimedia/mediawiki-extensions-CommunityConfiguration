@@ -1,6 +1,9 @@
 /* global jest:false */
 'use strict';
 
+function MWMessageMock() {}
+MWMessageMock.prototype.exists = jest.fn();
+
 // Mock MW object
 const mw = {
 	log: {
@@ -10,6 +13,7 @@ const mw = {
 	config: {
 		get: jest.fn()
 	},
+	Message: MWMessageMock,
 	user: {
 		getId: jest.fn(),
 		getName: jest.fn(),

@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\CommunityConfiguration;
 
 use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
+use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
@@ -32,6 +33,10 @@ class CommunityConfigurationServices {
 
 	public function getEditorCapabilityFactory(): EditorCapabilityFactory {
 		return $this->coreServices->getService( 'CommunityConfiguration.EditorCapabilityFactory' );
+	}
+
+	public function getHookRunner(): HookRunner {
+		return $this->coreServices->getService( 'CommunityConfiguration.HookRunner' );
 	}
 
 	public function getConfigurationProviderFactory(): ConfigurationProviderFactory {

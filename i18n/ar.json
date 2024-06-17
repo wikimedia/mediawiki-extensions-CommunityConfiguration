@@ -10,6 +10,7 @@
 	"communityconfiguration-editor-client-generic-error": "حدث خطأ ما في أثناء تحميل محرر الإعدادات. الرجاء معاودة المحاولة في وقت لاحق.",
 	"communityconfiguration-editor-client-generic-error-description": "حدث خطأ في '$2' في المكون $1. انظروا إلى التفاصيل أدناه:",
 	"communityconfiguration-editor-client-post-feedback": "إذا استمرت المشكلة، فكروا في [$1 ترك تعليقات] في صفحة النقاش.",
+	"communityconfiguration-editor-client-validation-errors": "هناك {{PLURAL:$1|خطأ|أخطاء}} في الاستمارة:",
 	"communityconfiguration-editor-form-submit-button-text": "حفظ التغييرات",
 	"communityconfiguration-editor-form-submit-button-loading-text": "جارٍ الإرسال...",
 	"communityconfiguration-guidelines-title": "ما هي إعدادات المجتمع؟",
@@ -40,5 +41,7 @@
 	"communityconfiguration-page-title-control-no-results": "لم يتم العثور على نتائج.",
 	"communityconfiguration-editor-loading-info-text": "جارٍ تحميل محرر الإعدادات",
 	"communityconfiguration-editor-nojs-fallback-text": "يتطلب محرر الإعدادات جافا سكريبت. الرجاء تفعيل جافا سكريبت لاستخدامه.",
-	"communityconfiguration-editor-navigation-tab-viewform": "عرض النموذج"
+	"communityconfiguration-editor-navigation-tab-viewform": "عرض النموذج",
+	"communityconfiguration-editor-client-notice-message": "هذه الصفحة محمية. يمكن فقط لللإداريين التعديل على إعدادات هذه الميزة.",
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|لا يمكنك}} حفظ التغييرات على هذه الاستمارة لأنه فقط لللإداريين إمكانية التعديل على إعدادات هذه الميزة."
 }

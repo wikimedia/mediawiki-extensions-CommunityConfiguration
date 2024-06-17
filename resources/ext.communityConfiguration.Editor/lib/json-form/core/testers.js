@@ -41,6 +41,10 @@ function isEnumControl( _uischema, schema ) {
 	return validEnumTypes.indexOf( schema.type ) !== -1 && Array.isArray( schema.enum );
 }
 
+function isSimpleStringArrayControl( _uischema, schema ) {
+	return schema.type === 'array' && schema.items && schema.items.type === 'string';
+}
+
 /**
  * Tester function to check whether the given schema has
  * the expected control.
@@ -76,6 +80,7 @@ module.exports = exports = {
 	isObjectControl,
 	isStringControl,
 	isEnumControl,
+	isSimpleStringArrayControl,
 	extractRef,
 	rankWith,
 	schemaControlIs,

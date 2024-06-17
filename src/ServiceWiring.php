@@ -5,6 +5,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
+use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
@@ -26,6 +27,11 @@ return [
 				] )
 			),
 			$services->getObjectFactory()
+		);
+	},
+	'CommunityConfiguration.HookRunner' => static function ( MediaWikiServices $services ) {
+		return new HookRunner(
+			$services->getHookContainer()
 		);
 	},
 	'CommunityConfiguration.ProviderFactory' => static function ( MediaWikiServices $services ) {

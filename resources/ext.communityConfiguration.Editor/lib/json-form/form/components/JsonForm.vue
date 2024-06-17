@@ -93,5 +93,10 @@ module.exports = exports = {
 		padding: @spacing-100 @spacing-100 @spacing-100 0;
 		border-top: @border-subtle;
 	}
+	// Cap all Codex fields width
+	// stylelint-disable-next-line selector-class-pattern
+	.cdx-field {
+		max-width: @size-4000;
+	}
 }
 </style>

@@ -10,6 +10,7 @@
 	"communityconfiguration-editor-client-generic-error": "Konfiqurasiya redaktorunu yükləyərkən xəta baş verdi. Zəhmət olmasa bir az sonra yenə cəhd edin.",
 	"communityconfiguration-editor-client-generic-error-description": "$1 komponentindəki '$2' metodunda xəta baş verdi. Aşağıdakı təfərrüatlara nəzər yetirin:",
 	"communityconfiguration-editor-client-post-feedback": "Problem davam edərsə, müzakirə səhifəsində [$1 rəy bildirin.]",
+	"communityconfiguration-editor-client-validation-errors": "Formda {{PLURAL:$1|xəta|$1 xəta}} var",
 	"communityconfiguration-editor-form-submit-button-text": "Dəyişiklikləri yadda saxla",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Göndərilir...",
 	"communityconfiguration-guidelines-title": "İcma Konfiqurasiyası nədir?",
