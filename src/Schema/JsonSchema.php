@@ -24,16 +24,24 @@ abstract class JsonSchema {
 	 */
 	public const VERSION = null;
 
+	/*
+	 * JSON-schema draft-04 supported vocabulary
+	 */
 	public const PROPERTIES = 'properties';
 	public const TYPE = 'type';
 	public const ADDITIONAL_PROPERTIES = 'additionalProperties';
-	public const REQUIRED = 'required';
-	public const MINIMUM = 'minimum';
-	public const MAXIMUM = 'maximum';
 	public const REF = '$ref';
 	public const DEFS = '$defs';
 	public const ITEMS = 'items';
 	public const ENUM = 'enum';
+	// Validation vocabulary
+	public const REQUIRED = 'required';
+	// integer and number types
+	public const MINIMUM = 'minimum';
+	public const MAXIMUM = 'maximum';
+	// string type
+	public const MIN_LENGTH = 'minLength';
+	public const MAX_LENGTH = 'maxLength';
 
 	/**
 	 * @var string To define a default value for the property
