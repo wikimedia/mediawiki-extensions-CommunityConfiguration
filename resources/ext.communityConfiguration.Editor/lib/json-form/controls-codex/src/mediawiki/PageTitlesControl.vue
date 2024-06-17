@@ -31,6 +31,9 @@ const { debounce, useCodexControl } = require( '../utils.js' );
 const { search } = require( './api.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
 const chipToPageTitle = ( { value } ) => value;
+const filterSelection = ( selection ) => ( item ) => {
+	return selection.map( ( x ) => x.value ).indexOf( item.value ) === -1;
+};
 
 // @vue/component
 module.exports = exports = {
@@ -97,7 +100,7 @@ module.exports = exports = {
 					} );
 
 					// Update menuItems.
-					menuItems.value = results;
+					menuItems.value = results.filter( filterSelection( selection.value ) );
 					expanded.value = true;
 				} )
 				.catch( () => {

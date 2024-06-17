@@ -114,10 +114,12 @@ module.exports = exports = {
 			onChipSelectionChange( newVal ) {
 				// map ChipInputItem model back to config model
 				onChange( newVal.map( menuItemToNamespace ) );
+				menuItems.value = NS_MENU_ITEMS.filter( filterSelection( newVal ) );
 			},
 			onItemSelected( itemValue ) {
 				selection.value = [ ...selection.value, { value: itemValue } ];
 				onChange( selection.value.map( menuItemToNamespace ) );
+				menuItems.value = NS_MENU_ITEMS.filter( filterSelection( selection.value ) );
 				currentSearchTerm.value = '';
 				// HACK, bettwer way to remove the user typed text in ChipInput?
 				input.value.inputValue = '';
