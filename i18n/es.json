@@ -4,6 +4,7 @@
 			"Eulalio",
 			"Martin Urbanec (WMF)",
 			"No se",
+			"Sergi0",
 			"Zapipedia (WMF)"
 		]
 	},
@@ -13,6 +14,7 @@
 	"communityconfiguration-editor-client-generic-error": "Algo salió mal al cargar el editor de configuración. Por favor, inténtalo de nuevo más tarde.",
 	"communityconfiguration-editor-client-generic-error-description": "Se produjo un error en '$2' en el componente $1. Ver los detalles abajo:",
 	"communityconfiguration-editor-client-post-feedback": "Si el problema persiste, considera [$1 dejar aviso] en la página de discusión.",
+	"communityconfiguration-editor-client-validation-errors": "Hay {{PLURAL:$1|un error|$1 errores}} en el formulario:",
 	"communityconfiguration-editor-form-submit-button-text": "Guardar cambios",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Enviando...",
 	"communityconfiguration-guidelines-title": "¿Qué es la Configuración de la Comunidad?",
@@ -43,5 +45,7 @@
 	"communityconfiguration-page-title-control-no-results": "No se encontraron resultados",
 	"communityconfiguration-editor-loading-info-text": "El editor de configuración se está cargando.",
 	"communityconfiguration-editor-nojs-fallback-text": "El editor de configuración requiere JavaScript. Habilite JavaScript para poder usarlo.",
-	"communityconfiguration-editor-navigation-tab-viewform": "Ver formulario"
+	"communityconfiguration-editor-navigation-tab-viewform": "Ver formulario",
+	"communityconfiguration-editor-client-notice-message": "Esta página está protegida. La configuración de esta funcionalidad solo es editable por administradores.",
+	"communityconfiguration-editor-client-notice-footer-message": "No puedes guardar los cambios de este formulario porque la configuración de esta funcionalidad solo puede ser editada por bibliotecarios/as."
 }
