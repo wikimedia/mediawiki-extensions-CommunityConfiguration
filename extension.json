@@ -2,7 +2,9 @@
 	"name": "CommunityConfiguration",
 	"author": [
 		"Martin Urbanec",
-		"Sergio Gimeno"
+		"Sergio Gimeno",
+		"Michael Große",
+		"Cyndy Simiyu"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:CommunityConfiguration",
 	"descriptionmsg": "communityconfiguration-desc",
