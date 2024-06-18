@@ -13,9 +13,12 @@ class StaticStore implements IConfigurationStore {
 	private stdClass $config;
 
 	/**
-	 * @param stdClass $config
+	 * @param stdClass|array $config
 	 */
-	public function __construct( stdClass $config ) {
+	public function __construct( $config ) {
+		if ( !is_object( $config ) ) {
+			$config = (object)json_decode( json_encode( $config ) );
+		}
 		$this->config = $config;
 	}
 

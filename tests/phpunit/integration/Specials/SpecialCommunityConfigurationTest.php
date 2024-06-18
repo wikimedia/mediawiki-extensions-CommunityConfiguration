@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
+use Generator;
 use HamcrestPHPUnitIntegration;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Specials\SpecialCommunityConfiguration;
@@ -18,39 +19,80 @@ class SpecialCommunityConfigurationTest extends SpecialPageTestBase {
 
 	private const PROVIDER_ID = 'CommunityFeatureOverrides';
 	private const SKIPPED_PROVIDER_ID = 'CommunityFeatureData';
+	private const NO_VALIDATION_PROVIDER_ID = 'NoValidationData';
+	private const STATIC_PROVIDER_ID = 'StaticData';
 	private const CONFIG_PAGE_TITLE = 'MediaWiki:CommunityFeatureOverrides.json';
+
+	/**
+	 * @var string[]
+	 *
+	 * List of providers that cannot be edited by GenericFormEditorCapability.
+	 */
+	private const UNEDITABLE_PROVIDERS = [ self::SKIPPED_PROVIDER_ID ];
+	private const PROVIDERS = [
+		self::PROVIDER_ID => [
+			'store' => [
+				'type' => 'wikipage',
+				'args' => [ self::CONFIG_PAGE_TITLE ],
+			],
+			'validator' => [
+				'type' => 'jsonschema',
+				'args' => [ JsonConfigSchemaForTesting::class ],
+			],
+			'type' => 'mw-config',
+		],
+		self::SKIPPED_PROVIDER_ID => [
+			'store' => [
+				'type' => 'wikipage',
+				'args' => [ 'MediaWiki:CommunityFeatureData.json' ],
+			],
+			'validator' => [
+				'type' => 'jsonschema',
+				'args' => [ JsonSchemaForTesting::class ],
+			],
+			'type' => 'data',
+			'options' => [
+				'skipDashboardListing' => true,
+			]
+		],
+		self::NO_VALIDATION_PROVIDER_ID => [
+			'store' => [
+				'type' => 'wikipage',
+				'args' => [ 'MediaWiki:NoValidationData.json' ]
+			],
+			'validator' => [
+				'type' => 'noop-with-schema',
+			],
+			'type' => 'data',
+		],
+		self::STATIC_PROVIDER_ID => [
+			'store' => [
+				'type' => 'static',
+				'args' => [ [
+					'Foo' => 42,
+				] ]
+			],
+			'validator' => [
+				'type' => 'noop-with-schema',
+			],
+			'type' => 'data',
+		]
+	];
 
 	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
-			'wgCommunityConfigurationProviders' => [
-				self::PROVIDER_ID => [
-					'store' => [
-						'type' => 'wikipage',
-						'args' => [ self::CONFIG_PAGE_TITLE ],
+			'wgCommunityConfigurationValidators' => array_merge(
+				$this->getServiceContainer()->getMainConfig()->get( 'CommunityConfigurationValidators' ),
+				[
+					'noop-with-schema' => [
+						'class' => NoopValidatorWithSchemaForTesting::class,
+						'services' => [],
 					],
-					'validator' => [
-						'type' => 'jsonschema',
-						'args' => [ JsonConfigSchemaForTesting::class ],
-					],
-					'type' => 'mw-config',
-				],
-				self::SKIPPED_PROVIDER_ID => [
-					'store' => [
-						'type' => 'wikipage',
-						'args' => [ 'MediaWiki:CommunityFeatureData.json' ],
-					],
-					'validator' => [
-						'type' => 'jsonschema',
-						'args' => [ JsonSchemaForTesting::class ],
-					],
-					'type' => 'data',
-					'options' => [
-						'skipDashboardListing' => true,
-					]
-				],
-			],
+				]
+			),
+			'wgCommunityConfigurationProviders' => self::PROVIDERS,
 		] );
 	}
 
@@ -62,8 +104,21 @@ class SpecialCommunityConfigurationTest extends SpecialPageTestBase {
 		);
 	}
 
-	public function testExecuteEditor(): void {
-		[ $output ] = $this->executeSpecialPage( self::PROVIDER_ID );
+	public static function provideEditableProviderIds(): Generator {
+		foreach ( self::PROVIDERS as $providerId => $providerSpec ) {
+			if ( in_array( $providerId, self::UNEDITABLE_PROVIDERS ) ) {
+				continue;
+			}
+			yield $providerId => [ $providerId ];
+		}
+	}
+
+	/**
+	 * @param string $providerId
+	 * @dataProvider provideEditableProviderIds
+	 */
+	public function testExecuteEditor( string $providerId ): void {
+		[ $output ] = $this->executeSpecialPage( $providerId );
 
 		$this->assertThatHamcrest(
 			"Shows the summary message",
@@ -83,13 +138,19 @@ class SpecialCommunityConfigurationTest extends SpecialPageTestBase {
 	public function testShowDashboard(): void {
 		[ $output ] = $this->executeSpecialPage( null );
 
-		$this->assertThatHamcrest(
-			'Shows the box for the normal provider',
-			$output,
-			is( htmlPiece( havingChild( both( withTagName( 'a' ) )->andAlso(
-				havingTextContents( '(communityconfiguration-' . strtolower( self::PROVIDER_ID ) . '-title)' )
-			) ) ) )
-		);
+		foreach ( self::PROVIDERS as $providerId => $providerSpec ) {
+			if ( $providerId === self::SKIPPED_PROVIDER_ID ) {
+				continue;
+			}
+			$this->assertThatHamcrest(
+				'Shows the box for the normal provider',
+				$output,
+				is( htmlPiece( havingChild( both( withTagName( 'a' ) )->andAlso(
+					havingTextContents( '(communityconfiguration-' . strtolower( $providerId ) . '-title)' )
+				) ) ) )
+			);
+		}
+
 		$this->assertStringNotContainsString(
 			'(communityconfiguration-' . strtolower( self::SKIPPED_PROVIDER_ID ) . '-title)',
 			$output,
