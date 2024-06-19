@@ -9,7 +9,7 @@
 		]
 	},
 	"communityconfiguration": "Configuración de la Comunidad",
-	"communityconfiguration-desc": "Contiene la lógica de la configuración de la Comunidad",
+	"communityconfiguration-desc": "Contiene la lógica de la configuración comunitaria",
 	"communityconfiguration-editor-chip-control-aria-chip-description": "Por favor, haz clic en Editar o Quitar",
 	"communityconfiguration-editor-client-generic-error": "Algo salió mal al cargar el editor de configuración. Por favor, inténtalo de nuevo más tarde.",
 	"communityconfiguration-editor-client-generic-error-description": "Se produjo un error en '$2' en el componente $1. Ver los detalles abajo:",
@@ -20,9 +20,9 @@
 	"communityconfiguration-guidelines-title": "¿Qué es la Configuración de la Comunidad?",
 	"communityconfiguration-guidelines-description": "Configuración de la Comunidad es una herramienta que permite a las comunidades establecer y controlar la configuración de diferentes funcionalidades de {{SITENAME}}, apoyando a las personas bibliotecarias a adaptarse a las necesidades específicas de su comunidad.",
 	"communityconfiguration-guidelines-guideline1-title": "Aprender más",
-	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Aprende más] sobre la Configuración de la Communidad, qué es, cómo funciona, y en qué estamos trabajando.",
-	"communityconfiguration-guidelines-guideline2-title": "Envíanos tu feedback",
-	"communityconfiguration-guidelines-guideline2-description": "¡Nos gustaría conocer tu opinión! Contáctanos en [https://www.mediawiki.org/wiki/Talk:Growth talk page].",
+	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Aprende más] sobre la Configuración comunitaria, qué es, cómo funciona, y en qué estamos trabajando.",
+	"communityconfiguration-guidelines-guideline2-title": "Envíanos {{GENDER:$1|tu}} feedback",
+	"communityconfiguration-guidelines-guideline2-description": "¡Nos gustaría conocer {{GENDER:$1|tu}}  opinión! Contáctanos en la [https://www.mediawiki.org/wiki/Talk:Growth pagina de discusión].",
 	"communityconfiguration-invalid-stored-config-error": "No se pudo cargar una configuración válida del proveedor $1 (código <tt>$2</tt>).",
 	"communityconfiguration-invalid-stored-config-error-with-link": "No se pudo cargar una configuración válida del proveedor $1 (código <tt>$2</tt>), ver $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Detalles del error",
@@ -30,7 +30,7 @@
 	"communityconfiguration-providers-list-title": "Funcionalidades",
 	"communityconfiguration-provider-not-found": "Proveedor $1 no encontrado",
 	"communityconfiguration-unknown-error": "DRAFT: Algo ha ido mal, ¿reportar en Phabricator?",
-	"communityconfigurationdashboard": "Configuración de la Comunidad",
+	"communityconfigurationdashboard": "Configuración comunitaria",
 	"communityconfigurationeditor": "Edición de «$1»",
 	"communityconfiguration-edit-summary-reminder": "<b>Reminder</b>: este cambio puede afectar a una gran cantidad de miembros de la comunidad. Considere indicar el motivo {{GENDER:$1| usted}} está realizando el cambio y vinculando a cualquier discusión comunitaria relacionada, si corresponde.",
 	"communityconfiguration-edit-summary-dialog-title": "Guardar cambios por $1",
@@ -47,5 +47,5 @@
 	"communityconfiguration-editor-nojs-fallback-text": "El editor de configuración requiere JavaScript. Habilite JavaScript para poder usarlo.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Ver formulario",
 	"communityconfiguration-editor-client-notice-message": "Esta página está protegida. La configuración de esta funcionalidad solo es editable por administradores.",
-	"communityconfiguration-editor-client-notice-footer-message": "No puedes guardar los cambios de este formulario porque la configuración de esta funcionalidad solo puede ser editada por bibliotecarios/as."
+	"communityconfiguration-editor-client-notice-footer-message": "No {{GENDER:$1|puedes}} guardar los cambios de este formulario porque la configuración de esta funcionalidad solo puede ser editada por bibliotecarios/as."
 }
