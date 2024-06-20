@@ -94,15 +94,11 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				];
 			},
 			[
-				'pfx-pid-numberarray-0-label',
-				'pfx-pid-numberarray-1-label',
 				'pfx-pid-numberarray-label',
 				'pfx-pid-numberarray-help-text',
+				'pfx-pid-numberarray-item-label',
 			],
-			[],
-			[
-				'NumberArray' => [ 1, 2 ]
-			]
+			[]
 		];
 		yield 'array of string' => [
 			new class() extends JsonSchema {
@@ -120,8 +116,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 			[
 				'mw-widgets-titlesmultiselect-placeholder',
 				'communityconfiguration-editor-chip-control-aria-chip-description',
-			],
-			[ 'StringArray' => [ 'fire', 'water' ] ]
+			]
 		];
 		yield 'object' => [
 			new class() extends JsonSchema {
@@ -169,6 +164,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 			},
 			[
 				'pfx-pid-examplearray-label',
+				'pfx-pid-examplearray-item-label',
 				'pfx-pid-examplearray-help-text',
 			],
 			[
@@ -257,11 +253,11 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideSchema
 	 */
-	public function testGetMessages( $cls, $expected, $expectedSubControl = [], $config = [] ) {
+	public function testGetMessages( $cls, $expected, $expectedSubControl = [] ) {
 		$reader = new JsonSchemaReader( $cls );
 		$iterator = new JsonSchemaIterator( $reader );
 		$processor = new MessagesProcessor( $this->getMockMessageLocalizer() );
-		$result = $processor->getMessages( 'pid', $iterator, 'pfx', $config );
+		$result = $processor->getMessages( 'pid', $iterator, 'pfx' );
 		$this->assertEqualsCanonicalizing(
 			array_merge( $expected, $expectedSubControl ),
 			array_keys( $result )

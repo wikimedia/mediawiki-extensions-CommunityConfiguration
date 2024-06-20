@@ -13,15 +13,6 @@ function mapPropToTextKey( ...fragments ) {
 	return fragments.join( '-' ).toLocaleLowerCase();
 }
 
-const getFallbackDataForType = ( type ) => {
-	return type === 'array' ? [] : type === 'object' ? {} : null;
-};
-
-const getDataForType = ( type, data, prop = null ) => {
-	const result = data && data[ prop ];
-	return result || getFallbackDataForType( type );
-};
-
 function getMessageOrNull( key ) {
 	// eslint-disable-next-line mediawiki/msg-doc
 	const msg = new mw.Message( mw.messages, key );
@@ -105,7 +96,7 @@ function getEnumControlMessages( prefix, propName, enumValues, asMessageObject )
 	];
 }
 
-function getObjectControlMessages( prefix, propName, objectProperties, data, asMessageObject ) {
+function getObjectControlMessages( prefix, propName, objectProperties, asMessageObject ) {
 	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
 	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
 
@@ -116,60 +107,46 @@ function getObjectControlMessages( prefix, propName, objectProperties, data, asM
 		};
 	}
 
-	const newConfig = Object.assign( {}, data, {
-		i18nTextKeyPrefix: `${ prefix }-${ propName }`
-	} );
+	const newConfig = { i18nTextKeyPrefix: `${ prefix }-${ propName }` };
 	let keys = [
 		labelKey,
 		helpTextLabelKey
 	];
 	for ( const prop in objectProperties ) {
-		const propData = getDataForType( objectProperties[ prop ].type, data, prop );
 		keys = [
 			...keys,
-			...doGetControlTextKeys( prop, objectProperties[ prop ], propData, newConfig )
+			...doGetControlTextKeys( prop, objectProperties[ prop ], newConfig )
 		];
 	}
 	return keys;
 }
 
-function getArrayControlMessages( prefix, propName, arrayItems, data, asMessageObject ) {
+function getArrayControlMessages( prefix, propName, arrayItems, asMessageObject ) {
 	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
 	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
-	if ( !data ) {
-		data = [];
-	}
-	const itemLabels = data.map( ( _, index ) =>
-		mapPropToTextKey( prefix, propName, `${ index }-label` )
-	);
+	const itemLabelKey = mapPropToTextKey( prefix, propName, 'item-label' );
 
 	if ( asMessageObject ) {
 		return {
 			label: getMessageOrNull( labelKey ),
 			helpText: getMessageOrNull( helpTextLabelKey ),
-			labels: itemLabels.map( ( key ) => getMessageOrNull( key ) )
+			itemLabel: getMessageOrNull( itemLabelKey )
 		};
 	}
 
 	let arrayLabels = [
 		labelKey,
 		helpTextLabelKey,
-		...itemLabels
+		itemLabelKey
 	];
 	if ( arrayItems.type === 'object' ) {
-		const newConfig = Object.assign( {}, data, {
-			i18nTextKeyPrefix: `${ prefix }-${ propName }`
-		} );
+		const newConfig = { i18nTextKeyPrefix: `${ prefix }-${ propName }` };
 		for ( const prop in arrayItems.properties ) {
-			const arrayItemsData = getDataForType(
-				arrayItems.properties[ prop ].type, data, prop
-			);
 			arrayLabels = [
 				...arrayLabels,
 				...doGetControlTextKeys(
 					prop,
 					arrayItems.properties[ prop ],
-					arrayItemsData,
 					newConfig
 				)
 			];
@@ -217,7 +194,7 @@ function getCustomPageTitleControlMessages( prefix, propName, asMessageObject ) 
 	];
 }
 
-function doGetControlTextKeys( propName, schema, data, config ) {
+function doGetControlTextKeys( propName, schema, config ) {
 	if ( schema.type === 'string' && schema.enum === undefined && schema.control === undefined ) {
 		/* eslint-disable-next-line es-x/no-object-values */
 		return Object.values( getStringControlMessages( config.i18nTextKeyPrefix, propName ) );
@@ -236,16 +213,14 @@ function doGetControlTextKeys( propName, schema, data, config ) {
 		return getObjectControlMessages(
 			config.i18nTextKeyPrefix,
 			propName,
-			schema.properties,
-			data
+			schema.properties
 		);
 	}
 	if ( schema.type === 'array' && !schema.control ) {
 		return getArrayControlMessages(
 			config.i18nTextKeyPrefix,
 			propName,
-			schema.items,
-			data
+			schema.items
 		);
 	}
 	if ( schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl' )( null, schema ) ) {
@@ -261,7 +236,7 @@ function doGetControlTextKeys( propName, schema, data, config ) {
 	throw new Error( `Prop ${ propName }: Unsupported schema type: ${ JSON.stringify( schema ) }` );
 }
 
-function getControlTextProps( prop, prefix, schema, data ) {
+function getControlTextProps( prop, prefix, schema ) {
 	if ( schema.type === 'string' && schema.enum === undefined && schema.control === undefined ) {
 		return getStringControlMessages( prefix, prop, true );
 	}
@@ -275,10 +250,10 @@ function getControlTextProps( prop, prefix, schema, data ) {
 		return getEnumControlMessages( prefix, prop, schema.enum, true );
 	}
 	if ( schema.type === 'object' ) {
-		return getObjectControlMessages( prefix, prop, schema.properties, data, true );
+		return getObjectControlMessages( prefix, prop, schema.properties, true );
 	}
 	if ( schema.type === 'array' && !schema.control ) {
-		return getArrayControlMessages( prefix, prop, schema.items, data, true );
+		return getArrayControlMessages( prefix, prop, schema.items, true );
 	}
 	if ( schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl' )( null, schema ) ) {
 		return getCustomPageTitleControlMessages( prefix, prop, true );

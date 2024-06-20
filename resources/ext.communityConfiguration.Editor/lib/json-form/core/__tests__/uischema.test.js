@@ -30,13 +30,10 @@ function assertUISchemaElementDefaults( subschemaName, uischema ) {
 
 function assertUISchemaArrayDefaults( subschemaName, uischema ) {
 	const uiSchemaElement = findUISchemaElement( subschemaName, uischema.elements );
-	expect( uiSchemaElement.labels ).toBeDefined();
-	uiSchemaElement.labels.forEach( ( label, index ) => {
-		expect( label.text() ).toBe(
-			`testenvironment-someprovider-${ subschemaName.toLowerCase() }-${ index }-label`
-		);
-		// TODO assert control label and help text
-	} );
+	expect( uiSchemaElement.itemLabel ).toBeDefined();
+	expect( uiSchemaElement.itemLabel.text() ).toBe(
+		`testenvironment-someprovider-${ subschemaName.toLowerCase() }-item-label`
+	);
 }
 
 describe( 'UISchema', () => {
@@ -44,8 +41,7 @@ describe( 'UISchema', () => {
 		global.mw.messages = [
 			'testenvironment-someprovider-examplestring-label',
 			'testenvironment-someprovider-examplearray-label',
-			'testenvironment-someprovider-examplearray-0-label',
-			'testenvironment-someprovider-examplearray-1-label',
+			'testenvironment-someprovider-examplearray-item-label',
 			'testenvironment-someprovider-exampleobject-label'
 		];
 		global.mw.Message = jest.fn( ( messages, key ) => ( {

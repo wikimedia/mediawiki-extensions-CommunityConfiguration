@@ -18,7 +18,7 @@ function buildUISchema( schema, config, initialScope = '', data = {} ) {
 		const scope = initialScope ? `${initialScope}/properties/${prop}` : `#/properties/${prop}`;
 		const required = schema.required && schema.required.indexOf( prop ) !== -1;
 		elements.push( buildUISubSchema(
-			schema.properties[ prop ], prop, scope, required, config.i18nPrefix, data[ prop ]
+			schema.properties[ prop ], prop, scope, required, config.i18nPrefix
 		) );
 	}
 
@@ -35,7 +35,7 @@ function buildUISchema( schema, config, initialScope = '', data = {} ) {
 	return { elements };
 }
 
-function buildUISubSchema( subschema, name, scope, required, i18nPrefix, data ) {
+function buildUISubSchema( subschema, name, scope, required, i18nPrefix ) {
 	const defaults = {
 		scope,
 		name,
@@ -44,7 +44,7 @@ function buildUISubSchema( subschema, name, scope, required, i18nPrefix, data ) 
 	};
 
 	const additionalProps = Object.assign(
-		{}, getControlTextProps( name, i18nPrefix, subschema, data )
+		{}, getControlTextProps( name, i18nPrefix, subschema )
 	);
 
 	return Object.assign( {}, defaults, additionalProps );

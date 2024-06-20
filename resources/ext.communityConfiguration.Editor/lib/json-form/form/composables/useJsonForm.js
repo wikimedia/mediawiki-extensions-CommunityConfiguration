@@ -180,6 +180,7 @@ function useJsonFormControl( props ) {
  */
 function useJsonFormArrayControl( props ) {
 	const jsonform = inject( 'jsonform' );
+	const i18n = inject( 'i18n' );
 
 	if ( !jsonform ) {
 		throw new Error( "'jsonform' couldn't be injected. Are you within <JsonForm>?" );
@@ -211,11 +212,20 @@ function useJsonFormArrayControl( props ) {
 		props.uischema.scope,
 		// TODO determine if an array item is required based on min/maxItems, T358659
 		false,
-		jsonform.config.i18nPrefix,
-		unref( modelValue )
+		jsonform.config.i18nPrefix
 	);
+
+	function indexedChildUISchema( index ) {
+		return Object.assign( {}, childUISchema, {
+			scope: `${childUISchema.scope}/${index}`,
+			label: childUISchema.itemLabel ?
+				i18n( childUISchema.itemLabel.key, [ index + 1 ] ) :
+				null
+		} );
+	}
 	return {
-		childUISchema,
+		indexedChildUISchema,
+		data: unref( modelValue ),
 		control: Object.assign( {}, props, {
 			modelValue,
 			pointer,
