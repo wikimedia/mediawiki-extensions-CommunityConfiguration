@@ -1,5 +1,5 @@
 'use strict';
-const { getEditorTextKeys, getControlsTextKeys, getControlTextProps } = require( '../i18n.js' );
+const { getControlTextProps } = require( '../i18n.js' );
 const TEST_DATA = [
 	{
 		testType: 'object',
@@ -269,49 +269,6 @@ const TEST_DATA = [
 		]
 	}
 ];
-
-describe( 'i18n.getControlsTextKeys()', () => {
-	for ( const testData of TEST_DATA ) {
-		it( `should produce all necessary form labels for the given schema (type: ${ testData.testType })`, () => {
-			const actual = getControlsTextKeys( testData.schema, testData.config, {
-				i18nTextKeyPrefix: 'testenvironment-someprovider'
-			} );
-			expect( actual ).toEqual( [
-				...testData.expected,
-				...testData.expectedSubControlKeys
-			] );
-		} );
-	}
-} );
-
-describe( 'i18n.getEditorTextKeys()', () => {
-	const [ rootSchema, config, expectedSchemaMessages ] = TEST_DATA.reduce( ( acc, curr ) => {
-		Object.assign( acc[ 0 ].properties, curr.schema.properties );
-		Object.assign( acc[ 1 ], curr.config );
-		acc[ 2 ] = [ ...acc[ 2 ], ...curr.expected, ...curr.expectedSubControlKeys ];
-		return acc;
-	}, [
-		{
-			$id: 'root',
-			type: 'object',
-			properties: {}
-		},
-		{},
-		[]
-	] );
-
-	const expectedMessages = [
-		'testenvironment-someprovider-title',
-		'testenvironment-someprovider-description',
-		...new Set( expectedSchemaMessages )
-	];
-	it( 'should produce all necessary form labels for the given schema', () => {
-		const actual = getEditorTextKeys( rootSchema, config, {
-			i18nTextKeyPrefix: 'testenvironment-someprovider'
-		} );
-		expect( actual ).toEqual( expectedMessages );
-	} );
-} );
 
 global.mw = {
 	Message: class {

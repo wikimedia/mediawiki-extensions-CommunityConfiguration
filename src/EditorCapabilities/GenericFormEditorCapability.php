@@ -21,6 +21,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 	private StatusFormatter $statusFormatter;
 	private IConfigurationProvider $provider;
 	private HookRunner $hookRunner;
+	private MessagesProcessor $messagesProcessor;
 
 	public function __construct(
 		IContextSource $ctx,
@@ -28,7 +29,8 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		ConfigurationProviderFactory $providerFactory,
 		LinkRenderer $linkRenderer,
 		FormatterFactory $formatterFactory,
-		HookRunner $hookRunner
+		HookRunner $hookRunner,
+		MessagesProcessor $messagesProcessor
 	) {
 		parent::__construct( $ctx, $parentTitle );
 
@@ -36,6 +38,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		$this->linkRenderer = $linkRenderer;
 		$this->statusFormatter = $formatterFactory->getStatusFormatter( $ctx );
 		$this->hookRunner = $hookRunner;
+		$this->messagesProcessor = $messagesProcessor;
 	}
 
 	/**
@@ -143,6 +146,12 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 				'data' => $config->getValue(),
 				'config' => [
 					'i18nPrefix' => "communityconfiguration-" . strtolower( $subpage ),
+					'i18nMessages' => $this->messagesProcessor->getMessages(
+						$providerId,
+						$this->provider->getValidator()->getSchemaIterator(),
+						'communityconfiguration',
+						(array)$config->getValue()
+					),
 					'feedbackURL' => $this->getContext()->getConfig()
 						->get( 'CommunityConfigurationFeedbackURL' ),
 					'canEdit' => $canEdit

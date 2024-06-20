@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
+use Iterator;
 use LogicException;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
 
@@ -60,6 +61,17 @@ interface IValidator {
 	 * @throws LogicException if called when areSchemasSupported() returns false
 	 */
 	public function getSchemaBuilder(): SchemaBuilder;
+
+	/**
+	 * Return a schema Iterator that allows all internal
+	 * sub-schemas to be iterated.
+	 *
+	 * Callers need to check areSchemasSupported() returns true first.
+	 *
+	 * @return Iterator
+	 * @throws LogicException if called when areSchemasSupported() returns false
+	 */
+	public function getSchemaIterator(): Iterator;
 
 	/**
 	 * Return current version for the schema

@@ -59,4 +59,9 @@ abstract class JsonSchema {
 	public const TYPE_INTEGER = 'integer';
 	public const TYPE_NUMBER = 'number';
 	public const TYPE_BOOLEAN = 'boolean';
+
+	/**
+	 * Non-standard vocabulary.
+	 */
+	public const CONTROL = 'control';
 }

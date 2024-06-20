@@ -18,13 +18,13 @@ class MediaWikiDefinitions extends JsonSchema {
 	public const PageTitles = [
 		self::TYPE => self::TYPE_ARRAY,
 		self::ITEMS => [
-			self::REF => [ 'class' => self::class, 'field' => 'PageTitle' ]
+			self::TYPE => self::TYPE_STRING,
+			self::DEFAULT => '',
 		],
 		self::DEFAULT => [],
 		'control' => PageTitlesControl::class
 	];
 
-	// REVIEW: maybe create a Namespace type and reference it like PageTitles
 	public const Namespaces = [
 		self::TYPE => self::TYPE_ARRAY,
 		self::ITEMS => [

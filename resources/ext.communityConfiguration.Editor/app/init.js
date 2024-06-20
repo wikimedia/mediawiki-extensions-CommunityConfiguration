@@ -1,40 +1,7 @@
 ( function () {
 	'use strict';
 	const Vue = require( 'vue' );
-	const { getEditorTextKeys } = require( '../lib/json-form/core/index.js' );
 	const MwApiCommunityConfigurationWritingRepository = require( './MwApiCommunityConfigurationWritingRepository.js' );
-
-	/**
-	 * Load Editor messages from the MW api
-	 *
-	 * @param {Array<string>} messages List of messages to load
-	 * @return {jQuery.Promise}
-	 */
-	function loadMessages( messages ) {
-		const amlang = mw.config.get( 'wgUserLanguage' );
-		return new mw.Api().getMessages( messages, { amlang } ).then( ( existingMessages ) => {
-			Object.keys( existingMessages ).forEach( ( k ) => {
-				mw.messages.set( k, existingMessages[ k ] );
-			} );
-		} );
-	}
-
-	/**
-	 * Maybe retrieve server exported data for the editor
-	 *
-	 * @return {Promise<{ schema: Object, data: Object }>} The community configuration server
-	 * exported JsVars. Includes the JSON schema and configuration data.
-	 */
-	function getServerData() {
-		const config = mw.config.get( 'communityConfigurationData' );
-		if ( !config ) {
-			throw new Error( 'ext.communityConfiguration.Editor can only run with a config' );
-		}
-		const editorMessages = getEditorTextKeys( config.schema, config.data, {
-			i18nTextKeyPrefix: config.config.i18nPrefix
-		} );
-		return loadMessages( editorMessages ).then( () => config );
-	}
 
 	/**
 	 * Setup the Editor Vue application.
@@ -66,17 +33,19 @@
 		return app;
 	};
 
-	getServerData().then(
-		( serverData ) => {
-			// Hide loading animation
-			document.getElementsByClassName( 'ext-communityConfiguration-LoadingBar' )
-				.item( 0 )
-				.remove();
+	// Retrieve the server exported data
+	const communityConfigurationJSConfig = mw.config.get( 'communityConfigurationData' );
+	if ( !communityConfigurationJSConfig ) {
+		throw new Error( 'ext.communityConfiguration.Editor can only run with a JS config' );
+	}
+	// Hide loading animation
+	document.getElementsByClassName( 'ext-communityConfiguration-LoadingBar' )
+		.item( 0 )
+		.remove();
 
-			createApp( serverData );
-		},
-		// eslint-disable-next-line no-console
-		( err ) => console.error( err )
-	);
+	// Add the provider-editor translation messages
+	mw.messages.set( communityConfigurationJSConfig.config.i18nMessages );
+
+	createApp( communityConfigurationJSConfig );
 
 }() );

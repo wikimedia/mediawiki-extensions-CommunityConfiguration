@@ -5,6 +5,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
+use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\MessagesProcessor;
 use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
@@ -15,6 +16,9 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 return [
+	'CommunityConfiguration.MessagesProcessor' => static function ( MediaWikiServices $services ) {
+		return new MessagesProcessor( RequestContext::getMain() );
+	},
 	'CommunityConfiguration.EditorCapabilityFactory' => static function ( MediaWikiServices $services ) {
 		return new EditorCapabilityFactory(
 			new ServiceOptions(
