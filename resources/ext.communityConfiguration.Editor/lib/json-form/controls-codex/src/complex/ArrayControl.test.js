@@ -116,4 +116,30 @@ describe( 'ArrayControl', () => {
 		expect( configDataObject[ ArrayFieldName ][ 0 ].aNestedProp ).toBe( secondElementValue );
 		expect( wrapper.findAllComponents( DispatchRenderer ).length ).toBe( 1 );
 	} );
+
+	it( 'disables the add-more-elements button if the maximum number of elements is reached', async () => {
+		const schema = {
+			type: 'array',
+			items: {
+				type: 'object',
+				properties: {
+					aNestedProp: {
+						type: 'string'
+					}
+				}
+			},
+			maxItems: 3
+		};
+		const wrapper = mount( ArrayControl, getMountOptions( {
+			[ ArrayFieldName ]: [
+				{ aNestedProp: 'String1' },
+				{ aNestedProp: 'String2' }
+			]
+		}, schema ) );
+		expect( wrapper.get( '[data-test-id="array-control-add-element-button"]' ).attributes().disabled ).toBe( undefined );
+
+		await wrapper.get( '[data-test-id="array-control-add-element-button"]' ).trigger( 'click' );
+
+		expect( wrapper.get( '[data-test-id="array-control-add-element-button"]' ).attributes().disabled ).toBe( '' );
+	} );
 } );

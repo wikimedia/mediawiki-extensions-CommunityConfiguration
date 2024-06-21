@@ -35,6 +35,7 @@
 	<cdx-button
 		type="button"
 		data-test-id="array-control-add-element-button"
+		:disabled="isMaxNumberOfItemsReached"
 		@click="onAddElementClick"
 	>
 		<cdx-icon :icon="cdxIconAdd"></cdx-icon>
@@ -47,7 +48,7 @@
 </template>
 
 <script>
-const { ref } = require( 'vue' );
+const { ref, computed } = require( 'vue' );
 const { CdxField, CdxButton, CdxIcon } = require( '@wikimedia/codex' );
 const { cdxIconAdd, cdxIconTrash } = require( '../../../../icons.json' );
 const {
@@ -79,8 +80,13 @@ module.exports = exports = {
 			forceRerenderCounter.value += 1;
 		}
 
+		const isMaxNumberOfItemsReached = computed( () => {
+			return control.schema.maxItems && data.value.length >= control.schema.maxItems;
+		} );
+
 		return {
 			control,
+			isMaxNumberOfItemsReached,
 			indexedChildUISchema,
 			data,
 			cdxIconAdd, cdxIconTrash,
