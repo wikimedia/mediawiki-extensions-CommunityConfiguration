@@ -12,10 +12,13 @@ const mwMessageFake = jest.fn( ( textReturnValue ) => {
 		text: jest.fn( () => textReturnValue )
 	};
 } );
+global.mw.Message = mwMessageFake;
 
 const ArrayFieldName = 'ExampleArraySchema';
 const ArrayControl = require( './ArrayControl.vue' );
-const DispatchRenderer = require( '../../../form/components/DispatchRenderer.vue' );
+const ObjectControl = require( './ObjectControl.vue' );
+const StringControl = require( '../controls/StringControl.vue' );
+const { CdxTextInput } = require( '@wikimedia/codex' );
 
 function getMountOptions( configDataObject = null, schema = null ) {
 	const uischema = {
@@ -39,6 +42,19 @@ function getMountOptions( configDataObject = null, schema = null ) {
 		};
 	}
 
+	const stringRenderer = {
+		renderer: StringControl,
+		tester: ( _, testerSchema ) => {
+			return testerSchema.type === 'string' ? 1 : false;
+		}
+	};
+	const objectRenderer = {
+		renderer: ObjectControl,
+		tester: ( _, testerSchema ) => {
+			return testerSchema.type === 'object' ? 1 : false;
+		}
+	};
+
 	const jsonform = {
 		schema,
 		uischema,
@@ -46,14 +62,14 @@ function getMountOptions( configDataObject = null, schema = null ) {
 			i18nPrefix: 'i18n-'
 		},
 		data: reactive( configDataObject || {} ),
-		renderers: [],
+		renderers: [ stringRenderer, objectRenderer ],
 		errors: ref( [] )
 	};
 	return {
 		props: {
 			schema,
 			uischema,
-			renderers: []
+			renderers: [ stringRenderer, objectRenderer ]
 		},
 		global: {
 			...global.getGlobalMediaWikiMountingOptions( { jsonform } )
@@ -69,7 +85,7 @@ describe( 'ArrayControl', () => {
 				{ aNestedProp: 'String2' }
 			]
 		} ) );
-		expect( wrapper.findAllComponents( DispatchRenderer ).length ).toBe( 2 );
+		expect( wrapper.findAllComponents( ObjectControl ).length ).toBe( 2 );
 	} );
 	it( 'adds a wrapper box to object items', () => {
 		const wrapper = mount( ArrayControl, getMountOptions( {
@@ -91,12 +107,12 @@ describe( 'ArrayControl', () => {
 			]
 		};
 		const wrapper = mount( ArrayControl, getMountOptions( configDataObject ) );
-		expect( wrapper.findAllComponents( DispatchRenderer ).length ).toBe( 2 );
+		expect( wrapper.findAllComponents( ObjectControl ).length ).toBe( 2 );
 
 		await wrapper.get( '[data-test-id="array-control-add-element-button"]' ).trigger( 'click' );
 
 		expect( configDataObject[ ArrayFieldName ].length ).toBe( 3 );
-		expect( wrapper.findAllComponents( DispatchRenderer ).length ).toBe( 3 );
+		expect( wrapper.findAllComponents( ObjectControl ).length ).toBe( 3 );
 	} );
 
 	it( 'removes an element if the its delete button is clicked', async () => {
@@ -108,13 +124,14 @@ describe( 'ArrayControl', () => {
 			]
 		};
 		const wrapper = mount( ArrayControl, getMountOptions( configDataObject ) );
-		expect( wrapper.findAllComponents( DispatchRenderer ).length ).toBe( 2 );
+		expect( wrapper.findAllComponents( ObjectControl ).length ).toBe( 2 );
 
 		await wrapper.get( '[data-test-id="array-control-delete-element-button"]' ).trigger( 'click' );
 
 		expect( configDataObject[ ArrayFieldName ].length ).toBe( 1 );
 		expect( configDataObject[ ArrayFieldName ][ 0 ].aNestedProp ).toBe( secondElementValue );
-		expect( wrapper.findAllComponents( DispatchRenderer ).length ).toBe( 1 );
+		expect( wrapper.findAllComponents( ObjectControl ).length ).toBe( 1 );
+		expect( wrapper.findComponent( CdxTextInput ).props( 'modelValue' ) ).toBe( secondElementValue );
 	} );
 
 	it( 'disables the add-more-elements button if the maximum number of elements is reached', async () => {
