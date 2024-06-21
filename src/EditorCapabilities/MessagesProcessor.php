@@ -27,10 +27,12 @@ class MessagesProcessor {
 	 * @param string $messagePrefix
 	 * @return array
 	 */
-	public function getMessages( string $providerId, Iterator $schema, string $messagePrefix = '' ): array {
+	public function getMessages( string $providerId, Iterator $schema, string $messagePrefix ): array {
 		$messages = [];
 		if ( $schema instanceof JsonSchemaIterator ) {
 			$keys = $this->computeEditorMessageKeys( $providerId, $schema, $messagePrefix );
+			// Present for any schema a used in the editor summary dialog
+			array_unshift( $keys, strtolower( $messagePrefix . '-' . $providerId . '-title' ) );
 			foreach ( $keys as $key ) {
 				$msg = $this->messageLocalizer->msg( $key );
 				if ( $msg->exists() ) {
@@ -84,7 +86,7 @@ class MessagesProcessor {
 	 * @return array
 	 */
 	private function computeEditorMessageKeys(
-		string $providerId, JsonSchemaIterator $schemas, string $messagePrefix = ''
+		string $providerId, JsonSchemaIterator $schemas, string $messagePrefix
 	): array {
 		$messages = [];
 		foreach ( $schemas as $sub_schema ) {

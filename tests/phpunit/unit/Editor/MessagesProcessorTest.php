@@ -258,6 +258,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 		$iterator = new JsonSchemaIterator( $reader );
 		$processor = new MessagesProcessor( $this->getMockMessageLocalizer() );
 		$result = $processor->getMessages( 'pid', $iterator, 'pfx' );
+		array_unshift( $expected, 'pfx-pid-title' );
 		$this->assertEqualsCanonicalizing(
 			array_merge( $expected, $expectedSubControl ),
 			array_keys( $result )
