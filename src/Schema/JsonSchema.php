@@ -42,6 +42,9 @@ abstract class JsonSchema {
 	// string type
 	public const MIN_LENGTH = 'minLength';
 	public const MAX_LENGTH = 'maxLength';
+	// array type
+	public const MIN_ITEMS = 'minItems';
+	public const MAX_ITEMS = 'maxItems';
 
 	/**
 	 * @var string To define a default value for the property
