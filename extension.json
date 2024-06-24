@@ -103,11 +103,16 @@
 		"navigation": {
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Hooks\\NavigationHooks",
 			"services": [ "CommunityConfiguration.ProviderFactory", "SpecialPageFactory" ]
+		},
+		"change-tags": {
+			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Hooks\\ChangeTagHooks"
 		}
 	},
 	"Hooks": {
 		"JsonValidateSave": "validation",
-		"SkinTemplateNavigation::Universal": "navigation"
+		"SkinTemplateNavigation::Universal": "navigation",
+		"ChangeTagsListActive": "change-tags",
+		"ListDefinedTags": "change-tags"
 	},
 	"MessagesDirs": {
 		"CommunityConfiguration": [

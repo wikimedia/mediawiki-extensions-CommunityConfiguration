@@ -24,6 +24,7 @@ class WikiPageStore extends AbstractJsonStore {
 	private const CACHE_VERSION = 1;
 
 	public const VERSION_FIELD_NAME = '$version';
+	public const TAG_NAME = 'community configuration';
 
 	private ?string $configLocation;
 	private ?Title $configTitle = null;
@@ -181,7 +182,9 @@ class WikiPageStore extends AbstractJsonStore {
 			$this->getConfigurationTitle(),
 			$config,
 			$authority,
-			$summary
+			$summary,
+			false,
+			self::TAG_NAME
 		)->getStatusValue();
 		$this->invalidate();
 		return $status;
