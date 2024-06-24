@@ -13,6 +13,8 @@
 	"communityconfiguration-editor-client-validation-errors": "هناك {{PLURAL:$1|خطأ|أخطاء}} في الاستمارة:",
 	"communityconfiguration-editor-form-submit-button-text": "حفظ التغييرات",
 	"communityconfiguration-editor-form-submit-button-loading-text": "جارٍ الإرسال...",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "إزالة عنصر",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "إضافة عنصر آخر",
 	"communityconfiguration-guidelines-title": "ما هي إعدادات المجتمع؟",
 	"communityconfiguration-guidelines-description": "إعدادات المجتمع هي أداة تسمح للمجتمعات بإعداد والتحكم في تكوين مزايا {{SITENAME}} المختلفة، مما يساعد الإداريّين على تلبية احتياجات مجتمعهم الخاصة.",
 	"communityconfiguration-guidelines-guideline1-title": "معرفة المزيد",

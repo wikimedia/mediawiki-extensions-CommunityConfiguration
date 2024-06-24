@@ -13,6 +13,8 @@
 	"communityconfiguration-editor-client-validation-errors": "Il ha $1 error{{PLURAL:$1||es}} in le formulario:",
 	"communityconfiguration-editor-form-submit-button-text": "Salveguardar modificationes",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Invia…",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Remover elemento",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "Adder un altere elemento",
 	"communityconfiguration-guidelines-title": "Que es Configuration del communitate?",
 	"communityconfiguration-guidelines-description": "Configuration del communitate es un instrumento que permitte que communitates defini e controla le configuration de varie functionalitates de {{SITENAME}}. Isto adjuta le administratores a satisfacer le besonios specific de lor communitate.",
 	"communityconfiguration-guidelines-guideline1-title": "Leger plus",

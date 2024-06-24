@@ -14,6 +14,8 @@
 	"communityconfiguration-editor-client-validation-errors": "Es gibt {{PLURAL:$1|$1 Fehler}} in dem Formular:",
 	"communityconfiguration-editor-form-submit-button-text": "Änderungen speichern",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Senden…",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Element entfernen",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "Ein weiteres Element hinzufügen",
 	"communityconfiguration-guidelines-title": "Was ist Community-Konfiguration?",
 	"communityconfiguration-guidelines-description": "Community Configuration ist ein Tool, das es Communities ermöglicht, die Konfiguration verschiedener {{SITENAME}}-Funktionen einzurichten und zu steuern und so Administratoren dabei zu helfen, ihre Community-spezifischen Bedürfnisse zu erfüllen.",
 	"communityconfiguration-guidelines-guideline1-title": "Mehr erfahren",

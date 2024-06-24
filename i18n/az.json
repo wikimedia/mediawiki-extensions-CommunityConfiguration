@@ -13,6 +13,8 @@
 	"communityconfiguration-editor-client-validation-errors": "Formda {{PLURAL:$1|xəta|$1 xəta}} var",
 	"communityconfiguration-editor-form-submit-button-text": "Dəyişiklikləri yadda saxla",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Göndərilir...",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Elementi sil",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "Başqa bir element əlavə et",
 	"communityconfiguration-guidelines-title": "İcma Konfiqurasiyası nədir?",
 	"communityconfiguration-guidelines-description": "İcma Konfiqurasiyası icmalara müxtəlif {{SITENAME}} funksiyalarının konfiqurasiyasını qurmağa və idarə etməyə imkan verən alətdir və inzibatçılara icmanın xüsusi ehtiyaclarını ödəməyə kömək edir.",
 	"communityconfiguration-guidelines-guideline1-title": "Daha ətraflı",

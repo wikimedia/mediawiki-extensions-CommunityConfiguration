@@ -8,7 +8,7 @@
 			"Zapipedia (WMF)"
 		]
 	},
-	"communityconfiguration": "Configuración de la Comunidad",
+	"communityconfiguration": "Configuración Comunitaria",
 	"communityconfiguration-desc": "Contiene la lógica de la configuración comunitaria",
 	"communityconfiguration-editor-chip-control-aria-chip-description": "Por favor, haz clic en Editar o Quitar",
 	"communityconfiguration-editor-client-generic-error": "Algo salió mal al cargar el editor de configuración. Por favor, inténtalo de nuevo más tarde.",
@@ -17,8 +17,10 @@
 	"communityconfiguration-editor-client-validation-errors": "Hay {{PLURAL:$1|un error|$1 errores}} en el formulario:",
 	"communityconfiguration-editor-form-submit-button-text": "Guardar cambios",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Enviando...",
-	"communityconfiguration-guidelines-title": "¿Qué es la Configuración de la Comunidad?",
-	"communityconfiguration-guidelines-description": "Configuración de la Comunidad es una herramienta que permite a las comunidades establecer y controlar la configuración de diferentes funcionalidades de {{SITENAME}}, apoyando a las personas bibliotecarias a adaptarse a las necesidades específicas de su comunidad.",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Eliminar Elemento",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "Añadir otro elemento",
+	"communityconfiguration-guidelines-title": "¿Qué es la Configuración Comunitaria?",
+	"communityconfiguration-guidelines-description": "Configuración comunitaria es una herramienta que permite a las comunidades establecer y controlar la configuración de diferentes funcionalidades de {{SITENAME}}, facilitando que las personas bibliotecarias y administradoras de interfaz se adapten a las necesidades específicas de su comunidad.",
 	"communityconfiguration-guidelines-guideline1-title": "Aprender más",
 	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Aprende más] sobre la Configuración comunitaria, qué es, cómo funciona, y en qué estamos trabajando.",
 	"communityconfiguration-guidelines-guideline2-title": "Envíanos {{GENDER:$1|tu}} feedback",
@@ -46,6 +48,6 @@
 	"communityconfiguration-editor-loading-info-text": "El editor de configuración se está cargando.",
 	"communityconfiguration-editor-nojs-fallback-text": "El editor de configuración requiere JavaScript. Habilite JavaScript para poder usarlo.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Ver formulario",
-	"communityconfiguration-editor-client-notice-message": "Esta página está protegida. La configuración de esta funcionalidad solo es editable por administradores.",
-	"communityconfiguration-editor-client-notice-footer-message": "No {{GENDER:$1|puedes}} guardar los cambios de este formulario porque la configuración de esta funcionalidad solo puede ser editada por bibliotecarios/as."
+	"communityconfiguration-editor-client-notice-message": "Esta página está protegida. La configuración de esta funcionalidad solo es editable por bibliotecarios y administradores de interfaz.",
+	"communityconfiguration-editor-client-notice-footer-message": "No {{GENDER:$1|puedes}} guardar los cambios de este formulario porque la configuración de esta funcionalidad solo puede ser editada por bibliotecarios/as y administradores/as de interfaz."
 }

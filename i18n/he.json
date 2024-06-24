@@ -13,6 +13,8 @@
 	"communityconfiguration-editor-client-validation-errors": "יש {{PLURAL:$1|שגיאה|$1 שגיאות}} בטופס",
 	"communityconfiguration-editor-form-submit-button-text": "שמירת השינויים",
 	"communityconfiguration-editor-form-submit-button-loading-text": "שליחה...",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "להסיר רכיב",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "להוסיף עוד רכיב",
 	"communityconfiguration-guidelines-title": "מהי תצורת קהילה?",
 	"communityconfiguration-guidelines-description": "תצורת קהילה הוא כלי שמאפשר לקהילות להגדיר ולשלוט בתצורה של תכונות שונות של {{SITENAME}}, ועוזר למפעילים להתאים לצרכים המסוימים של הקהילה שלהם.",
 	"communityconfiguration-guidelines-guideline1-title": "מידע נוסף",

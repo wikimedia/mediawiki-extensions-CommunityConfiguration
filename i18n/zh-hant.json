@@ -5,8 +5,27 @@
 		]
 	},
 	"communityconfiguration": "社群配置",
+	"communityconfiguration-desc": "包含社群配置邏輯",
+	"communityconfiguration-editor-chip-control-aria-chip-description": "按Enter鍵編輯，或按Delete鍵移除",
+	"communityconfiguration-editor-client-validation-errors": "表單中有{{PLURAL:$1|一個錯誤|$1個錯誤}}：",
+	"communityconfiguration-editor-form-submit-button-text": "儲存變更",
+	"communityconfiguration-editor-form-submit-button-loading-text": "傳送中…",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "移除元素",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "新增其他元素",
+	"communityconfiguration-guidelines-title": "什麼是社群配置？",
 	"communityconfiguration-guidelines-guideline1-title": "了解更多",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "錯誤詳情",
+	"communityconfiguration-providers-list-title": "功能",
+	"communityconfigurationdashboard": "社群配置",
+	"communityconfigurationeditor": "正在編輯「$1」",
+	"communityconfiguration-edit-summary-reminder": "<b>提醒</b>：這項變更可能會影響大量社群成員，請考慮說明{{GENDER:$1|您}}進行變更的原因，並適當地提供相關社群討論的連結。",
 	"communityconfiguration-edit-summary-dialog-title-span": "（選擇性）",
+	"communityconfiguration-edit-summary-dialog-save-button": "儲存變更",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "取消",
+	"communityconfiguration-edit-summary-dialog-label": "編輯摘要",
+	"communityconfiguration-editor-client-success-message": "已儲存{{GENDER:$1|您}}的變更",
 	"communityconfiguration-editor-message-dismiss-button-label": "關閉",
-	"communityconfiguration-page-title-control-no-results": "查無結果。"
+	"communityconfiguration-page-title-control-no-results": "查無結果。",
+	"communityconfiguration-editor-loading-info-text": "配置編輯器正在載入",
+	"communityconfiguration-editor-navigation-tab-viewform": "檢視表單"
 }
