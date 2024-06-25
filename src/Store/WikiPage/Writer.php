@@ -13,6 +13,7 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -69,15 +70,20 @@ class Writer {
 		$status = Status::newGood();
 		$content = new JsonContent( FormatJson::encode( (object)$configSorted ) );
 
-		// Give AbuseFilter et al. a chance to block the edit (T346235)
 		$page = $this->wikiPageFactory->newFromTitle( $configPage );
-		$status->merge( $this->runEditFilterMergedContentHook(
-			$performer,
-			$page->getTitle(),
-			$content,
-			$summary,
-			$minor
-		) );
+
+		// Give AbuseFilter et al. a chance to block the edit (T346235)
+		// Do not run when UltimateAuthority is used (from e.g. maintenance scripts), as in those
+		// cases, we want the edit to succeed regardless of permissions.
+		if ( !$performer instanceof UltimateAuthority ) {
+			$status->merge( $this->runEditFilterMergedContentHook(
+				$performer,
+				$page->getTitle(),
+				$content,
+				$summary,
+				$minor
+			) );
+		}
 
 		if ( !$status->isOK() ) {
 			return $status;
