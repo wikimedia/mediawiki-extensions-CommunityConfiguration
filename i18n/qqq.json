@@ -48,5 +48,5 @@
 	"communityconfiguration-editor-client-notice-message": "The message is displayed to users when they do not have the right to update values on the configuration form.\n\nUsers with the `edit` permission can update form values",
 	"communityconfiguration-editor-client-notice-footer-message": "The message is displayed just above the disabled submit button on the configuration form when the submit action is not available to a user.",
 	"tag-community_configuration": "Short change tag name for edits made through the Community Configuration extension's form.",
-	"tag-community_configuration-description": "Short description for the change tag added for edits made through the Community Configuration extension's form. (See {{msg-mw|tag-community_configuration}}).\n\n This appears on [[Special:Tags]]."
+	"tag-community_configuration-description": "Short description for the change tag added for edits made through the Community Configuration extension's form. (See {{msg-mw|tag-community_configuration}}).\n\nThis appears on [[Special:Tags]]."
 }
