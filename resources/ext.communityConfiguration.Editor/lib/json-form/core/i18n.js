@@ -13,108 +13,61 @@ function mapPropToTextKey( ...fragments ) {
 	return fragments.join( '-' ).toLocaleLowerCase();
 }
 
+function camelize( str ) {
+	return str.toLowerCase().replace( /[^a-zA-Z0-9]+(.)/g, ( _match, chr ) => chr.toUpperCase() );
+}
+
 function getMessageOrNull( key ) {
 	// eslint-disable-next-line mediawiki/msg-doc
 	const msg = new mw.Message( mw.messages, key );
 	return msg.exists() ? msg : null;
 }
 
-function getStringControlMessages( prefix, propName ) {
-	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
-	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
-	const placeholderKey = mapPropToTextKey( prefix, propName, 'placeholder' );
+function getControlMessages( prefix, propName, messageNames ) {
+	return messageNames.reduce( ( acc, msgName ) => {
+		acc[ camelize( msgName ) ] = getMessageOrNull(
+			mapPropToTextKey( prefix, propName, msgName )
+		);
+		return acc;
+	}, {} );
+}
 
-	return {
-		label: getMessageOrNull( labelKey ),
-		helpText: getMessageOrNull( helpTextLabelKey ),
-		placeholder: getMessageOrNull( placeholderKey )
-	};
+function getStringControlMessages( prefix, propName ) {
+	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'placeholder' ] );
 }
 
 function getNumberControlMessages( prefix, propName ) {
-	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
-	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
-	const placeholderKey = mapPropToTextKey( prefix, propName, 'placeholder' );
-
-	return {
-		label: getMessageOrNull( labelKey ),
-		helpText: getMessageOrNull( helpTextLabelKey ),
-		placeholder: getMessageOrNull( placeholderKey )
-	};
+	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'placeholder' ] );
 }
 
 function getBooleanControlMessages( prefix, propName ) {
-	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
-	const controlLabelKey = mapPropToTextKey( prefix, propName, 'control-label' );
-	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
-
-	return {
-		label: getMessageOrNull( labelKey ),
-		controlLabel: getMessageOrNull( controlLabelKey ),
-		helpText: getMessageOrNull( helpTextLabelKey )
-	};
+	return getControlMessages( prefix, propName, [ 'label', 'control-label', 'help-text' ] );
 }
 
 function getEnumControlMessages( prefix, propName, enumValues ) {
-	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
-	const helpTextKey = mapPropToTextKey( prefix, propName, 'help-text' );
+	const textProps = getControlMessages( prefix, propName, [ 'label', 'help-text' ] );
 	const enumLabels = enumValues.reduce( ( carry, enumValue ) => {
 		carry[ enumValue ] = mapPropToTextKey( prefix, propName, 'option', enumValue, 'label' );
 		return carry;
 	}, {} );
-
-	const textProps = {
-		label: getMessageOrNull( labelKey ),
-		helpText: getMessageOrNull( helpTextKey )
-	};
 	Object.assign( textProps, { enumLabels } );
 	return textProps;
 }
 
 function getObjectControlMessages( prefix, propName ) {
-	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
-	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
-
-	return {
-		label: getMessageOrNull( labelKey ),
-		helpText: getMessageOrNull( helpTextLabelKey )
-	};
+	return getControlMessages( prefix, propName, [ 'label', 'help-text' ] );
 }
 
 function getArrayControlMessages( prefix, propName ) {
-	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
-	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
-	const itemLabelKey = mapPropToTextKey( prefix, propName, 'item-label' );
-	const addElementButtonLabelKey = mapPropToTextKey( prefix, propName, 'add-element-button-label' );
-
-	return {
-		label: getMessageOrNull( labelKey ),
-		helpText: getMessageOrNull( helpTextLabelKey ),
-		itemLabel: getMessageOrNull( itemLabelKey ),
-		addElementButtonLabel: getMessageOrNull( addElementButtonLabelKey )
-	};
+	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'item-label', 'add-element-button-label' ] );
 }
 
 function getCustomMultiSelectControlMessages( prefix, propName ) {
-	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
-	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
-
-	return {
-		label: getMessageOrNull( labelKey ),
-		helpText: getMessageOrNull( helpTextLabelKey )
-	};
+	return getControlMessages( prefix, propName, [ 'label', 'help-text' ] );
 }
 
 function getCustomPageTitleControlMessages( prefix, propName ) {
-	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
-	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
-	const placeholderKey = mapPropToTextKey( prefix, propName, 'placeholder' );
-
-	return {
-		label: getMessageOrNull( labelKey ),
-		helpText: getMessageOrNull( helpTextLabelKey ),
-		placeholder: getMessageOrNull( placeholderKey )
-	};
+	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'placeholder' ] );
 }
 
 function getControlTextProps( prop, prefix, schema ) {
