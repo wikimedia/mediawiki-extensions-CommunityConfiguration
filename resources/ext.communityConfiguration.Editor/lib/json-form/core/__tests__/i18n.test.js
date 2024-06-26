@@ -19,18 +19,10 @@ const TEST_DATA = [
 				}
 			}
 		},
-		config: {},
 		expected: [
 			'testenvironment-someprovider-exampleobject-label',
-			'testenvironment-someprovider-exampleobject-help-text'
-		],
-		expectedSubControlKeys: [
-			'testenvironment-someprovider-exampleobject-foo-label',
-			'testenvironment-someprovider-exampleobject-foo-help-text',
-			'testenvironment-someprovider-exampleobject-foo-placeholder',
-			'testenvironment-someprovider-exampleobject-bar-label',
-			'testenvironment-someprovider-exampleobject-bar-help-text',
-			'testenvironment-someprovider-exampleobject-bar-placeholder'
+			'testenvironment-someprovider-exampleobject-help-text',
+			'testenvironment-someprovider-exampleobject-description'
 		]
 	},
 	{
@@ -45,34 +37,18 @@ const TEST_DATA = [
 						properties: {
 							foo: {
 								type: 'string'
-							},
-							bar: {
-								type: 'number'
 							}
 						}
 					}
 				}
 			}
 		},
-		config: {
-			exampleArray: [
-				{ foo: 'Some value', bar: 1234 },
-				{ foo: 'Some value', bar: 1234 }
-			]
-		},
 		expected: [
 			'testenvironment-someprovider-examplearray-label',
 			'testenvironment-someprovider-examplearray-help-text',
+			'testenvironment-someprovider-examplearray-description',
 			'testenvironment-someprovider-examplearray-item-label',
 			'testenvironment-someprovider-examplearray-add-element-button-label'
-		],
-		expectedSubControlKeys: [
-			'testenvironment-someprovider-examplearray-foo-label',
-			'testenvironment-someprovider-examplearray-foo-help-text',
-			'testenvironment-someprovider-examplearray-foo-placeholder',
-			'testenvironment-someprovider-examplearray-bar-label',
-			'testenvironment-someprovider-examplearray-bar-help-text',
-			'testenvironment-someprovider-examplearray-bar-placeholder'
 		]
 	},
 	{
@@ -85,13 +61,12 @@ const TEST_DATA = [
 				}
 			}
 		},
-		config: {},
 		expected: [
 			'testenvironment-someprovider-basicstringinput-label',
 			'testenvironment-someprovider-basicstringinput-help-text',
-			'testenvironment-someprovider-basicstringinput-placeholder'
-		],
-		expectedSubControlKeys: []
+			'testenvironment-someprovider-basicstringinput-placeholder',
+			'testenvironment-someprovider-basicstringinput-description'
+		]
 	},
 	{
 		testType: 'number',
@@ -103,13 +78,12 @@ const TEST_DATA = [
 				}
 			}
 		},
-		config: {},
 		expected: [
 			'testenvironment-someprovider-basicnumberinput-label',
 			'testenvironment-someprovider-basicnumberinput-help-text',
-			'testenvironment-someprovider-basicnumberinput-placeholder'
-		],
-		expectedSubControlKeys: []
+			'testenvironment-someprovider-basicnumberinput-placeholder',
+			'testenvironment-someprovider-basicnumberinput-description'
+		]
 	},
 	{
 		testType: 'integer',
@@ -121,13 +95,12 @@ const TEST_DATA = [
 				}
 			}
 		},
-		config: {},
 		expected: [
 			'testenvironment-someprovider-basicintegerinput-label',
 			'testenvironment-someprovider-basicintegerinput-help-text',
-			'testenvironment-someprovider-basicintegerinput-placeholder'
-		],
-		expectedSubControlKeys: []
+			'testenvironment-someprovider-basicintegerinput-placeholder',
+			'testenvironment-someprovider-basicintegerinput-description'
+		]
 	},
 	{
 		testType: 'boolean',
@@ -139,13 +112,12 @@ const TEST_DATA = [
 				}
 			}
 		},
-		config: {},
 		expected: [
 			'testenvironment-someprovider-basicboolean-label',
 			'testenvironment-someprovider-basicboolean-control-label',
-			'testenvironment-someprovider-basicboolean-help-text'
-		],
-		expectedSubControlKeys: []
+			'testenvironment-someprovider-basicboolean-help-text',
+			'testenvironment-someprovider-basicboolean-description'
+		]
 	},
 	{
 		testType: 'enum-string',
@@ -158,16 +130,15 @@ const TEST_DATA = [
 				}
 			}
 		},
-		config: {},
 		expected: [
 			'testenvironment-someprovider-stringenum-label',
 			'testenvironment-someprovider-stringenum-help-text',
+			'testenvironment-someprovider-stringenum-description',
 			'testenvironment-someprovider-stringenum-option-fire-label',
 			'testenvironment-someprovider-stringenum-option-water-label',
 			'testenvironment-someprovider-stringenum-option-earth-label',
 			'testenvironment-someprovider-stringenum-option-air-label'
-		],
-		expectedSubControlKeys: []
+		]
 	},
 	{
 		testType: 'enum-number',
@@ -180,16 +151,15 @@ const TEST_DATA = [
 				}
 			}
 		},
-		config: {},
 		expected: [
 			'testenvironment-someprovider-numberenum-label',
 			'testenvironment-someprovider-numberenum-help-text',
+			'testenvironment-someprovider-numberenum-description',
 			'testenvironment-someprovider-numberenum-option-1-label',
 			'testenvironment-someprovider-numberenum-option-7-label',
 			'testenvironment-someprovider-numberenum-option-9-label',
 			'testenvironment-someprovider-numberenum-option-13-label'
-		],
-		expectedSubControlKeys: []
+		]
 	},
 	{
 		testType: 'pagetitle',
@@ -203,14 +173,11 @@ const TEST_DATA = [
 				}
 			}
 		},
-		config: {},
 		expected: [
 			'testenvironment-someprovider-pagetitle-label',
 			'testenvironment-someprovider-pagetitle-help-text',
-			'testenvironment-someprovider-pagetitle-placeholder'
-		],
-		expectedSubControlKeys: [
-			'communityconfiguration-page-title-control-no-results'
+			'testenvironment-someprovider-pagetitle-placeholder',
+			'testenvironment-someprovider-pagetitle-description'
 		]
 	},
 	{
@@ -223,22 +190,15 @@ const TEST_DATA = [
 					control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitlesControl',
 					default: [],
 					items: {
-						control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitlesControl',
 						type: 'string'
 					}
 				}
 			}
 		},
-		config: {
-			pageTitles: []
-		},
 		expected: [
 			'testenvironment-someprovider-pagetitles-label',
-			'testenvironment-someprovider-pagetitles-help-text'
-		],
-		expectedSubControlKeys: [
-			'mw-widgets-titlesmultiselect-placeholder',
-			'communityconfiguration-editor-chip-control-aria-chip-description'
+			'testenvironment-someprovider-pagetitles-help-text',
+			'testenvironment-someprovider-pagetitles-description'
 		]
 	},
 	{
@@ -256,16 +216,10 @@ const TEST_DATA = [
 				}
 			}
 		},
-		config: {
-			namespaces: []
-		},
 		expected: [
 			'testenvironment-someprovider-namespaces-label',
-			'testenvironment-someprovider-namespaces-help-text'
-		],
-		expectedSubControlKeys: [
-			'mw-widgets-titlesmultiselect-placeholder',
-			'communityconfiguration-editor-chip-control-aria-chip-description'
+			'testenvironment-someprovider-namespaces-help-text',
+			'testenvironment-someprovider-namespaces-description'
 		]
 	}
 ];

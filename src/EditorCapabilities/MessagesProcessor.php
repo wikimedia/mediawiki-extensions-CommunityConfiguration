@@ -113,6 +113,7 @@ class MessagesProcessor {
 				}
 				$messages[] = $schemaBaseKey . '-label';
 				$messages[] = $schemaBaseKey . '-help-text';
+				$messages[] = $schemaBaseKey . '-description';
 				// Do not process the schema type for enums as it would generate
 				// undesired keys, eg: placeholders
 				continue;
@@ -133,11 +134,13 @@ class MessagesProcessor {
 				$messages[] = $schemaBaseKey . '-label';
 				$messages[] = $schemaBaseKey . '-help-text';
 				$messages[] = $schemaBaseKey . '-placeholder';
+				$messages[] = $schemaBaseKey . '-description';
 			}
 			if ( $schema->{JsonSchema::TYPE} === JsonSchema::TYPE_BOOLEAN ) {
 				$messages[] = $schemaBaseKey . '-label';
 				$messages[] = $schemaBaseKey . '-help-text';
 				$messages[] = $schemaBaseKey . '-control-label';
+				$messages[] = $schemaBaseKey . '-description';
 			}
 			if (
 				$schema->{JsonSchema::TYPE} === JsonSchema::TYPE_OBJECT ||
@@ -145,6 +148,7 @@ class MessagesProcessor {
 			) {
 				$messages[] = $schemaBaseKey . '-label';
 				$messages[] = $schemaBaseKey . '-help-text';
+				$messages[] = $schemaBaseKey . '-description';
 				if (
 					$schema->{JsonSchema::TYPE} === JsonSchema::TYPE_ARRAY &&
 					// Arrays of strings are rendered on a single field with chips

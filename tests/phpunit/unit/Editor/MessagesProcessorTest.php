@@ -27,7 +27,8 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 			[
 				'pfx-pid-number-label',
 				'pfx-pid-number-help-text',
-				'pfx-pid-number-placeholder'
+				'pfx-pid-number-placeholder',
+				'pfx-pid-number-description'
 			]
 		];
 		yield 'integer' => [
@@ -39,7 +40,8 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 			[
 				'pfx-pid-integer-label',
 				'pfx-pid-integer-help-text',
-				'pfx-pid-integer-placeholder'
+				'pfx-pid-integer-placeholder',
+				'pfx-pid-integer-description'
 			]
 		];
 		yield 'boolean' => [
@@ -52,6 +54,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-boolean-label',
 				'pfx-pid-boolean-control-label',
 				'pfx-pid-boolean-help-text',
+				'pfx-pid-boolean-description',
 			]
 		];
 		yield 'enum string' => [
@@ -64,6 +67,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 			[
 				'pfx-pid-stringenum-label',
 				'pfx-pid-stringenum-help-text',
+				'pfx-pid-stringenum-description',
 				'pfx-pid-stringenum-option-fire-label',
 				'pfx-pid-stringenum-option-earth-label',
 				'pfx-pid-stringenum-option-water-label',
@@ -79,6 +83,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 			[
 				'pfx-pid-numberenum-label',
 				'pfx-pid-numberenum-help-text',
+				'pfx-pid-numberenum-description',
 				'pfx-pid-numberenum-option-1-label',
 				'pfx-pid-numberenum-option-7-label',
 				'pfx-pid-numberenum-option-13-label',
@@ -97,6 +102,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-numberarray-label',
 				'pfx-pid-numberarray-help-text',
 				'pfx-pid-numberarray-item-label',
+				'pfx-pid-numberarray-description',
 				'pfx-pid-numberarray-add-element-button-label',
 				'communityconfiguration-editor-array-fallback-add-element-button-label',
 			],
@@ -114,6 +120,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 			[
 				'pfx-pid-stringarray-label',
 				'pfx-pid-stringarray-help-text',
+				'pfx-pid-stringarray-description',
 			],
 			[
 				'mw-widgets-titlesmultiselect-placeholder',
@@ -137,14 +144,17 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 			[
 				'pfx-pid-exampleobject-label',
 				'pfx-pid-exampleobject-help-text',
+				'pfx-pid-exampleobject-description',
 			],
 			[
 				'pfx-pid-exampleobject-foo-label',
 				'pfx-pid-exampleobject-foo-help-text',
 				'pfx-pid-exampleobject-foo-placeholder',
+				'pfx-pid-exampleobject-foo-description',
 				'pfx-pid-exampleobject-bar-label',
 				'pfx-pid-exampleobject-bar-help-text',
-				'pfx-pid-exampleobject-bar-placeholder'
+				'pfx-pid-exampleobject-bar-placeholder',
+				'pfx-pid-exampleobject-bar-description'
 			]
 		];
 		yield 'array of objects' => [
@@ -168,6 +178,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-examplearray-label',
 				'pfx-pid-examplearray-item-label',
 				'pfx-pid-examplearray-help-text',
+				'pfx-pid-examplearray-description',
 				'pfx-pid-examplearray-add-element-button-label',
 				'communityconfiguration-editor-array-fallback-add-element-button-label',
 			],
@@ -175,9 +186,11 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-examplearray-foo-label',
 				'pfx-pid-examplearray-foo-help-text',
 				'pfx-pid-examplearray-foo-placeholder',
+				'pfx-pid-examplearray-foo-description',
 				'pfx-pid-examplearray-bar-label',
 				'pfx-pid-examplearray-bar-help-text',
-				'pfx-pid-examplearray-bar-placeholder'
+				'pfx-pid-examplearray-bar-placeholder',
+				'pfx-pid-examplearray-bar-description'
 			]
 		];
 		yield 'pagetitle' => [
@@ -192,6 +205,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-examplepage-label',
 				'pfx-pid-examplepage-help-text',
 				'pfx-pid-examplepage-placeholder',
+				'pfx-pid-examplepage-description',
 			],
 			[
 				'communityconfiguration-page-title-control-no-results'
@@ -208,6 +222,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 			[
 				'pfx-pid-examplepages-label',
 				'pfx-pid-examplepages-help-text',
+				'pfx-pid-examplepages-description',
 			],
 			[
 				'mw-widgets-titlesmultiselect-placeholder',
@@ -225,6 +240,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 			[
 				'pfx-pid-namespaces-label',
 				'pfx-pid-namespaces-help-text',
+				'pfx-pid-namespaces-description',
 			],
 			[
 				'mw-widgets-titlesmultiselect-placeholder',

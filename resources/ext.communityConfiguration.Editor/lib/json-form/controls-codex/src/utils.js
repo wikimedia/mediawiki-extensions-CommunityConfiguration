@@ -18,6 +18,7 @@ function useCodexControl( input ) {
 		id: input.control.pointer,
 		statusMessages: input.control.statusMessages,
 		label: input.control.uischema.label,
+		description: input.control.uischema.description,
 		controlLabel: input.control.uischema.controlLabel,
 		helpText: input.control.uischema.helpText
 		// TODO: add "required"

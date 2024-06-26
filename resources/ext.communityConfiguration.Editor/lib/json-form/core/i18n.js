@@ -33,19 +33,19 @@ function getControlMessages( prefix, propName, messageNames ) {
 }
 
 function getStringControlMessages( prefix, propName ) {
-	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'placeholder' ] );
+	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'placeholder', 'description' ] );
 }
 
 function getNumberControlMessages( prefix, propName ) {
-	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'placeholder' ] );
+	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'placeholder', 'description' ] );
 }
 
 function getBooleanControlMessages( prefix, propName ) {
-	return getControlMessages( prefix, propName, [ 'label', 'control-label', 'help-text' ] );
+	return getControlMessages( prefix, propName, [ 'label', 'control-label', 'help-text', 'description' ] );
 }
 
 function getEnumControlMessages( prefix, propName, enumValues ) {
-	const textProps = getControlMessages( prefix, propName, [ 'label', 'help-text' ] );
+	const textProps = getControlMessages( prefix, propName, [ 'label', 'help-text', 'description' ] );
 	const enumLabels = enumValues.reduce( ( carry, enumValue ) => {
 		carry[ enumValue ] = mapPropToTextKey( prefix, propName, 'option', enumValue, 'label' );
 		return carry;
@@ -55,19 +55,19 @@ function getEnumControlMessages( prefix, propName, enumValues ) {
 }
 
 function getObjectControlMessages( prefix, propName ) {
-	return getControlMessages( prefix, propName, [ 'label', 'help-text' ] );
+	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'description' ] );
 }
 
 function getArrayControlMessages( prefix, propName ) {
-	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'item-label', 'add-element-button-label' ] );
+	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'description', 'item-label', 'add-element-button-label' ] );
 }
 
 function getCustomMultiSelectControlMessages( prefix, propName ) {
-	return getControlMessages( prefix, propName, [ 'label', 'help-text' ] );
+	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'description' ] );
 }
 
 function getCustomPageTitleControlMessages( prefix, propName ) {
-	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'placeholder' ] );
+	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'placeholder', 'description' ] );
 }
 
 function getControlTextProps( prop, prefix, schema ) {

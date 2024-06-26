@@ -7,6 +7,9 @@
 	>
 		<slot :control-label="( controlLabel && controlLabel.exists() ) ? controlLabel.text() : ''">
 		</slot>
+		<template v-if="description && description.exists()" #description>
+			{{ description.text() }}
+		</template>
 		<template v-if="label && label.exists()" #label>
 			{{ label.text() }}
 		</template>
@@ -32,6 +35,11 @@ module.exports = exports = {
 		},
 		// mw.Message
 		label: {
+			type: [ Object, null ],
+			default: null
+		},
+		// mw.Message
+		description: {
 			type: [ Object, null ],
 			default: null
 		},
