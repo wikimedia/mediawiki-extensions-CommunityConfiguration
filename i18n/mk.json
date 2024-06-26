@@ -4,8 +4,8 @@
 			"Bjankuloski06"
 		]
 	},
-	"communityconfiguration": "Поставки на заедницата",
-	"communityconfiguration-desc": "Логика на поставување на Поставки на заедницата",
+	"communityconfiguration": "Поставки за заедницата",
+	"communityconfiguration-desc": "Логика на поставување на Поставки за заедницата",
 	"communityconfiguration-editor-chip-control-aria-chip-description": "Стиснете на Enter за да уредите или Delete за да отстраните",
 	"communityconfiguration-editor-client-generic-error": "Нешто тргна наопаку при вчитувањето на уредникот на поставување. Обидете се подоцна.",
 	"communityconfiguration-editor-client-generic-error-description": "Се јави гршека во „$2“ во составницата $1. Поподробно подолу:",
@@ -15,10 +15,10 @@
 	"communityconfiguration-editor-form-submit-button-loading-text": "Испраќам...",
 	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Отстрани елемент",
 	"communityconfiguration-editor-array-fallback-add-element-button-label": "Додај друг елемент",
-	"communityconfiguration-guidelines-title": "Што е „Поставки на заедницата“?",
-	"communityconfiguration-guidelines-description": "Поставки на заедницата е алатка која им овозможува на заедници да ја задаваат и контролираат поставеноста на различни функции на {{SITENAME}}, помоагајќи им на администраторите да одговорат на потребите на таа конкретна заедница.",
+	"communityconfiguration-guidelines-title": "Што е „Поставки за заедницата“?",
+	"communityconfiguration-guidelines-description": "Поставки за заедницата е алатка која им овозможува на заедници да ја задаваат и контролираат поставеноста на различни функции на {{SITENAME}}, помоагајќи им на администраторите да одговорат на потребите на таа конкретна заедница.",
 	"communityconfiguration-guidelines-guideline1-title": "Дознајте повеќе",
-	"communityconfiguration-guidelines-guideline1-description": "[ https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Дознајте повеќе] за Поставки на заедницата: што се, како работат и тековната работа на екипата посветена на нив.",
+	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Дознајте повеќе] за Поставки за заедницата: што се, како работат и тековната работа на екипата посветена на нив.",
 	"communityconfiguration-guidelines-guideline2-title": "Дајте ни {{GENDER:$1|ваше}} мислење",
 	"communityconfiguration-guidelines-guideline2-description": "Би сакале да ги чуеме {{GENDER:$1|вашите}} согледувања! Пишете ни на [https://www.mediawiki.org/wiki/Talk:Growth разговорната страница].",
 	"communityconfiguration-invalid-stored-config-error": "Не успеав да вчитам важечка поставеност од услужникот $1 (код <tt>$2</tt>).",
@@ -28,7 +28,7 @@
 	"communityconfiguration-providers-list-title": "Функции",
 	"communityconfiguration-provider-not-found": "Не го пронајдов услужникот $1",
 	"communityconfiguration-unknown-error": "НАЦРТ: Нешто тргна наопаку. Да го поснесам проблемот на Фабрикатор?",
-	"communityconfigurationdashboard": "Поставки на заедницата",
+	"communityconfigurationdashboard": "Поставки за заедницата",
 	"communityconfigurationeditor": "Уредување на $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Потсетник</b>: Оваа промена може да засегне голем број на членови на заедницата. Препорачуваме да посочите дека {{GENDER:$1|правите}} промена и да ставите врска до дискусија на заедницата, ако ја има.",
 	"communityconfiguration-edit-summary-dialog-title": "Зачувајте промени за $1",
@@ -45,5 +45,7 @@
 	"communityconfiguration-editor-nojs-fallback-text": "На уредникот на поставки му е потребен JavaScript. Овозможете JavaScript за да го користите.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Погл. образецот",
 	"communityconfiguration-editor-client-notice-message": "Оваа страница е заштитена. Поставките за оваа функција можат да ги менуваат само администратори.",
-	"communityconfiguration-editor-client-notice-footer-message": "Не {{GENDER:$1|можете}} да ги зачувате промените на овој образец бидејќи поставките за оваа функција можат да ги менуваат само администратори."
+	"communityconfiguration-editor-client-notice-footer-message": "Не {{GENDER:$1|можете}} да ги зачувате промените на овој образец бидејќи поставките за оваа функција можат да ги менуваат само администратори.",
+	"tag-community_configuration": "[[mw:Community configuration|Поставки за заедницата]]",
+	"tag-community_configuration-description": "Уредувања кои ја менуваат [[Special:CommunityConfiguration|поставеноста на месното вики]] на функција што го користи додатокто „[[mw:Extension:CommunityConfiguration|Поставки за заедницата]]“."
 }

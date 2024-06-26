@@ -46,5 +46,7 @@
 	"communityconfiguration-editor-nojs-fallback-text": "Der Konfigurationseditor erfordert JavaScript. Bitte aktiviere JavaScript, um ihn verwenden zu können.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Formular anzeigen",
 	"communityconfiguration-editor-client-notice-message": "Diese Seite ist geschützt. Die Konfiguration für diese Funktion kann nur von Administratoren bearbeitet werden.",
-	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Du}} kannst Änderungen an diesem Formular nicht speichern, da die Konfiguration für diese Funktion nur von Administratoren bearbeitet werden kann."
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Du}} kannst Änderungen an diesem Formular nicht speichern, da die Konfiguration für diese Funktion nur von Administratoren bearbeitet werden kann.",
+	"tag-community_configuration": "[[mw:Community configuration|Community-Konfiguration]]",
+	"tag-community_configuration-description": "Bearbeitungen, die die [[Special:CommunityConfiguration|lokale Wiki-Konfiguration]] einer Funktion mithilfe der [[mw:Extension:CommunityConfiguration|Community-Konfigurationserweiterung]] ändern."
 }

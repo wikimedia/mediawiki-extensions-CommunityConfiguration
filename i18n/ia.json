@@ -45,5 +45,7 @@
 	"communityconfiguration-editor-nojs-fallback-text": "Le editor de configuration require JavaScript. Per favor activa JavaScript pro poter usar lo.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Vider formulario",
 	"communityconfiguration-editor-client-notice-message": "Iste pagina es protegite. Le configuration de iste function pote solmente esser modificate per administratores.",
-	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Tu}} non pote salveguardar le cambiamentos in iste formulario perque le configuration de iste function pote solmente esser modificate per administratores."
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Tu}} non pote salveguardar le cambiamentos in iste formulario perque le configuration de iste function pote solmente esser modificate per administratores.",
+	"tag-community_configuration": "[[mw:Community configuration|Configuration communitari]]",
+	"tag-community_configuration-description": "Modificationes que cambia le [[Special:CommunityConfiguration|configuration del wiki local]] de un function que usa le [[mw:Extension:CommunityConfiguration|extension Community Configuration]]."
 }

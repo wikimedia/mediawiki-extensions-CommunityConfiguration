@@ -45,5 +45,7 @@
 	"communityconfiguration-editor-nojs-fallback-text": "עורך התצורה דורש JavaScript. נא להפעיל JavaScript כדי שיהיה אפשר להשתמש בו.",
 	"communityconfiguration-editor-navigation-tab-viewform": "הצגת הטופס",
 	"communityconfiguration-editor-client-notice-message": "הדף הזה מוגן. רק מפעילים יכולים לערוך את התצורה של התכונה הזאת.",
-	"communityconfiguration-editor-client-notice-footer-message": "אינך {{GENDER:$1|יכול|יכולה}} לשמור שינויים בטופס הזה מכיוון שרק מפעילים יכולים לערוך את התצורה של התכונה הזאת."
+	"communityconfiguration-editor-client-notice-footer-message": "אינך {{GENDER:$1|יכול|יכולה}} לשמור שינויים בטופס הזה מכיוון שרק מפעילים יכולים לערוך את התצורה של התכונה הזאת.",
+	"tag-community_configuration": "[[mw:Community configuration|תצורת קהילה]]",
+	"tag-community_configuration-description": "עריכות שמשנות את [[Special:CommunityConfiguration|תצורת הוויקי המקומית]] של תכונה באמצעות [[mw:Extension:CommunityConfiguration|ההרחבה Community Configuration]]."
 }
