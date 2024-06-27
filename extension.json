@@ -55,7 +55,9 @@
 				},
 				"jsonschema": {
 					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Validation\\JsonSchemaValidator",
-					"services": []
+					"services": [
+						"StatsdDataFactory"
+					]
 				}
 			}
 		},

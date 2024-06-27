@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
+use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use Iterator;
 use JsonSchema\Validator;
@@ -19,11 +20,16 @@ class JsonSchemaValidator implements IValidator {
 	private JsonSchemaReader $jsonSchema;
 	private JsonSchemaBuilder $jsonSchemaBuilder;
 	private Iterator $jsonSchemaIterator;
+	private IBufferingStatsdDataFactory $statsdDataFactory;
 
 	/**
 	 * @param JsonSchema|string $classNameOrClassInstance JsonSchema derived class name (instance only allowed in tests)
+	 * @param IBufferingStatsdDataFactory $statsdDataFactory
 	 */
-	public function __construct( $classNameOrClassInstance ) {
+	public function __construct(
+		$classNameOrClassInstance,
+		IBufferingStatsdDataFactory $statsdDataFactory
+	) {
 		// @codeCoverageIgnoreStart
 		if ( is_object( $classNameOrClassInstance ) ) {
 			if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
@@ -40,8 +46,9 @@ class JsonSchemaValidator implements IValidator {
 		// @codeCoverageIgnoreEnd
 
 		$this->jsonSchema = new JsonSchemaReader( $classNameOrClassInstance );
-		$this->jsonSchemaBuilder = new JsonSchemaBuilder( $this->jsonSchema );
+		$this->jsonSchemaBuilder = new JsonSchemaBuilder( $statsdDataFactory, $this->jsonSchema );
 		$this->jsonSchemaIterator = new JsonSchemaIterator( $this->jsonSchema );
+		$this->statsdDataFactory = $statsdDataFactory;
 	}
 
 	/**
@@ -78,8 +85,9 @@ class JsonSchemaValidator implements IValidator {
 	 * @return ValidationStatus
 	 */
 	private function validate( $config, bool $modeForReading ): ValidationStatus {
-		$validator = new Validator();
+		$start = microtime( true );
 
+		$validator = new Validator();
 		$validator->validate(
 			$config,
 			$this->jsonSchemaBuilder->getRootSchema()
@@ -106,6 +114,10 @@ class JsonSchemaValidator implements IValidator {
 			}
 		}
 
+		$this->statsdDataFactory->timing(
+			'timing.communityConfiguration.JsonSchemaValidator.validate',
+			microtime( true ) - $start
+		);
 		return $status;
 	}
 

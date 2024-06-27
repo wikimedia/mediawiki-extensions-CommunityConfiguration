@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
+use IBufferingStatsdDataFactory;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader;
@@ -45,7 +46,10 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 			->method( 'getReflectionSchemaSource' )
 			->willReturn( $schemaSource );
 
-		$builder = new JsonSchemaBuilder( $schemaReader );
+		$builder = new JsonSchemaBuilder(
+			$this->createMock( IBufferingStatsdDataFactory::class ),
+			$schemaReader
+		);
 
 		$this->assertEquals( [
 			'$schema' => 'schema/version',
@@ -122,7 +126,10 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 			->method( 'getReflectionSchemaSource' )
 			->willReturn( $schemaSource );
 
-		$builder = new JsonSchemaBuilder( $schemaReader );
+		$builder = new JsonSchemaBuilder(
+			$this->createMock( IBufferingStatsdDataFactory::class ),
+			$schemaReader
+		);
 		$this->assertEquals( (object)[
 			'number' => 42,
 			'string' => 'bar',
