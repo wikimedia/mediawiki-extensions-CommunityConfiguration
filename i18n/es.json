@@ -8,15 +8,15 @@
 			"Sergi0"
 		]
 	},
-	"communityconfiguration": "Configuración de la Comunidad",
+	"communityconfiguration": "Configuración Comunitaria",
 	"communityconfiguration-desc": "Contiene la lógica de la configuración comunitaria",
 	"communityconfiguration-editor-client-generic-error": "Algo salió mal al cargar el editor de configuración. Por favor, inténtalo de nuevo más tarde.",
 	"communityconfiguration-editor-client-generic-error-description": "Se produjo un error en '$2' en el componente $1. Ver los detalles abajo:",
 	"communityconfiguration-editor-client-file-bug": "Si el problema persiste, considere [ $1 rellene un asunto] en la herramienta de informe de errores.",
 	"communityconfiguration-editor-form-submit-button-text": "Guardar cambios",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Enviando...",
-	"communityconfiguration-guidelines-title": "¿Qué es la Configuración de la Comunidad?",
-	"communityconfiguration-guidelines-description": "Configuración de la Comunidad es una herramienta que permite a las comunidades establecer y controlar la configuración de diferentes funcionalidades de {{SITENAME}}, apoyando a las personas bibliotecarias a adaptarse a las necesidades específicas de su comunidad.",
+	"communityconfiguration-guidelines-title": "¿Qué es la Configuración Comunitaria?",
+	"communityconfiguration-guidelines-description": "Configuración comunitaria es una herramienta que permite a las comunidades establecer y controlar la configuración de diferentes funcionalidades de {{SITENAME}}, facilitando que las personas bibliotecarias y administradoras de interfaz se adapten a las necesidades específicas de su comunidad.",
 	"communityconfiguration-guidelines-guideline1-title": "Aprender más",
 	"communityconfiguration-guidelines-guideline2-title": "Envíanos {{GENDER:$1|tu}} feedback",
 	"communityconfiguration-invalid-stored-config-error": "No se pudo cargar una configuración válida del proveedor $1 (código <tt>$2</tt>).",
