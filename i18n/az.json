@@ -45,5 +45,7 @@
 	"communityconfiguration-editor-nojs-fallback-text": "Konfiqurasiya redaktoru JavaScript tələb edir. Zəhmət olmasa istifadə edə bilmək üçün JavaScript-i aktivləşdirin.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Formaya bax",
 	"communityconfiguration-editor-client-notice-message": "Bu səhifə mühafizə edilib. Bu funksiya üçün konfiqurasiya yalnız inzibatçılar tərəfindən redaktə edilə bilər.",
-	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Siz}} bu formada dəyişiklikləri yadda saxlaya bilməzsiniz, çünki bu funksiya üçün konfiqurasiya yalnız inzibatçılar tərəfindən redaktə edilə bilər."
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Siz}} bu formada dəyişiklikləri yadda saxlaya bilməzsiniz, çünki bu funksiya üçün konfiqurasiya yalnız inzibatçılar tərəfindən redaktə edilə bilər.",
+	"tag-community_configuration": "[[mw:Community configuration|İcma konfiqurasiyası]]",
+	"tag-community_configuration-description": "[[mw:Extension:CommunityConfiguration|İcma Konfiqurasiyası uzantısı]] istifadə edərək funksiyanın [[Special:CommunityConfiguration|lokal viki konfiqurasiyasını]] dəyişən redaktələr."
 }

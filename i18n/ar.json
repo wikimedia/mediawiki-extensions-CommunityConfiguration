@@ -45,5 +45,7 @@
 	"communityconfiguration-editor-nojs-fallback-text": "يتطلب محرر الإعدادات جافا سكريبت. الرجاء تفعيل جافا سكريبت لاستخدامه.",
 	"communityconfiguration-editor-navigation-tab-viewform": "عرض النموذج",
 	"communityconfiguration-editor-client-notice-message": "هذه الصفحة محمية. يمكن فقط لللإداريين التعديل على إعدادات هذه الميزة.",
-	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|لا يمكنك}} حفظ التغييرات على هذه الاستمارة لأنه فقط لللإداريين إمكانية التعديل على إعدادات هذه الميزة."
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|لا يمكنك}} حفظ التغييرات على هذه الاستمارة لأنه فقط لللإداريين إمكانية التعديل على إعدادات هذه الميزة.",
+	"tag-community_configuration": "[[mw:Community configuration|إعدادات المجتمع]]",
+	"tag-community_configuration-description": "التعديلات التي تغير [[Special:CommunityConfiguration|إعدادات الويكي المحلي]] لميزة باستخدام [[mw:Extension:CommunityConfiguration|امتداد إعدادات المجتمع]]."
 }

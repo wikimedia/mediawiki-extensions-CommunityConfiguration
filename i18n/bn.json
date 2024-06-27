@@ -6,6 +6,8 @@
 	},
 	"communityconfiguration-editor-form-submit-button-text": "পরিবর্তন সংরক্ষণ করুন",
 	"communityconfiguration-editor-form-submit-button-loading-text": "পাঠানো হচ্ছে...",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "উপাদান সরান",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "আরেকটি উপাদান যোগ করুন",
 	"communityconfiguration-guidelines-guideline1-title": "আরও জানুন",
 	"communityconfiguration-guidelines-guideline2-title": "আমাদের {{GENDER:$1|আপনার}} প্রতিক্রিয়া জানান",
 	"communityconfiguration-providers-list-title": "বৈশিষ্ট্যাবলী",
