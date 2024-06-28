@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
+use IBufferingStatsdDataFactory;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
 use MediaWiki\Extension\CommunityConfiguration\Validation\JsonSchemaValidator;
@@ -14,17 +15,24 @@ use MediaWikiUnitTestCase;
  */
 class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 
+	private function newValidator( $schema ) {
+		return new JsonSchemaValidator(
+			$schema,
+			$this->createMock( IBufferingStatsdDataFactory::class )
+		);
+	}
+
 	public function testConstruct() {
 		$this->assertInstanceOf(
 			JsonSchemaValidator::class,
-			new JsonSchemaValidator( JsonSchemaForTesting::class )
+			$this->newValidator( JsonSchemaForTesting::class )
 		);
 	}
 
 	public function testGetSchemaBuilder() {
 		$this->assertInstanceOf(
 			JsonSchemaBuilder::class,
-			( new JsonSchemaValidator( JsonSchemaForTesting::class ) )->getSchemaBuilder()
+			$this->newValidator( JsonSchemaForTesting::class )->getSchemaBuilder()
 		);
 	}
 
@@ -330,7 +338,7 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 		bool $expectedIsPermissivelyGood,
 		array $expectedErrorData = []
 	) {
-		$validator = new JsonSchemaValidator( $testSchema );
+		$validator = $this->newValidator( $testSchema );
 
 		$strictValidationResult = $validator->validateStrictly( (object)$json );
 
@@ -366,7 +374,7 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetSchemaVersion() {
-		$validator = new JsonSchemaValidator( JsonSchemaForTesting::class );
+		$validator = $this->newValidator( JsonSchemaForTesting::class );
 		$this->assertSame(
 			JsonSchemaForTesting::VERSION,
 			$validator->getSchemaVersion()

@@ -2,14 +2,20 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Schema;
 
+use IBufferingStatsdDataFactory;
 use stdClass;
 
 class JsonSchemaBuilder implements SchemaBuilder {
 
+	private IBufferingStatsdDataFactory $statsdDataFactory;
 	private JsonSchemaReader $jsonSchema;
 	private JsonSchemaVersionManager $versionManager;
 
-	public function __construct( JsonSchemaReader $jsonSchema ) {
+	public function __construct(
+		IBufferingStatsdDataFactory $statsdDataFactory,
+		JsonSchemaReader $jsonSchema
+	) {
+		$this->statsdDataFactory = $statsdDataFactory;
 		$this->jsonSchema = $jsonSchema;
 		$this->versionManager = new JsonSchemaVersionManager( $this->jsonSchema );
 	}
@@ -28,14 +34,20 @@ class JsonSchemaBuilder implements SchemaBuilder {
 	 * @inheritDoc
 	 */
 	public function getRootSchema( ?string $version = null ): array {
+		$start = microtime( true );
 		$reader = $this->getJsonSchemaReader( $version );
 		$reader->assertIsJsonSchema();
 
-		return array_merge( [
+		$result = array_merge( [
 			'$schema' => $this->jsonSchema->getJsonSchemaVersion(),
 			'$id' => $this->jsonSchema->getSchemaId(),
 			JsonSchema::ADDITIONAL_PROPERTIES => false,
 		], $reader->getReflectionSchemaSource()->loadAsSchema( true ) );
+		$this->statsdDataFactory->timing(
+			'timing.communityConfiguration.JsonSchemaBuilder.getRootSchema',
+			microtime( true ) - $start
+		);
+		return $result;
 	}
 
 	/**
@@ -79,10 +91,15 @@ class JsonSchemaBuilder implements SchemaBuilder {
 	 * @inheritDoc
 	 */
 	public function getDefaultsMap( ?string $version = null ): stdClass {
+		$start = microtime( true );
 		$res = new stdClass();
 		foreach ( $this->getRootProperties( $version ) as $key => $specification ) {
 			$res->{$key} = $this->getDefaultFromSchema( $specification );
 		}
+		$this->statsdDataFactory->timing(
+			'timing.communityConfiguration.JsonSchemaBuilder.getDefaultsMap',
+			microtime( true ) - $start
+		);
 		return $res;
 	}
 }
