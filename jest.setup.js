@@ -46,7 +46,8 @@ global.getGlobalMediaWikiMountingOptions = function ( provide = {}, directives =
 		provide: {
 			i18n: jest.fn( ( key ) => ( {
 				text: () => key,
-				toString: () => key
+				toString: () => key,
+				exists: jest.fn( () => true )
 			} ) ),
 			...provide
 		}
