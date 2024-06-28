@@ -41,23 +41,11 @@ return [
 	'CommunityConfiguration.ProviderFactory' => static function ( MediaWikiServices $services ) {
 		$ccServices = CommunityConfigurationServices::wrap( $services );
 		return new ConfigurationProviderFactory(
-			new ServiceOptions(
-				ConfigurationProviderFactory::CONSTRUCTOR_OPTIONS,
-
-				new HashConfig( [
-					'CommunityConfigurationProviders' => Utils::getMergedAttribute(
-						$services->getMainConfig(),
-						'CommunityConfigurationProviders'
-					),
-					'CommunityConfigurationProviderClasses' => Utils::getMergedAttribute(
-						$services->getMainConfig(),
-						'CommunityConfigurationProviderClasses'
-					),
-				] ),
-			),
 			$ccServices->getStoreFactory(),
 			$ccServices->getValidatorFactory(),
-			$services
+			$services->getMainConfig(),
+			$ccServices->getHookRunner(),
+			$services,
 		);
 	},
 	'CommunityConfiguration.MediaWikiConfigReader' => static function ( MediaWikiServices $services ) {
