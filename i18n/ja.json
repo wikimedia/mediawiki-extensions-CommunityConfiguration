@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Apple TD"
+		]
+	},
+	"communityconfiguration": "コミュニティ設定",
+	"communityconfiguration-editor-form-submit-button-text": "変更を保存",
+	"communityconfiguration-guidelines-title": "コミュニティ設定とは",
+	"communityconfiguration-guidelines-guideline1-title": "詳細",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "エラーの詳細",
+	"communityconfigurationdashboard": "コミュニティ設定",
+	"communityconfigurationeditor": "「$1」を編集中",
+	"communityconfiguration-edit-summary-dialog-save-button": "変更を保存",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "キャンセル",
+	"communityconfiguration-edit-summary-dialog-label": "編集の要約",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|あなた}}の変更は保存されました",
+	"communityconfiguration-editor-message-dismiss-button-label": "閉じる",
+	"communityconfiguration-page-title-control-no-results": "見つかりませんでした。",
+	"communityconfiguration-editor-navigation-tab-viewform": "フォームを表示",
+	"communityconfiguration-editor-client-notice-message": "このページは保護されています。この設定は管理者のみが変更できます。",
+	"tag-community_configuration": "[[mw:Community configuration|コミュニティ設定]]"
+}
