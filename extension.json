@@ -28,9 +28,11 @@
 			"value": null
 		},
 		"CommunityConfigurationProviders": {
+			"description": "The list of provider specifications the extension will use. Specified as a mapping of provider name to provider specification. Additional provider types can be defined in CommunityConfigurationProviderClasses. Extensions can register their own providers through extension.json attribute \"CommunityConfiguration/Providers\"",
 			"value": {}
 		},
 		"CommunityConfigurationStores": {
+			"description": "The list of store specifications the extension will use. Specified as a mapping of store name to ObjectFactory spec",
 			"value": {
 				"static": {
 					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Store\\StaticStore",
@@ -48,6 +50,7 @@
 			}
 		},
 		"CommunityConfigurationValidators": {
+			"description": "The list of validator specifications the extension will use. Specified as a mapping of store name to ObjectFactory spec",
 			"value": {
 				"noop": {
 					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Validation\\NoopValidator",
@@ -60,6 +63,7 @@
 			}
 		},
 		"CommunityConfigurationProviderClasses": {
+			"description": "The list of provider class specifications the extension will use. Specified as a mapping of store name to ObjectFactory spec. Extensions can register their own provider types through extension.json attribute \"CommunityConfiguration/ProviderClasses\"",
 			"value": {
 				"data": {
 					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Provider\\DataProvider",
