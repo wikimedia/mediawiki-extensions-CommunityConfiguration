@@ -61,6 +61,8 @@ class WriterTest extends MediaWikiUnitTestCase {
 			new UserIdentityValue( 1, 'Admin' ),
 			$permissions
 		);
+		// NOTE: Needs to be alphabetically ordered, because Writer is ordering saved data by the
+		// key. Changing the order to non-alphabetical will fail due to that sorting.
 		$newContentData = [
 			'ANumber' => 42,
 			'BObject' => [ 'Foo' => 1, 'Bar' => 2 ],
