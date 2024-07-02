@@ -11,7 +11,7 @@ use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 /**
  * Implements caching for the store; assumes stored values are JSON blobs
  */
-abstract class AbstractJsonStore implements IConfigurationStore {
+abstract class AbstractJsonStore extends AbstractStore {
 
 	protected WANObjectCache $cache;
 	protected HashBagOStuff $inProcessCache;

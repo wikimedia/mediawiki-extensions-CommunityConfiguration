@@ -8,7 +8,7 @@ use MediaWiki\Permissions\Authority;
 use StatusValue;
 use stdClass;
 
-class StaticStore implements IConfigurationStore {
+class StaticStore extends AbstractStore {
 
 	private stdClass $config;
 

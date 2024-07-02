@@ -31,8 +31,22 @@ use StatusValue;
  * appropriate IValidator instance (ideally through IConfigurationProvider::getValidator). Unless you
  * are certain this is what you need, consider using IConfigurationProvider's methods for
  * writing configuration instead.
+ *
+ * Store implementations are recommended to inherit AbstractStore.
  */
 interface IConfigurationStore {
+
+	/**
+	 * Set store options
+	 *
+	 * Options are used by the store to adapt its behavior; options cannot be queried outside of
+	 * the store.
+	 *
+	 * @see AbstractStore::getOption()
+	 * @param array $options A map of option name => option value
+	 * @return void
+	 */
+	public function setOptions( array $options ): void;
 
 	/**
 	 * @return LinkTarget|null

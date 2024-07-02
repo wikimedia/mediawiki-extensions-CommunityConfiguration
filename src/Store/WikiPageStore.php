@@ -21,6 +21,7 @@ use WANObjectCache;
 
 class WikiPageStore extends AbstractJsonStore {
 
+	public const OPTION_EXTRA_TAGS = 'extraTags';
 	private const CACHE_VERSION = 1;
 
 	public const VERSION_FIELD_NAME = '$version';
@@ -184,7 +185,10 @@ class WikiPageStore extends AbstractJsonStore {
 			$authority,
 			$summary,
 			false,
-			self::TAG_NAME
+			array_merge(
+				[ self::TAG_NAME ],
+				$this->getOption( self::OPTION_EXTRA_TAGS ) ?? []
+			)
 		)->getStatusValue();
 		$this->invalidate();
 		return $status;
