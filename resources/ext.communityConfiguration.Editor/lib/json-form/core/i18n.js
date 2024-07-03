@@ -19,253 +19,131 @@ function getMessageOrNull( key ) {
 	return msg.exists() ? msg : null;
 }
 
-function getStringControlMessages( prefix, propName, asMessageObject ) {
+function getStringControlMessages( prefix, propName ) {
 	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
 	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
 	const placeholderKey = mapPropToTextKey( prefix, propName, 'placeholder' );
-	if ( asMessageObject ) {
-		return {
-			label: getMessageOrNull( labelKey ),
-			helpText: getMessageOrNull( helpTextLabelKey ),
-			placeholder: getMessageOrNull( placeholderKey )
-		};
-	}
-	return [
-		labelKey,
-		helpTextLabelKey,
-		placeholderKey
-	];
+
+	return {
+		label: getMessageOrNull( labelKey ),
+		helpText: getMessageOrNull( helpTextLabelKey ),
+		placeholder: getMessageOrNull( placeholderKey )
+	};
 }
 
-function getNumberControlMessages( prefix, propName, asMessageObject ) {
+function getNumberControlMessages( prefix, propName ) {
 	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
 	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
 	const placeholderKey = mapPropToTextKey( prefix, propName, 'placeholder' );
-	if ( asMessageObject ) {
-		return {
-			label: getMessageOrNull( labelKey ),
-			helpText: getMessageOrNull( helpTextLabelKey ),
-			placeholder: getMessageOrNull( placeholderKey )
-		};
-	}
-	return [
-		labelKey,
-		helpTextLabelKey,
-		placeholderKey
-	];
+
+	return {
+		label: getMessageOrNull( labelKey ),
+		helpText: getMessageOrNull( helpTextLabelKey ),
+		placeholder: getMessageOrNull( placeholderKey )
+	};
 }
 
-function getBooleanControlMessages( prefix, propName, asMessageObject ) {
+function getBooleanControlMessages( prefix, propName ) {
 	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
 	const controlLabelKey = mapPropToTextKey( prefix, propName, 'control-label' );
 	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
-	if ( asMessageObject ) {
-		return {
-			label: getMessageOrNull( labelKey ),
-			controlLabel: getMessageOrNull( controlLabelKey ),
-			helpText: getMessageOrNull( helpTextLabelKey )
-		};
-	}
-	return [
-		labelKey,
-		controlLabelKey,
-		helpTextLabelKey
-	];
+
+	return {
+		label: getMessageOrNull( labelKey ),
+		controlLabel: getMessageOrNull( controlLabelKey ),
+		helpText: getMessageOrNull( helpTextLabelKey )
+	};
 }
 
-function getEnumControlMessages( prefix, propName, enumValues, asMessageObject ) {
+function getEnumControlMessages( prefix, propName, enumValues ) {
 	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
 	const helpTextKey = mapPropToTextKey( prefix, propName, 'help-text' );
 	const enumLabels = enumValues.reduce( ( carry, enumValue ) => {
 		carry[ enumValue ] = mapPropToTextKey( prefix, propName, 'option', enumValue, 'label' );
 		return carry;
 	}, {} );
-	if ( asMessageObject ) {
-		const textProps = {
-			label: getMessageOrNull( labelKey ),
-			helpText: getMessageOrNull( helpTextKey )
-		};
-		Object.assign( textProps, { enumLabels } );
-		return textProps;
-	}
-	return [
-		labelKey,
-		helpTextKey,
-		// eslint-disable-next-line es-x/no-object-values
-		...Object.values( enumLabels )
-	];
+
+	const textProps = {
+		label: getMessageOrNull( labelKey ),
+		helpText: getMessageOrNull( helpTextKey )
+	};
+	Object.assign( textProps, { enumLabels } );
+	return textProps;
 }
 
-function getObjectControlMessages( prefix, propName, objectProperties, asMessageObject ) {
+function getObjectControlMessages( prefix, propName ) {
 	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
 	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
 
-	if ( asMessageObject ) {
-		return {
-			label: getMessageOrNull( labelKey ),
-			helpText: getMessageOrNull( helpTextLabelKey )
-		};
-	}
-
-	const newConfig = { i18nTextKeyPrefix: `${ prefix }-${ propName }` };
-	let keys = [
-		labelKey,
-		helpTextLabelKey
-	];
-	for ( const prop in objectProperties ) {
-		keys = [
-			...keys,
-			...doGetControlTextKeys( prop, objectProperties[ prop ], newConfig )
-		];
-	}
-	return keys;
+	return {
+		label: getMessageOrNull( labelKey ),
+		helpText: getMessageOrNull( helpTextLabelKey )
+	};
 }
 
-function getArrayControlMessages( prefix, propName, arrayItems, asMessageObject ) {
+function getArrayControlMessages( prefix, propName ) {
 	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
 	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
 	const itemLabelKey = mapPropToTextKey( prefix, propName, 'item-label' );
 	const addElementButtonLabelKey = mapPropToTextKey( prefix, propName, 'add-element-button-label' );
 
-	if ( asMessageObject ) {
-		return {
-			label: getMessageOrNull( labelKey ),
-			helpText: getMessageOrNull( helpTextLabelKey ),
-			itemLabel: getMessageOrNull( itemLabelKey ),
-			addElementButtonLabel: getMessageOrNull( addElementButtonLabelKey )
-		};
-	}
-
-	let arrayLabels = [
-		labelKey,
-		helpTextLabelKey,
-		itemLabelKey,
-		addElementButtonLabelKey
-	];
-	if ( arrayItems.type === 'object' ) {
-		const newConfig = { i18nTextKeyPrefix: `${ prefix }-${ propName }` };
-		for ( const prop in arrayItems.properties ) {
-			arrayLabels = [
-				...arrayLabels,
-				...doGetControlTextKeys(
-					prop,
-					arrayItems.properties[ prop ],
-					newConfig
-				)
-			];
-		}
-	}
-
-	return arrayLabels;
+	return {
+		label: getMessageOrNull( labelKey ),
+		helpText: getMessageOrNull( helpTextLabelKey ),
+		itemLabel: getMessageOrNull( itemLabelKey ),
+		addElementButtonLabel: getMessageOrNull( addElementButtonLabelKey )
+	};
 }
 
-function getCustomMultiSelectControlMessages( prefix, propName, asMessageObject ) {
+function getCustomMultiSelectControlMessages( prefix, propName ) {
 	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
 	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
-	if ( asMessageObject ) {
-		return {
-			label: getMessageOrNull( labelKey ),
-			helpText: getMessageOrNull( helpTextLabelKey )
-		};
-	}
-	return [
-		labelKey,
-		helpTextLabelKey,
-		'mw-widgets-titlesmultiselect-placeholder',
-		// TODO can be removed after T345386 is resolved
-		'communityconfiguration-editor-chip-control-aria-chip-description'
-	];
+
+	return {
+		label: getMessageOrNull( labelKey ),
+		helpText: getMessageOrNull( helpTextLabelKey )
+	};
 }
 
-function getCustomPageTitleControlMessages( prefix, propName, asMessageObject ) {
+function getCustomPageTitleControlMessages( prefix, propName ) {
 	const labelKey = mapPropToTextKey( prefix, propName, 'label' );
 	const helpTextLabelKey = mapPropToTextKey( prefix, propName, 'help-text' );
 	const placeholderKey = mapPropToTextKey( prefix, propName, 'placeholder' );
-	const noResultsKey = 'communityconfiguration-page-title-control-no-results';
-	if ( asMessageObject ) {
-		return {
-			label: getMessageOrNull( labelKey ),
-			helpText: getMessageOrNull( helpTextLabelKey ),
-			placeholder: getMessageOrNull( placeholderKey )
-		};
-	}
-	return [
-		labelKey,
-		helpTextLabelKey,
-		placeholderKey,
-		noResultsKey
-	];
-}
 
-function doGetControlTextKeys( propName, schema, config ) {
-	if ( schema.type === 'string' && schema.enum === undefined && schema.control === undefined ) {
-		/* eslint-disable-next-line es-x/no-object-values */
-		return Object.values( getStringControlMessages( config.i18nTextKeyPrefix, propName ) );
-	}
-	if ( ( schema.type === 'number' || schema.type === 'integer' ) && schema.enum === undefined ) {
-		/* eslint-disable-next-line es-x/no-object-values */
-		return Object.values( getNumberControlMessages( config.i18nTextKeyPrefix, propName ) );
-	}
-	if ( schema.type === 'boolean' ) {
-		return getBooleanControlMessages( config.i18nTextKeyPrefix, propName );
-	}
-	if ( schema.enum ) {
-		return getEnumControlMessages( config.i18nTextKeyPrefix, propName, schema.enum );
-	}
-	if ( schema.type === 'object' ) {
-		return getObjectControlMessages(
-			config.i18nTextKeyPrefix,
-			propName,
-			schema.properties
-		);
-	}
-	if ( schema.type === 'array' && !schema.control ) {
-		return getArrayControlMessages(
-			config.i18nTextKeyPrefix,
-			propName,
-			schema.items
-		);
-	}
-	if ( schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl' )( null, schema ) ) {
-		return getCustomPageTitleControlMessages( config.i18nTextKeyPrefix, propName );
-	}
-	if (
-		schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitlesControl' )( null, schema ) ||
-		schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\NamespacesControl' )( null, schema )
-	) {
-		return getCustomMultiSelectControlMessages( config.i18nTextKeyPrefix, propName );
-	}
-
-	throw new Error( `Prop ${ propName }: Unsupported schema type: ${ JSON.stringify( schema ) }` );
+	return {
+		label: getMessageOrNull( labelKey ),
+		helpText: getMessageOrNull( helpTextLabelKey ),
+		placeholder: getMessageOrNull( placeholderKey )
+	};
 }
 
 function getControlTextProps( prop, prefix, schema ) {
 	if ( schema.type === 'string' && schema.enum === undefined && schema.control === undefined ) {
-		return getStringControlMessages( prefix, prop, true );
+		return getStringControlMessages( prefix, prop );
 	}
 	if ( ( schema.type === 'number' || schema.type === 'integer' ) && schema.enum === undefined ) {
-		return getNumberControlMessages( prefix, prop, true );
+		return getNumberControlMessages( prefix, prop );
 	}
 	if ( schema.type === 'boolean' ) {
-		return getBooleanControlMessages( prefix, prop, true );
+		return getBooleanControlMessages( prefix, prop );
 	}
 	if ( schema.enum ) {
-		return getEnumControlMessages( prefix, prop, schema.enum, true );
+		return getEnumControlMessages( prefix, prop, schema.enum );
 	}
 	if ( schema.type === 'object' ) {
-		return getObjectControlMessages( prefix, prop, schema.properties, true );
+		return getObjectControlMessages( prefix, prop );
 	}
 	if ( schema.type === 'array' && !schema.control ) {
-		return getArrayControlMessages( prefix, prop, schema.items, true );
+		return getArrayControlMessages( prefix, prop );
 	}
 	if ( schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl' )( null, schema ) ) {
-		return getCustomPageTitleControlMessages( prefix, prop, true );
+		return getCustomPageTitleControlMessages( prefix, prop );
 	}
 	if (
 		schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitlesControl' )( null, schema ) ||
 		schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\NamespacesControl' )( null, schema )
 	) {
-		return getCustomMultiSelectControlMessages( prefix, prop, true );
+		return getCustomMultiSelectControlMessages( prefix, prop );
 	}
 
 	throw new Error( `Prop ${prop}: Unsupported schema type: ${JSON.stringify( schema ) }` );
