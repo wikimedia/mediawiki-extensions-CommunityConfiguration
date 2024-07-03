@@ -183,4 +183,21 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		// ...then, load the version, which should still work.
 		$this->assertSame( '2.0.0', $store->getVersion() );
 	}
+
+	public function testNonObject() {
+		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+			->getConfigurationProviderFactory()
+			->newProvider( self::PROVIDER_ID );
+		$store = $provider->getStore();
+
+		$this->assertStatusOK( $store->storeConfiguration(
+			[ 'Foo' => 42 ],
+			null,
+			$this->getTestSysop()->getAuthority()
+		) );
+
+		$loadStatus = $store->loadConfiguration();
+		$this->assertStatusOK( $loadStatus );
+		$this->assertStatusValue( (object)[ 'Foo' => 42 ], $loadStatus );
+	}
 }
