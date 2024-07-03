@@ -4,8 +4,10 @@ namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
 use InvalidArgumentException;
 use LogicException;
-use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Config\Config;
+use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
+use MediaWiki\Extension\CommunityConfiguration\Utils;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -19,41 +21,36 @@ class ConfigurationProviderFactory {
 	/** @var string */
 	private const DEFAULT_PROVIDER_TYPE = 'data';
 
-	/**
-	 * @var string[]
-	 * @internal for use in ServiceWiring only
-	 */
-	public const CONSTRUCTOR_OPTIONS = [
-		'CommunityConfigurationProviders',
-		'CommunityConfigurationProviderClasses',
-	];
-
-	private array $providerSpecs;
-	private array $classSpecs;
+	/** Lazy loaded in initList */
+	private ?array $providerSpecs = null;
+	private ?array $classSpecs = null;
 	private array $providers = [];
 	private StoreFactory $storeFactory;
 	private ValidatorFactory $validatorFactory;
+	/** Used to create the services associated to a provider */
 	private MediaWikiServices $services;
+	private HookRunner $hookRunner;
+	private Config $config;
 
 	/**
-	 * @param ServiceOptions $options
 	 * @param StoreFactory $storeFactory
 	 * @param ValidatorFactory $validatorFactory
+	 * @param Config $config
+	 * @param HookRunner $hookRunner
 	 * @param MediaWikiServices $services
 	 */
 	public function __construct(
-		ServiceOptions $options,
 		StoreFactory $storeFactory,
 		ValidatorFactory $validatorFactory,
+		Config $config,
+		HookRunner $hookRunner,
 		MediaWikiServices $services
 	) {
-		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->providerSpecs = $options->get( 'CommunityConfigurationProviders' );
-		$this->classSpecs = $options->get( 'CommunityConfigurationProviderClasses' );
-
 		$this->storeFactory = $storeFactory;
 		$this->validatorFactory = $validatorFactory;
+		$this->config = $config;
 		$this->services = $services;
+		$this->hookRunner = $hookRunner;
 	}
 
 	/**
@@ -77,9 +74,10 @@ class ConfigurationProviderFactory {
 	}
 
 	private function getProviderClassSpec( string $className ): array {
-		if ( !array_key_exists( $className, $this->classSpecs ) ) {
+		if ( !array_key_exists( $className, $this->classSpecs ?? [] ) ) {
 			throw new InvalidArgumentException( "Provider class $className is not supported" );
 		}
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		return $this->classSpecs[$className];
 	}
 
@@ -91,6 +89,9 @@ class ConfigurationProviderFactory {
 	 * @throws InvalidArgumentException when the definition of provider is invalid
 	 */
 	private function constructProvider( string $providerId ): IConfigurationProvider {
+		if ( !array_key_exists( $providerId, $this->providerSpecs ) ) {
+			throw new InvalidArgumentException( "Provider $providerId is not supported" );
+		}
 		$spec = $this->providerSpecs[$providerId];
 		$storeType = $this->getConstructType( $spec, 'store' );
 
@@ -137,6 +138,7 @@ class ConfigurationProviderFactory {
 	 * @throws InvalidArgumentException when provider $name is not registered
 	 */
 	public function newProvider( string $providerId ): IConfigurationProvider {
+		$this->initList();
 		if ( !array_key_exists( $providerId, $this->providerSpecs ) ) {
 			throw new InvalidArgumentException( "Provider $providerId is not supported" );
 		}
@@ -147,11 +149,27 @@ class ConfigurationProviderFactory {
 	}
 
 	/**
-	 * Return a list of supported providers
+	 * Return a list of supported provider names
 	 *
 	 * @return string[] List of provider names (supported by newProvider)
 	 */
 	public function getSupportedKeys(): array {
+		$this->initList();
 		return array_keys( $this->providerSpecs );
+	}
+
+	/**
+	 * Build the list of provider specs by reading CommunityConfigurationProviders from
+	 * main config and give a chance to extensions to modify it by running _initList hook.
+	 */
+	private function initList() {
+		if ( is_array( $this->providerSpecs ) && is_array( $this->classSpecs ) ) {
+			return;
+		}
+		$this->providerSpecs = Utils::getMergedAttribute( $this->config, 'CommunityConfigurationProviders' );
+		$this->classSpecs = Utils::getMergedAttribute( $this->config, 'CommunityConfigurationProviderClasses' );
+		// This hook can be used to disable unwanted providers
+		// or conditionally register providers.
+		$this->hookRunner->onCommunityConfigurationProvider_initList( $this->providerSpecs );
 	}
 }

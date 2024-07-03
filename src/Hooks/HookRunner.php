@@ -10,7 +10,10 @@ use MediaWiki\HookContainer\HookContainer;
  *
  * @internal
  */
-class HookRunner implements CommunityConfigurationSchemaBeforeEditorHook {
+class HookRunner implements
+	CommunityConfigurationSchemaBeforeEditorHook,
+	CommunityConfigurationProvider_initListHook
+{
 
 	private HookContainer $hookContainer;
 
@@ -28,6 +31,16 @@ class HookRunner implements CommunityConfigurationSchemaBeforeEditorHook {
 		return $this->hookContainer->run(
 			'CommunityConfigurationSchemaBeforeEditor',
 			[ $provider, &$rootSchema ]
+		);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function onCommunityConfigurationProvider_initList( array &$providers ) {
+		return $this->hookContainer->run(
+			'CommunityConfigurationProvider_initList',
+			[ &$providers ]
 		);
 	}
 }
