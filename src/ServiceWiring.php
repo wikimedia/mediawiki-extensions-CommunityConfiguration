@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
