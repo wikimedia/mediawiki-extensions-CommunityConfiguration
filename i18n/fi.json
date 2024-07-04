@@ -1,8 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Pyscowicz"
+			"Pyscowicz",
+			"Stryn"
 		]
 	},
+	"communityconfiguration": "Yhteisöasetukset",
+	"communityconfiguration-edit-summary-dialog-save-button": "Tallenna muutokset",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Peruuta",
+	"communityconfiguration-edit-summary-dialog-label": "Muokkausyhteenveto",
 	"communityconfiguration-editor-message-dismiss-button-label": "Sulje"
 }
