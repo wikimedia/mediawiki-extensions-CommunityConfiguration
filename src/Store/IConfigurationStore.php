@@ -86,6 +86,24 @@ interface IConfigurationStore {
 	);
 
 	/**
+	 * Store the configuration
+	 *
+	 * Permissions need to be checked by the caller.
+	 *
+	 * @param mixed $config The configuration value to store. Can be any JSON serializable type.
+	 * @param string|null $version Version of the data (null means store no version data)
+	 * @param Authority $authority
+	 * @param string $summary
+	 * @return StatusValue
+	 */
+	public function alwaysStoreConfiguration(
+		$config,
+		?string $version,
+		Authority $authority,
+		string $summary = ''
+	): StatusValue;
+
+	/**
 	 * Authorize a given authority to edit the configuration.
 	 *
 	 * This method offers a fast, lightweight check,

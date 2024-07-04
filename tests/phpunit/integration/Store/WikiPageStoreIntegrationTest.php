@@ -200,4 +200,31 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusOK( $loadStatus );
 		$this->assertStatusValue( (object)[ 'Foo' => 42 ], $loadStatus );
 	}
+
+	public function testNoPermissions() {
+		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+			->getConfigurationProviderFactory()
+			->newProvider( self::PROVIDER_ID );
+		$store = $provider->getStore();
+
+		$status = $store->storeConfiguration(
+			[ 'Foo' => 42 ],
+			null,
+			$this->getTestUser()->getAuthority()
+		);
+		$this->assertStatusError( 'sitejsonprotected', $status );
+	}
+
+	public function testPermissionBypass() {
+		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+			->getConfigurationProviderFactory()
+			->newProvider( self::PROVIDER_ID );
+		$store = $provider->getStore();
+
+		$this->assertStatusOK( $store->alwaysStoreConfiguration(
+			[ 'Foo' => 42 ],
+			null,
+			$this->getTestUser()->getAuthority()
+		) );
+	}
 }
