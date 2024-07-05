@@ -11,6 +11,7 @@
 	"communityconfiguration-editor-client-post-feedback": "Pokud tento problém přetrvává, [$1 ozvěte se] na diskusní stránce.",
 	"communityconfiguration-editor-form-submit-button-text": "Uložit změny",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Odesílání...",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Odebrat prvek",
 	"communityconfiguration-guidelines-title": "Co je komunitní konfigurace?",
 	"communityconfiguration-guidelines-guideline1-title": "Více informací",
 	"communityconfiguration-guidelines-guideline2-title": "Pošlete nám {{GENDER:$1|vaši}} zpětnou vazbu",
@@ -33,5 +34,6 @@
 	"communityconfiguration-page-title-control-no-results": "Nenalezeny žádné výsledky.",
 	"communityconfiguration-editor-loading-info-text": "Editor konfigurace se načítá",
 	"communityconfiguration-editor-nojs-fallback-text": "Editor konfigurace vyžaduje JavaScript. Povolte JavaScript, abyste jej mohli používat.",
-	"communityconfiguration-editor-navigation-tab-viewform": "Zobrazit formulář"
+	"communityconfiguration-editor-navigation-tab-viewform": "Zobrazit formulář",
+	"tag-community_configuration": "[[mw:Community configuration|Komunitní konfigurace]]"
 }
