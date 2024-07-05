@@ -163,17 +163,12 @@ class WikiPageStore extends AbstractJsonStore {
 	/**
 	 * @inheritDoc
 	 */
-	public function storeConfiguration(
+	public function alwaysStoreConfiguration(
 		$config,
 		?string $version,
 		Authority $authority,
 		string $summary = ''
 	): StatusValue {
-		$permissionStatus = PermissionStatus::newGood();
-		if ( !$authority->authorizeWrite( 'edit', $this->getConfigurationTitle(), $permissionStatus ) ) {
-			return Status::wrap( $permissionStatus );
-		}
-
 		if ( $version ) {
 			$config->{self::VERSION_FIELD_NAME} = $version;
 		}
@@ -188,6 +183,22 @@ class WikiPageStore extends AbstractJsonStore {
 		)->getStatusValue();
 		$this->invalidate();
 		return $status;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function storeConfiguration(
+		$config,
+		?string $version,
+		Authority $authority,
+		string $summary = ''
+	): StatusValue {
+		$permissionStatus = PermissionStatus::newGood();
+		if ( !$authority->authorizeWrite( 'edit', $this->getConfigurationTitle(), $permissionStatus ) ) {
+			return Status::wrap( $permissionStatus );
+		}
+		return $this->alwaysStoreConfiguration( $config, $version, $authority, $summary );
 	}
 
 	/**

@@ -44,6 +44,19 @@ class StaticStore implements IConfigurationStore {
 	 * @inheritDoc
 	 * @return never
 	 */
+	public function alwaysStoreConfiguration(
+		$config,
+		?string $version,
+		Authority $authority,
+		string $summary = ''
+	): StatusValue {
+		throw new LogicException( 'Static store cannot be edited' );
+	}
+
+	/**
+	 * @inheritDoc
+	 * @return never
+	 */
 	public function storeConfiguration(
 		$config,
 		?string $version,
