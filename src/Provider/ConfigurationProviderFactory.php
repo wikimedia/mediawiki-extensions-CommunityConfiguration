@@ -73,6 +73,13 @@ class ConfigurationProviderFactory {
 			( $spec[ $constructName ]['args'] ?? [] ) : [] );
 	}
 
+	private function getConstructOptions( array $spec, string $constructName ): array {
+		if ( !is_array( $spec[$constructName] ) ) {
+			return [];
+		}
+		return $spec[$constructName]['options'] ?? [];
+	}
+
 	private function getProviderClassSpec( string $className ): array {
 		if ( !array_key_exists( $className, $this->classSpecs ?? [] ) ) {
 			throw new InvalidArgumentException( "Provider class $className is not supported" );
@@ -109,10 +116,12 @@ class ConfigurationProviderFactory {
 		$storeArgs = $this->getConstructArgs( $spec, 'store' );
 		$validatorArgs = $this->getConstructArgs( $spec, 'validator' );
 
+		$store = $this->storeFactory->newStore( $providerId, $storeType, $storeArgs );
+		$store->setOptions( $this->getConstructOptions( $spec, 'store' ) );
 		$ctorArgs = [
 			$providerId,
 			$spec['options'] ?? [],
-			$this->storeFactory->newStore( $providerId, $storeType, $storeArgs ),
+			$store,
 			$this->validatorFactory->newValidator( $providerId, $validatorType, $validatorArgs )
 		];
 
