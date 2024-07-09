@@ -9,7 +9,7 @@
 				v-for="( error, index ) in errors"
 				:key="index"
 			>
-				<a :href="`#${error.formFieldId}`">{{ error.formFieldId /* TODO: replace with field label */ }}</a>
+				<a :href="`#${error.formFieldId}`">{{ error.formFieldLabel }}</a>
 			</li>
 		</ul>
 		<p

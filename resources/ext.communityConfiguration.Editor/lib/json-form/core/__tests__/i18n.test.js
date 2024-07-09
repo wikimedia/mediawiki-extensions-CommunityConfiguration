@@ -1,5 +1,5 @@
 'use strict';
-const { getControlTextProps } = require( '../i18n.js' );
+const { getControlTextProps, getLabelsChain } = require( '../i18n.js' );
 const TEST_DATA = [
 	{
 		testType: 'object',
@@ -228,6 +228,7 @@ global.mw = {
 	Message: class {
 		constructor( messages, key ) {
 			this.key = key;
+			this.parameters = [];
 		}
 
 		exists() {
@@ -236,6 +237,19 @@ global.mw = {
 
 		getKey() {
 			return this.key;
+		}
+
+		getCompositeKey() {
+			if ( this.parameters.length === 0 ) {
+				return this.key;
+			}
+			const paramString = this.parameters.join( ', ' );
+			return this.key + ': ' + paramString;
+		}
+
+		params( parameters ) {
+			this.parameters.push( ...parameters );
+			return this;
 		}
 	}
 };
@@ -272,4 +286,75 @@ describe( 'i18n.getControlTextProps()', () => {
 			).toEqual( testData.expected );
 		} );
 	}
+} );
+
+describe( 'i18n.getLabelsChain', () => {
+	it( 'returns nested labels for field in object', () => {
+		const pointer = '/link_recommendation/excludedSections';
+		const schema = {
+			additionalProperties: false,
+			type: 'object',
+			properties: {
+				// eslint-disable-next-line camelcase
+				link_recommendation: {
+					type: 'object',
+					properties: {
+						excludedSections: {
+							type: 'array',
+							items: {
+								type: 'string'
+							},
+							default: []
+						}
+					},
+					default: null
+				}
+			}
+		};
+		const actualLabels = getLabelsChain( schema, pointer, 'testenvironment-someprovider' );
+		expect(
+			actualLabels.map( ( msg ) => msg.getKey() )
+		).toEqual( [
+			'testenvironment-someprovider-link_recommendation-label',
+			'testenvironment-someprovider-link_recommendation-excludedsections-label'
+		] );
+	} );
+
+	it( 'returns nested labels for item in array', () => {
+		const pointer = '/GEHelpPanelLinks/1/text';
+		const schema = {
+			additionalProperties: false,
+			type: 'object',
+			properties: {
+				GEHelpPanelLinks: {
+					type: 'array',
+					items: {
+						type: 'object',
+						properties: {
+							title: {
+								type: 'string',
+								default: '',
+								control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl'
+							},
+							text: {
+								type: 'string'
+							}
+						}
+					},
+					default: [],
+					maxItems: 10
+				}
+			}
+		};
+
+		const actualLabels = getLabelsChain( schema, pointer, 'testenvironment-someprovider' );
+
+		expect(
+			actualLabels.map( ( msg ) => msg.getCompositeKey() )
+		).toEqual( [
+			'testenvironment-someprovider-gehelppanellinks-label',
+			'testenvironment-someprovider-gehelppanellinks-item-label: 2',
+			'testenvironment-someprovider-gehelppanellinks-text-label'
+		] );
+	} );
 } );

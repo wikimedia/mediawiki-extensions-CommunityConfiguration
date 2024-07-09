@@ -16,6 +16,7 @@
 	"communityconfiguration-editor-form-submit-button-loading-text": "Text for the form data submission button while an updating is being sent",
 	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Screen reader accessible label for the icon-only buttons that remove an element from an array.",
 	"communityconfiguration-editor-array-fallback-add-element-button-label": "In a community configuration form: Label for the button to add another element to a list of uniform input fieldsets. Clicking the button results in an additional set of input fields appearing.",
+	"communityconfiguration-editor-validation-error-label-chain-joiner": "If there is a validation error in a deeply nested field, then the main validation error message contains a link to that deeply nested field (which has a more specific eror message). The link-text consists of the label of the field with the error and all the labels of its \"parent\" fields if available. The text of this messages is what goes between those labels. In practice this is going to look like: \"field label → sub-field label → sub-sub-field label (the one with the error)\"",
 	"communityconfiguration-guidelines-title": "Title of the first explanatory paragraph in the community configuration dashboard",
 	"communityconfiguration-guidelines-description": "Description in the first explanatory paragraph of the community configuration dashboard",
 	"communityconfiguration-guidelines-guideline1-title": "Title of the first guideline in the community configuration dashboard",
