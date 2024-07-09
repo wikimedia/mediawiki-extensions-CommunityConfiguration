@@ -147,6 +147,7 @@
 			"packageFiles": [
 				"ext.communityConfiguration.Editor/app/init.js",
 				"ext.communityConfiguration.Editor/app/App.vue",
+				"ext.communityConfiguration.Editor/app/utils.js",
 				"ext.communityConfiguration.Editor/app/MwApiCommunityConfigurationWritingRepository.js",
 				"ext.communityConfiguration.Editor/app/components/EditSummaryDialog.vue",
 				"ext.communityConfiguration.Editor/app/components/EditorMessage.vue",
