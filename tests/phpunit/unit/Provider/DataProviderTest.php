@@ -128,6 +128,158 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertConfigStatusOK( $defaultConfig, $provider->loadValidConfigurationUncached() );
 	}
 
+	public static function providePartialConfigTestingData(): iterable {
+		yield 'Object with multiple fields' => [
+			(object)[
+				'link_recommendation' => (object)[
+					'disabled' => true,
+					'underlinkedWeight' => 0.5,
+					'minimumLinkScore' => 0.6,
+				],
+			],
+			(object)[
+				'link_recommendation' => (object)[
+					'disabled' => false,
+				],
+			],
+			(object)[
+				'link_recommendation' => (object)[
+					'disabled' => false,
+					'underlinkedWeight' => 0.5,
+					'minimumLinkScore' => 0.6,
+				],
+			],
+		];
+
+		yield 'Array of strings with defaults' => [
+			(object)[
+				'AutoModeratorSkipUserGroups' => [
+					"bot",
+					"sysop",
+				],
+			],
+			(object)[
+				"AutoModeratorSkipUserGroups" => [
+					"bot",
+				],
+			],
+			(object)[
+				"AutoModeratorSkipUserGroups" => [
+					"bot",
+				],
+			],
+		];
+
+		yield 'Array of objects with partial data' => [
+			(object)[
+				"GEHelpPanelLinks" => [],
+			],
+			(object)[
+				"GEHelpPanelLinks" => [
+					[
+						"text" => "Writing good articles",
+						"title" => "Help:How_to_write_an_Article"
+					],
+					[
+						"text" => "Just a link title, no page"
+					],
+					[
+						"title" => "Help:link_title_is_missing"
+					],
+				],
+			],
+			(object)[
+				"GEHelpPanelLinks" => [
+					[
+						"text" => "Writing good articles",
+						"title" => "Help:How_to_write_an_Article"
+					],
+					[
+						"text" => "Just a link title, no page"
+					],
+					[
+						"title" => "Help:link_title_is_missing"
+					],
+				],
+			],
+		];
+
+		yield 'Extra fields are preserved' => [
+			(object)[
+				'link_recommendation' => (object)[
+					'disabled' => true,
+					'underlinkedWeight' => 0.5,
+					'minimumLinkScore' => 0.6,
+				],
+			],
+			(object)[
+				'link_recommendation' => (object)[
+					'disabled' => false,
+					'nested_extra' => 'bar',
+				],
+				'outer_extra' => 'foo',
+			],
+			(object)[
+				'link_recommendation' => (object)[
+					'disabled' => false,
+					'underlinkedWeight' => 0.5,
+					'minimumLinkScore' => 0.6,
+					'nested_extra' => 'bar',
+				],
+				'outer_extra' => 'foo',
+			],
+		];
+
+		yield '`null` as default value is preserved' => [
+			(object)[
+				'link_recommendation' => (object)[
+					'disabled' => true,
+					'learnmore' => null,
+				],
+			],
+			(object)[
+				'link_recommendation' => (object)[
+					'disabled' => false,
+				],
+			],
+			(object)[
+				'link_recommendation' => (object)[
+					'disabled' => false,
+					'learnmore' => null,
+				],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider providePartialConfigTestingData
+	 */
+	public function testMergePartialConfigWithDefaults(
+		stdClass $defaultConfig,
+		stdClass $storedConfig,
+		stdClass $expectedConfig
+	): void {
+		$schemaBuilderStub = $this->createStub( JsonSchemaBuilder::class );
+		$schemaBuilderStub->method( 'getDefaultsMap' )
+			->willReturn( $defaultConfig );
+
+		$validatorStub = $this->createStub( JsonSchemaValidator::class );
+		$validatorStub->method( 'areSchemasSupported' )
+			->willReturn( true );
+		$validatorStub->method( 'getSchemaBuilder' )
+			->willReturn( $schemaBuilderStub );
+		$validatorStub->method( 'validatePermissively' )
+			->willReturn( ValidationStatus::newGood() );
+		$provider = new DataProvider(
+			'ProviderId',
+			[ 'skipDashboardListing' => true ],
+			new StaticStore( $storedConfig ),
+			$validatorStub
+		);
+
+		$this->assertConfigStatusOK( $expectedConfig, $provider->loadValidConfigurationUncached() );
+	}
+
 	public function testLoadInvalidConfig() {
 		$config = (object)[ 'Foo' => 42 ];
 
