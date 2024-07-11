@@ -25,16 +25,39 @@ class DataProvider extends AbstractProvider {
 		return $validationStatus->setResult( true, $config );
 	}
 
-	private function enhanceConfigPreValidation( stdClass $config ): stdClass {
-		// enhance $config with defaults (if possible)
-		if ( $this->getValidator()->areSchemasSupported() ) {
-			$defaultsMap = $this->getValidator()->getSchemaBuilder()->getDefaultsMap();
-			foreach ( $defaultsMap as $propertyName => $defaultValue ) {
-				if ( $defaultValue !== null && !isset( $config->$propertyName ) ) {
-					$config->$propertyName = $defaultValue;
+	private function overrideDefaultsWithConfigRecursive( stdClass $defaults, stdClass $config ): stdClass {
+		$merged = clone $defaults;
+
+		foreach ( $config as $configPropertyName => $configPropertyValue ) {
+			if ( property_exists( $merged, $configPropertyName ) ) {
+				if ( is_object( $merged->$configPropertyName ) && is_object( $configPropertyValue ) ) {
+					$merged->$configPropertyName = $this->overrideDefaultsWithConfigRecursive(
+						$merged->$configPropertyName,
+						$configPropertyValue
+					);
+				} else {
+					// REVIEW: In particular, this uses any existing config value for an array as is.
+					// It does not apply defaults to fields in the array elements.
+					// Not even when those elements are objects.
+					$merged->$configPropertyName = $configPropertyValue;
 				}
+			} else {
+				$merged->$configPropertyName = $configPropertyValue;
 			}
 		}
+
+		return $merged;
+	}
+
+	private function enhanceConfigPreValidation( stdClass $config ): stdClass {
+		// enhance $config with defaults (if possible)
+		if ( !$this->getValidator()->areSchemasSupported() ) {
+			return $config;
+		}
+
+		$defaultsMap = $this->getValidator()->getSchemaBuilder()->getDefaultsMap();
+
+		$config = $this->overrideDefaultsWithConfigRecursive( $defaultsMap, $config );
 
 		return $config;
 	}
