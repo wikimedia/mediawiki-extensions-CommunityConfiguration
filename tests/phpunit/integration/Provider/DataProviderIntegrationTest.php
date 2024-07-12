@@ -46,25 +46,23 @@ class DataProviderIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusValue( (object)[ 'NumberWithDefault' => 0 ], $result );
 
 		// assert storing valid configuration makes loadValidConfiguration to return it
-		$storeStatus = $provider->storeValidConfiguration( (object)[ 'Number' => 42 ], $authority );
+		$storeStatus = $provider->storeValidConfiguration( (object)[ 'NumberWithDefault' => 42 ], $authority );
 		$this->assertStatusOK( $storeStatus );
 
 		$result = $provider->loadValidConfiguration();
 		$this->assertStatusOK( $result );
 		$this->assertStatusValue( (object)[
-			'Number' => 42,
-			'NumberWithDefault' => 0,
+			'NumberWithDefault' => 42,
 		], $result );
 
 		// assert storing invalid config does not affect loadValidConfiguration()
-		$storeStatus = $provider->storeValidConfiguration( (object)[ 'Number' => 'test' ], $authority );
+		$storeStatus = $provider->storeValidConfiguration( (object)[ 'NumberWithDefault' => 'test' ], $authority );
 		$this->assertStatusNotOK( $storeStatus );
 
 		$result = $provider->loadValidConfiguration();
 		$this->assertStatusOK( $result );
 		$this->assertStatusValue( (object)[
-			'Number' => 42,
-			'NumberWithDefault' => 0,
+			'NumberWithDefault' => 42,
 		], $result );
 	}
 }

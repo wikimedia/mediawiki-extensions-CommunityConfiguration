@@ -53,7 +53,7 @@ class ValidationHooksTest extends MediaWikiIntegrationTestCase {
 
 	public function testValidSave() {
 		$this->assertStatusOK( $this->editPage( 'MediaWiki:Foo.json', FormatJson::encode( [
-			'Number' => 42,
+			'NumberWithDefault' => 42,
 		] ) ) );
 	}
 

@@ -89,11 +89,6 @@ class MediaWikiConfigProviderIntegrationTest extends MediaWikiIntegrationTestCas
 		);
 		$this->assertFalse( $provider->get( 'FeatureEnabled' ), 'Default value is used when the key is not set' );
 
-		$this->assertFalse(
-			$provider->has( 'FeatureActivationRegex' ),
-			'FeatureActivationRegex is not set and has no default, so `->has()` should return false'
-		);
-
 		$this->assertSame(
 			[
 				'FeatureEnabled',
