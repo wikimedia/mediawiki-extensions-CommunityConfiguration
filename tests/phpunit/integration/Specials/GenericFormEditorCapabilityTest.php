@@ -82,6 +82,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 			(object)[
 				// default value
 				'FeatureEnabled' => false,
+				'FeatureActivationRegex' => '',
 			],
 			$jsConfigVars['data']
 		);
@@ -119,6 +120,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 			// default value
 			'FeatureEnabled' => false,
 			'Extra' => 'not in Schema',
+			'FeatureActivationRegex' => '',
 		], $jsConfigVars['data'] );
 	}
 
