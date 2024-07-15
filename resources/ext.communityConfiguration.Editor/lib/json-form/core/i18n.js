@@ -102,6 +102,45 @@ function getControlTextProps( prop, prefix, schema ) {
 	throw new Error( `Prop ${prop}: Unsupported schema type: ${JSON.stringify( schema ) }` );
 }
 
+function getLabelsChainRec( schema, pointer, prefix ) {
+	const path = pointer.split( '/' );
+	const currentLabel = getControlTextProps( path[ 0 ], prefix, schema ).label;
+	if ( ( schema.type !== 'object' && schema.type !== 'array' ) || path.length === 1 ) {
+		return [ currentLabel ];
+	}
+	if ( schema.type === 'object' ) {
+		const deeperLabels = getLabelsChainRec(
+			schema.properties[ path[ 1 ] ],
+			path.slice( 1 ).join( '/' ),
+			`${prefix}-${path[ 0 ]}`
+		);
+		return [ currentLabel, ...deeperLabels ];
+	}
+	if ( schema.type === 'array' ) {
+		const itemLabel = getControlTextProps( path[ 0 ], prefix, schema )
+			.itemLabel.params( [ Number.parseInt( path[ 1 ] ) + 1 ] );
+		const deeperLabels = getLabelsChainRec(
+			schema.items,
+			path.slice( 2 ).join( '/' ),
+			`${prefix}-${path[ 0 ]}`
+		);
+		return [ currentLabel, itemLabel, ...deeperLabels ];
+	}
+}
+
+/**
+ * @param {Object} rootSchema
+ * @param {string} pointer
+ * @param {string} i18nPrefix
+ * @return {mw.Message[]}
+ */
+function getLabelsChain( rootSchema, pointer, i18nPrefix ) {
+	const path = pointer.split( '/' );
+	return getLabelsChainRec( rootSchema.properties[ path[ 1 ] ], path.slice( 1 ).join( '/' ), i18nPrefix )
+		.filter( ( msg ) => msg );
+}
+
 module.exports = exports = {
-	getControlTextProps
+	getControlTextProps,
+	getLabelsChain
 };

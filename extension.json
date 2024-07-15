@@ -225,6 +225,7 @@
 				"communityconfiguration-editor-client-data-submission-error",
 				"communityconfiguration-editor-message-dismiss-button-label",
 				"word-separator",
+				"communityconfiguration-editor-validation-error-label-chain-joiner",
 				"communityconfiguration-editor-client-notice-message",
 				"communityconfiguration-editor-client-notice-footer-message"
 			],

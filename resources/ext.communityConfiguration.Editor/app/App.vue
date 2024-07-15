@@ -59,6 +59,7 @@ const GenericSubmitErrorMessage = require( './components/GenericSubmitErrorMessa
 const NetworkErrorMessage = require( './components/NetworkErrorMessage.vue' );
 const ClientErrorMessage = require( './components/ClientErrorMessage.vue' );
 const EditSummaryDialog = require( './components/EditSummaryDialog.vue' );
+const { getLabelsChain } = require( '../lib/json-form/core/i18n.js' );
 const { adjustPointerForValidationErrors } = require( './utils.js' );
 let errorsDisplayed = 0;
 
@@ -85,6 +86,7 @@ module.exports = exports = {
 		const providerId = inject( 'PROVIDER_ID' );
 		const editorFormConfig = inject( 'EDITOR_FORM_CONFIG' );
 		const canEdit = inject( 'CAN_EDIT' );
+		const i18n = inject( 'i18n' );
 		const isLoading = ref( false );
 		const editSummaryOpen = ref( false );
 		const summary = ref( '' );
@@ -109,6 +111,10 @@ module.exports = exports = {
 			}
 			return errorResponse.errors.map( ( { data } ) => {
 				const adjustedPointer = adjustPointerForValidationErrors( schema, data.pointer );
+				const labels = getLabelsChain( schema, adjustedPointer, editorFormConfig.i18nPrefix );
+				data.formFieldLabel = labels.join(
+					i18n( 'communityconfiguration-editor-validation-error-label-chain-joiner' )
+				);
 				data.formFieldId = adjustedPointer
 					.slice( 1 ) // Remove leading '/'
 					.replace( /\//g, '.' );

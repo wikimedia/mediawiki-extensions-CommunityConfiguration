@@ -13,6 +13,7 @@
 	"communityconfiguration-editor-form-submit-button-loading-text": "Sending...",
 	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Remove Element",
 	"communityconfiguration-editor-array-fallback-add-element-button-label": "Add another element",
+	"communityconfiguration-editor-validation-error-label-chain-joiner": "&#32;→&#32;",
 	"communityconfiguration-guidelines-title": "What is Community Configuration?",
 	"communityconfiguration-guidelines-description": "Community Configuration is a tool that allows communities to set up and control the configuration of different {{SITENAME}} features, helping administrators suit their community specific needs.",
 	"communityconfiguration-guidelines-guideline1-title": "Learn more",
