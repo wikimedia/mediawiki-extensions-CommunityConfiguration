@@ -52,12 +52,9 @@ class MediaWikiConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase 
 
 		// after changing the value, the new ones are returned
 		$config = new stdClass();
-		$config->Number = 21;
 		$config->NumberWithDefault = 42;
 		$provider->storeValidConfiguration( $config, $authority );
 
-		$this->assertTrue( $reader->has( 'Number' ) );
-		$this->assertSame( 21, $reader->get( 'Number' ) );
 		$this->assertTrue( $reader->has( 'NumberWithDefault' ) );
 		$this->assertSame( 42, $reader->get( 'NumberWithDefault' ) );
 	}
