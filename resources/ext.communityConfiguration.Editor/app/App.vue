@@ -59,6 +59,7 @@ const GenericSubmitErrorMessage = require( './components/GenericSubmitErrorMessa
 const NetworkErrorMessage = require( './components/NetworkErrorMessage.vue' );
 const ClientErrorMessage = require( './components/ClientErrorMessage.vue' );
 const EditSummaryDialog = require( './components/EditSummaryDialog.vue' );
+const { adjustPointerForValidationErrors } = require( './utils.js' );
 let errorsDisplayed = 0;
 
 // @vue/component
@@ -107,7 +108,8 @@ module.exports = exports = {
 				return [];
 			}
 			return errorResponse.errors.map( ( { data } ) => {
-				data.formFieldId = data.pointer
+				const adjustedPointer = adjustPointerForValidationErrors( schema, data.pointer );
+				data.formFieldId = adjustedPointer
 					.slice( 1 ) // Remove leading '/'
 					.replace( /\//g, '.' );
 				return data;
