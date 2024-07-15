@@ -32,6 +32,29 @@ abstract class SchemaProviderTestCase extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $storedEmergencyDefaults, $actualDefaults );
 	}
 
+	final public function testAssertEveryToplevelPropertyHasDefault(): void {
+		$defaults = $this->getProvider()->getValidator()->getSchemaBuilder()->getDefaultsMap();
+		$rootProperties = $this->getProvider()->getValidator()->getSchemaBuilder()->getRootProperties();
+		foreach ( $rootProperties as $propertyName => $propertySchema ) {
+			$propertyDefaultValue = $defaults->$propertyName;
+			if ( $propertyDefaultValue === null && !$this->isNullAPlausibleSchemaValue( $propertySchema ) ) {
+				$this->fail( "Missing default value for $propertyName" );
+			}
+		}
+		// everything seems alright
+		$this->addToAssertionCount( 1 );
+	}
+
+	private function isNullAPlausibleSchemaValue( array $propSchema ): bool {
+		if ( $propSchema['type'] === 'null' ) {
+			return true;
+		}
+		if ( is_array( $propSchema['type'] ) && in_array( 'null', $propSchema['type'], true ) ) {
+			return true;
+		}
+		return false;
+	}
+
 	final protected function getProvider(): IConfigurationProvider {
 		return CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()
