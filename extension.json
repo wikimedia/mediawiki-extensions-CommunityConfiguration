@@ -181,6 +181,7 @@
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/mediawiki/PageTitleControl.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/mediawiki/PageTitlesControl.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/mediawiki/NamespacesControl.vue",
+				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/mediawiki/CommonsFileControl.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/controls/index.js",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/controls/ControlWrapper.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/controls/BooleanControl.vue",
@@ -229,6 +230,7 @@
 			],
 			"dependencies": [
 				"mediawiki.api",
+				"mediawiki.ForeignApi",
 				"vue",
 				"@wikimedia/codex",
 				"mediawiki.jqueryMsg"

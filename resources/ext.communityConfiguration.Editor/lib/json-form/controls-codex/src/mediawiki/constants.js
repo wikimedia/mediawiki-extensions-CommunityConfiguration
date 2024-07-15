@@ -2,8 +2,10 @@ const definitionsClassNamespace = 'MediaWiki\\Extension\\CommunityConfiguration\
 const PAGE_TITLE = `${definitionsClassNamespace}\\PageTitleControl`;
 const PAGE_TITLES = `${definitionsClassNamespace}\\PageTitlesControl`;
 const NAMESPACES = `${definitionsClassNamespace}\\NamespacesControl`;
+const COMMONS_FILE = `${definitionsClassNamespace}\\CommonsFileControl`;
 
 const MEDIAWIKI_DEFINITIONS = {
+	COMMONS_FILE,
 	PAGE_TITLE,
 	PAGE_TITLES,
 	NAMESPACES

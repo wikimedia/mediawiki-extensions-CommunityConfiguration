@@ -66,10 +66,6 @@ function getCustomMultiSelectControlMessages( prefix, propName ) {
 	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'description' ] );
 }
 
-function getCustomPageTitleControlMessages( prefix, propName ) {
-	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'placeholder', 'description' ] );
-}
-
 function getControlTextProps( prop, prefix, schema ) {
 	if ( schema.type === 'string' && schema.enum === undefined && schema.control === undefined ) {
 		return getStringControlMessages( prefix, prop );
@@ -89,8 +85,11 @@ function getControlTextProps( prop, prefix, schema ) {
 	if ( schema.type === 'array' && !schema.control ) {
 		return getArrayControlMessages( prefix, prop );
 	}
-	if ( schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl' )( null, schema ) ) {
-		return getCustomPageTitleControlMessages( prefix, prop );
+	if (
+		schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl' )( null, schema ) ||
+		schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\CommonsFileControl' )( null, schema )
+	) {
+		return getControlMessages( prefix, prop, [ 'label', 'help-text', 'placeholder', 'description' ] );
 	}
 	if (
 		schemaControlIs( 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitlesControl' )( null, schema ) ||
