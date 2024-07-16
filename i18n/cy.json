@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Afalau"
+		]
+	},
+	"communityconfiguration": "Ffurfweddiad Cymuned",
+	"communityconfiguration-desc": "Mae'n cynnwys rhesymeg Ffurfweddiad Cymuned",
+	"communityconfiguration-editor-chip-control-aria-chip-description": "Gwasgwch Enter i olygu neu Delete i ddileu",
+	"communityconfiguration-editor-form-submit-button-text": "Cadw newidiadau",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Wrthi'n anfon...",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Dileu Elfen",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "Ychwanegu elfen arall",
+	"communityconfiguration-guidelines-title": "Beth yw Ffurfweddiad Cymuned?",
+	"communityconfiguration-guidelines-guideline1-title": "Dysgu mwy",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Manylion gwall",
+	"communityconfiguration-schema-validation-error": "DRAFFT: $2. Allwedd: $1",
+	"communityconfiguration-providers-list-title": "Nodweddion",
+	"communityconfigurationeditor": "Wrthi'n golygu $1",
+	"communityconfiguration-edit-summary-dialog-title": "Cadw newidiadau am $1",
+	"communityconfiguration-edit-summary-dialog-title-span": "(dewisol)",
+	"communityconfiguration-edit-summary-dialog-save-button": "Cadw newidiadau",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Canslo",
+	"communityconfiguration-edit-summary-dialog-label": "Crynodeb golygu",
+	"communityconfiguration-editor-client-success-message": "Cadwyd {{GENDER:$1|eich}} newidiadau",
+	"communityconfiguration-editor-message-dismiss-button-label": "Cau",
+	"communityconfiguration-page-title-control-no-results": "Dim canlyniadau.",
+	"communityconfiguration-editor-navigation-tab-viewform": "Gweld ffurf",
+	"tag-community_configuration": "[[mw:Community configuration|Ffurfweddiad Cymuned]]"
+}
