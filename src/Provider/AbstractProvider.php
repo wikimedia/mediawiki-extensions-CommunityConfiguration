@@ -82,28 +82,65 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	}
 
 	/**
-	 * Store configuration, after possibly manipulating it
+	 * Store configuration
 	 *
-	 * Can be used by providers to manipulate $newConfig before letting it get saved.
+	 * Providers should override this if they want to modify how _both_ storeValidConfiguration()
+	 * and alwaysStoreValidConfiguration() behave.
 	 *
 	 * @param mixed $newConfig The configuration value to store. Can be any JSON serializable type
 	 * @param Authority $authority
 	 * @param string $summary
+	 * @param bool $bypassPermissionCheck Whether IConfigurationStore::alwaysStoreConfiguration
+	 * should be used.
 	 * @return StatusValue
 	 */
-	protected function storeConfiguration(
+	private function doStoreValidConfiguration(
 		$newConfig,
 		Authority $authority,
-		string $summary = ''
+		string $summary,
+		bool $bypassPermissionCheck
 	): StatusValue {
-		return $this->getStore()->storeConfiguration(
+		$validationStatus = $this->getValidator()->validateStrictly( $newConfig );
+		if ( !$validationStatus->isGood() ) {
+			return $validationStatus;
+		}
+
+		$args = [
 			$newConfig,
 			$this->getValidator()->areSchemasSupported()
 				? $this->getValidator()->getSchemaVersion()
 				: null,
 			$authority,
-			$summary
-		);
+			$summary,
+		];
+
+		if ( $bypassPermissionCheck ) {
+			return $this->getStore()->alwaysStoreConfiguration( ...$args );
+		} else {
+			return $this->getStore()->storeConfiguration( ...$args );
+		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function storeValidConfiguration(
+		$newConfig,
+		Authority $authority,
+		string $summary = ''
+	): StatusValue {
+		return $this->doStoreValidConfiguration( $newConfig, $authority, $summary, false );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function alwaysStoreValidConfiguration(
+		$newConfig,
+		Authority $authority,
+		string $summary = ''
+	): StatusValue {
+		return $this->doStoreValidConfiguration( $newConfig, $authority, $summary, true );
 	}
 
 	/**

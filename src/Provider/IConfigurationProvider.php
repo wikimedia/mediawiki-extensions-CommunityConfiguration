@@ -91,14 +91,36 @@ interface IConfigurationProvider extends LoggerAwareInterface {
 	public function loadValidConfigurationUncached(): StatusValue;
 
 	/**
-	 * Store configuration while guaranteeing
+	 * Store configuration while guaranteeing it is valid
 	 *
+	 * The method checks for editing permissions.
+	 *
+	 * @see IConfigurationProvider::alwaysStoreValidConfiguration(), which skips the permissions
+	 * check.
 	 * @param mixed $newConfig The configuration value to store. Can be any JSON serializable type
+	 * @param Authority $authority
+	 * @param string $summary Edit summary
+	 * @return StatusValue
+	 */
+	public function storeValidConfiguration(
+		$newConfig,
+		Authority $authority,
+		string $summary = ''
+	): StatusValue;
+
+	/**
+	 * Store configuration while guaranteeing it is valid
+	 *
+	 * The method SKIPS any permission checks, and leaves them as the caller's responsibility.
+	 * Use storeValidConfiguration() if that is not what you want.
+	 *
+	 * @see IConfigurationProvider::storeValidConfiguration()
+	 * @param mixed $newConfig The configuration value to store. Can be any JSON serializable type.
 	 * @param Authority $authority
 	 * @param string $summary
 	 * @return StatusValue
 	 */
-	public function storeValidConfiguration(
+	public function alwaysStoreValidConfiguration(
 		$newConfig,
 		Authority $authority,
 		string $summary = ''

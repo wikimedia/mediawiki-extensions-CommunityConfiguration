@@ -65,4 +65,24 @@ class DataProviderIntegrationTest extends MediaWikiIntegrationTestCase {
 			'NumberWithDefault' => 42,
 		], $result );
 	}
+
+	public function testStoreNoPermissions() {
+		$authority = $this->getTestUser()->getAuthority();
+		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+			->getConfigurationProviderFactory()
+			->newProvider( self::PROVIDER_ID );
+
+		$storeStatus = $provider->storeValidConfiguration( (object)[ 'NumberWithDefault' => 42 ], $authority );
+		$this->assertStatusError( 'sitejsonprotected', $storeStatus );
+	}
+
+	public function testStoreBypassPermissions() {
+		$authority = $this->getTestUser()->getAuthority();
+		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+			->getConfigurationProviderFactory()
+			->newProvider( self::PROVIDER_ID );
+
+		$storeStatus = $provider->alwaysStoreValidConfiguration( (object)[ 'NumberWithDefault' => 42 ], $authority );
+		$this->assertStatusOK( $storeStatus );
+	}
 }

@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
-use MediaWiki\Permissions\Authority;
 use StatusValue;
 use stdClass;
 
@@ -106,25 +105,5 @@ class DataProvider extends AbstractProvider {
 	 */
 	public function loadValidConfigurationUncached(): StatusValue {
 		return $this->processStoreStatus( $this->getStore()->loadConfigurationUncached() );
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function storeValidConfiguration(
-		$newConfig,
-		Authority $authority,
-		string $summary = ''
-	): StatusValue {
-		$validationStatus = $this->getValidator()->validateStrictly( $newConfig );
-		if ( !$validationStatus->isGood() ) {
-			return $validationStatus;
-		}
-
-		return $this->storeConfiguration(
-			$newConfig,
-			$authority,
-			$summary
-		);
 	}
 }
