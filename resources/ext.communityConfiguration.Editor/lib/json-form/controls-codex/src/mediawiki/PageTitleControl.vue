@@ -7,7 +7,7 @@
 			:menu-config="menuConfig"
 			:placeholder="uischema.placeholder"
 			@input="onInput"
-			@update:selected="onChange"
+			@update:selected="onSelectionChange"
 		>
 			<template #no-results>
 				{{ $i18n( 'communityconfiguration-page-title-control-no-results' ).text() }}
@@ -42,9 +42,18 @@ module.exports = exports = {
 			onChange
 		} = useCodexControl( useJsonFormControl( props ) );
 		const initialValue = unref( control.modelValue );
-		const selection = ref( null );
+		const selection = ref( initialValue );
 		const menuItems = ref( [] );
 		const currentSearchTerm = ref( '' );
+
+		const onSelectionChange = ( value ) => {
+			if ( value === null ) {
+				// This is a workaround until we have T365145
+				onChange( '' );
+			} else {
+				onChange( value );
+			}
+		};
 
 		/**
 		 * Handle lookup input.
@@ -91,13 +100,16 @@ module.exports = exports = {
 				} );
 		}, 300 );
 
+		// do an initial search for menu-items to prepopulate the select field
+		onInput( initialValue );
+
 		const menuConfig = {
 			visibleItemLimit: 6
 		};
 
 		return {
+			onSelectionChange,
 			controlWrapper,
-			onChange,
 			selection,
 			initialValue,
 			menuItems,
