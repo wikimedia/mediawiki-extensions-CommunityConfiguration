@@ -19,6 +19,25 @@ function search( searchTerm, offset ) {
 	return new mw.Api().get( params );
 }
 
+function searchCommonsFiles( searchTerm, offset ) {
+	const params = {
+		action: 'query',
+		generator: 'prefixsearch',
+		format: 'json',
+		formatversion: 2,
+		gpssearch: searchTerm,
+		gpsnamespace: 6,
+		prop: 'imageinfo',
+		iiprop: 'url'
+	};
+
+	if ( offset ) {
+		params.set( 'continue', String( offset ) );
+	}
+	return new mw.ForeignApi( 'https://commons.wikimedia.org/w/api.php', { anonymous: true } ).get( params );
+}
+
 module.exports = exports = {
-	search
+	search,
+	searchCommonsFiles
 };

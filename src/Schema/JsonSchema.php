@@ -68,6 +68,8 @@ abstract class JsonSchema {
 	// string type
 	public const MIN_LENGTH = 'minLength';
 	public const MAX_LENGTH = 'maxLength';
+	public const FORMAT = 'format';
+	public const PATTERN = 'pattern';
 	// array type
 	public const MIN_ITEMS = 'minItems';
 	public const MAX_ITEMS = 'maxItems';
