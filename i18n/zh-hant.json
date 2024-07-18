@@ -9,6 +9,7 @@
 	"communityconfiguration-editor-chip-control-aria-chip-description": "按Enter鍵編輯，或按Delete鍵移除",
 	"communityconfiguration-editor-client-generic-error": "載入配置編輯器時發生問題。請稍後再試。",
 	"communityconfiguration-editor-client-generic-error-description": "元件$1中的「$2」發生錯誤。詳情請參閱下方：",
+	"communityconfiguration-editor-client-post-feedback": "如果問題仍然存在，請考慮在討論頁[$1 留下回饋]。",
 	"communityconfiguration-editor-client-validation-errors": "表單中有{{PLURAL:$1|一個錯誤|$1個錯誤}}：",
 	"communityconfiguration-editor-form-submit-button-text": "儲存變更",
 	"communityconfiguration-editor-form-submit-button-loading-text": "傳送中…",
