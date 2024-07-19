@@ -28,19 +28,20 @@ class MessagesProcessor {
 	 * @return array
 	 */
 	public function getMessages( string $providerId, Iterator $schema, string $messagePrefix ): array {
-		$messages = [];
-		if ( $schema instanceof JsonSchemaIterator ) {
-			$keys = $this->computeEditorMessageKeys( $providerId, $schema, $messagePrefix );
-			// Present for any schema a used in the editor summary dialog
-			array_unshift( $keys, strtolower( $messagePrefix . '-' . $providerId . '-title' ) );
-			foreach ( $keys as $key ) {
-				$msg = $this->messageLocalizer->msg( $key );
-				if ( $msg->exists() ) {
-					$messages[$key] = $msg->plain();
-				}
-			}
-		} else {
+		if ( !$schema instanceof JsonSchemaIterator ) {
 			$this->logger->debug( __CLASS__ . ' skipped schema Iterator, because it is not a JsonSchemaIterator.' );
+			return [];
+		}
+
+		$messages = [];
+		$keys = $this->computeEditorMessageKeys( $providerId, $schema, $messagePrefix );
+		// Present for any schema a used in the editor summary dialog
+		array_unshift( $keys, strtolower( $messagePrefix . '-' . $providerId . '-title' ) );
+		foreach ( $keys as $key ) {
+			$msg = $this->messageLocalizer->msg( $key );
+			if ( $msg->exists() ) {
+				$messages[$key] = $msg->plain();
+			}
 		}
 
 		return $messages;
