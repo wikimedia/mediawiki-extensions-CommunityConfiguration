@@ -127,6 +127,26 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'communityconfiguration-editor-chip-control-aria-chip-description',
 			]
 		];
+		yield 'array of enum' => [
+			new class() extends JsonSchema {
+				public const EnumArray = [
+					JsonSchema::TYPE => JsonSchema::TYPE_ARRAY,
+					JsonSchema::ITEMS => [
+						JsonSchema::TYPE => JsonSchema::TYPE_STRING,
+						JsonSchema::ENUM => [ "foo", "bar" ],
+					]
+				];
+			},
+			[
+				'pfx-pid-enumarray-label',
+				'pfx-pid-enumarray-help-text',
+				'pfx-pid-enumarray-description',
+			],
+			[
+				'mw-widgets-titlesmultiselect-placeholder',
+				'communityconfiguration-editor-chip-control-aria-chip-description',
+			]
+		];
 		yield 'object' => [
 			new class() extends JsonSchema {
 				public const ExampleObject = [

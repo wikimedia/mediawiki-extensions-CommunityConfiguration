@@ -108,12 +108,20 @@ class MessagesProcessor {
 				) );
 			}
 			if ( isset( $schema->{JsonSchema::ENUM} ) ) {
-				foreach ( $schema->{JsonSchema::ENUM} as $enumValue ) {
-					$messages[] = $schemaBaseKey . '-option-' . $enumValue . '-label';
-				}
 				$messages[] = $schemaBaseKey . '-label';
 				$messages[] = $schemaBaseKey . '-help-text';
 				$messages[] = $schemaBaseKey . '-description';
+				if ( $parentType === JsonSchema::TYPE_ARRAY ) {
+					if ( $schema->{JsonSchema::TYPE} === JsonSchema::TYPE_STRING ) {
+						$messages[] = 'mw-widgets-titlesmultiselect-placeholder';
+						$messages[] = 'communityconfiguration-editor-chip-control-aria-chip-description';
+					}
+					// We don't generate labels for arrays of simple types
+					continue;
+				}
+				foreach ( $schema->{JsonSchema::ENUM} as $enumValue ) {
+					$messages[] = $schemaBaseKey . '-option-' . $enumValue . '-label';
+				}
 				// Do not process the schema type for enums as it would generate
 				// undesired keys, eg: placeholders
 				continue;
@@ -124,7 +132,7 @@ class MessagesProcessor {
 				$schema->{JsonSchema::TYPE} === JsonSchema::TYPE_INTEGER
 			) {
 				if ( $parentType === JsonSchema::TYPE_ARRAY ) {
-					if ( $schema->type === JsonSchema::TYPE_STRING ) {
+					if ( $schema->{JsonSchema::TYPE} === JsonSchema::TYPE_STRING ) {
 						$messages[] = 'mw-widgets-titlesmultiselect-placeholder';
 						$messages[] = 'communityconfiguration-editor-chip-control-aria-chip-description';
 					}
