@@ -58,6 +58,8 @@ module.exports = exports = {
 
 			// Do nothing if we have no input.
 			if ( !value ) {
+				// This is a workaround until we have T365145
+				onChange( { title: '', url: '' } );
 				menuItems.value = [];
 				return;
 			}
