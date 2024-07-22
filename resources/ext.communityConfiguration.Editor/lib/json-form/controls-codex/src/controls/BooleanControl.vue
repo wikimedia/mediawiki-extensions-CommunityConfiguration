@@ -7,6 +7,7 @@
 		<cdx-checkbox
 			v-bind="control.otherAttrs"
 			v-model="control.modelValue.value"
+			:disabled="T370611Hack"
 			@update:model-value="onChange"
 		>
 			{{ slotProps.controlLabel }}
@@ -32,7 +33,26 @@ module.exports = exports = {
 	},
 	props: Object.assign( {}, rendererProps() ),
 	setup: function ( props ) {
-		return useCodexControl( useJsonFormControl( props ) );
+
+		const {
+			control,
+			controlWrapper,
+			onChange
+		} = useCodexControl( useJsonFormControl( props ) );
+
+		let T370611Hack = false;
+		// eslint-disable-next-line vue/no-undef-properties
+		if ( props.schema[ 'disabled-true-hack-T370611' ] ) {
+			// HACK: for T370611. This should be removed asap, ideally before end of August 2024.
+			T370611Hack = true;
+			control.modelValue.value = true;
+		}
+		return {
+			control,
+			controlWrapper,
+			onChange,
+			T370611Hack
+		};
 	}
 };
 </script>
