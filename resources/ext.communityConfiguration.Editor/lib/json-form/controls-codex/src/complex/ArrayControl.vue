@@ -49,7 +49,7 @@
 
 <script>
 const { ref, computed } = require( 'vue' );
-const { CdxField, CdxButton, CdxIcon } = require( '@wikimedia/codex' );
+const { CdxField, CdxButton, CdxIcon } = require( '../../../../../../codex.js' );
 const { cdxIconAdd, cdxIconTrash } = require( '../../../../icons.json' );
 const {
 	rendererProps,

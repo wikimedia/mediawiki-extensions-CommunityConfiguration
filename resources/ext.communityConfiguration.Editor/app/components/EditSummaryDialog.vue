@@ -29,7 +29,7 @@
 
 <script>
 const { toRef, inject, computed } = require( 'vue' );
-const { CdxDialog, CdxField, CdxTextArea, useModelWrapper } = require( '@wikimedia/codex' );
+const { CdxDialog, CdxField, CdxTextArea, useModelWrapper } = require( '../../../codex.js' );
 
 // @vue/component
 module.exports = exports = {

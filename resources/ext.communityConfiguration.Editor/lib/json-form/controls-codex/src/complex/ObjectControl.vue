@@ -25,7 +25,7 @@
 
 <script>
 const { inject, unref } = require( 'vue' );
-const { CdxField } = require( '@wikimedia/codex' );
+const { CdxField } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
 	DispatchRenderer,

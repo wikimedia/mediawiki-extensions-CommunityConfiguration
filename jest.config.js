@@ -24,7 +24,13 @@ module.exports = {
 	testEnvironment: 'jsdom',
 	testEnvironmentOptions: {
 		customExportConditions: ["node", "node-addons"],
-	 },
+	},
+	// A map from regular expressions to module names or to arrays of module
+	// names that allow to stub out resources with a single module
+	moduleNameMapper: {
+		'icons.json': '@wikimedia/codex-icons',
+		'codex.js': '@wikimedia/codex'
+	},
 	// Indicates whether the coverage information should be collected while executing the test
 	collectCoverage: true,
 	collectCoverageFrom: [

@@ -13,7 +13,7 @@
 <script>
 
 const { defineComponent } = require( 'vue' );
-const { CdxTextInput } = require( '@wikimedia/codex' );
+const { CdxTextInput } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
 	useJsonFormControl

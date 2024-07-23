@@ -18,7 +18,7 @@
 
 <script>
 const { ref, unref } = require( 'vue' );
-const { CdxLookup } = require( '@wikimedia/codex' );
+const { CdxLookup } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
 	useJsonFormControl

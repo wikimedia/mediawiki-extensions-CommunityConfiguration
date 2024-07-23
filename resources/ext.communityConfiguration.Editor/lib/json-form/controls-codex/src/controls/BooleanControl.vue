@@ -15,7 +15,7 @@
 </template>
 
 <script>
-const { CdxCheckbox } = require( '@wikimedia/codex' );
+const { CdxCheckbox } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
 	useJsonFormControl
