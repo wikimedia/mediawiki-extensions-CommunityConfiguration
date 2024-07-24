@@ -72,8 +72,7 @@ class SchemaMigrator {
 		}
 
 		$schemaBuilder = $validator->getSchemaBuilder();
-		$currentSchemaReader = $schemaBuilder->getVersionManager()
-			->getVersionForSchema( $currentVersion );
+		$currentSchemaReader = $schemaBuilder->getVersionManager()->getVersionForSchema( $currentVersion );
 		if ( $versionComparsion < 0 ) {
 			// current version is lower than $targetVersion, we need to upgrade
 			$nextVersion = $currentSchemaReader->getNextVersion();
@@ -84,7 +83,7 @@ class SchemaMigrator {
 
 		if ( $nextVersion === null ) {
 			throw new LogicException(
-				$validator->getSchemaBuilder()->getSchemaName()
+				$currentSchemaReader->getSchemaId()
 				. ' does not have a next/previous version linked.'
 			);
 		}
