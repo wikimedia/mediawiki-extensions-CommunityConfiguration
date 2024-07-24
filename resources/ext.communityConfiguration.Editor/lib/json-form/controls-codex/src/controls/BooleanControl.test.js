@@ -45,9 +45,7 @@ describe( 'BooleanControl', () => {
 				uischema: uischema
 			},
 			global: {
-				provide: {
-					jsonform
-				}
+				...global.getGlobalMediaWikiMountingOptions( { jsonform } )
 			}
 		} );
 

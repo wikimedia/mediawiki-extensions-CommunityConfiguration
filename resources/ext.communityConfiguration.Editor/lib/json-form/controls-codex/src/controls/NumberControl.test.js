@@ -30,9 +30,7 @@ describe( 'NumberControl', () => {
 				schema
 			},
 			global: {
-				provide: {
-					jsonform
-				}
+				...global.getGlobalMediaWikiMountingOptions( { jsonform } )
 			}
 		} );
 
@@ -67,9 +65,7 @@ describe( 'NumberControl', () => {
 				schema
 			},
 			global: {
-				provide: {
-					jsonform
-				}
+				...global.getGlobalMediaWikiMountingOptions( { jsonform } )
 			}
 		} );
 
