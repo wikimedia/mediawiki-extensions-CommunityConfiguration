@@ -1,15 +1,38 @@
 {
 	"@metadata": {
 		"authors": [
-			"Adriendelucca"
+			"Adriendelucca",
+			"Huñvreüs"
 		]
 	},
+	"communityconfiguration": "Kefluniadur ar Gumuniezh",
+	"communityconfiguration-desc": "Enderc’hel a ra kefluniadur ar gumuniezh",
+	"communityconfiguration-editor-client-generic-error": "Ur fazi ez eus bet o kargañ an aozer kefluniadur. Klaskit adarre diwezhatoc'h, mar plij.",
+	"communityconfiguration-editor-client-generic-error-description": "Ur fazi ez eus bet e '$2' e parzh $1. Gwelit munudoù amañ dindanː",
+	"communityconfiguration-editor-form-submit-button-text": "Enrollañ ar c'hemmoù",
 	"communityconfiguration-editor-form-submit-button-loading-text": "O kas...",
+	"communityconfiguration-guidelines-title": "Petra eo ar Kefluniadur ar Gumuniezh ?",
+	"communityconfiguration-guidelines-description": "Gant ar benveg Kefluniadur ar Gumuniezh e c’hall kumuniezhoù staliañ ha kontrolliñ kefluniadur arc’hweladurioù {{SITENAME}}, en ur sikouriñ ar verourien da glotañ gant ezhommoù ispisial o c’humuniezh.",
+	"communityconfiguration-guidelines-guideline1-title": "Gouzout hiroc'h",
+	"communityconfiguration-guidelines-guideline2-title": "Kasit {{GENDER:$1|ho}} evezhiadenn deomp",
+	"communityconfiguration-invalid-stored-config-error": "N’eo ket bet posubl kargañ ur c’hefluniadur mat eus pourvezer $1 (code <tt>$2</tt>).",
+	"communityconfiguration-invalid-stored-config-error-with-link": "N’eo ket bet posubl kargañ ur c’hefluniadur mat eus pourvezer $1 (code <tt>$2</tt>), gwelet $3.",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Munudoù ar fazi",
+	"communityconfiguration-schema-validation-error": "BROUILHED: $2. Alc' hwez: $1",
+	"communityconfiguration-providers-list-title": "Arc’hweladurioù",
 	"communityconfiguration-provider-not-found": "N'eo ket bet kavet ar pourchaser \"$1\"",
+	"communityconfiguration-unknown-error": "BROUILHEDː Ur fazi ez eus bet, menegiñ ur gudenn e Phabricator?",
+	"communityconfigurationdashboard": "Kefluniadur ar Gumuniezh",
 	"communityconfigurationeditor": "Oc'h aozañ \"$1\"",
+	"communityconfiguration-edit-summary-reminder": "<b>Kounadur</b>: Gallout a ra ar c’hemm-mañ skogañ kalz izili eus ar gumuniezh, lavarit mar plij perak e {{GENDER:$1|rit}} ar c’hemm ha menegit ul liamm war-zu kement kaozeadenn mard eo dereat.",
+	"communityconfiguration-edit-summary-dialog-title": "Enrollañ ar c' hemmoù evit $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(diret)",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Deskrivañ ar c’hemmoù bet graet d’ar c’hefluniadur",
+	"communityconfiguration-edit-summary-dialog-save-button": "Enrollañ ar c'hemmoù",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Nullañ",
-	"communityconfiguration-editor-client-success-message": "Enrollet eo bet ho kemmoù",
+	"communityconfiguration-edit-summary-dialog-label": "Diverradenn ar c'hemmoù",
+	"communityconfiguration-editor-client-success-message": "Enrollet eo bet {{GENDER:$1|ho}} kemmoù",
+	"communityconfiguration-editor-client-data-submission-error": "Ur fazi ez eus bet oc’h enrollañ  {{GENDER:$1|ho}} kemmoù. Klaskit adarre diwezhatoc’h mar plij.",
 	"communityconfiguration-editor-message-dismiss-button-label": "Serriñ",
 	"communityconfiguration-page-title-control-no-results": "N'eus bet kavet disoc'h ebet."
 }

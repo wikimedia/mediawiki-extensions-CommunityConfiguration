@@ -2,12 +2,27 @@
 	"@metadata": {
 		"authors": [
 			"Pyscowicz",
-			"Stryn"
+			"Stryn",
+			"Samoasambia"
 		]
 	},
 	"communityconfiguration": "Yhteisöasetukset",
+	"communityconfiguration-editor-client-generic-error": "Jotain meni pieleen asetusmuokkainta ladatessa. Kokeile myöhemmin uudelleen.",
+	"communityconfiguration-editor-form-submit-button-text": "Tallenna muutokset",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Lähetetään...",
+	"communityconfiguration-guidelines-title": "Mitä on yhteisöasetukset?",
+	"communityconfiguration-guidelines-description": "Yhteisöasetukset on työkalu, joka mahdollistaa yhteisöjen laatia ja säätää {{GRAMMAR:genitive|{{SITENAME}}}} eri ominaisuuksien asetuksia auttaen ylläpitäjiä vastaamaan yhteisönsä erityisiin tarpeisiin.",
+	"communityconfiguration-guidelines-guideline1-title": "Lisätietoja",
+	"communityconfiguration-guidelines-guideline2-title": "Lähetä meille {{GENDER:$1|palautteesi}}",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Virhetiedot",
+	"communityconfiguration-providers-list-title": "Ominaisuudet",
+	"communityconfigurationdashboard": "Yhteisöasetukset",
+	"communityconfiguration-edit-summary-dialog-title-span": "(valinnainen)",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Kuvaile, mitä muutoksia asetuksiin on tehty",
 	"communityconfiguration-edit-summary-dialog-save-button": "Tallenna muutokset",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Peruuta",
 	"communityconfiguration-edit-summary-dialog-label": "Muokkausyhteenveto",
-	"communityconfiguration-editor-message-dismiss-button-label": "Sulje"
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Muutoksesi}} on tallennettu",
+	"communityconfiguration-editor-message-dismiss-button-label": "Sulje",
+	"communityconfiguration-page-title-control-no-results": "Tuloksia ei löytynyt."
 }

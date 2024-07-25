@@ -5,6 +5,9 @@
 		]
 	},
 	"communityconfiguration": "Közösségi konfiguráció",
+	"communityconfiguration-editor-client-generic-error": "Hiba történt a konfigurációszerkesztő betöltése közben. Próbáld újra később.",
+	"communityconfiguration-editor-form-submit-button-text": "Változtatások mentése",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Küldés…",
 	"communityconfiguration-guidelines-title": "Mi az a közösségi konfiguráció?",
 	"communityconfiguration-guidelines-description": "A közösségi konfiguráció lehetővé teszi a közösségeknek, hogy maguk állítsák be és felügyeljék különböző {{SITENAME}}-funkciók konfigurációját, ezzel segítve az adminisztrátoroknak az adott közösség igényeinek kielégítésében.",
 	"communityconfiguration-guidelines-guideline1-title": "Tudj meg többet",
@@ -12,5 +15,11 @@
 	"communityconfiguration-guidelines-guideline2-title": "{{GENDER:$1|Visszajelzés}}",
 	"communityconfiguration-guidelines-guideline2-description": "Szeretnénk hallani a {{GENDER:$1|gondolataid}}! Elérhetsz minket a [[mw:Talk:Growth|vitalapunkon]].",
 	"communityconfiguration-providers-list-title": "Funkciók",
-	"communityconfigurationdashboard": "Közösségi konfiguráció"
+	"communityconfigurationdashboard": "Közösségi konfiguráció",
+	"communityconfiguration-edit-summary-dialog-title": "$1 módosításainak mentése",
+	"communityconfiguration-edit-summary-dialog-save-button": "Változtatások mentése",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Mégse",
+	"communityconfiguration-edit-summary-dialog-label": "Szerkesztési összefoglaló",
+	"communityconfiguration-editor-message-dismiss-button-label": "Bezárás",
+	"communityconfiguration-page-title-control-no-results": "Nincs találat."
 }
