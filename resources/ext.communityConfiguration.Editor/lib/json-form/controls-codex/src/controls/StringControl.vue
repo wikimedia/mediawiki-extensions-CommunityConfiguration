@@ -5,6 +5,7 @@
 			v-model="control.modelValue.value"
 			:placeholder="control.uischema.placeholder"
 			@update:model-value="onChange"
+			@input="onInput"
 		>
 		</cdx-text-input>
 	</control-wrapper>
@@ -19,6 +20,7 @@ const {
 	useJsonFormControl
 } = require( '../../config/index.js' );
 const { useCodexControl } = require( '../utils.js' );
+const { useValidationErrors } = require( '../../../form/index.js' );
 const ControlWrapper = require( './ControlWrapper.vue' );
 
 // @vue/component
@@ -30,7 +32,23 @@ module.exports = exports = defineComponent( {
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
-		return useCodexControl( useJsonFormControl( props ) );
+		const { control, controlWrapper, onChange } = useCodexControl( useJsonFormControl( props ) );
+		const { setValidationErrorForFieldId, clearValidationErrorForFieldId } = useValidationErrors();
+		const onInput = ( event ) => {
+			const inputElement = event.target;
+			if ( inputElement.validationMessage ) {
+				setValidationErrorForFieldId( controlWrapper.id, inputElement.validationMessage );
+			} else {
+				clearValidationErrorForFieldId( controlWrapper.id );
+			}
+		};
+
+		return {
+			onInput,
+			control,
+			controlWrapper,
+			onChange
+		};
 	}
 } );
 

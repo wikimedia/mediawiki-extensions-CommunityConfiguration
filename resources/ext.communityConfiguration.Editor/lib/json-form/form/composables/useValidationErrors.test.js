@@ -419,4 +419,56 @@ describe( 'useValidationErrors', () => {
 			expect( actualErrorMessage ).toBe( 'The property title is required' );
 		} );
 	} );
+
+	describe( 'setValidationErrorForFieldId', () => {
+		it( 'adds a new error', () => {
+			const {
+				setValidationErrorForFieldId,
+				clearValidationErrorForFieldId,
+				getAllValidationErrors
+			} = withSetup( {
+				additionalProperties: false,
+				type: 'object',
+				properties: {
+					GEHelpPanelLinks: {
+						type: 'array',
+						items: {
+							type: 'object',
+							properties: {
+								title: {
+									type: 'string',
+									default: '',
+									control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl'
+								},
+								text: {
+									type: 'string'
+								}
+							}
+						},
+						default: [],
+						maxItems: 10
+					}
+				}
+			} );
+
+			setValidationErrorForFieldId( 'GEHelpPanelLinks.0.text', 'bar' );
+			const actualErrors = getAllValidationErrors();
+
+			expect( actualErrors ).toStrictEqual( [
+				{
+					formFieldId: 'GEHelpPanelLinks.0.text',
+					formFieldLabels: [
+						mw.message( 'prefix-gehelppanellinks-label' ),
+						mw.message( 'prefix-gehelppanellinks-item-label: 1' ),
+						mw.message( 'prefix-gehelppanellinks-text-label' )
+					],
+					messageLiteral: 'bar'
+				}
+			] );
+
+			clearValidationErrorForFieldId( 'GEHelpPanelLinks.0.text' );
+			const actualErrorsAfterClear = getAllValidationErrors();
+			expect( actualErrorsAfterClear ).toStrictEqual( [] );
+		} );
+	} );
 } );

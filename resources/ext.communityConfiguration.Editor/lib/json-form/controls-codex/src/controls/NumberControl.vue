@@ -8,6 +8,7 @@
 			:max="max"
 			:placeholder="control.uischema.placeholder"
 			@update:model-value="onChange"
+			@input="onInput"
 		>
 		</cdx-text-input>
 	</control-wrapper>
@@ -18,7 +19,8 @@ const { defineComponent } = require( 'vue' );
 const { CdxTextInput } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
-	useJsonFormControl
+	useJsonFormControl,
+	useValidationErrors
 } = require( '../../config/index.js' );
 const { useCodexControl } = require( '../utils.js' );
 const ControlWrapper = require( './ControlWrapper.vue' );
@@ -41,6 +43,16 @@ module.exports = exports = defineComponent( {
 			codexControl.control.schema.maximum :
 			null;
 
+		const { setValidationErrorForFieldId, clearValidationErrorForFieldId } = useValidationErrors();
+		const onInput = ( event ) => {
+			const inputElement = event.target;
+			if ( inputElement.validationMessage ) {
+				setValidationErrorForFieldId( codexControl.controlWrapper.id, inputElement.validationMessage );
+			} else {
+				clearValidationErrorForFieldId( codexControl.controlWrapper.id );
+			}
+		};
+
 		return Object.assign( {}, codexControl, {
 			onChange( newVal ) {
 				if ( newVal === '' ) {
@@ -48,6 +60,7 @@ module.exports = exports = defineComponent( {
 				}
 				codexControl.onChange( newVal );
 			},
+			onInput,
 			min,
 			max
 		} );

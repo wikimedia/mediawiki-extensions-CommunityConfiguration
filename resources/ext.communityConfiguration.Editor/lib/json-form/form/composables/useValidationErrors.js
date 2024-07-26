@@ -25,6 +25,8 @@ const state = reactive( {
  * @property {getAllValidationErrors} getAllValidationErrors
  * @property {setValidationErrorsFromSubmitResponse} setValidationErrorsFromSubmitResponse
  * @property {adjustValidationErrorsOnArrayItemDelete} adjustValidationErrorsOnArrayItemDelete
+ * @property {setValidationErrorForFieldId} setValidationErrorForFieldId
+ * @property {clearValidationErrorForFieldId} clearValidationErrorForFieldId
  */
 
 /**
@@ -115,12 +117,50 @@ module.exports = exports = ( schemaAndPrefix ) => {
 		} );
 	}
 
+	/**
+	 * @callback setValidationErrorForFieldId
+	 * @param {string} fieldId
+	 * @param {string} messageLiteral
+	 */
+	function setValidationErrorForFieldId( fieldId, messageLiteral ) {
+		state.validationErrors = state.validationErrors.filter(
+			( error ) => error.formFieldId !== fieldId
+		);
+		const adjustedPointer = '/' + fieldId
+			.replace( /\./g, '/' );
+
+		const labels = getLabelsChain(
+			rootSchema,
+			adjustedPointer,
+			i18nPrefix
+		);
+
+		state.validationErrors.push( {
+			formFieldId: fieldId,
+			formFieldLabels: labels,
+			messageLiteral
+		} );
+	}
+
+	/**
+	 * @callback clearValidationErrorForFieldId
+	 * @param {string} fieldId
+	 * @return {void}
+	 */
+	function clearValidationErrorForFieldId( fieldId ) {
+		state.validationErrors = state.validationErrors.filter(
+			( error ) => error.formFieldId !== fieldId
+		);
+	}
+
 	return {
 		clearValidationErrors,
 		setValidationErrorsFromSubmitResponse,
 		getAllValidationErrors,
 		getValidationErrorMessageForFormFieldId,
-		adjustValidationErrorsOnArrayItemDelete
+		adjustValidationErrorsOnArrayItemDelete,
+		setValidationErrorForFieldId,
+		clearValidationErrorForFieldId
 	};
 };
 
