@@ -8,6 +8,7 @@ const {
 	useJsonFormControl,
 	useJsonFormRenderer
 } = require( './composables/useJsonForm.js' );
+const useValidationErrors = require( './composables/useValidationErrors.js' );
 
 module.exports = exports = {
 	DispatchRenderer,
@@ -15,5 +16,6 @@ module.exports = exports = {
 	rendererProps,
 	useJsonFormArrayControl,
 	useJsonFormControl,
-	useJsonFormRenderer
+	useJsonFormRenderer,
+	useValidationErrors
 };

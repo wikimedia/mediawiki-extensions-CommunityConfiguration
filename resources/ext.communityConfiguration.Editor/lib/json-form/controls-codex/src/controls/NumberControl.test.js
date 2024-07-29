@@ -19,6 +19,9 @@ describe( 'NumberControl', () => {
 			uischema,
 			renderers: null,
 			schema,
+			config: {
+				i18nPrefix: 'i18n-prefix'
+			},
 			data: {},
 			errors: ref( [] )
 		};
@@ -54,6 +57,9 @@ describe( 'NumberControl', () => {
 			uischema,
 			renderers: null,
 			schema,
+			config: {
+				i18nPrefix: 'i18n-prefix'
+			},
 			data: {},
 			errors: ref( [] )
 		};

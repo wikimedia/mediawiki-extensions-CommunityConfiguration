@@ -4,7 +4,6 @@
 		<json-form
 			:config="editorFormConfig"
 			:data="configData"
-			:errors="validationErrors"
 			:renderers="renderers"
 			:schema="schema"
 			@submit="onSubmit"
@@ -49,7 +48,7 @@
 const { inject, ref, computed, onErrorCaptured } = require( 'vue' );
 const { CdxButton, CdxMessage } = require( '../../codex.js' );
 const { cdxIconInfoFilled } = require( './icons.json' );
-const { JsonForm } = require( '../lib/json-form/form/index.js' );
+const { JsonForm, useValidationErrors } = require( '../lib/json-form/form/index.js' );
 const { renderers } = require( '../lib/json-form/controls-codex/src/index.js' );
 const SuccessMessage = require( './components/SuccessMessage.vue' );
 const MissingPermissionsNoticeMessage = require( './components/MissingPermissionsNoticeMessage.vue' );
@@ -59,8 +58,6 @@ const GenericSubmitErrorMessage = require( './components/GenericSubmitErrorMessa
 const NetworkErrorMessage = require( './components/NetworkErrorMessage.vue' );
 const ClientErrorMessage = require( './components/ClientErrorMessage.vue' );
 const EditSummaryDialog = require( './components/EditSummaryDialog.vue' );
-const { getLabelsChain } = require( '../lib/json-form/core/i18n.js' );
-const { adjustPointerForValidationErrors } = require( './utils.js' );
 let errorsDisplayed = 0;
 
 // @vue/component
@@ -86,41 +83,16 @@ module.exports = exports = {
 		const providerId = inject( 'PROVIDER_ID' );
 		const editorFormConfig = inject( 'EDITOR_FORM_CONFIG' );
 		const canEdit = inject( 'CAN_EDIT' );
-		const i18n = inject( 'i18n' );
 		const isLoading = ref( false );
 		const editSummaryOpen = ref( false );
 		const summary = ref( '' );
 		const clientError = ref( null );
 		const submitOutcome = ref( null );
-
-		function isValidationErrorResponse( errors ) {
-			if ( !errors || !Array.isArray( errors ) ) {
-				return false;
-			}
-			const errorMessageCodes = errors.map( ( err ) => err.code );
-			return errorMessageCodes.every( ( code ) => code === 'communityconfiguration-schema-validation-error' );
-		}
-
-		const validationErrors = computed( () => {
-			if ( !submitOutcome.value || !submitOutcome.value.error ) {
-				return [];
-			}
-			const errorResponse = submitOutcome.value.error.response;
-			if ( !isValidationErrorResponse( errorResponse.errors ) ) {
-				return [];
-			}
-			return errorResponse.errors.map( ( { data } ) => {
-				const adjustedPointer = adjustPointerForValidationErrors( schema, data.pointer );
-				const labels = getLabelsChain( schema, adjustedPointer, editorFormConfig.i18nPrefix );
-				data.formFieldLabel = labels.join(
-					i18n( 'communityconfiguration-editor-validation-error-label-chain-joiner' )
-				);
-				data.formFieldId = adjustedPointer
-					.slice( 1 ) // Remove leading '/'
-					.replace( /\//g, '.' );
-				return data;
-			} );
-		} );
+		const {
+			getAllValidationErrors,
+			clearValidationErrors,
+			setValidationErrorsFromSubmitResponse
+		} = useValidationErrors( { schema, config: editorFormConfig } );
 
 		function isPermissionsErrorResponse( errors ) {
 			if ( !errors || !Array.isArray( errors ) ) {
@@ -159,11 +131,12 @@ module.exports = exports = {
 					};
 				}
 
-				if ( validationErrors.value.length ) {
+				const validationErrors = getAllValidationErrors();
+				if ( validationErrors.length ) {
 					return {
 						type: 'ValidationErrorMessage',
 						props: {
-							errors: validationErrors.value,
+							errors: validationErrors,
 							feedbackURL: editorFormConfig.feedbackURL
 						}
 					};
@@ -201,6 +174,7 @@ module.exports = exports = {
 		function doSubmit() {
 			isLoading.value = true;
 			submitOutcome.value = null;
+			clearValidationErrors();
 			writingRepository.writeConfigurationData(
 				providerId, tempFormData, summary.value
 			).then( () => {
@@ -210,6 +184,7 @@ module.exports = exports = {
 			} ).catch( ( [ errorCode, response ] ) => {
 				isLoading.value = false;
 				submitOutcome.value = { error: { code: errorCode, response } };
+				setValidationErrorsFromSubmitResponse( response );
 			} );
 		}
 
@@ -244,8 +219,7 @@ module.exports = exports = {
 			providerId,
 			renderers,
 			schema,
-			summary,
-			validationErrors
+			summary
 		};
 	}
 };

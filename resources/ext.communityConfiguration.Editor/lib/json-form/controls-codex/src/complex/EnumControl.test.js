@@ -38,6 +38,9 @@ function getMountOptions( configDataObject = null, schema = null, enumLabels = n
 		uischema,
 		renderers: null,
 		schema,
+		config: {
+			i18nPrefix: 'i18n-prefix'
+		},
 		data: configDataObject || {},
 		errors: ref( [] )
 	};

@@ -1,5 +1,6 @@
 const { inject, computed, ref } = require( 'vue' );
 const { buildUISubSchema, extractRef } = require( '../../core/index.js' );
+const useValidationErrors = require( './useValidationErrors.js' );
 
 /**
  * Check wether a given object has a property specified by a key.
@@ -147,12 +148,12 @@ function useJsonFormControl( props ) {
 	if ( schemaTypeIsInteger || schemaTypeIsNumber ) {
 		otherAttrs.step = schemaTypeIsInteger ? 1 : 'any';
 	}
+
+	const { getValidationErrorMessageForFormFieldId } = useValidationErrors();
 	const statusMessages = computed( () => {
-		const validationError = jsonform.errors.value.find(
-			( error ) => error.formFieldId === pointer
-		);
-		if ( validationError ) {
-			return { error: validationError.messageLiteral };
+		const validationErrorMessage = getValidationErrorMessageForFormFieldId( pointer );
+		if ( validationErrorMessage ) {
+			return { error: validationErrorMessage };
 		}
 		return {};
 	} );
@@ -194,12 +195,11 @@ function useJsonFormArrayControl( props ) {
 		() => getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs )
 	);
 	const pointer = scopeToJsonPointer( scope );
+	const { getValidationErrorMessageForFormFieldId } = useValidationErrors();
 	const statusMessages = computed( () => {
-		const validationError = jsonform.errors.value.find(
-			( error ) => error.formFieldId === pointer
-		);
-		if ( validationError ) {
-			return { error: validationError.messageLiteral };
+		const validationErrorMessage = getValidationErrorMessageForFormFieldId( pointer );
+		if ( validationErrorMessage ) {
+			return { error: validationErrorMessage };
 		}
 		return {};
 	} );

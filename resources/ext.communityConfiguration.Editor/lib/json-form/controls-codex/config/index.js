@@ -17,6 +17,7 @@ const {
 	useJsonFormArrayControl,
 	useJsonFormControl,
 	useJsonFormRenderer,
+	useValidationErrors,
 	DispatchRenderer
 } = require( '../../form/index.js' );
 
@@ -37,5 +38,6 @@ module.exports = exports = {
 	rendererProps,
 	useJsonFormArrayControl,
 	useJsonFormControl,
-	useJsonFormRenderer
+	useJsonFormRenderer,
+	useValidationErrors
 };

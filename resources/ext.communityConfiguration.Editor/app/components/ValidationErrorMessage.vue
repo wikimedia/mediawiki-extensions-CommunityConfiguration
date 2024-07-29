@@ -9,7 +9,11 @@
 				v-for="( error, index ) in errors"
 				:key="index"
 			>
-				<a :href="`#${error.formFieldId}`">{{ error.formFieldLabel }}</a>
+				<a :href="`#${error.formFieldId}`">{{
+					error.formFieldLabels.join(
+						$i18n( 'communityconfiguration-editor-validation-error-label-chain-joiner' ).text()
+					)
+				}}</a>
 			</li>
 		</ul>
 		<p

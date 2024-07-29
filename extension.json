@@ -163,7 +163,6 @@
 			"packageFiles": [
 				"ext.communityConfiguration.Editor/app/init.js",
 				"ext.communityConfiguration.Editor/app/App.vue",
-				"ext.communityConfiguration.Editor/app/utils.js",
 				"ext.communityConfiguration.Editor/app/MwApiCommunityConfigurationWritingRepository.js",
 				"ext.communityConfiguration.Editor/app/components/EditSummaryDialog.vue",
 				"ext.communityConfiguration.Editor/app/components/EditorMessage.vue",
@@ -179,6 +178,7 @@
 				"ext.communityConfiguration.Editor/lib/json-form/core/i18n.js",
 				"ext.communityConfiguration.Editor/lib/json-form/core/testers.js",
 				"ext.communityConfiguration.Editor/lib/json-form/form/index.js",
+				"ext.communityConfiguration.Editor/lib/json-form/form/composables/useValidationErrors.js",
 				"ext.communityConfiguration.Editor/lib/json-form/form/composables/useJsonForm.js",
 				"ext.communityConfiguration.Editor/lib/json-form/form/composables/props.js",
 				"ext.communityConfiguration.Editor/lib/json-form/form/components/JsonForm.vue",

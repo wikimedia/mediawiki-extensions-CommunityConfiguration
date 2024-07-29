@@ -33,6 +33,7 @@ describe( 'BooleanControl', () => {
 			uischema,
 			renderers: null,
 			schema,
+			config: { i18nPrefix: 'prefix' },
 			data: CONFIG_DATA,
 			errors: ref( [] )
 		};

@@ -43,7 +43,10 @@ describe( 'useJsonFormControl', () => {
 				renderers: []
 			};
 			const jsonform = {
-				schema: {}
+				schema: {},
+				config: {
+					i18nPrefix: 'i18n-prefix'
+				}
 			};
 			const [ result ] = withSetup(
 				() => useJsonFormControl( props ),
@@ -59,7 +62,10 @@ describe( 'useJsonFormControl', () => {
 				renderers: []
 			};
 			const jsonform = {
-				schema: {}
+				schema: {},
+				config: {
+					i18nPrefix: 'i18n-prefix'
+				}
 			};
 			const [ result ] = withSetup(
 				() => useJsonFormControl( props ),
@@ -75,7 +81,10 @@ describe( 'useJsonFormControl', () => {
 				renderers: []
 			};
 			const jsonform = {
-				schema: {}
+				schema: {},
+				config: {
+					i18nPrefix: 'i18n-prefix'
+				}
 			};
 			const [ result ] = withSetup(
 				() => useJsonFormControl( props ),
@@ -93,7 +102,10 @@ describe( 'useJsonFormControl', () => {
 				renderers: []
 			};
 			const jsonform = {
-				schema: {}
+				schema: {},
+				config: {
+					i18nPrefix: 'i18n-prefix'
+				}
 			};
 			const [ result ] = withSetup(
 				() => useJsonFormControl( props ),
@@ -109,7 +121,10 @@ describe( 'useJsonFormControl', () => {
 				renderers: []
 			};
 			const jsonform = {
-				schema: {}
+				schema: {},
+				config: {
+					i18nPrefix: 'i18n-prefix'
+				}
 			};
 			const [ result ] = withSetup(
 				() => useJsonFormControl( props ),

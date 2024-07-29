@@ -11,7 +11,7 @@
 </template>
 
 <script>
-const { reactive, toRef } = require( 'vue' );
+const { reactive } = require( 'vue' );
 const FormLayout = require( './FormLayout.vue' );
 const { buildUISchema } = require( '../../core/index.js' );
 
@@ -40,10 +40,6 @@ module.exports = exports = {
 			type: [ Object, Array ],
 			required: true
 		},
-		errors: {
-			type: Array,
-			required: true
-		},
 		renderers: {
 			required: true,
 			type: Array
@@ -64,7 +60,6 @@ module.exports = exports = {
 			onSubmit,
 			jsonform: {
 				data,
-				errors: toRef( () => props.errors ),
 				config: props.config,
 				renderers: props.renderers,
 				schema: props.schema,
