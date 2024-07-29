@@ -88,13 +88,32 @@ class SchemaMigrator {
 			);
 		}
 
-		$converter = $this->schemaConverterFactory->getConverterFromVersion( $schemaBuilder, $nextVersion );
 		if ( $versionComparsion < 0 ) {
 			// current version is lower than $targetVersion, we need to upgrade
-			$newData = $converter->upgradeFromOlder( $data );
+			$newerVersionConverter = $this->schemaConverterFactory->getConverterFromVersion(
+				$schemaBuilder,
+				$nextVersion
+			);
+			if ( !$newerVersionConverter ) {
+				throw new LogicException(
+					$validator->getSchemaBuilder()->getSchemaName()
+					. $nextVersion . ' does not have a converter.'
+				);
+			}
+			$newData = $newerVersionConverter->upgradeFromOlder( $data );
 		} else {
-			// current version is lower than $targetVersion, we need to downgrade
-			$newData = $converter->downgradeFromNewer( $data );
+			// current version is newer than $targetVersion, we need to downgrade
+			$currentVersionConverter = $this->schemaConverterFactory->getConverterFromVersion(
+				$schemaBuilder,
+				$currentVersion
+			);
+			if ( !$currentVersionConverter ) {
+				throw new LogicException(
+					$validator->getSchemaBuilder()->getSchemaName()
+					. $currentVersion . ' does not have a converter.'
+				);
+			}
+			$newData = $currentVersionConverter->downgradeFromNewer( $data );
 		}
 
 		return $this->doConvertDataToVersion(
