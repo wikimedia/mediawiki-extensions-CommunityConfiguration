@@ -1,18 +1,30 @@
 {
 	"@metadata": {
 		"authors": [
-			"Dirruw'o"
+			"Dirruw'o",
+			"Iniquity"
 		]
 	},
+	"communityconfiguration": "Конфигурация сообщества",
+	"communityconfiguration-desc": "Содержит логику конфигурации сообщества",
 	"communityconfiguration-editor-client-post-feedback": "Если проблема не устранена, рассмотрите вариант [Оставить отзыв $1 ] на странице обсуждения.",
+	"communityconfiguration-guidelines-title": "Что такое конфигурация сообщества?",
+	"communityconfiguration-guidelines-description": "Конфигурация сообщества — это инструмент, который позволяет сообществам настраивать и контролировать конфигурацию различных функций {{grammar:genitive|{{SITENAME}}}}, помогая администраторам удовлетворять особые потребности своего сообщества.",
+	"communityconfiguration-guidelines-guideline1-title": "Узнать больше",
+	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Узнайте больше] о Конфигурации сообщества: что это, как это работает, и что за команда работает над этим.",
+	"communityconfiguration-guidelines-guideline2-title": "Отправьте нам {{GENDER:$1|свой}} отзыв",
+	"communityconfiguration-guidelines-guideline2-description": "Мы бы с удовольствием услышали {{GENDER:$1|ваши}} мысли! Свяжитесь с нами через нашу [https://www.mediawiki.org/wiki/Talk:Growth страницу обсуждения].",
 	"communityconfiguration-invalid-stored-config-error": "Не удалось загрузить действительную конфигурацию от поставщика $1 (код <tt>$2</tt> ).",
 	"communityconfiguration-invalid-stored-config-error-with-link": "Не удалось загрузить действительную конфигурацию от поставщика $1 (код <tt>$2</tt> ) провайдер, смотрите $3",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Детали ошибки",
+	"communityconfiguration-providers-list-title": "Функции",
+	"communityconfigurationdashboard": "Конфигурация сообщества",
 	"communityconfiguration-edit-summary-reminder": "<b>Напоминание</b> : это изменение может повлиять на большое количество участников сообщества. Пожалуйста, укажите, почему {{GENDER:$1| вы}} вносите изменения и при необходимости ссылаетесь на любое соответствующее обсуждение в сообществе.",
 	"communityconfiguration-edit-summary-dialog-title": "Сохранить изменения за $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(необязательно)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Опишите изменения, которые были внесены в конфигурацию.",
 	"communityconfiguration-edit-summary-dialog-save-button": "Записать изменения",
-	"communityconfiguration-edit-summary-dialog-cancel-button": "Отказ",
-	"communityconfiguration-edit-summary-dialog-label": "Описание изменений"
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Отмена",
+	"communityconfiguration-edit-summary-dialog-label": "Описание изменений",
+	"communityconfiguration-editor-message-dismiss-button-label": "Закрыть"
 }
