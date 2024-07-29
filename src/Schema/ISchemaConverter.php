@@ -26,10 +26,10 @@ interface ISchemaConverter {
 	public function upgradeFromOlder( stdClass $data ): stdClass;
 
 	/**
-	 * Downgrade data using newer data
+	 * Downgrade data to previous version using current data
 	 *
-	 * @param stdClass $data Data conforming to the immediately succeeding schema version
-	 * @return stdClass Result of conversion
+	 * @param stdClass $data Data conforming to the current schema version
+	 * @return stdClass Result of conversion, data conforming to the previous schema version
 	 */
-	public function downgradeFromNewer( stdClass $data ): stdClass;
+	public function downgradeToPrevious( stdClass $data ): stdClass;
 }

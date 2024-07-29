@@ -113,7 +113,7 @@ class SchemaMigrator {
 					. $currentVersion . ' does not have a converter.'
 				);
 			}
-			$newData = $currentVersionConverter->downgradeFromNewer( $data );
+			$newData = $currentVersionConverter->downgradeToPrevious( $data );
 		}
 
 		return $this->doConvertDataToVersion(
