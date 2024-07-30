@@ -30,21 +30,19 @@ class ConfigurationProviderFactoryTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideProviderTypes
 	 */
 	public function testProviderTypes( string $providerType ) {
-		$this->setMwGlobals( [
-			'wgCommunityConfigurationProviders' => [
-				$providerType => [
-					'store' => [
-						'type' => 'wikipage',
-						'args' => [ 'MediaWiki:Bar.json' ],
-					],
-					'validator' => [
-						'type' => 'jsonschema',
-						'args' => [
-							JsonSchemaForTesting::class,
-						]
-					],
-					'type' => $providerType,
-				]
+		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
+			$providerType => [
+				'store' => [
+					'type' => 'wikipage',
+					'args' => [ 'MediaWiki:Bar.json' ],
+				],
+				'validator' => [
+					'type' => 'jsonschema',
+					'args' => [
+						JsonSchemaForTesting::class,
+					]
+				],
+				'type' => $providerType,
 			],
 		] );
 
@@ -56,21 +54,19 @@ class ConfigurationProviderFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testUnrecognizedProvider() {
-		$this->setMwGlobals( [
-			'wgCommunityConfigurationProviders' => [
-				'unknown' => [
-					'store' => [
-						'type' => 'wikipage',
-						'args' => [ 'MediaWiki:Bar.json' ],
-					],
-					'validator' => [
-						'type' => 'jsonschema',
-						'args' => [
-							JsonSchemaForTesting::class,
-						]
-					],
-					'type' => 'unrecognized-type',
-				]
+		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
+			'unknown' => [
+				'store' => [
+					'type' => 'wikipage',
+					'args' => [ 'MediaWiki:Bar.json' ],
+				],
+				'validator' => [
+					'type' => 'jsonschema',
+					'args' => [
+						JsonSchemaForTesting::class,
+					]
+				],
+				'type' => 'unrecognized-type',
 			],
 		] );
 

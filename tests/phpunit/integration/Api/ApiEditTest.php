@@ -20,17 +20,15 @@ class ApiEditTest extends ApiTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgCommunityConfigurationProviders' => [
-				'foo' => [
-					'store' => [
-						'type' => 'wikipage',
-						'args' => [ 'MediaWiki:Foo.json' ],
-					],
-					'validator' => [
-						'type' => 'jsonschema',
-						'args' => [ JsonSchemaForTesting::class ],
-					],
+		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
+			'foo' => [
+				'store' => [
+					'type' => 'wikipage',
+					'args' => [ 'MediaWiki:Foo.json' ],
+				],
+				'validator' => [
+					'type' => 'jsonschema',
+					'args' => [ JsonSchemaForTesting::class ],
 				],
 			],
 		] );

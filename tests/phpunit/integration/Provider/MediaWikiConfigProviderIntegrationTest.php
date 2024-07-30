@@ -23,19 +23,17 @@ class MediaWikiConfigProviderIntegrationTest extends MediaWikiIntegrationTestCas
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgCommunityConfigurationProviders' => [
-				self::PROVIDER_ID => [
-					'store' => [
-						'type' => 'wikipage',
-						'args' => [ self::CONFIG_PAGE_TITLE ],
-					],
-					'validator' => [
-						'type' => 'jsonschema',
-						'args' => [ JsonConfigSchemaForTesting::class ],
-					],
-					'type' => 'mw-config',
+		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
+			self::PROVIDER_ID => [
+				'store' => [
+					'type' => 'wikipage',
+					'args' => [ self::CONFIG_PAGE_TITLE ],
 				],
+				'validator' => [
+					'type' => 'jsonschema',
+					'args' => [ JsonConfigSchemaForTesting::class ],
+				],
+				'type' => 'mw-config',
 			],
 		] );
 	}
