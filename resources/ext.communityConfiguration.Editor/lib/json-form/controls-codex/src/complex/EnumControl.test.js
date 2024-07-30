@@ -15,13 +15,16 @@ const { CdxRadio, CdxField } = require( '@wikimedia/codex' );
 const EnumFieldName = 'TestElementSelector';
 const labelText = 'localized title text for the section containing the enum';
 
-function getMountOptions( configDataObject = null, schema = null ) {
+function getMountOptions( configDataObject = null, schema = null, enumLabels = null ) {
 	const uischema = {
 		name: EnumFieldName,
 		scope: `#/properties/${ EnumFieldName }`,
 		type: 'Control',
-		enumLabels: {
-			fire: 'fire-label-key'
+		enumLabels: enumLabels || {
+			fire: 'fire-label-key',
+			water: 'water-label-key',
+			earth: 'earth-label-key',
+			air: 'air-label-key'
 		},
 		label: mwMessageFake( labelText )
 	};
@@ -48,15 +51,7 @@ function getMountOptions( configDataObject = null, schema = null ) {
 			uischema: uischema
 		},
 		global: {
-			mocks: {
-				// TODO provide it as global mock/provider in jest config
-				$i18n: jest.fn( ( key ) => ( {
-					text: jest.fn().mockReturnValue( `i18n text for <${ key }>` )
-				} ) )
-			},
-			provide: {
-				jsonform
-			}
+			...global.getGlobalMediaWikiMountingOptions( { jsonform } )
 		}
 	};
 }
@@ -71,7 +66,7 @@ describe( 'EnumControl', () => {
 		const wrapper = mount( EnumControl, getMountOptions() );
 
 		const radioId = wrapper.get( 'input[value="fire"]' ).getRootNodes()[ 0 ].id;
-		expect( wrapper.get( `[for=${ radioId }]` ).getRootNodes()[ 0 ].textContent ).toBe( 'i18n text for <fire-label-key>' );
+		expect( wrapper.get( `[for=${ radioId }]` ).getRootNodes()[ 0 ].textContent ).toBe( 'fire-label-key' );
 
 		expect( wrapper.getComponent( CdxField ).props( 'isFieldset' ) ).toEqual( true );
 		expect( wrapper.get( 'legend' ).getRootNodes()[ 0 ].textContent ).toBe( labelText );
@@ -108,6 +103,12 @@ describe( 'EnumControl', () => {
 			{
 				type: 'number',
 				enum: [ 1, 6, 7, 9 ]
+			},
+			{
+				1: '1-label-key',
+				6: '6-label-key',
+				7: '7-label-key',
+				9: '9-label-key'
 			}
 		) );
 
