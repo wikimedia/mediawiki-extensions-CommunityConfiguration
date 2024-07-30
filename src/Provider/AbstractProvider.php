@@ -25,7 +25,7 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	 * @param string $providerId The unique identifier for the provider.
 	 * @param array $options
 	 * 		Configuration options for the provider, may be structured as follows:
-	 * 		- 'skipDashboardListing' (bool, optional): Indicates whether this provider
+	 * 		- 'excludeFromUI' (bool, optional): Indicates whether this provider
 	 * 			should be skipped on the dashboard.
 	 * 		- 'helpPage' (string, optional): Title of the help page of the feature on mediawiki.org.
 	 * 			e.g., Help:Growth/Mentorship'

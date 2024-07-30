@@ -45,7 +45,7 @@ class SpecialCommunityConfiguration extends SpecialPage {
 			$provider = $this->providerFactory->newProvider( $subPage );
 
 			// If not displayed on the dashboard, it doesn't necessarily mean it's not supported.
-			if ( $provider->getOptionValue( IConfigurationProvider::OPTION_SKIP_DASHBOARD_LISTING ) ) {
+			if ( $provider->getOptionValue( IConfigurationProvider::OPTION_EXCLUDE_FROM_UI ) ) {
 				$this->showErrorMessage( $out, 'communityconfiguration-provider-not-found', $subPage );
 				return;
 			}
