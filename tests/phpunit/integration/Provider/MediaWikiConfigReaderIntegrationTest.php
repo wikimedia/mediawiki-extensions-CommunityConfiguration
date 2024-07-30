@@ -19,19 +19,17 @@ class MediaWikiConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase 
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgCommunityConfigurationProviders' => [
-				self::PROVIDER_ID => [
-					'store' => [
-						'type' => 'wikipage',
-						'args' => [ 'MediaWiki:Foo.json' ],
-					],
-					'validator' => [
-						'type' => 'jsonschema',
-						'args' => [ JsonSchemaForTesting::class ]
-					],
-					'type' => 'mw-config',
+		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
+			self::PROVIDER_ID => [
+				'store' => [
+					'type' => 'wikipage',
+					'args' => [ 'MediaWiki:Foo.json' ],
 				],
+				'validator' => [
+					'type' => 'jsonschema',
+					'args' => [ JsonSchemaForTesting::class ]
+				],
+				'type' => 'mw-config',
 			],
 		] );
 	}
@@ -73,30 +71,28 @@ class MediaWikiConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase 
 	}
 
 	public function testMultipleRegistration() {
-		$this->setMwGlobals( [
-			'wgCommunityConfigurationProviders' => [
-				'foo' => [
-					'store' => [
-						'type' => 'wikipage',
-						'args' => [ 'MediaWiki:Foo.json' ],
-					],
-					'validator' => [
-						'type' => 'jsonschema',
-						'args' => [ JsonSchemaForTesting::class ]
-					],
-					'type' => 'mw-config',
+		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
+			'foo' => [
+				'store' => [
+					'type' => 'wikipage',
+					'args' => [ 'MediaWiki:Foo.json' ],
 				],
-				'bar' => [
-					'store' => [
-						'type' => 'wikipage',
-						'args' => [ 'MediaWiki:Bar.json' ],
-					],
-					'validator' => [
-						'type' => 'jsonschema',
-						'args' => [ JsonSchemaForTesting::class ]
-					],
-					'type' => 'mw-config',
+				'validator' => [
+					'type' => 'jsonschema',
+					'args' => [ JsonSchemaForTesting::class ]
 				],
+				'type' => 'mw-config',
+			],
+			'bar' => [
+				'store' => [
+					'type' => 'wikipage',
+					'args' => [ 'MediaWiki:Bar.json' ],
+				],
+				'validator' => [
+					'type' => 'jsonschema',
+					'args' => [ JsonSchemaForTesting::class ]
+				],
+				'type' => 'mw-config',
 			],
 		] );
 

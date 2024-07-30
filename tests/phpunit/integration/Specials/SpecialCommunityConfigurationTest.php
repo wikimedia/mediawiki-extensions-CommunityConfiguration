@@ -82,8 +82,8 @@ class SpecialCommunityConfigurationTest extends SpecialPageTestBase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgCommunityConfigurationValidators' => array_merge(
+		$this->overrideConfigValues( [
+			'CommunityConfigurationValidators' => array_merge(
 				$this->getServiceContainer()->getMainConfig()->get( 'CommunityConfigurationValidators' ),
 				[
 					'noop-with-schema' => [
@@ -92,7 +92,7 @@ class SpecialCommunityConfigurationTest extends SpecialPageTestBase {
 					],
 				]
 			),
-			'wgCommunityConfigurationProviders' => self::PROVIDERS,
+			'CommunityConfigurationProviders' => self::PROVIDERS,
 		] );
 	}
 

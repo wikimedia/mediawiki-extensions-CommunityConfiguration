@@ -17,19 +17,17 @@ class DataProviderIntegrationTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgCommunityConfigurationProviders' => [
-				self::PROVIDER_ID => [
-					'store' => [
-						'type' => 'wikipage',
-						'args' => [ 'MediaWiki:Foo.json' ],
-					],
-					'validator' => [
-						'type' => 'jsonschema',
-						'args' => [ JsonSchemaForTesting::class ]
-					],
-					'type' => 'data',
+		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
+			self::PROVIDER_ID => [
+				'store' => [
+					'type' => 'wikipage',
+					'args' => [ 'MediaWiki:Foo.json' ],
 				],
+				'validator' => [
+					'type' => 'jsonschema',
+					'args' => [ JsonSchemaForTesting::class ]
+				],
+				'type' => 'data',
 			],
 		] );
 	}

@@ -13,30 +13,28 @@ class ValidationHooksTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgCommunityConfigurationProviders' => [
-				'foo' => [
-					'store' => [
-						'type' => 'wikipage',
-						'args' => [ 'MediaWiki:Foo.json' ],
-					],
-					'validator' => [
-						'type' => 'jsonschema',
-						'args' => [
-							JsonSchemaForTesting::class,
-						]
-					],
+		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
+			'foo' => [
+				'store' => [
+					'type' => 'wikipage',
+					'args' => [ 'MediaWiki:Foo.json' ],
 				],
-				// used to test ValidationHooks does not have issues with other stores than wikipage
-				'bar' => [
-					'store' => [
-						'type' => 'static',
-						'args' => [ (object)[ 'Foo' => 42 ] ],
-					],
-					'validator' => [
-						'type' => 'noop'
-					],
-				]
+				'validator' => [
+					'type' => 'jsonschema',
+					'args' => [
+						JsonSchemaForTesting::class,
+					]
+				],
+			],
+			// used to test ValidationHooks does not have issues with other stores than wikipage
+			'bar' => [
+				'store' => [
+					'type' => 'static',
+					'args' => [ (object)[ 'Foo' => 42 ] ],
+				],
+				'validator' => [
+					'type' => 'noop'
+				],
 			],
 		] );
 	}

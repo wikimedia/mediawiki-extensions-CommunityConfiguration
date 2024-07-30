@@ -19,18 +19,16 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( [
-			'wgCommunityConfigurationProviders' => [
-				self::PROVIDER_ID => [
-					'store' => [
-						'type' => 'wikipage',
-						'args' => [ self::CONFIG_PAGE_TITLE ],
-					],
-					'validator' => [
-						'type' => 'noop',
-					],
-				]
-			]
+		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
+			self::PROVIDER_ID => [
+				'store' => [
+					'type' => 'wikipage',
+					'args' => [ self::CONFIG_PAGE_TITLE ],
+				],
+				'validator' => [
+					'type' => 'noop',
+				],
+			],
 		] );
 	}
 
@@ -105,18 +103,16 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	public function testStatusIsMutableFail() {
 		$this->editPage( 'NotJsonContent', 'this is not JSON' );
-		$this->setMwGlobals( [
-			'wgCommunityConfigurationProviders' => [
-				self::PROVIDER_ID => [
-					'store' => [
-						'type' => 'wikipage',
-						'args' => [ 'NotJsonContent' ],
-					],
-					'validator' => [
-						'type' => 'noop',
-					],
+		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
+			self::PROVIDER_ID => [
+				'store' => [
+					'type' => 'wikipage',
+					'args' => [ 'NotJsonContent' ],
+				],
+				'validator' => [
+					'type' => 'noop',
 				]
-			]
+			],
 		] );
 
 		$store = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
