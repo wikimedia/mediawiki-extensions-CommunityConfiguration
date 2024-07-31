@@ -8,13 +8,13 @@
 		<slot :control-label="( controlLabel && controlLabel.exists() ) ? controlLabel.text() : ''">
 		</slot>
 		<template v-if="description && description.exists()" #description>
-			{{ description.text() }}
+			<span v-i18n-html="description"></span>
 		</template>
 		<template v-if="label && label.exists()" #label>
 			{{ label.text() }}
 		</template>
 		<template v-if="helpText && helpText.exists()" #help-text>
-			{{ helpText.text() }}
+			<span v-i18n-html="helpText"></span>
 		</template>
 	</cdx-field>
 </template>
