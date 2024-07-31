@@ -31,7 +31,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 	public function testConstruct() {
 		$provider = new DataProvider(
 			'ProviderId',
-			[ 'skipDashboardListing' => false ],
+			[ 'excludeFromUI' => false ],
 			$this->createNoOpMock( IConfigurationStore::class ),
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -39,13 +39,13 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			DataProvider::class,
 			$provider
 		);
-		$this->assertFalse( $provider->getOptionValue( 'skipDashboardListing' ) );
+		$this->assertFalse( $provider->getOptionValue( 'excludeFromUI' ) );
 	}
 
 	public function testGetId() {
 		$provider = new DataProvider(
 			'ProviderId',
-			[ 'skipDashboardListing' => true ],
+			[ 'excludeFromUI' => true ],
 			$this->createNoOpMock( IConfigurationStore::class ),
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -67,7 +67,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
-			[ 'skipDashboardListing' => true ],
+			[ 'excludeFromUI' => true ],
 			$this->createNoOpMock( IConfigurationStore::class ),
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -83,7 +83,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$validatorMock = $this->createNoOpMock( IValidator::class );
 		$provider = new DataProvider(
 			'ProviderId',
-			[ 'skipDashboardListing' => true ],
+			[ 'excludeFromUI' => true ],
 			$storeMock,
 			$validatorMock
 		);
@@ -119,7 +119,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
-			[ 'skipDashboardListing' => true ],
+			[ 'excludeFromUI' => true ],
 			new StaticStore( new stdClass() ),
 			$validatorMock
 		);
@@ -272,7 +272,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( ValidationStatus::newGood() );
 		$provider = new DataProvider(
 			'ProviderId',
-			[ 'skipDashboardListing' => true ],
+			[ 'excludeFromUI' => true ],
 			new StaticStore( $storedConfig ),
 			$validatorStub
 		);
@@ -291,7 +291,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
-			[ 'skipDashboardListing' => false ],
+			[ 'excludeFromUI' => false ],
 			new StaticStore( $config ),
 			$validatorMock
 		);
@@ -308,7 +308,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
-			[ 'skipDashboardListing' => true ],
+			[ 'excludeFromUI' => true ],
 			$storeMock,
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -324,7 +324,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
-			[ 'skipDashboardListing' => true ],
+			[ 'excludeFromUI' => true ],
 			$storeMock,
 			$this->createNoOpMock( IValidator::class )
 		);
@@ -355,7 +355,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
-			[ 'skipDashboardListing' => true ],
+			[ 'excludeFromUI' => true ],
 			$storeMock,
 			$validatorMock
 		);
@@ -397,7 +397,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'foo',
-			[ 'skipDashboardListing' => false ],
+			[ 'excludeFromUI' => false ],
 			$storeMock,
 			$validatorMock
 		);
@@ -418,7 +418,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$provider = new DataProvider(
 			'ProviderId',
-			[ 'skipDashboardListing' => true ],
+			[ 'excludeFromUI' => true ],
 			$storeMock,
 			$validatorMock
 		);
@@ -430,11 +430,11 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 	public function testGetOption() {
 		$provider = new DataProvider(
 			'ProviderId',
-			[ 'skipDashboardListing' => true ],
+			[ 'excludeFromUI' => true ],
 			$this->createNoOpMock( IConfigurationStore::class ),
 			$this->createNoOpMock( IValidator::class )
 		);
-		$this->assertTrue( $provider->getOptionValue( 'skipDashboardListing' ) );
+		$this->assertTrue( $provider->getOptionValue( 'excludeFromUI' ) );
 		$this->assertNull( $provider->getOptionValue( 'nonExistentOption' ) );
 	}
 }

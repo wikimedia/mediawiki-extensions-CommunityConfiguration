@@ -41,7 +41,7 @@ class DashboardEditorCapability extends AbstractEditorCapability {
 		$availableProviders = [];
 		foreach ( $this->providerFactory->getSupportedKeys() as $providerName ) {
 			$provider = $this->providerFactory->newProvider( $providerName );
-			if ( $provider->getOptionValue( IConfigurationProvider::OPTION_SKIP_DASHBOARD_LISTING ) ) {
+			if ( $provider->getOptionValue( IConfigurationProvider::OPTION_EXCLUDE_FROM_UI ) ) {
 				continue;
 			}
 			$lowerCaseProviderName = strtolower( $providerName );

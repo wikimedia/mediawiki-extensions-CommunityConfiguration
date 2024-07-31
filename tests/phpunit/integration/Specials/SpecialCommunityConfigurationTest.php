@@ -52,7 +52,7 @@ class SpecialCommunityConfigurationTest extends SpecialPageTestBase {
 			],
 			'type' => 'data',
 			'options' => [
-				'skipDashboardListing' => true,
+				'excludeFromUI' => true,
 			]
 		],
 		self::NO_VALIDATION_PROVIDER_ID => [

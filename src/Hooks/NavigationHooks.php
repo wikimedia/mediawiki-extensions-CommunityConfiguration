@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\CommunityConfiguration\Hooks;
 
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
+use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore;
 use MediaWiki\Hook\SkinTemplateNavigation__UniversalHook;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -34,6 +35,10 @@ class NavigationHooks implements SkinTemplateNavigation__UniversalHook {
 		if ( $title->getContentModel() === CONTENT_MODEL_JSON ) {
 			foreach ( $this->providerFactory->getSupportedKeys() as $providerKey ) {
 				$provider = $this->providerFactory->newProvider( $providerKey );
+				if ( $provider->getOptionValue(
+					IConfigurationProvider::OPTION_EXCLUDE_FROM_UI ) ) {
+					continue;
+				}
 				$store = $provider->getStore();
 				if ( $store instanceof WikiPageStore &&
 					$store->getConfigurationTitle()->equals( $title ) ) {

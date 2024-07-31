@@ -35,7 +35,7 @@ use StatusValue;
  */
 interface IConfigurationProvider extends LoggerAwareInterface {
 
-	public const OPTION_SKIP_DASHBOARD_LISTING = 'skipDashboardListing';
+	public const OPTION_EXCLUDE_FROM_UI = 'excludeFromUI';
 	public const OPTION_EDITOR_CAPABILITY = 'editorCapability';
 
 	/**
