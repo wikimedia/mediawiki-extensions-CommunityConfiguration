@@ -13,7 +13,7 @@
 
 <script>
 const { ref } = require( 'vue' );
-const { CdxChipInput } = require( '@wikimedia/codex' );
+const { CdxChipInput } = require( '../../../../../../codex.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
 const { rendererProps, useJsonFormControl } = require( '../../config/index.js' );
 const { useCodexControl } = require( '../utils.js' );

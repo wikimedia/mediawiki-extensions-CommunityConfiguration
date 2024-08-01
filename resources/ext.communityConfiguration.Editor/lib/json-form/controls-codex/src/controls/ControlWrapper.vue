@@ -20,7 +20,7 @@
 </template>
 
 <script>
-const { CdxField } = require( '@wikimedia/codex' );
+const { CdxField } = require( '../../../../../../codex.js' );
 
 // @vue/component
 module.exports = exports = {

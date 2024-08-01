@@ -144,6 +144,22 @@
 			]
 		},
 		"ext.communityConfiguration.Editor": {
+			"class": "MediaWiki\\ResourceLoader\\CodexModule",
+			"codexComponents": [
+				"CdxButton",
+				"CdxCheckbox",
+				"CdxChipInput",
+				"CdxDialog",
+				"CdxField",
+				"CdxIcon",
+				"CdxLookup",
+				"CdxMenu",
+				"CdxMessage" ,
+				"CdxTextArea",
+				"CdxTextInput",
+				"CdxRadio",
+				"useModelWrapper"
+			],
 			"packageFiles": [
 				"ext.communityConfiguration.Editor/app/init.js",
 				"ext.communityConfiguration.Editor/app/App.vue",
@@ -234,7 +250,6 @@
 				"mediawiki.api",
 				"mediawiki.ForeignApi",
 				"vue",
-				"@wikimedia/codex",
 				"mediawiki.jqueryMsg"
 			]
 		}

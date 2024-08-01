@@ -22,7 +22,7 @@
 </template>
 
 <script>
-const { CdxRadio } = require( '@wikimedia/codex' );
+const { CdxRadio } = require( '../../../../../../codex.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
 const { rendererProps, useJsonFormControl } = require( '../../config/index.js' );
 const { useCodexControl } = require( '../utils.js' );

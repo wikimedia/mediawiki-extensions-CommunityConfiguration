@@ -23,7 +23,7 @@
 
 <script>
 const { ref, unref } = require( 'vue' );
-const { CdxChipInput, CdxMenu } = require( '@wikimedia/codex' );
+const { CdxChipInput, CdxMenu } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
 	useJsonFormControl

@@ -47,7 +47,7 @@
 
 <script>
 const { inject, ref, computed, onErrorCaptured } = require( 'vue' );
-const { CdxButton, CdxMessage } = require( '@wikimedia/codex' );
+const { CdxButton, CdxMessage } = require( '../../codex.js' );
 const { cdxIconInfoFilled } = require( './icons.json' );
 const { JsonForm } = require( '../lib/json-form/form/index.js' );
 const { renderers } = require( '../lib/json-form/controls-codex/src/index.js' );
