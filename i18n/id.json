@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"BAPerdana-WMF"
+		]
+	},
+	"communityconfiguration": "Pengaturan komunitas",
+	"communityconfiguration-editor-client-generic-error": "Telah terjadi kesalahan dalam memuat penyuntingan konfigurasi. Silakan coba kembali nanti.",
+	"communityconfiguration-editor-client-generic-error-description": "Terjadi kesalahan di '$2' dalam komponen $1. Lihat selengkapnya di bawah ini:"
+}
