@@ -69,6 +69,7 @@ class JsonSchemaBuilder implements SchemaBuilder {
 			'$schema' => $this->jsonSchema->getJsonSchemaVersion(),
 			'$id' => $this->jsonSchema->getSchemaId(),
 			JsonSchema::ADDITIONAL_PROPERTIES => false,
+			'required' => $reader->getRequiredTopLevelProperties(),
 		], $reader->getReflectionSchemaSource()->loadAsSchema( true ) );
 		$this->statsdDataFactory->timing(
 			'timing.communityConfiguration.JsonSchemaBuilder.getRootSchema',

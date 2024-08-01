@@ -37,6 +37,7 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 					JsonSchema::DEFAULT => null,
 				],
 			],
+			'required' => [],
 		], $actualRootSchema );
 
 		$this->assertEquals( [
@@ -45,6 +46,74 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 				JsonSchema::DEFAULT => null,
 			],
 		], $builder->getRootProperties() );
+	}
+
+	public function testRequiredHandlingRootLevel(): void {
+		$schema = new class() extends JsonSchema {
+			public const ExampleNumber = [
+				JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+			];
+
+			public const ExampleObject = [
+				JsonSchema::TYPE => JsonSchema::TYPE_OBJECT,
+				JsonSchema::PROPERTIES => [
+					'ExampleString' => [
+						JsonSchema::TYPE => JsonSchema::TYPE_STRING,
+					],
+				],
+				JsonSchema::REQUIRED => [ 'ExampleString' ],
+			];
+
+			protected const __REQUIRED = [ 'ExampleNumber' ];
+		};
+		$builder = $this->getNewJsonSchemaBuilder( $schema );
+
+		$this->assertEquals(
+			[
+				'$schema' => 'https://json-schema.org/draft-04/schema#',
+				'$id' => 'schema/id',
+				JsonSchema::ADDITIONAL_PROPERTIES => false,
+				'type' => 'object',
+				'properties' => [
+					'ExampleNumber' => [
+						JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+						JsonSchema::DEFAULT => null,
+					],
+					'ExampleObject' => [
+						JsonSchema::TYPE => JsonSchema::TYPE_OBJECT,
+						JsonSchema::PROPERTIES => [
+							'ExampleString' => [
+								JsonSchema::TYPE => JsonSchema::TYPE_STRING,
+							],
+						],
+						JsonSchema::DEFAULT => null,
+						JsonSchema::REQUIRED => [ 'ExampleString' ],
+					],
+				],
+				'required' => [ 'ExampleNumber' ],
+			],
+			$builder->getRootSchema()
+		);
+
+		$this->assertEquals(
+			[
+				'ExampleNumber' => [
+					JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+					JsonSchema::DEFAULT => null,
+				],
+				'ExampleObject' => [
+					JsonSchema::TYPE => JsonSchema::TYPE_OBJECT,
+					JsonSchema::PROPERTIES => [
+						'ExampleString' => [
+							JsonSchema::TYPE => JsonSchema::TYPE_STRING,
+						],
+					],
+					JsonSchema::DEFAULT => null,
+					JsonSchema::REQUIRED => [ 'ExampleString' ],
+				],
+			],
+			$builder->getRootProperties()
+		);
 	}
 
 	public function testDefaultsMap(): void {

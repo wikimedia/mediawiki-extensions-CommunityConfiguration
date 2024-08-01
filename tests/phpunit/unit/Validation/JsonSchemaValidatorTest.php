@@ -225,8 +225,8 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 			new class() extends JsonSchema {
 				public const Number = [
 					JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
-					JsonSchema::REQUIRED => true,
 				];
+				protected const __REQUIRED = [ 'Number' ];
 			},
 			[ 'Number' => 10 ],
 			true,
@@ -240,8 +240,8 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 			new class() extends JsonSchema {
 				public const Number = [
 					JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
-					JsonSchema::REQUIRED => true,
 				];
+				protected const __REQUIRED = [ 'Number' ];
 			},
 			[],
 			false,
@@ -264,8 +264,8 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 				public const Number = [
 					JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
 					JsonSchema::DEFAULT => 10,
-					JsonSchema::REQUIRED => true,
 				];
+				protected const __REQUIRED = [ 'Number' ];
 			},
 			[],
 			false,

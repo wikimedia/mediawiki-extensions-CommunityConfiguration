@@ -64,6 +64,10 @@ class JsonSchemaReader implements SchemaReader {
 		return $const ? $const->getValue() : $default;
 	}
 
+	public function getRequiredTopLevelProperties(): array {
+		return $this->getConstantValue( '__REQUIRED', [] );
+	}
+
 	public function getJsonSchemaVersion(): string {
 		return $this->getConstantValue( 'JSON_SCHEMA_VERSION', JsonSchema::JSON_SCHEMA_VERSION );
 	}
