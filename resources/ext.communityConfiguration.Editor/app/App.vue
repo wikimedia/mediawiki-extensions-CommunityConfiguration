@@ -123,22 +123,23 @@ module.exports = exports = {
 				};
 			}
 
+			const validationErrors = getAllValidationErrors();
+			if ( validationErrors.length ) {
+				// TODO: ideally, this should block submitting the form
+				return {
+					type: 'ValidationErrorMessage',
+					props: {
+						errors: validationErrors,
+						feedbackURL: editorFormConfig.feedbackURL
+					}
+				};
+			}
+
 			if ( submitOutcome.value && submitOutcome.value.error ) {
 
 				if ( submitOutcome.value.error.code === 'http' ) {
 					return {
 						type: 'NetworkErrorMessage'
-					};
-				}
-
-				const validationErrors = getAllValidationErrors();
-				if ( validationErrors.length ) {
-					return {
-						type: 'ValidationErrorMessage',
-						props: {
-							errors: validationErrors,
-							feedbackURL: editorFormConfig.feedbackURL
-						}
 					};
 				}
 
