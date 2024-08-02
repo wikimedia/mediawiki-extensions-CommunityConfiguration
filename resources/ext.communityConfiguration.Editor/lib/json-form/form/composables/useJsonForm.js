@@ -195,7 +195,10 @@ function useJsonFormArrayControl( props ) {
 		() => getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs )
 	);
 	const pointer = scopeToJsonPointer( scope );
-	const { getValidationErrorMessageForFormFieldId } = useValidationErrors();
+	const {
+		getValidationErrorMessageForFormFieldId,
+		adjustValidationErrorsOnArrayItemDelete
+	} = useValidationErrors();
 	const statusMessages = computed( () => {
 		const validationErrorMessage = getValidationErrorMessageForFormFieldId( pointer );
 		if ( validationErrorMessage ) {
@@ -244,6 +247,7 @@ function useJsonFormArrayControl( props ) {
 				...modelValue.value.slice( 0, index ),
 				...modelValue.value.slice( index + 1 )
 			] );
+			adjustValidationErrorsOnArrayItemDelete( pointer, index );
 		}
 	};
 }

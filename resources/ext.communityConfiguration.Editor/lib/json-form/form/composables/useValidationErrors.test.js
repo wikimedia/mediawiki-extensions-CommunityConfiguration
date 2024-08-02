@@ -393,4 +393,30 @@ describe( 'useValidationErrors', () => {
 			expect( actualErrorMessage ).toBe( null );
 		} );
 	} );
+
+	describe( 'adjustValidationErrorsOnArrayItemDelete', () => {
+		it( 'removes the errors for the deleted array item', () => {
+			const {
+				adjustValidationErrorsOnArrayItemDelete,
+				getValidationErrorMessageForFormFieldId
+			} = withArrayErrors();
+
+			adjustValidationErrorsOnArrayItemDelete( 'GEHelpPanelLinks', 3 );
+			const actualErrorMessage = getValidationErrorMessageForFormFieldId( 'GEHelpPanelLinks.3.title' );
+
+			expect( actualErrorMessage ).toBe( null );
+		} );
+
+		it( 'adjust the errors for the array items following the deleted item', () => {
+			const {
+				adjustValidationErrorsOnArrayItemDelete,
+				getValidationErrorMessageForFormFieldId
+			} = withArrayErrors();
+
+			adjustValidationErrorsOnArrayItemDelete( 'GEHelpPanelLinks', 2 );
+			const actualErrorMessage = getValidationErrorMessageForFormFieldId( 'GEHelpPanelLinks.2.title' );
+
+			expect( actualErrorMessage ).toBe( 'The property title is required' );
+		} );
+	} );
 } );

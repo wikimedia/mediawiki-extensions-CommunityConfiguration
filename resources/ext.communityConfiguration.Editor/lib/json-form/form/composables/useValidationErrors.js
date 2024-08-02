@@ -24,6 +24,7 @@ const state = reactive( {
  * @property {getValidationErrorMessageForFormFieldId} getValidationErrorMessageForFormFieldId
  * @property {getAllValidationErrors} getAllValidationErrors
  * @property {setValidationErrorsFromSubmitResponse} setValidationErrorsFromSubmitResponse
+ * @property {adjustValidationErrorsOnArrayItemDelete} adjustValidationErrorsOnArrayItemDelete
  */
 
 /**
@@ -75,6 +76,16 @@ module.exports = exports = ( schemaAndPrefix ) => {
 	}
 
 	/**
+	 * @callback adjustValidationErrorsOnArrayItemDelete
+	 * @param {string} pointerToArray
+	 * @param {number} indexOfDeletedItem
+	 */
+	function adjustValidationErrorsOnArrayItemDelete( pointerToArray, indexOfDeletedItem ) {
+		removeDeletedArrayItemErrors( pointerToArray, indexOfDeletedItem );
+		decrementArrayItemErrorIndexes( pointerToArray, indexOfDeletedItem );
+	}
+
+	/**
 	 * @callback setValidationErrorsFromSubmitResponse
 	 * @param {Object.<string, unknown>} response
 	 * @return {void}
@@ -108,7 +119,8 @@ module.exports = exports = ( schemaAndPrefix ) => {
 		clearValidationErrors,
 		setValidationErrorsFromSubmitResponse,
 		getAllValidationErrors,
-		getValidationErrorMessageForFormFieldId
+		getValidationErrorMessageForFormFieldId,
+		adjustValidationErrorsOnArrayItemDelete
 	};
 };
 
@@ -158,6 +170,33 @@ function adjustPointerForValidationErrors( rootSchema, pointer ) {
 	}
 
 	return pointer;
+}
+
+function removeDeletedArrayItemErrors( pointerToArray, indexOfDeletedItem ) {
+	const idOfDeletedItem = pointerToArray + '.' + indexOfDeletedItem;
+	state.validationErrors = state.validationErrors.filter(
+		( error ) => !error.formFieldId.startsWith( idOfDeletedItem )
+	);
+}
+
+function decrementArrayItemErrorIndexes( pointerToArray, indexOfDeletedItem ) {
+	state.validationErrors = state.validationErrors.map(
+		( error ) => {
+			if (
+				error.formFieldId.startsWith( pointerToArray ) &&
+				error.formFieldId.length > pointerToArray.length
+			) {
+				const parts = error.formFieldId.slice( pointerToArray.length ).split( '.' );
+				const index = parseInt( parts[ 1 ], 10 );
+
+				if ( index > indexOfDeletedItem ) {
+					parts[ 1 ] = index - 1;
+					error.formFieldId = pointerToArray + parts.join( '.' );
+				}
+			}
+			return error;
+		}
+	);
 }
 
 // endregion --private methods
