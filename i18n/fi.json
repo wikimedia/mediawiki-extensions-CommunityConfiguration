@@ -34,5 +34,6 @@
 	"communityconfiguration-editor-navigation-tab-viewform": "Näytä lomake",
 	"communityconfiguration-editor-client-notice-message": "Tämä sivu on suojattu. Vain ylläpitäjät voivat muokata tämän toiminnon määrityksiä.",
 	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Et}} voi tallentaa muutoksia tähän lomakkeeseen, koska tämän ominaisuuden asetuksen ovat vain ylläpitäjien muokattavissa.",
-	"tag-community_configuration": "[[mw:Community configuration|Yhteisöasetukset]]"
+	"tag-community_configuration": "[[mw:Community configuration|Yhteisöasetukset]]",
+	"tag-community_configuration-description": "Muokkaukset, jotka muuttuvat ominaisuuden [[Special:CommunityConfiguration|paikallisia asetuksia]] käyttäen [[mw:Extension:CommunityConfiguration|Yhteisöasetukset-laajennusta]]."
 }
