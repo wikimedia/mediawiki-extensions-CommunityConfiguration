@@ -37,12 +37,12 @@ module.exports = exports = {
 	computed: {
 		determinedRenderer() {
 			// FIXME: how to tell eslint about the props
-			// eslint-disable-next-line vue/no-undef-properties
-			const renderer = maxBy( this.renderer.renderers, ( r ) => {
-				// FIXME: how to tell eslint about the props
-				// eslint-disable-next-line vue/no-undef-properties
-				return r.tester( this.renderer.uischema, this.renderer.schema, this.rootSchema );
-			} );
+			/* eslint-disable vue/no-undef-properties */
+			const renderer = maxBy(
+				this.renderer.renderers,
+				( r ) => r.tester( this.renderer.uischema, this.renderer.schema, this.rootSchema )
+			);
+			/* eslint-enable vue/no-undef-properties */
 			if (
 				renderer === undefined ||
 				renderer.tester(

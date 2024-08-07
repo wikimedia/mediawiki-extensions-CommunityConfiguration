@@ -80,9 +80,9 @@ module.exports = exports = {
 			forceRerenderCounter.value += 1;
 		}
 
-		const isMaxNumberOfItemsReached = computed( () => {
-			return control.schema.maxItems && data.value.length >= control.schema.maxItems;
-		} );
+		const isMaxNumberOfItemsReached = computed(
+			() => control.schema.maxItems && data.value.length >= control.schema.maxItems
+		);
 
 		return {
 			control,

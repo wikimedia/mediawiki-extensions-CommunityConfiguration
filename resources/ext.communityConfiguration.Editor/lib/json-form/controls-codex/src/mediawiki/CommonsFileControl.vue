@@ -52,7 +52,7 @@ module.exports = exports = {
 		 *
 		 * @param {string} value
 		 */
-		const onInput = debounce( function ( value ) {
+		const onInput = debounce( ( value ) => {
 			// Internally track the current search term.
 			currentSearchTerm.value = value;
 

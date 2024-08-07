@@ -31,9 +31,7 @@ const { debounce, useCodexControl } = require( '../utils.js' );
 const { search } = require( './api.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
 const chipToPageTitle = ( { value } ) => value;
-const filterSelection = ( selection ) => ( item ) => {
-	return selection.map( ( x ) => x.value ).indexOf( item.value ) === -1;
-};
+const filterSelection = ( selection ) => ( item ) => selection.map( ( x ) => x.value ).indexOf( item.value ) === -1;
 
 // @vue/component
 module.exports = exports = {
@@ -66,7 +64,7 @@ module.exports = exports = {
 		 *
 		 * @param {string} value
 		 */
-		const onKeyUp = debounce( function ( evt ) {
+		const onKeyUp = debounce( ( evt ) => {
 			const value = evt.srcElement.value;
 			// Internally track the current search term.
 			currentSearchTerm.value = value;
@@ -92,12 +90,10 @@ module.exports = exports = {
 					}
 
 					// Build an array of menu items.
-					const results = data.query.prefixsearch.map( ( result ) => {
-						return {
-							label: result.title,
-							value: result.title
-						};
-					} );
+					const results = data.query.prefixsearch.map( ( result ) => ( {
+						label: result.title,
+						value: result.title
+					} ) );
 
 					// Update menuItems.
 					menuItems.value = results.filter( filterSelection( selection.value ) );

@@ -2,12 +2,10 @@
 const { mount } = require( '@vue/test-utils' );
 const { ref } = require( 'vue' );
 
-const mwMessageFake = jest.fn( ( textReturnValue ) => {
-	return {
-		exists: jest.fn( () => true ),
-		text: jest.fn( () => textReturnValue )
-	};
-} );
+const mwMessageFake = jest.fn( ( textReturnValue ) => ( {
+	exists: jest.fn( () => true ),
+	text: jest.fn( () => textReturnValue )
+} ) );
 
 const EnumControl = require( './EnumControl.vue' );
 const { CdxRadio, CdxField } = require( '@wikimedia/codex' );

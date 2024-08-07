@@ -42,9 +42,7 @@ const findNamespaceByName = ( name ) => {
 };
 const menuItemToNamespace = ( { value } ) => findNamespaceByName( value );
 const NS_MENU_ITEMS = Object.keys( formattedNamespaces ).map( namespaceToMenuItem );
-const filterSelection = ( selection ) => ( item ) => {
-	return selection.map( ( x ) => x.value ).indexOf( item.value ) === -1;
-};
+const filterSelection = ( selection ) => ( item ) => selection.map( ( x ) => x.value ).indexOf( item.value ) === -1;
 const filterSearchQuery = ( searchQuery ) => ( item ) => {
 	if ( !searchQuery ) {
 		return false;
@@ -81,7 +79,7 @@ module.exports = exports = {
 		 *
 		 * @param {string} value
 		 */
-		const onKeyDown = debounce( function ( evt ) {
+		const onKeyDown = debounce( ( evt ) => {
 			const value = evt.srcElement.value;
 			// Internally track the current search term.
 			currentSearchTerm.value = value;

@@ -60,7 +60,7 @@ module.exports = exports = {
 		 *
 		 * @param {string} value
 		 */
-		const onInput = debounce( function ( value ) {
+		const onInput = debounce( ( value ) => {
 			// Internally track the current search term.
 			currentSearchTerm.value = value;
 
@@ -84,12 +84,10 @@ module.exports = exports = {
 					}
 
 					// Build an array of menu items.
-					const results = data.query.prefixsearch.map( ( result ) => {
-						return {
-							label: result.title,
-							value: result.title
-						};
-					} );
+					const results = data.query.prefixsearch.map( ( result ) => ( {
+						label: result.title,
+						value: result.title
+					} ) );
 
 					// Update menuItems.
 					menuItems.value = results;

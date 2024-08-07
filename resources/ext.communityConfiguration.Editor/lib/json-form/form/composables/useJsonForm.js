@@ -190,9 +190,9 @@ function useJsonFormArrayControl( props ) {
 		scope
 	} = props.uischema;
 
-	const modelValue = computed( () => {
-		return getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs );
-	} );
+	const modelValue = computed(
+		() => getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs )
+	);
 	const pointer = scopeToJsonPointer( scope );
 	const statusMessages = computed( () => {
 		const validationError = jsonform.errors.value.find(

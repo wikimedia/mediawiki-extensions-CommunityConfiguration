@@ -6,12 +6,10 @@ jest.mock( '../../../../icons.json', () => ( {
 	cdxIconTrash: 'cdxIconTrash'
 } ), { virtual: true } );
 
-const mwMessageFake = jest.fn( ( textReturnValue ) => {
-	return {
-		exists: jest.fn( () => true ),
-		text: jest.fn( () => textReturnValue )
-	};
-} );
+const mwMessageFake = jest.fn( ( textReturnValue ) => ( {
+	exists: jest.fn( () => true ),
+	text: jest.fn( () => textReturnValue )
+} ) );
 global.mw.Message = mwMessageFake;
 
 const ArrayFieldName = 'ExampleArraySchema';
@@ -44,15 +42,11 @@ function getMountOptions( configDataObject = null, schema = null ) {
 
 	const stringRenderer = {
 		renderer: StringControl,
-		tester: ( _, testerSchema ) => {
-			return testerSchema.type === 'string' ? 1 : false;
-		}
+		tester: ( _, testerSchema ) => testerSchema.type === 'string' ? 1 : false
 	};
 	const objectRenderer = {
 		renderer: ObjectControl,
-		tester: ( _, testerSchema ) => {
-			return testerSchema.type === 'object' ? 1 : false;
-		}
+		tester: ( _, testerSchema ) => testerSchema.type === 'object' ? 1 : false
 	};
 
 	const jsonform = {

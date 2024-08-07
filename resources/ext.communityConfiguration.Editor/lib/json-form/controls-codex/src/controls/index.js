@@ -14,9 +14,7 @@ const rankRenderer = ( renderer, tester ) => ( {
 	tester: rankWith( 1, tester )
 } );
 
-const isNumberOrInteger = ( ...args ) => {
-	return isIntegerControl( ...args ) || isNumberControl( ...args );
-};
+const isNumberOrInteger = ( ...args ) => isIntegerControl( ...args ) || isNumberControl( ...args );
 
 module.exports = exports = {
 	controls: [

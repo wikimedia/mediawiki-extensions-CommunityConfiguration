@@ -4,12 +4,10 @@ const PageTitleControl = require( './PageTitleControl.vue' );
 const { ref, reactive } = require( 'vue' );
 
 // TODO: move to jest.setup.js
-const mwMessageFake = jest.fn( ( textReturnValue ) => {
-	return {
-		exists: jest.fn( () => true ),
-		text: jest.fn( () => textReturnValue )
-	};
-} );
+const mwMessageFake = jest.fn( ( textReturnValue ) => ( {
+	exists: jest.fn( () => true ),
+	text: jest.fn( () => textReturnValue )
+} ) );
 
 jest.useFakeTimers();
 describe( 'PageTitleControl', () => {
