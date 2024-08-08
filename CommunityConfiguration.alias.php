@@ -41,3 +41,8 @@ $specialPageAliases['nb'] = [
 $specialPageAliases['nn'] = [
 	'CommunityConfiguration' => [ 'Fellesskapskonfigurasjon' ],
 ];
+
+/** Polish (polski) */
+$specialPageAliases['pl'] = [
+	'CommunityConfiguration' => [ 'Konfiguracja_wiki', 'Konfiguracja_społecznościowa' ],
+];
