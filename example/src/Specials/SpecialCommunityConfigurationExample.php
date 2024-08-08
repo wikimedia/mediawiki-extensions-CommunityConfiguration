@@ -26,12 +26,22 @@ class SpecialCommunityConfigurationExample extends SpecialPage {
 		foreach ( $stringConfigNames as $configName ) {
 			$this->showStringConfig( $configName );
 		}
+		$this->showMultiselectEnumConfig();
 	}
 
 	private function showStringConfig( string $configName ): void {
 		$exampleString = $this->wikiConfig->get( $configName );
 		$this->getOutput()->addWikiTextAsInterface( $configName . ': "' . $exampleString . '"' );
 		$this->getOutput()->addWikiTextAsInterface( 'Length: ' . strlen( $exampleString ) );
+	}
+
+	private function showMultiselectEnumConfig(): void {
+		$colorConfigValues = $this->wikiConfig->get( 'CCExample_FavoriteColors' );
+		$this->getOutput()->addWikiTextAsInterface( '==== Favorite colors: ====' );
+		foreach ( $colorConfigValues as $color ) {
+			$this->getOutput()->addHTML( '<div style="background-color: ' . $color . ';">&nbsp;</div>' );
+			$this->getOutput()->addWikiTextAsInterface( 'Color: ' . $color );
+		}
 	}
 
 }

@@ -6,5 +6,22 @@
 	"communityconfiguration-communityconfigurationexample-info-text": "The info-text can provide additional information about the provider and this schema as a whole.",
 	"communityconfiguration-communityconfigurationexample-ccexample_string-label": "A simple string",
 	"communityconfiguration-communityconfigurationexample-ccexample_string-description": "This string rendered as wikitext on [[Special:CommunityConfigurationExample]]. (A description should provide additional information related with the label if needed.)",
-	"communityconfiguration-communityconfigurationexample-ccexample_string-help-text": "No more than 50 characters. (A help-text should support the user in filling out the field correctly. See the [https://doc.wikimedia.org/codex/latest/components/demos/field.html#label-description-and-helper-text Codex recommendations].)"
+	"communityconfiguration-communityconfigurationexample-ccexample_string-help-text": "No more than 50 characters. (A help-text should support the user in filling out the field correctly. See the [https://doc.wikimedia.org/codex/latest/components/demos/field.html#label-description-and-helper-text Codex recommendations].)",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-label": "Favorite colors",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-description": "This field allows to choose from an enumerated list of options, but not to add your own.",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-help-text": "You can choose up to three colors from the list.",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-option-crimson-label": "Crimson",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-option-cyan-label": "Cyan",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-option-firebrick-label": "Fire Brick",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-option-gold-label": "Gold",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-option-tomato-label": "Tomato",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-option-moccasin-label": "Moccasin",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-option-peachpuff-label": "Peachpuff",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-option-mediumseagreen-label": "Medium Sea Green",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-option-lime-label": "Lime",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-option-torquoise-label": "Torquoise",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-option-teal-label": "Teal",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-option-midnightblue-label": "Midnight Blue",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-option-rebeccapurple-label": "Rebecca Purple",
+	"communityconfiguration-communityconfigurationexample-ccexample_favoritecolors-option-navajowhite-label": "Navajo White"
 }

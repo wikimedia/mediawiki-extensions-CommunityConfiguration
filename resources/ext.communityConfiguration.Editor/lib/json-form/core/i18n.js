@@ -82,6 +82,9 @@ function getControlTextProps( prop, prefix, schema ) {
 	if ( schema.type === 'object' ) {
 		return getObjectControlMessages( prefix, prop );
 	}
+	if ( schema.type === 'array' && schema.items && schema.items.enum ) {
+		return getEnumControlMessages( prefix, prop, schema.items.enum );
+	}
 	if ( schema.type === 'array' && !schema.control ) {
 		return getArrayControlMessages( prefix, prop );
 	}

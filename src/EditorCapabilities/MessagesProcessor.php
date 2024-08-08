@@ -116,9 +116,10 @@ class MessagesProcessor {
 					if ( $schema->{JsonSchema::TYPE} === JsonSchema::TYPE_STRING ) {
 						$messages[] = 'mw-widgets-titlesmultiselect-placeholder';
 						$messages[] = 'communityconfiguration-editor-chip-control-aria-chip-description';
+						$messages[] = 'communityconfiguration-editor-error-validation-array-items-max';
+						$messages[] = 'communityconfiguration-editor-error-validation-array-items-min';
+						$messages[] = 'communityconfiguration-editor-error-validation-enum-invalid-value';
 					}
-					// We don't generate labels for arrays of simple types
-					continue;
 				}
 				foreach ( $schema->{JsonSchema::ENUM} as $enumValue ) {
 					$messages[] = $schemaBaseKey . '-option-' . $enumValue . '-label';

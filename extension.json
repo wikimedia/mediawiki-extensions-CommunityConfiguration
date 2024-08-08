@@ -158,7 +158,9 @@
 				"CdxTextArea",
 				"CdxTextInput",
 				"CdxRadio",
-				"useModelWrapper"
+				"useModelWrapper",
+				"useFloatingMenu",
+				"useGeneratedId"
 			],
 			"packageFiles": [
 				"ext.communityConfiguration.Editor/app/init.js",
@@ -190,6 +192,7 @@
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/complex/index.js",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/complex/ArrayControl.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/complex/EnumControl.vue",
+				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/complex/MultiselectEnumControl.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/complex/ChipStringsControl.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/complex/ObjectControl.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/controls-codex/src/mediawiki/index.js",

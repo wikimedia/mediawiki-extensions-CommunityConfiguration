@@ -45,6 +45,15 @@ function isSimpleStringArrayControl( _uischema, schema ) {
 	return schema.type === 'array' && schema.items && schema.items.type === 'string';
 }
 
+function isMultiSelectEnumControl( _uischema, schema ) {
+	const validEnumTypes = [ 'string', 'number' ];
+	return schema.type === 'array' &&
+		schema.items &&
+		schema.items.enum &&
+		Array.isArray( schema.items.enum ) &&
+		validEnumTypes.indexOf( schema.items.type ) !== -1;
+}
+
 /**
  * Tester function to check whether the given schema has
  * the expected control.
@@ -81,6 +90,7 @@ module.exports = exports = {
 	isStringControl,
 	isEnumControl,
 	isSimpleStringArrayControl,
+	isMultiSelectEnumControl,
 	extractRef,
 	rankWith,
 	schemaControlIs,

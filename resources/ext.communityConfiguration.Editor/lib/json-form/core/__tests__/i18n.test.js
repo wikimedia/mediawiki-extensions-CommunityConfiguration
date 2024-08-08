@@ -162,6 +162,54 @@ const TEST_DATA = [
 		]
 	},
 	{
+		testType: 'array-of-enum-number',
+		schema: {
+			type: 'object',
+			properties: {
+				numberEnumArray: {
+					type: 'array',
+					items: {
+						type: 'number',
+						enum: [ 1, 7, 9, 13 ]
+					}
+				}
+			}
+		},
+		expected: [
+			'testenvironment-someprovider-numberenumarray-label',
+			'testenvironment-someprovider-numberenumarray-help-text',
+			'testenvironment-someprovider-numberenumarray-description',
+			'testenvironment-someprovider-numberenumarray-option-1-label',
+			'testenvironment-someprovider-numberenumarray-option-7-label',
+			'testenvironment-someprovider-numberenumarray-option-9-label',
+			'testenvironment-someprovider-numberenumarray-option-13-label'
+		]
+	},
+	{
+		testType: 'array-of-enum-string',
+		schema: {
+			type: 'object',
+			properties: {
+				stringEnumArray: {
+					type: 'array',
+					items: {
+						type: 'string',
+						enum: [ 'fire', 'water', 'earth', 'air' ]
+					}
+				}
+			}
+		},
+		expected: [
+			'testenvironment-someprovider-stringenumarray-label',
+			'testenvironment-someprovider-stringenumarray-help-text',
+			'testenvironment-someprovider-stringenumarray-description',
+			'testenvironment-someprovider-stringenumarray-option-fire-label',
+			'testenvironment-someprovider-stringenumarray-option-water-label',
+			'testenvironment-someprovider-stringenumarray-option-earth-label',
+			'testenvironment-someprovider-stringenumarray-option-air-label'
+		]
+	},
+	{
 		testType: 'pagetitle',
 		schema: {
 			type: 'object',

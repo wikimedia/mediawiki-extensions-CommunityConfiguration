@@ -45,6 +45,9 @@
 	"communityconfiguration-editor-navigation-tab-viewform": "View form",
 	"communityconfiguration-editor-client-notice-message": "This page is protected. Configuration for this feature is only editable by administrators.",
 	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|You}} cannot save changes to this form because configuration for this feature is only editable by administrators.",
+	"communityconfiguration-editor-error-validation-array-items-max": "There must be a maximum of {{PLURAL:$1|$1 item|$1 items}} in the array",
+	"communityconfiguration-editor-error-validation-array-items-min": "There must be a minimum of {{PLURAL:$1|$1 item|$1 items}} in the array",
+	"communityconfiguration-editor-error-validation-enum-invalid-value": "Does not have a value in the enumeration: $1",
 	"tag-community_configuration": "[[mw:Community configuration|Community Configuration]]",
 	"tag-community_configuration-description": "Edits that change the [[Special:CommunityConfiguration|local wiki configuration]] of a feature using the [[mw:Extension:CommunityConfiguration|Community Configuration extension]]."
 }

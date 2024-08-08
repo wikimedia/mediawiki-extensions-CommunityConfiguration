@@ -141,8 +141,13 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-enumarray-label',
 				'pfx-pid-enumarray-help-text',
 				'pfx-pid-enumarray-description',
+				'pfx-pid-enumarray-option-foo-label',
+				'pfx-pid-enumarray-option-bar-label',
 			],
 			[
+				'communityconfiguration-editor-error-validation-array-items-max',
+				'communityconfiguration-editor-error-validation-array-items-min',
+				'communityconfiguration-editor-error-validation-enum-invalid-value',
 				'mw-widgets-titlesmultiselect-placeholder',
 				'communityconfiguration-editor-chip-control-aria-chip-description',
 			]

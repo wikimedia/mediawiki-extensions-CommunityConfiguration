@@ -48,6 +48,9 @@
 	"communityconfiguration-editor-navigation-tab-viewform": "Label for the tab in the navigation menu that allows users to view the configuration form for a specific provider in community configuration.",
 	"communityconfiguration-editor-client-notice-message": "The message is displayed to users when they do not have the right to update values on the configuration form.\n\nUsers with the `edit` permission can update form values",
 	"communityconfiguration-editor-client-notice-footer-message": "The message is displayed just above the disabled submit button on the configuration form when the submit action is not available to a user.",
+	"communityconfiguration-editor-error-validation-array-items-max": "Error message when more items than the maximum are added to an array.\n\nParameters:\n* $1 - the allowed limit\n\n{{Doc-jqueryMsg}}",
+	"communityconfiguration-editor-error-validation-array-items-min": "Error message when less items than the minimum are added to an array.\n\nParameters:\n* $1 - the allowed limit\n\n{{Doc-jqueryMsg}}",
+	"communityconfiguration-editor-error-validation-enum-invalid-value": "Error message when a enumeration has an invalid element.\n\nParameters:\n* $1 - comma-separated list of allowed values\n\n{{Doc-jqueryMsg}}",
 	"tag-community_configuration": "Short change tag name for edits made through the Community Configuration extension's form.",
 	"tag-community_configuration-description": "Short description for the change tag added for edits made through the Community Configuration extension's form. (See {{msg-mw|tag-community_configuration}}).\n\nThis appears on [[Special:Tags]]."
 }
