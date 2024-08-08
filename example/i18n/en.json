@@ -1,0 +1,10 @@
+{
+	"communityconfiguration-communityconfigurationexample-title": "CommunityConfiguration Example",
+	"communityconfigurationexample": "CommunityConfiguration Example",
+	"communityconfigurationexample-summary": "This page showcases the use of configuration variables from [[Special:CommunityConfiguration/CommunityConfigurationExample]].",
+	"communityconfiguration-communityconfigurationexample-description": "An example schema to test and explore CommunityConfiguration. (short description, shown on Special:CommunityConfiguration)",
+	"communityconfiguration-communityconfigurationexample-info-text": "The info-text can provide additional information about the provider and this schema as a whole.",
+	"communityconfiguration-communityconfigurationexample-ccexample_string-label": "A simple string",
+	"communityconfiguration-communityconfigurationexample-ccexample_string-description": "This string rendered as wikitext on [[Special:CommunityConfigurationExample]]. (A description should provide additional information related with the label if needed.)",
+	"communityconfiguration-communityconfigurationexample-ccexample_string-help-text": "No more than 50 characters. (A help-text should support the user in filling out the field correctly. See the [https://doc.wikimedia.org/codex/latest/components/demos/field.html#label-description-and-helper-text Codex recommendations].)"
+}
