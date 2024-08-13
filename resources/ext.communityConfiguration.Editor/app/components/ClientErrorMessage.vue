@@ -4,11 +4,11 @@
 		:is-dismissable="true"
 	>
 		<p>
-			<strong>{{ i18n( 'communityconfiguration-editor-client-generic-error' ).text() }}</strong>
+			<strong>{{ $i18n( 'communityconfiguration-editor-client-generic-error' ).text() }}</strong>
 		</p>
 		<p>
 			{{
-				i18n(
+				$i18n(
 					'communityconfiguration-editor-client-generic-error-description',
 					componentName,
 					info

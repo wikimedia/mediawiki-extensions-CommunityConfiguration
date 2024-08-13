@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ClientErrorMessage matches snapshot 1`] = `
+<transition-stub
+  appear="true"
+  class="ext-communityConfiguration-EditorMessage"
+  css="true"
+  leaveactiveclass=""
+  name="cdx-message"
+  persisted="false"
+>
+  <div
+    class="cdx-message cdx-message--block cdx-message--user-dismissable cdx-message--error"
+    role="alert"
+  >
+    <span
+      class="cdx-icon cdx-icon--medium cdx-message__icon--vue"
+    >
+      <svg
+        aria-hidden="true"
+        height="20"
+        viewBox="0 0 20 20"
+        width="20"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <!--v-if-->
+        <g>
+          <path
+            d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"
+          />
+        </g>
+      </svg>
+    </span>
+    <div
+      class="cdx-message__content"
+    >
+      
+      
+      <p>
+        <strong>
+          communityconfiguration-editor-client-generic-error
+        </strong>
+      </p>
+      <p>
+        communityconfiguration-editor-client-generic-error-description
+      </p>
+      <p>
+        [stack trace here]
+      </p>
+      <p>
+        communityconfiguration-editor-client-post-feedback: https://example.com/feedback
+      </p>
+      
+      
+    </div>
+    <button
+      aria-label="communityconfiguration-editor-message-dismiss-button-label"
+      class="cdx-button cdx-button--action-default cdx-button--weight-quiet cdx-button--size-medium cdx-button--icon-only cdx-message__dismiss-button"
+      type="button"
+    >
+      
+      <span
+        class="cdx-icon cdx-icon--medium"
+      >
+        <svg
+          aria-hidden="true"
+          height="20"
+          viewBox="0 0 20 20"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <!--v-if-->
+          <g>
+            <path
+              d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"
+            />
+            <path
+              d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"
+            />
+          </g>
+        </svg>
+      </span>
+      
+    </button>
+  </div>
+</transition-stub>
+`;

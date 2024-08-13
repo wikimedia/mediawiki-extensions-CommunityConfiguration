@@ -26,6 +26,33 @@ const mw = {
 
 global.mw = mw;
 
+// eslint-disable-next-line jsdoc/require-param
+/**
+ * simplified version of core's i18n-html directive
+ */
+function fakeRenderI18nHtml( el, binding ) {
+	let message;
+
+	if ( Array.isArray( binding.value ) ) {
+		if ( binding.arg === undefined ) {
+			// v-i18n-html="[ ...params ]" (error)
+			throw new Error( 'v-i18n-html used with parameter array but without message key' );
+		}
+		// v-i18n-html:messageKey="[ ...params ]"
+		const key = binding.arg;
+		const params = binding.value;
+		message = key + ': ' + params.join( ', ' );
+	} else if ( binding.value instanceof mw.Message ) {
+		// v-i18n-html="mw.message( '...' ).params( [ ... ] )"
+		message = binding.value;
+	} else {
+		// v-i18n-html:foo or v-i18n-html="'foo'"
+		message = binding.arg || binding.value;
+	}
+
+	el.innerHTML = message;
+}
+
 // eslint-disable-next-line jsdoc/require-returns,jsdoc/require-param
 /**
  * this provides defaults only for the functionality by mediawiki
@@ -33,7 +60,10 @@ global.mw = mw;
 global.getGlobalMediaWikiMountingOptions = function ( provide = {}, directives = {}, mocks = {} ) {
 	return {
 		directives: {
-			'i18n-html': jest.fn(),
+			'i18n-html': {
+				mounted: fakeRenderI18nHtml,
+				updated: fakeRenderI18nHtml
+			},
 			...directives
 		},
 		mocks: {
