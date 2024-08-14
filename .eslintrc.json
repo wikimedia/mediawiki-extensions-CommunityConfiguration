@@ -40,6 +40,7 @@
 			"files": [
 				"resources/**/*.js"
 			],
+			"excludedFiles": "*.test.js",
 			"extends": [
 				"wikimedia/client-es6"
 			],
@@ -52,20 +53,19 @@
 				"**/*.test.js"
 			],
 			"env": {
-				"jest": true
+				"browser": true
 			},
 			"extends": [
-				"wikimedia/server"
+				"wikimedia/server",
+				"wikimedia/jest"
 			],
 			"rules": {
-				"es-x/no-array-prototype-includes": "off",
-				"es-x/no-rest-spread-properties": "off",
-				"es-x/no-async-functions": "off",
 				"template-curly-spacing": "off"
 			}
 		},
 		{
 			"files": [
+				"jest.config.js",
 				"jest.setup.js",
 				"jest.setupAfterEnv.js"
 			],

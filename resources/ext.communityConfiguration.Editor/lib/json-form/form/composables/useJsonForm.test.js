@@ -24,7 +24,6 @@ function withSetup( composable, provides = {} ) {
 		}
 	} );
 
-	// eslint-disable-next-line es-x/no-object-entries
 	Object.entries( provides ).forEach( ( [ key, value ] ) => {
 		app.provide( key, value );
 	} );
