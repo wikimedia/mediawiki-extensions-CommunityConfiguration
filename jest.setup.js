@@ -26,6 +26,13 @@ const mw = {
 
 global.mw = mw;
 
+function fakeMessageRendering( key, ...params ) {
+	if ( params.length === 0 ) {
+		return key;
+	}
+	return key + ': ' + params.join( ', ' );
+}
+
 // eslint-disable-next-line jsdoc/require-param
 /**
  * simplified version of core's i18n-html directive
@@ -39,9 +46,7 @@ function fakeRenderI18nHtml( el, binding ) {
 			throw new Error( 'v-i18n-html used with parameter array but without message key' );
 		}
 		// v-i18n-html:messageKey="[ ...params ]"
-		const key = binding.arg;
-		const params = binding.value;
-		message = key + ': ' + params.join( ', ' );
+		message = fakeMessageRendering( binding.arg, ...binding.value );
 	} else if ( binding.value instanceof mw.Message ) {
 		// v-i18n-html="mw.message( '...' ).params( [ ... ] )"
 		message = binding.value;
@@ -67,16 +72,16 @@ global.getGlobalMediaWikiMountingOptions = function ( provide = {}, directives =
 			...directives
 		},
 		mocks: {
-			$i18n: jest.fn( ( key ) => ( {
-				text: () => key,
-				toString: () => key
+			$i18n: jest.fn( ( key, ...params ) => ( {
+				text: () => fakeMessageRendering( key, ...params ),
+				toString: () => fakeMessageRendering( key, ...params )
 			} ) ),
 			...mocks
 		},
 		provide: {
-			i18n: jest.fn( ( key ) => ( {
-				text: () => key,
-				toString: () => key,
+			i18n: jest.fn( ( key, ...params ) => ( {
+				text: () => fakeMessageRendering( key, ...params ),
+				toString: () => fakeMessageRendering( key, ...params ),
 				exists: jest.fn( () => true )
 			} ) ),
 			...provide

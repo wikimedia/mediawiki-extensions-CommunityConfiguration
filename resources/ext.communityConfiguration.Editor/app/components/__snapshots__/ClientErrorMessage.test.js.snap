@@ -43,7 +43,7 @@ exports[`ClientErrorMessage matches snapshot 1`] = `
         </strong>
       </p>
       <p>
-        communityconfiguration-editor-client-generic-error-description
+        communityconfiguration-editor-client-generic-error-description: App, setup function
       </p>
       <p>
         [stack trace here]
