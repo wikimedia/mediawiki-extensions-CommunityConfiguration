@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ата"
+		]
+	},
+	"communityconfiguration": "Налаштування спільнотою",
+	"communityconfiguration-desc": "Містить логіку налаштувань спільнотою",
+	"communityconfiguration-editor-client-generic-error": "Щось пішло не так під час завантаження редактора конфігурації. Спробуйте ще раз пізніше.",
+	"communityconfiguration-editor-client-generic-error-description": "Сталася помилка у «$2» в компоненті $1. Див. деталі нижче:",
+	"communityconfiguration-editor-form-submit-button-text": "Зберегти зміни",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Надсилання…",
+	"communityconfiguration-guidelines-title": "Що таке Налаштування спільнотою?",
+	"communityconfiguration-guidelines-description": "Налаштування спільнотою — це інструмент, який дає локальним спільнотам задати і регулювати налаштування різних функцій {{grammar:genitive|{{SITENAME}}}}, допомагаючи адміністраторам задовольняти конкретні потреби своєї спільноти.",
+	"communityconfiguration-guidelines-guideline1-title": "Дізнатися більше",
+	"communityconfiguration-guidelines-guideline2-title": "Залиште нам {{GENDER:$1|свій}} відгук",
+	"communityconfiguration-invalid-stored-config-error": "Не вдалося завантажити дійсну конфігурацію від постачальника $1 (код <tt>$2</tt>).",
+	"communityconfiguration-invalid-stored-config-error-with-link": "Не вдалося завантажити дійсну конфігурацію від постачальника $1 (код <tt>$2</tt>), див. $3.",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Деталі помилки",
+	"communityconfiguration-providers-list-title": "Функції",
+	"communityconfiguration-provider-not-found": "Постачальника $1 не знайдено",
+	"communityconfigurationdashboard": "Налаштування спільнотою",
+	"communityconfiguration-edit-summary-reminder": "<b>Нагадування</b>: Ця зміна може вплинути на велику кількість членів спільноти. Вкажіть, будь ласка, чому {{GENDER:$1|ви}} робите цю зміну і дайте посилання на відповідне обговорення спільноти, де потрібно.",
+	"communityconfiguration-edit-summary-dialog-title": "Зберегти зміни до «$1»",
+	"communityconfiguration-edit-summary-dialog-title-span": "(необов'язково)",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Опишіть зміни, які були зроблені в конфігурації",
+	"communityconfiguration-edit-summary-dialog-save-button": "Зберегти зміни",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Скасувати",
+	"communityconfiguration-edit-summary-dialog-label": "Опис редагування",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Ваші}} зміни збережено",
+	"communityconfiguration-editor-client-data-submission-error": "Щось пішло не так під час збереження {{GENDER:$1|ваших}} змін. Спробуйте, будь ласка, пізніше.",
+	"communityconfiguration-editor-message-dismiss-button-label": "Закрити",
+	"communityconfiguration-page-title-control-no-results": "Результатів не знайдено."
+}
