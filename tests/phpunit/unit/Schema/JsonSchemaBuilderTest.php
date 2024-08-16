@@ -15,10 +15,8 @@ use MediaWikiUnitTestCase;
 class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 
 	public function testSchemaProperties() {
-		$schemaSource = $this->createNoOpMock( ReflectionSchemaSource::class, [ 'loadAsSchema' ] );
-		$schemaSource->expects( $this->exactly( 2 ) )
-			->method( 'loadAsSchema' )
-			->willReturn( [
+		$builder = $this->getNewJsonSchemaBuilder(
+			[
 				'type' => 'object',
 				'$defs' => [],
 				'properties' => [
@@ -26,30 +24,8 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 						JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
 					],
 				],
-			] );
-
-		$schemaReader = $this->createNoOpMock( JsonSchemaReader::class, [
-			'assertIsSchema',
-			'getJsonSchemaVersion',
-			'getSchemaId',
-			'getReflectionSchemaSource',
-		] );
-
-		$schemaReader->expects( $this->exactly( 2 ) )
-			->method( 'assertIsSchema' );
-		$schemaReader->expects( $this->exactly( 2 ) )
-			->method( 'getJsonSchemaVersion' )
-			->willReturn( 'schema/version' );
-		$schemaReader->expects( $this->exactly( 2 ) )
-			->method( 'getSchemaId' )
-			->willReturn( 'schema/id' );
-		$schemaReader->expects( $this->exactly( 2 ) )
-			->method( 'getReflectionSchemaSource' )
-			->willReturn( $schemaSource );
-
-		$builder = new JsonSchemaBuilder(
-			$this->createMock( IBufferingStatsdDataFactory::class ),
-			$schemaReader
+			],
+			2
 		);
 
 		$this->assertEquals( [
@@ -73,10 +49,8 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testDefaultsMap() {
-		$schemaSource = $this->createNoOpMock( ReflectionSchemaSource::class, [ 'loadAsSchema' ] );
-		$schemaSource->expects( $this->once() )
-			->method( 'loadAsSchema' )
-			->willReturn( [
+		$builder = $this->getNewJsonSchemaBuilder(
+			[
 				'properties' => [
 					'number' => [
 						'type' => 'number',
@@ -120,16 +94,8 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 						],
 					],
 				]
-			] );
-
-		$schemaReader = $this->createMock( JsonSchemaReader::class );
-		$schemaReader->expects( $this->once() )
-			->method( 'getReflectionSchemaSource' )
-			->willReturn( $schemaSource );
-
-		$builder = new JsonSchemaBuilder(
-			$this->createMock( IBufferingStatsdDataFactory::class ),
-			$schemaReader
+			],
+			1
 		);
 		$this->assertEquals( (object)[
 			'number' => 42,
@@ -147,5 +113,35 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 				'bar' => 2,
 			],
 		], $builder->getDefaultsMap() );
+	}
+
+	private function getNewJsonSchemaBuilder( array $loadedSchema, int $numDependencyCalls ): JsonSchemaBuilder {
+		$schemaSource = $this->createNoOpMock( ReflectionSchemaSource::class, [ 'loadAsSchema' ] );
+		$schemaSource->expects( $this->exactly( $numDependencyCalls ) )
+			->method( 'loadAsSchema' )
+			->willReturn( $loadedSchema );
+
+		$schemaReader = $this->createNoOpMock( JsonSchemaReader::class, [
+			'assertIsSchema',
+			'getJsonSchemaVersion',
+			'getSchemaId',
+			'getReflectionSchemaSource',
+		] );
+		$schemaReader->expects( $this->exactly( $numDependencyCalls ) )
+			->method( 'assertIsSchema' );
+		$schemaReader->expects( $this->exactly( $numDependencyCalls ) )
+			->method( 'getJsonSchemaVersion' )
+			->willReturn( 'schema/version' );
+		$schemaReader->expects( $this->exactly( $numDependencyCalls ) )
+			->method( 'getSchemaId' )
+			->willReturn( 'schema/id' );
+		$schemaReader->expects( $this->exactly( $numDependencyCalls ) )
+			->method( 'getReflectionSchemaSource' )
+			->willReturn( $schemaSource );
+
+		return new JsonSchemaBuilder(
+			$this->createMock( IBufferingStatsdDataFactory::class ),
+			$schemaReader
+		);
 	}
 }
