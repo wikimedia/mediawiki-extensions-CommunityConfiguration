@@ -53,6 +53,7 @@
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Error message when a enumeration has an invalid element.\n\nParameters:\n* $1 - comma-separated list of allowed values\n\n{{Doc-jqueryMsg}}",
 	"communityconfiguration-editor-error-validation-string-too-short": "Error message when the value of a string input is too short.\n\nParameters:\n* $1 - the minimum length\n\n{{Doc-jqueryMsg}}",
 	"communityconfiguration-editor-error-validation-string-too-long": "Error message when the value of a string input is too long.\n\nParameters:\n* $1 - the maximum length\n\n{{Doc-jqueryMsg}}",
+	"communityconfiguration-maintenance-config-change-summary": "Edit summary stored when config is changed via a maintenance script.\n\nParameters:\n* $1 - the summary provided when running the script",
 	"tag-community_configuration": "Short change tag name for edits made through the Community Configuration extension's form.",
 	"tag-community_configuration-description": "Short description for the change tag added for edits made through the Community Configuration extension's form. (See {{msg-mw|tag-community_configuration}}).\n\nThis appears on [[Special:Tags]]."
 }
