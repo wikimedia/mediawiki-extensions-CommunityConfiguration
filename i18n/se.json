@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kimberli Mäkäräinen (WMNO)"
+			"Kimberli Mäkäräinen (WMNO)",
+			"Yupik"
 		]
 	},
 	"communityconfiguration-editor-form-submit-button-text": "Vurke rievdadusaid",
-	"communityconfiguration-edit-summary-dialog-title-span": "(eaktodáhtolaš)"
+	"communityconfiguration-edit-summary-dialog-title-span": "(eaktodáhtolaš)",
+	"communityconfiguration-edit-summary-dialog-save-button": "Vurke rievdadusaid"
 }

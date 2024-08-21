@@ -47,6 +47,9 @@
 	"communityconfiguration-editor-navigation-tab-viewform": "Formular anzeigen",
 	"communityconfiguration-editor-client-notice-message": "Diese Seite ist geschützt. Die Konfiguration für diese Funktion kann nur von Administratoren bearbeitet werden.",
 	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Du}} kannst Änderungen an diesem Formular nicht speichern, da die Konfiguration für diese Funktion nur von Administratoren bearbeitet werden kann.",
+	"communityconfiguration-editor-error-validation-array-items-max": "Das Array darf maximal {{PLURAL:$1|$1 Element|$1 Elemente}} enthalten.",
+	"communityconfiguration-editor-error-validation-array-items-min": "Das Array muss mindestens {{PLURAL:$1|$1 Element|$1 Elemente}} enthalten.",
+	"communityconfiguration-editor-error-validation-enum-invalid-value": "Hat keinen Wert in der Aufzählung: $1",
 	"tag-community_configuration": "[[mw:Community configuration|Community-Konfiguration]]",
 	"tag-community_configuration-description": "Bearbeitungen, die die [[Special:CommunityConfiguration|lokale Wiki-Konfiguration]] einer Funktion mithilfe der [[mw:Extension:CommunityConfiguration|Community-Konfigurationserweiterung]] ändern."
 }
