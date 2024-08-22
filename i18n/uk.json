@@ -25,8 +25,10 @@
 	"communityconfiguration-invalid-stored-config-error": "Не вдалося завантажити дійсну конфігурацію від постачальника $1 (код <tt>$2</tt>).",
 	"communityconfiguration-invalid-stored-config-error-with-link": "Не вдалося завантажити дійсну конфігурацію від постачальника $1 (код <tt>$2</tt>), див. $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Деталі помилки",
+	"communityconfiguration-schema-validation-error": "DRAFT: $2. Ключ: $1",
 	"communityconfiguration-providers-list-title": "Функції",
 	"communityconfiguration-provider-not-found": "Постачальника $1 не знайдено",
+	"communityconfiguration-unknown-error": "DRAFT: Щось пішло не так; подати звіт на Фабрикатор?",
 	"communityconfigurationdashboard": "Налаштування спільнотою",
 	"communityconfigurationeditor": "Редагування розділу «$1»",
 	"communityconfiguration-edit-summary-reminder": "<b>Нагадування</b>: Ця зміна може вплинути на велику кількість членів спільноти. Вкажіть, будь ласка, чому {{GENDER:$1|ви}} робите цю зміну і дайте посилання на відповідне обговорення спільноти, де потрібно.",
@@ -45,6 +47,8 @@
 	"communityconfiguration-editor-navigation-tab-viewform": "Переглянути форму",
 	"communityconfiguration-editor-client-notice-message": "Ця сторінка захищена. Конфігурацію цієї функції можуть редагувати лише адміністратори.",
 	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Ви}} не можете зберегти зміни до цієї форми, тому що налаштування цієї функції можуть змінювати лише адміністратори.",
+	"communityconfiguration-editor-error-validation-array-items-max": "У масиві має бути максимум {{PLURAL:$1|$1 елемент|$1 елементи|$1 елементів}}",
+	"communityconfiguration-editor-error-validation-array-items-min": "У масиві має бути мінімум {{PLURAL:$1|$1 елемент|$1 елементи|$1 елементів}}",
 	"tag-community_configuration": "[[mw:Community configuration|Налаштування спільнотою]]",
 	"tag-community_configuration-description": "Редагування, які змінюють [[Special:CommunityConfiguration|конфігурацію функції у локальній вікі]] з допомогою [[mw:Extension:CommunityConfiguration|розширення Налаштування спільнотою]]."
 }
