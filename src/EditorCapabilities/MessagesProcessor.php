@@ -39,6 +39,7 @@ class MessagesProcessor {
 		array_unshift( $keys, strtolower( $messagePrefix . '-' . $providerId . '-title' ) );
 		foreach ( $keys as $key ) {
 			$msg = $this->messageLocalizer->msg( $key );
+			// TODO: consider adding logging for non-existent messages (T373398)
 			if ( $msg->exists() ) {
 				$messages[$key] = $msg->plain();
 			}
