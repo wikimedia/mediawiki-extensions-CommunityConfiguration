@@ -23,6 +23,14 @@ class SpecialCommunityConfigurationExample extends SpecialPage {
 		parent::execute( $subPage );
 
 		$stringConfigNames = [ 'CCExample_String' ];
+		$this->getOutput()->addWikiTextAsInterface(
+			<<<'STRING_INTRO'
+			(Note that string-length is calculated in a multi-byte way.
+			For English copy that usually means that each character is counted as "1".
+			But this may be less true for other scripts and it is not true for emoji.
+			Try "🏴󠁧󠁢󠁥󠁮󠁧󠁿": it is counted as having a length of 7.)
+			STRING_INTRO
+		);
 		foreach ( $stringConfigNames as $configName ) {
 			$this->showStringConfig( $configName );
 		}
@@ -32,7 +40,7 @@ class SpecialCommunityConfigurationExample extends SpecialPage {
 	private function showStringConfig( string $configName ): void {
 		$exampleString = $this->wikiConfig->get( $configName );
 		$this->getOutput()->addWikiTextAsInterface( $configName . ': "' . $exampleString . '"' );
-		$this->getOutput()->addWikiTextAsInterface( 'Length: ' . strlen( $exampleString ) );
+		$this->getOutput()->addWikiTextAsInterface( 'Length: ' . mb_strlen( $exampleString ) );
 	}
 
 	private function showMultiselectEnumConfig(): void {

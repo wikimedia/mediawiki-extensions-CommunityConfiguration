@@ -51,6 +51,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "Error message when more items than the maximum are added to an array.\n\nParameters:\n* $1 - the allowed limit\n\n{{Doc-jqueryMsg}}",
 	"communityconfiguration-editor-error-validation-array-items-min": "Error message when less items than the minimum are added to an array.\n\nParameters:\n* $1 - the allowed limit\n\n{{Doc-jqueryMsg}}",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Error message when a enumeration has an invalid element.\n\nParameters:\n* $1 - comma-separated list of allowed values\n\n{{Doc-jqueryMsg}}",
+	"communityconfiguration-editor-error-validation-string-too-short": "Error message when the value of a string input is too short.\n\nParameters:\n* $1 - the minimum length\n\n{{Doc-jqueryMsg}}",
+	"communityconfiguration-editor-error-validation-string-too-long": "Error message when the value of a string input is too long.\n\nParameters:\n* $1 - the maximum length\n\n{{Doc-jqueryMsg}}",
 	"tag-community_configuration": "Short change tag name for edits made through the Community Configuration extension's form.",
 	"tag-community_configuration-description": "Short description for the change tag added for edits made through the Community Configuration extension's form. (See {{msg-mw|tag-community_configuration}}).\n\nThis appears on [[Special:Tags]]."
 }

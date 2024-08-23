@@ -139,7 +139,15 @@ class MessagesProcessor {
 						$messages[] = 'communityconfiguration-editor-chip-control-aria-chip-description';
 					}
 					// We don't generate labels for arrays of simple types
+					// TODO: consider adding support for min/max length client validation errors for arrays of strings
 					continue;
+				}
+				if (
+					!isset( $schema->{JsonSchema::CONTROL} ) &&
+					$schema->{JsonSchema::TYPE} === JsonSchema::TYPE_STRING
+				) {
+					$messages[] = 'communityconfiguration-editor-error-validation-string-too-short';
+					$messages[] = 'communityconfiguration-editor-error-validation-string-too-long';
 				}
 				$messages[] = $schemaBaseKey . '-label';
 				$messages[] = $schemaBaseKey . '-help-text';

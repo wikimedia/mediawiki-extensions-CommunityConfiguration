@@ -4,7 +4,7 @@
 			v-bind="control.otherAttrs"
 			v-model="control.modelValue.value"
 			:placeholder="control.uischema.placeholder"
-			@update:model-value="onChange"
+			@update:model-value="trimmedOnChange"
 			@input="onInput"
 		>
 		</cdx-text-input>
@@ -13,7 +13,7 @@
 
 <script>
 
-const { defineComponent } = require( 'vue' );
+const { defineComponent, inject } = require( 'vue' );
 const { CdxTextInput } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
@@ -34,20 +34,42 @@ module.exports = exports = defineComponent( {
 	setup( props ) {
 		const { control, controlWrapper, onChange } = useCodexControl( useJsonFormControl( props ) );
 		const { setValidationErrorForFieldId, clearValidationErrorForFieldId } = useValidationErrors();
+		const i18n = inject( 'i18n' );
 		const onInput = ( event ) => {
 			const inputElement = event.target;
 			if ( inputElement.validationMessage ) {
 				setValidationErrorForFieldId( controlWrapper.id, inputElement.validationMessage );
-			} else {
-				clearValidationErrorForFieldId( controlWrapper.id );
+				return;
 			}
+
+			const stringLengthAsItIsCalculatedInJsonrainbow = Array.from( inputElement.value.trim() ).length;
+			if ( control.schema.maxLength && stringLengthAsItIsCalculatedInJsonrainbow > control.schema.maxLength ) {
+				setValidationErrorForFieldId(
+					controlWrapper.id,
+					i18n( 'communityconfiguration-editor-error-validation-string-too-long', control.schema.maxLength ).text()
+				);
+				return;
+			}
+			if ( control.schema.minLength && stringLengthAsItIsCalculatedInJsonrainbow < control.schema.minLength ) {
+				setValidationErrorForFieldId(
+					controlWrapper.id,
+					i18n( 'communityconfiguration-editor-error-validation-string-too-short', control.schema.minLength ).text()
+				);
+				return;
+			}
+
+			clearValidationErrorForFieldId( controlWrapper.id );
+		};
+
+		const trimmedOnChange = ( value ) => {
+			onChange( value.trim() );
 		};
 
 		return {
 			onInput,
 			control,
 			controlWrapper,
-			onChange
+			trimmedOnChange
 		};
 	}
 } );

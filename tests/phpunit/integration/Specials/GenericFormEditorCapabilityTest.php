@@ -9,6 +9,7 @@ use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\GenericFormEditorCapability;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
@@ -51,6 +52,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 	public function testLoadsOkForNonExistingConfigPage() {
 		$this->overrideConfigValues( [
 			'CommunityConfigurationFeedbackURL' => 'https://bug-reporting.tool',
+			MainConfigNames::LanguageCode => 'qqx',
 		] );
 
 		[
@@ -66,7 +68,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 
 		$output = $testContext->getOutput();
 		$this->assertSame(
-			'Editing (communityconfiguration-communityfeatureoverrides-title)',
+			'(communityconfigurationeditor: (communityconfiguration-communityfeatureoverrides-title))',
 			$output->getPageTitle()
 		);
 		$this->assertThatHamcrest(
@@ -86,9 +88,13 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 			],
 			$jsConfigVars['data']
 		);
+
+		// This test should not bind against details of message generation.
+		$this->assertNotEmpty( $jsConfigVars['config']['i18nMessages'] );
+		unset( $jsConfigVars['config']['i18nMessages'] );
+
 		$this->assertSame( [
 			'i18nPrefix' => 'communityconfiguration-' . strtolower( self::PROVIDER_ID ),
-			'i18nMessages' => [],
 			'feedbackURL' => 'https://bug-reporting.tool',
 			'canEdit' => false,
 		], $jsConfigVars['config'] );

@@ -171,6 +171,8 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-exampleobject-label',
 				'pfx-pid-exampleobject-help-text',
 				'pfx-pid-exampleobject-description',
+				'communityconfiguration-editor-error-validation-string-too-short',
+				'communityconfiguration-editor-error-validation-string-too-long',
 			],
 			[
 				'pfx-pid-exampleobject-foo-label',
@@ -207,6 +209,8 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-examplearray-description',
 				'pfx-pid-examplearray-add-element-button-label',
 				'communityconfiguration-editor-array-fallback-add-element-button-label',
+				'communityconfiguration-editor-error-validation-string-too-short',
+				'communityconfiguration-editor-error-validation-string-too-long',
 			],
 			[
 				'pfx-pid-examplearray-foo-label',
