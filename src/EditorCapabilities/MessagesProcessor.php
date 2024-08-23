@@ -122,7 +122,7 @@ class MessagesProcessor {
 					}
 				}
 				foreach ( $schema->{JsonSchema::ENUM} as $enumValue ) {
-					$messages[] = $schemaBaseKey . '-option-' . $enumValue . '-label';
+					$messages[] = $schemaBaseKey . '-option-' . strtolower( $enumValue ) . '-label';
 				}
 				// Do not process the schema type for enums as it would generate
 				// undesired keys, eg: placeholders

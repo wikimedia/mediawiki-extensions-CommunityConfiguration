@@ -61,7 +61,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 			new class() extends JsonSchema {
 				public const StringEnum = [
 					JsonSchema::TYPE => JsonSchema::TYPE_STRING,
-					JsonSchema::ENUM => [ 'fire', 'earth', 'water' ],
+					JsonSchema::ENUM => [ 'fire', 'earth', 'water', 'UPPERCASE' ],
 				];
 			},
 			[
@@ -71,6 +71,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-stringenum-option-fire-label',
 				'pfx-pid-stringenum-option-earth-label',
 				'pfx-pid-stringenum-option-water-label',
+				'pfx-pid-stringenum-option-uppercase-label',
 			]
 		];
 		yield 'enum number' => [
