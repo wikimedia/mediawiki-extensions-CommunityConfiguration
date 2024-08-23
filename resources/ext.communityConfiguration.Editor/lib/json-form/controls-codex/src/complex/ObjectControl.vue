@@ -13,6 +13,12 @@
 		<template #label>
 			{{ control.uischema.label.text() }}
 		</template>
+		<template v-if="description && description.exists()" #description>
+			<span v-i18n-html="description"></span>
+		</template>
+		<template v-if="helpText && helpText.exists()" #help-text>
+			<span v-i18n-html="helpText"></span>
+		</template>
 	</cdx-field>
 	<dispatch-renderer
 		v-for="( element, index ) in detailUiSchema.elements"
@@ -56,6 +62,8 @@ module.exports = exports = {
 		);
 		return {
 			control,
+			description: control.uischema.description,
+			helpText: control.uischema.helpText,
 			detailUiSchema
 		};
 	}
