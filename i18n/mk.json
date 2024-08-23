@@ -46,6 +46,9 @@
 	"communityconfiguration-editor-navigation-tab-viewform": "Погл. образецот",
 	"communityconfiguration-editor-client-notice-message": "Оваа страница е заштитена. Поставките за оваа функција можат да ги менуваат само администратори.",
 	"communityconfiguration-editor-client-notice-footer-message": "Не {{GENDER:$1|можете}} да ги зачувате промените на овој образец бидејќи поставките за оваа функција можат да ги менуваат само администратори.",
+	"communityconfiguration-editor-error-validation-array-items-max": "Мора да има највеќе {{PLURAL:$1|$1 ставка|$1 ставки}} во стројот",
+	"communityconfiguration-editor-error-validation-array-items-min": "Мора да има најмалку {{PLURAL:$1|$1 ставка|$1 ставки}} во стројот",
+	"communityconfiguration-editor-error-validation-enum-invalid-value": "Нема вредност во пребројувањето: $1",
 	"tag-community_configuration": "[[mw:Community configuration|Поставки за заедницата]]",
 	"tag-community_configuration-description": "Уредувања кои ја менуваат [[Special:CommunityConfiguration|поставеноста на месното вики]] на функција што го користи додатокто „[[mw:Extension:CommunityConfiguration|Поставки за заедницата]]“."
 }
