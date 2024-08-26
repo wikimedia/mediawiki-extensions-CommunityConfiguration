@@ -143,11 +143,6 @@ function useJsonFormControl( props ) {
 	);
 	const pointer = scopeToJsonPointer( scope );
 	const otherAttrs = { required };
-	const schemaTypeIsInteger = props.schema.type === 'integer';
-	const schemaTypeIsNumber = props.schema.type === 'number';
-	if ( schemaTypeIsInteger || schemaTypeIsNumber ) {
-		otherAttrs.step = schemaTypeIsInteger ? 1 : 'any';
-	}
 
 	const { getValidationErrorMessageForFormFieldId } = useValidationErrors();
 	const statusMessages = computed( () => {

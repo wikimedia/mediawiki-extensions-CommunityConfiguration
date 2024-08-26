@@ -6,6 +6,7 @@
 			input-type="number"
 			:min="min"
 			:max="max"
+			:step="step"
 			:placeholder="control.uischema.placeholder"
 			@update:model-value="onChange"
 			@input="onInput"
@@ -25,6 +26,15 @@ const {
 const { useCodexControl } = require( '../utils.js' );
 const ControlWrapper = require( './ControlWrapper.vue' );
 
+function getStepFromSchema( schema ) {
+	if ( schema.type === 'integer' ) {
+		return 1;
+	}
+	if ( schema.type === 'number' ) {
+		return 'any';
+	}
+}
+
 // @vue/component
 module.exports = exports = defineComponent( {
 	name: 'NumberControl',
@@ -36,12 +46,14 @@ module.exports = exports = defineComponent( {
 	setup( props ) {
 		const codexControl = useCodexControl( useJsonFormControl( props ) );
 
-		const min = ( typeof codexControl.control.schema.minimum ) === 'number' ?
-			codexControl.control.schema.minimum :
+		const schema = codexControl.control.schema;
+		const min = ( typeof schema.minimum ) === 'number' ?
+			schema.minimum :
 			null;
-		const max = ( typeof codexControl.control.schema.maximum ) === 'number' ?
-			codexControl.control.schema.maximum :
+		const max = ( typeof schema.maximum ) === 'number' ?
+			schema.maximum :
 			null;
+		const step = getStepFromSchema( schema );
 
 		const { setValidationErrorForFieldId, clearValidationErrorForFieldId } = useValidationErrors();
 		const onInput = ( event ) => {
@@ -62,7 +74,8 @@ module.exports = exports = defineComponent( {
 			},
 			onInput,
 			min,
-			max
+			max,
+			step
 		} );
 	}
 } );
