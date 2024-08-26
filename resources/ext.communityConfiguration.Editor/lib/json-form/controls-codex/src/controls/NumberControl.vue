@@ -27,6 +27,9 @@ const { useCodexControl } = require( '../utils.js' );
 const ControlWrapper = require( './ControlWrapper.vue' );
 
 function getStepFromSchema( schema ) {
+	if ( schema.multipleOf ) {
+		return schema.multipleOf;
+	}
 	if ( schema.type === 'integer' ) {
 		return 1;
 	}
