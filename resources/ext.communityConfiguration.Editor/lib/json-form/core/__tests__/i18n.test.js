@@ -315,7 +315,6 @@ describe( 'i18n.getControlTextProps()', () => {
 			);
 
 			expect(
-				/* eslint-disable-next-line es-x/no-object-values */
 				Object.values( actualData ).reduce( ( keys, messageFake ) => {
 					if ( messageFake instanceof global.mw.Message ) {
 						keys.push( messageFake.getKey() );
@@ -327,7 +326,6 @@ describe( 'i18n.getControlTextProps()', () => {
 					}
 
 					// enum object now, contains only literal message keys
-					/* eslint-disable-next-line es-x/no-object-values */
 					keys.push( ...Object.values( messageFake ) );
 					return keys;
 				}, [] )
