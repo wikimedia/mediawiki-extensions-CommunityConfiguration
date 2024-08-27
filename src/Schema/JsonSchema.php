@@ -65,6 +65,7 @@ abstract class JsonSchema {
 	// integer and number types
 	public const MINIMUM = 'minimum';
 	public const MAXIMUM = 'maximum';
+	public const MULTIPLE_OF = 'multipleOf';
 	// string type
 	public const MIN_LENGTH = 'minLength';
 	public const MAX_LENGTH = 'maxLength';

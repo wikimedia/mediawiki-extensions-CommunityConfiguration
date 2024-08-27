@@ -97,5 +97,15 @@ describe( 'NumberControl', () => {
 
 			expect( wrapper.find( '.cdx-message--error' ).exists() ).toBeFalsy();
 		} );
+
+		it( 'adds `step` attribute for multipleOf in the schema and shows an error if not met', async () => {
+			const wrapper = mount( NumberControl, getMountOptions( {
+				multipleOf: 0.1
+			} ) );
+
+			await wrapper.get( 'input[type="number"]' ).setValue( 0.1234 );
+
+			expect( wrapper.get( '.cdx-message--error' ) ).toBeTruthy();
+		} );
 	} );
 } );
