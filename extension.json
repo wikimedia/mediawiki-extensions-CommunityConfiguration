@@ -247,7 +247,8 @@
 				"word-separator",
 				"communityconfiguration-editor-validation-error-label-chain-joiner",
 				"communityconfiguration-editor-client-notice-message",
-				"communityconfiguration-editor-client-notice-footer-message"
+				"communityconfiguration-editor-client-notice-footer-message",
+				"blanknamespace"
 			],
 			"dependencies": [
 				"mediawiki.api",

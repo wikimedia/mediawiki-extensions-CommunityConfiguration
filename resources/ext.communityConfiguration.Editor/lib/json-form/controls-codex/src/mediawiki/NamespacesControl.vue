@@ -22,7 +22,8 @@
 </template>
 
 <script>
-const { ref, unref } = require( 'vue' );
+
+const { ref, unref, inject } = require( 'vue' );
 const { CdxChipInput, CdxMenu } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
@@ -31,7 +32,6 @@ const {
 const { debounce, useCodexControl } = require( '../utils.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
 const formattedNamespaces = mw.config.get( 'wgFormattedNamespaces' );
-const namespaceToMenuItem = ( value ) => ( { value: formattedNamespaces[ value ] } );
 const findNamespaceByName = ( name ) => {
 	for ( const ns in formattedNamespaces ) {
 		if ( formattedNamespaces[ ns ] === name ) {
@@ -41,8 +41,8 @@ const findNamespaceByName = ( name ) => {
 	}
 };
 const menuItemToNamespace = ( { value } ) => findNamespaceByName( value );
-const NS_MENU_ITEMS = Object.keys( formattedNamespaces ).map( namespaceToMenuItem );
 const filterSelection = ( selection ) => ( item ) => selection.map( ( x ) => x.value ).indexOf( item.value ) === -1;
+
 const filterSearchQuery = ( searchQuery ) => ( item ) => {
 	if ( !searchQuery ) {
 		return false;
@@ -61,6 +61,14 @@ module.exports = exports = {
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
+		const i18n = inject( 'i18n' );
+		const namespaceToMenuItem = ( value ) => {
+			const namespaceName = value === '0' ? i18n( 'blanknamespace' ).text() : formattedNamespaces[ value ];
+			return {
+				value: namespaceName,
+			};
+		};
+		const NS_MENU_ITEMS = Object.keys( formattedNamespaces ).map( namespaceToMenuItem );
 		const {
 			control,
 			controlWrapper,
@@ -102,7 +110,7 @@ module.exports = exports = {
 			menuItems,
 			onKeyDown,
 			selection,
-			// Not read as we use an updaet event handler onItemSelected instead of watching
+			// Not read as we use an update event handler onItemSelected instead of watching
 			// selectedValue. Needed to avoid CdxMenu prop validation warnings.
 			selectedValue,
 			onBlur() {
@@ -119,7 +127,7 @@ module.exports = exports = {
 				onChange( selection.value.map( menuItemToNamespace ) );
 				menuItems.value = NS_MENU_ITEMS.filter( filterSelection( selection.value ) );
 				currentSearchTerm.value = '';
-				// HACK, bettwer way to remove the user typed text in ChipInput?
+				// HACK, better way to remove the user typed text in ChipInput?
 				input.value.inputValue = '';
 			},
 		};
