@@ -16,6 +16,25 @@ class ExampleSchema extends JsonSchema {
 		self::MAX_LENGTH => 50
 	];
 
+	public const CCExample_Numbers = [
+		self::TYPE => self::TYPE_OBJECT,
+		self::PROPERTIES => [
+			'IntegerNumber' => [
+				self::TYPE => self::TYPE_INTEGER,
+				self::DEFAULT => 0,
+				self::MINIMUM => 0,
+				self::MAXIMUM => 42,
+			],
+			'DecimalNumber' => [
+				self::TYPE => self::TYPE_NUMBER,
+				self::DEFAULT => 0.6,
+				self::MINIMUM => 0.0,
+				self::MAXIMUM => 1.0,
+				self::MULTIPLE_OF => 0.01,
+			],
+		],
+	];
+
 	public const CCExample_FavoriteColors = [
 		self::TYPE => self::TYPE_ARRAY,
 		self::DEFAULT => [],
