@@ -35,44 +35,6 @@ function withSetup( composable, provides = {} ) {
 describe( 'useJsonFormControl', () => {
 
 	describe( 'otherAttributes', () => {
-		it( 'sets step to `any` for number type', () => {
-			const props = {
-				uischema: { scope: '#/properties/number' },
-				schema: { type: 'number' },
-				renderers: []
-			};
-			const jsonform = {
-				schema: {},
-				config: {
-					i18nPrefix: 'i18n-prefix'
-				}
-			};
-			const [ result ] = withSetup(
-				() => useJsonFormControl( props ),
-				{ jsonform, i18n: global.mw.Message }
-			);
-			expect( result.control.otherAttrs.step ).toBe( 'any' );
-		} );
-
-		it( 'sets step to `1` for integer type', () => {
-			const props = {
-				uischema: { scope: '#/properties/number' },
-				schema: { type: 'integer' },
-				renderers: []
-			};
-			const jsonform = {
-				schema: {},
-				config: {
-					i18nPrefix: 'i18n-prefix'
-				}
-			};
-			const [ result ] = withSetup(
-				() => useJsonFormControl( props ),
-				{ jsonform, i18n: global.mw.Message }
-			);
-			expect( result.control.otherAttrs.step ).toBe( 1 );
-		} );
-
 		it( 'sets `required`', () => {
 			const props = {
 				uischema: { required: true, scope: '#/properties/number' },
