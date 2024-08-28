@@ -34,5 +34,7 @@
 	"communityconfiguration-editor-client-data-submission-error": "Beim Späichere vun {{GENDER:$1:Ären}} Ännerungen ass eppes schif gaangen. Probéiert wgl. méi spéit nach eng Kéier.",
 	"communityconfiguration-editor-message-dismiss-button-label": "Zoumaachen",
 	"communityconfiguration-page-title-control-no-results": "Keng Resultater fonnt.",
-	"communityconfiguration-editor-navigation-tab-viewform": "Formulaire weisen"
+	"communityconfiguration-editor-navigation-tab-viewform": "Formulaire weisen",
+	"communityconfiguration-editor-error-validation-string-too-short": "Muss op d'mannst $1 Zeeche laang sinn",
+	"communityconfiguration-editor-error-validation-string-too-long": "Däerf héchstens $1 Zeeche laang sinn"
 }
