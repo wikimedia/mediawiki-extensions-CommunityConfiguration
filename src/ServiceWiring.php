@@ -20,7 +20,9 @@ use MediaWiki\MediaWikiServices;
 
 return [
 	'CommunityConfiguration.MessagesProcessor' => static function ( MediaWikiServices $services ) {
-		return new MessagesProcessor( RequestContext::getMain() );
+		$processor = new MessagesProcessor( RequestContext::getMain() );
+		$processor->setLogger( LoggerFactory::getInstance( 'CommunityConfiguration' ) );
+		return $processor;
 	},
 	'CommunityConfiguration.EditorCapabilityFactory' => static function ( MediaWikiServices $services ) {
 		return new EditorCapabilityFactory(
