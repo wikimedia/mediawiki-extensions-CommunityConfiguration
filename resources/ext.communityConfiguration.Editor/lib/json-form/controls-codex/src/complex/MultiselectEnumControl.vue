@@ -36,7 +36,7 @@ module.exports = exports = defineComponent( {
 	components: {
 		CdxChipInput,
 		CdxMenu,
-		ControlWrapper
+		ControlWrapper,
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
@@ -44,7 +44,7 @@ module.exports = exports = defineComponent( {
 		const {
 			control,
 			controlWrapper,
-			onChange
+			onChange,
 		} = useCodexControl( useJsonFormControl( props ) );
 		const chipInput = ref();
 		const menu = ref();
@@ -59,7 +59,7 @@ module.exports = exports = defineComponent( {
 		const allowedValues = control.schema.items.enum;
 		const menuItems = allowedValues.map( ( enumKey ) => ( {
 			value: enumKey,
-			label: i18n( control.uischema.enumLabels[ enumKey ] ).text()
+			label: i18n( control.uischema.enumLabels[ enumKey ] ).text(),
 		} ) );
 
 		const initialChips = control.modelValue.value.map( ( value ) => ( { value } ) );
@@ -152,8 +152,8 @@ module.exports = exports = defineComponent( {
 			handleChipChange,
 			handleSelection,
 			onKeydown,
-			onClick
+			onClick,
 		};
-	}
+	},
 } );
 </script>

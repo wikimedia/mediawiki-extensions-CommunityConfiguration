@@ -9,34 +9,34 @@ function getMountOptions( multiselectSubSchema, data ) {
 		name: 'MultiselectEnumFieldName',
 		scope: '#/properties/MultiselectEnumFieldName',
 		type: 'Control',
-		enumLabels: {}
+		enumLabels: {},
 	};
 	const rootSchema = {
 		type: 'object',
 		properties: {
-			MultiselectEnumFieldName: multiselectSubSchema
-		}
+			MultiselectEnumFieldName: multiselectSubSchema,
+		},
 	};
 	const jsonform = {
 		uischema,
 		renderers: null,
 		schema: rootSchema,
 		config: {
-			i18nPrefix: 'i18n-prefix'
+			i18nPrefix: 'i18n-prefix',
 		},
 		data,
-		errors: ref( [] )
+		errors: ref( [] ),
 	};
 
 	return {
 		props: {
 			renderers: null,
 			uischema,
-			schema: multiselectSubSchema
+			schema: multiselectSubSchema,
 		},
 		global: {
-			...global.getGlobalMediaWikiMountingOptions( { jsonform } )
-		}
+			...global.getGlobalMediaWikiMountingOptions( { jsonform } ),
+		},
 	};
 }
 
@@ -46,9 +46,9 @@ describe( 'MultiSelectEnumControl', () => {
 			type: 'array',
 			items: {
 				type: 'string',
-				enum: [ 'one', 'two', 'three' ]
+				enum: [ 'one', 'two', 'three' ],
 			},
-			default: []
+			default: [],
 		};
 		const data = reactive( {} );
 		const wrapper = mount( MultiselectEnumControl, getMountOptions( subSchema, data ) );
@@ -70,9 +70,9 @@ describe( 'MultiSelectEnumControl', () => {
 				type: 'array',
 				items: {
 					type: 'string',
-					enum: [ 'one', 'two', 'three' ]
+					enum: [ 'one', 'two', 'three' ],
 				},
-				default: []
+				default: [],
 			};
 			const data = reactive( {} );
 			const wrapper = mount( MultiselectEnumControl, getMountOptions( subSchema, data ) );
@@ -90,10 +90,10 @@ describe( 'MultiSelectEnumControl', () => {
 				type: 'array',
 				items: {
 					type: 'string',
-					enum: [ 'one', 'two', 'three' ]
+					enum: [ 'one', 'two', 'three' ],
 				},
 				default: [],
-				maxItems: 1
+				maxItems: 1,
 			};
 			const data = reactive( {} );
 			const wrapper = mount( MultiselectEnumControl, getMountOptions( subSchema, data ) );
@@ -113,15 +113,15 @@ describe( 'MultiSelectEnumControl', () => {
 				type: 'array',
 				items: {
 					type: 'string',
-					enum: [ 'one', 'two', 'three' ]
+					enum: [ 'one', 'two', 'three' ],
 				},
 				default: [],
-				minItems: 2
+				minItems: 2,
 			};
 			const data = reactive( { MultiselectEnumFieldName: [ 'one', 'two' ] } );
 			const wrapper = mount(
 				MultiselectEnumControl,
-				getMountOptions( subSchema, data )
+				getMountOptions( subSchema, data ),
 			);
 			const firstChip = wrapper.getComponent( '.cdx-input-chip' );
 

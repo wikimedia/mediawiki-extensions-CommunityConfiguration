@@ -19,7 +19,7 @@
 const { CdxCheckbox } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
-	useJsonFormControl
+	useJsonFormControl,
 } = require( '../../config/index.js' );
 const { useCodexControl } = require( '../utils.js' );
 const ControlWrapper = require( './ControlWrapper.vue' );
@@ -29,7 +29,7 @@ module.exports = exports = {
 	name: 'BooleanControl',
 	components: {
 		CdxCheckbox,
-		ControlWrapper
+		ControlWrapper,
 	},
 	props: Object.assign( {}, rendererProps() ),
 	setup: function ( props ) {
@@ -37,7 +37,7 @@ module.exports = exports = {
 		const {
 			control,
 			controlWrapper,
-			onChange
+			onChange,
 		} = useCodexControl( useJsonFormControl( props ) );
 
 		let T370611Hack = false;
@@ -51,8 +51,8 @@ module.exports = exports = {
 			control,
 			controlWrapper,
 			onChange,
-			T370611Hack
+			T370611Hack,
 		};
-	}
+	},
 };
 </script>

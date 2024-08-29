@@ -17,7 +17,7 @@ const { defineComponent, inject } = require( 'vue' );
 const { CdxTextInput } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
-	useJsonFormControl
+	useJsonFormControl,
 } = require( '../../config/index.js' );
 const { useCodexControl } = require( '../utils.js' );
 const { useValidationErrors } = require( '../../../form/index.js' );
@@ -28,7 +28,7 @@ module.exports = exports = defineComponent( {
 	name: 'StringControl',
 	components: {
 		CdxTextInput,
-		ControlWrapper
+		ControlWrapper,
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
@@ -69,9 +69,9 @@ module.exports = exports = defineComponent( {
 			onInput,
 			control,
 			controlWrapper,
-			trimmedOnChange
+			trimmedOnChange,
 		};
-	}
+	},
 } );
 
 </script>

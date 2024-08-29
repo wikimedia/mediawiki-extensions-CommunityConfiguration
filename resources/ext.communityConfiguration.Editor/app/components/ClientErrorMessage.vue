@@ -32,25 +32,25 @@ const EditorMessage = require( './EditorMessage.vue' );
 module.exports = exports = {
 	name: 'ClientErrorMessage',
 	components: {
-		EditorMessage
+		EditorMessage,
 	},
 	props: {
 		componentName: {
 			type: String,
-			required: true
+			required: true,
 		},
 		info: {
 			type: String,
-			required: true
+			required: true,
 		},
 		err: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		feedbackURL: {
 			type: String,
-			default: null
-		}
-	}
+			default: null,
+		},
+	},
 };
 </script>

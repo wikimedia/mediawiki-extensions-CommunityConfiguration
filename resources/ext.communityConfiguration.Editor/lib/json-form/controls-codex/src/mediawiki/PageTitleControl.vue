@@ -21,7 +21,7 @@ const { ref, unref } = require( 'vue' );
 const { CdxLookup } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
-	useJsonFormControl
+	useJsonFormControl,
 } = require( '../../config/index.js' );
 const { search } = require( './api.js' );
 const { debounce, useCodexControl } = require( '../utils.js' );
@@ -32,14 +32,14 @@ module.exports = exports = {
 	name: 'PageTitleControl',
 	components: {
 		CdxLookup,
-		ControlWrapper
+		ControlWrapper,
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
 		const {
 			control,
 			controlWrapper,
-			onChange
+			onChange,
 		} = useCodexControl( useJsonFormControl( props ) );
 		const initialValue = unref( control.modelValue );
 		const selection = ref( initialValue );
@@ -86,7 +86,7 @@ module.exports = exports = {
 					// Build an array of menu items.
 					const results = data.query.prefixsearch.map( ( result ) => ( {
 						label: result.title,
-						value: result.title
+						value: result.title,
 					} ) );
 
 					// Update menuItems.
@@ -102,7 +102,7 @@ module.exports = exports = {
 		onInput( initialValue );
 
 		const menuConfig = {
-			visibleItemLimit: 6
+			visibleItemLimit: 6,
 		};
 
 		return {
@@ -113,8 +113,8 @@ module.exports = exports = {
 			menuItems,
 			menuConfig,
 			onInput,
-			uischema: control.uischema
+			uischema: control.uischema,
 		};
-	}
+	},
 };
 </script>

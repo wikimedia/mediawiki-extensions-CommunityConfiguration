@@ -20,13 +20,13 @@ const EditorMessage = require( './EditorMessage.vue' );
 module.exports = exports = {
 	name: 'PermissionsErrorMessage',
 	components: {
-		EditorMessage
+		EditorMessage,
 	},
 	props: {
 		errors: {
 			type: Array,
-			required: true
-		}
-	}
+			required: true,
+		},
+	},
 };
 </script>

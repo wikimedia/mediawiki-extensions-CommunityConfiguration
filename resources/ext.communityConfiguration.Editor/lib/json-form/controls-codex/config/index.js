@@ -11,7 +11,7 @@ const {
 	isEnumControl,
 	isSimpleStringArrayControl,
 	isMultiSelectEnumControl,
-	isObjectControl
+	isObjectControl,
 } = require( '../../core/index.js' );
 const {
 	rendererProps,
@@ -19,7 +19,7 @@ const {
 	useJsonFormControl,
 	useJsonFormRenderer,
 	useValidationErrors,
-	DispatchRenderer
+	DispatchRenderer,
 } = require( '../../form/index.js' );
 
 module.exports = exports = {
@@ -41,5 +41,5 @@ module.exports = exports = {
 	useJsonFormArrayControl,
 	useJsonFormControl,
 	useJsonFormRenderer,
-	useValidationErrors
+	useValidationErrors,
 };

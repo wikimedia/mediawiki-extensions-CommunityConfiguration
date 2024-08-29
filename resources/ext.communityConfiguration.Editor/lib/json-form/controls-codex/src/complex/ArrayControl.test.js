@@ -3,12 +3,12 @@ const { mount } = require( '@vue/test-utils' );
 const { ref, reactive } = require( 'vue' );
 jest.mock( '../../../../icons.json', () => ( {
 	cdxIconAdd: 'cdxIconAdd',
-	cdxIconTrash: 'cdxIconTrash'
+	cdxIconTrash: 'cdxIconTrash',
 } ), { virtual: true } );
 
 const mwMessageFake = jest.fn( ( textReturnValue ) => ( {
 	exists: jest.fn( () => true ),
-	text: jest.fn( () => textReturnValue )
+	text: jest.fn( () => textReturnValue ),
 } ) );
 global.mw.Message = mwMessageFake;
 
@@ -24,7 +24,7 @@ function getMountOptions( configDataObject = null, schema = null ) {
 		scope: `#/properties/${ ArrayFieldName }`,
 		type: 'Control',
 		label: mwMessageFake( 'Array label' ),
-		addElementButtonLabel: mwMessageFake( 'Add another element' )
+		addElementButtonLabel: mwMessageFake( 'Add another element' ),
 	};
 	if ( schema === null ) {
 		schema = {
@@ -33,41 +33,41 @@ function getMountOptions( configDataObject = null, schema = null ) {
 				type: 'object',
 				properties: {
 					aNestedProp: {
-						type: 'string'
-					}
-				}
-			}
+						type: 'string',
+					},
+				},
+			},
 		};
 	}
 
 	const stringRenderer = {
 		renderer: StringControl,
-		tester: ( _, testerSchema ) => testerSchema.type === 'string' ? 1 : false
+		tester: ( _, testerSchema ) => testerSchema.type === 'string' ? 1 : false,
 	};
 	const objectRenderer = {
 		renderer: ObjectControl,
-		tester: ( _, testerSchema ) => testerSchema.type === 'object' ? 1 : false
+		tester: ( _, testerSchema ) => testerSchema.type === 'object' ? 1 : false,
 	};
 
 	const jsonform = {
 		schema,
 		uischema,
 		config: {
-			i18nPrefix: 'i18n-'
+			i18nPrefix: 'i18n-',
 		},
 		data: reactive( configDataObject || {} ),
 		renderers: [ stringRenderer, objectRenderer ],
-		errors: ref( [] )
+		errors: ref( [] ),
 	};
 	return {
 		props: {
 			schema,
 			uischema,
-			renderers: [ stringRenderer, objectRenderer ]
+			renderers: [ stringRenderer, objectRenderer ],
 		},
 		global: {
-			...global.getGlobalMediaWikiMountingOptions( { jsonform } )
-		}
+			...global.getGlobalMediaWikiMountingOptions( { jsonform } ),
+		},
 	};
 }
 
@@ -76,8 +76,8 @@ describe( 'ArrayControl', () => {
 		const wrapper = mount( ArrayControl, getMountOptions( {
 			[ ArrayFieldName ]: [
 				{ aNestedProp: 'String1' },
-				{ aNestedProp: 'String2' }
-			]
+				{ aNestedProp: 'String2' },
+			],
 		} ) );
 		expect( wrapper.findAllComponents( ObjectControl ).length ).toBe( 2 );
 	} );
@@ -85,11 +85,11 @@ describe( 'ArrayControl', () => {
 		const wrapper = mount( ArrayControl, getMountOptions( {
 			[ ArrayFieldName ]: [
 				{ aNestedProp: 'String1' },
-				{ aNestedProp: 'String2' }
-			]
+				{ aNestedProp: 'String2' },
+			],
 		} ) );
 		expect(
-			wrapper.find( '.ext-communityConfiguration-ArrayControl__item-wrapper' ).exists()
+			wrapper.find( '.ext-communityConfiguration-ArrayControl__item-wrapper' ).exists(),
 		).toBe( true );
 	} );
 
@@ -97,8 +97,8 @@ describe( 'ArrayControl', () => {
 		const configDataObject = {
 			[ ArrayFieldName ]: [
 				{ aNestedProp: 'String1' },
-				{ aNestedProp: 'String2' }
-			]
+				{ aNestedProp: 'String2' },
+			],
 		};
 		const wrapper = mount( ArrayControl, getMountOptions( configDataObject ) );
 		expect( wrapper.findAllComponents( ObjectControl ).length ).toBe( 2 );
@@ -114,8 +114,8 @@ describe( 'ArrayControl', () => {
 		const configDataObject = {
 			[ ArrayFieldName ]: [
 				{ aNestedProp: 'String1' },
-				{ aNestedProp: secondElementValue }
-			]
+				{ aNestedProp: secondElementValue },
+			],
 		};
 		const wrapper = mount( ArrayControl, getMountOptions( configDataObject ) );
 		expect( wrapper.findAllComponents( ObjectControl ).length ).toBe( 2 );
@@ -135,17 +135,17 @@ describe( 'ArrayControl', () => {
 				type: 'object',
 				properties: {
 					aNestedProp: {
-						type: 'string'
-					}
-				}
+						type: 'string',
+					},
+				},
 			},
-			maxItems: 3
+			maxItems: 3,
 		};
 		const wrapper = mount( ArrayControl, getMountOptions( {
 			[ ArrayFieldName ]: [
 				{ aNestedProp: 'String1' },
-				{ aNestedProp: 'String2' }
-			]
+				{ aNestedProp: 'String2' },
+			],
 		}, schema ) );
 		expect( wrapper.get( '[data-test-id="array-control-add-element-button"]' ).attributes().disabled ).toBe( undefined );
 

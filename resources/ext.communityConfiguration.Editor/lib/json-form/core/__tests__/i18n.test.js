@@ -10,20 +10,20 @@ const TEST_DATA = [
 					type: 'object',
 					properties: {
 						foo: {
-							type: 'string'
+							type: 'string',
 						},
 						bar: {
-							type: 'number'
-						}
-					}
-				}
-			}
+							type: 'number',
+						},
+					},
+				},
+			},
 		},
 		expected: [
 			'testenvironment-someprovider-exampleobject-label',
 			'testenvironment-someprovider-exampleobject-help-text',
-			'testenvironment-someprovider-exampleobject-description'
-		]
+			'testenvironment-someprovider-exampleobject-description',
+		],
 	},
 	{
 		testType: 'array',
@@ -36,20 +36,20 @@ const TEST_DATA = [
 						type: 'object',
 						properties: {
 							foo: {
-								type: 'string'
-							}
-						}
-					}
-				}
-			}
+								type: 'string',
+							},
+						},
+					},
+				},
+			},
 		},
 		expected: [
 			'testenvironment-someprovider-examplearray-label',
 			'testenvironment-someprovider-examplearray-help-text',
 			'testenvironment-someprovider-examplearray-description',
 			'testenvironment-someprovider-examplearray-item-label',
-			'testenvironment-someprovider-examplearray-add-element-button-label'
-		]
+			'testenvironment-someprovider-examplearray-add-element-button-label',
+		],
 	},
 	{
 		testType: 'string',
@@ -57,16 +57,16 @@ const TEST_DATA = [
 			type: 'object',
 			properties: {
 				basicStringInput: {
-					type: 'string'
-				}
-			}
+					type: 'string',
+				},
+			},
 		},
 		expected: [
 			'testenvironment-someprovider-basicstringinput-label',
 			'testenvironment-someprovider-basicstringinput-help-text',
 			'testenvironment-someprovider-basicstringinput-placeholder',
-			'testenvironment-someprovider-basicstringinput-description'
-		]
+			'testenvironment-someprovider-basicstringinput-description',
+		],
 	},
 	{
 		testType: 'number',
@@ -74,16 +74,16 @@ const TEST_DATA = [
 			type: 'object',
 			properties: {
 				basicNumberInput: {
-					type: 'number'
-				}
-			}
+					type: 'number',
+				},
+			},
 		},
 		expected: [
 			'testenvironment-someprovider-basicnumberinput-label',
 			'testenvironment-someprovider-basicnumberinput-help-text',
 			'testenvironment-someprovider-basicnumberinput-placeholder',
-			'testenvironment-someprovider-basicnumberinput-description'
-		]
+			'testenvironment-someprovider-basicnumberinput-description',
+		],
 	},
 	{
 		testType: 'integer',
@@ -91,16 +91,16 @@ const TEST_DATA = [
 			type: 'object',
 			properties: {
 				basicIntegerInput: {
-					type: 'integer'
-				}
-			}
+					type: 'integer',
+				},
+			},
 		},
 		expected: [
 			'testenvironment-someprovider-basicintegerinput-label',
 			'testenvironment-someprovider-basicintegerinput-help-text',
 			'testenvironment-someprovider-basicintegerinput-placeholder',
-			'testenvironment-someprovider-basicintegerinput-description'
-		]
+			'testenvironment-someprovider-basicintegerinput-description',
+		],
 	},
 	{
 		testType: 'boolean',
@@ -108,16 +108,16 @@ const TEST_DATA = [
 			type: 'object',
 			properties: {
 				basicBoolean: {
-					type: 'boolean'
-				}
-			}
+					type: 'boolean',
+				},
+			},
 		},
 		expected: [
 			'testenvironment-someprovider-basicboolean-label',
 			'testenvironment-someprovider-basicboolean-control-label',
 			'testenvironment-someprovider-basicboolean-help-text',
-			'testenvironment-someprovider-basicboolean-description'
-		]
+			'testenvironment-someprovider-basicboolean-description',
+		],
 	},
 	{
 		testType: 'enum-string',
@@ -126,9 +126,9 @@ const TEST_DATA = [
 			properties: {
 				stringEnum: {
 					type: 'string',
-					enum: [ 'fire', 'water', 'earth', 'air' ]
-				}
-			}
+					enum: [ 'fire', 'water', 'earth', 'air' ],
+				},
+			},
 		},
 		expected: [
 			'testenvironment-someprovider-stringenum-label',
@@ -137,8 +137,8 @@ const TEST_DATA = [
 			'testenvironment-someprovider-stringenum-option-fire-label',
 			'testenvironment-someprovider-stringenum-option-water-label',
 			'testenvironment-someprovider-stringenum-option-earth-label',
-			'testenvironment-someprovider-stringenum-option-air-label'
-		]
+			'testenvironment-someprovider-stringenum-option-air-label',
+		],
 	},
 	{
 		testType: 'enum-number',
@@ -147,9 +147,9 @@ const TEST_DATA = [
 			properties: {
 				numberEnum: {
 					type: 'number',
-					enum: [ 1, 7, 9, 13 ]
-				}
-			}
+					enum: [ 1, 7, 9, 13 ],
+				},
+			},
 		},
 		expected: [
 			'testenvironment-someprovider-numberenum-label',
@@ -158,8 +158,8 @@ const TEST_DATA = [
 			'testenvironment-someprovider-numberenum-option-1-label',
 			'testenvironment-someprovider-numberenum-option-7-label',
 			'testenvironment-someprovider-numberenum-option-9-label',
-			'testenvironment-someprovider-numberenum-option-13-label'
-		]
+			'testenvironment-someprovider-numberenum-option-13-label',
+		],
 	},
 	{
 		testType: 'array-of-enum-number',
@@ -170,10 +170,10 @@ const TEST_DATA = [
 					type: 'array',
 					items: {
 						type: 'number',
-						enum: [ 1, 7, 9, 13 ]
-					}
-				}
-			}
+						enum: [ 1, 7, 9, 13 ],
+					},
+				},
+			},
 		},
 		expected: [
 			'testenvironment-someprovider-numberenumarray-label',
@@ -182,8 +182,8 @@ const TEST_DATA = [
 			'testenvironment-someprovider-numberenumarray-option-1-label',
 			'testenvironment-someprovider-numberenumarray-option-7-label',
 			'testenvironment-someprovider-numberenumarray-option-9-label',
-			'testenvironment-someprovider-numberenumarray-option-13-label'
-		]
+			'testenvironment-someprovider-numberenumarray-option-13-label',
+		],
 	},
 	{
 		testType: 'array-of-enum-string',
@@ -194,10 +194,10 @@ const TEST_DATA = [
 					type: 'array',
 					items: {
 						type: 'string',
-						enum: [ 'fire', 'water', 'earth', 'air' ]
-					}
-				}
-			}
+						enum: [ 'fire', 'water', 'earth', 'air' ],
+					},
+				},
+			},
 		},
 		expected: [
 			'testenvironment-someprovider-stringenumarray-label',
@@ -206,8 +206,8 @@ const TEST_DATA = [
 			'testenvironment-someprovider-stringenumarray-option-fire-label',
 			'testenvironment-someprovider-stringenumarray-option-water-label',
 			'testenvironment-someprovider-stringenumarray-option-earth-label',
-			'testenvironment-someprovider-stringenumarray-option-air-label'
-		]
+			'testenvironment-someprovider-stringenumarray-option-air-label',
+		],
 	},
 	{
 		testType: 'pagetitle',
@@ -217,16 +217,16 @@ const TEST_DATA = [
 				pageTitle: {
 					type: 'string',
 					control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl',
-					default: ''
-				}
-			}
+					default: '',
+				},
+			},
 		},
 		expected: [
 			'testenvironment-someprovider-pagetitle-label',
 			'testenvironment-someprovider-pagetitle-help-text',
 			'testenvironment-someprovider-pagetitle-placeholder',
-			'testenvironment-someprovider-pagetitle-description'
-		]
+			'testenvironment-someprovider-pagetitle-description',
+		],
 	},
 	{
 		testType: 'pagetitles',
@@ -238,16 +238,16 @@ const TEST_DATA = [
 					control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitlesControl',
 					default: [],
 					items: {
-						type: 'string'
-					}
-				}
-			}
+						type: 'string',
+					},
+				},
+			},
 		},
 		expected: [
 			'testenvironment-someprovider-pagetitles-label',
 			'testenvironment-someprovider-pagetitles-help-text',
-			'testenvironment-someprovider-pagetitles-description'
-		]
+			'testenvironment-someprovider-pagetitles-description',
+		],
 	},
 	{
 		testType: 'namespaces',
@@ -259,17 +259,17 @@ const TEST_DATA = [
 					control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\NamespacesControl',
 					default: [],
 					items: {
-						type: 'integer'
-					}
-				}
-			}
+						type: 'integer',
+					},
+				},
+			},
 		},
 		expected: [
 			'testenvironment-someprovider-namespaces-label',
 			'testenvironment-someprovider-namespaces-help-text',
-			'testenvironment-someprovider-namespaces-description'
-		]
-	}
+			'testenvironment-someprovider-namespaces-description',
+		],
+	},
 ];
 
 global.mw = {
@@ -299,7 +299,7 @@ global.mw = {
 			this.parameters.push( ...parameters );
 			return this;
 		}
-	}
+	},
 };
 
 describe( 'i18n.getControlTextProps()', () => {
@@ -311,7 +311,7 @@ describe( 'i18n.getControlTextProps()', () => {
 			const actualData = getControlTextProps(
 				propName,
 				'testenvironment-someprovider',
-				controlSchema
+				controlSchema,
 			);
 
 			expect(
@@ -328,7 +328,7 @@ describe( 'i18n.getControlTextProps()', () => {
 					// enum object now, contains only literal message keys
 					keys.push( ...Object.values( messageFake ) );
 					return keys;
-				}, [] )
+				}, [] ),
 			).toEqual( testData.expected );
 		} );
 	}
@@ -348,21 +348,21 @@ describe( 'i18n.getLabelsChain', () => {
 						excludedSections: {
 							type: 'array',
 							items: {
-								type: 'string'
+								type: 'string',
 							},
-							default: []
-						}
+							default: [],
+						},
 					},
-					default: null
-				}
-			}
+					default: null,
+				},
+			},
 		};
 		const actualLabels = getLabelsChain( schema, pointer, 'testenvironment-someprovider' );
 		expect(
-			actualLabels.map( ( msg ) => msg.getKey() )
+			actualLabels.map( ( msg ) => msg.getKey() ),
 		).toEqual( [
 			'testenvironment-someprovider-link_recommendation-label',
-			'testenvironment-someprovider-link_recommendation-excludedsections-label'
+			'testenvironment-someprovider-link_recommendation-excludedsections-label',
 		] );
 	} );
 
@@ -380,27 +380,27 @@ describe( 'i18n.getLabelsChain', () => {
 							title: {
 								type: 'string',
 								default: '',
-								control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl'
+								control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl',
 							},
 							text: {
-								type: 'string'
-							}
-						}
+								type: 'string',
+							},
+						},
 					},
 					default: [],
-					maxItems: 10
-				}
-			}
+					maxItems: 10,
+				},
+			},
 		};
 
 		const actualLabels = getLabelsChain( schema, pointer, 'testenvironment-someprovider' );
 
 		expect(
-			actualLabels.map( ( msg ) => msg.getCompositeKey() )
+			actualLabels.map( ( msg ) => msg.getCompositeKey() ),
 		).toEqual( [
 			'testenvironment-someprovider-gehelppanellinks-label',
 			'testenvironment-someprovider-gehelppanellinks-item-label: 2',
-			'testenvironment-someprovider-gehelppanellinks-text-label'
+			'testenvironment-someprovider-gehelppanellinks-text-label',
 		] );
 	} );
 } );

@@ -26,41 +26,41 @@ const { CdxField } = require( '../../../../../../codex.js' );
 module.exports = exports = {
 	name: 'ControlWrapper',
 	components: {
-		CdxField
+		CdxField,
 	},
 	props: {
 		id: {
 			type: String,
-			required: true
+			required: true,
 		},
 		// mw.Message
 		label: {
 			type: [ Object, null ],
-			default: null
+			default: null,
 		},
 		// mw.Message
 		description: {
 			type: [ Object, null ],
-			default: null
+			default: null,
 		},
 		// mw.Message
 		controlLabel: {
 			type: [ Object, null ],
-			default: null
+			default: null,
 		},
 		// mw.Message
 		helpText: {
 			type: Object,
-			default: null
+			default: null,
 		},
 		isFieldset: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		statusMessages: {
 			type: Object,
-			default: () => ( {} )
-		}
-	}
+			default: () => ( {} ),
+		},
+	},
 };
 </script>

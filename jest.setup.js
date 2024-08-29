@@ -8,10 +8,10 @@ MWMessageMock.prototype.exists = jest.fn();
 const mw = {
 	log: {
 		error: jest.fn(),
-		warn: jest.fn()
+		warn: jest.fn(),
 	},
 	config: {
-		get: jest.fn()
+		get: jest.fn(),
 	},
 	Message: MWMessageMock,
 	user: {
@@ -19,9 +19,9 @@ const mw = {
 		getName: jest.fn(),
 		isAnon: jest.fn().mockReturnValue( true ),
 		options: {
-			get: jest.fn()
-		}
-	}
+			get: jest.fn(),
+		},
+	},
 };
 
 global.mw = mw;
@@ -67,25 +67,25 @@ global.getGlobalMediaWikiMountingOptions = function ( provide = {}, directives =
 		directives: {
 			'i18n-html': {
 				mounted: fakeRenderI18nHtml,
-				updated: fakeRenderI18nHtml
+				updated: fakeRenderI18nHtml,
 			},
-			...directives
+			...directives,
 		},
 		mocks: {
 			$i18n: jest.fn( ( key, ...params ) => ( {
 				text: () => fakeMessageRendering( key, ...params ),
-				toString: () => fakeMessageRendering( key, ...params )
+				toString: () => fakeMessageRendering( key, ...params ),
 			} ) ),
-			...mocks
+			...mocks,
 		},
 		provide: {
 			i18n: jest.fn( ( key, ...params ) => ( {
 				text: () => fakeMessageRendering( key, ...params ),
 				toString: () => fakeMessageRendering( key, ...params ),
-				exists: jest.fn( () => true )
+				exists: jest.fn( () => true ),
 			} ) ),
-			...provide
-		}
+			...provide,
+		},
 	};
 };
 
@@ -102,11 +102,11 @@ global.getGlobalAppMountingOptions = function ( provide = {}, directives = {}, m
 			EDITOR_FORM_CONFIG: {},
 			CAN_EDIT: true,
 			WRITING_REPOSITORY: {
-				writeConfigurationData: jest.fn()
+				writeConfigurationData: jest.fn(),
 			},
-			...provide
+			...provide,
 		},
 		directives,
-		mocks
+		mocks,
 	);
 };

@@ -14,7 +14,7 @@ const EditorMessage = require( './EditorMessage.vue' );
 module.exports = exports = {
 	name: 'SuccessMessage',
 	components: {
-		EditorMessage
-	}
+		EditorMessage,
+	},
 };
 </script>

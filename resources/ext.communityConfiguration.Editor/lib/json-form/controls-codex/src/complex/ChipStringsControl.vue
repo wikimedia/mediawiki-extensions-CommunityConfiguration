@@ -23,17 +23,17 @@ module.exports = exports = {
 	name: 'ChipStringsControl',
 	components: {
 		CdxChipInput,
-		ControlWrapper
+		ControlWrapper,
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
 		const {
 			control,
 			controlWrapper,
-			onChange
+			onChange,
 		} = useCodexControl( useJsonFormControl( props ) );
 		const inputChips = ref( control.modelValue.value.map( ( value ) => ( {
-			value
+			value,
 		} ) ) );
 		function onChipUpdate( chips ) {
 			onChange( chips.map( ( chip ) => chip.value ) );
@@ -41,8 +41,8 @@ module.exports = exports = {
 		return {
 			controlWrapper,
 			inputChips,
-			onChipUpdate
+			onChipUpdate,
 		};
-	}
+	},
 };
 </script>

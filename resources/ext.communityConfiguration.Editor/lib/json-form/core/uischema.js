@@ -40,7 +40,7 @@ function buildUISubSchema( subschema, name, scope, required, i18nPrefix ) {
 		scope,
 		name,
 		required,
-		type: 'Control'
+		type: 'Control',
 	};
 
 	const additionalProps = Object.assign(
@@ -52,5 +52,5 @@ function buildUISubSchema( subschema, name, scope, required, i18nPrefix ) {
 
 module.exports = exports = {
 	buildUISchema,
-	buildUISubSchema
+	buildUISubSchema,
 };

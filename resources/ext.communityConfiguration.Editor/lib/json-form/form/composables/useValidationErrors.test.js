@@ -16,7 +16,7 @@ function withSetup( rootSchema = {} ) {
 		setup() {
 			sut = useValidationErrors();
 			sut.clearValidationErrors();
-		}
+		},
 	};
 
 	mount( TestComponent, {
@@ -24,10 +24,10 @@ function withSetup( rootSchema = {} ) {
 			provide: {
 				jsonform: {
 					schema: rootSchema,
-					config: { i18nPrefix: 'prefix' }
-				}
-			}
-		}
+					config: { i18nPrefix: 'prefix' },
+				},
+			},
+		},
 	} );
 
 	return sut;
@@ -46,17 +46,17 @@ function withArrayErrors() {
 						title: {
 							type: 'string',
 							default: '',
-							control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl'
+							control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl',
 						},
 						text: {
-							type: 'string'
-						}
-					}
+							type: 'string',
+						},
+					},
 				},
 				default: [],
-				maxItems: 10
-			}
-		}
+				maxItems: 10,
+			},
+		},
 	};
 
 	const sut = withSetup( schema );
@@ -70,10 +70,10 @@ function withArrayErrors() {
 				pointer: '/GEHelpPanelLinks/2/text',
 				messageLiteral: 'The property text is required',
 				additionalData: {
-					constraint: 'required'
-				}
+					constraint: 'required',
+				},
 			},
-			module: 'communityconfigurationedit'
+			module: 'communityconfigurationedit',
 		},
 		{
 			code: 'communityconfiguration-schema-validation-error',
@@ -83,11 +83,11 @@ function withArrayErrors() {
 				pointer: '/GEHelpPanelLinks/3/title',
 				messageLiteral: 'The property title is required',
 				additionalData: {
-					constraint: 'required'
-				}
+					constraint: 'required',
+				},
 			},
-			module: 'communityconfigurationedit'
-		}
+			module: 'communityconfigurationedit',
+		},
 	] } );
 
 	return sut;
@@ -117,7 +117,7 @@ global.mw = {
 			this.key = this.key + ': ' + parameters.join( ', ' );
 			return this;
 		}
-	}
+	},
 };
 
 describe( 'useValidationErrors', () => {
@@ -138,7 +138,7 @@ describe( 'useValidationErrors', () => {
 				name: 'does nothing if response is not the usual error format',
 				schema: {},
 				responseErrors: undefined,
-				expectedErrors: []
+				expectedErrors: [],
 			},
 			{
 				name: 'does nothing if response is not validation error',
@@ -147,15 +147,15 @@ describe( 'useValidationErrors', () => {
 					{
 						code: 'protectednamespace-interface',
 						html: 'This page provides interface text for the software on this wiki, and is protected to prevent abuse.\nTo add or change translations for all wikis, please use <a rel="nofollow" class="external text" href="https://translatewiki.net/">translatewiki.net</a>, the MediaWiki localisation project.',
-						module: 'communityconfigurationedit'
+						module: 'communityconfigurationedit',
 					},
 					{
 						code: 'sitejsonprotected',
 						html: 'You do not have permission to edit this JSON page because it may affect all visitors.',
-						module: 'communityconfigurationedit'
-					}
+						module: 'communityconfigurationedit',
+					},
 				],
-				expectedErrors: []
+				expectedErrors: [],
 			},
 			{
 				name: 'removes index from a pointer for an array with a custom control',
@@ -167,9 +167,9 @@ describe( 'useValidationErrors', () => {
 							type: 'array',
 							items: { type: 'integer' },
 							default: [],
-							control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\NamespacesControl'
-						}
-					}
+							control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\NamespacesControl',
+						},
+					},
 				},
 				responseErrors: [
 					{
@@ -180,26 +180,26 @@ describe( 'useValidationErrors', () => {
 							pointer: '/GEHelpPanelExcludedNamespaces/0',
 							messageLiteral: 'NULL value found, but an integer is required',
 							additionalData: {
-								constraint: 'type'
-							}
+								constraint: 'type',
+							},
 						},
-						module: 'communityconfigurationedit'
-					}
+						module: 'communityconfigurationedit',
+					},
 				],
 				expectedErrors: [
 					{
 						additionalData: {
-							constraint: 'type'
+							constraint: 'type',
 						},
 						formFieldId: 'GEHelpPanelExcludedNamespaces',
 						formFieldLabels: [
-							mw.message( 'prefix-gehelppanelexcludednamespaces-label' )
+							mw.message( 'prefix-gehelppanelexcludednamespaces-label' ),
 						],
 						messageLiteral: 'NULL value found, but an integer is required',
 						pointer: '/GEHelpPanelExcludedNamespaces/0',
-						property: 'GEHelpPanelExcludedNamespaces[0]'
-					}
-				]
+						property: 'GEHelpPanelExcludedNamespaces[0]',
+					},
+				],
 			},
 			{
 				name: 'removes index from a pointer for an array consisting only of strings',
@@ -212,10 +212,10 @@ describe( 'useValidationErrors', () => {
 							default: [ 'bot', 'sysop' ],
 							items: {
 								enum: [ 'bot', 'sysop' ],
-								type: 'string'
-							}
-						}
-					}
+								type: 'string',
+							},
+						},
+					},
 				},
 				responseErrors: [
 					{
@@ -226,26 +226,26 @@ describe( 'useValidationErrors', () => {
 							pointer: '/AutoModeratorSkipUserGroups/1',
 							messageLiteral: 'Does not have a value in the enumeration ["bot","sysop"]',
 							additionalData: {
-								constraint: 'enum'
-							}
+								constraint: 'enum',
+							},
 						},
-						module: 'communityconfigurationedit'
-					}
+						module: 'communityconfigurationedit',
+					},
 				],
 				expectedErrors: [
 					{
 						additionalData: {
-							constraint: 'enum'
+							constraint: 'enum',
 						},
 						formFieldId: 'AutoModeratorSkipUserGroups',
 						formFieldLabels: [
-							mw.message( 'prefix-automoderatorskipusergroups-label' )
+							mw.message( 'prefix-automoderatorskipusergroups-label' ),
 						],
 						messageLiteral: 'Does not have a value in the enumeration ["bot","sysop"]',
 						pointer: '/AutoModeratorSkipUserGroups/1',
-						property: 'AutoModeratorSkipUserGroups[1]'
-					}
-				]
+						property: 'AutoModeratorSkipUserGroups[1]',
+					},
+				],
 			},
 			{
 				name: 'error for a nested array as a whole',
@@ -260,14 +260,14 @@ describe( 'useValidationErrors', () => {
 								excludedSections: {
 									type: 'array',
 									items: {
-										type: 'string'
+										type: 'string',
 									},
-									default: []
-								}
+									default: [],
+								},
 							},
-							default: null
-						}
-					}
+							default: null,
+						},
+					},
 				},
 				responseErrors: [
 					{
@@ -278,23 +278,23 @@ describe( 'useValidationErrors', () => {
 							pointer: '/link_recommendation/excludedSections',
 							messageLiteral: 'There must be a maximum of 3 items in the array',
 							additionalData: {
-								constraint: 'maxItems'
-							}
+								constraint: 'maxItems',
+							},
 						},
-						module: 'communityconfigurationedit'
-					}
+						module: 'communityconfigurationedit',
+					},
 				],
 				expectedErrors: [ {
 					additionalData: { constraint: 'maxItems' },
 					formFieldId: 'link_recommendation.excludedSections',
 					formFieldLabels: [
 						mw.message( 'prefix-link_recommendation-label' ),
-						mw.message( 'prefix-link_recommendation-excludedsections-label' )
+						mw.message( 'prefix-link_recommendation-excludedsections-label' ),
 					],
 					messageLiteral: 'There must be a maximum of 3 items in the array',
 					pointer: '/link_recommendation/excludedSections',
-					property: 'link_recommendation.excludedSections'
-				} ]
+					property: 'link_recommendation.excludedSections',
+				} ],
 			},
 			{
 				name: 'error for a nested field in an array',
@@ -310,17 +310,17 @@ describe( 'useValidationErrors', () => {
 									title: {
 										type: 'string',
 										default: '',
-										control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl'
+										control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl',
 									},
 									text: {
-										type: 'string'
-									}
-								}
+										type: 'string',
+									},
+								},
 							},
 							default: [],
-							maxItems: 10
-						}
-					}
+							maxItems: 10,
+						},
+					},
 				},
 				responseErrors: [
 					{
@@ -331,39 +331,39 @@ describe( 'useValidationErrors', () => {
 							pointer: '/GEHelpPanelLinks/3/title',
 							messageLiteral: 'The property title is required',
 							additionalData: {
-								constraint: 'required'
-							}
+								constraint: 'required',
+							},
 						},
-						module: 'communityconfigurationedit'
-					}
+						module: 'communityconfigurationedit',
+					},
 				],
 				expectedErrors: [
 					{
 						additionalData: {
-							constraint: 'required'
+							constraint: 'required',
 						},
 						formFieldId: 'GEHelpPanelLinks.3.title',
 						formFieldLabels: [
 							mw.message( 'prefix-gehelppanellinks-label' ),
 							mw.message( 'prefix-gehelppanellinks-item-label: 4' ),
-							mw.message( 'prefix-gehelppanellinks-title-label' )
+							mw.message( 'prefix-gehelppanellinks-title-label' ),
 						],
 						messageLiteral: 'The property title is required',
 						pointer: '/GEHelpPanelLinks/3/title',
-						property: 'GEHelpPanelLinks[3].title'
-					}
-				]
-			}
+						property: 'GEHelpPanelLinks[3].title',
+					},
+				],
+			},
 		];
 		it.each( testCases )( '$name', ( { schema, responseErrors, expectedErrors } ) => {
 			const {
 				getAllValidationErrors,
-				setValidationErrorsFromSubmitResponse
+				setValidationErrorsFromSubmitResponse,
 			} = withSetup( schema );
 
 			setValidationErrorsFromSubmitResponse( {
 				errors: responseErrors,
-				docref: '...'
+				docref: '...',
 			} );
 			const actualErrors = getAllValidationErrors();
 
@@ -375,7 +375,7 @@ describe( 'useValidationErrors', () => {
 	describe( 'getValidationErrorMessageForFormFieldId', () => {
 		it( 'picks the correct message for the given pointer', () => {
 			const {
-				getValidationErrorMessageForFormFieldId
+				getValidationErrorMessageForFormFieldId,
 			} = withArrayErrors();
 
 			const actualErrorMessage = getValidationErrorMessageForFormFieldId( 'GEHelpPanelLinks.3.title' );
@@ -385,7 +385,7 @@ describe( 'useValidationErrors', () => {
 
 		it( 'returns `null` if there is no match for the given pointer', () => {
 			const {
-				getValidationErrorMessageForFormFieldId
+				getValidationErrorMessageForFormFieldId,
 			} = withArrayErrors();
 
 			const actualErrorMessage = getValidationErrorMessageForFormFieldId( 'GEHelpPanelLinks.0.title' );
@@ -398,7 +398,7 @@ describe( 'useValidationErrors', () => {
 		it( 'removes the errors for the deleted array item', () => {
 			const {
 				adjustValidationErrorsOnArrayItemDelete,
-				getValidationErrorMessageForFormFieldId
+				getValidationErrorMessageForFormFieldId,
 			} = withArrayErrors();
 
 			adjustValidationErrorsOnArrayItemDelete( 'GEHelpPanelLinks', 3 );
@@ -410,7 +410,7 @@ describe( 'useValidationErrors', () => {
 		it( 'adjust the errors for the array items following the deleted item', () => {
 			const {
 				adjustValidationErrorsOnArrayItemDelete,
-				getValidationErrorMessageForFormFieldId
+				getValidationErrorMessageForFormFieldId,
 			} = withArrayErrors();
 
 			adjustValidationErrorsOnArrayItemDelete( 'GEHelpPanelLinks', 2 );
@@ -425,7 +425,7 @@ describe( 'useValidationErrors', () => {
 			const {
 				setValidationErrorForFieldId,
 				clearValidationErrorForFieldId,
-				getAllValidationErrors
+				getAllValidationErrors,
 			} = withSetup( {
 				additionalProperties: false,
 				type: 'object',
@@ -438,17 +438,17 @@ describe( 'useValidationErrors', () => {
 								title: {
 									type: 'string',
 									default: '',
-									control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl'
+									control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl',
 								},
 								text: {
-									type: 'string'
-								}
-							}
+									type: 'string',
+								},
+							},
 						},
 						default: [],
-						maxItems: 10
-					}
-				}
+						maxItems: 10,
+					},
+				},
 			} );
 
 			setValidationErrorForFieldId( 'GEHelpPanelLinks.0.text', 'bar' );
@@ -460,10 +460,10 @@ describe( 'useValidationErrors', () => {
 					formFieldLabels: [
 						mw.message( 'prefix-gehelppanellinks-label' ),
 						mw.message( 'prefix-gehelppanellinks-item-label: 1' ),
-						mw.message( 'prefix-gehelppanellinks-text-label' )
+						mw.message( 'prefix-gehelppanellinks-text-label' ),
 					],
-					messageLiteral: 'bar'
-				}
+					messageLiteral: 'bar',
+				},
 			] );
 
 			clearValidationErrorForFieldId( 'GEHelpPanelLinks.0.text' );

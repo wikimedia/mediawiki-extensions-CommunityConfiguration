@@ -32,21 +32,21 @@ const EditorMessage = require( './EditorMessage.vue' );
 module.exports = exports = {
 	name: 'GenericSubmitErrorMessage',
 	components: {
-		EditorMessage
+		EditorMessage,
 	},
 	props: {
 		errorResponse: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		errorCode: {
 			type: String,
-			required: true
+			required: true,
 		},
 		feedbackURL: {
 			type: String,
-			default: null
-		}
-	}
+			default: null,
+		},
+	},
 };
 </script>

@@ -13,19 +13,19 @@
 const rendererProps = () => ( {
 	schema: {
 		required: true,
-		type: [ Object, Boolean ]
+		type: [ Object, Boolean ],
 	},
 	uischema: {
 		required: true,
-		type: Object
+		type: Object,
 	},
 	renderers: {
 		required: false,
 		type: Array,
-		default: undefined
-	}
+		default: undefined,
+	},
 } );
 
 module.exports = exports = {
-	rendererProps
+	rendererProps,
 };

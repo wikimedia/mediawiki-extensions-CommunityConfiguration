@@ -8,40 +8,40 @@ function getMountOptions( subSchemaOverrides = {}, data = null ) {
 	const uischema = {
 		name: 'NumberFieldName',
 		scope: '#/properties/NumberFieldName',
-		type: 'Control'
+		type: 'Control',
 	};
 
 	const numberSubSchema = {
 		type: 'number',
 		default: null,
-		...subSchemaOverrides
+		...subSchemaOverrides,
 	};
 	const schema = {
 		type: 'object',
 		properties: {
-			NumberFieldName: numberSubSchema
-		}
+			NumberFieldName: numberSubSchema,
+		},
 	};
 	const jsonform = {
 		uischema,
 		renderers: null,
 		schema,
 		config: {
-			i18nPrefix: 'i18n-prefix'
+			i18nPrefix: 'i18n-prefix',
 		},
 		data: data || reactive( {} ),
-		errors: ref( [] )
+		errors: ref( [] ),
 	};
 
 	return {
 		props: {
 			renderers: null,
 			uischema,
-			schema: numberSubSchema
+			schema: numberSubSchema,
 		},
 		global: {
-			...global.getGlobalMediaWikiMountingOptions( { jsonform } )
-		}
+			...global.getGlobalMediaWikiMountingOptions( { jsonform } ),
+		},
 	};
 }
 
@@ -56,7 +56,7 @@ describe( 'NumberControl', () => {
 	it( 'renders a number field with min/max if they are given in the schema', () => {
 		const wrapper = mount( NumberControl, getMountOptions( {
 			minimum: 0,
-			maximum: 10
+			maximum: 10,
 		} ) );
 
 		expect( wrapper.get( 'input[type="number"]' ).attributes( 'min' ) ).toBe( '0' );
@@ -66,7 +66,7 @@ describe( 'NumberControl', () => {
 	it( 'shows an error if min/max are given and the value is out of bounds', async () => {
 		const wrapper = mount( NumberControl, getMountOptions( {
 			minimum: 0,
-			maximum: 10
+			maximum: 10,
 		} ) );
 
 		await wrapper.get( 'input[type="number"]' ).setValue( 11 );
@@ -78,7 +78,7 @@ describe( 'NumberControl', () => {
 
 		it( 'sets step to `1` for integer fields', async () => {
 			const wrapper = mount( NumberControl, getMountOptions( {
-				type: 'integer'
+				type: 'integer',
 			} ) );
 
 			expect( wrapper.get( 'input[type="number"]' ).attributes( 'step' ) ).toBe( '1' );
@@ -89,7 +89,7 @@ describe( 'NumberControl', () => {
 
 		it( 'sets step to `any` for number fields', async () => {
 			const wrapper = mount( NumberControl, getMountOptions( {
-				type: 'number'
+				type: 'number',
 			} ) );
 
 			expect( wrapper.get( 'input[type="number"]' ).attributes( 'step' ) ).toBe( 'any' );
@@ -100,7 +100,7 @@ describe( 'NumberControl', () => {
 
 		it( 'adds `step` attribute for multipleOf in the schema and shows an error if not met', async () => {
 			const wrapper = mount( NumberControl, getMountOptions( {
-				multipleOf: 0.1
+				multipleOf: 0.1,
 			} ) );
 
 			await wrapper.get( 'input[type="number"]' ).setValue( 0.1234 );

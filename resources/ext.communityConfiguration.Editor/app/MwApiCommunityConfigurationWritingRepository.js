@@ -11,7 +11,7 @@ module.exports = exports = class MwApiCommunityConfigurationWritingRepository {
 				content: JSON.stringify( formData ),
 				summary: summary,
 				formatversion: 2,
-				errorformat: 'html'
+				errorformat: 'html',
 			} ).then( resolve, ( ...args ) => reject( args ) );
 		} );
 	}

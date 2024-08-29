@@ -21,7 +21,7 @@ const { CdxTextInput } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
 	useJsonFormControl,
-	useValidationErrors
+	useValidationErrors,
 } = require( '../../config/index.js' );
 const { useCodexControl } = require( '../utils.js' );
 const ControlWrapper = require( './ControlWrapper.vue' );
@@ -43,7 +43,7 @@ module.exports = exports = defineComponent( {
 	name: 'NumberControl',
 	components: {
 		CdxTextInput,
-		ControlWrapper
+		ControlWrapper,
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
@@ -78,8 +78,8 @@ module.exports = exports = defineComponent( {
 			onInput,
 			min,
 			max,
-			step
+			step,
 		} );
-	}
+	},
 } );
 </script>

@@ -6,12 +6,12 @@ const CommonsFileControl = require( './CommonsFileControl.vue' );
 
 const {
 	rankWith,
-	schemaControlIs
+	schemaControlIs,
 } = require( '../../config/index.js' );
 
 const rankRenderer = ( rank, renderer, tester ) => ( {
 	renderer,
-	tester: rankWith( rank, tester )
+	tester: rankWith( rank, tester ),
 } );
 
 const isPageTitleControl = schemaControlIs( MEDIAWIKI_DEFINITIONS.PAGE_TITLE );
@@ -26,6 +26,6 @@ module.exports = exports = {
 		rankRenderer( 3, PageTitleControl, isPageTitleControl ),
 		rankRenderer( 3, PageTitlesControl, isPageTitlesControl ),
 		rankRenderer( 3, NamespacesControl, isNamespacesControl ),
-		rankRenderer( 3, CommonsFileControl, isCommonsFileControl )
-	]
+		rankRenderer( 3, CommonsFileControl, isCommonsFileControl ),
+	],
 };

@@ -25,7 +25,7 @@ const { ref, unref, onMounted } = require( 'vue' );
 const { CdxChipInput, CdxMenu } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
-	useJsonFormControl
+	useJsonFormControl,
 } = require( '../../config/index.js' );
 const { debounce, useCodexControl } = require( '../utils.js' );
 const { search } = require( './api.js' );
@@ -39,14 +39,14 @@ module.exports = exports = {
 	components: {
 		CdxChipInput,
 		CdxMenu,
-		ControlWrapper
+		ControlWrapper,
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
 		const {
 			control,
 			controlWrapper,
-			onChange
+			onChange,
 		} = useCodexControl( useJsonFormControl( props ) );
 		const input = ref();
 		const selectedValue = ref( null );
@@ -55,7 +55,7 @@ module.exports = exports = {
 		const currentSearchTerm = ref( '' );
 		const initialValue = unref( control.modelValue ).map( ( pageTitle ) => ( {
 			value: pageTitle,
-			label: pageTitle
+			label: pageTitle,
 		} ) );
 		const selection = ref( initialValue );
 
@@ -92,7 +92,7 @@ module.exports = exports = {
 					// Build an array of menu items.
 					const results = data.query.prefixsearch.map( ( result ) => ( {
 						label: result.title,
-						value: result.title
+						value: result.title,
 					} ) );
 
 					// Update menuItems.
@@ -131,15 +131,15 @@ module.exports = exports = {
 				const index = menuItems.value.findIndex( ( menuItem ) => menuItem.value === itemValue );
 				selection.value = [ ...selection.value, {
 					label: menuItems.value[ index ].label,
-					value: menuItems.value[ index ].value
+					value: menuItems.value[ index ].value,
 				} ];
 				onChange( selection.value.map( chipToPageTitle ) );
 				currentSearchTerm.value = '';
 				// HACK, bettwer way to remove the user typed text in ChipInput?
 				input.value.inputValue = '';
-			}
+			},
 		};
-	}
+	},
 };
 
 </script>

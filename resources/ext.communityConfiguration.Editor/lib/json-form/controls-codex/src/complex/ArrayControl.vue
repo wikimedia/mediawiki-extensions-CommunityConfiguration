@@ -54,7 +54,7 @@ const { cdxIconAdd, cdxIconTrash } = require( '../../../../icons.json' );
 const {
 	rendererProps,
 	DispatchRenderer,
-	useJsonFormArrayControl
+	useJsonFormArrayControl,
 } = require( '../../config/index.js' );
 
 // @vue/component
@@ -64,7 +64,7 @@ module.exports = exports = {
 		CdxField,
 		CdxButton,
 		CdxIcon,
-		DispatchRenderer
+		DispatchRenderer,
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
@@ -92,9 +92,9 @@ module.exports = exports = {
 			cdxIconAdd, cdxIconTrash,
 			onAddElementClick,
 			onDeleteElementClick,
-			forceRerenderCounter
+			forceRerenderCounter,
 		};
-	}
+	},
 };
 </script>
 

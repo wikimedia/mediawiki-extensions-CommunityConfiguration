@@ -1,12 +1,12 @@
 const DispatchRenderer = require( './components/DispatchRenderer.vue' );
 const JsonForm = require( './components/JsonForm.vue' );
 const {
-	rendererProps
+	rendererProps,
 } = require( './composables/props.js' );
 const {
 	useJsonFormArrayControl,
 	useJsonFormControl,
-	useJsonFormRenderer
+	useJsonFormRenderer,
 } = require( './composables/useJsonForm.js' );
 const useValidationErrors = require( './composables/useValidationErrors.js' );
 
@@ -17,5 +17,5 @@ module.exports = exports = {
 	useJsonFormArrayControl,
 	useJsonFormControl,
 	useJsonFormRenderer,
-	useValidationErrors
+	useValidationErrors,
 };

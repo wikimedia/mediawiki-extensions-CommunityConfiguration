@@ -1,6 +1,6 @@
 'use strict';
 jest.mock( './icons.json', () => ( {
-	cdxIconLinkExternal: 'link external'
+	cdxIconLinkExternal: 'link external',
 } ), { virtual: true } );
 jest.mock( '../lib/icons.json', () => ( {} ), { virtual: true } );
 const { mount } = require( '@vue/test-utils' );
@@ -29,7 +29,7 @@ global.mw.config.get.mockImplementation( ( key ) => {
 				15: 'Category talk',
 				2600: 'Topic',
 				'-2': 'Media',
-				'-1': 'Special'
+				'-1': 'Special',
 			};
 		default:
 			throw new Error( 'Unkown key: ' + key );
@@ -46,8 +46,8 @@ describe( 'ext.communityConfiguration.Editor App', () => {
 	it( 'displays the app', () => {
 		const wrapper = mount( App, {
 			global: global.getGlobalAppMountingOptions(
-				{ CONFIG_DATA, JSON_SCHEMA }
-			)
+				{ CONFIG_DATA, JSON_SCHEMA },
+			),
 		} );
 		expect( wrapper.getComponent( JsonForm ).props( 'schema' ) ).toEqual( JSON_SCHEMA );
 		expect( wrapper.getComponent( JsonForm ).props( 'data' ) ).toEqual( CONFIG_DATA );
@@ -58,8 +58,8 @@ describe( 'Notice Messages', () => {
 	it( 'displays notice message when user cannot edit', () => {
 		const wrapper = mount( App, {
 			global: global.getGlobalAppMountingOptions(
-				{ CAN_EDIT: false }
-			)
+				{ CAN_EDIT: false },
+			),
 		} );
 
 		expect( wrapper.html() ).toContain( 'communityconfiguration-editor-client-notice-message' );
@@ -73,10 +73,10 @@ describe( 'submit results', () => {
 			global: global.getGlobalAppMountingOptions(
 				{
 					WRITING_REPOSITORY: {
-						writeConfigurationData: jest.fn().mockResolvedValue( {} )
-					}
-				}
-			)
+						writeConfigurationData: jest.fn().mockResolvedValue( {} ),
+					},
+				},
+			),
 		} );
 
 		await wrapper.getComponent( EditSummaryDialog ).vm.$emit( 'primary' );
@@ -96,22 +96,22 @@ describe( 'submit results', () => {
 					code: errorCode,
 					html: htmlErrorMessage,
 					data: {
-						errorclass: 'RuntimeException'
-					}
-				}
+						errorclass: 'RuntimeException',
+					},
+				},
 			],
-			trace
+			trace,
 		};
 		const wrapper = mount( App, {
 			global: global.getGlobalAppMountingOptions(
 				{
 					WRITING_REPOSITORY: {
 						writeConfigurationData: jest.fn().mockRejectedValue(
-							[ errorCode, response ]
-						)
-					}
-				}
-			)
+							[ errorCode, response ],
+						),
+					},
+				},
+			),
 		} );
 
 		await wrapper.getComponent( EditSummaryDialog ).vm.$emit( 'primary' );
@@ -137,11 +137,11 @@ describe( 'submit results', () => {
 				{
 					WRITING_REPOSITORY: {
 						writeConfigurationData: jest.fn().mockRejectedValue(
-							[ errorCode, { xhr, textStatus, exception } ]
-						)
-					}
-				}
-			)
+							[ errorCode, { xhr, textStatus, exception } ],
+						),
+					},
+				},
+			),
 		} );
 
 		await wrapper.getComponent( EditSummaryDialog ).vm.$emit( 'primary' );
@@ -159,25 +159,25 @@ describe( 'submit results', () => {
 				{
 					code: 'protectednamespace-interface',
 					html: 'This page provides interface text for the software on this wiki, and is protected to prevent abuse. To add or change translations for all wikis, please use <a rel="nofollow" class="external text" href="https://translatewiki.net/">translatewiki.net</a>, the MediaWiki localisation project.',
-					module: 'communityconfigurationedit'
+					module: 'communityconfigurationedit',
 				},
 				{
 					code: 'sitejsonprotected',
 					html: 'You do not have permission to edit this JSON page because it may affect all visitors.',
-					module: 'communityconfigurationedit'
-				}
-			]
+					module: 'communityconfigurationedit',
+				},
+			],
 		};
 		const wrapper = mount( App, {
 			global: global.getGlobalAppMountingOptions(
 				{
 					WRITING_REPOSITORY: {
 						writeConfigurationData: jest.fn().mockRejectedValue(
-							[ 'protectednamespace-interface', response ]
-						)
-					}
-				}
-			)
+							[ 'protectednamespace-interface', response ],
+						),
+					},
+				},
+			),
 		} );
 
 		await wrapper.getComponent( EditSummaryDialog ).vm.$emit( 'primary' );
