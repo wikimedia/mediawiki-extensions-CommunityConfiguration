@@ -47,7 +47,7 @@ class NavigationHooks implements SkinTemplateNavigation__UniversalHook {
 						'class' => '',
 						'href' => $specialPageTitle->getLocalURL(),
 						'text' => $sktemplate->msg(
-							'communityconfiguration-editor-navigation-tab-viewform' )->text()
+							'communityconfiguration-editor-navigation-tab-viewform' )->text(),
 					] ] );
 					break;
 				}
@@ -71,7 +71,7 @@ class NavigationHooks implements SkinTemplateNavigation__UniversalHook {
 			$links['views'] = array_merge( [ 'viewform' => [
 				'class' => 'selected',
 				'href'  => $title->getLocalURL(),
-				'text'  => $sktemplate->msg( 'communityconfiguration-editor-navigation-tab-viewform' )->text()
+				'text'  => $sktemplate->msg( 'communityconfiguration-editor-navigation-tab-viewform' )->text(),
 			] ], $links['views'] );
 		}
 	}

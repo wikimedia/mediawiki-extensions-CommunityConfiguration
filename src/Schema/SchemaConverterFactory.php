@@ -34,7 +34,7 @@ class SchemaConverterFactory {
 			// ObjectFactory::createObject supports arrays as its arguments, not just callables
 			// Link to Phan bug: https://github.com/phan/phan/issues/1648
 			// @phan-suppress-next-line PhanTypeInvalidCallableArraySize
-			'class' => $className
+			'class' => $className,
 		], [
 			'assertClass' => ISchemaConverter::class,
 		] );

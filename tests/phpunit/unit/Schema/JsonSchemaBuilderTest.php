@@ -78,7 +78,7 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 								'type' => 'string',
 								'default' => 'str',
 							],
-						]
+						],
 					],
 					'objectBoth' => [
 						'type' => 'object',
@@ -86,14 +86,14 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 							'foo' => [
 								'type' => 'number',
 								'default' => 42,
-							]
+							],
 						],
 						'default' => [
 							'foo' => 1,
 							'bar' => 2,
 						],
 					],
-				]
+				],
 			],
 			1
 		);

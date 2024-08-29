@@ -18,12 +18,12 @@ class DashboardEditorCapability extends AbstractEditorCapability {
 	private const GUIDELINES = [
 		[
 			'title' => 'communityconfiguration-guidelines-guideline1-title',
-			'description' => 'communityconfiguration-guidelines-guideline1-description'
+			'description' => 'communityconfiguration-guidelines-guideline1-description',
 		],
 		[
 			'title' => 'communityconfiguration-guidelines-guideline2-title',
-			'description' => 'communityconfiguration-guidelines-guideline2-description'
-		]
+			'description' => 'communityconfiguration-guidelines-guideline2-description',
+		],
 	];
 
 	public function __construct(
@@ -48,7 +48,7 @@ class DashboardEditorCapability extends AbstractEditorCapability {
 			$availableProviders[] = [
 				'href' => $this->getParentTitle()->getSubpage( $providerName )->getLinkURL(),
 				'title' => $this->msg( 'communityconfiguration-' . $lowerCaseProviderName . '-title' ),
-				'description' => $this->msg( 'communityconfiguration-' . $lowerCaseProviderName . '-description' )
+				'description' => $this->msg( 'communityconfiguration-' . $lowerCaseProviderName . '-description' ),
 			];
 		}
 		return $availableProviders;
@@ -67,11 +67,11 @@ class DashboardEditorCapability extends AbstractEditorCapability {
 			'guidelines' => array_map( function ( array $guideline ): array {
 				return [
 					'title' => $this->msg( $guideline['title'] ),
-					'description' => $this->msg( $guideline['description'] )->parse()
+					'description' => $this->msg( $guideline['description'] )->parse(),
 				];
 			}, self::GUIDELINES ),
 			'providers-title' => $this->msg( 'communityconfiguration-providers-list-title' ),
-			'providers' => $this->getProviders()
+			'providers' => $this->getProviders(),
 		];
 		$templateHtml = $this->templateParser->processTemplate( 'Layout', $data );
 		$out->addHTML( $templateHtml );

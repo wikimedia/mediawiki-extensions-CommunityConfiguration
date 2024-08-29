@@ -73,7 +73,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 			Html::element( 'h2', [], $this->msg(
 				'communityconfiguration-invalid-stored-config-error-details-headline'
 			)->text() ),
-			$this->statusFormatter->getHTML( $validationError )
+			$this->statusFormatter->getHTML( $validationError ),
 		] ) );
 	}
 
@@ -120,7 +120,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 			$this->logger->error(
 				'Failed to load valid config from ' . $providerId,
 				[
-					'errors' => $config->getErrors()
+					'errors' => $config->getErrors(),
 				]
 			);
 			return;
@@ -132,7 +132,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 				__METHOD__ . ': Loaded config with warnings for {provider}',
 				[
 					'provider' => $providerId,
-					'warnings' => $validationWarnings
+					'warnings' => $validationWarnings,
 				]
 			);
 		}
@@ -153,9 +153,9 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 					),
 					'feedbackURL' => $this->getContext()->getConfig()
 						->get( 'CommunityConfigurationFeedbackURL' ),
-					'canEdit' => $canEdit
-				]
-			]
+					'canEdit' => $canEdit,
+				],
+			],
 		] );
 		$infoTextKey = 'communityconfiguration-' . strtolower( $providerId ) . '-info-text';
 		if ( !$this->msg( $infoTextKey )->isDisabled() ) {
@@ -184,14 +184,14 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 						'div',
 						[
 							'class' => 'cdx-progress-bar',
-							'role' => 'progressbar'
+							'role' => 'progressbar',
 						],
 						Html::rawElement(
 							'div',
 							[ 'class' => 'cdx-progress-bar__bar' ]
 						)
 					)
-				)
+				),
 			] )
 		) );
 		$out->addHTML( Html::rawElement(

@@ -13,7 +13,7 @@ class ExampleSchema extends JsonSchema {
 	public const CCExample_String = [
 		self::TYPE => self::TYPE_STRING,
 		self::DEFAULT => '',
-		self::MAX_LENGTH => 50
+		self::MAX_LENGTH => 50,
 	];
 
 	public const CCExample_Numbers = [
@@ -55,8 +55,8 @@ class ExampleSchema extends JsonSchema {
 				'rebeccapurple',
 				'navajowhite',
 			],
-			self::TYPE => self::TYPE_STRING
+			self::TYPE => self::TYPE_STRING,
 		],
-		self::MAX_ITEMS => 3
+		self::MAX_ITEMS => 3,
 	];
 }

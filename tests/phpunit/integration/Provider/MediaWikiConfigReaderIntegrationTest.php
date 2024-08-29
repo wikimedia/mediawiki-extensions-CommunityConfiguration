@@ -27,7 +27,7 @@ class MediaWikiConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase 
 				],
 				'validator' => [
 					'type' => 'jsonschema',
-					'args' => [ JsonSchemaForTesting::class ]
+					'args' => [ JsonSchemaForTesting::class ],
 				],
 				'type' => 'mw-config',
 			],
@@ -79,7 +79,7 @@ class MediaWikiConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase 
 				],
 				'validator' => [
 					'type' => 'jsonschema',
-					'args' => [ JsonSchemaForTesting::class ]
+					'args' => [ JsonSchemaForTesting::class ],
 				],
 				'type' => 'mw-config',
 			],
@@ -90,7 +90,7 @@ class MediaWikiConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase 
 				],
 				'validator' => [
 					'type' => 'jsonschema',
-					'args' => [ JsonSchemaForTesting::class ]
+					'args' => [ JsonSchemaForTesting::class ],
 				],
 				'type' => 'mw-config',
 			],

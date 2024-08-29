@@ -72,11 +72,11 @@ class JsonSchemaReaderTest extends MediaWikiUnitTestCase {
 		return [
 			[
 				'MediaWiki/Extension/CommunityConfiguration/Tests/JsonSchemaForTesting',
-				JsonSchemaForTesting::class
+				JsonSchemaForTesting::class,
 			],
 			[
 				'MediaWiki/Extension/CommunityConfiguration/Tests/JsonSchemaForTestingNewerVersion/1.0.1',
-				JsonSchemaForTestingNewerVersion::class
+				JsonSchemaForTestingNewerVersion::class,
 			],
 		];
 	}

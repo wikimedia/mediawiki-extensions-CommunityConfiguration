@@ -122,7 +122,7 @@ class ConfigurationProviderFactory {
 			$providerId,
 			$spec['options'] ?? [],
 			$store,
-			$this->validatorFactory->newValidator( $providerId, $validatorType, $validatorArgs )
+			$this->validatorFactory->newValidator( $providerId, $validatorType, $validatorArgs ),
 		];
 
 		$classSpec = $this->getProviderClassSpec( $spec['type'] ?? self::DEFAULT_PROVIDER_TYPE );

@@ -23,7 +23,7 @@ class ValidationHooksTest extends MediaWikiIntegrationTestCase {
 					'type' => 'jsonschema',
 					'args' => [
 						JsonSchemaForTesting::class,
-					]
+					],
 				],
 			],
 			// used to test ValidationHooks does not have issues with other stores than wikipage
@@ -33,7 +33,7 @@ class ValidationHooksTest extends MediaWikiIntegrationTestCase {
 					'args' => [ (object)[ 'Foo' => 42 ] ],
 				],
 				'validator' => [
-					'type' => 'noop'
+					'type' => 'noop',
 				],
 			],
 		] );

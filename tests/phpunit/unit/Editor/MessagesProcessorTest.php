@@ -28,8 +28,8 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-number-label',
 				'pfx-pid-number-help-text',
 				'pfx-pid-number-placeholder',
-				'pfx-pid-number-description'
-			]
+				'pfx-pid-number-description',
+			],
 		];
 		yield 'integer' => [
 			new class() extends JsonSchema {
@@ -41,8 +41,8 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-integer-label',
 				'pfx-pid-integer-help-text',
 				'pfx-pid-integer-placeholder',
-				'pfx-pid-integer-description'
-			]
+				'pfx-pid-integer-description',
+			],
 		];
 		yield 'boolean' => [
 			new class() extends JsonSchema {
@@ -55,7 +55,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-boolean-control-label',
 				'pfx-pid-boolean-help-text',
 				'pfx-pid-boolean-description',
-			]
+			],
 		];
 		yield 'enum string' => [
 			new class() extends JsonSchema {
@@ -72,7 +72,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-stringenum-option-earth-label',
 				'pfx-pid-stringenum-option-water-label',
 				'pfx-pid-stringenum-option-uppercase-label',
-			]
+			],
 		];
 		yield 'enum number' => [
 			new class() extends JsonSchema {
@@ -88,7 +88,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-numberenum-option-1-label',
 				'pfx-pid-numberenum-option-7-label',
 				'pfx-pid-numberenum-option-13-label',
-			]
+			],
 		];
 		yield 'array of number' => [
 			new class() extends JsonSchema {
@@ -96,7 +96,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 					JsonSchema::TYPE => JsonSchema::TYPE_ARRAY,
 					JsonSchema::ITEMS => [
 						JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
-					]
+					],
 				];
 			},
 			[
@@ -107,7 +107,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-numberarray-add-element-button-label',
 				'communityconfiguration-editor-array-fallback-add-element-button-label',
 			],
-			[]
+			[],
 		];
 		yield 'array of string' => [
 			new class() extends JsonSchema {
@@ -115,7 +115,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 					JsonSchema::TYPE => JsonSchema::TYPE_ARRAY,
 					JsonSchema::ITEMS => [
 						JsonSchema::TYPE => JsonSchema::TYPE_STRING,
-					]
+					],
 				];
 			},
 			[
@@ -126,7 +126,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 			[
 				'mw-widgets-titlesmultiselect-placeholder',
 				'communityconfiguration-editor-chip-control-aria-chip-description',
-			]
+			],
 		];
 		yield 'array of enum' => [
 			new class() extends JsonSchema {
@@ -135,7 +135,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 					JsonSchema::ITEMS => [
 						JsonSchema::TYPE => JsonSchema::TYPE_STRING,
 						JsonSchema::ENUM => [ "foo", "bar" ],
-					]
+					],
 				];
 			},
 			[
@@ -151,7 +151,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'communityconfiguration-editor-error-validation-enum-invalid-value',
 				'mw-widgets-titlesmultiselect-placeholder',
 				'communityconfiguration-editor-chip-control-aria-chip-description',
-			]
+			],
 		];
 		yield 'object' => [
 			new class() extends JsonSchema {
@@ -163,8 +163,8 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 						],
 						'bar' => [
 							JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
-						]
-					]
+						],
+					],
 				];
 			},
 			[
@@ -182,8 +182,8 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-exampleobject-bar-label',
 				'pfx-pid-exampleobject-bar-help-text',
 				'pfx-pid-exampleobject-bar-placeholder',
-				'pfx-pid-exampleobject-bar-description'
-			]
+				'pfx-pid-exampleobject-bar-description',
+			],
 		];
 		yield 'array of objects' => [
 			new class() extends JsonSchema {
@@ -197,9 +197,9 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 							],
 							'bar' => [
 								JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
-							]
-						]
-					]
+							],
+						],
+					],
 				];
 			},
 			[
@@ -220,15 +220,15 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-examplearray-bar-label',
 				'pfx-pid-examplearray-bar-help-text',
 				'pfx-pid-examplearray-bar-placeholder',
-				'pfx-pid-examplearray-bar-description'
-			]
+				'pfx-pid-examplearray-bar-description',
+			],
 		];
 		yield 'pagetitle' => [
 			new class() extends JsonSchema {
 				public const ExamplePage = [
 					JsonSchema::REF => [
-						'class' => MediaWikiDefinitions::class, 'field' => 'PageTitle'
-					]
+						'class' => MediaWikiDefinitions::class, 'field' => 'PageTitle',
+					],
 				];
 			},
 			[
@@ -238,15 +238,15 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 				'pfx-pid-examplepage-description',
 			],
 			[
-				'communityconfiguration-page-title-control-no-results'
-			]
+				'communityconfiguration-page-title-control-no-results',
+			],
 		];
 		yield 'pagetitles' => [
 			new class() extends JsonSchema {
 				public const ExamplePages = [
 					JsonSchema::REF => [
-						'class' => MediaWikiDefinitions::class, 'field' => 'PageTitles'
-					]
+						'class' => MediaWikiDefinitions::class, 'field' => 'PageTitles',
+					],
 				];
 			},
 			[
@@ -257,14 +257,14 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 			[
 				'mw-widgets-titlesmultiselect-placeholder',
 				'communityconfiguration-editor-chip-control-aria-chip-description',
-			]
+			],
 		];
 		yield 'Namespaces' => [
 			new class() extends JsonSchema {
 				public const Namespaces = [
 					JsonSchema::REF => [
-						'class' => MediaWikiDefinitions::class, 'field' => 'Namespaces'
-					]
+						'class' => MediaWikiDefinitions::class, 'field' => 'Namespaces',
+					],
 				];
 			},
 			[
@@ -274,8 +274,8 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 			],
 			[
 				'mw-widgets-titlesmultiselect-placeholder',
-				'communityconfiguration-editor-chip-control-aria-chip-description'
-			]
+				'communityconfiguration-editor-chip-control-aria-chip-description',
+			],
 		];
 	}
 

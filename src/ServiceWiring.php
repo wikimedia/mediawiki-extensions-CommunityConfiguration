@@ -32,7 +32,7 @@ return [
 					'CommunityConfigurationEditorCapabilities' => Utils::getMergedAttribute(
 						$services->getMainConfig(),
 						'CommunityConfigurationEditorCapabilities'
-					)
+					),
 				] )
 			),
 			$services->getObjectFactory()
@@ -92,5 +92,5 @@ return [
 			$services->getUserFactory(),
 			$services->getHookContainer()
 		);
-	}
+	},
 ];

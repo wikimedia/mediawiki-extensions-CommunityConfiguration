@@ -33,7 +33,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 			'FormatterFactory',
 			'CommunityConfiguration.HookRunner',
 			'CommunityConfiguration.MessagesProcessor',
-		]
+		],
 	];
 
 	public function testCreation() {

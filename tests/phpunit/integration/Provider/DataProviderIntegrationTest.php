@@ -25,7 +25,7 @@ class DataProviderIntegrationTest extends MediaWikiIntegrationTestCase {
 				],
 				'validator' => [
 					'type' => 'jsonschema',
-					'args' => [ JsonSchemaForTesting::class ]
+					'args' => [ JsonSchemaForTesting::class ],
 				],
 				'type' => 'data',
 			],

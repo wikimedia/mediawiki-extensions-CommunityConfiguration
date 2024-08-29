@@ -53,12 +53,12 @@ class SpecialCommunityConfigurationTest extends SpecialPageTestBase {
 			'type' => 'data',
 			'options' => [
 				'excludeFromUI' => true,
-			]
+			],
 		],
 		self::NO_VALIDATION_PROVIDER_ID => [
 			'store' => [
 				'type' => 'wikipage',
-				'args' => [ 'MediaWiki:NoValidationData.json' ]
+				'args' => [ 'MediaWiki:NoValidationData.json' ],
 			],
 			'validator' => [
 				'type' => 'noop-with-schema',
@@ -70,13 +70,13 @@ class SpecialCommunityConfigurationTest extends SpecialPageTestBase {
 				'type' => 'static',
 				'args' => [ [
 					'Foo' => 42,
-				] ]
+				] ],
 			],
 			'validator' => [
 				'type' => 'noop-with-schema',
 			],
 			'type' => 'data',
-		]
+		],
 	];
 
 	protected function setUp(): void {

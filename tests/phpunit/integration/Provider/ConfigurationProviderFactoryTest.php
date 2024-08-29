@@ -40,7 +40,7 @@ class ConfigurationProviderFactoryTest extends MediaWikiIntegrationTestCase {
 					'type' => 'jsonschema',
 					'args' => [
 						JsonSchemaForTesting::class,
-					]
+					],
 				],
 				'type' => $providerType,
 			],
@@ -64,7 +64,7 @@ class ConfigurationProviderFactoryTest extends MediaWikiIntegrationTestCase {
 					'type' => 'jsonschema',
 					'args' => [
 						JsonSchemaForTesting::class,
-					]
+					],
 				],
 				'type' => 'unrecognized-type',
 			],

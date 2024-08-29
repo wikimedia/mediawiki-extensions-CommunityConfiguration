@@ -21,19 +21,19 @@ class MediaWikiDefinitions extends JsonSchema {
 			'url' => [
 				self::TYPE => self::TYPE_STRING,
 				self::DEFAULT => '',
-			]
+			],
 		],
 		self::DEFAULT => [
 			'title' => '',
-			'url' => ''
+			'url' => '',
 		],
-		'control' => CommonsFileControl::class
+		'control' => CommonsFileControl::class,
 	];
 
 	public const PageTitle = [
 		self::TYPE => self::TYPE_STRING,
 		self::DEFAULT => '',
-		'control' => PageTitleControl::class
+		'control' => PageTitleControl::class,
 	];
 
 	public const PageTitles = [
@@ -43,15 +43,15 @@ class MediaWikiDefinitions extends JsonSchema {
 			self::DEFAULT => '',
 		],
 		self::DEFAULT => [],
-		'control' => PageTitlesControl::class
+		'control' => PageTitlesControl::class,
 	];
 
 	public const Namespaces = [
 		self::TYPE => self::TYPE_ARRAY,
 		self::ITEMS => [
-			self::TYPE => self::TYPE_INTEGER
+			self::TYPE => self::TYPE_INTEGER,
 		],
 		self::DEFAULT => [],
-		'control' => NamespacesControl::class
+		'control' => NamespacesControl::class,
 	];
 }
