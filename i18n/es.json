@@ -27,7 +27,7 @@
 	"communityconfiguration-provider-not-found": "Proveedor $1 no encontrado",
 	"communityconfiguration-unknown-error": "DRAFT: Algo ha ido mal, ¿reportar en Phabricator?",
 	"communityconfigurationdashboard": "Configuración comunitaria",
-	"communityconfiguration-edit-summary-reminder": "<b>Reminder</b>: este cambio puede afectar a una gran cantidad de miembros de la comunidad. Considere indicar el motivo {{GENDER:$1| usted}} está realizando el cambio y vinculando a cualquier discusión comunitaria relacionada, si corresponde.",
+	"communityconfiguration-edit-summary-reminder": "<b>Reminder</b>: este cambio puede afectar a una gran cantidad de miembros de la comunidad. Considere indicar el motivo por el que {{GENDER:$1| usted}} está realizando el cambio, vinculando cualquier discusión comunitaria relacionada, si corresponde.",
 	"communityconfiguration-edit-summary-dialog-title": "Guardar cambios por $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(opcional)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Describir los cambios que se realizaron en la configuración.",
