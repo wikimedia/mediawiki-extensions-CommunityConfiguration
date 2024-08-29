@@ -144,5 +144,5 @@ function getLabelsChain( rootSchema, pointer, i18nPrefix ) {
 
 module.exports = exports = {
 	getControlTextProps,
-	getLabelsChain
+	getLabelsChain,
 };

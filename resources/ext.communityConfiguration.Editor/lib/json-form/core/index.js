@@ -13,7 +13,7 @@ const {
 	extractRef,
 	rankWith,
 	schemaControlIs,
-	schemaTypeIs
+	schemaTypeIs,
 } = require( './testers.js' );
 
 module.exports = exports = {
@@ -32,5 +32,5 @@ module.exports = exports = {
 	extractRef,
 	rankWith,
 	schemaControlIs,
-	schemaTypeIs
+	schemaTypeIs,
 };

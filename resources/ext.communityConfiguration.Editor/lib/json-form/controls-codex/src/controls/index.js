@@ -6,12 +6,12 @@ const {
 	isBooleanControl,
 	isIntegerControl,
 	isNumberControl,
-	isStringControl
+	isStringControl,
 } = require( '../../config/index.js' );
 
 const rankRenderer = ( renderer, tester ) => ( {
 	renderer,
-	tester: rankWith( 1, tester )
+	tester: rankWith( 1, tester ),
 } );
 
 const isNumberOrInteger = ( ...args ) => isIntegerControl( ...args ) || isNumberControl( ...args );
@@ -20,6 +20,6 @@ module.exports = exports = {
 	controls: [
 		rankRenderer( BooleanControl, isBooleanControl ),
 		rankRenderer( StringControl, isStringControl ),
-		rankRenderer( NumberControl, isNumberOrInteger )
-	]
+		rankRenderer( NumberControl, isNumberOrInteger ),
+	],
 };

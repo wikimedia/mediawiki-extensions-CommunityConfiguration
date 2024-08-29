@@ -8,11 +8,11 @@ function getMountOptions( min, max, data ) {
 	const uischema = {
 		name: 'StringFieldName',
 		scope: '#/properties/StringFieldName',
-		type: 'Control'
+		type: 'Control',
 	};
 	const StringSubSchema = {
 		type: 'string',
-		default: null
+		default: null,
 	};
 	if ( typeof min === 'number' ) {
 		StringSubSchema.minLength = min;
@@ -24,29 +24,29 @@ function getMountOptions( min, max, data ) {
 	const schema = {
 		type: 'object',
 		properties: {
-			StringFieldName: StringSubSchema
-		}
+			StringFieldName: StringSubSchema,
+		},
 	};
 	const jsonform = {
 		uischema,
 		renderers: null,
 		schema,
 		config: {
-			i18nPrefix: 'i18n-prefix'
+			i18nPrefix: 'i18n-prefix',
 		},
 		data: data || reactive( {} ),
-		errors: ref( [] )
+		errors: ref( [] ),
 	};
 
 	return {
 		props: {
 			renderers: null,
 			uischema,
-			schema: StringSubSchema
+			schema: StringSubSchema,
 		},
 		global: {
-			...global.getGlobalMediaWikiMountingOptions( { jsonform } )
-		}
+			...global.getGlobalMediaWikiMountingOptions( { jsonform } ),
+		},
 	};
 }
 

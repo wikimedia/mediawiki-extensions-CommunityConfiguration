@@ -17,19 +17,19 @@ const { CdxMessage } = require( '../../../codex.js' );
 module.exports = exports = {
 	name: 'EditorMessage',
 	components: {
-		CdxMessage
+		CdxMessage,
 	},
 	props: {
 		// Allowed values: 'notice', 'warning', 'error', 'success'
 		status: {
 			type: String,
-			default: 'notice'
+			default: 'notice',
 		},
 		isDismissable: {
 			type: Boolean,
-			default: false
-		}
-	}
+			default: false,
+		},
+	},
 };
 
 </script>

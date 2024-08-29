@@ -136,7 +136,7 @@ function useJsonFormControl( props ) {
 	}
 	const {
 		required,
-		scope
+		scope,
 	} = props.uischema;
 	const modelValue = ref(
 		getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs )
@@ -158,11 +158,11 @@ function useJsonFormControl( props ) {
 			modelValue,
 			pointer,
 			statusMessages,
-			otherAttrs
+			otherAttrs,
 		} ),
 		handleChange( newVal ) {
 			setConfigValueByScope( jsonform.data, scope, newVal );
-		}
+		},
 	};
 }
 
@@ -183,7 +183,7 @@ function useJsonFormArrayControl( props ) {
 	}
 	const {
 		required,
-		scope
+		scope,
 	} = props.uischema;
 
 	const modelValue = computed(
@@ -192,7 +192,7 @@ function useJsonFormArrayControl( props ) {
 	const pointer = scopeToJsonPointer( scope );
 	const {
 		getValidationErrorMessageForFormFieldId,
-		adjustValidationErrorsOnArrayItemDelete
+		adjustValidationErrorsOnArrayItemDelete,
 	} = useValidationErrors();
 	const statusMessages = computed( () => {
 		const validationErrorMessage = getValidationErrorMessageForFormFieldId( pointer );
@@ -219,7 +219,7 @@ function useJsonFormArrayControl( props ) {
 			scope: `${childUISchema.scope}/${index}`,
 			label: childUISchema.itemLabel ?
 				i18n( childUISchema.itemLabel.key, [ index + 1 ] ) :
-				null
+				null,
 		} );
 	}
 	return {
@@ -230,8 +230,8 @@ function useJsonFormArrayControl( props ) {
 			pointer,
 			statusMessages,
 			otherAttrs: {
-				required
-			}
+				required,
+			},
 		} ),
 		addEmptyElement() {
 			const emptyValue = getDefaultValueForType( props.schema.items.type );
@@ -240,10 +240,10 @@ function useJsonFormArrayControl( props ) {
 		removeElement( index ) {
 			setConfigValueByScope( jsonform.data, scope, [
 				...modelValue.value.slice( 0, index ),
-				...modelValue.value.slice( index + 1 )
+				...modelValue.value.slice( index + 1 ),
 			] );
 			adjustValidationErrorsOnArrayItemDelete( pointer, index );
-		}
+		},
 	};
 }
 
@@ -270,17 +270,17 @@ const useJsonFormRenderer = ( props ) => {
 	}
 	const renderer = {
 		schema,
-		renderers: jsonform.renderers
+		renderers: jsonform.renderers,
 	};
 
 	return {
 		renderer: Object.assign( {}, props, renderer ),
-		rootSchema: jsonform.schema
+		rootSchema: jsonform.schema,
 	};
 };
 
 module.exports = exports = {
 	useJsonFormArrayControl,
 	useJsonFormControl,
-	useJsonFormRenderer
+	useJsonFormRenderer,
 };

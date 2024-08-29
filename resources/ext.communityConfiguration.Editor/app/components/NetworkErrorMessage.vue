@@ -14,7 +14,7 @@ const EditorMessage = require( './EditorMessage.vue' );
 module.exports = exports = {
 	name: 'NetworkErrorMessage',
 	components: {
-		EditorMessage
-	}
+		EditorMessage,
+	},
 };
 </script>

@@ -26,7 +26,7 @@ const { ref, unref } = require( 'vue' );
 const { CdxChipInput, CdxMenu } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
-	useJsonFormControl
+	useJsonFormControl,
 } = require( '../../config/index.js' );
 const { debounce, useCodexControl } = require( '../utils.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
@@ -57,14 +57,14 @@ module.exports = exports = {
 	components: {
 		CdxChipInput,
 		CdxMenu,
-		ControlWrapper
+		ControlWrapper,
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
 		const {
 			control,
 			controlWrapper,
-			onChange
+			onChange,
 		} = useCodexControl( useJsonFormControl( props ) );
 		const input = ref();
 		const selectedValue = ref( null );
@@ -121,8 +121,8 @@ module.exports = exports = {
 				currentSearchTerm.value = '';
 				// HACK, bettwer way to remove the user typed text in ChipInput?
 				input.value.inputValue = '';
-			}
+			},
 		};
-	}
+	},
 };
 </script>

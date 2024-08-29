@@ -33,11 +33,11 @@ module.exports = exports = defineComponent( {
 	name: 'EnumControl',
 	components: {
 		CdxRadio,
-		ControlWrapper
+		ControlWrapper,
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
 		return useCodexControl( useJsonFormControl( props ) );
-	}
+	},
 } );
 </script>

@@ -2,14 +2,14 @@
 const { buildUISchema } = require( '../uischema.js' );
 const testJsonSchema = require( './test-json-schema.json' );
 const editorConfig = {
-	i18nPrefix: 'testenvironment-someprovider'
+	i18nPrefix: 'testenvironment-someprovider',
 };
 const testJsonConfig = {
 	ExampleString: 'Some string',
 	ExampleArray: [
 		'Some string',
-		'Some other string'
-	]
+		'Some other string',
+	],
 };
 
 function findUISchemaElement( needle, haystack ) {
@@ -23,7 +23,7 @@ function assertUISchemaElementDefaults( subschemaName, uischema ) {
 	expect( uiSchemaElement.scope ).toBeDefined();
 	expect( uiSchemaElement.label ).toBeDefined();
 	expect( uiSchemaElement.label.text() ).toBe(
-		`testenvironment-someprovider-${ subschemaName.toLowerCase() }-label`
+		`testenvironment-someprovider-${ subschemaName.toLowerCase() }-label`,
 	);
 	// TODO assert control label and help text
 }
@@ -32,7 +32,7 @@ function assertUISchemaArrayDefaults( subschemaName, uischema ) {
 	const uiSchemaElement = findUISchemaElement( subschemaName, uischema.elements );
 	expect( uiSchemaElement.itemLabel ).toBeDefined();
 	expect( uiSchemaElement.itemLabel.text() ).toBe(
-		`testenvironment-someprovider-${ subschemaName.toLowerCase() }-item-label`
+		`testenvironment-someprovider-${ subschemaName.toLowerCase() }-item-label`,
 	);
 }
 
@@ -42,12 +42,12 @@ describe( 'UISchema', () => {
 			'testenvironment-someprovider-examplestring-label',
 			'testenvironment-someprovider-examplearray-label',
 			'testenvironment-someprovider-examplearray-item-label',
-			'testenvironment-someprovider-exampleobject-label'
+			'testenvironment-someprovider-exampleobject-label',
 		];
 		global.mw.Message = jest.fn( ( messages, key ) => ( {
 			exists: jest.fn( () => messages.includes( key ) ),
 			text: jest.fn( () => key ),
-			parse: jest.fn( () => key )
+			parse: jest.fn( () => key ),
 		} ) );
 	} );
 
@@ -55,7 +55,7 @@ describe( 'UISchema', () => {
 		const actual = buildUISchema( testJsonSchema, editorConfig, '', testJsonConfig );
 		// Assert an element is produced for each top schema property
 		expect( actual.elements.length ).toEqual(
-			Object.keys( testJsonSchema.properties ).length
+			Object.keys( testJsonSchema.properties ).length,
 		);
 		// Assert each top schema property has proper defaults
 		for ( const prop in testJsonSchema.properties ) {
@@ -77,24 +77,24 @@ describe( 'UISchema', () => {
 				ExampleString: 'Some string',
 				ExampleArray: [
 					'Some string',
-					'Some other string'
+					'Some other string',
 				],
 				Extra: 'should be dropped',
 				ExampleObject: {
 					ExampleBoolean: true,
-					NestedExtra: 'remains untouched in this iteration'
-				}
+					NestedExtra: 'remains untouched in this iteration',
+				},
 			};
 			const expectedData = {
 				ExampleString: 'Some string',
 				ExampleArray: [
 					'Some string',
-					'Some other string'
+					'Some other string',
 				],
 				ExampleObject: {
 					ExampleBoolean: true,
-					NestedExtra: 'remains untouched in this iteration'
-				}
+					NestedExtra: 'remains untouched in this iteration',
+				},
 			};
 
 			buildUISchema( testJsonSchema, editorConfig, '', testJsonConfigWithExtraData );
@@ -109,18 +109,18 @@ describe( 'UISchema', () => {
 				properties: {
 					ExampleBoolean: {
 						type: 'boolean',
-						default: false
+						default: false,
 					},
 					ExampleNumber: {
 						type: 'number',
-						default: null
-					}
+						default: null,
+					},
 				},
-				additionalProperties: true
+				additionalProperties: true,
 			};
 			const testData = {
 				ExampleBoolean: true,
-				NestedExtra: 'remains untouched because it is allowed'
+				NestedExtra: 'remains untouched because it is allowed',
 			};
 			const expectedData = { ...testData };
 
@@ -136,17 +136,17 @@ describe( 'UISchema', () => {
 				properties: {
 					ExampleBoolean: {
 						type: 'boolean',
-						default: false
+						default: false,
 					},
 					ExampleNumber: {
 						type: 'number',
-						default: null
-					}
-				}
+						default: null,
+					},
+				},
 			};
 			const testData = {
 				ExampleBoolean: true,
-				NestedExtra: 'remains untouched because it is implicitly allowed'
+				NestedExtra: 'remains untouched because it is implicitly allowed',
 			};
 			const expectedData = { ...testData };
 

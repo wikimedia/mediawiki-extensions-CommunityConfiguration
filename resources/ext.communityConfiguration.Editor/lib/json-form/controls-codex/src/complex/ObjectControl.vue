@@ -36,7 +36,7 @@ const {
 	rendererProps,
 	DispatchRenderer,
 	buildUISchema,
-	useJsonFormControl
+	useJsonFormControl,
 } = require( '../../config/index.js' );
 
 // @vue/component
@@ -44,7 +44,7 @@ module.exports = exports = {
 	name: 'ObjectControl',
 	components: {
 		CdxField,
-		DispatchRenderer
+		DispatchRenderer,
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
@@ -55,7 +55,7 @@ module.exports = exports = {
 			props.schema,
 			Object.assign( {}, jsonform.config, {
 				// eslint-disable-next-line vue/no-undef-properties
-				i18nPrefix: `${jsonform.config.i18nPrefix}-${props.uischema.name}`
+				i18nPrefix: `${jsonform.config.i18nPrefix}-${props.uischema.name}`,
 			} ),
 			props.uischema.scope,
 			unref( control.modelValue )
@@ -64,8 +64,8 @@ module.exports = exports = {
 			control,
 			description: control.uischema.description,
 			helpText: control.uischema.helpText,
-			detailUiSchema
+			detailUiSchema,
 		};
-	}
+	},
 };
 </script>

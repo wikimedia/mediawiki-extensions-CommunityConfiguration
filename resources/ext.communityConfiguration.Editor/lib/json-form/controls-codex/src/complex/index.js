@@ -10,12 +10,12 @@ const {
 	isObjectControl,
 	isEnumControl,
 	isSimpleStringArrayControl,
-	isMultiSelectEnumControl
+	isMultiSelectEnumControl,
 } = require( '../../config/index.js' );
 
 const rankRenderer = ( rank, renderer, tester ) => ( {
 	renderer,
-	tester: rankWith( rank, tester )
+	tester: rankWith( rank, tester ),
 } );
 
 module.exports = exports = {
@@ -25,6 +25,6 @@ module.exports = exports = {
 		rankRenderer( 2, EnumControl, isEnumControl ),
 		rankRenderer( 2, ChipStringsControl, isSimpleStringArrayControl ),
 		rankRenderer( 1, ObjectControl, isObjectControl ),
-		rankRenderer( 1, ArrayControl, isArrayControl )
-	]
+		rankRenderer( 1, ArrayControl, isArrayControl ),
+	],
 };

@@ -12,11 +12,11 @@ describe( 'ClientErrorMessage', () => {
 				componentName: 'App',
 				info: 'setup function',
 				err: errorObject,
-				feedbackURL: 'https://example.com/feedback'
+				feedbackURL: 'https://example.com/feedback',
 			},
 			global: {
-				...global.getGlobalMediaWikiMountingOptions()
-			}
+				...global.getGlobalMediaWikiMountingOptions(),
+			},
 		} );
 
 		expect( wrapper.element ).toMatchSnapshot();

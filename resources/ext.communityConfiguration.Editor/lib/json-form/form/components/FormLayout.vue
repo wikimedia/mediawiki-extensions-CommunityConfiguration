@@ -15,8 +15,8 @@ const { rendererProps } = require( '../composables/props.js' );
 module.exports = exports = {
 	name: 'FormLayout',
 	components: {
-		DispatchRenderer
+		DispatchRenderer,
 	},
-	props: Object.assign( {}, rendererProps() )
+	props: Object.assign( {}, rendererProps() ),
 };
 </script>

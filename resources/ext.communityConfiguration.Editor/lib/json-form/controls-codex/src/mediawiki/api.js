@@ -11,7 +11,7 @@ function search( searchTerm, offset ) {
 		action: 'query',
 		list: 'prefixsearch',
 		format: 'json',
-		pssearch: searchTerm
+		pssearch: searchTerm,
 	};
 	if ( offset ) {
 		params.set( 'continue', String( offset ) );
@@ -28,7 +28,7 @@ function searchCommonsFiles( searchTerm, offset ) {
 		gpssearch: searchTerm,
 		gpsnamespace: 6,
 		prop: 'imageinfo',
-		iiprop: 'url'
+		iiprop: 'url',
 	};
 
 	if ( offset ) {
@@ -39,5 +39,5 @@ function searchCommonsFiles( searchTerm, offset ) {
 
 module.exports = exports = {
 	search,
-	searchCommonsFiles
+	searchCommonsFiles,
 };

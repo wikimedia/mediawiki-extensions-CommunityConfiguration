@@ -6,6 +6,6 @@ module.exports = exports = {
 	renderers: [
 		...controls,
 		...complex,
-		...mediawiki
-	]
+		...mediawiki,
+	],
 };

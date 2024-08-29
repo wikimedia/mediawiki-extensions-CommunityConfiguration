@@ -56,7 +56,7 @@ module.exports = exports = {
 			} else {
 				return renderer.renderer;
 			}
-		}
-	}
+		},
+	},
 };
 </script>

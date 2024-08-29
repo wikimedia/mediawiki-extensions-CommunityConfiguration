@@ -4,7 +4,7 @@ const { ref } = require( 'vue' );
 
 const mwMessageFake = jest.fn( ( textReturnValue ) => ( {
 	exists: jest.fn( () => true ),
-	text: jest.fn( () => textReturnValue )
+	text: jest.fn( () => textReturnValue ),
 } ) );
 
 const BooleanControl = require( './BooleanControl.vue' );
@@ -23,11 +23,11 @@ describe( 'BooleanControl', () => {
 			scope: `#/properties/${ BoolFieldName }`,
 			type: 'Control',
 			controlLabel: mwMessageFake( controlLabelText ),
-			label: mwMessageFake( labelText )
+			label: mwMessageFake( labelText ),
 		};
 		const schema = {
 			type: 'boolean',
-			default: null
+			default: null,
 		};
 		const jsonform = {
 			uischema,
@@ -35,17 +35,17 @@ describe( 'BooleanControl', () => {
 			schema,
 			config: { i18nPrefix: 'prefix' },
 			data: CONFIG_DATA,
-			errors: ref( [] )
+			errors: ref( [] ),
 		};
 		const wrapper = mount( BooleanControl, {
 			props: {
 				renderers: null,
 				schema: schema,
-				uischema: uischema
+				uischema: uischema,
 			},
 			global: {
-				...global.getGlobalMediaWikiMountingOptions( { jsonform } )
-			}
+				...global.getGlobalMediaWikiMountingOptions( { jsonform } ),
+			},
 		} );
 
 		const checkboxId = wrapper.find( 'input[type="checkbox"]' ).getRootNodes()[ 0 ].id;

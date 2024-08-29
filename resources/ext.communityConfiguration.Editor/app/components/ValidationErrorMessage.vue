@@ -30,17 +30,17 @@ const EditorMessage = require( './EditorMessage.vue' );
 module.exports = exports = {
 	name: 'ValidationErrorMessage',
 	components: {
-		EditorMessage
+		EditorMessage,
 	},
 	props: {
 		errors: {
 			type: Array,
-			required: true
+			required: true,
 		},
 		feedbackURL: {
 			type: String,
-			default: null
-		}
-	}
+			default: null,
+		},
+	},
 };
 </script>

@@ -19,31 +19,31 @@ const { buildUISchema } = require( '../../core/index.js' );
 module.exports = exports = {
 	name: 'JsonForm',
 	components: {
-		FormLayout
+		FormLayout,
 	},
 	provide() {
 		// Make the main jsonform data available across all components
 		return {
-			jsonform: this.jsonform
+			jsonform: this.jsonform,
 		};
 	},
 	props: {
 		config: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		schema: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		data: {
 			type: [ Object, Array ],
-			required: true
+			required: true,
 		},
 		renderers: {
 			required: true,
-			type: Array
-		}
+			type: Array,
+		},
 	},
 	emits: [ 'submit' ],
 	setup( props, { emit } ) {
@@ -63,10 +63,10 @@ module.exports = exports = {
 				config: props.config,
 				renderers: props.renderers,
 				schema: props.schema,
-				uischema: buildUISchema( props.schema, props.config, '', dataClone )
-			}
+				uischema: buildUISchema( props.schema, props.config, '', dataClone ),
+			},
 		};
-	}
+	},
 };
 </script>
 

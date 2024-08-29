@@ -6,7 +6,7 @@ const { ref, reactive } = require( 'vue' );
 // TODO: move to jest.setup.js
 const mwMessageFake = jest.fn( ( textReturnValue ) => ( {
 	exists: jest.fn( () => true ),
-	text: jest.fn( () => textReturnValue )
+	text: jest.fn( () => textReturnValue ),
 } ) );
 
 jest.useFakeTimers();
@@ -19,9 +19,9 @@ describe( 'PageTitleControl', () => {
 				const fakeResponse = {
 					query: {
 						prefixsearch: [
-							{ title: initialValue }
-						]
-					}
+							{ title: initialValue },
+						],
+					},
 				};
 				return Promise.resolve( fakeResponse );
 			}
@@ -31,7 +31,7 @@ describe( 'PageTitleControl', () => {
 		const schema = {
 			type: 'string',
 			control: 'MediaWiki\\Extension\\CommunityConfiguration\\Controls\\PageTitleControl',
-			default: ''
+			default: '',
 		};
 		const fieldName = 'learnmore';
 		const uischema = {
@@ -39,31 +39,31 @@ describe( 'PageTitleControl', () => {
 			scope: `#/properties/${ fieldName }`,
 			type: 'Control',
 			controlLabel: null,
-			label: mwMessageFake( 'labelText' )
+			label: mwMessageFake( 'labelText' ),
 		};
 
 		const reactiveData = reactive( {
-			[ fieldName ]: initialValue
+			[ fieldName ]: initialValue,
 		} );
 		const jsonform = {
 			schema,
 			uischema,
 			config: {
-				i18nPrefix: 'i18n-'
+				i18nPrefix: 'i18n-',
 			},
 			data: reactiveData,
 			renderers: null,
-			errors: ref( [] )
+			errors: ref( [] ),
 		};
 		const wrapper = mount( PageTitleControl, {
 			props: {
 				renderers: null,
 				schema,
-				uischema
+				uischema,
 			},
 			global: {
-				...global.getGlobalMediaWikiMountingOptions( { jsonform } )
-			}
+				...global.getGlobalMediaWikiMountingOptions( { jsonform } ),
+			},
 		} );
 		jest.runAllTimers();
 

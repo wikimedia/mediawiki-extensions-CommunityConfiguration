@@ -20,13 +20,13 @@ function useCodexControl( input ) {
 		label: input.control.uischema.label,
 		description: input.control.uischema.description,
 		controlLabel: input.control.uischema.controlLabel,
-		helpText: input.control.uischema.helpText
+		helpText: input.control.uischema.helpText,
 		// TODO: add "required"
 	};
 
 	return Object.assign( {}, input, {
 		onChange,
-		controlWrapper
+		controlWrapper,
 	} );
 }
 
@@ -40,5 +40,5 @@ const debounce = ( fn, time ) => {
 
 module.exports = exports = {
 	debounce,
-	useCodexControl
+	useCodexControl,
 };

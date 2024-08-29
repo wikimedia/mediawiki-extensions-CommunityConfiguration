@@ -74,7 +74,7 @@ module.exports = exports = {
 		GenericSubmitErrorMessage,
 		NetworkErrorMessage,
 		ClientErrorMessage,
-		JsonForm
+		JsonForm,
 	},
 	setup: function () {
 		const writingRepository = inject( 'WRITING_REPOSITORY' );
@@ -91,7 +91,7 @@ module.exports = exports = {
 		const {
 			getAllValidationErrors,
 			clearValidationErrors,
-			setValidationErrorsFromSubmitResponse
+			setValidationErrorsFromSubmitResponse,
 		} = useValidationErrors( { schema, config: editorFormConfig } );
 
 		function isPermissionsErrorResponse( errors ) {
@@ -112,14 +112,14 @@ module.exports = exports = {
 						componentName: clientError.value.componentName,
 						info: clientError.value.info,
 						err: clientError.value.err,
-						feedbackURL: editorFormConfig.feedbackURL
-					}
+						feedbackURL: editorFormConfig.feedbackURL,
+					},
 				};
 			}
 
 			if ( submitOutcome.value && submitOutcome.value.success ) {
 				return {
-					type: 'SuccessMessage'
+					type: 'SuccessMessage',
 				};
 			}
 
@@ -130,8 +130,8 @@ module.exports = exports = {
 					type: 'ValidationErrorMessage',
 					props: {
 						errors: validationErrors,
-						feedbackURL: editorFormConfig.feedbackURL
-					}
+						feedbackURL: editorFormConfig.feedbackURL,
+					},
 				};
 			}
 
@@ -139,7 +139,7 @@ module.exports = exports = {
 
 				if ( submitOutcome.value.error.code === 'http' ) {
 					return {
-						type: 'NetworkErrorMessage'
+						type: 'NetworkErrorMessage',
 					};
 				}
 
@@ -147,7 +147,7 @@ module.exports = exports = {
 				if ( isPermissionsErrorResponse( errorResponse.errors ) ) {
 					return {
 						type: 'PermissionsErrorMessage',
-						props: { errors: errorResponse.errors }
+						props: { errors: errorResponse.errors },
 					};
 				}
 
@@ -157,8 +157,8 @@ module.exports = exports = {
 					props: {
 						errorResponse,
 						errorCode: submitOutcome.value.error.code,
-						feedbackURL: editorFormConfig.feedbackURL
-					}
+						feedbackURL: editorFormConfig.feedbackURL,
+					},
 				};
 			}
 
@@ -220,9 +220,9 @@ module.exports = exports = {
 			providerId,
 			renderers,
 			schema,
-			summary
+			summary,
 		};
-	}
+	},
 };
 </script>
 

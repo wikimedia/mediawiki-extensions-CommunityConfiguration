@@ -94,5 +94,5 @@ module.exports = exports = {
 	extractRef,
 	rankWith,
 	schemaControlIs,
-	schemaTypeIs
+	schemaTypeIs,
 };

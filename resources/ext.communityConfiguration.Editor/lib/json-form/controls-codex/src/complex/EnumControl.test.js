@@ -4,7 +4,7 @@ const { ref } = require( 'vue' );
 
 const mwMessageFake = jest.fn( ( textReturnValue ) => ( {
 	exists: jest.fn( () => true ),
-	text: jest.fn( () => textReturnValue )
+	text: jest.fn( () => textReturnValue ),
 } ) );
 
 const EnumControl = require( './EnumControl.vue' );
@@ -22,15 +22,15 @@ function getMountOptions( configDataObject = null, schema = null, enumLabels = n
 			fire: 'fire-label-key',
 			water: 'water-label-key',
 			earth: 'earth-label-key',
-			air: 'air-label-key'
+			air: 'air-label-key',
 		},
-		label: mwMessageFake( labelText )
+		label: mwMessageFake( labelText ),
 	};
 	if ( schema === null ) {
 		schema = {
 			type: 'string',
 			enum: [ 'fire', 'water', 'earth', 'air' ],
-			default: 'ignored'
+			default: 'ignored',
 		};
 	}
 
@@ -39,21 +39,21 @@ function getMountOptions( configDataObject = null, schema = null, enumLabels = n
 		renderers: null,
 		schema,
 		config: {
-			i18nPrefix: 'i18n-prefix'
+			i18nPrefix: 'i18n-prefix',
 		},
 		data: configDataObject || {},
-		errors: ref( [] )
+		errors: ref( [] ),
 	};
 
 	return {
 		props: {
 			renderers: null,
 			schema: schema,
-			uischema: uischema
+			uischema: uischema,
 		},
 		global: {
-			...global.getGlobalMediaWikiMountingOptions( { jsonform } )
-		}
+			...global.getGlobalMediaWikiMountingOptions( { jsonform } ),
+		},
 	};
 }
 describe( 'EnumControl', () => {
@@ -103,14 +103,14 @@ describe( 'EnumControl', () => {
 			CONFIG_DATA,
 			{
 				type: 'number',
-				enum: [ 1, 6, 7, 9 ]
+				enum: [ 1, 6, 7, 9 ],
 			},
 			{
 				1: '1-label-key',
 				6: '6-label-key',
 				7: '7-label-key',
-				9: '9-label-key'
-			}
+				9: '9-label-key',
+			},
 		) );
 
 		expect( wrapper.get( 'input:checked' ).element.value ).toBe( '6' );

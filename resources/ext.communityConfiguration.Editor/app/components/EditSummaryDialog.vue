@@ -37,7 +37,7 @@ module.exports = exports = {
 	components: {
 		CdxDialog,
 		CdxField,
-		CdxTextArea
+		CdxTextArea,
 	},
 	props: {
 		/**
@@ -47,8 +47,8 @@ module.exports = exports = {
 		 */
 		providerId: {
 			type: String,
-			required: true
-		}
+			required: true,
+		},
 	},
 	emits: [ 'update:summary', 'update:open', 'primary' ],
 	setup( props, { emit } ) {
@@ -74,9 +74,9 @@ module.exports = exports = {
 			saveChanges,
 			wrappedEditSummary,
 			wrappedIsDialogOpen,
-			currentUser: mw.user
+			currentUser: mw.user,
 		};
 
-	}
+	},
 };
 </script>

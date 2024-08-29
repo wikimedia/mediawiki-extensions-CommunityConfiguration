@@ -21,7 +21,7 @@ const { ref, unref } = require( 'vue' );
 const { CdxLookup } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
-	useJsonFormControl
+	useJsonFormControl,
 } = require( '../../config/index.js' );
 const { searchCommonsFiles } = require( './api.js' );
 const { debounce, useCodexControl } = require( '../utils.js' );
@@ -32,14 +32,14 @@ module.exports = exports = {
 	name: 'CommonsFileControl',
 	components: {
 		CdxLookup,
-		ControlWrapper
+		ControlWrapper,
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
 		const {
 			control,
 			controlWrapper,
-			onChange
+			onChange,
 		} = useCodexControl( useJsonFormControl( props ) );
 		const model = unref( control.modelValue );
 		const initialValue = model.title ? model.title : '';
@@ -89,8 +89,8 @@ module.exports = exports = {
 							thumbnail: {
 								url,
 								width: 200,
-								height: 150
-							}
+								height: 150,
+							},
 						};
 					} );
 
@@ -105,7 +105,7 @@ module.exports = exports = {
 
 		const menuConfig = {
 			showThumbnail: true,
-			visibleItemLimit: 6
+			visibleItemLimit: 6,
 		};
 
 		return {
@@ -114,7 +114,7 @@ module.exports = exports = {
 				const item = menuItems.value.find( ( { value } ) => value === newVal );
 				onChange( {
 					title: newVal || '',
-					url: item ? item.thumbnail.url : ''
+					url: item ? item.thumbnail.url : '',
 				} );
 			},
 			selection,
@@ -122,8 +122,8 @@ module.exports = exports = {
 			menuItems,
 			menuConfig,
 			onInput,
-			uischema: control.uischema
+			uischema: control.uischema,
 		};
-	}
+	},
 };
 </script>

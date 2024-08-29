@@ -15,7 +15,7 @@ const { getLabelsChain } = require( '../../core/i18n.js' );
 
 /** @type { { validationErrors: ValidationError[] } } */
 const state = reactive( {
-	validationErrors: []
+	validationErrors: [],
 } );
 
 /**
@@ -112,7 +112,7 @@ module.exports = exports = ( schemaAndPrefix ) => {
 				.replace( /\//g, '.' );
 			return Object.assign( {}, error.data, {
 				formFieldLabels: labels,
-				formFieldId
+				formFieldId,
 			} );
 		} );
 	}
@@ -138,7 +138,7 @@ module.exports = exports = ( schemaAndPrefix ) => {
 		state.validationErrors.push( {
 			formFieldId: fieldId,
 			formFieldLabels: labels,
-			messageLiteral
+			messageLiteral,
 		} );
 	}
 
@@ -160,7 +160,7 @@ module.exports = exports = ( schemaAndPrefix ) => {
 		getValidationErrorMessageForFormFieldId,
 		adjustValidationErrorsOnArrayItemDelete,
 		setValidationErrorForFieldId,
-		clearValidationErrorForFieldId
+		clearValidationErrorForFieldId,
 	};
 };
 
