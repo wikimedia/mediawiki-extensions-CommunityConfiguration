@@ -50,6 +50,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "حداکثر باید {{PLURAL:$1|$1 آیتم}} در آرایه موجود باشد",
 	"communityconfiguration-editor-error-validation-array-items-min": "دست کم باید {{PLURAL:$1|$1 آیتم}} در آرایه موجود باشد",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "در شمارش فاقد مقدار است: $1",
+	"communityconfiguration-editor-error-validation-string-too-short": "طول آن باید دست کم $1 نویسه باشد",
+	"communityconfiguration-editor-error-validation-string-too-long": "طول آن باید حداکثر $1 نویسه باشد",
 	"tag-community_configuration": "[[mw:Community configuration|پیکربندی اجتماع]]",
 	"tag-community_configuration-description": "ویرایش‌هایی که [[Special:CommunityConfiguration|پیکربندی محلی ویکی]] برای یک ویژگی را با استفاده از [[mw:Extension:CommunityConfiguration|افزونهٔ پیکربندی اجتماع]] تغییر می‌دهند."
 }
