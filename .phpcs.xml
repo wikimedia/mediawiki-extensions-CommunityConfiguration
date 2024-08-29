@@ -2,7 +2,10 @@
 <ruleset>
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki" />
 	<rule ref="MediaWiki.Arrays.TrailingComma">
-		<severity>0</severity>
+		<properties>
+			<property name="singleLine" value="false" />
+			<property name="multiLine" value="true" />
+		</properties>
 	</rule>
 	<file>.</file>
 	<arg name="extensions" value="php"/>
