@@ -95,7 +95,7 @@ class MessagesProcessor {
 			[
 				'parentType' => $parentType,
 				'pointer' => $pointer,
-				'schema' => $schema
+				'schema' => $schema,
 			] = $sub_schema;
 
 			if ( $pointer === '#' ) {

@@ -16,6 +16,6 @@ class JsonConfigSchemaForTesting extends JsonSchema {
 
 	public const FeatureActivationRegex = [
 		JsonSchema::TYPE => JsonSchema::TYPE_STRING,
-		JsonSchema::DEFAULT => ''
+		JsonSchema::DEFAULT => '',
 	];
 }

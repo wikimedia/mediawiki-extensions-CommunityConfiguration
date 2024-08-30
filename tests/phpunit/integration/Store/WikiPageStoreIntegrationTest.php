@@ -42,7 +42,7 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 				static function ( StatusValue $statusValue ) {
 					$data = $statusValue->getValue();
 					unset( $data->b );
-				}
+				},
 			],
 			'recursive data' => [
 				(object)[
@@ -52,7 +52,7 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 				static function ( StatusValue $statusValue ) {
 					$data = $statusValue->getValue();
 					unset( $data->b->a );
-				}
+				},
 			],
 			'StatusValue' => [
 				(object)[
@@ -61,8 +61,8 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 				],
 				static function ( StatusValue $statusValue ) {
 					$statusValue->setResult( false );
-				}
-			]
+				},
+			],
 		];
 	}
 
@@ -111,7 +111,7 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 				],
 				'validator' => [
 					'type' => 'noop',
-				]
+				],
 			],
 		] );
 

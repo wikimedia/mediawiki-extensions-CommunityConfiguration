@@ -44,7 +44,7 @@ class ApiEditTest extends ApiTestCase {
 				'action' => 'communityconfigurationedit',
 				'provider' => 'foo',
 				'content' => FormatJson::encode( [ 'NumberWithDefault' => 42 ] ),
-				'summary' => 'testing'
+				'summary' => 'testing',
 			],
 			null,
 			$this->getTestSysop()->getAuthority(),
@@ -70,7 +70,7 @@ class ApiEditTest extends ApiTestCase {
 				'action' => 'communityconfigurationedit',
 				'provider' => 'bar',
 				'content' => FormatJson::encode( [ 'NumberWithDefault' => 42 ] ),
-				'summary' => 'testing'
+				'summary' => 'testing',
 			],
 			null,
 			$this->getTestSysop()->getAuthority(),
@@ -87,7 +87,7 @@ class ApiEditTest extends ApiTestCase {
 				'action' => 'communityconfigurationedit',
 				'provider' => 'foo',
 				'content' => 'most certainly not valid JSON',
-				'summary' => 'testing'
+				'summary' => 'testing',
 			],
 			null,
 			$this->getTestSysop()->getAuthority(),
@@ -102,7 +102,7 @@ class ApiEditTest extends ApiTestCase {
 				'action' => 'communityconfigurationedit',
 				'provider' => 'foo',
 				'content' => FormatJson::encode( [ 'Number' => 'not a number' ] ),
-				'summary' => 'testing'
+				'summary' => 'testing',
 			],
 			null,
 			$this->getTestSysop()->getAuthority(),
@@ -117,7 +117,7 @@ class ApiEditTest extends ApiTestCase {
 				'action' => 'communityconfigurationedit',
 				'provider' => 'foo',
 				'content' => FormatJson::encode( [ 'Number' => 42 ] ),
-				'summary' => 'testing'
+				'summary' => 'testing',
 			],
 			null,
 			$this->getTestUser()->getAuthority(),

@@ -62,7 +62,7 @@ class ApiQueryRead extends ApiQueryBase {
 			$this->dieWithError( [
 				'apierror-communityconfiguration-version-assertion-failure',
 					$version,
-					$params['assertversion']
+					$params['assertversion'],
 				]
 			);
 		}

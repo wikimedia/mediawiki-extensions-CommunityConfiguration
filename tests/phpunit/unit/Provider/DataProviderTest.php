@@ -178,13 +178,13 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 				"GEHelpPanelLinks" => [
 					[
 						"text" => "Writing good articles",
-						"title" => "Help:How_to_write_an_Article"
+						"title" => "Help:How_to_write_an_Article",
 					],
 					[
-						"text" => "Just a link title, no page"
+						"text" => "Just a link title, no page",
 					],
 					[
-						"title" => "Help:link_title_is_missing"
+						"title" => "Help:link_title_is_missing",
 					],
 				],
 			],
@@ -192,13 +192,13 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 				"GEHelpPanelLinks" => [
 					[
 						"text" => "Writing good articles",
-						"title" => "Help:How_to_write_an_Article"
+						"title" => "Help:How_to_write_an_Article",
 					],
 					[
-						"text" => "Just a link title, no page"
+						"text" => "Just a link title, no page",
 					],
 					[
-						"title" => "Help:link_title_is_missing"
+						"title" => "Help:link_title_is_missing",
 					],
 				],
 			],
