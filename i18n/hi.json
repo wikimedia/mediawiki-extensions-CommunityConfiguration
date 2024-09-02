@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Abijeet Patro"
+			"Abijeet Patro",
+			"AnupamM"
 		]
 	},
 	"communityconfiguration-editor-form-submit-button-text": "बदलाव सहेजें",
-	"communityconfiguration-editor-message-dismiss-button-label": "बंद करें"
+	"communityconfiguration-editor-message-dismiss-button-label": "बंद करें",
+	"communityconfiguration-editor-error-validation-string-too-short": "कम से कम $1 वर्ण लंबा होना चाहिए",
+	"communityconfiguration-editor-error-validation-string-too-long": "कम से कम $1 वर्ण लंबा होना चाहिए"
 }
