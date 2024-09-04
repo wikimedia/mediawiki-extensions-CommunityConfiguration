@@ -23,6 +23,10 @@
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\NoopValidatorWithSchemaForTesting": "tests/phpunit/NoopValidatorWithSchemaForTesting.php"
 	},
 	"config": {
+		"CommunityConfigurationCommonsApiURL": {
+			"description": "The Commons API base URL to configure the CommonsFileControl for searching files.",
+			"value": null
+		},
 		"CommunityConfigurationFeedbackURL": {
 			"description": "The URL to use for links targetting the feedback page for the extension.",
 			"value": null
@@ -94,7 +98,8 @@
 						"LinkRenderer",
 						"FormatterFactory",
 						"CommunityConfiguration.HookRunner",
-						"CommunityConfiguration.MessagesProcessor"
+						"CommunityConfiguration.MessagesProcessor",
+						"MainConfig"
 					]
 				}
 			}
