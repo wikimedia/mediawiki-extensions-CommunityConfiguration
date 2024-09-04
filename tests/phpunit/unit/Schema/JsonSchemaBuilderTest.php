@@ -1,102 +1,98 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use IBufferingStatsdDataFactory;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader;
-use MediaWiki\Settings\Source\ReflectionSchemaSource;
 use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder
+ * phpcs:disable Generic.NamingConventions.UpperCaseConstantName.ClassConstantNotUpperCase
  */
 class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 
-	public function testSchemaProperties() {
-		$builder = $this->getNewJsonSchemaBuilder(
-			[
-				'type' => 'object',
-				'$defs' => [],
-				'properties' => [
-					'ExampleNumber' => [
-						JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
-					],
-				],
-			],
-			2
-		);
+	public function testSchemaProperties(): void {
+		$schema = new class() extends JsonSchema {
+			public const ExampleNumber = [
+				JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+			];
+		};
+		$builder = $this->getNewJsonSchemaBuilder( $schema );
+
+		$actualRootSchema = $builder->getRootSchema();
 
 		$this->assertEquals( [
-			'$schema' => 'schema/version',
+			'$schema' => 'https://json-schema.org/draft-04/schema#',
 			'$id' => 'schema/id',
 			JsonSchema::ADDITIONAL_PROPERTIES => false,
 			'type' => 'object',
-			'$defs' => [],
 			'properties' => [
 				'ExampleNumber' => [
 					JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+					JsonSchema::DEFAULT => null,
 				],
 			],
-		], $builder->getRootSchema() );
+		], $actualRootSchema );
 
 		$this->assertEquals( [
 			'ExampleNumber' => [
 				JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+				JsonSchema::DEFAULT => null,
 			],
 		], $builder->getRootProperties() );
 	}
 
-	public function testDefaultsMap() {
-		$builder = $this->getNewJsonSchemaBuilder(
-			[
-				'properties' => [
-					'number' => [
-						'type' => 'number',
-						'default' => 42,
+	public function testDefaultsMap(): void {
+		$schema = new class() extends JsonSchema {
+			public const number = [
+				JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+				JsonSchema::DEFAULT => 42,
+			];
+			public const string = [
+				JsonSchema::TYPE => JsonSchema::TYPE_STRING,
+				JsonSchema::DEFAULT => 'bar',
+			];
+			public const objectArray = [
+				JsonSchema::TYPE => JsonSchema::TYPE_OBJECT,
+				JsonSchema::DEFAULT => [
+					'foo' => 1,
+					'bar' => 2,
+				],
+			];
+			public const objectSubschema = [
+				JsonSchema::TYPE => JsonSchema::TYPE_OBJECT,
+				JsonSchema::PROPERTIES => [
+					'abc' => [
+						JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+						JsonSchema::DEFAULT => 123,
 					],
-					'string' => [
-						'type' => 'string',
-						'default' => 'bar',
-					],
-					'objectArray' => [
-						'type' => 'object',
-						'default' => [
-							'foo' => 1,
-							'bar' => 2,
-						],
-					],
-					'objectSubschema' => [
-						'type' => 'object',
-						'properties' => [
-							'abc' => [
-								'type' => 'number',
-								'default' => 123,
-							],
-							'xyz' => [
-								'type' => 'string',
-								'default' => 'str',
-							],
-						],
-					],
-					'objectBoth' => [
-						'type' => 'object',
-						'properties' => [
-							'foo' => [
-								'type' => 'number',
-								'default' => 42,
-							],
-						],
-						'default' => [
-							'foo' => 1,
-							'bar' => 2,
-						],
+					'xyz' => [
+						JsonSchema::TYPE => JsonSchema::TYPE_STRING,
+						JsonSchema::DEFAULT => 'str',
 					],
 				],
-			],
-			1
-		);
+			];
+			public const objectBoth = [
+				JsonSchema::TYPE => JsonSchema::TYPE_OBJECT,
+				JsonSchema::PROPERTIES => [
+					'foo' => [
+						JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+						JsonSchema::DEFAULT => 42,
+					],
+				],
+				JsonSchema::DEFAULT => [
+					'foo' => 1,
+					'bar' => 2,
+				],
+			];
+		};
+		$builder = $this->getNewJsonSchemaBuilder( $schema );
+
 		$this->assertEquals( (object)[
 			'number' => 42,
 			'string' => 'bar',
@@ -115,33 +111,17 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 		], $builder->getDefaultsMap() );
 	}
 
-	private function getNewJsonSchemaBuilder( array $loadedSchema, int $numDependencyCalls ): JsonSchemaBuilder {
-		$schemaSource = $this->createNoOpMock( ReflectionSchemaSource::class, [ 'loadAsSchema' ] );
-		$schemaSource->expects( $this->exactly( $numDependencyCalls ) )
-			->method( 'loadAsSchema' )
-			->willReturn( $loadedSchema );
-
-		$schemaReader = $this->createNoOpMock( JsonSchemaReader::class, [
-			'assertIsSchema',
-			'getJsonSchemaVersion',
-			'getSchemaId',
-			'getReflectionSchemaSource',
-		] );
-		$schemaReader->expects( $this->exactly( $numDependencyCalls ) )
-			->method( 'assertIsSchema' );
-		$schemaReader->expects( $this->exactly( $numDependencyCalls ) )
-			->method( 'getJsonSchemaVersion' )
-			->willReturn( 'schema/version' );
-		$schemaReader->expects( $this->exactly( $numDependencyCalls ) )
-			->method( 'getSchemaId' )
+	private function getNewJsonSchemaBuilder( JsonSchema $schema ): JsonSchemaBuilder {
+		$schemaReader = $this->getMockBuilder( JsonSchemaReader::class )
+			->setConstructorArgs( [ $schema ] )
+			->onlyMethods( [ 'getSchemaId' ] )
+			->getMock();
+		$schemaReader->method( 'getSchemaId' )
 			->willReturn( 'schema/id' );
-		$schemaReader->expects( $this->exactly( $numDependencyCalls ) )
-			->method( 'getReflectionSchemaSource' )
-			->willReturn( $schemaSource );
-
 		return new JsonSchemaBuilder(
 			$this->createMock( IBufferingStatsdDataFactory::class ),
 			$schemaReader
 		);
 	}
+
 }
