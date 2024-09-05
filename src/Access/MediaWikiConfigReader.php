@@ -10,27 +10,26 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Provider\MediaWikiConfigProvider;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\NullLogger;
+use Psr\Log\LoggerInterface;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 
 class MediaWikiConfigReader implements Config {
-	use LoggerAwareTrait;
 
 	private BagOStuff $cache;
 	private ConfigurationProviderFactory $providerFactory;
 	private Config $fallbackConfig;
+	private LoggerInterface $logger;
 
 	public function __construct(
 		BagOStuff $cache,
 		ConfigurationProviderFactory $providerFactory,
-		Config $fallbackConfig
+		Config $fallbackConfig,
+		LoggerInterface $logger
 	) {
 		$this->cache = $cache;
 		$this->providerFactory = $providerFactory;
 		$this->fallbackConfig = $fallbackConfig;
-
-		$this->setLogger( new NullLogger() );
+		$this->logger = $logger;
 	}
 
 	private function addMediaWikiConfigProviderKeysToMap(

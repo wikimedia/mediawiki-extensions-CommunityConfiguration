@@ -55,13 +55,12 @@ return [
 	},
 	'CommunityConfiguration.MediaWikiConfigReader' => static function ( MediaWikiServices $services ) {
 		$ccServices = CommunityConfigurationServices::wrap( $services );
-		$reader = new MediaWikiConfigReader(
+		return new MediaWikiConfigReader(
 			$services->getLocalServerObjectCache(),
 			$ccServices->getConfigurationProviderFactory(),
-			$services->getMainConfig()
+			$services->getMainConfig(),
+			LoggerFactory::getInstance( 'CommunityConfiguration' )
 		);
-		$reader->setLogger( LoggerFactory::getInstance( 'CommunityConfiguration' ) );
-		return $reader;
 	},
 	'CommunityConfiguration.ValidatorFactory' => static function ( MediaWikiServices $services ) {
 		return new ValidatorFactory(
