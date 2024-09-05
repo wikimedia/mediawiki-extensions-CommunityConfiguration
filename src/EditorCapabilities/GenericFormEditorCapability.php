@@ -139,6 +139,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		$rootSchema = $this->provider->getValidator()->getSchemaBuilder()->getRootSchema();
 		$this->hookRunner->onCommunityConfigurationSchemaBeforeEditor( $this->provider, $rootSchema );
 		$canEdit = $this->provider->getStore()->definitelyCanEdit( $this->getContext()->getAuthority() );
+		$namespaceSelectorOptions = Html::namespaceSelectorOptions();
 		$out->addJsConfigVars( [
 			'communityConfigurationData' => [
 				'providerId' => $providerId,
@@ -154,6 +155,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 					'feedbackURL' => $this->getContext()->getConfig()
 						->get( 'CommunityConfigurationFeedbackURL' ),
 					'canEdit' => $canEdit,
+					'namespaceSelectorOptions' => $namespaceSelectorOptions,
 				],
 			],
 		] );

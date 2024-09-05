@@ -22,7 +22,6 @@
 </template>
 
 <script>
-
 const { ref, unref, inject } = require( 'vue' );
 const { CdxChipInput, CdxMenu } = require( '../../../../../../codex.js' );
 const {
@@ -31,16 +30,6 @@ const {
 } = require( '../../config/index.js' );
 const { debounce, useCodexControl } = require( '../utils.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
-const formattedNamespaces = mw.config.get( 'wgFormattedNamespaces' );
-const findNamespaceByName = ( name ) => {
-	for ( const ns in formattedNamespaces ) {
-		if ( formattedNamespaces[ ns ] === name ) {
-			// formattedNamespaces keys are strings, convert them to numbers
-			return +ns;
-		}
-	}
-};
-const menuItemToNamespace = ( { value } ) => findNamespaceByName( value );
 const filterSelection = ( selection ) => ( item ) => selection.map( ( x ) => x.value ).indexOf( item.value ) === -1;
 
 const filterSearchQuery = ( searchQuery ) => ( item ) => {
@@ -61,13 +50,18 @@ module.exports = exports = {
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
-		const i18n = inject( 'i18n' );
-		const namespaceToMenuItem = ( value ) => {
-			const namespaceName = value === '0' ? i18n( 'blanknamespace' ).text() : formattedNamespaces[ value ];
-			return {
-				value: namespaceName,
-			};
+		const EDITOR_FORM_CONFIG = inject( 'EDITOR_FORM_CONFIG' );
+		const formattedNamespaces = EDITOR_FORM_CONFIG.namespaceSelectorOptions;
+		const namespaceToMenuItem = ( value ) => ( { value: formattedNamespaces[ value ] } );
+		const findNamespaceByName = ( name ) => {
+			for ( const ns in formattedNamespaces ) {
+				if ( formattedNamespaces[ ns ] === name ) {
+					// formattedNamespaces keys are strings, convert them to numbers
+					return +ns;
+				}
+			}
 		};
+		const menuItemToNamespace = ( { value } ) => findNamespaceByName( value );
 		const NS_MENU_ITEMS = Object.keys( formattedNamespaces ).map( namespaceToMenuItem );
 		const {
 			control,
