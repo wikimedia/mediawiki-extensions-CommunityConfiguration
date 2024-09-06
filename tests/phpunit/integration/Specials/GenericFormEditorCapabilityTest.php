@@ -97,6 +97,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 			'i18nPrefix' => 'communityconfiguration-' . strtolower( self::PROVIDER_ID ),
 			'feedbackURL' => 'https://bug-reporting.tool',
 			'canEdit' => false,
+			'namespaceSelectorOptions' => $jsConfigVars['config']['namespaceSelectorOptions'],
 		], $jsConfigVars['config'] );
 	}
 
