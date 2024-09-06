@@ -13,7 +13,7 @@
 	"communityconfiguration-editor-client-validation-errors": "Lomakkeessa on {{PLURAL:$1|virhe|$1 virhettä}}:",
 	"communityconfiguration-editor-form-submit-button-text": "Tallenna muutokset",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Lähetetään...",
-	"communityconfiguration-guidelines-title": "Mitä on yhteisöasetukset?",
+	"communityconfiguration-guidelines-title": "Mikä on yhteisöasetukset?",
 	"communityconfiguration-guidelines-description": "Yhteisöasetukset on työkalu, joka mahdollistaa yhteisöjen laatia ja säätää {{GRAMMAR:genitive|{{SITENAME}}}} eri ominaisuuksien asetuksia auttaen ylläpitäjiä vastaamaan yhteisönsä erityisiin tarpeisiin.",
 	"communityconfiguration-guidelines-guideline1-title": "Lisätietoja",
 	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Lisätietoja] yhteisöasetuksista, siitä mitä ne ovat, miten ne toimivat ja työryhmän meneillään olevasta työstä siihen liittyen.",
@@ -21,6 +21,7 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Virhetiedot",
 	"communityconfiguration-providers-list-title": "Ominaisuudet",
 	"communityconfigurationdashboard": "Yhteisöasetukset",
+	"communityconfigurationeditor": "Muokataan {{GRAMMAR:partitive|$1}}",
 	"communityconfiguration-edit-summary-dialog-title-span": "(valinnainen)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Kuvaile, mitä muutoksia asetuksiin on tehty",
 	"communityconfiguration-edit-summary-dialog-save-button": "Tallenna muutokset",
@@ -33,7 +34,7 @@
 	"communityconfiguration-editor-nojs-fallback-text": "Asetusmuokkain vaatii JavaScriptia. Sinun on otettava käyttöön JavaScript voidaksesi käyttää sitä.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Näytä lomake",
 	"communityconfiguration-editor-client-notice-message": "Tämä sivu on suojattu. Vain ylläpitäjät voivat muokata tämän toiminnon määrityksiä.",
-	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Et}} voi tallentaa muutoksia tähän lomakkeeseen, koska tämän ominaisuuden asetuksen ovat vain ylläpitäjien muokattavissa.",
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Et}} voi tallentaa muutoksia tähän lomakkeeseen, koska tämän ominaisuuden asetukset ovat vain ylläpitäjien muokattavissa.",
 	"tag-community_configuration": "[[mw:Community configuration|Yhteisöasetukset]]",
 	"tag-community_configuration-description": "Muokkaukset, jotka muuttuvat ominaisuuden [[Special:CommunityConfiguration|paikallisia asetuksia]] käyttäen [[mw:Extension:CommunityConfiguration|Yhteisöasetukset-laajennusta]]."
 }
