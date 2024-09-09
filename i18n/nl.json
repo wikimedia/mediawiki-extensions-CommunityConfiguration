@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"McDutchie",
+			"No se",
 			"Sjoerddebruin"
 		]
 	},
@@ -11,8 +12,11 @@
 	"communityconfiguration-editor-client-generic-error": "Er is iets misgegaan bij het laden van de configuratie-editor. Probeer het later opnieuw.",
 	"communityconfiguration-editor-client-generic-error-description": "Er is een fout opgetreden in ‘$2’ in component $1. Zie de onderstaande details:",
 	"communityconfiguration-editor-client-post-feedback": "Als het probleem zich blijft voordoen, overweeg dan [$1 feedback achter te laten] op de overlegpagina.",
+	"communityconfiguration-editor-client-validation-errors": "Er {{PLURAL:$1|zit een fout|zitten $1 fouten}} in het formulier:",
 	"communityconfiguration-editor-form-submit-button-text": "Wijzigingen opslaan",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Wordt verzonden…",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Element verwijderen",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "Een ander element toevoegen",
 	"communityconfiguration-guidelines-title": "Wat is Gemeenschapsconfiguratie?",
 	"communityconfiguration-guidelines-description": "Gemeenschapsconfiguratie is een tool waarmee gemeenschappen de instellingen van verschillende {{SITENAME}}-functies kunnen wijzigen en beheren, waardoor beheerders kunnen voldoen aan de specifieke behoeften van hun gemeenschap.",
 	"communityconfiguration-guidelines-guideline1-title": "Meer lezen",
@@ -41,5 +45,14 @@
 	"communityconfiguration-page-title-control-no-results": "Geen resultaten gevonden.",
 	"communityconfiguration-editor-loading-info-text": "De configuratie-editor wordt geladen",
 	"communityconfiguration-editor-nojs-fallback-text": "De configuratie-editor vereist JavaScript. Schakel JavaScript in om deze te kunnen gebruiken.",
-	"communityconfiguration-editor-navigation-tab-viewform": "Formulier bekijken"
+	"communityconfiguration-editor-navigation-tab-viewform": "Formulier bekijken",
+	"communityconfiguration-editor-client-notice-message": "Deze pagina is beveiligd. De instellingen van deze functie kunnen alleen door moderatoren worden gewijzigd.",
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|U}} kunt geen wijzigingen in dit formulier opslaan omdat de instellingen van deze functie alleen door moderatoren kunnen worden gewijzigd.",
+	"communityconfiguration-editor-error-validation-array-items-max": "Er {{PLURAL:$1|mag|mogen}} maximaal $1 element{{PLURAL:$1||en}} in de array zitten",
+	"communityconfiguration-editor-error-validation-array-items-min": "Er moet{{PLURAL:$1||en}} minimaal $1 item{{PLURAL:$1||s}} in de array zitten",
+	"communityconfiguration-editor-error-validation-enum-invalid-value": "Heeft geen waarde in de opsomming: $1",
+	"communityconfiguration-editor-error-validation-string-too-short": "Moet minimaal $1 tekens lang zijn",
+	"communityconfiguration-editor-error-validation-string-too-long": "Mag maximaal $1 tekens lang zijn",
+	"tag-community_configuration": "[[mw:Community configuration|Gemeenschapsinstellingen]]",
+	"tag-community_configuration-description": "Bewerkingen waarin de [[Special:CommunityConfiguration|lokale wiki-instellingen]] van een functie wordt gewijzigd met behulp van de [[mw:Extension:CommunityConfiguration|uitbreiding Gemeenschapsinstellingen]]."
 }

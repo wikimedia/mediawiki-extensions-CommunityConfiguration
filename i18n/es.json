@@ -49,5 +49,11 @@
 	"communityconfiguration-editor-nojs-fallback-text": "El editor de configuración requiere JavaScript. Habilite JavaScript para poder usarlo.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Ver formulario",
 	"communityconfiguration-editor-client-notice-message": "Esta página está protegida. La configuración de esta funcionalidad solo es editable por bibliotecarios y administradores de interfaz.",
-	"communityconfiguration-editor-client-notice-footer-message": "No {{GENDER:$1|puedes}} guardar los cambios de este formulario porque la configuración de esta funcionalidad solo puede ser editada por bibliotecarios/as y administradores/as de interfaz."
+	"communityconfiguration-editor-client-notice-footer-message": "No {{GENDER:$1|puedes}} guardar los cambios de este formulario porque la configuración de esta funcionalidad solo puede ser editada por bibliotecarios/as y administradores/as de interfaz.",
+	"communityconfiguration-editor-error-validation-array-items-max": "Debe haber un máximo de $1 elemento{{PLURAL:$1||s}} en la matriz",
+	"communityconfiguration-editor-error-validation-array-items-min": "Debe haber un mínimo de $1 elemento{{PLURAL:$1||s}} en la matriz",
+	"communityconfiguration-editor-error-validation-enum-invalid-value": "No tiene valor en la enumeración: $1",
+	"communityconfiguration-editor-error-validation-string-too-short": "Debe tener como mínimo 1 caracteres",
+	"communityconfiguration-editor-error-validation-string-too-long": "Debe tener como máximo $1 caracteres",
+	"tag-community_configuration": "[[mw:Community configuration|Configuración de la Comunidad]]"
 }
