@@ -97,9 +97,10 @@ module.exports = exports = {
 					// Update menuItems.
 					menuItems.value = results;
 				} )
-				.catch( () => {
+				.catch( ( err ) => {
 					// On error, set results to empty.
 					menuItems.value = [];
+					throw err;
 				} );
 		}, 300 );
 
