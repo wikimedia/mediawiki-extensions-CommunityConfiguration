@@ -1,15 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
-			"Apple TD"
+			"Apple TD",
+			"Kokage si"
 		]
 	},
 	"communityconfiguration": "コミュニティ設定",
 	"communityconfiguration-editor-form-submit-button-text": "変更を保存",
+	"communityconfiguration-editor-form-submit-button-loading-text": "送信中...",
 	"communityconfiguration-guidelines-title": "コミュニティ設定とは",
 	"communityconfiguration-guidelines-guideline1-title": "詳細",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "エラーの詳細",
+	"communityconfiguration-providers-list-title": "機能",
 	"communityconfigurationdashboard": "コミュニティ設定",
+	"communityconfiguration-edit-summary-dialog-title": "$1 への変更を保存する",
+	"communityconfiguration-edit-summary-dialog-title-span": "(省略可能)",
 	"communityconfiguration-edit-summary-dialog-save-button": "変更を保存",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "キャンセル",
 	"communityconfiguration-edit-summary-dialog-label": "編集の要約",

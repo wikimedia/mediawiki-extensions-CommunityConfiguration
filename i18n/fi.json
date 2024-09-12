@@ -10,7 +10,7 @@
 	"communityconfiguration-editor-client-generic-error": "Jotain meni pieleen asetusmuokkainta ladatessa. Kokeile myöhemmin uudelleen.",
 	"communityconfiguration-editor-form-submit-button-text": "Tallenna muutokset",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Lähetetään...",
-	"communityconfiguration-guidelines-title": "Mitä on yhteisöasetukset?",
+	"communityconfiguration-guidelines-title": "Mikä on yhteisöasetukset?",
 	"communityconfiguration-guidelines-description": "Yhteisöasetukset on työkalu, joka mahdollistaa yhteisöjen laatia ja säätää {{GRAMMAR:genitive|{{SITENAME}}}} eri ominaisuuksien asetuksia auttaen ylläpitäjiä vastaamaan yhteisönsä erityisiin tarpeisiin.",
 	"communityconfiguration-guidelines-guideline1-title": "Lisätietoja",
 	"communityconfiguration-guidelines-guideline2-title": "Lähetä meille {{GENDER:$1|palautteesi}}",
