@@ -17,14 +17,9 @@ class ApiEdit extends ApiBase {
 
 	private ConfigurationProviderFactory $configurationProviderFactory;
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param ConfigurationProviderFactory $configurationProviderFactory
-	 */
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		ConfigurationProviderFactory $configurationProviderFactory
 	) {
 		parent::__construct( $mainModule, $moduleName );

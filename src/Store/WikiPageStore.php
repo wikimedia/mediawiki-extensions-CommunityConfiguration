@@ -33,13 +33,6 @@ class WikiPageStore extends AbstractJsonStore {
 	private RevisionLookup $revisionLookup;
 	private Writer $writer;
 
-	/**
-	 * @param string|null $configLocation
-	 * @param WANObjectCache $cache
-	 * @param TitleFactory $titleFactory
-	 * @param RevisionLookup $revisionLookup
-	 * @param Writer $writer
-	 */
 	public function __construct(
 		?string $configLocation,
 		WANObjectCache $cache,

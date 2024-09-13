@@ -36,16 +36,12 @@ class ValidatorFactory {
 		'CommunityConfigurationValidators',
 	];
 
-	/** @var array ObjectFactory specs for validators, indexed by validator name */
+	/** @var array<string,array> ObjectFactory specs for validators, indexed by validator name */
 	private array $validatorSpecs;
-	/** @var IValidator[] validators indexed by name */
+	/** @var array<string,IValidator> validators indexed by name */
 	private array $validators = [];
 	private ObjectFactory $objectFactory;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param ObjectFactory $objectFactory
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		ObjectFactory $objectFactory

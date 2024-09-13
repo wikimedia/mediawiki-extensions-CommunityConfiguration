@@ -26,10 +26,6 @@ class StoreFactory {
 	private array $stores = [];
 	private ObjectFactory $objectFactory;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param ObjectFactory $objectFactory
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		ObjectFactory $objectFactory

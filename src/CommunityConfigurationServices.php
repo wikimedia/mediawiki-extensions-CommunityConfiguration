@@ -17,19 +17,14 @@ class CommunityConfigurationServices {
 
 	private MediaWikiServices $coreServices;
 
-	/**
-	 * @param MediaWikiServices $coreServices
-	 */
 	public function __construct( MediaWikiServices $coreServices ) {
 		$this->coreServices = $coreServices;
 	}
 
 	/**
 	 * Static version of the constructor, for nicer syntax.
-	 * @param MediaWikiServices $coreServices
-	 * @return static
 	 */
-	public static function wrap( MediaWikiServices $coreServices ) {
+	public static function wrap( MediaWikiServices $coreServices ): self {
 		return new static( $coreServices );
 	}
 

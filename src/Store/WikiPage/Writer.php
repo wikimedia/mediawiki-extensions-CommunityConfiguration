@@ -26,11 +26,6 @@ class Writer {
 	private UserFactory $userFactory;
 	private HookContainer $hookContainer;
 
-	/**
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param UserFactory $userFactory
-	 * @param HookContainer $hookContainer
-	 */
 	public function __construct(
 		WikiPageFactory $wikiPageFactory,
 		UserFactory $userFactory,

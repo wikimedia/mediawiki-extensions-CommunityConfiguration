@@ -11,9 +11,6 @@ class JsonSchemaIterator implements \Iterator {
 	private array $data = [];
 	private bool $initialized = false;
 
-	/**
-	 * @param JsonSchemaReader $schema
-	 */
 	public function __construct( JsonSchemaReader $schema ) {
 		$this->schema = $schema;
 	}

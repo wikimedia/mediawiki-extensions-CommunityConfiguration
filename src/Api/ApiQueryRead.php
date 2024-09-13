@@ -15,14 +15,9 @@ class ApiQueryRead extends ApiQueryBase {
 
 	private ConfigurationProviderFactory $configurationProviderFactory;
 
-	/**
-	 * @param ApiQuery $queryModule
-	 * @param string $moduleName
-	 * @param ConfigurationProviderFactory $configurationProviderFactory
-	 */
 	public function __construct(
 		ApiQuery $queryModule,
-		$moduleName,
+		string $moduleName,
 		ConfigurationProviderFactory $configurationProviderFactory
 	) {
 		parent::__construct( $queryModule, $moduleName, 'ccr' );

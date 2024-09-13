@@ -32,13 +32,6 @@ class ConfigurationProviderFactory {
 	private HookRunner $hookRunner;
 	private Config $config;
 
-	/**
-	 * @param StoreFactory $storeFactory
-	 * @param ValidatorFactory $validatorFactory
-	 * @param Config $config
-	 * @param HookRunner $hookRunner
-	 * @param MediaWikiServices $services
-	 */
 	public function __construct(
 		StoreFactory $storeFactory,
 		ValidatorFactory $validatorFactory,

@@ -24,10 +24,6 @@ class EditorCapabilityFactory {
 
 	private ObjectFactory $objectFactory;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param ObjectFactory $objectFactory
-	 */
 	public function __construct( ServiceOptions $options, ObjectFactory $objectFactory ) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->capabilitiesSpecs = $options->get( 'CommunityConfigurationEditorCapabilities' );
