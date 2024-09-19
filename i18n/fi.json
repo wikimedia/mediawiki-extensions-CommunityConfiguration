@@ -17,6 +17,7 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Virhetiedot",
 	"communityconfiguration-providers-list-title": "Ominaisuudet",
 	"communityconfigurationdashboard": "Yhteisöasetukset",
+	"communityconfiguration-edit-summary-reminder": "<b>Muistutus</b>: Tämä muutos saattaa vaikuttaa suureen joukkoon yhteisön jäsenistä. Kerro, miksi {{GENDER:$1|teet}} kyseisen muutoksen ja linkitä tarvittaessa aiheeseen liittyvä yhteisön keskustelu.",
 	"communityconfiguration-edit-summary-dialog-title-span": "(valinnainen)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Kuvaile, mitä muutoksia asetuksiin on tehty",
 	"communityconfiguration-edit-summary-dialog-save-button": "Tallenna muutokset",
