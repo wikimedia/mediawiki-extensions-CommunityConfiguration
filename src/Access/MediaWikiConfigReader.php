@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace MediaWiki\Extension\CommunityConfiguration\Access;
 
 use BagOStuff;
@@ -92,9 +94,6 @@ class MediaWikiConfigReader implements Config {
 
 	/**
 	 * Create a configuration provider from given key and ensure it is a MediaWikiConfigProvider
-	 *
-	 * @param string $providerKey
-	 * @return MediaWikiConfigProvider
 	 */
 	private function getMediaWikiConfigProviderByName( string $providerKey ): MediaWikiConfigProvider {
 		$provider = $this->providerFactory->newProvider( $providerKey );
@@ -108,9 +107,6 @@ class MediaWikiConfigReader implements Config {
 
 	/**
 	 * Get Config instance to handle requests for $name config key
-	 *
-	 * @param string $name
-	 * @return Config
 	 */
 	private function getConfigByVariableName( string $name ): Config {
 		$map = $this->getVariableToProviderMap();
@@ -131,7 +127,18 @@ class MediaWikiConfigReader implements Config {
 	/**
 	 * @inheritDoc
 	 */
-	public function has( $name ) {
-		return $this->getConfigByVariableName( $name )->has( $name );
+	public function has( $name ): bool {
+		$hasConfigValue = $this->getConfigByVariableName( $name )->has( $name );
+		if ( !is_bool( $hasConfigValue ) ) {
+			$this->logger->error(
+				__METHOD__ . ' returned non-boolean value for "{configName}"',
+				[
+					'configName' => $name,
+					'exception' => new \RuntimeException,
+				]
+			);
+			$hasConfigValue = (bool)$hasConfigValue;
+		}
+		return $hasConfigValue;
 	}
 }
