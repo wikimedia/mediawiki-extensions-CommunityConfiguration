@@ -34,7 +34,13 @@ function searchCommonsFiles( searchTerm, offset ) {
 	if ( offset ) {
 		params.set( 'continue', String( offset ) );
 	}
-	return new mw.ForeignApi( 'https://commons.wikimedia.org/w/api.php', { anonymous: true } ).get( params );
+	return new mw.ForeignApi( 'https://commons.wikimedia.org/w/api.php', { anonymous: true } )
+		.get( params )
+		.catch( ( err ) => {
+			err = err instanceof Error ? err : new Error( err );
+			mw.errorLogger.logError( err, 'error.communityconfiguration' );
+			return Promise.reject( err );
+		} );
 }
 
 module.exports = exports = {
