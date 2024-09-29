@@ -33,6 +33,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 			'FormatterFactory',
 			'CommunityConfiguration.HookRunner',
 			'CommunityConfiguration.MessagesProcessor',
+			'MainConfig',
 		],
 	];
 
@@ -52,6 +53,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 	public function testLoadsOkForNonExistingConfigPage() {
 		$this->overrideConfigValues( [
 			'CommunityConfigurationFeedbackURL' => 'https://bug-reporting.tool',
+			'CommunityConfigurationCommonsApiURL' => 'https://commons.api',
 			MainConfigNames::LanguageCode => 'qqx',
 		] );
 
@@ -98,6 +100,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 			'feedbackURL' => 'https://bug-reporting.tool',
 			'canEdit' => false,
 			'namespaceSelectorOptions' => $jsConfigVars['config']['namespaceSelectorOptions'],
+			'commonsApiURL' => 'https://commons.api',
 		], $jsConfigVars['config'] );
 	}
 

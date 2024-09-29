@@ -17,13 +17,13 @@
 </template>
 
 <script>
-const { ref, unref } = require( 'vue' );
+const { ref, unref, inject } = require( 'vue' );
 const { CdxLookup } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
 	useJsonFormControl,
 } = require( '../../config/index.js' );
-const { searchCommonsFiles } = require( './api.js' );
+const { MwForeignApi } = require( './api.js' );
 const { debounce, useCodexControl } = require( '../utils.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
 
@@ -36,6 +36,7 @@ module.exports = exports = {
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
 	setup( props ) {
+		const EDITOR_FORM_CONFIG = inject( 'EDITOR_FORM_CONFIG' );
 		const {
 			control,
 			controlWrapper,
@@ -46,6 +47,14 @@ module.exports = exports = {
 		const selection = ref( null );
 		const menuItems = ref( [] );
 		const currentSearchTerm = ref( '' );
+		let isSearchAvailable = true;
+		let api = null;
+		try {
+			api = new MwForeignApi( EDITOR_FORM_CONFIG.commonsApiURL );
+		} catch ( err ) {
+			isSearchAvailable = false;
+			mw.log.error( err.message );
+		}
 
 		/**
 		 * Handle lookup input.
@@ -63,45 +72,46 @@ module.exports = exports = {
 				menuItems.value = [];
 				return;
 			}
+			if ( isSearchAvailable ) {
+				api.searchCommonsFiles( value )
+					.then( ( data ) => {
+						// Make sure this data is still relevant first.
+						if ( currentSearchTerm.value !== value ) {
+							return;
+						}
 
-			searchCommonsFiles( value )
-				.then( ( data ) => {
-					// Make sure this data is still relevant first.
-					if ( currentSearchTerm.value !== value ) {
-						return;
-					}
+						// Reset the menu items if there are no results.
+						if ( !data.query || data.query.pages.length === 0 ) {
+							menuItems.value = [];
+							return;
+						}
 
-					// Reset the menu items if there are no results.
-					if ( !data.query || data.query.pages.length === 0 ) {
+						// Build an array of menu items.
+						const results = data.query.pages.map( ( result ) => {
+							const hasImageInfo = !!result.imageinfo.length;
+							const url = hasImageInfo ? result.imageinfo[ 0 ].url : null;
+							return {
+								// REVIEW maybe show namesapce "File"?
+								label: result.title.replace( 'File:', '' ),
+								value: result.title,
+								showThumbnail: hasImageInfo,
+								thumbnail: {
+									url,
+									width: 200,
+									height: 150,
+								},
+							};
+						} );
+
+						// Update menuItems.
+						menuItems.value = results;
+					} )
+					.catch( ( err ) => {
+						// On error, set results to empty.
 						menuItems.value = [];
-						return;
-					}
-
-					// Build an array of menu items.
-					const results = data.query.pages.map( ( result ) => {
-						const hasImageInfo = !!result.imageinfo.length;
-						const url = hasImageInfo ? result.imageinfo[ 0 ].url : null;
-						return {
-							// REVIEW maybe show namesapce "File"?
-							label: result.title.replace( 'File:', '' ),
-							value: result.title,
-							showThumbnail: hasImageInfo,
-							thumbnail: {
-								url,
-								width: 200,
-								height: 150,
-							},
-						};
+						throw err;
 					} );
-
-					// Update menuItems.
-					menuItems.value = results;
-				} )
-				.catch( ( err ) => {
-					// On error, set results to empty.
-					menuItems.value = [];
-					throw err;
-				} );
+			}
 		}, 300 );
 
 		const menuConfig = {

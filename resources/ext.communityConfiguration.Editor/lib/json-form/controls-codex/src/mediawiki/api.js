@@ -19,7 +19,17 @@ function search( searchTerm, offset ) {
 	return new mw.Api().get( params );
 }
 
-function searchCommonsFiles( searchTerm, offset ) {
+function MwForeignApi( baseUrl ) {
+	if ( !baseUrl ) {
+		const error = new Error( '[MwForeignApi] Invalid param baseUrl' );
+		mw.errorLogger.logError( error, 'error.communityconfiguration' );
+		throw error;
+	}
+	this.baseUrl = baseUrl;
+	this.api = new mw.ForeignApi( this.baseUrl, { anonymous: true } );
+}
+
+MwForeignApi.prototype.searchCommonsFiles = function ( searchTerm, offset ) {
 	const params = {
 		action: 'query',
 		generator: 'prefixsearch',
@@ -34,16 +44,14 @@ function searchCommonsFiles( searchTerm, offset ) {
 	if ( offset ) {
 		params.set( 'continue', String( offset ) );
 	}
-	return new mw.ForeignApi( 'https://commons.wikimedia.org/w/api.php', { anonymous: true } )
-		.get( params )
-		.catch( ( err ) => {
-			err = err instanceof Error ? err : new Error( err );
-			mw.errorLogger.logError( err, 'error.communityconfiguration' );
-			return Promise.reject( err );
-		} );
-}
+	return this.api.get( params ).catch( ( err ) => {
+		err = err instanceof Error ? err : new Error( err );
+		mw.errorLogger.logError( err, 'error.communityconfiguration' );
+		return Promise.reject( err );
+	} );
+};
 
 module.exports = exports = {
 	search,
-	searchCommonsFiles,
+	MwForeignApi,
 };

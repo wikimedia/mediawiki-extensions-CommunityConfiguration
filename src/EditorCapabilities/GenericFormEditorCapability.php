@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\CommunityConfiguration\EditorCapabilities;
 
 use LogicException;
+use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
@@ -22,6 +23,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 	private IConfigurationProvider $provider;
 	private HookRunner $hookRunner;
 	private MessagesProcessor $messagesProcessor;
+	private Config $config;
 
 	public function __construct(
 		IContextSource $ctx,
@@ -30,7 +32,8 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		LinkRenderer $linkRenderer,
 		FormatterFactory $formatterFactory,
 		HookRunner $hookRunner,
-		MessagesProcessor $messagesProcessor
+		MessagesProcessor $messagesProcessor,
+		Config $config
 	) {
 		parent::__construct( $ctx, $parentTitle );
 
@@ -39,6 +42,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		$this->statusFormatter = $formatterFactory->getStatusFormatter( $ctx );
 		$this->hookRunner = $hookRunner;
 		$this->messagesProcessor = $messagesProcessor;
+		$this->config = $config;
 	}
 
 	/**
@@ -156,6 +160,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 						->get( 'CommunityConfigurationFeedbackURL' ),
 					'canEdit' => $canEdit,
 					'namespaceSelectorOptions' => $namespaceSelectorOptions,
+					'commonsApiURL' => $this->config->get( 'CommunityConfigurationCommonsApiURL' ),
 				],
 			],
 		] );
