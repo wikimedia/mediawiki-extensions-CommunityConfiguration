@@ -14,7 +14,8 @@
 		"MediaWiki": ">= 1.43.0"
 	},
 	"AutoloadNamespaces": {
-		"MediaWiki\\Extension\\CommunityConfiguration\\": "src/"
+		"MediaWiki\\Extension\\CommunityConfiguration\\": "src/",
+		"MediaWiki\\Extension\\CommunityConfiguration\\Maintenance\\": "maintenance/"
 	},
 	"TestAutoloadClasses": {
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\JsonSchemaForTesting": "tests/phpunit/JsonSchemaForTesting.php",

@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\CommunityConfiguration;
 
 use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
+use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaultsUpdater;
 use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaConverterFactory;
@@ -38,6 +39,10 @@ class CommunityConfigurationServices {
 
 	public function getConfigurationProviderFactory(): ConfigurationProviderFactory {
 		return $this->coreServices->getService( 'CommunityConfiguration.ProviderFactory' );
+	}
+
+	public function getEmergencyDefaultsUpdater(): EmergencyDefaultsUpdater {
+		return $this->coreServices->getService( 'CommunityConfiguration.EmergencyDefaultsUpdater' );
 	}
 
 	public function getMediaWikiConfigReader(): MediaWikiConfigReader {

@@ -141,7 +141,8 @@ class ConfigurationProviderFactory {
 	/**
 	 * @param string $providerId The provider's key as set in extension.json
 	 * @return IConfigurationProvider
-	 * @throws InvalidArgumentException when provider $name is not registered
+	 * @throws InvalidArgumentException when the requested provider is not registered (caller can
+	 * check isProviderSupported to avoid an exception)
 	 */
 	public function newProvider( string $providerId ): IConfigurationProvider {
 		$this->initList();
@@ -162,6 +163,16 @@ class ConfigurationProviderFactory {
 	public function getSupportedKeys(): array {
 		$this->initList();
 		return array_keys( $this->providerSpecs );
+	}
+
+	/**
+	 * Is a provider supported?
+	 *
+	 * @param string $providerId
+	 * @return bool
+	 */
+	public function isProviderSupported( string $providerId ): bool {
+		return in_array( $providerId, $this->getSupportedKeys() );
 	}
 
 	/**

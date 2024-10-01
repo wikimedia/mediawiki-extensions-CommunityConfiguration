@@ -54,6 +54,9 @@ class ConfigurationProviderFactoryTest extends MediaWikiUnitTestCase {
 			[ 'foo', 'bar' ],
 			$factory->getSupportedKeys()
 		);
+		$this->assertTrue( $factory->isProviderSupported( 'foo' ) );
+		$this->assertTrue( $factory->isProviderSupported( 'bar' ) );
+		$this->assertFalse( $factory->isProviderSupported( 'baz' ) );
 	}
 
 	public function testUnknownProvider() {
