@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mahaveer Indra"
+			"Mahaveer Indra",
+			"Pragathi. BH"
 		]
 	},
 	"communityconfiguration-editor-array-remove-element-label-screen-reader": "ಇಂದೆನ್ ದೆಪ್ಪುಲೆ",
-	"communityconfiguration-editor-array-fallback-add-element-button-label": "ನನೊಂಜಿ ಅಂಸೊನು ಸೇರಾಲೆ"
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "ನನೊಂಜಿ ಅಂಸೊನು ಸೇರಾಲೆ",
+	"communityconfiguration-invalid-stored-config-error": "$1 (ಕೋಡ್ <code>$2</code> ) ಪೂರೈಕೆದಾರೆರ್ನ ಒಂಜಿ ಮಾನ್ಯ ಸಂರಚನೆನ್ ಲೋಡ್ ಮಲ್ಪೆರೆ ವಿಫಲವಾತ್ಂಡ್.",
+	"communityconfiguration-invalid-stored-config-error-with-link": "$1 (ಕೋಡ್ <code>$2</code> ) ಪೂರೈಕೆದಾರೆರ್ನ ಒಂಜಿ ಮಾನ್ಯ ಸಂರಚನೆನ್ ಲೋಡ್ ಮಲ್ಪೆರೆ ವಿಫಲವಾತ್ಂಡ್, $3 ತೂಲೆ."
 }
