@@ -12,7 +12,7 @@ use MediaWikiIntegrationTestCase;
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory
  */
-class ConfigurationProviderFactoryTest extends MediaWikiIntegrationTestCase {
+class ConfigurationProviderFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	private const TYPE_TO_CLASS_MAP = [
 		'data' => DataProvider::class,
