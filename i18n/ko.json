@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"YeBoy371",
 			"Ykhwong"
 		]
 	},
@@ -13,5 +14,7 @@
 	"communityconfiguration-edit-summary-dialog-cancel-button": "취소",
 	"communityconfiguration-edit-summary-dialog-label": "편집 요약",
 	"communityconfiguration-editor-message-dismiss-button-label": "닫기",
-	"communityconfiguration-page-title-control-no-results": "결과가 없습니다."
+	"communityconfiguration-page-title-control-no-results": "결과가 없습니다.",
+	"tag-community_configuration": "[[mw:Community configuration|커뮤니티 구성]]",
+	"tag-community_configuration-description": "[[mw:Extension:CommunityConfiguration|커뮤니티 구성 확장 기능]]을 사용하여 기능의 [[Special:CommunityConfiguration|로컬 위키 구성]]을 변경하는 편집입니다."
 }
