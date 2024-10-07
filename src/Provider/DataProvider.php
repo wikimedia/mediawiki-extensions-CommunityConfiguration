@@ -82,8 +82,9 @@ class DataProvider extends AbstractProvider {
 			return $storeStatus;
 		}
 
+		$normalizedConfiguration = $this->normalizeTopLevelConfigData( $storeStatus->getValue() );
 		$result = $this->validateConfiguration(
-			$this->enhanceConfigPreValidation( $storeStatus->getValue() )
+			$this->enhanceConfigPreValidation( $normalizedConfiguration )
 		);
 		if ( !$result->isOK() ) {
 			// an issue occurred, return the StatusValue

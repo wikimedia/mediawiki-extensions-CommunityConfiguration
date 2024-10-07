@@ -37,7 +37,10 @@ class EmergencyDefaultsUpdaterIntegrationTest extends MediaWikiIntegrationTestCa
 
 		file_put_contents( $tempFile->getPath(), $updater->getSerializedDefaults( $provider ) );
 		$this->assertEquals(
-			(object)[ 'NumberWithDefault' => 0 ],
+			(object)[
+				'NumberWithDefault' => 0,
+				'Mentors' => (object)[],
+			],
 			require_once $tempFile->getPath()
 		);
 	}

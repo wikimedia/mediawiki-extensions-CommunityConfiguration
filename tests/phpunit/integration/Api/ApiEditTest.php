@@ -56,6 +56,7 @@ class ApiEditTest extends ApiTestCase {
 		$this->assertEquals(
 			(object)[
 				'NumberWithDefault' => 42,
+				'Mentors' => (object)[],
 			],
 			$status->getValue()
 		);
