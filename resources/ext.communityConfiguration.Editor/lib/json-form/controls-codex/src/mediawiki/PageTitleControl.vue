@@ -46,6 +46,12 @@ module.exports = exports = {
 		const menuItems = ref( [] );
 		const currentSearchTerm = ref( '' );
 
+		/**
+		 * Handles changes in the selected value from the dropdown.
+		 *
+		 * @param {string|null} value - The selected menu item value, null if the selection does not match any entry in
+		 * the menu items.
+		 */
 		const onSelectionChange = ( value ) => {
 			if ( value === null ) {
 				// This is a workaround until we have T365145
@@ -63,7 +69,7 @@ module.exports = exports = {
 		const onInput = debounce( ( value ) => {
 			// Internally track the current search term.
 			currentSearchTerm.value = value;
-
+			onChange( value );
 			// Do nothing if we have no input.
 			if ( !value ) {
 				menuItems.value = [];
