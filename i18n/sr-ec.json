@@ -12,6 +12,7 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Детаљи грешке",
 	"communityconfiguration-schema-validation-error": "НАЦРТ: $2. Клуч: $1",
 	"communityconfiguration-providers-list-title": "Могућности",
+	"communityconfigurationeditor": "$1 — уређивање",
 	"communityconfiguration-edit-summary-dialog-title": "Сачувај измене за $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(необавезно)",
 	"communityconfiguration-edit-summary-dialog-save-button": "Сачувај измене",
