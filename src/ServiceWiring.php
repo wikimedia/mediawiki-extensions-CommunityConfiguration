@@ -30,7 +30,7 @@ return [
 				EditorCapabilityFactory::CONSTRUCTOR_OPTIONS,
 				new HashConfig( [
 					'CommunityConfigurationEditorCapabilities' => Utils::getMergedAttribute(
-						$services->getMainConfig(),
+						$services->getMainConfig(), $services->getExtensionRegistry(),
 						'CommunityConfigurationEditorCapabilities'
 					),
 				] )
@@ -49,6 +49,7 @@ return [
 			$ccServices->getStoreFactory(),
 			$ccServices->getValidatorFactory(),
 			$services->getMainConfig(),
+			$services->getExtensionRegistry(),
 			$ccServices->getHookRunner(),
 			$services,
 		);

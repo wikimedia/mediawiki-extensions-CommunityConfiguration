@@ -11,6 +11,7 @@ use MediaWiki\Extension\CommunityConfiguration\Utils;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
 
 /**
  * Create a configuration provider
@@ -31,17 +32,20 @@ class ConfigurationProviderFactory {
 	private MediaWikiServices $services;
 	private HookRunner $hookRunner;
 	private Config $config;
+	private ExtensionRegistry $extensionRegistry;
 
 	public function __construct(
 		StoreFactory $storeFactory,
 		ValidatorFactory $validatorFactory,
 		Config $config,
+		ExtensionRegistry $extensionRegistry,
 		HookRunner $hookRunner,
 		MediaWikiServices $services
 	) {
 		$this->storeFactory = $storeFactory;
 		$this->validatorFactory = $validatorFactory;
 		$this->config = $config;
+		$this->extensionRegistry = $extensionRegistry;
 		$this->services = $services;
 		$this->hookRunner = $hookRunner;
 	}
@@ -168,8 +172,14 @@ class ConfigurationProviderFactory {
 		if ( is_array( $this->providerSpecs ) && is_array( $this->classSpecs ) ) {
 			return;
 		}
-		$this->providerSpecs = Utils::getMergedAttribute( $this->config, 'CommunityConfigurationProviders' );
-		$this->classSpecs = Utils::getMergedAttribute( $this->config, 'CommunityConfigurationProviderClasses' );
+		$this->providerSpecs = Utils::getMergedAttribute(
+			$this->config, $this->extensionRegistry,
+			'CommunityConfigurationProviders'
+		);
+		$this->classSpecs = Utils::getMergedAttribute(
+			$this->config, $this->extensionRegistry,
+			'CommunityConfigurationProviderClasses'
+		);
 		// This hook can be used to disable unwanted providers
 		// or conditionally register providers.
 		$this->hookRunner->onCommunityConfigurationProvider_initList( $this->providerSpecs );
