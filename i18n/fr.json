@@ -8,7 +8,8 @@
 			"Trizek (WMF)",
 			"Wladek92",
 			"Escargot bleu",
-			"Graineahumus"
+			"Graineahumus",
+			"Mahabarata"
 		]
 	},
 	"communityconfiguration": "Configuration communautaire",
@@ -27,7 +28,7 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Détails de l'erreur",
 	"communityconfiguration-schema-validation-error": "BROUILLON : $2. Clé : $1",
 	"communityconfiguration-providers-list-title": "Fonctionnalités",
-	"communityconfiguration-provider-not-found": "Le fournisseur $1 est introuvable",
+	"communityconfiguration-provider-not-found": "La configuration $1 est introuvable.",
 	"communityconfiguration-unknown-error": "Quelque chose s'est mal passé. Signaler un problème sur Phabricator ?",
 	"communityconfigurationdashboard": "Configuration communautaire",
 	"communityconfigurationeditor": "Modification de « $1 »",
