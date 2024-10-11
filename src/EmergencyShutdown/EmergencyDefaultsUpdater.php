@@ -71,7 +71,11 @@ class EmergencyDefaultsUpdater {
 			);
 		}
 
-		return '<?php' . PHP_EOL . 'return '
+		return '<?php' . PHP_EOL
+			. '// phpcs:ignoreFile' . PHP_EOL
+			. '// This file was automatically generated. Please update it via '
+			. 'extensions/CommunityConfiguration/UpdateEmergencyDefaults.php maintenance script' . PHP_EOL
+			. 'return '
 			. var_export( $provider->getValidator()->getSchemaBuilder()->getDefaultsMap(), true )
 			. ';' . PHP_EOL;
 	}
