@@ -13,6 +13,7 @@
 				v-model="wrappedEditSummary"
 				:placeholder="$i18n( 'communityconfiguration-edit-summary-dialog-placeholder' ).text()"
 				rows="8"
+				data-testid="edit-summary-text-area"
 			></cdx-text-area>
 			<template #label>
 				{{ $i18n( 'communityconfiguration-edit-summary-dialog-label' ).text() }}
