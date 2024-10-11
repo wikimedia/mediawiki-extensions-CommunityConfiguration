@@ -114,6 +114,7 @@ class EmergencyDefaultsUpdaterTest extends MediaWikiUnitTestCase {
 		$builderMock = $this->createNoOpMock( SchemaBuilder::class, [ 'getDefaultsMap' ] );
 		$builderMock->expects( $this->atLeastOnce() )
 			->method( 'getDefaultsMap' )
+			->with( null, false )
 			->willReturn( $config );
 
 		$validatorMock = $this->createNoOpMock( IValidator::class, [ 'areSchemasSupported', 'getSchemaBuilder' ] );

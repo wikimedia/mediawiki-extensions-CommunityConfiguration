@@ -56,7 +56,12 @@ interface SchemaBuilder {
 	 * Return default values for root-level properties
 	 *
 	 * @param string|null $version Schema version to use (null for newest)
+	 * @param bool $useDynamicDefaults Should dynamic defaults be returned in the map? (Useful
+	 * for emergency defaults)
 	 * @return stdClass
 	 */
-	public function getDefaultsMap( ?string $version = null ): stdClass;
+	public function getDefaultsMap(
+		?string $version = null,
+		bool $useDynamicDefaults = true
+	): stdClass;
 }

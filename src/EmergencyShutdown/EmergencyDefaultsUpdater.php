@@ -4,7 +4,9 @@ namespace MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown;
 
 use InvalidArgumentException;
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
+use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
 use MediaWiki\Registration\ExtensionRegistry;
+use stdClass;
 
 class EmergencyDefaultsUpdater {
 
@@ -52,6 +54,19 @@ class EmergencyDefaultsUpdater {
 	}
 
 	/**
+	 * Get emergency defaults from a provider
+	 *
+	 * This is the same as the defaults map, except it ignores dynamic defaults.
+	 *
+	 * @see SchemaBuilder::getDefaultsMap()
+	 * @param IConfigurationProvider $provider
+	 * @return stdClass
+	 */
+	public function getEmergencyDefaultsForProvider( IConfigurationProvider $provider ): stdClass {
+		return $provider->getValidator()->getSchemaBuilder()->getDefaultsMap( null, false );
+	}
+
+	/**
 	 * Compute emergency defaults for a given provider
 	 *
 	 * This does not store the results anywhere; this is left as a responsibility of the caller.
@@ -76,7 +91,7 @@ class EmergencyDefaultsUpdater {
 			. '// This file was automatically generated. Please update it via '
 			. 'extensions/CommunityConfiguration/UpdateEmergencyDefaults.php maintenance script' . PHP_EOL
 			. 'return '
-			. var_export( $provider->getValidator()->getSchemaBuilder()->getDefaultsMap(), true )
+			. var_export( $this->getEmergencyDefaultsForProvider( $provider ), true )
 			. ';' . PHP_EOL;
 	}
 }

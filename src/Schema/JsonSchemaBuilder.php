@@ -91,10 +91,11 @@ class JsonSchemaBuilder implements SchemaBuilder {
 	 * Takes into account dynamic defaults.
 	 *
 	 * @param array $schema
+	 * @param bool $useDynamicDefaults Evaluate dynamic defaults
 	 * @return mixed
 	 */
-	private function getDefaultFromSchema( array $schema ) {
-		if ( isset( $schema[JsonSchema::DYNAMIC_DEFAULT] ) ) {
+	private function getDefaultFromSchema( array $schema, bool $useDynamicDefaults ) {
+		if ( $useDynamicDefaults && isset( $schema[JsonSchema::DYNAMIC_DEFAULT] ) ) {
 			$result = call_user_func( $schema[JsonSchema::DYNAMIC_DEFAULT]['callback'] );
 		} else {
 			$result = $schema['default'] ?? null;
@@ -108,7 +109,7 @@ class JsonSchemaBuilder implements SchemaBuilder {
 		// process defaults for objects recursively
 		if ( is_object( $result ) ) {
 			foreach ( $schema['properties'] ?? [] as $name => $subSchema ) {
-				$result->{$name} = $this->getDefaultFromSchema( $subSchema );
+				$result->{$name} = $this->getDefaultFromSchema( $subSchema, $useDynamicDefaults );
 			}
 		}
 
@@ -118,11 +119,14 @@ class JsonSchemaBuilder implements SchemaBuilder {
 	/**
 	 * @inheritDoc
 	 */
-	public function getDefaultsMap( ?string $version = null ): stdClass {
+	public function getDefaultsMap(
+		?string $version = null,
+		bool $useDynamicDefaults = true
+	): stdClass {
 		$start = microtime( true );
 		$res = new stdClass();
 		foreach ( $this->getRootProperties( $version ) as $key => $specification ) {
-			$res->{$key} = $this->getDefaultFromSchema( $specification );
+			$res->{$key} = $this->getDefaultFromSchema( $specification, $useDynamicDefaults );
 		}
 		$this->statsdDataFactory->timing(
 			'timing.communityConfiguration.JsonSchemaBuilder.getDefaultsMap',

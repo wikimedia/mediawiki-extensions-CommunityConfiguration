@@ -20,9 +20,9 @@ abstract class SchemaProviderTestCase extends MediaWikiIntegrationTestCase {
 
 	final public function testSchemaDefaultValues(): void {
 		$provider = $this->getProvider();
-		$actualDefaults = $provider->getValidator()->getSchemaBuilder()->getDefaultsMap();
-
 		$updater = CommunityConfigurationServices::wrap( $this->getServiceContainer() )->getEmergencyDefaultsUpdater();
+
+		$actualDefaults = $updater->getEmergencyDefaultsForProvider( $provider );
 		$path = $updater->getDefaultsFileForProvider( $provider, $this->getExtensionName() );
 
 		// phpcs:ignore Generic.Files.LineLength

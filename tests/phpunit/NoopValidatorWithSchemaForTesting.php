@@ -57,7 +57,7 @@ class NoopValidatorWithSchemaForTesting implements IValidator {
 			/**
 			 * @inheritDoc
 			 */
-			public function getDefaultsMap( ?string $version = null ): stdClass {
+			public function getDefaultsMap( ?string $version = null, bool $useDynamicDefaults = true ): stdClass {
 				return (object)[];
 			}
 
