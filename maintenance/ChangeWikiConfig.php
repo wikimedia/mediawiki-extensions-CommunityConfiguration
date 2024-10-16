@@ -16,6 +16,12 @@ use MediaWiki\User\User;
 use MessageLocalizer;
 use stdClass;
 
+$IP = getenv( 'MW_INSTALL_PATH' );
+if ( $IP === false ) {
+	$IP = __DIR__ . '/../../..';
+}
+require_once "$IP/maintenance/Maintenance.php";
+
 class ChangeWikiConfig extends Maintenance {
 
 	private ConfigurationProviderFactory $providerFactory;
