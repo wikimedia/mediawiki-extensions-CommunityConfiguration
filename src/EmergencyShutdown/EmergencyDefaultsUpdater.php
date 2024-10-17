@@ -5,40 +5,33 @@ namespace MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown;
 use InvalidArgumentException;
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
-use MediaWiki\Registration\ExtensionRegistry;
 use stdClass;
 
 class EmergencyDefaultsUpdater {
 
-	private const DEFAULT_DIRECTORY_NAME = 'CommunityConfigurationFallbacks';
+	private EmergencyDefaultsPathBuilder $pathBuilder;
 
-	private ExtensionRegistry $registry;
-
-	public function __construct( ExtensionRegistry $registry ) {
-		$this->registry = $registry;
+	public function __construct( EmergencyDefaultsPathBuilder $pathBuilder ) {
+		$this->pathBuilder = $pathBuilder;
 	}
 
 	/**
 	 * Get directory that contains emergency defaults for a given extension
 	 *
+	 * @deprecated since 1.43, use EmergencyDefaultsPathBuilder instead
 	 * @throws InvalidArgumentException if $extension is not loaded
 	 * @param string $extension Extension name (pass the same as passed to eg. wfLoadExtension)
 	 * @return string Filesystem path to the directory
 	 */
 	public function getDefaultsDirectory( string $extension ): string {
-		if ( !$this->registry->isLoaded( $extension ) ) {
-			throw new InvalidArgumentException(
-				'Extension ' . $extension . ' is not loaded'
-			);
-		}
-		$extensionDir = dirname( $this->registry->getAllThings()[ $extension ]['path'] );
-		// TODO: Make DEFAULT_DIRECTORY_NAME customizable
-		return $extensionDir . DIRECTORY_SEPARATOR . self::DEFAULT_DIRECTORY_NAME;
+		wfDeprecated( __METHOD__, '1.43' );
+		return $this->pathBuilder->getDefaultsDirectory( $extension );
 	}
 
 	/**
 	 * Get file that contains emergency defaults for a given provider
 	 *
+	 * @deprecated since 1.43, use EmergencyDefaultsPathBuilder instead
 	 * @throws InvalidArgumentException if $extension is not loaded
 	 * @param IConfigurationProvider $provider
 	 * @param string $extensionName Treat the provider as registered by $extensionName (pass
@@ -49,8 +42,8 @@ class EmergencyDefaultsUpdater {
 		IConfigurationProvider $provider,
 		string $extensionName
 	): string {
-		return $this->getDefaultsDirectory( $extensionName ) . DIRECTORY_SEPARATOR .
-			$provider->getId() . '.php';
+		wfDeprecated( __METHOD__, '1.43' );
+		return $this->pathBuilder->getDefaultsFileForProvider( $provider, $extensionName );
 	}
 
 	/**

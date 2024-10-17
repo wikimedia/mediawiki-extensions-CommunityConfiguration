@@ -20,10 +20,12 @@ abstract class SchemaProviderTestCase extends MediaWikiIntegrationTestCase {
 
 	final public function testSchemaDefaultValues(): void {
 		$provider = $this->getProvider();
-		$updater = CommunityConfigurationServices::wrap( $this->getServiceContainer() )->getEmergencyDefaultsUpdater();
+		$ccServices = CommunityConfigurationServices::wrap( $this->getServiceContainer() );
+		$updater = $ccServices->getEmergencyDefaultsUpdater();
+		$pathBuilder = $ccServices->getEmergencyDefaultsPathBuilder();
 
 		$actualDefaults = $updater->getEmergencyDefaultsForProvider( $provider );
-		$path = $updater->getDefaultsFileForProvider( $provider, $this->getExtensionName() );
+		$path = $pathBuilder->getDefaultsFileForProvider( $provider, $this->getExtensionName() );
 
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertFileExists( $path, "Please generate the emergency defaults file $path with the CommunityConfiguration UpdateEmergencyDefaults maintenance script, and check it into your repository." );

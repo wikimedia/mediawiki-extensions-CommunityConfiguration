@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\CommunityConfiguration;
 
 use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
+use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaultsPathBuilder;
 use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaultsUpdater;
 use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
@@ -43,6 +44,10 @@ class CommunityConfigurationServices {
 
 	public function getEmergencyDefaultsUpdater(): EmergencyDefaultsUpdater {
 		return $this->coreServices->getService( 'CommunityConfiguration.EmergencyDefaultsUpdater' );
+	}
+
+	public function getEmergencyDefaultsPathBuilder(): EmergencyDefaultsPathBuilder {
+		return $this->coreServices->getService( 'CommunityConfiguration.EmergencyDefaultsPathBuilder' );
 	}
 
 	public function getMediaWikiConfigReader(): MediaWikiConfigReader {

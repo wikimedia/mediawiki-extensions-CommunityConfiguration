@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\CommunityConfiguration\Maintenance;
 
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
+use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaultsPathBuilder;
 use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaultsUpdater;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Maintenance\Maintenance;
@@ -15,6 +16,7 @@ require_once "$IP/maintenance/Maintenance.php";
 
 class UpdateEmergencyDefaults extends Maintenance {
 
+	private EmergencyDefaultsPathBuilder $emergencyDefaultsPathBuilder;
 	private EmergencyDefaultsUpdater $updater;
 	private ConfigurationProviderFactory $providerFactory;
 
@@ -37,6 +39,7 @@ class UpdateEmergencyDefaults extends Maintenance {
 
 	private function initServices() {
 		$ccServices = CommunityConfigurationServices::wrap( $this->getServiceContainer() );
+		$this->emergencyDefaultsPathBuilder = $ccServices->getEmergencyDefaultsPathBuilder();
 		$this->updater = $ccServices->getEmergencyDefaultsUpdater();
 		$this->providerFactory = $ccServices->getConfigurationProviderFactory();
 	}
@@ -53,7 +56,7 @@ class UpdateEmergencyDefaults extends Maintenance {
 		}
 		$provider = $this->providerFactory->newProvider( $providerId );
 
-		$path = $this->updater->getDefaultsFileForProvider( $provider, $extensionName );
+		$path = $this->emergencyDefaultsPathBuilder->getDefaultsFileForProvider( $provider, $extensionName );
 
 		// Ensure the base directory exists
 		$baseDir = dirname( $path );

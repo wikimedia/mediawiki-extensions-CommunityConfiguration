@@ -7,6 +7,7 @@ use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\MessagesProcessor;
+use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaultsPathBuilder;
 use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaultsUpdater;
 use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
@@ -41,6 +42,11 @@ return [
 	},
 	'CommunityConfiguration.EmergencyDefaultsUpdater' => static function ( MediaWikiServices $services ) {
 		return new EmergencyDefaultsUpdater(
+			CommunityConfigurationServices::wrap( $services )->getEmergencyDefaultsPathBuilder()
+		);
+	},
+	'CommunityConfiguration.EmergencyDefaultsPathBuilder' => static function ( MediaWikiServices $services ) {
+		return new EmergencyDefaultsPathBuilder(
 			$services->getExtensionRegistry()
 		);
 	},
