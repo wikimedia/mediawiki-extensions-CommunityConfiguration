@@ -51,6 +51,7 @@
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Non ha un valor in le enumeration: $1",
 	"communityconfiguration-editor-error-validation-string-too-short": "Debe continer al minus $1 characteres",
 	"communityconfiguration-editor-error-validation-string-too-long": "Debe continer al plus $1 characteres",
+	"communityconfiguration-maintenance-config-change-summary": "Configuration cambiate per script de mantenentia: $1",
 	"tag-community_configuration": "[[mw:Community configuration|Configuration communitari]]",
 	"tag-community_configuration-description": "Modificationes que cambia le [[Special:CommunityConfiguration|configuration del wiki local]] de un function que usa le [[mw:Extension:CommunityConfiguration|extension Community Configuration]]."
 }

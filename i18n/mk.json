@@ -51,6 +51,7 @@
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Нема вредност во пребројувањето: $1",
 	"communityconfiguration-editor-error-validation-string-too-short": "Мора да има барем $1 знаци",
 	"communityconfiguration-editor-error-validation-string-too-long": "Мора да има највеќе $1 знаци",
+	"communityconfiguration-maintenance-config-change-summary": "Сменети поставки од скрипта за одржување: $1",
 	"tag-community_configuration": "[[mw:Community configuration|Поставки за заедницата]]",
 	"tag-community_configuration-description": "Уредувања кои ја менуваат [[Special:CommunityConfiguration|поставеноста на месното вики]] на функција што го користи додатокто „[[mw:Extension:CommunityConfiguration|Поставки за заедницата]]“."
 }

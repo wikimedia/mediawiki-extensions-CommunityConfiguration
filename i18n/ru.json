@@ -28,5 +28,6 @@
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Отмена",
 	"communityconfiguration-edit-summary-dialog-label": "Описание изменений",
 	"communityconfiguration-editor-message-dismiss-button-label": "Закрыть",
-	"communityconfiguration-editor-error-validation-enum-invalid-value": "Не имеет значения в перечислении: $1"
+	"communityconfiguration-editor-error-validation-enum-invalid-value": "Не имеет значения в перечислении: $1",
+	"communityconfiguration-maintenance-config-change-summary": "Конфигурация изменена скриптом обслуживания: $1"
 }

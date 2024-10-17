@@ -21,8 +21,8 @@
 	"communityconfiguration-guidelines-guideline1-description": "İcma Konfiqurasiyası, onun nə olduğu, necə işlədiyi və komandanın bununla bağlı davam edən işi haqqında [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration ətraflı öyrənin]",
 	"communityconfiguration-guidelines-guideline2-title": "Rəy {{GENDER:$1|göndərin}}",
 	"communityconfiguration-guidelines-guideline2-description": "{{GENDER:$1|Fikirlərinizi}} eşitmək istəyirik! [https://www.mediawiki.org/wiki/Talk:Growth Müzakirə səhifəmiz] vasitəsilə bizimlə əlaqə saxlayın.",
-	"communityconfiguration-invalid-stored-config-error": "$1 (kod <code>$2</code> ) provayderindən etibarlı konfiqurasiyanı yükləmək alınmadı.",
-	"communityconfiguration-invalid-stored-config-error-with-link": "$1 (kod <code>$2</code> ) provayderindən etibarlı konfiqurasiyanı yükləmək alınmadı, $3 səhifəsinə baxın.",
+	"communityconfiguration-invalid-stored-config-error": "$1 (kod <code>$2</code>) provayderindən etibarlı konfiqurasiyanı yükləmək alınmadı.",
+	"communityconfiguration-invalid-stored-config-error-with-link": "$1 (kod <code>$2</code>) provayderindən etibarlı konfiqurasiyanı yükləmək alınmadı, $3 səhifəsinə baxın.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Xəta təfərrüatları",
 	"communityconfiguration-schema-validation-error": "QARALAMA: $2. Açar: $1",
 	"communityconfiguration-providers-list-title": "Xüsusiyyətlər",
@@ -51,6 +51,7 @@
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Sadalamada dəyəri yoxdur: $1",
 	"communityconfiguration-editor-error-validation-string-too-short": "Ən azı $1 simvol uzunluğunda olmalıdır",
 	"communityconfiguration-editor-error-validation-string-too-long": "Maksimum $1 simvol uzunluğunda olmalıdır",
+	"communityconfiguration-maintenance-config-change-summary": "Təmir skripti tərəfindən konfiqurasiya dəyişdirilir: $1",
 	"tag-community_configuration": "[[mw:Community configuration|İcma konfiqurasiyası]]",
 	"tag-community_configuration-description": "[[mw:Extension:CommunityConfiguration|İcma Konfiqurasiyası uzantısı]] istifadə edərək funksiyanın [[Special:CommunityConfiguration|lokal viki konfiqurasiyasını]] dəyişən redaktələr."
 }

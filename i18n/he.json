@@ -51,6 +51,7 @@
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "אין ערך במניין: $1",
 	"communityconfiguration-editor-error-validation-string-too-short": "חייב להיות באורך של $1 תווים לפחות",
 	"communityconfiguration-editor-error-validation-string-too-long": "חייב להיות באורך של $1 תווים לכל היותר",
+	"communityconfiguration-maintenance-config-change-summary": "התצורה שונתה על־ידי סקריפט תחזוקה: $1",
 	"tag-community_configuration": "[[mw:Community configuration|תצורת קהילה]]",
 	"tag-community_configuration-description": "עריכות שמשנות את [[Special:CommunityConfiguration|תצורת הוויקי המקומית]] של תכונה באמצעות [[mw:Extension:CommunityConfiguration|ההרחבה Community Configuration]]."
 }
