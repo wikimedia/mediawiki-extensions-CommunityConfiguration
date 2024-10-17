@@ -18,13 +18,26 @@ class UpdateEmergencyDefaultsTest extends MaintenanceBaseTestCase {
 		return UpdateEmergencyDefaults::class;
 	}
 
+	protected function setUp(): void {
+		parent::setUp();
+
+		$exampleEmergencyDefaultsPath = $this->getDefaultsPath();
+		if ( file_exists( $exampleEmergencyDefaultsPath ) ) {
+			rename( $exampleEmergencyDefaultsPath, $exampleEmergencyDefaultsPath . '.bak' );
+		}
+	}
+
+	protected function tearDown(): void {
+		parent::tearDown();
+
+		$exampleEmergencyDefaultsPath = $this->getDefaultsPath();
+		if ( file_exists( $exampleEmergencyDefaultsPath . '.bak' ) ) {
+			rename( $exampleEmergencyDefaultsPath . '.bak', $exampleEmergencyDefaultsPath );
+		}
+	}
+
 	public function testUpdateOK() {
-		// phpcs:disable: MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
-		global $IP;
-		$path = implode( DIRECTORY_SEPARATOR, [
-			$IP, 'extensions', 'CommunityConfigurationExample', 'CommunityConfigurationFallbacks',
-			'CommunityConfigurationExample.php',
-		] );
+		$path = $this->getDefaultsPath();
 		if ( file_exists( $path ) ) {
 			// Ensure the file does not exist
 			unlink( $path );
@@ -48,5 +61,15 @@ class UpdateEmergencyDefaultsTest extends MaintenanceBaseTestCase {
 			require_once $path
 		);
 		unlink( $path );
+	}
+
+	private function getDefaultsPath(): string {
+		// phpcs:disable: MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
+		global $IP;
+
+		return implode( DIRECTORY_SEPARATOR, [
+			$IP, 'extensions', 'CommunityConfigurationExample', 'CommunityConfigurationFallbacks',
+			'CommunityConfigurationExample.php',
+		] );
 	}
 }
