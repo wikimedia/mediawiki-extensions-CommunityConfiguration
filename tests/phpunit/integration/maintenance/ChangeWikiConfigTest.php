@@ -4,13 +4,13 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\CommunityConfiguration\Tests\Integration;
 
-use IDBAccessObject;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Maintenance\ChangeWikiConfig;
 use MediaWiki\Maintenance\MaintenanceFatalError;
 use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
 use MediaWiki\Title\Title;
 use stdClass;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Maintenance\ChangeWikiConfig

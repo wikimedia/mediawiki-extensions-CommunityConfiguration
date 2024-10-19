@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Api;
 
-use ApiQuery;
-use ApiQueryBase;
 use InvalidArgumentException;
+use MediaWiki\Api\ApiQuery;
+use MediaWiki\Api\ApiQueryBase;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerAwareTrait;

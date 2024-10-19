@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
-use ApiRawMessage;
 use LogicException;
+use MediaWiki\Api\ApiRawMessage;
 use MediaWiki\Content\JsonContent;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\Linker\LinkTarget;
@@ -17,7 +17,7 @@ use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use StatusValue;
-use WANObjectCache;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 class WikiPageStore extends AbstractJsonStore {
 

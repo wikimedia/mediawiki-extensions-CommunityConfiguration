@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Maintenance;
 
-use Maintenance;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Status\StatusFormatter;
 use MediaWiki\User\User;

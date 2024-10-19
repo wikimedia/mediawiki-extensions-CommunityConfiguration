@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Schema;
 
-use IBufferingStatsdDataFactory;
 use stdClass;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 
 class JsonSchemaBuilder implements SchemaBuilder {
 

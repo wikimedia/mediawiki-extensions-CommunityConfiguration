@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
-use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use Iterator;
 use JsonSchema\Validator;
@@ -11,6 +10,7 @@ use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaIterator;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 
 /**
  * JSON Schema validator.

@@ -4,11 +4,11 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
-use IBufferingStatsdDataFactory;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader;
 use MediaWikiUnitTestCase;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder

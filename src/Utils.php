@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration;
 
-use ExtensionRegistry;
 use MediaWiki\Config\Config;
+use MediaWiki\Registration\ExtensionRegistry;
 
 class Utils {
 

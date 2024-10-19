@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Store\WikiPage;
 
-use Content;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\JsonContent;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;

@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
-use IBufferingStatsdDataFactory;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
 use MediaWiki\Extension\CommunityConfiguration\Validation\JsonSchemaValidator;
 use MediaWikiUnitTestCase;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Validation\JsonSchemaValidator

@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
-use HashBagOStuff;
 use MediaWiki\Json\FormatJson;
 use StatusValue;
-use WANObjectCache;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
+use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * Implements caching for the store; assumes stored values are JSON blobs

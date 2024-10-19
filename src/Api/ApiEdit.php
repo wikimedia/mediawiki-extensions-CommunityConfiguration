@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Api;
 
-use ApiBase;
-use ApiMain;
 use InvalidArgumentException;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMain;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidationStatus;
 use MediaWiki\Json\FormatJson;

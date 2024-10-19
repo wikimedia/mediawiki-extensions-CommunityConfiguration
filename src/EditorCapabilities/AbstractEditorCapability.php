@@ -6,9 +6,9 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
 use MessageLocalizer;
-use MessageSpecifier;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
+use Wikimedia\Message\MessageSpecifier;
 
 abstract class AbstractEditorCapability implements IEditorCapability, MessageLocalizer {
 	use LoggerAwareTrait;

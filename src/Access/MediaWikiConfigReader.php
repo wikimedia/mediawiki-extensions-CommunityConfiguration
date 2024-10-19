@@ -4,7 +4,6 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\CommunityConfiguration\Access;
 
-use BagOStuff;
 use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigException;
@@ -12,6 +11,7 @@ use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFac
 use MediaWiki\Extension\CommunityConfiguration\Provider\MediaWikiConfigProvider;
 use Psr\Log\LoggerInterface;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
+use Wikimedia\ObjectCache\BagOStuff;
 
 class MediaWikiConfigReader implements Config {
 
