@@ -49,8 +49,10 @@
 	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Ви}} не можете зберегти зміни до цієї форми, тому що налаштування цієї функції можуть змінювати лише адміністратори.",
 	"communityconfiguration-editor-error-validation-array-items-max": "У масиві має бути максимум {{PLURAL:$1|$1 елемент|$1 елементи|$1 елементів}}",
 	"communityconfiguration-editor-error-validation-array-items-min": "У масиві має бути мінімум {{PLURAL:$1|$1 елемент|$1 елементи|$1 елементів}}",
+	"communityconfiguration-editor-error-validation-enum-invalid-value": "Не має значення в переліку: $1",
 	"communityconfiguration-editor-error-validation-string-too-short": "Мінімальна кількість символів: $1",
 	"communityconfiguration-editor-error-validation-string-too-long": "Максимальна кількість символів: $1",
+	"communityconfiguration-maintenance-config-change-summary": "Конфігурація змінена скриптом обслуговування: $1",
 	"tag-community_configuration": "[[mw:Community configuration|Налаштування спільнотою]]",
 	"tag-community_configuration-description": "Редагування, які змінюють [[Special:CommunityConfiguration|конфігурацію функції у локальній вікі]] з допомогою [[mw:Extension:CommunityConfiguration|розширення Налаштування спільнотою]]."
 }
