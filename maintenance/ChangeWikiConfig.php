@@ -7,6 +7,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Maintenance;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
+use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Maintenance\Maintenance;
@@ -83,26 +84,10 @@ class ChangeWikiConfig extends Maintenance {
 
 		$provider = $this->providerFactory->newProvider( $this->getArg( 'provider' ) );
 
-		$configStatus = $provider->getStore()->loadConfigurationUncached();
-		if ( !$configStatus->isGood() ) {
-			$this->output( "Failed to load config:\n" );
-			$this->fatalError( $configStatus );
-		}
-		$config = $configStatus->value;
-
-		$key = $this->getArg( 'key' );
 		if ( $this->hasOption( 'delete' ) ) {
-			if ( $this->getArg( 'value' ) !== null ) {
-				$this->fatalError( '"value" argument must not be set when deleting a key!' );
-			}
-			$this->deleteConfigKey( $config, $key );
+			$config = $this->executeDeleteOperation( $provider );
 		} else {
-			if ( $this->getArg( 'value' ) === null ) {
-				$this->fatalError( '"value" argument must be set when adding a value!' );
-			}
-			$value = $this->getValueFromArg( $this->getArg( 'value' ) );
-
-			$this->setConfigKeyToValue( $config, $key, $value );
+			$config = $this->executeSetOperation( $provider );
 		}
 
 		$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
@@ -207,6 +192,58 @@ class ChangeWikiConfig extends Maintenance {
 		}
 	}
 
+	/**
+	 * @throws MaintenanceFatalError
+	 */
+	public function executeDeleteOperation( IConfigurationProvider $provider ): stdClass {
+		$key = $this->getArg( 'key' );
+		if ( $key === null ) {
+			$this->fatalError( '"key" argument is missing!' );
+		}
+
+		if ( $this->getArg( 'value' ) !== null ) {
+			$this->fatalError( '"value" argument must not be set when deleting a key!' );
+		}
+
+		$config = $this->loadConfigurationDirectlyFromFile( $provider );
+
+		$this->deleteConfigKey( $config, $key );
+
+		return $config;
+	}
+
+	/**
+	 * @throws MaintenanceFatalError
+	 */
+	public function executeSetOperation( IConfigurationProvider $provider ): stdClass {
+		$key = $this->getArg( 'key' );
+		if ( $key === null ) {
+			$this->fatalError( '"key" argument is missing!' );
+		}
+
+		if ( $this->getArg( 'value' ) === null ) {
+			$this->fatalError( '"value" argument must be set when adding a value!' );
+		}
+		$value = $this->getValueFromArg( $this->getArg( 'value' ) );
+
+		$config = $this->loadConfigurationDirectlyFromFile( $provider );
+
+		$this->setConfigKeyToValue( $config, $key, $value );
+
+		return $config;
+	}
+
+	/**
+	 * @throws MaintenanceFatalError
+	 */
+	private function loadConfigurationDirectlyFromFile( IConfigurationProvider $provider ): stdClass {
+		$configStatus = $provider->getStore()->loadConfigurationUncached();
+		if ( !$configStatus->isGood() ) {
+			$this->output( "Failed to load config:\n" );
+			$this->fatalError( $configStatus );
+		}
+		return $configStatus->value;
+	}
 }
 
 $maintClass = ChangeWikiConfig::class;
