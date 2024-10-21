@@ -241,4 +241,32 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 			false
 		);
 	}
+
+	public function testNullEdit(): void {
+		$initialEditStatus = $this->editPage( 'MediaWiki:CommunityConfigurationExample.json',
+			'{ "CCExample_String": "pre-existing config" }'
+		);
+		$this->assertStatusGood( $initialEditStatus );
+		$this->maintenance->loadParamsAndArgs(
+			null,
+			[
+				'summary' => '(null-edit summary here)',
+				'null-edit' => '',
+			],
+			[ 'CommunityConfigurationExample' ]
+		);
+
+		$result = $this->maintenance->execute();
+		$this->assertTrue( $result );
+		$actualConfig = $this->getValidConfig();
+		$this->assertEquals( (object)[
+			'CCExample_FavoriteColors' => [],
+			'CCExample_String' => 'pre-existing config',
+			'CCExample_Numbers' => (object)[
+				'IntegerNumber' => 0,
+				'DecimalNumber' => 0.6,
+			],
+			'CCExample_RelevantPages' => [],
+		], $actualConfig );
+	}
 }

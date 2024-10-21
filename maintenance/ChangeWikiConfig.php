@@ -44,6 +44,10 @@ class ChangeWikiConfig extends Maintenance {
 			'delete',
 			'delete the key if it exists',
 		);
+		$this->addOption(
+			'null-edit',
+			'do not change anything, only save defaults for missing options explicitly',
+		);
 
 		$this->addOption(
 			'dry-run',
@@ -58,7 +62,7 @@ class ChangeWikiConfig extends Maintenance {
 		$this->addArg(
 			'key',
 			'Config key that is updated (use . to separate keys in an object)',
-			true
+			false
 		);
 		$this->addArg(
 			'value',
@@ -84,7 +88,9 @@ class ChangeWikiConfig extends Maintenance {
 
 		$provider = $this->providerFactory->newProvider( $this->getArg( 'provider' ) );
 
-		if ( $this->hasOption( 'delete' ) ) {
+		if ( $this->hasOption( 'null-edit' ) ) {
+			$config = $this->executeNullEdit( $provider );
+		} elseif ( $this->hasOption( 'delete' ) ) {
 			$config = $this->executeDeleteOperation( $provider );
 		} else {
 			$config = $this->executeSetOperation( $provider );
@@ -236,6 +242,23 @@ class ChangeWikiConfig extends Maintenance {
 	/**
 	 * @throws MaintenanceFatalError
 	 */
+	private function executeNullEdit( IConfigurationProvider $provider ): stdClass {
+		if ( $this->getArg( 'key' ) !== null ) {
+			$this->fatalError( '"key" argument must not be set when performing a null-edit!' );
+		}
+		if ( $this->getArg( 'value' ) !== null ) {
+			$this->fatalError( '"value" argument must not be set when performing a null-edit!' );
+		}
+		if ( $this->hasOption( 'delete' ) ) {
+			$this->fatalError( '"delete" option must not be set when performing a null-edit!' );
+		}
+
+		return $this->loadFullConfigurationWithDefaultsAndNormalization( $provider );
+	}
+
+	/**
+	 * @throws MaintenanceFatalError
+	 */
 	private function loadConfigurationDirectlyFromFile( IConfigurationProvider $provider ): stdClass {
 		$configStatus = $provider->getStore()->loadConfigurationUncached();
 		if ( !$configStatus->isGood() ) {
@@ -244,6 +267,20 @@ class ChangeWikiConfig extends Maintenance {
 		}
 		return $configStatus->value;
 	}
+
+	/**
+	 * @throws MaintenanceFatalError
+	 */
+	private function loadFullConfigurationWithDefaultsAndNormalization( IConfigurationProvider $provider ): stdClass {
+		$configStatus = $provider->loadValidConfigurationUncached();
+		if ( !$configStatus->isGood() ) {
+			$this->output( "Failed to load config with validation:\n" );
+			$this->fatalError( $configStatus );
+		}
+
+		return $configStatus->value;
+	}
+
 }
 
 $maintClass = ChangeWikiConfig::class;
