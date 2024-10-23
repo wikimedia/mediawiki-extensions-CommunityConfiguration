@@ -2,7 +2,7 @@
 	<control-wrapper v-bind="controlWrapper">
 		<cdx-lookup
 			v-model:selected="selection"
-			:initial-input-value="initialValue"
+			v-model:input-value="inputValue"
 			:menu-items="menuItems"
 			:menu-config="menuConfig"
 			:placeholder="uischema.placeholder"
@@ -41,8 +41,8 @@ module.exports = exports = {
 			controlWrapper,
 			onChange,
 		} = useCodexControl( useJsonFormControl( props ) );
-		const initialValue = unref( control.modelValue );
-		const selection = ref( initialValue );
+		const inputValue = ref( unref( control.modelValue ) || '' );
+		const selection = ref( null );
 		const menuItems = ref( [] );
 		const currentSearchTerm = ref( '' );
 
@@ -53,12 +53,15 @@ module.exports = exports = {
 		 * the menu items.
 		 */
 		const onSelectionChange = ( value ) => {
-			if ( value === null ) {
-				// This is a workaround until we have T365145
-				onChange( '' );
-			} else {
+			selection.value = value;
+			if ( value !== null ) {
+				// A dropdown item was selected
+				inputValue.value = value;
+				currentSearchTerm.value = value;
 				onChange( value );
 			}
+			// If value is null, we don't update inputValue or currentSearchTerm,
+			// preserving the user's typed input
 		};
 
 		/**
@@ -67,9 +70,16 @@ module.exports = exports = {
 		 * @param {string} value
 		 */
 		const onInput = debounce( ( value ) => {
-			// Internally track the current search term.
+			// Always update inputValue and currentSearchTerm with user input
+			inputValue.value = value;
 			currentSearchTerm.value = value;
+
+			// If the input doesn't match the current selection, clear the selection
+			if ( value !== selection.value ) {
+				selection.value = null;
+			}
 			onChange( value );
+
 			// Do nothing if we have no input.
 			if ( !value ) {
 				menuItems.value = [];
@@ -105,7 +115,9 @@ module.exports = exports = {
 		}, 300 );
 
 		// do an initial search for menu-items to prepopulate the select field
-		onInput( initialValue );
+		if ( inputValue.value ) {
+			onInput( inputValue.value );
+		}
 
 		const menuConfig = {
 			visibleItemLimit: 6,
@@ -115,7 +127,7 @@ module.exports = exports = {
 			onSelectionChange,
 			controlWrapper,
 			selection,
-			initialValue,
+			inputValue,
 			menuItems,
 			menuConfig,
 			onInput,
