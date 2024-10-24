@@ -274,6 +274,7 @@
 		"communityconfigurationedit": {
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Api\\ApiEdit",
 			"services": [
+				"CommunityConfiguration.Logger",
 				"CommunityConfiguration.ProviderFactory"
 			]
 		}
@@ -282,6 +283,7 @@
 		"communityconfiguration": {
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Api\\ApiQueryRead",
 			"services": [
+				"CommunityConfiguration.Logger",
 				"CommunityConfiguration.ProviderFactory"
 			]
 		}

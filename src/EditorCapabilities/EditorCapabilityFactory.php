@@ -6,8 +6,8 @@ use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\IContextSource;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Title\Title;
+use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 class EditorCapabilityFactory {
@@ -23,12 +23,18 @@ class EditorCapabilityFactory {
 	private array $capabilitiesSpecs;
 
 	private ObjectFactory $objectFactory;
+	private LoggerInterface $logger;
 
-	public function __construct( ServiceOptions $options, ObjectFactory $objectFactory ) {
+	public function __construct(
+		ServiceOptions $options,
+		ObjectFactory $objectFactory,
+		LoggerInterface $logger
+	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->capabilitiesSpecs = $options->get( 'CommunityConfigurationEditorCapabilities' );
 
 		$this->objectFactory = $objectFactory;
+		$this->logger = $logger;
 	}
 
 	/**
@@ -59,7 +65,7 @@ class EditorCapabilityFactory {
 			throw new LogicException( 'ObjectFactory\'s assertion is invalid' );
 		}
 
-		$result->setLogger( LoggerFactory::getInstance( 'CommunityConfiguration' ) );
+		$result->setLogger( $this->logger );
 		return $result;
 	}
 }

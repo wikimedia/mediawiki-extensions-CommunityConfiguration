@@ -6,23 +6,23 @@ use InvalidArgumentException;
 use MediaWiki\Api\ApiQuery;
 use MediaWiki\Api\ApiQueryBase;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
-use MediaWiki\Logger\LoggerFactory;
-use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiQueryRead extends ApiQueryBase {
-	use LoggerAwareTrait;
 
+	private LoggerInterface $logger;
 	private ConfigurationProviderFactory $configurationProviderFactory;
 
 	public function __construct(
 		ApiQuery $queryModule,
 		string $moduleName,
+		LoggerInterface $logger,
 		ConfigurationProviderFactory $configurationProviderFactory
 	) {
 		parent::__construct( $queryModule, $moduleName, 'ccr' );
-		$this->setLogger( LoggerFactory::getInstance( 'CommunityConfiguration' ) );
 
+		$this->logger = $logger;
 		$this->configurationProviderFactory = $configurationProviderFactory;
 	}
 

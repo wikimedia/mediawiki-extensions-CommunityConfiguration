@@ -21,9 +21,10 @@ use MediaWiki\MediaWikiServices;
 
 return [
 	'CommunityConfiguration.MessagesProcessor' => static function ( MediaWikiServices $services ) {
-		$processor = new MessagesProcessor( RequestContext::getMain() );
-		$processor->setLogger( LoggerFactory::getInstance( 'CommunityConfiguration' ) );
-		return $processor;
+		return new MessagesProcessor(
+			CommunityConfigurationServices::wrap( $services )->getLogger(),
+			RequestContext::getMain()
+		);
 	},
 	'CommunityConfiguration.EditorCapabilityFactory' => static function ( MediaWikiServices $services ) {
 		return new EditorCapabilityFactory(
@@ -36,7 +37,8 @@ return [
 					),
 				] )
 			),
-			$services->getObjectFactory()
+			$services->getObjectFactory(),
+			CommunityConfigurationServices::wrap( $services )->getLogger()
 		);
 	},
 	'CommunityConfiguration.EmergencyDefaultsUpdater' => static function ( MediaWikiServices $services ) {
@@ -49,9 +51,13 @@ return [
 			$services->getHookContainer()
 		);
 	},
+	'CommunityConfiguration.Logger' => static function ( MediaWikiServices $services ) {
+		return LoggerFactory::getInstance( 'CommunityConfiguration' );
+	},
 	'CommunityConfiguration.ProviderFactory' => static function ( MediaWikiServices $services ) {
 		$ccServices = CommunityConfigurationServices::wrap( $services );
 		return new ConfigurationProviderFactory(
+			$ccServices->getLogger(),
 			$ccServices->getStoreFactory(),
 			$ccServices->getValidatorFactory(),
 			$services->getMainConfig(),
@@ -66,7 +72,7 @@ return [
 			$services->getLocalServerObjectCache(),
 			$ccServices->getConfigurationProviderFactory(),
 			$services->getMainConfig(),
-			LoggerFactory::getInstance( 'CommunityConfiguration' )
+			$ccServices->getLogger()
 		);
 	},
 	'CommunityConfiguration.ValidatorFactory' => static function ( MediaWikiServices $services ) {
