@@ -89,17 +89,17 @@ module.exports = exports = {
 						// Build an array of menu items.
 						const results = data.query.pages.map( ( result ) => {
 							const hasImageInfo = !!result.imageinfo.length;
-							const url = hasImageInfo ? result.imageinfo[ 0 ].url : null;
+							const originalImageUrl = hasImageInfo ? result.imageinfo[ 0 ].url : null;
+							const thumbUrlForMenuPreview = hasImageInfo ? result.imageinfo[ 0 ].thumburl : null;
 							return {
 								// REVIEW maybe show namesapce "File"?
 								label: result.title.replace( 'File:', '' ),
 								value: result.title,
-								showThumbnail: hasImageInfo,
 								thumbnail: {
-									url,
-									width: 200,
-									height: 150,
+									url: thumbUrlForMenuPreview,
+									width: 80,
 								},
+								urlValue: originalImageUrl,
 							};
 						} );
 
@@ -125,7 +125,7 @@ module.exports = exports = {
 				const item = menuItems.value.find( ( { value } ) => value === newVal );
 				onChange( {
 					title: newVal || '',
-					url: item ? item.thumbnail.url : '',
+					url: item ? item.urlValue : '',
 				} );
 			},
 			selection,

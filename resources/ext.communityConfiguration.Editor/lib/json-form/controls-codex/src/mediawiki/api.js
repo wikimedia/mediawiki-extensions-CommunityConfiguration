@@ -39,6 +39,7 @@ MwForeignApi.prototype.searchCommonsFiles = function ( searchTerm, offset ) {
 		gpsnamespace: 6,
 		prop: 'imageinfo',
 		iiprop: 'url',
+		iiurlwidth: 80,
 	};
 
 	if ( offset ) {
