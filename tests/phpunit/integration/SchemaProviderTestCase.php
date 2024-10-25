@@ -57,6 +57,13 @@ abstract class SchemaProviderTestCase extends MediaWikiIntegrationTestCase {
 		return false;
 	}
 
+	final public function testSchemaHasVersion(): void {
+		$schema = $this->getProvider()->getValidator()->getSchemaBuilder()->getSchemaReader();
+		$version = $schema->getVersion();
+
+		$this->assertNotNull( $version, 'Schema ' . $schema->getSchemaId() . ' must have a VERSION constant' );
+	}
+
 	final protected function getProvider(): IConfigurationProvider {
 		return CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()
