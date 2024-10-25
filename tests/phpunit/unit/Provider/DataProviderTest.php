@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Extension\CommunityConfiguration\Provider\DataProvider;
+use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
 use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWiki\Extension\CommunityConfiguration\Store\StaticStore;
@@ -16,6 +17,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use StatusValue;
 use stdClass;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Provider\DataProvider
@@ -107,10 +109,10 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( $defaultConfig );
 
 		$validatorMock = $this->createMock( JsonSchemaValidator::class );
-		$validatorMock->expects( $this->exactly( 2 ) )
+		$validatorMock->expects( $this->exactly( 4 ) )
 			->method( 'areSchemasSupported' )
 			->willReturn( true );
-		$validatorMock->expects( $this->exactly( 2 ) )
+		$validatorMock->expects( $this->exactly( 4 ) )
 			->method( 'getSchemaBuilder' )
 			->willReturn( $schemaBuilderMock );
 		$validatorMock->expects( $this->exactly( 2 ) )
@@ -349,7 +351,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$validatorMock->expects( $this->once() )
 			->method( 'validateStrictly' )
 			->willReturn( ValidationStatus::newGood() );
-		$validatorMock->expects( $this->once() )
+		$validatorMock->expects( $this->exactly( 2 ) )
 			->method( 'areSchemasSupported' )
 			->willReturn( false );
 
@@ -384,11 +386,16 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$validatorMock = $this->createMock( IValidator::class );
 		$validatorMock->expects( $this->never() )
-			->method( $this->anythingBut( 'validateStrictly', 'areSchemasSupported', 'getSchemaVersion' ) );
+			->method( $this->anythingBut(
+				'validateStrictly',
+				'areSchemasSupported',
+				'getSchemaVersion',
+				'getSchemaBuilder'
+			) );
 		$validatorMock->expects( $this->once() )
 			->method( 'validateStrictly' )
 			->willReturn( ValidationStatus::newGood() );
-		$validatorMock->expects( $this->once() )
+		$validatorMock->expects( $this->exactly( 2 ) )
 			->method( 'areSchemasSupported' )
 			->willReturn( true );
 		$validatorMock->expects( $this->once() )
@@ -437,4 +444,32 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $provider->getOptionValue( 'excludeFromUI' ) );
 		$this->assertNull( $provider->getOptionValue( 'nonExistentOption' ) );
 	}
+
+	public function testNormalizeStoredConfig(): void {
+		$storedConfig = (object)[
+			'Mentors' => [],
+		];
+		$expectedConfig = (object)[
+			'Mentors' => (object)[],
+		];
+		$schema = new class() extends JsonSchema {
+			// phpcs:ignore Generic.NamingConventions.UpperCaseConstantName.ClassConstantNotUpperCase
+			public const Mentors = [
+				JsonSchema::TYPE => JsonSchema::TYPE_OBJECT,
+			];
+		};
+
+		$provider = new DataProvider(
+			'ProviderId',
+			[ 'excludeFromUI' => true ],
+			new StaticStore( $storedConfig ),
+			new JsonSchemaValidator(
+				$schema,
+				$this->createStub( IBufferingStatsdDataFactory::class )
+			),
+		);
+
+		$this->assertConfigStatusOK( $expectedConfig, $provider->loadValidConfigurationUncached() );
+	}
+
 }
