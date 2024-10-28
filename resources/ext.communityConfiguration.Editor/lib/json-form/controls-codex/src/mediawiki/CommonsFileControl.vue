@@ -2,7 +2,7 @@
 	<control-wrapper v-bind="controlWrapper">
 		<cdx-lookup
 			v-model:selected="selection"
-			:initial-input-value="initialValue"
+			v-model:input-value="inputValue"
 			:menu-items="menuItems"
 			:menu-config="menuConfig"
 			:placeholder="uischema.placeholder"
@@ -43,8 +43,8 @@ module.exports = exports = {
 			onChange,
 		} = useCodexControl( useJsonFormControl( props ) );
 		const model = unref( control.modelValue );
-		const initialValue = model.title ? model.title : '';
-		const selection = ref( null );
+		const selection = ref( model.title || null );
+		const inputValue = ref( model.title || '' );
 		const menuItems = ref( [] );
 		const currentSearchTerm = ref( '' );
 		let isSearchAvailable = true;
@@ -64,6 +64,7 @@ module.exports = exports = {
 		const onInput = debounce( ( value ) => {
 			// Internally track the current search term.
 			currentSearchTerm.value = value;
+			inputValue.value = value;
 
 			// Do nothing if we have no input.
 			if ( !value ) {
@@ -123,13 +124,17 @@ module.exports = exports = {
 			controlWrapper,
 			onFileUpdated( newVal ) {
 				const item = menuItems.value.find( ( { value } ) => value === newVal );
+				// Update inputValue to reflect the selected filename
+				if ( newVal !== null ) {
+					inputValue.value = newVal;
+				}
 				onChange( {
 					title: newVal || '',
 					url: item ? item.urlValue : '',
 				} );
 			},
 			selection,
-			initialValue,
+			inputValue,
 			menuItems,
 			menuConfig,
 			onInput,
