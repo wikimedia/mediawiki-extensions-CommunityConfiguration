@@ -5,8 +5,17 @@
 		]
 	},
 	"communityconfiguration": "社区配置",
+	"communityconfiguration-desc": "包含社区配置逻辑",
+	"communityconfiguration-editor-chip-control-aria-chip-description": "按Enter键编辑，或按Delete键删除",
+	"communityconfiguration-editor-client-generic-error": "加载配置编辑器时出错。请稍后重试。",
+	"communityconfiguration-editor-client-generic-error-description": "组件$1中的“$2”发生错误。详细信息如下：",
+	"communityconfiguration-editor-client-post-feedback": "如果问题仍然存在，请考虑在讨论页面中[$1 留下反馈]。",
+	"communityconfiguration-editor-client-validation-errors": "表单中有$1个{{PLURAL:$1|错误}}。",
 	"communityconfiguration-editor-form-submit-button-text": "保存更改",
 	"communityconfiguration-editor-form-submit-button-loading-text": "正在发送...",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "移除元素",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "添加其它元素",
+	"communityconfiguration-guidelines-title": "什么是社区配置？",
 	"communityconfiguration-guidelines-guideline1-title": "了解更多",
 	"communityconfiguration-guidelines-guideline2-title": "向我们发送{{GENDER:$1|你的}}反馈",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "错误详情",
@@ -22,5 +31,6 @@
 	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|您的}}更改已保存",
 	"communityconfiguration-editor-client-data-submission-error": "保存{{GENDER:$1|你的}}更改时出错。请稍后重试。",
 	"communityconfiguration-editor-message-dismiss-button-label": "关闭",
-	"communityconfiguration-page-title-control-no-results": "未找到结果。"
+	"communityconfiguration-page-title-control-no-results": "未找到结果。",
+	"communityconfiguration-editor-navigation-tab-viewform": "查看表单"
 }
