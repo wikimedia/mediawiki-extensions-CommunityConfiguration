@@ -168,7 +168,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 		return $context;
 	}
 
-	private function getGenericFormEditorCapability( string $preExistingConfig = null ): array {
+	private function getGenericFormEditorCapability( ?string $preExistingConfig = null ): array {
 		$configPage = $this->getNonexistingTestPage( self::CONFIG_PAGE_TITLE );
 		if ( $preExistingConfig !== null ) {
 			$this->editPage( $configPage, $preExistingConfig );
