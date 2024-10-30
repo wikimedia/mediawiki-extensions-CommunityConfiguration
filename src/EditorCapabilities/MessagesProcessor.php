@@ -7,18 +7,20 @@ use Iterator;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaIterator;
 use MessageLocalizer;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\NullLogger;
+use Psr\Log\LoggerInterface;
 use RuntimeException;
 
 class MessagesProcessor {
-	use LoggerAwareTrait;
 
+	private LoggerInterface $logger;
 	private MessageLocalizer $messageLocalizer;
 
-	public function __construct( MessageLocalizer $messageLocalizer ) {
+	public function __construct(
+		LoggerInterface $logger,
+		MessageLocalizer $messageLocalizer
+	) {
+		$this->logger = $logger;
 		$this->messageLocalizer = $messageLocalizer;
-		$this->setLogger( new NullLogger() );
 	}
 
 	/**

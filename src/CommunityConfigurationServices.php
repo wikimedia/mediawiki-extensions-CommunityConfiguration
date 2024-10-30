@@ -14,6 +14,7 @@ use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
 use MediaWiki\MediaWikiServices;
+use Psr\Log\LoggerInterface;
 
 class CommunityConfigurationServices {
 
@@ -36,6 +37,10 @@ class CommunityConfigurationServices {
 
 	public function getHookRunner(): HookRunner {
 		return $this->coreServices->getService( 'CommunityConfiguration.HookRunner' );
+	}
+
+	public function getLogger(): LoggerInterface {
+		return $this->coreServices->getService( 'CommunityConfiguration.Logger' );
 	}
 
 	public function getConfigurationProviderFactory(): ConfigurationProviderFactory {

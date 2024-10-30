@@ -11,6 +11,7 @@ use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWikiUnitTestCase;
+use Psr\Log\NullLogger;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory
@@ -36,6 +37,7 @@ class ConfigurationProviderFactoryTest extends MediaWikiUnitTestCase {
 			],
 		];
 		$factory = new ConfigurationProviderFactory(
+			new NullLogger(),
 			$this->createNoOpMock( StoreFactory::class ),
 			$this->createNoOpMock( ValidatorFactory::class ),
 			new HashConfig( [
@@ -61,6 +63,7 @@ class ConfigurationProviderFactoryTest extends MediaWikiUnitTestCase {
 
 	public function testUnknownProvider() {
 		$factory = new ConfigurationProviderFactory(
+			new NullLogger(),
 			$this->createNoOpMock( StoreFactory::class ),
 			$this->createNoOpMock( ValidatorFactory::class ),
 			new HashConfig( [
@@ -79,6 +82,7 @@ class ConfigurationProviderFactoryTest extends MediaWikiUnitTestCase {
 
 	public function testMalformedProvider() {
 		$factory = new ConfigurationProviderFactory(
+			new NullLogger(),
 			$this->createNoOpMock( StoreFactory::class ),
 			$this->createNoOpMock( ValidatorFactory::class ),
 			new HashConfig( [

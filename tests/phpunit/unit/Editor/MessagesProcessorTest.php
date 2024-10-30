@@ -10,6 +10,7 @@ use MediaWiki\Message\Message;
 use MediaWikiUnitTestCase;
 use MessageLocalizer;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Log\NullLogger;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\MessagesProcessor
@@ -306,7 +307,7 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 	public function testGetMessages( $cls, $expected, $expectedSubControl = [] ) {
 		$reader = new JsonSchemaReader( $cls );
 		$iterator = new JsonSchemaIterator( $reader );
-		$processor = new MessagesProcessor( $this->getMockMessageLocalizer() );
+		$processor = new MessagesProcessor( new NullLogger(), $this->getMockMessageLocalizer() );
 		$result = $processor->getMessages( 'pid', $iterator, 'pfx' );
 		array_unshift( $expected, 'pfx-pid-title' );
 		$this->assertEqualsCanonicalizing(

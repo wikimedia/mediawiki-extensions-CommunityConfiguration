@@ -8,23 +8,23 @@ use MediaWiki\Api\ApiMain;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidationStatus;
 use MediaWiki\Json\FormatJson;
-use MediaWiki\Logger\LoggerFactory;
-use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiEdit extends ApiBase {
-	use LoggerAwareTrait;
 
+	private LoggerInterface $logger;
 	private ConfigurationProviderFactory $configurationProviderFactory;
 
 	public function __construct(
 		ApiMain $mainModule,
 		string $moduleName,
+		LoggerInterface $logger,
 		ConfigurationProviderFactory $configurationProviderFactory
 	) {
 		parent::__construct( $mainModule, $moduleName );
-		$this->setLogger( LoggerFactory::getInstance( 'CommunityConfiguration' ) );
 
+		$this->logger = $logger;
 		$this->configurationProviderFactory = $configurationProviderFactory;
 	}
 

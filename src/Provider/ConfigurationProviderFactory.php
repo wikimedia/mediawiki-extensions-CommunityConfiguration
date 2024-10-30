@@ -9,9 +9,9 @@ use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Utils;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
+use Psr\Log\LoggerInterface;
 
 /**
  * Create a configuration provider
@@ -26,6 +26,7 @@ class ConfigurationProviderFactory {
 	private ?array $providerSpecs = null;
 	private ?array $classSpecs = null;
 	private array $providers = [];
+	private LoggerInterface $logger;
 	private StoreFactory $storeFactory;
 	private ValidatorFactory $validatorFactory;
 	/** Used to create the services associated to a provider */
@@ -35,6 +36,7 @@ class ConfigurationProviderFactory {
 	private ExtensionRegistry $extensionRegistry;
 
 	public function __construct(
+		LoggerInterface $logger,
 		StoreFactory $storeFactory,
 		ValidatorFactory $validatorFactory,
 		Config $config,
@@ -42,6 +44,7 @@ class ConfigurationProviderFactory {
 		HookRunner $hookRunner,
 		MediaWikiServices $services
 	) {
+		$this->logger = $logger;
 		$this->storeFactory = $storeFactory;
 		$this->validatorFactory = $validatorFactory;
 		$this->config = $config;
@@ -134,7 +137,7 @@ class ConfigurationProviderFactory {
 		if ( !$provider instanceof IConfigurationProvider ) {
 			throw new LogicException( "$className is not an instance of IConfigurationProvider" );
 		}
-		$provider->setLogger( LoggerFactory::getInstance( 'CommunityConfiguration' ) );
+		$provider->setLogger( $this->logger );
 		return $provider;
 	}
 
