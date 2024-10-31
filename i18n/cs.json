@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Martin Urbanec (WMF)"
+			"Martin Urbanec (WMF)",
+			"Matěj Suchánek"
 		]
 	},
 	"communityconfiguration": "Komunitní konfigurace",

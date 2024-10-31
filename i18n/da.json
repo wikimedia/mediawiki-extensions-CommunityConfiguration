@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"Steenth"
+		]
+	},
+	"communityconfiguration": "Fællesskabskonfiguration",
+	"communityconfiguration-desc": "Indeholder logik for fællesskabskonfiguration",
+	"communityconfiguration-editor-client-generic-error": "Noget gik galt under indlæsning af konfigurationseditoren. Prøv venligst igen senere.",
+	"communityconfiguration-editor-client-generic-error-description": "Der opstod en fejl i '$2' i komponent $1. Se detaljer nedenfor:",
+	"communityconfiguration-editor-form-submit-button-text": "Gem ændringer",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Sender...",
+	"communityconfiguration-guidelines-title": "Hvad er fællesskabskonfiguration?",
+	"communityconfiguration-guidelines-description": "Fællesskabskonfiguration er et værktøj, der giver fællesskaber mulighed for at konfigurere og kontrollere konfigurationen af forskellige {{SITENAME}}-funktioner, hvilket hjælper administratorer med at passe deres fællesskabsspecifikke behov.",
+	"communityconfiguration-guidelines-guideline1-title": "Få flere oplysninger",
+	"communityconfiguration-guidelines-guideline2-title": "Send os {{GENDER:$1|din}} tilbagemelding",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Fejldetaljer",
+	"communityconfiguration-schema-validation-error": "KLADDE: $2. Nøgle: $1",
+	"communityconfiguration-providers-list-title": "Funktioner",
+	"communityconfiguration-provider-not-found": "Leverandøren $1 blev ikke fundet",
+	"communityconfiguration-unknown-error": "UDKAST: Noget gik galt. Vil du indsende en sag i Phabricator?",
+	"communityconfigurationdashboard": "Fællesskabskonfiguration",
+	"communityconfiguration-edit-summary-reminder": "<b>Påmindelse</b>: Denne ændring kan påvirke et stort antal fællesskabsmedlemmer. Overvej venligst at angive hvorfor {{GENDER:$1|du}} foretager ændringen og henvis til enhver relateret fællesskabsdiskussion, hvis det er relevant.",
+	"communityconfiguration-edit-summary-dialog-title": "Gem ændringer for $1",
+	"communityconfiguration-edit-summary-dialog-title-span": "(valgfri)",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Beskriv de ændringer, der blev gjort i konfigurationen",
+	"communityconfiguration-edit-summary-dialog-save-button": "Gem ændringer",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Annullér",
+	"communityconfiguration-edit-summary-dialog-label": "Redigeringsopsummering",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Dine}} ændringer blev gemt",
+	"communityconfiguration-editor-client-data-submission-error": "Noget gik galt, da {{GENDER:$1|dine}} ændringer skulle gemmes. Prøv venligst igen senere.",
+	"communityconfiguration-editor-message-dismiss-button-label": "Luk",
+	"communityconfiguration-page-title-control-no-results": "Ingen resultater fundet"
+}

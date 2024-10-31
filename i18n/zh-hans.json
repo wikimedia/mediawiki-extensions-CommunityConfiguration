@@ -5,8 +5,12 @@
 		]
 	},
 	"communityconfiguration": "社区配置",
+	"communityconfiguration-desc": "包含社区配置逻辑",
+	"communityconfiguration-editor-client-generic-error": "加载配置编辑器时出错。请稍后重试。",
+	"communityconfiguration-editor-client-generic-error-description": "组件$1中的“$2”发生错误。详细信息如下：",
 	"communityconfiguration-editor-form-submit-button-text": "保存更改",
 	"communityconfiguration-editor-form-submit-button-loading-text": "正在发送...",
+	"communityconfiguration-guidelines-title": "什么是社区配置？",
 	"communityconfiguration-guidelines-guideline1-title": "了解更多",
 	"communityconfiguration-guidelines-guideline2-title": "向我们发送{{GENDER:$1|你的}}反馈",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "错误详情",
