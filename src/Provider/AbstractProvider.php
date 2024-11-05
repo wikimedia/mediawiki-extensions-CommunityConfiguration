@@ -101,7 +101,8 @@ abstract class AbstractProvider implements IConfigurationProvider {
 		string $summary,
 		bool $bypassPermissionCheck
 	): StatusValue {
-		$normalizedConfig = $this->normalizeTopLevelConfigData( $newConfig );
+		// Normalize the top level field first to avoid T379094
+		$normalizedConfig = $this->normalizeTopLevelConfigData( (object)$newConfig );
 		$validationStatus = $this->getValidator()->validateStrictly( $normalizedConfig );
 		if ( !$validationStatus->isGood() ) {
 			return $validationStatus;
