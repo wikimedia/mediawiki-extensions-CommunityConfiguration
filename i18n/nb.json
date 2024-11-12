@@ -13,6 +13,8 @@
 	"communityconfiguration-editor-client-validation-errors": "Det er {{PLURAL:$1|en|$1}} feil i skjemaet:",
 	"communityconfiguration-editor-form-submit-button-text": "Lagre endringer",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Sender …",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Fjern element",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "Legg til et annet element",
 	"communityconfiguration-guidelines-title": "Hva er fellesskapskonfigurasjon?",
 	"communityconfiguration-guidelines-description": "Fellesskapskonfigurasjon er et verktøy som lar wikifellesskaper sette opp og kontrollere konfigurasjonen av forskjellige {{SITENAME}}-funksjoner, og lar administratorer tilpasse funksjonene til sitt wikifellesskap.",
 	"communityconfiguration-guidelines-guideline1-title": "Lær mer",
@@ -43,5 +45,13 @@
 	"communityconfiguration-editor-nojs-fallback-text": "Konfigurasjonsredigeringsprogrammet krever JavaScript. Aktiver JavaScript for å kunne bruke det.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Vis skjema",
 	"communityconfiguration-editor-client-notice-message": "Denne siden er beskyttet. Konfigurasjonen for denne funksjonen kan kun redigeres av administratorer.",
-	"communityconfiguration-editor-client-notice-footer-message": "{{GNDER:$1|Du}} kan ikke lagre endringer i dette skjemaet fordi det kun kan redigeres av administratorer."
+	"communityconfiguration-editor-client-notice-footer-message": "{{GNDER:$1|Du}} kan ikke lagre endringer i dette skjemaet fordi det kun kan redigeres av administratorer.",
+	"communityconfiguration-editor-error-validation-array-items-max": "Det kan maksimalt være {{PLURAL:$1|ett element|$1 elementer}} i tabellen",
+	"communityconfiguration-editor-error-validation-array-items-min": "Det kan maksimalt være {{PLURAL:$1|ett element|$1 elementer}} i tabellen",
+	"communityconfiguration-editor-error-validation-enum-invalid-value": "Har ikke en verdi i nummereringen: $1",
+	"communityconfiguration-editor-error-validation-string-too-short": "Må være minst $1 tegn lang",
+	"communityconfiguration-editor-error-validation-string-too-long": "Må være minst $1 tegn lang",
+	"communityconfiguration-maintenance-config-change-summary": "Konfigurasjon endret av vedlikeholdsskript: $1",
+	"tag-community_configuration": "[[mw:Community configuration|Fellesskapskonfigurasjon]]",
+	"tag-community_configuration-description": "Redigeringer som endrer [[Special:CommunityConfiguration|lokal konfigurasjon]] for en funksjon ved å bruke [[mw:Extension:CommunityConfiguration|utvidelsen for fellesskapskonfigurasjon]]"
 }

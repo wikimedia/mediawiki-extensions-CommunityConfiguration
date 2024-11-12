@@ -60,6 +60,7 @@
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "N'a pas de valeur dans l'énumération : $1",
 	"communityconfiguration-editor-error-validation-string-too-short": "Doit contenir au moins $1 caractères",
 	"communityconfiguration-editor-error-validation-string-too-long": "Doit comporter au plus $1 caractères",
+	"communityconfiguration-maintenance-config-change-summary": "Configuration modifiée par le script de maintenance : $1",
 	"tag-community_configuration": "[[mw:Community configuration|Configuration communautaire]]",
 	"tag-community_configuration-description": "Modifications changeant la [[Special:CommunityConfiguration|configuration locale d'un wiki]] pour une fonctionnalité utilisant l'[[mw:Extension:CommunityConfiguration|extension Configuration communautaire]]."
 }
