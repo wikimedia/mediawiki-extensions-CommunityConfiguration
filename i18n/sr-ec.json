@@ -21,6 +21,10 @@
 	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Ваше}} измене су сачуване",
 	"communityconfiguration-editor-message-dismiss-button-label": "Затвори",
 	"communityconfiguration-page-title-control-no-results": "Нема резултата.",
+	"communityconfiguration-editor-loading-info-text": "Конфигурациони едитор се учитава",
+	"communityconfiguration-editor-nojs-fallback-text": "Конфигурационом едитору је потребан JavaScript. Молимо омогућите JavaScript.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Види образац",
-	"communityconfiguration-editor-error-validation-string-too-short": "Мора имати бар $1 карактер"
+	"communityconfiguration-editor-client-notice-message": "Ова страница је заштићена. Само администратори могу уређивати ову могућност.",
+	"communityconfiguration-editor-error-validation-string-too-short": "Мора имати бар $1 карактер",
+	"communityconfiguration-editor-error-validation-string-too-long": "Највише $1 карактера"
 }
