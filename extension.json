@@ -18,6 +18,7 @@
 		"MediaWiki\\Extension\\CommunityConfiguration\\Maintenance\\": "maintenance/"
 	},
 	"TestAutoloadClasses": {
+		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\CommunityConfigurationTestHelpers": "tests/phpunit/CommunityConfigurationTestHelpers.php",
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\JsonSchemaForTesting": "tests/phpunit/JsonSchemaForTesting.php",
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\JsonConfigSchemaForTesting": "tests/phpunit/JsonConfigSchemaForTesting.php",
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\JsonSchemaForTestingNewerVersion": "tests/phpunit/JsonSchemaForTestingNewerVersion.php",

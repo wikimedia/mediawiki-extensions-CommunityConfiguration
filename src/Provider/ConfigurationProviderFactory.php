@@ -89,6 +89,22 @@ class ConfigurationProviderFactory {
 	}
 
 	/**
+	 * Return provider specs
+	 *
+	 * @internal Mostly useful for tests
+	 * @param string $providerId
+	 * @return array
+	 * @throws InvalidArgumentException when the provider does not exist
+	 */
+	public function getProviderSpec( string $providerId ): array {
+		$this->initList();
+		if ( !array_key_exists( $providerId, $this->providerSpecs ) ) {
+			throw new InvalidArgumentException( "Provider $providerId is not supported" );
+		}
+		return $this->providerSpecs[$providerId];
+	}
+
+	/**
 	 * Unconditionally construct a provider
 	 *
 	 * @param string $providerId The provider's key as set in extension.json
@@ -96,10 +112,7 @@ class ConfigurationProviderFactory {
 	 * @throws InvalidArgumentException when the definition of provider is invalid
 	 */
 	private function constructProvider( string $providerId ): IConfigurationProvider {
-		if ( !array_key_exists( $providerId, $this->providerSpecs ) ) {
-			throw new InvalidArgumentException( "Provider $providerId is not supported" );
-		}
-		$spec = $this->providerSpecs[$providerId];
+		$spec = $this->getProviderSpec( $providerId );
 		$storeType = $this->getConstructType( $spec, 'store' );
 
 		$validatorType = $this->getConstructType( $spec, 'validator' );
@@ -148,10 +161,6 @@ class ConfigurationProviderFactory {
 	 * check isProviderSupported to avoid an exception)
 	 */
 	public function newProvider( string $providerId ): IConfigurationProvider {
-		$this->initList();
-		if ( !array_key_exists( $providerId, $this->providerSpecs ) ) {
-			throw new InvalidArgumentException( "Provider $providerId is not supported" );
-		}
 		if ( !array_key_exists( $providerId, $this->providers ) ) {
 			$this->providers[$providerId] = $this->constructProvider( $providerId );
 		}
