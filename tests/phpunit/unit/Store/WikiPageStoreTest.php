@@ -85,7 +85,8 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
 			$titleFactoryMock,
 			$this->createNoOpMock( RevisionLookup::class ),
-			$this->createNoOpMock( Writer::class )
+			$this->createNoOpMock( Writer::class ),
+			false
 		);
 		$this->assertSame( $titleMock, $store->getConfigurationTitle() );
 		$this->assertSame( $titleMock, $store->getConfigurationTitle() );
@@ -107,7 +108,8 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
 			$titleFactoryMock,
 			$this->getRevisionLookupMock( $titleMock, [ 'Foo' => 42 ] ),
-			$this->createNoOpMock( Writer::class )
+			$this->createNoOpMock( Writer::class ),
+			false
 		);
 		$statusValue = $store->loadConfigurationUncached();
 		$this->assertStatusOK( $statusValue );
@@ -130,7 +132,8 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
 			$titleFactoryMock,
 			$this->getRevisionLookupMock( $titleMock, [ 'Foo' => 42 ] ),
-			$this->createNoOpMock( Writer::class )
+			$this->createNoOpMock( Writer::class ),
+			false
 		);
 
 		// this should be a cache miss
@@ -167,7 +170,8 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 			new WANObjectCache( [ 'cache' => $wanBagOStuff ] ),
 			$titleFactoryMock,
 			$this->getRevisionLookupMock( $titleMock, [ 'Foo' => 42 ] ),
-			$this->createNoOpMock( Writer::class )
+			$this->createNoOpMock( Writer::class ),
+			false
 		);
 
 		// this should be a cache miss
@@ -210,7 +214,8 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
 			$titleFactoryMock,
 			$this->createNoOpMock( RevisionLookup::class ),
-			$writerMock
+			$writerMock,
+			false
 		);
 		$this->assertSame(
 			$statusValue,
@@ -231,7 +236,9 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 			new WikiPageStore( 'mw:MediaWiki:Foo.json',
 				new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ), $titleFactoryMock,
 				$this->createNoOpMock( RevisionLookup::class ),
-				$this->createNoOpMock( Writer::class ) );
+				$this->createNoOpMock( Writer::class ),
+				false
+			);
 
 		$this->expectException( LogicException::class );
 		$this->expectExceptionMessage( 'Config page should not be external' );
@@ -257,9 +264,25 @@ class WikiPageStoreTest extends MediaWikiUnitTestCase {
 				'Foo' => 42,
 				WikiPageStore::VERSION_FIELD_NAME => '2.0.0',
 			] ),
-			$this->createNoOpMock( Writer::class )
+			$this->createNoOpMock( Writer::class ),
+			false
 		);
 
 		$this->assertSame( '2.0.0', $store->getVersion() );
+	}
+
+	public function testWithStorageDisabled() {
+		$store = new WikiPageStore(
+			'MediaWiki:Foo.json',
+			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
+			$this->createNoOpMock( TitleFactory::class ),
+			$this->createNoOpMock( RevisionLookup::class ),
+			$this->createNoOpMock( Writer::class ),
+			true
+		);
+
+		$status = $store->loadConfigurationUncached();
+		$this->assertStatusOK( $status );
+		$this->assertStatusValue( (object)[], $status );
 	}
 }

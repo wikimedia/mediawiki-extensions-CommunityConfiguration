@@ -7,6 +7,7 @@ use MediaWiki\Api\ApiRawMessage;
 use MediaWiki\Content\JsonContent;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionLookup;
@@ -28,6 +29,7 @@ class WikiPageStore extends AbstractJsonStore {
 	public const TAG_NAME = 'community configuration';
 
 	private ?string $configLocation;
+	private bool $isTestWithStorageDisabled;
 	private ?Title $configTitle = null;
 	private TitleFactory $titleFactory;
 	private RevisionLookup $revisionLookup;
@@ -38,7 +40,8 @@ class WikiPageStore extends AbstractJsonStore {
 		WANObjectCache $cache,
 		TitleFactory $titleFactory,
 		RevisionLookup $revisionLookup,
-		Writer $writer
+		Writer $writer,
+		?bool $isTestWithStorageDisabled = null
 	) {
 		parent::__construct( $cache );
 
@@ -46,6 +49,12 @@ class WikiPageStore extends AbstractJsonStore {
 		$this->titleFactory = $titleFactory;
 		$this->revisionLookup = $revisionLookup;
 		$this->writer = $writer;
+
+		if ( $isTestWithStorageDisabled === null ) {
+			$isTestWithStorageDisabled = defined( 'MW_PHPUNIT_TEST' ) &&
+				MediaWikiServices::getInstance()->isStorageDisabled();
+		}
+		$this->isTestWithStorageDisabled = $isTestWithStorageDisabled;
 	}
 
 	/**
@@ -76,6 +85,12 @@ class WikiPageStore extends AbstractJsonStore {
 	 * @inheritDoc
 	 */
 	protected function fetchJsonBlob(): StatusValue {
+		if ( $this->isTestWithStorageDisabled ) {
+			// Storage is unavailable, so pretend the page does not contain anything (failure
+			// mode and empty-page behavior is equal, see T325236).
+			return StatusValue::newGood( '{}' );
+		}
+
 		$configPage = $this->getConfigurationTitle();
 
 		if ( $configPage->isExternal() ) {
