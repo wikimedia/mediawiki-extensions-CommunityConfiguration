@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rooiratel"
+		]
+	},
+	"communityconfiguration-editor-chip-control-aria-chip-description": "Druk \"Enter\" om te wysig of \"Delete\" om te verwyder",
+	"communityconfiguration-editor-form-submit-button-text": "Stoor veranderinge",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Stuur tans...",
+	"communityconfiguration-guidelines-guideline1-title": "Leer meer",
+	"communityconfiguration-guidelines-guideline2-title": "Stuur vir ons {{GENDER:$1|jou}} terugvoering",
+	"communityconfiguration-guidelines-guideline2-description": "Ons sal graag {{GENDER:$1|jou}} gedagtes wil hoor! Reik uit na ons deur ons [https://www.mediawiki.org/wiki/Talk:Growth besprekingsbladsy].",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Foutbesonderhede",
+	"communityconfiguration-providers-list-title": "Kenmerke",
+	"communityconfiguration-edit-summary-dialog-title-span": "(opsioneel)",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Jou}} veranderinge is gestoor",
+	"communityconfiguration-editor-message-dismiss-button-label": "Sluit",
+	"communityconfiguration-page-title-control-no-results": "Geen resultate gevind nie.",
+	"communityconfiguration-editor-error-validation-string-too-short": "Moet ten minste $1 karakters lank wees",
+	"communityconfiguration-editor-error-validation-string-too-long": "Moet hoogstens $1 karakters lank wees"
+}
