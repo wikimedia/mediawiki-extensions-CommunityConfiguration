@@ -15,7 +15,7 @@
 	&__Guideline {
 		flex: 1;
 		padding: 0 @spacing-75 0 @spacing-75;
-		min-width: @dashboardCardWidth;
+		min-width: ~'min(calc(100% - 2rem), @{dashboardCardWidth})';
 		background-color: @background-color-progressive-subtle;
 		border-radius: @border-radius-base;
 	}
