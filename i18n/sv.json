@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ainali"
+		]
+	},
+	"communityconfiguration": "Gemenskapskonfigurering",
+	"communityconfiguration-desc": "Innehåller logik för Gemenskapskonfigurering",
+	"communityconfiguration-editor-form-submit-button-text": "Spara ändringar",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Skickar...",
+	"communityconfiguration-guidelines-title": "Vad är Gemenskapskonfigurering?",
+	"communityconfiguration-guidelines-guideline1-title": "Läs mer",
+	"communityconfiguration-guidelines-guideline2-title": "Ge oss {{GENDER:$1|din}} återkoppling",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Feldetaljer",
+	"communityconfiguration-schema-validation-error": "UTKAST: $2. Nyckel: $1",
+	"communityconfiguration-providers-list-title": "Funktioner",
+	"communityconfigurationdashboard": "Gemenskapskonfigurering",
+	"communityconfiguration-edit-summary-dialog-title": "Spara ändringar för $1",
+	"communityconfiguration-edit-summary-dialog-title-span": "(valfritt)",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Beskriv de ändringar som gjordes i konfigurationen",
+	"communityconfiguration-edit-summary-dialog-save-button": "Spara ändringar",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Avbryt",
+	"communityconfiguration-edit-summary-dialog-label": "Redigeringssammanfattning",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1| Dina}} ändringar sparades",
+	"communityconfiguration-editor-client-data-submission-error": "Något gick fel när {{GENDER:$1|dina}} ändringar sparades. Försök igen senare.",
+	"communityconfiguration-editor-message-dismiss-button-label": "Stäng",
+	"communityconfiguration-page-title-control-no-results": "Inga resultat hittades."
+}
