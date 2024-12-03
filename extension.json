@@ -145,8 +145,13 @@
 			]
 		},
 		"ext.communityConfiguration.Editor.styles": {
+			"class": "MediaWiki\\ResourceLoader\\CodexModule",
 			"styles": [
 				"ext.communityConfiguration.Editor/styles/bootstrap.less"
+			],
+			"codexStyleOnly": "true",
+			"codexComponents": [
+				"CdxProgressBar"
 			]
 		},
 		"ext.communityConfiguration.Editor": {
