@@ -17,10 +17,10 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Minutagghi dû sbagghiu",
 	"communityconfiguration-schema-validation-error": "BOZZA: $2. Chiavi: $1",
 	"communityconfiguration-providers-list-title": "Funziunalità",
-	"communityconfiguration-provider-not-found": "A confijurazzioni $1 nun si trova",
+	"communityconfiguration-provider-not-found": "A confijurazzioni $1 nun cc'è",
 	"communityconfiguration-unknown-error": "BOZZA: Quarchi cosa finìu tinta.  Signalari u prubblema supra a Phabricator?",
 	"communityconfigurationdashboard": "Cunfijurazzioni cumunitaria",
-	"communityconfiguration-edit-summary-reminder": "<b>Ricorda</b>: stu canciu po' nfruinzari un nùmmaru granni di mèmmiri dâ cumunità. Pi favuri, schica picchì {{GENDER:$1| sta'}} facennu u canciu e duna i lijami ca mànnanu â discurruta lijata, siḍḍu è pussìbbili.",
+	"communityconfiguration-edit-summary-reminder": "<b>Ricorda</b>: stu canciu po' nfruinzari un nùmmaru granni di mèmmiri dâ cumunità. Schica picchì {{GENDER:$1|sta'}} facennu u canciu e metti i lijami ê discurruti lijati, a quantu su'-su'.",
 	"communityconfiguration-edit-summary-dialog-title": "Riggistra i canci pi $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(a piaciri)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Discrivi i canci fatti â cunfijurazzioni",
@@ -30,5 +30,5 @@
 	"communityconfiguration-editor-client-success-message": "I {{GENDER:$1|to}} canci foru riggistrati",
 	"communityconfiguration-editor-client-data-submission-error": "Quarchi cosa finìu tinta ô riggistrari dî {{GENDER:$1|to}} canci. Torna a prova cchiù tardu.",
 	"communityconfiguration-editor-message-dismiss-button-label": "Chiuji",
-	"communityconfiguration-page-title-control-no-results": "Nun si truvaru risurtati."
+	"communityconfiguration-page-title-control-no-results": "Nun cci foru risurtati."
 }
