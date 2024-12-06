@@ -12,6 +12,10 @@ $specialPageAliases['ar'] = [
 	'CommunityConfiguration' => [ 'إعدادات_المجتمع' ],
 ];
 
+$specialPageAliases['az'] = [
+	'CommunityConfiguration' => [ 'İcmaKonfiqurasiyası' ],
+];
+
 /** čeština (Czech) */
 $specialPageAliases['cs'] = [
 	'CommunityConfiguration' => [ 'Komunitní_konfigurace' ],
