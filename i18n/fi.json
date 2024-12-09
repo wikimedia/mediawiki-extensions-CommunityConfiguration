@@ -22,7 +22,10 @@
 	"communityconfiguration-guidelines-guideline2-title": "Lähetä meille {{GENDER:$1|palautteesi}}",
 	"communityconfiguration-guidelines-guideline2-description": "Haluaisimme kuulla {{GENDER:$1|ajatuksiasi}}! Ota meihin yhteyttä [https://www.mediawiki.org/wiki/Talk:Growth keskustelusivumme] kautta.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Virhetiedot",
+	"communityconfiguration-schema-validation-error": "LUONNOS: $2. Avain: $1",
 	"communityconfiguration-providers-list-title": "Ominaisuudet",
+	"communityconfiguration-provider-not-found": "Palveluntarjoajaa $1 ei löytynyt",
+	"communityconfiguration-unknown-error": "LUONNOS: Jotain meni pieleen. Lähetetä ongelmailmoitus Phabricatorissa?",
 	"communityconfigurationdashboard": "Yhteisöasetukset",
 	"communityconfigurationeditor": "Muokataan {{GRAMMAR:partitive|$1}}",
 	"communityconfiguration-edit-summary-reminder": "<b>Muistutus</b>: Tämä muutos saattaa vaikuttaa suureen joukkoon yhteisön jäsenistä. Kerro, miksi {{GENDER:$1|teet}} kyseisen muutoksen ja linkitä tarvittaessa aiheeseen liittyvä yhteisön keskustelu.",
@@ -43,6 +46,7 @@
 	"communityconfiguration-editor-error-validation-array-items-min": "Tässä kentässä tulee olla vähintään {{PLURAL:$1|$1 kohde|$1 kohdetta}}",
 	"communityconfiguration-editor-error-validation-string-too-short": "Tulee olla vähintään $1 merkkiä pitkä",
 	"communityconfiguration-editor-error-validation-string-too-long": "Tulee olla enintään $1 merkkiä pitkä",
+	"communityconfiguration-maintenance-config-change-summary": "Asetuksia muutettu ylläpitoskriptillä: $1",
 	"tag-community_configuration": "[[mw:Community configuration|Yhteisöasetukset]]",
 	"tag-community_configuration-description": "Muokkaukset, jotka muuttuvat ominaisuuden [[Special:CommunityConfiguration|paikallisia asetuksia]] käyttäen [[mw:Extension:CommunityConfiguration|Yhteisöasetukset-laajennusta]]."
 }
