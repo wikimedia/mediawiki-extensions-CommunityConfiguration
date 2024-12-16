@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pikne"
+		]
+	},
+	"communityconfiguration": "Kogukondlik häälestus",
+	"communityconfiguration-desc": "Sisaldab kogukondliku häälestuse raamistikku.",
+	"communityconfiguration-editor-form-submit-button-text": "Salvesta muudatused",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Saatmine...",
+	"communityconfiguration-guidelines-title": "Mis on kogukondlik häälestus?",
+	"communityconfiguration-guidelines-description": "Kogukondliku häälestuse tööriist võimaldab administraatoritel üles seada ja häälestada {{GRAMMAR:genitive|{{SITENAME}}}} funktsioone vastavalt kogukonna vajadustele.",
+	"communityconfiguration-guidelines-guideline1-title": "Loe veel",
+	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Loe veel] kogukondliku häälestuse kohta: mis see on, kuidas see töötab ja millega selle arendajad parasjagu tegelevad.",
+	"communityconfiguration-guidelines-guideline2-title": "{{GENDER:$1|Saada}} meile tagasisidet",
+	"communityconfiguration-guidelines-guideline2-description": "Kuulame meeleldi {{GENDER:$1|sinu}} mõtteid! Võta ühendust meie [https://www.mediawiki.org/wiki/Talk:Growth aruteluleheküljel].",
+	"communityconfiguration-providers-list-title": "Funktsioonid",
+	"communityconfigurationeditor": "$1 muutmine",
+	"communityconfiguration-edit-summary-reminder": "<b>Pea meeles</b>: see muudatus võib mõjutada paljusid kogukonna liikmeid. Palun näita ära, miks seda muudatust {{GENDER:$1|teed}}, ja lingi võimalusel sellesisulisele arutelule.",
+	"communityconfiguration-edit-summary-dialog-title": "$1 muudatuste salvestamine",
+	"communityconfiguration-edit-summary-dialog-title-span": "(valikuline)",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Kirjelda, kuidas häälestust muudeti",
+	"communityconfiguration-edit-summary-dialog-save-button": "Salvesta muudatused",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Loobu",
+	"communityconfiguration-edit-summary-dialog-label": "Resümee",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Sinu}} muudatused on salvestatud",
+	"communityconfiguration-page-title-control-no-results": "Tulemusi ei leitud.",
+	"communityconfiguration-editor-loading-info-text": "Häälestuse toimetit laaditakse.",
+	"communityconfiguration-editor-nojs-fallback-text": "Häälestuse toimeti nõuab JavaScripti. Palun luba JavaScript, et saaksid toimetit kasutada.",
+	"communityconfiguration-editor-navigation-tab-viewform": "Vaata vormi",
+	"communityconfiguration-editor-client-notice-message": "See lehekülg on kaitstud. Selle funktsiooni häälestust saavad muuta ainult administraatorid.",
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Sa}} ei saa vormis tehtud muudatusi salvestada, sest selle funktsiooni häälestust saavad muuta ainult administraatorid.",
+	"tag-community_configuration": "[[mw:Community configuration|Kogukondlik häälestus]]",
+	"tag-community_configuration-description": "[[Special:CommunityConfiguration|Kohaliku viki häälestuse]] muudatused, mis tehti [[mw:Extension:CommunityConfiguration|kogukondliku häälestuse tarkvaralisa]] abil."
+}
