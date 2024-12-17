@@ -1,13 +1,29 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kuldeepburjbhalaike"
+			"Kuldeepburjbhalaike",
+			"Cabal"
 		]
 	},
+	"communityconfiguration": "ਭਾਈਚਾਰਕ ਬਣਤਰ",
+	"communityconfiguration-desc": "ਭਾਈਚਾਰਕ ਬਣਤਰ ਤਰਕ ਸ਼ਾਮਲ ਕਰਦਾ ਹੈ",
 	"communityconfiguration-editor-form-submit-button-text": "ਤਬਦੀਲੀਆਂ ਸਾਂਭੋ",
 	"communityconfiguration-editor-form-submit-button-loading-text": "ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ...",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "ਤੱਤ ਹਟਾਓ",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "ਇੱਕ ਹੋਰ ਤੱਤ ਸ਼ਾਮਲ ਕਰੋ",
+	"communityconfiguration-guidelines-title": "ਭਾਈਚਾਰਕ ਬਣਤਰ ਕੀ ਹੈ?",
+	"communityconfiguration-guidelines-guideline1-title": "ਹੋਰ ਸਿੱਖੋ",
+	"communityconfiguration-guidelines-guideline2-title": "ਸਾਨੂੰ {{GENDER:$1|ਆਪਣੇ}} ਸੁਝਾਅ ਭੇਜੋ",
+	"communityconfiguration-guidelines-guideline2-description": "ਅਸੀਂ {{GENDER:$1|ਤੁਹਾਡੇ}} ਵਿਚਾਰ ਸੁਣਨਾ ਪਸੰਦ ਕਰਾਂਗੇ! ਸਾਡੇ [https://www.mediawiki.org/wiki/Talk:Growth ਗੱਲਬਾਤ ਵਰਕੇ] ਰਾਹੀਂ ਸਾਡੇ ਤੱਕ ਰਾਬਤਾ ਕਾਇਮ ਕਰੋ।",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "ਗਲਤੀ ਵੇਰਵੇ",
+	"communityconfiguration-schema-validation-error": "ਖਰੜਾ: $2। ਟੀਕਾ: $1",
 	"communityconfiguration-edit-summary-dialog-title": "$1 ਲਈ ਤਬਦੀਲੀਆਂ ਸੰਭਾਲੋ",
-	"communityconfiguration-edit-summary-dialog-title-span": "(ਵਿਕਲਪਿਕ)",
+	"communityconfiguration-edit-summary-dialog-title-span": "(ਚੋਣਵਾਂ)",
 	"communityconfiguration-edit-summary-dialog-save-button": "ਤਬਦੀਲੀਆਂ ਸਾਂਭੋ",
-	"communityconfiguration-edit-summary-dialog-cancel-button": "ਰੱਦ ਕਰੋ"
+	"communityconfiguration-edit-summary-dialog-cancel-button": "ਰੱਦ ਕਰੋ",
+	"communityconfiguration-edit-summary-dialog-label": "ਸੋਧ ਦਾ ਸਾਰ",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1| ਤੁਹਾਡੀਆਂ}} ਤਬਦੀਲੀਆਂ ਨੂੰ ਸੰਭਿਆ ਗਿਆ ਸੀ",
+	"communityconfiguration-editor-client-data-submission-error": "{{GENDER:$1|ਤੁਹਾਡੀਆਂ}} ਤਬਦੀਲੀਆਂ ਨੂੰ ਸੰਭਾਲਣ ਸਮੇਂ ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ। ਕਿਰਪਾ ਕਰਕੇ ਬਾਅਦ ਵਿੱਚ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
+	"communityconfiguration-editor-message-dismiss-button-label": "ਬੰਦ ਕਰੋ",
+	"communityconfiguration-page-title-control-no-results": "ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਲੱਭੇ"
 }
