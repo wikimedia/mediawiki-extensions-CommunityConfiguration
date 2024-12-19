@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"communityconfiguration": "Configuración comunitaria",
+	"communityconfiguration-desc": "Contén a lóxica da configuración comunitaria",
+	"communityconfiguration-editor-client-generic-error": "Produciuse un erro ao cargar o editor de configuración. Inténtao de novo máis tarde.",
+	"communityconfiguration-editor-client-generic-error-description": "Produciuse un erro en \"$2\" no compoñente \"$1\". Consulta os detalles abaixo:",
+	"communityconfiguration-editor-form-submit-button-text": "Gardar os cambios",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Enviando...",
+	"communityconfiguration-guidelines-title": "Que é a configuración comunitaria?",
+	"communityconfiguration-guidelines-description": "A configuración comunitaria é unha ferramenta que permite ás comunidades establecer e controlar a configuración das distintas características de {{SITENAME}}, facilitando que a administración satisfaga as necesidades específicas da comunidade.",
+	"communityconfiguration-guidelines-guideline1-title": "Máis información",
+	"communityconfiguration-guidelines-guideline2-title": "Envíanos {{GENDER:$1|os teus}} comentarios",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Detalles do erro",
+	"communityconfiguration-schema-validation-error": "BORRADOR: $2. Clave: $1",
+	"communityconfiguration-providers-list-title": "Funcionalidades",
+	"communityconfiguration-provider-not-found": "Non se atopou o provedor \"$1\"",
+	"communityconfiguration-unknown-error": "BORRADOR: Produciuse un erro; queres abrir un erro en Phabricator?",
+	"communityconfigurationdashboard": "Configuración comunitaria",
+	"communityconfiguration-edit-summary-reminder": "<b>Recordatorio:</b> Este cambio pode ter impacto sobre un gran número de membros da comunidade; considera indicar por que estás {{GENDER:$1|facendo}} o cambio e ligar con calquera debate comunitario relacionado, se fose axeitado.",
+	"communityconfiguration-edit-summary-dialog-title": "Gardar os cambios para \"$1\"",
+	"communityconfiguration-edit-summary-dialog-title-span": "(opcional)",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Describe os cambios feitos na configuración",
+	"communityconfiguration-edit-summary-dialog-save-button": "Gardar os cambios",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Cancelar",
+	"communityconfiguration-edit-summary-dialog-label": "Resumo de edición",
+	"communityconfiguration-editor-client-success-message": "Gardáronse os {{GENDER:$1|teus}} cambios",
+	"communityconfiguration-editor-client-data-submission-error": "Produciuse un erro ao gardar os {{GENDER:$1|teus}} cambios. Inténtao de novo.",
+	"communityconfiguration-editor-message-dismiss-button-label": "Pechar",
+	"communityconfiguration-page-title-control-no-results": "Non se atopou ningún resultado."
+}

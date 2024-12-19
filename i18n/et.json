@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pikne"
+		]
+	},
+	"communityconfiguration": "Kogukondlik häälestus",
+	"communityconfiguration-desc": "Sisaldab kogukondliku häälestuse raamistikku.",
+	"communityconfiguration-editor-form-submit-button-text": "Salvesta muudatused",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Saatmine...",
+	"communityconfiguration-guidelines-title": "Mis on kogukondlik häälestus?",
+	"communityconfiguration-guidelines-description": "Kogukondliku häälestuse tööriist võimaldab administraatoritel üles seada ja häälestada {{GRAMMAR:genitive|{{SITENAME}}}} funktsioone vastavalt kogukonna vajadustele.",
+	"communityconfiguration-guidelines-guideline1-title": "Loe veel",
+	"communityconfiguration-guidelines-guideline2-title": "{{GENDER:$1|Saada}} meile tagasisidet",
+	"communityconfiguration-providers-list-title": "Funktsioonid",
+	"communityconfiguration-edit-summary-reminder": "<b>Pea meeles</b>: see muudatus võib mõjutada paljusid kogukonna liikmeid. Palun näita ära, miks seda muudatust {{GENDER:$1|teed}}, ja lingi võimalusel sellesisulisele arutelule.",
+	"communityconfiguration-edit-summary-dialog-title": "$1 muudatuste salvestamine",
+	"communityconfiguration-edit-summary-dialog-title-span": "(valikuline)",
+	"communityconfiguration-edit-summary-dialog-placeholder": "Kirjelda, kuidas häälestust muudeti",
+	"communityconfiguration-edit-summary-dialog-save-button": "Salvesta muudatused",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Loobu",
+	"communityconfiguration-edit-summary-dialog-label": "Resümee",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Sinu}} muudatused on salvestatud",
+	"communityconfiguration-page-title-control-no-results": "Tulemusi ei leitud."
+}
