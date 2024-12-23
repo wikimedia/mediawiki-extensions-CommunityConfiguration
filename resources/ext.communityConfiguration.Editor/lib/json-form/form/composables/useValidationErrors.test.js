@@ -64,7 +64,7 @@ function withArrayErrors() {
 	sut.setValidationErrorsFromSubmitResponse( { errors: [
 		{
 			code: 'communityconfiguration-schema-validation-error',
-			html: 'DRAFT: The property text is required. Key: GEHelpPanelLinks[2].text',
+			html: 'The property text is required. Key: GEHelpPanelLinks[2].text',
 			data: {
 				property: 'GEHelpPanelLinks[2].text',
 				pointer: '/GEHelpPanelLinks/2/text',
@@ -77,7 +77,7 @@ function withArrayErrors() {
 		},
 		{
 			code: 'communityconfiguration-schema-validation-error',
-			html: 'DRAFT: The property title is required. Key: GEHelpPanelLinks[3].title',
+			html: 'The property title is required. Key: GEHelpPanelLinks[3].title',
 			data: {
 				property: 'GEHelpPanelLinks[3].title',
 				pointer: '/GEHelpPanelLinks/3/title',
@@ -174,7 +174,7 @@ describe( 'useValidationErrors', () => {
 				responseErrors: [
 					{
 						code: 'communityconfiguration-schema-validation-error',
-						html: 'DRAFT: NULL value found, but an integer is required. Key: GEHelpPanelExcludedNamespaces[0]',
+						html: 'NULL value found, but an integer is required. Key: GEHelpPanelExcludedNamespaces[0]',
 						data: {
 							property: 'GEHelpPanelExcludedNamespaces[0]',
 							pointer: '/GEHelpPanelExcludedNamespaces/0',
@@ -220,7 +220,7 @@ describe( 'useValidationErrors', () => {
 				responseErrors: [
 					{
 						code: 'communityconfiguration-schema-validation-error',
-						html: 'DRAFT: Does not have a value in the enumeration ["bot","sysop"]. Key: AutoModeratorSkipUserGroups[1]',
+						html: 'Does not have a value in the enumeration ["bot","sysop"]. Key: AutoModeratorSkipUserGroups[1]',
 						data: {
 							property: 'AutoModeratorSkipUserGroups[1]',
 							pointer: '/AutoModeratorSkipUserGroups/1',
@@ -272,7 +272,7 @@ describe( 'useValidationErrors', () => {
 				responseErrors: [
 					{
 						code: 'communityconfiguration-schema-validation-error',
-						html: 'DRAFT: There must be a maximum of 3 items in the array. Key: link_recommendation.excludedSections',
+						html: 'There must be a maximum of 3 items in the array. Key: link_recommendation.excludedSections',
 						data: {
 							property: 'link_recommendation.excludedSections',
 							pointer: '/link_recommendation/excludedSections',
@@ -325,7 +325,7 @@ describe( 'useValidationErrors', () => {
 				responseErrors: [
 					{
 						code: 'communityconfiguration-schema-validation-error',
-						html: 'DRAFT: The property title is required. Key: GEHelpPanelLinks[3].title',
+						html: 'The property title is required. Key: GEHelpPanelLinks[3].title',
 						data: {
 							property: 'GEHelpPanelLinks[3].title',
 							pointer: '/GEHelpPanelLinks/3/title',

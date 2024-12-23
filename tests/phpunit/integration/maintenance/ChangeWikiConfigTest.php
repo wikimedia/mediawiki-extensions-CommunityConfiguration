@@ -206,7 +206,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 		$this->assertEquals( '{}', json_encode( $actualConfig ) );
 		$expectedOutputLines = [
 			// phpcs:ignore Generic.Files.LineLength.TooLong
-			'Error: DRAFT: The property NonExistingProperty is not defined and the definition does not allow additional properties. Key: ',
+			'Error: The property NonExistingProperty is not defined and the definition does not allow additional properties. Key: ',
 		];
 		$this->assertOutputPrePostShutdown( implode( "\n", $expectedOutputLines ) . "\n", false );
 	}
