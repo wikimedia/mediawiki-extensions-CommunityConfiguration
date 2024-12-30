@@ -2,13 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Apple TD",
-			"Kokage si"
+			"Kokage si",
+			"Omotecho"
 		]
 	},
 	"communityconfiguration": "コミュニティ設定",
 	"communityconfiguration-desc": "コミュニティ設定ロジックを格納",
 	"communityconfiguration-editor-chip-control-aria-chip-description": "Enterを押して編集またはDeleteを押して除去",
 	"communityconfiguration-editor-client-generic-error": "設定エディターの読み込み中に問題が発生しました。後でもう一度お試しください。",
+	"communityconfiguration-editor-client-generic-error-description": "コンポーネント$1の '$2' でエラーが発生しました。詳細は以下を参照してください:",
 	"communityconfiguration-editor-client-post-feedback": "問題が継続する場合は、トークページに[$1 フィードバックを残す]ことをご検討ください。",
 	"communityconfiguration-editor-client-validation-errors": "フォームに{{PLURAL:$1|エラー|$1個のエラー}}があります:",
 	"communityconfiguration-editor-form-submit-button-text": "変更を保存",
@@ -21,10 +23,16 @@
 	"communityconfiguration-guidelines-guideline1-description": "コミュニティ設定とは何か、どのように機能するのか、チームが取り組んでいることについて[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration もっと知る]。",
 	"communityconfiguration-guidelines-guideline2-title": "{{GENDER:$1|あなたの}}フィードバックをお送りください",
 	"communityconfiguration-guidelines-guideline2-description": "{{GENDER:$1|あなたの}}ご意見を是非お聞かせください！[https://www.mediawiki.org/wiki/Talk:Growth トークページ]からご連絡ください。",
+	"communityconfiguration-invalid-stored-config-error": "$1（コード<code>$2</code>）プロバイダーから有効な設定をロードできませんでした。",
+	"communityconfiguration-invalid-stored-config-error-with-link": "$1（コード<code>$2</code>）プロバイダーから有効な構成をロードできませんでした。$3を参照してください。",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "エラーの詳細",
+	"communityconfiguration-schema-validation-error": "DRAFT: $2。キー: $1",
 	"communityconfiguration-providers-list-title": "機能",
+	"communityconfiguration-provider-not-found": "プロバイダー$1が見つかりません",
+	"communityconfiguration-unknown-error": "下書き: 問題が発生しました。Phabricator に問題を提出しますか?",
 	"communityconfigurationdashboard": "コミュニティ設定",
 	"communityconfigurationeditor": "「$1」を編集中",
+	"communityconfiguration-edit-summary-reminder": "<b>リマインダー</b>: この変更はコミュニティの参加者多数に影響を与える可能性があります。変更しようとする理由を{{GENDER:$1|あなた}}自身が示した上で、適切な場合は関連するコミュニティの議論にリンクするよう検討してください。",
 	"communityconfiguration-edit-summary-dialog-title": "$1 への変更を保存する",
 	"communityconfiguration-edit-summary-dialog-title-span": "(省略可能)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "変更した設定を説明する",
@@ -40,8 +48,11 @@
 	"communityconfiguration-editor-navigation-tab-viewform": "フォームを表示",
 	"communityconfiguration-editor-client-notice-message": "このページは保護されています。この設定は管理者のみが変更できます。",
 	"communityconfiguration-editor-client-notice-footer-message": "この機能の設定は管理者のみ編集可能なため、{{GENDER:$1|あなたは}}このフォームへの変更を保存できません。",
+	"communityconfiguration-editor-error-validation-array-items-max": "配列には最大{{PLURAL:$1|アイテム$1|}}件を含める必要があります",
+	"communityconfiguration-editor-error-validation-array-items-min": "配列には少なくとも{{PLURAL:$1|アイテム$1|}}件が必要です",
 	"communityconfiguration-editor-error-validation-string-too-short": "少なくとも $1 文字以上必要です",
 	"communityconfiguration-editor-error-validation-string-too-long": "最大 $1 文字までです",
+	"communityconfiguration-maintenance-config-change-summary": "メンテナンス スクリプトによって構成が変更されました: $1",
 	"tag-community_configuration": "[[mw:Community configuration|コミュニティ設定]]",
 	"tag-community_configuration-description": "[[mw:Extension:CommunityConfiguration|コミュニティ設定拡張機能]]を使う機能の[[Special:CommunityConfiguration|ローカルウィキ設定]]を変更する編集。"
 }
