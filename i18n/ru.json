@@ -3,12 +3,13 @@
 		"authors": [
 			"Dirruw'o",
 			"Iniquity",
-			"Kareyac"
+			"Kareyac",
+			"Stjn"
 		]
 	},
 	"communityconfiguration": "Конфигурация сообщества",
 	"communityconfiguration-desc": "Содержит логику конфигурации сообщества",
-	"communityconfiguration-editor-client-post-feedback": "Если проблема не устранена, рассмотрите вариант [Оставить отзыв $1 ] на странице обсуждения.",
+	"communityconfiguration-editor-client-post-feedback": "Если проблема не исчезнет, [$1 оставьте отзыв] на странице обсуждения.",
 	"communityconfiguration-guidelines-title": "Что такое конфигурация сообщества?",
 	"communityconfiguration-guidelines-description": "Конфигурация сообщества — это инструмент, который позволяет сообществам настраивать и контролировать конфигурацию различных функций {{grammar:genitive|{{SITENAME}}}}, помогая администраторам удовлетворять особые потребности своего сообщества.",
 	"communityconfiguration-guidelines-guideline1-title": "Узнать больше",
@@ -20,6 +21,7 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Детали ошибки",
 	"communityconfiguration-providers-list-title": "Функции",
 	"communityconfigurationdashboard": "Конфигурация сообщества",
+	"communityconfigurationeditor": "Редактирование: $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Напоминание</b> : это изменение может повлиять на большое количество участников сообщества. Пожалуйста, укажите, почему {{GENDER:$1| вы}} вносите изменения и при необходимости ссылаетесь на любое соответствующее обсуждение в сообществе.",
 	"communityconfiguration-edit-summary-dialog-title": "Сохранить изменения за $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(необязательно)",
