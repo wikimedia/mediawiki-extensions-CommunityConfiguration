@@ -2,12 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Apple TD",
-			"Kokage si"
+			"Kokage si",
+			"Omotecho"
 		]
 	},
 	"communityconfiguration": "コミュニティ設定",
 	"communityconfiguration-desc": "コミュニティ設定ロジックを格納",
 	"communityconfiguration-editor-client-generic-error": "設定エディターの読み込み中に問題が発生しました。後でもう一度お試しください。",
+	"communityconfiguration-editor-client-generic-error-description": "コンポーネント$1の '$2' でエラーが発生しました。詳細は以下を参照してください:",
 	"communityconfiguration-editor-form-submit-button-text": "変更を保存",
 	"communityconfiguration-editor-form-submit-button-loading-text": "送信中...",
 	"communityconfiguration-guidelines-title": "コミュニティ設定とは",
@@ -15,8 +17,12 @@
 	"communityconfiguration-guidelines-guideline1-title": "詳細",
 	"communityconfiguration-guidelines-guideline2-title": "{{GENDER:$1|あなたの}}フィードバックをお送りください",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "エラーの詳細",
+	"communityconfiguration-schema-validation-error": "DRAFT: $2。キー: $1",
 	"communityconfiguration-providers-list-title": "機能",
+	"communityconfiguration-provider-not-found": "プロバイダー$1が見つかりません",
+	"communityconfiguration-unknown-error": "下書き: 問題が発生しました。Phabricator に問題を提出しますか?",
 	"communityconfigurationdashboard": "コミュニティ設定",
+	"communityconfiguration-edit-summary-reminder": "<b>リマインダー</b>: この変更はコミュニティの参加者多数に影響を与える可能性があります。変更しようとする理由を{{GENDER:$1|あなた}}自身が示した上で、適切な場合は関連するコミュニティの議論にリンクするよう検討してください。",
 	"communityconfiguration-edit-summary-dialog-title": "$1 への変更を保存する",
 	"communityconfiguration-edit-summary-dialog-title-span": "(省略可能)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "変更した設定を説明する",
