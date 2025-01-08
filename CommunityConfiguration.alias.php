@@ -31,6 +31,11 @@ $specialPageAliases['fr'] = [
 	'CommunityConfiguration' => [ 'Configuration_communautaire' ],
 ];
 
+/** Hebrew (עברית) */
+$specialPageAliases['he'] = [
+	'CommunityConfiguration' => [ 'תצורת_קהילה' ],
+];
+
 /** Indonesian (Bahasa Indonesia) */
 $specialPageAliases['id'] = [
 	'CommunityConfiguration' => [ 'Pengaturan_komunitas' ],
