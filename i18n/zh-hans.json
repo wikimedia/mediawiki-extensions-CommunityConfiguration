@@ -1,21 +1,28 @@
 {
 	"@metadata": {
 		"authors": [
-			"沈澄心"
+			"沈澄心",
+			"Diskdance",
+			"Lakejason0"
 		]
 	},
-	"communityconfiguration": "社区配置",
-	"communityconfiguration-desc": "包含社区配置逻辑",
+	"communityconfiguration": "社群配置",
+	"communityconfiguration-desc": "包含社群配置逻辑",
 	"communityconfiguration-editor-client-generic-error": "加载配置编辑器时出错。请稍后重试。",
 	"communityconfiguration-editor-client-generic-error-description": "组件$1中的“$2”发生错误。详细信息如下：",
 	"communityconfiguration-editor-form-submit-button-text": "保存更改",
 	"communityconfiguration-editor-form-submit-button-loading-text": "正在发送...",
-	"communityconfiguration-guidelines-title": "什么是社区配置？",
+	"communityconfiguration-guidelines-title": "社群配置是什么？",
+	"communityconfiguration-guidelines-description": "社群配置这一工具允许社群设置与控制{{SITENAME}}的各项功能，帮助管理员满足社群的特定需求。",
 	"communityconfiguration-guidelines-guideline1-title": "了解更多",
-	"communityconfiguration-guidelines-guideline2-title": "向我们发送{{GENDER:$1|你的}}反馈",
+	"communityconfiguration-guidelines-guideline2-title": "向我们发送{{GENDER:$1|您的}}反馈",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "错误详情",
+	"communityconfiguration-schema-validation-error": "草稿：$2。键：$1",
 	"communityconfiguration-providers-list-title": "功能",
-	"communityconfigurationdashboard": "社区配置",
+	"communityconfiguration-provider-not-found": "无法找到提供者$1",
+	"communityconfiguration-unknown-error": "草稿：发生错误，是否在Phabricator提交问题报告？",
+	"communityconfigurationdashboard": "社群配置",
+	"communityconfiguration-edit-summary-reminder": "<b>提醒</b>：此更改可能会影响大量社群成员，请考虑说明{{GENDER:$1|您}}作出更改的原因，并在适当的情况下提供相关的社群讨论链接。",
 	"communityconfiguration-edit-summary-dialog-title": "保存$1的更改",
 	"communityconfiguration-edit-summary-dialog-title-span": "（可选）",
 	"communityconfiguration-edit-summary-dialog-placeholder": "描述配置中所做的更改",
@@ -23,7 +30,7 @@
 	"communityconfiguration-edit-summary-dialog-cancel-button": "取消",
 	"communityconfiguration-edit-summary-dialog-label": "编辑摘要",
 	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|您的}}更改已保存",
-	"communityconfiguration-editor-client-data-submission-error": "保存{{GENDER:$1|你的}}更改时出错。请稍后重试。",
+	"communityconfiguration-editor-client-data-submission-error": "保存{{GENDER:$1|您的}}更改时出错。请稍后重试。",
 	"communityconfiguration-editor-message-dismiss-button-label": "关闭",
 	"communityconfiguration-page-title-control-no-results": "未找到结果。"
 }
