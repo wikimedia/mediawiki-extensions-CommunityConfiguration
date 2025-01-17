@@ -26,7 +26,6 @@
 	"communityconfiguration-schema-validation-error": "$2. Key: $1",
 	"communityconfiguration-providers-list-title": "Features",
 	"communityconfiguration-provider-not-found": "Provider $1 is not found",
-	"communityconfiguration-unknown-error": "Something went wrong, submit an issue in Phabricator?",
 	"communityconfigurationdashboard": "Community Configuration",
 	"communityconfigurationeditor": "Editing $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Reminder</b>: This change may impact a large number of community members, please consider indicating why {{GENDER:$1|you}} are making the change and linking to any related community discussion if appropriate.",
