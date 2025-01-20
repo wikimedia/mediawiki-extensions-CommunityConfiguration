@@ -25,7 +25,7 @@
 	"communityconfiguration-invalid-stored-config-error": "Et konnt keng gülteg Konfiguratioun vum Provider $1 (Code <code>$2</code>) geluede ginn.",
 	"communityconfiguration-invalid-stored-config-error-with-link": "Et konnt keng gülteg Konfiguratioun vum Provider $1 (Code <code>$2</code>) geluede ginn, kuckt $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Feelerdetailer",
-	"communityconfiguration-schema-validation-error": "ENTWORF: $2. Schlëssel: $1",
+	"communityconfiguration-schema-validation-error": "$2. Schlëssel: $1",
 	"communityconfiguration-providers-list-title": "Funktiounen",
 	"communityconfiguration-provider-not-found": "De Provider $1 gouf net fonnt",
 	"communityconfiguration-unknown-error": "BROUILLON: Et huet eppes net funktionéiert, e Probleem am Phabricator mellen?",

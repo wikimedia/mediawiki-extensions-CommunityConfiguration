@@ -54,7 +54,7 @@
 	"communityconfiguration-editor-nojs-fallback-text": "L'éditeur de configuration nécessite JavaScript. Activez ou autorisez Javascript pour pouvoir l'utiliser",
 	"communityconfiguration-editor-navigation-tab-viewform": "Voir le formulaire",
 	"communityconfiguration-editor-client-notice-message": "Cette page est protégée. La configuration de cette fonctionnalité n'est modifiable que par les administrateurs.",
-	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1| Vous}} ne pouvez pas enregistrer les modifications apportées à ce formulaire car la configuration de cette fonctionnalité n'est modifiable que par les administrateurs.",
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Vous}} ne pouvez pas enregistrer les modifications apportées à ce formulaire, car la configuration de cette fonctionnalité n'est modifiable que par les administrateurs.",
 	"communityconfiguration-editor-error-validation-array-items-max": "Il ne doit pas y avoir plus de {{PLURAL:$1|$1 élément|$1 éléments}} dans ce tableau",
 	"communityconfiguration-editor-error-validation-array-items-min": "Il doit y avoir au moins {{PLURAL:$1|$1 élément|$1 éléments}} dans ce tableau",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "N'a pas de valeur dans l'énumération : $1",
