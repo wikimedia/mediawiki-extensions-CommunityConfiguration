@@ -131,6 +131,15 @@
 		"ChangeTagsListActive": "change-tags",
 		"ListDefinedTags": "change-tags"
 	},
+	"DomainEventSubscribers": [
+		{
+			"events": [ "PageUpdated" ],
+			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Hooks\\WikiPageStorePageUpdatedSubscriber",
+			"services": [
+				"CommunityConfiguration.ProviderFactory"
+			]
+		}
+	],
 	"MessagesDirs": {
 		"CommunityConfiguration": [
 			"i18n",
