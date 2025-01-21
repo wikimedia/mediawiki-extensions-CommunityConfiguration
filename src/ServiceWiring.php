@@ -83,7 +83,15 @@ return [
 	},
 	'CommunityConfiguration.ValidatorFactory' => static function ( MediaWikiServices $services ) {
 		return new ValidatorFactory(
-			new ServiceOptions( ValidatorFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			new ServiceOptions(
+				ValidatorFactory::CONSTRUCTOR_OPTIONS,
+				new HashConfig( [
+					'CommunityConfigurationValidators' => Utils::getMergedAttribute(
+						$services->getMainConfig(), $services->getExtensionRegistry(),
+						'CommunityConfigurationValidators'
+					),
+				] ),
+			),
 			$services->getObjectFactory()
 		);
 	},
