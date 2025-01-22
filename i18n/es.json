@@ -33,7 +33,6 @@
 	"communityconfiguration-schema-validation-error": "DRAFT: $2. Key: $1",
 	"communityconfiguration-providers-list-title": "Funcionalidades",
 	"communityconfiguration-provider-not-found": "Proveedor $1 no encontrado",
-	"communityconfiguration-unknown-error": "DRAFT: Algo ha ido mal, ¿reportar en Phabricator?",
 	"communityconfigurationdashboard": "Configuración comunitaria",
 	"communityconfigurationeditor": "Edición de «$1»",
 	"communityconfiguration-edit-summary-reminder": "<b>Recuerda</b>: este cambio puede afectar a una gran cantidad de miembros de la comunidad. Considera indicar el motivo por el que {{GENDER:$1| estás}} realizando el cambio, vinculando cualquier discusión comunitaria relacionada, si corresponde.",

@@ -27,7 +27,6 @@
 	"communityconfiguration-schema-validation-error": "UTKAST: $2. Nøkkel: $1",
 	"communityconfiguration-providers-list-title": "Funksjoner",
 	"communityconfiguration-provider-not-found": "Leverandøren $1 ble ikke funnet",
-	"communityconfiguration-unknown-error": "UTKAST: Noe gikk galt. Vil du sende inn en sak på Phabricator?",
 	"communityconfigurationdashboard": "Fellesskapskonfigurasjon",
 	"communityconfigurationeditor": "Redigerer «$1»",
 	"communityconfiguration-edit-summary-reminder": "<b>Husk:</b> Denne endringen kan ha stor innvirkning på brukerne, så angi hvorfor {{GENDER:$1|du}} gjør endringen, og lenk til relevante diskusjoner om det er aktuelt.",

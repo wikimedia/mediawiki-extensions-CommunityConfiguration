@@ -27,7 +27,6 @@
 	"communityconfiguration-schema-validation-error": "BOZZA: $2. Chiavi: $1",
 	"communityconfiguration-providers-list-title": "Funziunalità",
 	"communityconfiguration-provider-not-found": "A confijurazzioni $1 nun cc'è",
-	"communityconfiguration-unknown-error": "BOZZA: Quarchi cosa finìu tinta.  Signalari u prubblema supra a Phabricator?",
 	"communityconfigurationdashboard": "Cunfijurazzioni cumunitaria",
 	"communityconfigurationeditor": "Canciu di $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Ricorda</b>: stu canciu po' nfruinzari un nùmmaru granni di mèmmira dâ cumunità. Schica picchì {{GENDER:$1|sta'}} facennu lu canciu e metti li lijami ê discurruti lijati, a quantu su'-su'.",

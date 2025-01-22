@@ -27,7 +27,6 @@
 	"communityconfiguration-schema-validation-error": "KLADDE: $2. Nøgle: $1",
 	"communityconfiguration-providers-list-title": "Funktioner",
 	"communityconfiguration-provider-not-found": "Leverandøren $1 blev ikke fundet",
-	"communityconfiguration-unknown-error": "UDKAST: Noget gik galt. Vil du indsende en sag i Phabricator?",
 	"communityconfigurationdashboard": "Fællesskabskonfiguration",
 	"communityconfigurationeditor": "Redigerer $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Påmindelse</b>: Denne ændring kan påvirke et stort antal fællesskabsmedlemmer. Overvej venligst at angive hvorfor {{GENDER:$1|du}} foretager ændringen og henvis til enhver relateret fællesskabsdiskussion, hvis det er relevant.",

@@ -28,7 +28,6 @@
 	"communityconfiguration-schema-validation-error": "$2. Ключ: $1",
 	"communityconfiguration-providers-list-title": "Функції",
 	"communityconfiguration-provider-not-found": "Постачальника $1 не знайдено",
-	"communityconfiguration-unknown-error": "Щось пішло не так; подати звіт на Фабрикатор?",
 	"communityconfigurationdashboard": "Налаштування спільнотою",
 	"communityconfigurationeditor": "Редагування розділу «$1»",
 	"communityconfiguration-edit-summary-reminder": "<b>Нагадування</b>: Ця зміна може вплинути на велику кількість членів спільноти. Вкажіть, будь ласка, чому {{GENDER:$1|ви}} робите цю зміну і дайте посилання на відповідне обговорення спільноти, де потрібно.",

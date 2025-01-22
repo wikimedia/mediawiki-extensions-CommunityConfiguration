@@ -29,7 +29,6 @@
 	"communityconfiguration-schema-validation-error": "草稿：$2。键：$1",
 	"communityconfiguration-providers-list-title": "功能",
 	"communityconfiguration-provider-not-found": "无法找到提供者$1",
-	"communityconfiguration-unknown-error": "草稿：发生错误，是否在Phabricator提交问题报告？",
 	"communityconfigurationdashboard": "社群配置",
 	"communityconfigurationeditor": "编辑“︁$1”︁",
 	"communityconfiguration-edit-summary-reminder": "<b>提醒</b>：此更改可能会影响大量社群成员，请考虑说明{{GENDER:$1|您}}作出更改的原因，并在适当的情况下提供相关的社群讨论链接。",

@@ -27,7 +27,6 @@
 	"communityconfiguration-schema-validation-error": "$2. מפתח: $1",
 	"communityconfiguration-providers-list-title": "אפשרויות",
 	"communityconfiguration-provider-not-found": "הספק $1 לא נמצא",
-	"communityconfiguration-unknown-error": "משהו השתבש, לדווח בעיה לבפריקטור?",
 	"communityconfigurationdashboard": "תצורת קהילה",
 	"communityconfigurationeditor": "עריכת $1",
 	"communityconfiguration-edit-summary-reminder": "<b>תזכורת</b>: השינוי הזה עשוי להשפיע על מספר רב של חברי קהילה, נא לשקול לציין למה {{GENDER:$1|אתה|את}} עושה את השינוי ולקשר לכל דיון קהילתי מתאים במידת הצורך.",

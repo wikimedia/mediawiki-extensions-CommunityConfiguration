@@ -29,7 +29,6 @@
 	"communityconfiguration-schema-validation-error": "SZKIC: $2. Klucz: $1",
 	"communityconfiguration-providers-list-title": "Funkcje",
 	"communityconfiguration-provider-not-found": "Nie znaleziono dostawcy „$1”",
-	"communityconfiguration-unknown-error": "SZKIC: Coś poszło nie tak. Zgłoś błąd na Phabricatorze.",
 	"communityconfigurationdashboard": "Konfiguracja przez społeczność",
 	"communityconfigurationeditor": "Edycja: $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Uwaga</b>: Ta zmiana może mieć wpływ na dużą liczbę członków społeczności, rozważ wskazanie przyczyny, dla której {{GENDER:$1|wprowadzasz}} zmianę i, jeśli to konieczne, podaj link do odpowiedniej dyskusji w społeczności.",

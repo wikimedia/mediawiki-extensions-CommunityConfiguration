@@ -28,7 +28,6 @@
 	"communityconfiguration-schema-validation-error": "BROUILHED: $2. Alc' hwez: $1",
 	"communityconfiguration-providers-list-title": "Arc’hweladurioù",
 	"communityconfiguration-provider-not-found": "N'eo ket bet kavet ar pourchaser \"$1\"",
-	"communityconfiguration-unknown-error": "BROUILHEDː Ur fazi zo bet, menegiñ ur gudenn e Phabricator?",
 	"communityconfigurationdashboard": "Kefluniadur ar Gumuniezh",
 	"communityconfigurationeditor": "Oc'h aozañ $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Kounadur</b>: Gallout a ra ar c’hemm-mañ skogañ kalz izili eus ar gumuniezh, lavarit mar plij perak e {{GENDER:$1|rit}} ar c’hemm ha menegit ul liamm war-zu kement kaozeadenn mard eo dereat.",

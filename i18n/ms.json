@@ -27,7 +27,6 @@
 	"communityconfiguration-schema-validation-error": "DRAF: $2. Kunci: $1",
 	"communityconfiguration-providers-list-title": "Ciri-ciri",
 	"communityconfiguration-provider-not-found": "Pembekal $1 tidak ditemui",
-	"communityconfiguration-unknown-error": "DRAF: Terdapat masalah berlaku, serahkan isu tersebut ke Phabricator?",
 	"communityconfigurationdashboard": "Konfigurasi Komuniti",
 	"communityconfigurationeditor": "Menyunting $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Peringatan</b>: Perubahan ini mungkin memberi kesan kepada sebilangan besar ahli komuniti, sila pertimbangkan untuk menunjukkan sebab {{GENDER:$1| anda}} membuat perubahan tersebut dan pautkan kepada sebarang perbincangan komuniti yang berkaitan jika sesuai.",
