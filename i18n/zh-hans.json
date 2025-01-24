@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Diskdance",
+			"GuoPC",
 			"Lakejason0",
 			"沈澄心"
 		]
@@ -26,7 +27,7 @@
 	"communityconfiguration-invalid-stored-config-error": "无法从提供者$1（代码<code>$2</code>）加载有效的配置。",
 	"communityconfiguration-invalid-stored-config-error-with-link": "无法从提供者$1（代码<code>$2</code>）加载有效的配置，请见$3。",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "错误详情",
-	"communityconfiguration-schema-validation-error": "草稿：$2。键：$1",
+	"communityconfiguration-schema-validation-error": "$2。键：$1",
 	"communityconfiguration-providers-list-title": "功能",
 	"communityconfiguration-provider-not-found": "无法找到提供者$1",
 	"communityconfigurationdashboard": "社群配置",
