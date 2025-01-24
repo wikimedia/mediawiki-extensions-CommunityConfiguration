@@ -60,6 +60,7 @@ class ValidatorFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSupportedKeys() {
+		$this->markTestSkipped( 'Does not work with providers registered by other extensions' );
 		$this->assertSame(
 			array_keys( $this->getValidatorSpecs() ),
 			CommunityConfigurationServices::wrap( $this->getServiceContainer() )
