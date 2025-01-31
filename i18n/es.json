@@ -30,7 +30,7 @@
 	"communityconfiguration-invalid-stored-config-error": "No se pudo cargar una configuración válida del proveedor $1 (código <code>$2</code>).",
 	"communityconfiguration-invalid-stored-config-error-with-link": "No se pudo cargar una configuración válida del proveedor $1 (código <code>$2</code>), ver $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Detalles del error",
-	"communityconfiguration-schema-validation-error": "DRAFT: $2. Key: $1",
+	"communityconfiguration-schema-validation-error": "$2. Key: $1",
 	"communityconfiguration-providers-list-title": "Funcionalidades",
 	"communityconfiguration-provider-not-found": "Proveedor $1 no encontrado",
 	"communityconfigurationdashboard": "Configuración comunitaria",
