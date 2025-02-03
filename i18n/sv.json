@@ -1,24 +1,36 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ainali"
+			"Ainali",
+			"Sabelöga"
 		]
 	},
 	"communityconfiguration": "Gemenskapskonfigurering",
 	"communityconfiguration-desc": "Innehåller logik för Gemenskapskonfigurering",
 	"communityconfiguration-editor-chip-control-aria-chip-description": "Tryck på Enter för att redigera eller Delete för att ta bort",
+	"communityconfiguration-editor-client-generic-error": "Något fungerade inte när konfigurationsredigeraren skulle laddas in. Försök igen senare.",
+	"communityconfiguration-editor-client-generic-error-description": "Ett fel uppstod i \"$2\" i komponent $1. Se detaljer nedan:",
+	"communityconfiguration-editor-client-post-feedback": "Om problemet kvarstår kan du [$1 lämna återkoppling] på diskussionssidan.",
+	"communityconfiguration-editor-client-validation-errors": "Det finns {{PLURAL:$1|ett fel|$1 fel}} i formuläret:",
 	"communityconfiguration-editor-form-submit-button-text": "Spara ändringar",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Skickar...",
 	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Ta bort element",
 	"communityconfiguration-editor-array-fallback-add-element-button-label": "Lägg till ytterligare ett element",
 	"communityconfiguration-guidelines-title": "Vad är Gemenskapskonfigurering?",
+	"communityconfiguration-guidelines-description": "Gemenskapskonfigurering är ett verktyg som ger gemenskaper möjlighet att sätta upp och kontrollera konfigureringen av olika {{SITENAME}}-funktioner, vilket hjälper administratörer att passa deras gemenskapsspecifika behov.",
 	"communityconfiguration-guidelines-guideline1-title": "Läs mer",
+	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Läs mer] om Gemenskapskonfiguration, vad det är, hur det fungerar och teamets pågående arbetet med det.",
 	"communityconfiguration-guidelines-guideline2-title": "Ge oss {{GENDER:$1|din}} återkoppling",
+	"communityconfiguration-guidelines-guideline2-description": "Vi vill gärna höra vad {{GENDER:$1|du}} tycker! Ta kontakt på vår [https://www.mediawiki.org/wiki/Talk:Growth diskussionssida].",
+	"communityconfiguration-invalid-stored-config-error": "Kunde inte ladda in en giltig konfiguration från $1-leverantören (kod <code>$2</code>).",
+	"communityconfiguration-invalid-stored-config-error-with-link": "Kunde inte ladda in en giltig konfiguration från $1-leverantören (kod <code>$2</code>), se $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Feldetaljer",
-	"communityconfiguration-schema-validation-error": "UTKAST: $2. Nyckel: $1",
+	"communityconfiguration-schema-validation-error": "$2. Nyckel: $1",
 	"communityconfiguration-providers-list-title": "Funktioner",
+	"communityconfiguration-provider-not-found": "Leverantören $1 hittades inte",
 	"communityconfigurationdashboard": "Gemenskapskonfigurering",
 	"communityconfigurationeditor": "Redigerar $1",
+	"communityconfiguration-edit-summary-reminder": "<b>Påminnelse</b>: Den här ändringen kan påverka ett stort antal gemenskapsmedlemmar, överväg att ange varför {{GENDER:$1|du}} gör ändringarna och länka till relaterade gemenskapsdiskussioner om lämpligt.",
 	"communityconfiguration-edit-summary-dialog-title": "Spara ändringar för $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(valfritt)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Beskriv de ändringar som gjordes i konfigurationen",
@@ -30,5 +42,16 @@
 	"communityconfiguration-editor-message-dismiss-button-label": "Stäng",
 	"communityconfiguration-page-title-control-no-results": "Inga resultat hittades.",
 	"communityconfiguration-editor-loading-info-text": "Konfigurationsredigeraren laddas",
-	"communityconfiguration-editor-navigation-tab-viewform": "Visa formulär"
+	"communityconfiguration-editor-nojs-fallback-text": "Konfigureringsredigeraren kräver JavaScript. Aktivera JavaScript för att använda det.",
+	"communityconfiguration-editor-navigation-tab-viewform": "Visa formulär",
+	"communityconfiguration-editor-client-notice-message": "Den här sidan är skrivskyddad. Konfigureringar för den här funktionen kan endast redigeras av administratörer.",
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Du}} kan inte spara ändringar i det här formuläret eftersom att konfigureringar av den här funktionen endast kan redigeras av administratörer.",
+	"communityconfiguration-editor-error-validation-array-items-max": "Det måste finnas högst {{PLURAL:$1|$1 objekt}} i tabellen",
+	"communityconfiguration-editor-error-validation-array-items-min": "Det måste finnas minst {{PLURAL:$1|$1 objekt}} i tabellen",
+	"communityconfiguration-editor-error-validation-enum-invalid-value": "Har inte ett värde i uppräkningen: $1",
+	"communityconfiguration-editor-error-validation-string-too-short": "Måste vara minst $1 tecken långt",
+	"communityconfiguration-editor-error-validation-string-too-long": "Måste vara högst $1 tecken långt",
+	"communityconfiguration-maintenance-config-change-summary": "Konfig ändrade av underhållsskript: $1",
+	"tag-community_configuration": "[[mw:Community configuration|Gemenskapskonfigurering]]",
+	"tag-community_configuration-description": "Redigeringar som ändrar [[Special:CommunityConfiguration|lokal wikikonfigurering]] hos en funktion med hjälp av [[mw:Extension:CommunityConfiguration|funktionen Gemenskapskonfigurering]]."
 }

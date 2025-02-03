@@ -15,7 +15,7 @@
 	"communityconfiguration-guidelines-guideline2-title": "{{GENDER:$1|Saada}} meile tagasisidet",
 	"communityconfiguration-guidelines-guideline2-description": "Kuulame meeleldi {{GENDER:$1|sinu}} mõtteid! Võta ühendust meie [https://www.mediawiki.org/wiki/Talk:Growth aruteluleheküljel].",
 	"communityconfiguration-providers-list-title": "Funktsioonid",
-	"communityconfigurationeditor": "$1 muutmine",
+	"communityconfigurationeditor": "Muutmisel on \"$1\"",
 	"communityconfiguration-edit-summary-reminder": "<b>Pea meeles</b>: see muudatus võib mõjutada paljusid kogukonna liikmeid. Palun näita ära, miks seda muudatust {{GENDER:$1|teed}}, ja lingi võimalusel sellesisulisele arutelule.",
 	"communityconfiguration-edit-summary-dialog-title": "$1 muudatuste salvestamine",
 	"communityconfiguration-edit-summary-dialog-title-span": "(valikuline)",
