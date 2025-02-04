@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Brettchenweber",
+			"Schniggendiller",
 			"TomatoCake"
 		]
 	},
@@ -21,7 +22,7 @@
 	"communityconfiguration-guidelines-guideline1-title": "Mehr erfahren",
 	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Erfahre mehr] über die Community-Konfiguration, was sie ist, wie sie funktioniert und über die laufende Arbeit des Teams daran.",
 	"communityconfiguration-guidelines-guideline2-title": "Sende uns {{GENDER:$1|deine}} Rückmeldung",
-	"communityconfiguration-guidelines-guideline2-description": "Wir würden gerne {{GENDER:$1|deine}} Gedanke erfahren! Kontaktiere uns über unsere [https://www.mediawiki.org/wiki/Talk:Growth Diskussionsseite].",
+	"communityconfiguration-guidelines-guideline2-description": "Wir würden gerne {{GENDER:$1|deine}} Gedanken erfahren! Kontaktiere uns über unsere [https://www.mediawiki.org/wiki/Talk:Growth Diskussionsseite].",
 	"communityconfiguration-invalid-stored-config-error": "Es konnte keine gültige Konfiguration vom Anbieter $1 (Code <code>$2</code>) geladen werden.",
 	"communityconfiguration-invalid-stored-config-error-with-link": "Es konnte keine gültige Konfiguration vom Anbieter $1 (Code <code>$2</code>) geladen werden, siehe $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Fehlerdetails",
