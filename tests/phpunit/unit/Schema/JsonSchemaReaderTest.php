@@ -51,7 +51,7 @@ class JsonSchemaReaderTest extends MediaWikiUnitTestCase {
 
 	public static function provideGetSchemaVersion() {
 		return [
-			[ null, JsonSchemaForTesting::class ],
+			[ '1.0.0', JsonSchemaForTesting::class ],
 			[ '1.0.1', JsonSchemaForTestingNewerVersion::class ],
 		];
 	}
@@ -71,7 +71,7 @@ class JsonSchemaReaderTest extends MediaWikiUnitTestCase {
 	public static function provideGetSchemaId() {
 		return [
 			[
-				'MediaWiki/Extension/CommunityConfiguration/Tests/JsonSchemaForTesting',
+				'MediaWiki/Extension/CommunityConfiguration/Tests/JsonSchemaForTesting/1.0.0',
 				JsonSchemaForTesting::class,
 			],
 			[
