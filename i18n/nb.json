@@ -24,7 +24,7 @@
 	"communityconfiguration-invalid-stored-config-error": "Kunne ikke laste en gyldig konfigurasjon fra $1-leverandøren (kode <code>$2</code>).",
 	"communityconfiguration-invalid-stored-config-error-with-link": "Kunne ikke laste gyldig konfigurasjon fra $1-leverandøren (kode <code>$2</code>), se $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Feildetaljer",
-	"communityconfiguration-schema-validation-error": "UTKAST: $2. Nøkkel: $1",
+	"communityconfiguration-schema-validation-error": "$2. Nøkkel: $1",
 	"communityconfiguration-providers-list-title": "Funksjoner",
 	"communityconfiguration-provider-not-found": "Leverandøren $1 ble ikke funnet",
 	"communityconfigurationdashboard": "Fellesskapskonfigurasjon",
