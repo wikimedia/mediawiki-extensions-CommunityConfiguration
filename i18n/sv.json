@@ -1,20 +1,26 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ainali"
+			"Ainali",
+			"Sabelöga"
 		]
 	},
 	"communityconfiguration": "Gemenskapskonfigurering",
 	"communityconfiguration-desc": "Innehåller logik för Gemenskapskonfigurering",
+	"communityconfiguration-editor-client-generic-error": "Något fungerade inte när konfigurationsredigeraren skulle laddas in. Försök igen senare.",
+	"communityconfiguration-editor-client-generic-error-description": "Ett fel uppstod i \"$2\" i komponent $1. Se detaljer nedan:",
 	"communityconfiguration-editor-form-submit-button-text": "Spara ändringar",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Skickar...",
 	"communityconfiguration-guidelines-title": "Vad är Gemenskapskonfigurering?",
+	"communityconfiguration-guidelines-description": "Gemenskapskonfigurering är ett verktyg som ger gemenskaper möjlighet att sätta upp och kontrollera konfigureringen av olika {{SITENAME}}-funktioner, vilket hjälper administratörer att passa deras gemenskapsspecifika behov.",
 	"communityconfiguration-guidelines-guideline1-title": "Läs mer",
 	"communityconfiguration-guidelines-guideline2-title": "Ge oss {{GENDER:$1|din}} återkoppling",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Feldetaljer",
 	"communityconfiguration-schema-validation-error": "UTKAST: $2. Nyckel: $1",
 	"communityconfiguration-providers-list-title": "Funktioner",
+	"communityconfiguration-provider-not-found": "Leverantören $1 hittades inte",
 	"communityconfigurationdashboard": "Gemenskapskonfigurering",
+	"communityconfiguration-edit-summary-reminder": "<b>Påminnelse</b>: Den här ändringen kan påverka ett stort antal gemenskapsmedlemmar, överväg att ange varför {{GENDER:$1|du}} gör ändringarna och länka till relaterade gemenskapsdiskussioner om lämpligt.",
 	"communityconfiguration-edit-summary-dialog-title": "Spara ändringar för $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(valfritt)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Beskriv de ändringar som gjordes i konfigurationen",

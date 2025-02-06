@@ -33,7 +33,7 @@
 	"communityconfiguration-edit-summary-dialog-save-button": "Lagre endringer",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Avbryt",
 	"communityconfiguration-edit-summary-dialog-label": "Redigeringsforklaring",
-	"communityconfiguration-editor-client-success-message": "Endringene {{GENDER:$1|$1}} dine ble lagret",
+	"communityconfiguration-editor-client-success-message": "Endringene {{GENDER:$1|dine}} ble lagret",
 	"communityconfiguration-editor-client-data-submission-error": "Noe gikk galt under lagring av endringene {{GENDER:$1|dine}}. Prøv igjen senere.",
 	"communityconfiguration-editor-message-dismiss-button-label": "Lukk",
 	"communityconfiguration-page-title-control-no-results": "Ingen resultater funnet."
