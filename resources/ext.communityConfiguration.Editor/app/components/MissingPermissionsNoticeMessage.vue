@@ -12,7 +12,7 @@ const EditorMessage = require( './EditorMessage.vue' );
 
 // @vue/component
 module.exports = exports = {
-	name: 'SuccessMessage',
+	name: 'MissingPermissionsNoticeMessage',
 	components: {
 		EditorMessage,
 	},
