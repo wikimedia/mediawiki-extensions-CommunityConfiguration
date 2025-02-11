@@ -4,7 +4,8 @@
 			"Dirruw'o",
 			"Iniquity",
 			"Kareyac",
-			"Stjn"
+			"Stjn",
+			"Okras"
 		]
 	},
 	"communityconfiguration": "Конфигурация сообщества",
@@ -17,7 +18,7 @@
 	"communityconfiguration-guidelines-guideline2-title": "Отправьте нам {{GENDER:$1|свой}} отзыв",
 	"communityconfiguration-guidelines-guideline2-description": "Мы бы с удовольствием услышали {{GENDER:$1|ваши}} мысли! Свяжитесь с нами через нашу [https://www.mediawiki.org/wiki/Talk:Growth страницу обсуждения].",
 	"communityconfiguration-invalid-stored-config-error": "Не удалось загрузить действительную конфигурацию от поставщика $1 (код <code>$2</code> ).",
-	"communityconfiguration-invalid-stored-config-error-with-link": "Не удалось загрузить действительную конфигурацию от поставщика $1 (код <code>$2</code> ) провайдер, смотрите $3",
+	"communityconfiguration-invalid-stored-config-error-with-link": "Не удалось загрузить действительную конфигурацию от поставщика $1 (код <code>$2</code>), см. $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Детали ошибки",
 	"communityconfiguration-providers-list-title": "Функции",
 	"communityconfigurationdashboard": "Конфигурация сообщества",
