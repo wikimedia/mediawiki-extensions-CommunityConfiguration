@@ -59,13 +59,38 @@ class ValidatorFactoryTest extends MediaWikiIntegrationTestCase {
 			->newValidator( 'nonexistent', 'nonexistent', [] );
 	}
 
+	/**
+	 * Test that core validators are always available while allowing for extension-registered validators.
+	 *
+	 * 1. All core validators from CommunityConfigurationValidators are present
+	 * 2. Additional validators from extensions are allowed
+	 */
 	public function testSupportedKeys() {
-		$this->markTestSkipped( 'Does not work with providers registered by other extensions' );
-		$this->assertSame(
-			array_keys( $this->getValidatorSpecs() ),
-			CommunityConfigurationServices::wrap( $this->getServiceContainer() )
-				->getValidatorFactory()
-				->getSupportedKeys()
+		$coreValidatorKeys = array_keys( $this->getValidatorSpecs() );
+
+		// Get all supported validators (including extension-registered ones)
+		$allValidatorKeys = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+			->getValidatorFactory()
+			->getSupportedKeys();
+
+		sort( $coreValidatorKeys );
+		sort( $allValidatorKeys );
+
+		foreach ( $coreValidatorKeys as $coreValidator ) {
+			$this->assertContains(
+				$coreValidator,
+				$allValidatorKeys,
+				sprintf(
+					"Core validator '%s' must be present in supported keys. Found validators: %s",
+					$coreValidator,
+					implode( ', ', $allValidatorKeys )
+				)
+			);
+		}
+		$this->assertGreaterThanOrEqual(
+			count( $coreValidatorKeys ),
+			count( $allValidatorKeys ),
+			'Total validator count should be at least equal to core validator count'
 		);
 	}
 }
