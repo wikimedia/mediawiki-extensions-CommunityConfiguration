@@ -8,7 +8,7 @@
 		@primary="saveChanges"
 		@default="closeDialog"
 	>
-		<cdx-field>
+		<cdx-field optional="true">
 			<cdx-text-area
 				v-model="wrappedEditSummary"
 				:placeholder="$i18n( 'communityconfiguration-edit-summary-dialog-placeholder' ).text()"
@@ -17,9 +17,6 @@
 			></cdx-text-area>
 			<template #label>
 				{{ $i18n( 'communityconfiguration-edit-summary-dialog-label' ).text() }}
-				<span class="cdx-label__label__optional-flag">
-					{{ $i18n( 'word-separator' ).text() }}
-					{{ $i18n( 'communityconfiguration-edit-summary-dialog-title-span' ).text() }}</span>
 			</template>
 			<template #help-text>
 				<p v-i18n-html:communityconfiguration-edit-summary-reminder="[ currentUser ]"></p>
