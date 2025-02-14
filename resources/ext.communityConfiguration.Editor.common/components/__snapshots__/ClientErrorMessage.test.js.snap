@@ -3,7 +3,6 @@
 exports[`ClientErrorMessage matches snapshot 1`] = `
 <transition-stub
   appear="true"
-  class="ext-communityConfiguration-EditorMessage"
   css="true"
   leaveactiveclass=""
   name="cdx-message"

@@ -173,7 +173,10 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 			) );
 		}
 		$out->addModuleStyles( [ 'ext.communityConfiguration.Editor.styles' ] );
-		$out->addModules( [ 'ext.communityConfiguration.Editor' ] );
+		$out->addModules( [
+			'ext.communityConfiguration.Editor.common',
+			'ext.communityConfiguration.Editor',
+		] );
 
 		$out->addHTML( Html::rawElement(
 			'div',

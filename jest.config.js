@@ -51,6 +51,7 @@ module.exports = {
 	// A list of paths to directories that Jest should use to search for files in.
 	roots: [
 		'./resources/ext.communityConfiguration.Editor',
+		'./resources/ext.communityConfiguration.Editor.common',
 	],
 	setupFiles: [
 		'./jest.setup.js',
