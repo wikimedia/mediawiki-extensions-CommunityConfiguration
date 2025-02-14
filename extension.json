@@ -164,22 +164,50 @@
 				"CdxProgressBar"
 			]
 		},
+		"ext.communityConfiguration.Editor.common": {
+			"class": "MediaWiki\\ResourceLoader\\CodexModule",
+			"codexComponents": [
+				"CdxDialog",
+				"CdxField",
+				"CdxMessage",
+				"CdxTextArea",
+				"useModelWrapper"
+			],
+			"packageFiles": [
+				"ext.communityConfiguration.Editor.common/index.js",
+				"ext.communityConfiguration.Editor.common/components/EditSummaryDialog.vue",
+				"ext.communityConfiguration.Editor.common/components/EditorMessage.vue",
+				"ext.communityConfiguration.Editor.common/components/SuccessMessage.vue",
+				"ext.communityConfiguration.Editor.common/components/ValidationErrorMessage.vue",
+				"ext.communityConfiguration.Editor.common/components/PermissionsErrorMessage.vue",
+				"ext.communityConfiguration.Editor.common/components/MissingPermissionsNoticeMessage.vue",
+				"ext.communityConfiguration.Editor.common/components/GenericSubmitErrorMessage.vue",
+				"ext.communityConfiguration.Editor.common/components/NetworkErrorMessage.vue",
+				"ext.communityConfiguration.Editor.common/components/ClientErrorMessage.vue"
+			],
+			"messages": [
+				"communityconfiguration-edit-summary-reminder",
+				"communityconfiguration-edit-summary-dialog-title",
+				"communityconfiguration-edit-summary-dialog-placeholder",
+				"communityconfiguration-edit-summary-dialog-save-button",
+				"communityconfiguration-edit-summary-dialog-cancel-button",
+				"communityconfiguration-edit-summary-dialog-title-span",
+				"communityconfiguration-edit-summary-dialog-label"
+			]
+		},
 		"ext.communityConfiguration.Editor": {
 			"class": "MediaWiki\\ResourceLoader\\CodexModule",
 			"codexComponents": [
 				"CdxButton",
 				"CdxCheckbox",
 				"CdxChipInput",
-				"CdxDialog",
 				"CdxField",
 				"CdxIcon",
 				"CdxLookup",
 				"CdxMenu",
 				"CdxMessage" ,
-				"CdxTextArea",
 				"CdxTextInput",
 				"CdxRadio",
-				"useModelWrapper",
 				"useFloatingMenu",
 				"useGeneratedId"
 			],
@@ -187,15 +215,6 @@
 				"ext.communityConfiguration.Editor/app/init.js",
 				"ext.communityConfiguration.Editor/app/App.vue",
 				"ext.communityConfiguration.Editor/app/MwApiCommunityConfigurationWritingRepository.js",
-				"ext.communityConfiguration.Editor/app/components/EditSummaryDialog.vue",
-				"ext.communityConfiguration.Editor/app/components/EditorMessage.vue",
-				"ext.communityConfiguration.Editor/app/components/SuccessMessage.vue",
-				"ext.communityConfiguration.Editor/app/components/ValidationErrorMessage.vue",
-				"ext.communityConfiguration.Editor/app/components/PermissionsErrorMessage.vue",
-				"ext.communityConfiguration.Editor/app/components/MissingPermissionsNoticeMessage.vue",
-				"ext.communityConfiguration.Editor/app/components/GenericSubmitErrorMessage.vue",
-				"ext.communityConfiguration.Editor/app/components/NetworkErrorMessage.vue",
-				"ext.communityConfiguration.Editor/app/components/ClientErrorMessage.vue",
 				"ext.communityConfiguration.Editor/lib/json-form/core/index.js",
 				"ext.communityConfiguration.Editor/lib/json-form/core/uischema.js",
 				"ext.communityConfiguration.Editor/lib/json-form/core/i18n.js",
@@ -248,13 +267,6 @@
 			"styles": [
 			],
 			"messages": [
-				"communityconfiguration-edit-summary-reminder",
-				"communityconfiguration-edit-summary-dialog-title",
-				"communityconfiguration-edit-summary-dialog-placeholder",
-				"communityconfiguration-edit-summary-dialog-save-button",
-				"communityconfiguration-edit-summary-dialog-cancel-button",
-				"communityconfiguration-edit-summary-dialog-title-span",
-				"communityconfiguration-edit-summary-dialog-label",
 				"communityconfiguration-editor-client-generic-error",
 				"communityconfiguration-editor-client-generic-error-description",
 				"communityconfiguration-editor-client-post-feedback",
@@ -274,7 +286,8 @@
 				"mediawiki.api",
 				"mediawiki.ForeignApi",
 				"vue",
-				"mediawiki.jqueryMsg"
+				"mediawiki.jqueryMsg",
+				"ext.communityConfiguration.Editor.common"
 			]
 		}
 	},

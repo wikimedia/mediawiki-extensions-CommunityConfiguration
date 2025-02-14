@@ -30,7 +30,7 @@
 
 <script>
 const { toRef, inject, computed } = require( 'vue' );
-const { CdxDialog, CdxField, CdxTextArea, useModelWrapper } = require( '../../../codex.js' );
+const { CdxDialog, CdxField, CdxTextArea, useModelWrapper } = require( '../../codex.js' );
 
 // @vue/component
 module.exports = exports = {
@@ -42,7 +42,7 @@ module.exports = exports = {
 	},
 	props: {
 		/**
-		 * The name of the provider.
+		 * The id of the provider.
 		 * Generates the title of the edit summary dialog dynamically
 		 * based on the provider's name.
 		 */

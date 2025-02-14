@@ -3,6 +3,10 @@ jest.mock( './icons.json', () => ( {
 	cdxIconLinkExternal: 'link external',
 } ), { virtual: true } );
 jest.mock( '../lib/icons.json', () => ( {} ), { virtual: true } );
+jest.mock( 'ext.communityConfiguration.Editor.common',
+	() => require( '../../ext.communityConfiguration.Editor.common/index.js' ),
+	{ virtual: true },
+);
 const { mount } = require( '@vue/test-utils' );
 // FIXME the mock needs to be set before the require(App.vue)
 // statement, move the read of mw.config.get( 'wgFormattedNamespaces' )
@@ -63,8 +67,10 @@ global.mw.config.get.mockImplementation( ( key ) => {
 } );
 const App = require( './App.vue' );
 const { JsonForm } = require( '../lib/json-form/form/index.js' );
-const EditSummaryDialog = require( './components/EditSummaryDialog.vue' );
-const EditorMessage = require( './components/EditorMessage.vue' );
+const {
+	EditSummaryDialog,
+	EditorMessage,
+} = require( '../../ext.communityConfiguration.Editor.common/index.js' );
 
 describe( 'ext.communityConfiguration.Editor App', () => {
 	const CONFIG_DATA = { some: 'data' };

@@ -1,6 +1,5 @@
 <template>
 	<cdx-message
-		class="ext-communityConfiguration-EditorMessage"
 		:dismiss-button-label="isDismissable ? $i18n(
 			'communityconfiguration-editor-message-dismiss-button-label' ).text() : ''"
 		:type="status"
@@ -12,7 +11,7 @@
 </template>
 
 <script>
-const { CdxMessage } = require( '../../../codex.js' );
+const { CdxMessage } = require( '../../codex.js' );
 // @vue/component
 module.exports = exports = {
 	name: 'EditorMessage',

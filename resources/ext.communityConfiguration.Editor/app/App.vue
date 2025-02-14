@@ -50,14 +50,16 @@ const { CdxButton, CdxMessage } = require( '../../codex.js' );
 const { cdxIconInfoFilled } = require( './icons.json' );
 const { JsonForm, useValidationErrors } = require( '../lib/json-form/form/index.js' );
 const { renderers } = require( '../lib/json-form/controls-codex/src/index.js' );
-const SuccessMessage = require( './components/SuccessMessage.vue' );
-const MissingPermissionsNoticeMessage = require( './components/MissingPermissionsNoticeMessage.vue' );
-const ValidationErrorMessage = require( './components/ValidationErrorMessage.vue' );
-const PermissionsErrorMessage = require( './components/PermissionsErrorMessage.vue' );
-const GenericSubmitErrorMessage = require( './components/GenericSubmitErrorMessage.vue' );
-const NetworkErrorMessage = require( './components/NetworkErrorMessage.vue' );
-const ClientErrorMessage = require( './components/ClientErrorMessage.vue' );
-const EditSummaryDialog = require( './components/EditSummaryDialog.vue' );
+const {
+	SuccessMessage,
+	MissingPermissionsNoticeMessage,
+	ValidationErrorMessage,
+	PermissionsErrorMessage,
+	GenericSubmitErrorMessage,
+	NetworkErrorMessage,
+	ClientErrorMessage,
+	EditSummaryDialog,
+} = require( 'ext.communityConfiguration.Editor.common' );
 let errorsDisplayed = 0;
 
 // @vue/component
