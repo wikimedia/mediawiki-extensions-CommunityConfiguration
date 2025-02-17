@@ -27,7 +27,6 @@
 	"communityconfigurationdashboard": "Komunitní konfigurace",
 	"communityconfigurationeditor": "Editace $1",
 	"communityconfiguration-edit-summary-dialog-title": "Uložit změny pro $1",
-	"communityconfiguration-edit-summary-dialog-title-span": "(volitelné)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Popište změny, které jste v konfiguraci provedli",
 	"communityconfiguration-edit-summary-dialog-save-button": "Uložit změny",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Storno",

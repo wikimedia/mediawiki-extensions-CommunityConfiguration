@@ -9,7 +9,6 @@
 	"communityconfiguration-editor-array-fallback-add-element-button-label": "Aggiungi un altro elemento",
 	"communityconfiguration-schema-validation-error": "$2. Chiave: $1",
 	"communityconfiguration-edit-summary-dialog-title": "Salva modifiche per $1",
-	"communityconfiguration-edit-summary-dialog-title-span": "(facoltativo)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Descrivi le modifiche apportate alla configurazione",
 	"communityconfiguration-edit-summary-dialog-save-button": "Salva modifiche",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Annulla",

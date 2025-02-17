@@ -34,7 +34,6 @@
 	"communityconfigurationeditor": "编辑“︁$1”︁",
 	"communityconfiguration-edit-summary-reminder": "<b>提醒</b>：此更改可能会影响大量社群成员，请考虑说明{{GENDER:$1|您}}作出更改的原因，并在适当的情况下提供相关的社群讨论链接。",
 	"communityconfiguration-edit-summary-dialog-title": "保存$1的更改",
-	"communityconfiguration-edit-summary-dialog-title-span": "（可选）",
 	"communityconfiguration-edit-summary-dialog-placeholder": "描述配置中所做的更改",
 	"communityconfiguration-edit-summary-dialog-save-button": "保存更改",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "取消",

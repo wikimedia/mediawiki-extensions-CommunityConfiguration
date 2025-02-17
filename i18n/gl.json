@@ -31,7 +31,6 @@
 	"communityconfigurationeditor": "A editar \"$1\"",
 	"communityconfiguration-edit-summary-reminder": "<b>Recordatorio:</b> Este cambio pode ter impacto sobre un gran número de membros da comunidade; considera indicar por que estás {{GENDER:$1|facendo}} o cambio e ligar con calquera debate comunitario relacionado, se fose axeitado.",
 	"communityconfiguration-edit-summary-dialog-title": "Gardar os cambios para \"$1\"",
-	"communityconfiguration-edit-summary-dialog-title-span": "(opcional)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Describe os cambios feitos na configuración",
 	"communityconfiguration-edit-summary-dialog-save-button": "Gardar os cambios",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Cancelar",

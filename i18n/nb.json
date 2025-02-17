@@ -31,7 +31,6 @@
 	"communityconfigurationeditor": "Redigerer «$1»",
 	"communityconfiguration-edit-summary-reminder": "<b>Husk:</b> Denne endringen kan ha stor innvirkning på brukerne, så angi hvorfor {{GENDER:$1|du}} gjør endringen, og lenk til relevante diskusjoner om det er aktuelt.",
 	"communityconfiguration-edit-summary-dialog-title": "Lagre endringer for $1",
-	"communityconfiguration-edit-summary-dialog-title-span": "(valgfritt)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Beskriv endringene som ble gjort i konfigurasjonen",
 	"communityconfiguration-edit-summary-dialog-save-button": "Lagre endringer",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Avbryt",

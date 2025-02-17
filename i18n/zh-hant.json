@@ -25,7 +25,6 @@
 	"communityconfigurationeditor": "正在編輯「$1」",
 	"communityconfiguration-edit-summary-reminder": "<b>提醒</b>：這項變更可能會影響大量社群成員，請考慮說明{{GENDER:$1|您}}進行變更的原因，並適當地提供相關社群討論的連結。",
 	"communityconfiguration-edit-summary-dialog-title": "儲存對「$1」的變更",
-	"communityconfiguration-edit-summary-dialog-title-span": "（選擇性）",
 	"communityconfiguration-edit-summary-dialog-placeholder": "描述您對配置所做的變更",
 	"communityconfiguration-edit-summary-dialog-save-button": "儲存變更",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "取消",

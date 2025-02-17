@@ -32,7 +32,6 @@
 	"communityconfigurationeditor": "Редагування розділу «$1»",
 	"communityconfiguration-edit-summary-reminder": "<b>Нагадування</b>: Ця зміна може вплинути на велику кількість членів спільноти. Вкажіть, будь ласка, чому {{GENDER:$1|ви}} робите цю зміну і дайте посилання на відповідне обговорення спільноти, де потрібно.",
 	"communityconfiguration-edit-summary-dialog-title": "Зберегти зміни до «$1»",
-	"communityconfiguration-edit-summary-dialog-title-span": "(необов'язково)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Опишіть зміни, які були зроблені в конфігурації",
 	"communityconfiguration-edit-summary-dialog-save-button": "Зберегти зміни",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Скасувати",

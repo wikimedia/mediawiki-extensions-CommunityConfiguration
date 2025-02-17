@@ -31,7 +31,6 @@
 	"communityconfigurationeditor": "Redigerer $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Påmindelse</b>: Denne ændring kan påvirke et stort antal fællesskabsmedlemmer. Overvej venligst at angive hvorfor {{GENDER:$1|du}} foretager ændringen og henvis til enhver relateret fællesskabsdiskussion, hvis det er relevant.",
 	"communityconfiguration-edit-summary-dialog-title": "Gem ændringer for $1",
-	"communityconfiguration-edit-summary-dialog-title-span": "(valgfri)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Beskriv de ændringer, der blev gjort i konfigurationen",
 	"communityconfiguration-edit-summary-dialog-save-button": "Gem ændringer",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Annullér",

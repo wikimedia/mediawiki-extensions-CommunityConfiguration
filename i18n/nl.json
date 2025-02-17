@@ -33,7 +33,6 @@
 	"communityconfigurationeditor": "Bewerken van $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Herinnering</b>: deze wijziging kan van invloed zijn op een groot aantal gemeenschapsleden. Overweeg uit te leggen waarom {{GENDER:$1|u}} de wijziging aanbrengt en geef eventueel een koppeling naar het bijbehorende gemeenschapsoverleg mee.",
 	"communityconfiguration-edit-summary-dialog-title": "Wijzigingen opslaan voor $1",
-	"communityconfiguration-edit-summary-dialog-title-span": "(optioneel)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Beschrijf de wijzigingen die in de configuratie zijn aangebracht",
 	"communityconfiguration-edit-summary-dialog-save-button": "Wijzigingen opslaan",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Annuleren",

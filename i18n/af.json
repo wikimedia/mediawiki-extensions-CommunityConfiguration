@@ -12,7 +12,6 @@
 	"communityconfiguration-guidelines-guideline2-description": "Ons sal graag {{GENDER:$1|jou}} gedagtes wil hoor! Reik uit na ons deur ons [https://www.mediawiki.org/wiki/Talk:Growth besprekingsbladsy].",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Foutbesonderhede",
 	"communityconfiguration-providers-list-title": "Kenmerke",
-	"communityconfiguration-edit-summary-dialog-title-span": "(opsioneel)",
 	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Jou}} veranderinge is gestoor",
 	"communityconfiguration-editor-message-dismiss-button-label": "Sluit",
 	"communityconfiguration-page-title-control-no-results": "Geen resultate gevind nie.",

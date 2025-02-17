@@ -33,7 +33,6 @@
 	"communityconfigurationeditor": "Bearbeiten von $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Erinnerung</b>: Diese Änderung kann sich auf eine große Zahl von Community-Mitgliedern auswirken. Gib bitte an, warum {{GENDER:$1|du}} die Änderung vornimmst, und verlinke gegebenenfalls auf eine entsprechende Community-Diskussion.",
 	"communityconfiguration-edit-summary-dialog-title": "Änderungen speichern für $1",
-	"communityconfiguration-edit-summary-dialog-title-span": "(optional)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Beschreibe die Änderungen, die an der Konfiguration vorgenommen wurden",
 	"communityconfiguration-edit-summary-dialog-save-button": "Änderungen speichern",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Abbrechen",

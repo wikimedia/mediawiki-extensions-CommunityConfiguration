@@ -31,7 +31,6 @@
 	"communityconfigurationeditor": "Уредување на $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Потсетник</b>: Оваа промена може да засегне голем број на членови на заедницата. Препорачуваме да посочите дека {{GENDER:$1|правите}} промена и да ставите врска до дискусија на заедницата, ако ја има.",
 	"communityconfiguration-edit-summary-dialog-title": "Зачувајте промени за $1",
-	"communityconfiguration-edit-summary-dialog-title-span": "(незадолжително)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Опишете ги направените промени во поставеноста",
 	"communityconfiguration-edit-summary-dialog-save-button": "Зачувај промени",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Откажи",

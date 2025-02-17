@@ -34,7 +34,6 @@
 	"communityconfigurationeditor": "「$1」を編集中",
 	"communityconfiguration-edit-summary-reminder": "<b>リマインダー</b>: この変更はコミュニティの参加者多数に影響を与える可能性があります。変更しようとする理由を{{GENDER:$1|あなた}}自身が示した上で、適切な場合は関連するコミュニティの議論にリンクするよう検討してください。",
 	"communityconfiguration-edit-summary-dialog-title": "$1 への変更を保存する",
-	"communityconfiguration-edit-summary-dialog-title-span": "(省略可能)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "変更した設定を説明する",
 	"communityconfiguration-edit-summary-dialog-save-button": "変更を保存",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "キャンセル",

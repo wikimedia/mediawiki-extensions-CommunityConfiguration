@@ -31,7 +31,6 @@
 	"communityconfigurationeditor": "Menyunting $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Peringatan</b>: Perubahan ini mungkin memberi kesan kepada sebilangan besar ahli komuniti, sila pertimbangkan untuk menunjukkan sebab {{GENDER:$1| anda}} membuat perubahan tersebut dan pautkan kepada sebarang perbincangan komuniti yang berkaitan jika sesuai.",
 	"communityconfiguration-edit-summary-dialog-title": "Simpan perubahan untuk $1",
-	"communityconfiguration-edit-summary-dialog-title-span": "(pilihan)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Terangkan perubahan yang telah dibuat dalam konfigurasi",
 	"communityconfiguration-edit-summary-dialog-save-button": "Simpan perubahan",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Batalkan",

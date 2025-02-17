@@ -25,7 +25,6 @@
 	"communityconfigurationeditor": "Редактирование: $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Напоминание</b> : это изменение может повлиять на большое количество участников сообщества. Пожалуйста, укажите, почему {{GENDER:$1| вы}} вносите изменения и при необходимости ссылаетесь на любое соответствующее обсуждение в сообществе.",
 	"communityconfiguration-edit-summary-dialog-title": "Сохранить изменения за $1",
-	"communityconfiguration-edit-summary-dialog-title-span": "(необязательно)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Опишите изменения, которые были внесены в конфигурацию.",
 	"communityconfiguration-edit-summary-dialog-save-button": "Записать изменения",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Отмена",

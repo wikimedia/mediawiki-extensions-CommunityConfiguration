@@ -32,7 +32,6 @@
 	"communityconfigurationeditor": "Redigerar $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Påminnelse</b>: Den här ändringen kan påverka ett stort antal gemenskapsmedlemmar, överväg att ange varför {{GENDER:$1|du}} gör ändringarna och länka till relaterade gemenskapsdiskussioner om lämpligt.",
 	"communityconfiguration-edit-summary-dialog-title": "Spara ändringar för $1",
-	"communityconfiguration-edit-summary-dialog-title-span": "(valfritt)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Beskriv de ändringar som gjordes i konfigurationen",
 	"communityconfiguration-edit-summary-dialog-save-button": "Spara ändringar",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Avbryt",

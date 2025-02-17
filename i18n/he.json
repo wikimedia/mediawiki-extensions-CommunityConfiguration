@@ -31,7 +31,6 @@
 	"communityconfigurationeditor": "עריכת $1",
 	"communityconfiguration-edit-summary-reminder": "<b>תזכורת</b>: השינוי הזה עשוי להשפיע על מספר רב של חברי קהילה, נא לשקול לציין למה {{GENDER:$1|אתה|את}} עושה את השינוי ולקשר לכל דיון קהילתי מתאים במידת הצורך.",
 	"communityconfiguration-edit-summary-dialog-title": "שמירת שינויים עבור $1",
-	"communityconfiguration-edit-summary-dialog-title-span": "(לא חובה)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "נא לתאר את השינויים בתצורה",
 	"communityconfiguration-edit-summary-dialog-save-button": "שמירת השינויים",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "ביטול",

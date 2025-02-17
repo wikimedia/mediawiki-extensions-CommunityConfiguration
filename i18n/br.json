@@ -32,7 +32,6 @@
 	"communityconfigurationeditor": "Oc'h aozañ $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Kounadur</b>: Gallout a ra ar c’hemm-mañ skogañ kalz izili eus ar gumuniezh, lavarit mar plij perak e {{GENDER:$1|rit}} ar c’hemm ha menegit ul liamm war-zu kement kaozeadenn mard eo dereat.",
 	"communityconfiguration-edit-summary-dialog-title": "Enrollañ ar c' hemmoù evit $1",
-	"communityconfiguration-edit-summary-dialog-title-span": "(diret)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Deskrivañ ar c’hemmoù bet graet d’ar c’hefluniadur",
 	"communityconfiguration-edit-summary-dialog-save-button": "Enrollañ ar c'hemmoù",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Nullañ",

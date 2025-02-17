@@ -31,7 +31,6 @@
 	"communityconfigurationeditor": "$1 redaktə edilir",
 	"communityconfiguration-edit-summary-reminder": "<b>Xatırlatma</b>: Bu dəyişiklik çoxlu sayda icma üzvlərinə təsir edə bilər, zəhmət olmasa dəyişiklik etmə {{GENDER:$1|səbəbinizi}} qeyd edin və uyğun olarsa, hər hansı əlaqəli icma müzakirəsinə keçid əlavə edin.",
 	"communityconfiguration-edit-summary-dialog-title": "$1 üçün dəyişiklikləri yadda saxlayın",
-	"communityconfiguration-edit-summary-dialog-title-span": "(məcburi deyil)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Konfiqurasiyada edilən dəyişiklikləri təsvir edin",
 	"communityconfiguration-edit-summary-dialog-save-button": "Dəyişiklikləri yadda saxla",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "İmtina",

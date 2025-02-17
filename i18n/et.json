@@ -18,7 +18,6 @@
 	"communityconfigurationeditor": "Muutmisel on \"$1\"",
 	"communityconfiguration-edit-summary-reminder": "<b>Pea meeles</b>: see muudatus võib mõjutada paljusid kogukonna liikmeid. Palun näita ära, miks seda muudatust {{GENDER:$1|teed}}, ja lingi võimalusel sellesisulisele arutelule.",
 	"communityconfiguration-edit-summary-dialog-title": "$1 muudatuste salvestamine",
-	"communityconfiguration-edit-summary-dialog-title-span": "(valikuline)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Kirjelda, kuidas häälestust muudeti",
 	"communityconfiguration-edit-summary-dialog-save-button": "Salvesta muudatused",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Loobu",

@@ -32,7 +32,6 @@
 	"communityconfigurationeditor": "در حال ویرایش $1",
 	"communityconfiguration-edit-summary-reminder": "<b>یادآوری</b>: این تغییر ممکن است بر تعداد زیادی از اعضای اجتماع اثر بگذارد. لطفاً دلیل {{GENDER:$1|خود}} برای اعمال این تغییر را ذکر کنید و در صورت نیاز به بحث‌های مرتبط اجتماع پیوند دهید.",
 	"communityconfiguration-edit-summary-dialog-title": "ذخیره کردن تغییرات برای $1",
-	"communityconfiguration-edit-summary-dialog-title-span": "(اختیاری)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "تغییری که در پیکربندی اعمال شده است را توصیف کنید",
 	"communityconfiguration-edit-summary-dialog-save-button": "ذخیره کردن تغییرات",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "لغو",

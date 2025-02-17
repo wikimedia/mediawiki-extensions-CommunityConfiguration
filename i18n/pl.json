@@ -33,7 +33,6 @@
 	"communityconfigurationeditor": "Edycja: $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Uwaga</b>: Ta zmiana może mieć wpływ na dużą liczbę członków społeczności, rozważ wskazanie przyczyny, dla której {{GENDER:$1|wprowadzasz}} zmianę i, jeśli to konieczne, podaj link do odpowiedniej dyskusji w społeczności.",
 	"communityconfiguration-edit-summary-dialog-title": "Zapisz zmiany w $1",
-	"communityconfiguration-edit-summary-dialog-title-span": "(opcjonalne)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Opis zmiany w konfiguracji",
 	"communityconfiguration-edit-summary-dialog-save-button": "Zapisz zmiany",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Anuluj",

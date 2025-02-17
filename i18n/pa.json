@@ -18,7 +18,6 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "ਗਲਤੀ ਵੇਰਵੇ",
 	"communityconfiguration-schema-validation-error": "ਖਰੜਾ: $2। ਟੀਕਾ: $1",
 	"communityconfiguration-edit-summary-dialog-title": "$1 ਲਈ ਤਬਦੀਲੀਆਂ ਸੰਭਾਲੋ",
-	"communityconfiguration-edit-summary-dialog-title-span": "(ਚੋਣਵਾਂ)",
 	"communityconfiguration-edit-summary-dialog-save-button": "ਤਬਦੀਲੀਆਂ ਸਾਂਭੋ",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "ਰੱਦ ਕਰੋ",
 	"communityconfiguration-edit-summary-dialog-label": "ਸੋਧ ਦਾ ਸਾਰ",
