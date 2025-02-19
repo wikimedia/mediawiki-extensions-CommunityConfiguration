@@ -59,6 +59,13 @@ class SpecialCommunityConfiguration extends SpecialPage {
 			->execute( $subPage );
 	}
 
+	/** @inheritDoc */
+	protected function getSubpagesForPrefixSearch() {
+		$providerIds = $this->providerFactory->getSupportedKeysWithUI();
+		sort( $providerIds );
+		return $providerIds;
+	}
+
 	/**
 	 * Show an error message on the output page
 	 *

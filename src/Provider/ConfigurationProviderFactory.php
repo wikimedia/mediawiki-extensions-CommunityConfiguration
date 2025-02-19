@@ -178,6 +178,25 @@ class ConfigurationProviderFactory {
 	}
 
 	/**
+	 * Return a list of supported provider names that have an UI
+	 *
+	 * @see IConfigurationProvider::OPTION_EXCLUDE_FROM_UI
+	 * @return string[] List of provider IDs (that can be passed to newProvider)
+	 */
+	public function getSupportedKeysWithUI(): array {
+		$allProviders = $this->getSupportedKeys();
+		return array_filter( $allProviders, function ( string $providerId ) {
+			// Semantically, the correct way would be constructing the provider via
+			// newProvider( $providerId) and then calling
+			// getOptionValue( IConfigurationProvider::OPTION_EXCLUDE_FROM_UI ),
+			// however, that requires actually constructing the full provider.
+			// Optimize by reading the specs directly, which is cheaper.
+			$options = $this->getProviderSpec( $providerId )['options'] ?? [];
+			return !( $options[ IConfigurationProvider::OPTION_EXCLUDE_FROM_UI ] ?? false );
+		} );
+	}
+
+	/**
 	 * Is a provider supported?
 	 *
 	 * @param string $providerId
