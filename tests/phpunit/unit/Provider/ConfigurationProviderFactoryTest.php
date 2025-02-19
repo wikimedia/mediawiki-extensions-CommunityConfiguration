@@ -6,6 +6,7 @@ use InvalidArgumentException;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
+use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
 use MediaWiki\MediaWikiServices;
@@ -18,6 +19,16 @@ use Psr\Log\NullLogger;
  */
 class ConfigurationProviderFactoryTest extends MediaWikiUnitTestCase {
 
+	private const PROVIDER_CONFIG_TEMPLATE = [
+		'store' => [
+			'type' => 'wikipage',
+			'args' => [ 'MediaWiki:Foo.json' ],
+		],
+		'validator' => [
+			'type' => 'noop',
+		],
+	];
+
 	private function getExtensionRegistry() {
 		$extensionRegistry = $this->createMock( ExtensionRegistry::class );
 		$extensionRegistry->expects( $this->exactly( 2 ) )
@@ -27,23 +38,14 @@ class ConfigurationProviderFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSupportedKeys() {
-		$providerConfigTemplate = [
-			'store' => [
-				'type' => 'wikipage',
-				'args' => [ 'MediaWiki:Foo.json' ],
-			],
-			'validator' => [
-				'type' => 'noop',
-			],
-		];
 		$factory = new ConfigurationProviderFactory(
 			new NullLogger(),
 			$this->createNoOpMock( StoreFactory::class ),
 			$this->createNoOpMock( ValidatorFactory::class ),
 			new HashConfig( [
 				'CommunityConfigurationProviders' => [
-					'foo' => $providerConfigTemplate,
-					'bar' => $providerConfigTemplate,
+					'foo' => self::PROVIDER_CONFIG_TEMPLATE,
+					'bar' => self::PROVIDER_CONFIG_TEMPLATE,
 				],
 				'CommunityConfigurationProviderClasses' => [],
 			] ),
@@ -59,6 +61,38 @@ class ConfigurationProviderFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $factory->isProviderSupported( 'foo' ) );
 		$this->assertTrue( $factory->isProviderSupported( 'bar' ) );
 		$this->assertFalse( $factory->isProviderSupported( 'baz' ) );
+	}
+
+	public function testSupportedKeysWithUI() {
+		$factory = new ConfigurationProviderFactory(
+			new NullLogger(),
+			$this->createNoOpMock( StoreFactory::class ),
+			$this->createNoOpMock( ValidatorFactory::class ),
+			new HashConfig( [
+				'CommunityConfigurationProviders' => [
+					'withUI' => self::PROVIDER_CONFIG_TEMPLATE,
+					'withUIExplicit' => [
+							'options' => [
+								IConfigurationProvider::OPTION_EXCLUDE_FROM_UI => false,
+							],
+						] + self::PROVIDER_CONFIG_TEMPLATE,
+					'noUI' => [
+						'options' => [
+							IConfigurationProvider::OPTION_EXCLUDE_FROM_UI => true,
+						],
+					] + self::PROVIDER_CONFIG_TEMPLATE,
+				],
+				'CommunityConfigurationProviderClasses' => [],
+			] ),
+			$this->getExtensionRegistry(),
+			$this->createNoOpMock( HookRunner::class, [ 'onCommunityConfigurationProvider_initList' ] ),
+			$this->createNoOpMock( MediaWikiServices::class )
+		);
+
+		$this->assertEquals(
+			[ 'withUI', 'withUIExplicit' ],
+			$factory->getSupportedKeysWithUI()
+		);
 	}
 
 	public function testUnknownProvider() {
