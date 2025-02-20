@@ -59,7 +59,11 @@ class SetVersionData extends Maintenance {
 	public function execute() {
 		$this->initServices();
 
-		$provider = $this->providerFactory->newProvider( $this->getArg( 'provider' ) );
+		$providerId = $this->getArg( 'provider' );
+		if ( !$this->providerFactory->isProviderSupported( $providerId ) ) {
+			$this->fatalError( 'Provider ' . $providerId . ' is not supported' );
+		}
+		$provider = $this->providerFactory->newProvider( $providerId );
 		$version = $this->getArg( 'version' );
 
 		if ( !$provider->getValidator()->areSchemasSupported() ) {
