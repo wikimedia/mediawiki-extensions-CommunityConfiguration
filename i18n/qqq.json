@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"Stjn"
 		]
 	},
 	"communityconfiguration": "The title of Community Configuration entry point, only shown in Special:SpecialPages.",
@@ -33,7 +34,7 @@
 	"communityconfiguration-edit-summary-dialog-placeholder": "Placeholder text inside the edit summary input field, prompting users to describe the changes they made.",
 	"communityconfiguration-edit-summary-dialog-save-button": "Label for the button in the edit summary dialog that saves the edit summary.",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Label for the button in the edit summary dialog that cancels the action and closes the dialog.",
-	"communityconfiguration-edit-summary-dialog-label": "Label text for the edit summary dialog.\n\nAppears before {{msg-mw|Communityconfiguration-edit-summary-dialog-title-span}} (the two messages are separated by {{msg-mw|word-separator}}).\n\n(See [https://phabricator.wikimedia.org/T360828 T360828].)",
+	"communityconfiguration-edit-summary-dialog-label": "Label text for the edit summary dialog.",
 	"communityconfiguration-editor-client-success-message": "The message is displayed when the configuration form has been successfully saved.\n\nParameters:\n* $1 - gender",
 	"communityconfiguration-editor-client-data-submission-error": "The message is displayed when an error occurs while saving changes to the configuration form. \\n\\nParameters:\\n* $1 - gender\"",
 	"communityconfiguration-editor-message-dismiss-button-label": "Label text for the close icon in a success/error message.",

@@ -5,11 +5,16 @@
 			"San1joy23"
 		]
 	},
+	"communityconfiguration": "সম্প্রদায়ের কনফিগারেশন",
 	"communityconfiguration-editor-form-submit-button-text": "পরিবর্তন সংরক্ষণ করুন",
 	"communityconfiguration-editor-form-submit-button-loading-text": "পাঠানো হচ্ছে...",
+	"communityconfiguration-guidelines-title": "সম্প্রদায়ের কনফিগারেশন কী?",
 	"communityconfiguration-guidelines-guideline1-title": "আরও জানুন",
 	"communityconfiguration-guidelines-guideline2-title": "আমাদের {{GENDER:$1|আপনার}} প্রতিক্রিয়া জানান",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "ত্রুটির বিস্তারিত",
 	"communityconfiguration-providers-list-title": "বৈশিষ্ট্যাবলী",
+	"communityconfiguration-provider-not-found": "সরবরাহকারী $1 পাওয়া যায়নি",
+	"communityconfigurationdashboard": "সম্প্রদায়ের কনফিগারেশন",
 	"communityconfigurationeditor": "সম্পাদনা করছেন '$1'",
 	"communityconfiguration-edit-summary-dialog-title-span": "(ঐচ্ছিক)",
 	"communityconfiguration-edit-summary-dialog-save-button": "পরিবর্তন সংরক্ষণ করুন",
