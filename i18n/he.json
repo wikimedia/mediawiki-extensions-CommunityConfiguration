@@ -40,7 +40,7 @@
 	"communityconfiguration-editor-message-dismiss-button-label": "סגירה",
 	"communityconfiguration-page-title-control-no-results": "לא נמצאו תוצאות.",
 	"communityconfiguration-editor-loading-info-text": "עורך התצורה נטען",
-	"communityconfiguration-editor-nojs-fallback-text": "עורך התצורה דורש JavaScript. נא להפעיל JavaScript כדי שיהיה אפשר להשתמש בו.",
+	"communityconfiguration-editor-nojs-fallback-text": "עורך התצורה דורש הפעלת JavaScript. נא להפעיל JavaScript כדי שיהיה אפשר להשתמש בו.",
 	"communityconfiguration-editor-navigation-tab-viewform": "הצגת הטופס",
 	"communityconfiguration-editor-client-notice-message": "הדף הזה מוגן. רק מפעילים יכולים לערוך את התצורה של התכונה הזאת.",
 	"communityconfiguration-editor-client-notice-footer-message": "אינך {{GENDER:$1|יכול|יכולה}} לשמור שינויים בטופס הזה מכיוון שרק מפעילים יכולים לערוך את התצורה של התכונה הזאת.",
