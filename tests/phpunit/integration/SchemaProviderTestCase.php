@@ -6,6 +6,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
+use MediaWiki\Extension\CommunityConfiguration\Schema\ISchemaConverter;
 use MediaWikiIntegrationTestCase;
 
 abstract class SchemaProviderTestCase extends MediaWikiIntegrationTestCase {
@@ -62,6 +63,25 @@ abstract class SchemaProviderTestCase extends MediaWikiIntegrationTestCase {
 		$version = $schema->getVersion();
 
 		$this->assertNotNull( $version, 'Schema ' . $schema->getSchemaId() . ' must have a VERSION constant' );
+	}
+
+	final public function testSchemaHasConverter(): void {
+		$schema = $this->getProvider()->getValidator()->getSchemaBuilder()->getSchemaReader();
+		$prevVersion = $schema->getPreviousVersion();
+		$converterId = $schema->getSchemaConverterId();
+		if ( $prevVersion ) {
+			$this->assertNotNull(
+				$converterId,
+				'Schema ' . $schema->getSchemaId() . ' must have a SCHEMA_CONVERTER constant'
+			);
+			$res = $this->getServiceContainer()->getObjectFactory()->createObject( [
+				'class' => $converterId,
+			] );
+
+			$this->assertInstanceOf( ISchemaConverter::class, $res );
+		} else {
+			$this->assertNull( $converterId );
+		}
 	}
 
 	final protected function getProvider(): IConfigurationProvider {
