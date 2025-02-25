@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"Laaknor"
 		]
 	},
 	"communityconfiguration": "Fellesskapskonfigurasjon",
@@ -45,7 +46,7 @@
 	"communityconfiguration-editor-nojs-fallback-text": "Konfigurasjonsredigeringsprogrammet krever JavaScript. Aktiver JavaScript for å kunne bruke det.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Vis skjema",
 	"communityconfiguration-editor-client-notice-message": "Denne siden er beskyttet. Konfigurasjonen for denne funksjonen kan kun redigeres av administratorer.",
-	"communityconfiguration-editor-client-notice-footer-message": "{{GNDER:$1|Du}} kan ikke lagre endringer i dette skjemaet fordi det kun kan redigeres av administratorer.",
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Du}} kan ikke lagre endringer i dette skjemaet fordi det kun kan redigeres av administratorer.",
 	"communityconfiguration-editor-error-validation-array-items-max": "Det kan maksimalt være {{PLURAL:$1|ett element|$1 elementer}} i tabellen",
 	"communityconfiguration-editor-error-validation-array-items-min": "Det kan maksimalt være {{PLURAL:$1|ett element|$1 elementer}} i tabellen",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Har ikke en verdi i nummereringen: $1",

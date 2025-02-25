@@ -5,12 +5,19 @@
 			"Iniquity",
 			"Kareyac",
 			"Stjn",
-			"Okras"
+			"Okras",
+			"Kaganer",
+			"Mitte27"
 		]
 	},
 	"communityconfiguration": "Конфигурация сообщества",
 	"communityconfiguration-desc": "Содержит логику конфигурации сообщества",
+	"communityconfiguration-editor-chip-control-aria-chip-description": "Нажмите «Enter» для редактирования или «Delete» для удаления.",
 	"communityconfiguration-editor-client-post-feedback": "Если проблема не исчезнет, [$1 оставьте отзыв] на странице обсуждения.",
+	"communityconfiguration-editor-form-submit-button-text": "Сохранить изменения",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Отправка…",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Удалить элемент",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "Добавить ещё один элемент",
 	"communityconfiguration-guidelines-title": "Что такое конфигурация сообщества?",
 	"communityconfiguration-guidelines-description": "Конфигурация сообщества — это инструмент, который позволяет сообществам настраивать и контролировать конфигурацию различных функций {{grammar:genitive|{{SITENAME}}}}, помогая администраторам удовлетворять особые потребности своего сообщества.",
 	"communityconfiguration-guidelines-guideline1-title": "Узнать больше",
@@ -31,6 +38,8 @@
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Отмена",
 	"communityconfiguration-edit-summary-dialog-label": "Описание изменений",
 	"communityconfiguration-editor-message-dismiss-button-label": "Закрыть",
+	"communityconfiguration-editor-client-notice-message": "Эта страница защищена. Только администраторы могут настраивать эту функцию.",
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Вы}} не можете сохранить изменения в этой форме, поскольку настройки этой функции могут редактировать только администраторы.",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Не имеет значения в перечислении: $1",
 	"communityconfiguration-maintenance-config-change-summary": "Конфигурация изменена скриптом обслуживания: $1"
 }
