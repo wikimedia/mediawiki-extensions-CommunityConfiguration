@@ -5,12 +5,16 @@
 			"Iniquity",
 			"Kareyac",
 			"Stjn",
-			"Okras"
+			"Okras",
+			"Kaganer",
+			"Mitte27"
 		]
 	},
 	"communityconfiguration": "Конфигурация сообщества",
 	"communityconfiguration-desc": "Содержит логику конфигурации сообщества",
 	"communityconfiguration-editor-client-file-bug": "Если проблема не устранена, рассмотрите [$1 устранив проблему] в отчёте об ошибках",
+	"communityconfiguration-editor-form-submit-button-text": "Сохранить изменения",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Отправка…",
 	"communityconfiguration-guidelines-title": "Что такое конфигурация сообщества?",
 	"communityconfiguration-guidelines-description": "Конфигурация сообщества — это инструмент, который позволяет сообществам настраивать и контролировать конфигурацию различных функций {{grammar:genitive|{{SITENAME}}}}, помогая администраторам удовлетворять особые потребности своего сообщества.",
 	"communityconfiguration-guidelines-guideline1-title": "Узнать больше",
