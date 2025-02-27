@@ -112,7 +112,8 @@ class MediaWikiConfigReader implements Config {
 		if ( isset( $map[$name] ) ) {
 			return $this->getMediaWikiConfigProviderByName( $map[$name] );
 		} else {
-			$this->logger->info(
+			// TODO: Replace with a throw once T387452 is done
+			$this->logger->debug(
 				__CLASS__ . ' was unable to find {key} in community configuration, returning ' .
 				'configuration from the fallback config',
 				[
