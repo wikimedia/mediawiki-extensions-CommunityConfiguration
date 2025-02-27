@@ -4,6 +4,7 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader;
+use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigRouter;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\MessagesProcessor;
@@ -79,6 +80,13 @@ return [
 			$ccServices->getConfigurationProviderFactory(),
 			$services->getMainConfig(),
 			$ccServices->getLogger()
+		);
+	},
+	'CommunityConfiguration.MediaWikiConfigRouter' => static function ( MediaWikiServices $services ) {
+		$ccServices = CommunityConfigurationServices::wrap( $services );
+		return new MediaWikiConfigRouter(
+			$ccServices->getMediaWikiConfigReader(),
+			$services->getMainConfig()
 		);
 	},
 	'CommunityConfiguration.ValidatorFactory' => static function ( MediaWikiServices $services ) {
