@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\CommunityConfiguration;
 
 use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader;
+use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigRouter;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
 use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaultsPathBuilder;
 use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaultsUpdater;
@@ -57,6 +58,10 @@ class CommunityConfigurationServices {
 
 	public function getMediaWikiConfigReader(): MediaWikiConfigReader {
 		return $this->coreServices->getService( 'CommunityConfiguration.MediaWikiConfigReader' );
+	}
+
+	public function getMediaWikiConfigRouter(): MediaWikiConfigRouter {
+		return $this->coreServices->getService( 'CommunityConfiguration.MediaWikiConfigRouter' );
 	}
 
 	public function getSchemaConverterFactory(): SchemaConverterFactory {
