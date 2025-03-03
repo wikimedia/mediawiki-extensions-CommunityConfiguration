@@ -49,6 +49,7 @@
 	"communityconfiguration-editor-error-validation-string-too-short": "Must be at least $1 characters long",
 	"communityconfiguration-editor-error-validation-string-too-long": "Must be at most $1 characters long",
 	"communityconfiguration-maintenance-config-change-summary": "Config changed by maintenance script: $1",
-	"tag-community_configuration": "[[mw:Community configuration|Community Configuration]]",
-	"tag-community_configuration-description": "Edits that change the [[Special:CommunityConfiguration|local wiki configuration]] of a feature using the [[mw:Extension:CommunityConfiguration|Community Configuration extension]]."
+	"tag-community_configuration": "Community Configuration",
+	"tag-community_configuration-description": "Edits that change the [[Special:CommunityConfiguration|local wiki configuration]] of a feature using the [[mw:Extension:CommunityConfiguration|Community Configuration extension]].",
+	"tag-community_configuration-helppage": "mw:Community configuration"
 }
