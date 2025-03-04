@@ -61,9 +61,11 @@ class MediaWikiConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase 
 		$ccServices = CommunityConfigurationServices::wrap( $this->getServiceContainer() );
 		$reader = $ccServices->getMediaWikiConfigReader();
 
+		// The reader should now report that it does not have configs only in php settings, like DBname
+		$this->assertFalse( $reader->has( MainConfigNames::DBname ) );
+		// For now, the fallback on ->get() should still actually work though
 		// variable that is not in the schema is processed by GlobalVarConfig, which should have
 		// DBname for example
-		$this->assertTrue( $reader->has( MainConfigNames::DBname ) );
 		$this->assertSame(
 			$this->getDb()->getDBname(),
 			$reader->get( MainConfigNames::DBname )
