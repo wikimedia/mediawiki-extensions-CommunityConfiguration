@@ -136,7 +136,11 @@ class MediaWikiConfigReader implements Config {
 	 * @inheritDoc
 	 */
 	public function has( $name ): bool {
-		$hasConfigValue = $this->getConfigByVariableName( $name )->has( $name );
+		$map = $this->getVariableToProviderMap();
+		if ( !isset( $map[$name] ) ) {
+			return false;
+		}
+		$hasConfigValue = $this->getMediaWikiConfigProviderByName( $map[$name] )->has( $name );
 		if ( !is_bool( $hasConfigValue ) ) {
 			$this->logger->error(
 				__METHOD__ . ' returned non-boolean value for "{configName}"',
