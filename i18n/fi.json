@@ -28,11 +28,13 @@
 	"communityconfigurationdashboard": "Yhteisöasetukset",
 	"communityconfigurationeditor": "Muokataan kohdetta $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Muistutus</b>: Tämä muutos saattaa vaikuttaa suureen joukkoon yhteisön jäsenistä. Kerro, miksi {{GENDER:$1|teet}} kyseisen muutoksen ja linkitä tarvittaessa aiheeseen liittyvä yhteisön keskustelu.",
+	"communityconfiguration-edit-summary-dialog-title": "Tallenna muutokset kohteeseen $1",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Kuvaile, mitä muutoksia asetuksiin on tehty",
 	"communityconfiguration-edit-summary-dialog-save-button": "Tallenna muutokset",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Peruuta",
 	"communityconfiguration-edit-summary-dialog-label": "Muokkausyhteenveto",
 	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Muutoksesi}} on tallennettu",
+	"communityconfiguration-editor-client-data-submission-error": "Jokin meni pieleen tallentaessa {{GENDER:$1|muutoksiasi}}. Yritä myöhemmin uudelleen.",
 	"communityconfiguration-editor-message-dismiss-button-label": "Sulje",
 	"communityconfiguration-page-title-control-no-results": "Tuloksia ei löytynyt.",
 	"communityconfiguration-editor-loading-info-text": "Asetusmuokkain latautuu",
@@ -45,6 +47,6 @@
 	"communityconfiguration-editor-error-validation-string-too-short": "Tulee olla vähintään $1 merkkiä pitkä",
 	"communityconfiguration-editor-error-validation-string-too-long": "Tulee olla enintään $1 merkkiä pitkä",
 	"communityconfiguration-maintenance-config-change-summary": "Asetuksia muutettu ylläpitoskriptillä: $1",
-	"tag-community_configuration": "[[mw:Community configuration|Yhteisöasetukset]]",
+	"tag-community_configuration": "Yhteisöasetukset",
 	"tag-community_configuration-description": "Muokkaukset, jotka muuttuvat ominaisuuden [[Special:CommunityConfiguration|paikallisia asetuksia]] [[mw:Extension:CommunityConfiguration|Yhteisöasetukset-laajennuksen]] avulla."
 }

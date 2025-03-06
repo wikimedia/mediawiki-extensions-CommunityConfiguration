@@ -50,6 +50,6 @@
 	"communityconfiguration-editor-error-validation-string-too-short": "Ən azı $1 simvol uzunluğunda olmalıdır",
 	"communityconfiguration-editor-error-validation-string-too-long": "Maksimum $1 simvol uzunluğunda olmalıdır",
 	"communityconfiguration-maintenance-config-change-summary": "Təmir skripti tərəfindən konfiqurasiya dəyişdirilir: $1",
-	"tag-community_configuration": "[[mw:Community configuration|İcma konfiqurasiyası]]",
+	"tag-community_configuration": "İcma Konfiqurasiyası",
 	"tag-community_configuration-description": "[[mw:Extension:CommunityConfiguration|İcma Konfiqurasiyası uzantısı]] istifadə edərək funksiyanın [[Special:CommunityConfiguration|lokal viki konfiqurasiyasını]] dəyişən redaktələr."
 }

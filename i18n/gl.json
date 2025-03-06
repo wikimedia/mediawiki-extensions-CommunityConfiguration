@@ -50,6 +50,6 @@
 	"communityconfiguration-editor-error-validation-string-too-short": "Debe ter, polo menos, $1 caracteres",
 	"communityconfiguration-editor-error-validation-string-too-long": "Debe ter, como máximo, $1 caracteres",
 	"communityconfiguration-maintenance-config-change-summary": "Configuración modificada polo script de mantemento: $1",
-	"tag-community_configuration": "[[mw:Community configuration|Configuración comunitaria]]",
+	"tag-community_configuration": "Configuración comunitaria",
 	"tag-community_configuration-description": "Edicións que modifican a [[Special:CommunityConfiguration|configuración local do wiki]] dunha característica que utiliza a [[mw:Extension:CommunityConfiguration|extensión de configuración comunitaria]]."
 }

@@ -36,5 +36,5 @@
 	"communityconfiguration-editor-loading-info-text": "配置編輯器正在載入",
 	"communityconfiguration-editor-nojs-fallback-text": "配置編輯器需要JavaScript。請啟用JavaScript以使用配置編輯器。",
 	"communityconfiguration-editor-navigation-tab-viewform": "檢視表單",
-	"tag-community_configuration": "[[mw:Community configuration|社群配置]]"
+	"tag-community_configuration": "社群配置"
 }
