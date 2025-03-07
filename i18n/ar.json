@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Cigaryno",
 			"Dyolf77 (WMF)",
 			"Meno25"
 		]
@@ -51,6 +52,6 @@
 	"communityconfiguration-editor-error-validation-string-too-short": "يجب أن يكون طوله $1 حرفًا على الأقل",
 	"communityconfiguration-editor-error-validation-string-too-long": "يجب أن يكون الحد الأقصى $1 حرفًا",
 	"communityconfiguration-maintenance-config-change-summary": "تم تغيير التكوين بواسطة البرنامج النصي للصيانة: $1",
-	"tag-community_configuration": "[[mw:Community configuration|إعدادات المجتمع]]",
+	"tag-community_configuration": "إعدادات المجتمع",
 	"tag-community_configuration-description": "التعديلات التي تغير [[Special:CommunityConfiguration|إعدادات الويكي المحلي]] لميزة باستخدام [[mw:Extension:CommunityConfiguration|امتداد إعدادات المجتمع]]."
 }

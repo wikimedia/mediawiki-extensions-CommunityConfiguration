@@ -52,6 +52,6 @@
 	"communityconfiguration-editor-error-validation-string-too-short": "少なくとも $1 文字以上必要です",
 	"communityconfiguration-editor-error-validation-string-too-long": "最大 $1 文字までです",
 	"communityconfiguration-maintenance-config-change-summary": "メンテナンス スクリプトによって構成が変更されました: $1",
-	"tag-community_configuration": "[[mw:Community configuration|コミュニティ設定]]",
+	"tag-community_configuration": "コミュニティ設定",
 	"tag-community_configuration-description": "[[mw:Extension:CommunityConfiguration|コミュニティ設定拡張機能]]を使う機能の[[Special:CommunityConfiguration|ローカルウィキ設定]]を変更する編集。"
 }
