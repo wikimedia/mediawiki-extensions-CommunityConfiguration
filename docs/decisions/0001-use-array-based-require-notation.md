@@ -50,7 +50,7 @@ which was the previous json-schema standard (Draft 3):
 Draft 3 (published 2010) and Draft 4 (published in 2013) are the implementations that are supported by the currently used library jsonrainbow/json-schema.
 However, the most recent version of the json-schema standard is Draft 2020-12, which is 5 major version ahead of Draft 4.
 The array-based approach to specify required properties is still the standard in the latest version.
-There is a plan to migrate to a library supporting the lastest version of the json-schema standard (opis/json-schema),
+There is a plan to migrate to a library supporting the latest version of the json-schema standard (opis/json-schema),
 but that is waiting on other teams ([T319054](https://phabricator.wikimedia.org/T319054))
 
 ## Considered Options
