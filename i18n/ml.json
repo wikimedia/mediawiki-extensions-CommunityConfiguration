@@ -4,5 +4,10 @@
 			"Praveenp"
 		]
 	},
+	"communityconfiguration": "സാമൂഹിക സജ്ജീകരണം",
+	"communityconfiguration-desc": "സാമൂഹിക സജ്ജീകരണ യുക്തി",
+	"communityconfiguration-editor-chip-control-aria-chip-description": "തിരുത്താനായി എന്റർ ബട്ടണും നീക്കം ചെയ്യാനായി ഡിലീറ്റ് ബട്ടണും ഞെക്കുക",
+	"communityconfiguration-editor-client-generic-error": "ക്രമീകരണങ്ങൾ തിരുത്തലുപാധി എടുക്കുമ്പോൾ എന്തോ പിഴവുണ്ടായി. ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക.",
+	"communityconfiguration-editor-form-submit-button-text": "മാറ്റങ്ങൾ സേവ് ചെയ്യുക",
 	"communityconfiguration-editor-message-dismiss-button-label": "അടയ്ക്കുക"
 }

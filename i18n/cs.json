@@ -38,5 +38,5 @@
 	"communityconfiguration-editor-loading-info-text": "Editor konfigurace se načítá",
 	"communityconfiguration-editor-nojs-fallback-text": "Editor konfigurace vyžaduje JavaScript. Povolte JavaScript, abyste jej mohli používat.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Zobrazit formulář",
-	"tag-community_configuration": "[[mw:Community configuration|Komunitní konfigurace]]"
+	"tag-community_configuration": "Komunitní konfigurace"
 }

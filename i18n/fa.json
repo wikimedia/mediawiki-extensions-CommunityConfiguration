@@ -51,6 +51,6 @@
 	"communityconfiguration-editor-error-validation-string-too-short": "طول آن باید دست کم $1 نویسه باشد",
 	"communityconfiguration-editor-error-validation-string-too-long": "طول آن باید حداکثر $1 نویسه باشد",
 	"communityconfiguration-maintenance-config-change-summary": "تغییر پیکربندی توسط اسکریپت نگهداری: $1",
-	"tag-community_configuration": "[[mw:Community configuration|پیکربندی اجتماع]]",
+	"tag-community_configuration": "پیکربندی اجتماع",
 	"tag-community_configuration-description": "ویرایش‌هایی که [[Special:CommunityConfiguration|پیکربندی محلی ویکی]] برای یک ویژگی را با استفاده از [[mw:Extension:CommunityConfiguration|افزونهٔ پیکربندی اجتماع]] تغییر می‌دهند."
 }
