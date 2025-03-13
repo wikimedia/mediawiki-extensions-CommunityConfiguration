@@ -24,7 +24,7 @@
 	"communityconfiguration-invalid-stored-config-error": "Nun pòttimu carricari na cunfijurazzioni vàlita data di $1 (còdici <code>$2</code>).",
 	"communityconfiguration-invalid-stored-config-error-with-link": "Nun pòttimu carricari na cunfijurazzioni vàlita dunata di $1 (còdici <code>$2</code>). Talìa $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Minutagghi dû sbagghiu",
-	"communityconfiguration-schema-validation-error": "BOZZA: $2. Chiavi: $1",
+	"communityconfiguration-schema-validation-error": "$2. Chiavi: $1",
 	"communityconfiguration-providers-list-title": "Funziunalità",
 	"communityconfiguration-provider-not-found": "A confijurazzioni $1 nun cc'è",
 	"communityconfigurationdashboard": "Cunfijurazzioni cumunitaria",
@@ -50,6 +50,6 @@
 	"communityconfiguration-editor-error-validation-string-too-short": "Hâ cuntèniri mìnimu $1 caràttari",
 	"communityconfiguration-editor-error-validation-string-too-long": "Hâ cuntèniri màssimu $1 caràttari",
 	"communityconfiguration-maintenance-config-change-summary": "Cunfijurazzioni canciata dû còdici di mantinimentu: $1",
-	"tag-community_configuration": "[[mw:Community configuration|Cunfijurazzioni cumunitaria]]",
+	"tag-community_configuration": "Cunfijurazzioni cumunitaria",
 	"tag-community_configuration-description": "Canci chi càncianu a [[Special:CommunityConfiguration|cunfijurazzioni lucali]] di na funziunalità usannu u [[mw:Extension:CommunityConfiguration|stinneriu dâ Cunfijurazzioni cumunitaria]]."
 }
