@@ -21,12 +21,14 @@
 	"communityconfiguration-unknown-error": "LUONNOS: Jotain meni pieleen. Lähetetä ongelmailmoitus Phabricatorissa?",
 	"communityconfigurationdashboard": "Yhteisöasetukset",
 	"communityconfiguration-edit-summary-reminder": "<b>Muistutus</b>: Tämä muutos saattaa vaikuttaa suureen joukkoon yhteisön jäsenistä. Kerro, miksi {{GENDER:$1|teet}} kyseisen muutoksen ja linkitä tarvittaessa aiheeseen liittyvä yhteisön keskustelu.",
+	"communityconfiguration-edit-summary-dialog-title": "Tallenna muutokset kohteeseen $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(valinnainen)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Kuvaile, mitä muutoksia asetuksiin on tehty",
 	"communityconfiguration-edit-summary-dialog-save-button": "Tallenna muutokset",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Peruuta",
 	"communityconfiguration-edit-summary-dialog-label": "Muokkausyhteenveto",
 	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Muutoksesi}} on tallennettu",
+	"communityconfiguration-editor-client-data-submission-error": "Jokin meni pieleen tallentaessa {{GENDER:$1|muutoksiasi}}. Yritä myöhemmin uudelleen.",
 	"communityconfiguration-editor-message-dismiss-button-label": "Sulje",
 	"communityconfiguration-page-title-control-no-results": "Tuloksia ei löytynyt."
 }
