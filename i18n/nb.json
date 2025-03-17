@@ -51,6 +51,6 @@
 	"communityconfiguration-editor-error-validation-string-too-short": "Må være minst $1 tegn lang",
 	"communityconfiguration-editor-error-validation-string-too-long": "Må være minst $1 tegn lang",
 	"communityconfiguration-maintenance-config-change-summary": "Konfigurasjon endret av vedlikeholdsskript: $1",
-	"tag-community_configuration": "[[mw:Community configuration|Fellesskapskonfigurasjon]]",
+	"tag-community_configuration": "Fellesskapskonfigurasjon",
 	"tag-community_configuration-description": "Redigeringer som endrer [[Special:CommunityConfiguration|lokal konfigurasjon]] for en funksjon ved å bruke [[mw:Extension:CommunityConfiguration|utvidelsen for fellesskapskonfigurasjon]]"
 }

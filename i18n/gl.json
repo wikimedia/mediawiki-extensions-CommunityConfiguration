@@ -15,6 +15,7 @@
 	"communityconfiguration-editor-form-submit-button-loading-text": "Enviando...",
 	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Eliminar o elemento",
 	"communityconfiguration-editor-array-fallback-add-element-button-label": "Engadir outro elemento",
+	"communityconfiguration-editor-validation-error-label-chain-joiner": "&#32;→&#32;",
 	"communityconfiguration-guidelines-title": "Que é a configuración comunitaria?",
 	"communityconfiguration-guidelines-description": "A configuración comunitaria é unha ferramenta que permite ás comunidades establecer e controlar a configuración das distintas características de {{SITENAME}}, facilitando que a administración satisfaga as necesidades específicas da comunidade.",
 	"communityconfiguration-guidelines-guideline1-title": "Máis información",
