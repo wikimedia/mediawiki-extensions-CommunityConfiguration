@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Hedda",
-			"Leo"
+			"Leo",
+			"LisafBia"
 		]
 	},
 	"communityconfiguration": "Topluluk Yapılandırması",
@@ -16,6 +17,6 @@
 	"communityconfiguration-schema-validation-error": "TASLAK: $2. Anahtar: $1",
 	"communityconfiguration-providers-list-title": "Özellikler",
 	"communityconfigurationdashboard": "Topluluk Yapılandırması",
-	"tag-community_configuration": "[[mw:Community configuration|Topluluk Yapılandırması]]",
+	"tag-community_configuration": "Topluluk Yapılandırması",
 	"tag-community_configuration-description": "[[mw:Extension:CommunityConfiguration|Topluluk Yapılandırması uzantısını]] kullanan bir özelliğin [[Special:CommunityConfiguration|yerel viki yapılandırmasını]] değiştiren düzenlemeler."
 }
