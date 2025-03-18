@@ -8,7 +8,7 @@
 		@primary="saveChanges"
 		@default="closeDialog"
 	>
-		<cdx-field optional="true">
+		<cdx-field :optional="true">
 			<cdx-text-area
 				v-model="wrappedEditSummary"
 				:placeholder="$i18n( 'communityconfiguration-edit-summary-dialog-placeholder' ).text()"
