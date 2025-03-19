@@ -11,7 +11,7 @@
 	"license-name": "GPL-3.0-or-later",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.43.0"
+		"MediaWiki": ">= 1.44"
 	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\CommunityConfiguration\\": "src/",
@@ -119,7 +119,10 @@
 		},
 		"navigation": {
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Hooks\\NavigationHooks",
-			"services": [ "CommunityConfiguration.ProviderFactory", "SpecialPageFactory" ]
+			"services": [
+				"CommunityConfiguration.ProviderFactory",
+				"SpecialPageFactory"
+			]
 		},
 		"change-tags": {
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Hooks\\ChangeTagHooks"
@@ -133,7 +136,9 @@
 	},
 	"DomainEventSubscribers": [
 		{
-			"events": [ "PageUpdated" ],
+			"events": [
+				"PageUpdated"
+			],
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Hooks\\WikiPageStorePageUpdatedSubscriber",
 			"services": [
 				"CommunityConfiguration.ProviderFactory"
@@ -204,7 +209,7 @@
 				"CdxIcon",
 				"CdxLookup",
 				"CdxMenu",
-				"CdxMessage" ,
+				"CdxMessage",
 				"CdxTextInput",
 				"CdxRadio",
 				"useFloatingMenu",
@@ -263,8 +268,7 @@
 					]
 				}
 			],
-			"styles": [
-			],
+			"styles": [],
 			"messages": [
 				"communityconfiguration-editor-client-generic-error",
 				"communityconfiguration-editor-client-generic-error-description",
