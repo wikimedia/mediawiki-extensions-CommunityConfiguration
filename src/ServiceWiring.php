@@ -78,7 +78,6 @@ return [
 		return new MediaWikiConfigReader(
 			$services->getLocalServerObjectCache(),
 			$ccServices->getConfigurationProviderFactory(),
-			$services->getMainConfig(),
 			$ccServices->getLogger()
 		);
 	},

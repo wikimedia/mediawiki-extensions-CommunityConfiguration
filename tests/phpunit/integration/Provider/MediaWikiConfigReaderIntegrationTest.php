@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use MediaWiki\Config\ConfigException;
@@ -34,7 +36,7 @@ class MediaWikiConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase 
 		] );
 	}
 
-	public function testStoreGet() {
+	public function testStoreGet(): void {
 		$authority = $this->getTestSysop()->getAuthority();
 
 		$ccServices = CommunityConfigurationServices::wrap( $this->getServiceContainer() );
@@ -57,22 +59,18 @@ class MediaWikiConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase 
 		$this->assertSame( 42, $reader->get( 'NumberWithDefault' ) );
 	}
 
-	public function testCoreVariable() {
+	public function testCoreVariable(): void {
 		$ccServices = CommunityConfigurationServices::wrap( $this->getServiceContainer() );
 		$reader = $ccServices->getMediaWikiConfigReader();
 
 		// The reader should now report that it does not have configs only in php settings, like DBname
 		$this->assertFalse( $reader->has( MainConfigNames::DBname ) );
-		// For now, the fallback on ->get() should still actually work though
-		// variable that is not in the schema is processed by GlobalVarConfig, which should have
-		// DBname for example
-		$this->assertSame(
-			$this->getDb()->getDBname(),
-			$reader->get( MainConfigNames::DBname )
-		);
+
+		$this->expectException( ConfigException::class );
+		$reader->get( MainConfigNames::DBname );
 	}
 
-	public function testMultipleRegistration() {
+	public function testMultipleRegistration(): void {
 		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
 			'foo' => [
 				'store' => [

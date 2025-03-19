@@ -17,18 +17,15 @@ class MediaWikiConfigReader implements Config {
 
 	private BagOStuff $cache;
 	private ConfigurationProviderFactory $providerFactory;
-	private Config $fallbackConfig;
 	private LoggerInterface $logger;
 
 	public function __construct(
 		BagOStuff $cache,
 		ConfigurationProviderFactory $providerFactory,
-		Config $fallbackConfig,
 		LoggerInterface $logger
 	) {
 		$this->cache = $cache;
 		$this->providerFactory = $providerFactory;
-		$this->fallbackConfig = $fallbackConfig;
 		$this->logger = $logger;
 	}
 
@@ -109,20 +106,13 @@ class MediaWikiConfigReader implements Config {
 	 */
 	private function getConfigByVariableName( string $name ): Config {
 		$map = $this->getVariableToProviderMap();
-		if ( isset( $map[$name] ) ) {
-			return $this->getMediaWikiConfigProviderByName( $map[$name] );
-		} else {
-			// TODO: Replace with a throw once T387452 is done, in If0e52465787387e20bb7790cd9f553cf468f37b7
-			$this->logger->info(
-				__CLASS__ . ' was unable to find {key} in community configuration, returning ' .
-				'configuration from the fallback config',
-				[
-					'key' => $name,
-					'exception' => new \RuntimeException,
-				],
+		if ( !isset( $map[$name] ) ) {
+			throw new ConfigException(
+				'Config variable ' . $name . ' not found in community configuration.' .
+				'Should be requested via MediaWikiConfigRouter instead.'
 			);
-			return $this->fallbackConfig;
 		}
+		return $this->getMediaWikiConfigProviderByName( $map[$name] );
 	}
 
 	/**
