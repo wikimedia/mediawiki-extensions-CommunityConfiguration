@@ -16,7 +16,7 @@
 	"communityconfiguration-guidelines-guideline2-title": "ਸਾਨੂੰ {{GENDER:$1|ਆਪਣੇ}} ਸੁਝਾਅ ਭੇਜੋ",
 	"communityconfiguration-guidelines-guideline2-description": "ਅਸੀਂ {{GENDER:$1|ਤੁਹਾਡੇ}} ਵਿਚਾਰ ਸੁਣਨਾ ਪਸੰਦ ਕਰਾਂਗੇ! ਸਾਡੇ [https://www.mediawiki.org/wiki/Talk:Growth ਗੱਲਬਾਤ ਵਰਕੇ] ਰਾਹੀਂ ਸਾਡੇ ਤੱਕ ਰਾਬਤਾ ਕਾਇਮ ਕਰੋ।",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "ਗਲਤੀ ਵੇਰਵੇ",
-	"communityconfiguration-schema-validation-error": "ਖਰੜਾ: $2। ਟੀਕਾ: $1",
+	"communityconfiguration-schema-validation-error": "$2। ਚਾੱਬੀ: $1",
 	"communityconfiguration-edit-summary-dialog-title": "$1 ਲਈ ਤਬਦੀਲੀਆਂ ਸੰਭਾਲੋ",
 	"communityconfiguration-edit-summary-dialog-save-button": "ਤਬਦੀਲੀਆਂ ਸਾਂਭੋ",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "ਰੱਦ ਕਰੋ",
