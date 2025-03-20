@@ -51,6 +51,6 @@
 	"communityconfiguration-editor-error-validation-string-too-short": "Мінімальна кількість символів: $1",
 	"communityconfiguration-editor-error-validation-string-too-long": "Максимальна кількість символів: $1",
 	"communityconfiguration-maintenance-config-change-summary": "Конфігурація змінена скриптом обслуговування: $1",
-	"tag-community_configuration": "[[mw:Community configuration|Налаштування спільнотою]]",
+	"tag-community_configuration": "Налаштування спільнотою",
 	"tag-community_configuration-description": "Редагування, які змінюють [[Special:CommunityConfiguration|конфігурацію функції у локальній вікі]] з допомогою [[mw:Extension:CommunityConfiguration|розширення Налаштування спільнотою]]."
 }
