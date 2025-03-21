@@ -51,6 +51,6 @@
 	"communityconfiguration-editor-error-validation-string-too-short": "최소 $1자여야 합니다",
 	"communityconfiguration-editor-error-validation-string-too-long": "최대 $1자여야 합니다",
 	"communityconfiguration-maintenance-config-change-summary": "유지관리 스크립트에 의해 구성이 변경되었습니다: $1",
-	"tag-community_configuration": "[[mw:Community configuration|커뮤니티 구성]]",
+	"tag-community_configuration": "커뮤니티 구성",
 	"tag-community_configuration-description": "[[mw:Extension:CommunityConfiguration|커뮤니티 구성 확장 기능]]을 사용하여 기능의 [[Special:CommunityConfiguration|로컬 위키 구성]]을 변경하는 편집입니다."
 }
