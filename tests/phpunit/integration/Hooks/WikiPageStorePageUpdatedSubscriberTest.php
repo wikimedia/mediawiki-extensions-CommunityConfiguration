@@ -2,12 +2,9 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
-use BagOStuff;
-use HashBagOStuff;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Json\FormatJson;
 use MediaWikiIntegrationTestCase;
-use WANObjectCache;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Hooks\WikiPageStorePageUpdatedSubscriber
@@ -15,13 +12,8 @@ use WANObjectCache;
  */
 class WikiPageStorePageUpdatedSubscriberTest extends MediaWikiIntegrationTestCase {
 
-	private BagOStuff $cache;
-
 	protected function setUp(): void {
 		parent::setUp();
-
-		$this->cache = new HashBagOStuff();
-		$this->setMainCache( $this->cache );
 
 		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
 			'foo' => [
@@ -37,8 +29,7 @@ class WikiPageStorePageUpdatedSubscriberTest extends MediaWikiIntegrationTestCas
 	}
 
 	public function testManualSaveInvalidates() {
-		$wanCache = new WANObjectCache( [ 'cache' => $this->cache ] );
-		$this->setService( 'MainWANObjectCache', $wanCache );
+		$wanCache = $this->getServiceContainer()->getMainWANObjectCache();
 
 		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()
