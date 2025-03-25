@@ -38,6 +38,7 @@
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Отмена",
 	"communityconfiguration-edit-summary-dialog-label": "Описание изменений",
 	"communityconfiguration-editor-message-dismiss-button-label": "Закрыть",
+	"communityconfiguration-page-title-control-no-results": "Ничего не найдено.",
 	"communityconfiguration-editor-client-notice-message": "Эта страница защищена. Только администраторы могут настраивать эту функцию.",
 	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Вы}} не можете сохранить изменения в этой форме, поскольку настройки этой функции могут редактировать только администраторы.",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Не имеет значения в перечислении: $1",
