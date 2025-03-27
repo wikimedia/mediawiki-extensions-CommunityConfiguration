@@ -31,5 +31,6 @@
 	"communityconfiguration-edit-summary-dialog-save-button": "Записать изменения",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Отмена",
 	"communityconfiguration-edit-summary-dialog-label": "Описание изменений",
-	"communityconfiguration-editor-message-dismiss-button-label": "Закрыть"
+	"communityconfiguration-editor-message-dismiss-button-label": "Закрыть",
+	"communityconfiguration-page-title-control-no-results": "Ничего не найдено."
 }
