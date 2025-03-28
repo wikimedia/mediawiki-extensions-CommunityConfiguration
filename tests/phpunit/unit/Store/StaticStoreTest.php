@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use LogicException;
 use MediaWiki\Extension\CommunityConfiguration\Store\StaticStore;
+use MediaWiki\Extension\CommunityConfiguration\Store\VersionedConfiguration;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
@@ -12,6 +13,8 @@ use stdClass;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Store\StaticStore
+ * @covers \MediaWiki\Extension\CommunityConfiguration\Store\AbstractStore
+ * @covers \MediaWiki\Extension\CommunityConfiguration\Store\VersionedConfiguration
  */
 class StaticStoreTest extends MediaWikiUnitTestCase {
 
@@ -28,6 +31,32 @@ class StaticStoreTest extends MediaWikiUnitTestCase {
 		$this->assertStoreStatusOK( $config, $store->loadConfigurationUncached() );
 
 		$this->assertNull( $store->getInfoPageLinkTarget() );
+	}
+
+	public static function provideVersionedLoadMethods(): array {
+		return [
+			'cached' => [ 'loadVersionedConfiguration' ],
+			'uncached' => [ 'loadVersionedConfigurationUncached' ],
+		];
+	}
+
+	/**
+	 * A store that does not track schema versions still answers the versioned load methods,
+	 * through the default AbstractStore implementation, reporting no version.
+	 *
+	 * @dataProvider provideVersionedLoadMethods
+	 */
+	public function testLoadVersionedConfiguration( string $loadMethod ) {
+		$config = (object)[ 'Number' => 42, 'String' => 'foo' ];
+		$store = new StaticStore( $config );
+
+		$statusValue = $store->$loadMethod();
+		$this->assertStatusOK( $statusValue );
+		$versionedConfiguration = $statusValue->getValue();
+		$this->assertInstanceOf( VersionedConfiguration::class, $versionedConfiguration );
+		$this->assertEquals( $config, $versionedConfiguration->getData() );
+		$this->assertNull( $versionedConfiguration->getVersion() );
+		$this->assertNull( $store->getVersion() );
 	}
 
 	public function testNoChanges() {

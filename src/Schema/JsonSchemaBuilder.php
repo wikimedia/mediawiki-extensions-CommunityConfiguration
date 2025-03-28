@@ -28,6 +28,7 @@ class JsonSchemaBuilder implements SchemaBuilder {
 	 *
 	 * @param string|null $version
 	 * @return JsonSchemaReader
+	 * @throws \ReflectionException if a Schema class with that version does not exist
 	 */
 	private function getJsonSchemaReader( ?string $version = null ): JsonSchemaReader {
 		if ( $version === null ) {
@@ -62,6 +63,8 @@ class JsonSchemaBuilder implements SchemaBuilder {
 
 	/**
 	 * @inheritDoc
+	 *
+	 * @throws \ReflectionException if a Schema class with that version does not exist
 	 */
 	public function getRootSchema( ?string $version = null ): array {
 		// The root schema comes from PHP class constants. It cannot change while the process

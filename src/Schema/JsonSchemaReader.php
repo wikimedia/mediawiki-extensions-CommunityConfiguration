@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Schema;
 use InvalidArgumentException;
 use MediaWiki\Settings\Source\ReflectionSchemaSource;
 use ReflectionClass;
+use ReflectionException;
 
 class JsonSchemaReader implements SchemaReader {
 
@@ -12,6 +13,7 @@ class JsonSchemaReader implements SchemaReader {
 
 	/**
 	 * @param JsonSchema|string $classNameOrClassInstance JsonSchema derived class name (instance only allowed in tests)
+	 * @throws ReflectionException if the class does not exist
 	 */
 	public function __construct( $classNameOrClassInstance ) {
 		// @codeCoverageIgnoreStart

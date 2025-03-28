@@ -70,6 +70,9 @@ interface IConfigurationStore {
 	/**
 	 * Load the configuration without any caching
 	 *
+	 * Any version metadata the store keeps alongside the configuration is removed; use
+	 * loadVersionedConfigurationUncached() to obtain it.
+	 *
 	 * @return StatusValue
 	 */
 	public function loadConfigurationUncached(): StatusValue;
@@ -77,9 +80,31 @@ interface IConfigurationStore {
 	/**
 	 * Load the configuration (cached)
 	 *
+	 * Any version metadata the store keeps alongside the configuration is removed; use
+	 * loadVersionedConfiguration() to obtain it.
+	 *
 	 * @return StatusValue
 	 */
 	public function loadConfiguration(): StatusValue;
+
+	/**
+	 * Load the configuration (cached) together with the schema version it was stored under
+	 *
+	 * The data and the version come from a single read, so callers can rely on them matching.
+	 *
+	 * @see VersionedConfiguration
+	 * @return StatusValue if OK, a VersionedConfiguration is passed as the value
+	 */
+	public function loadVersionedConfiguration(): StatusValue;
+
+	/**
+	 * Load the configuration without any caching, together with the schema version it was
+	 * stored under
+	 *
+	 * @see VersionedConfiguration
+	 * @return StatusValue if OK, a VersionedConfiguration is passed as the value
+	 */
+	public function loadVersionedConfigurationUncached(): StatusValue;
 
 	/**
 	 * Store the configuration

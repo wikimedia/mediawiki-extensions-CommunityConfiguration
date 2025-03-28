@@ -105,24 +105,27 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	 * @param string $summary
 	 * @param bool $bypassPermissionCheck Whether IConfigurationStore::alwaysStoreConfiguration
 	 * should be used.
+	 * @param string|null $version The schema version to store the configuration under. If null,
+	 * the most recent version is used, provided the validator supports schemas at all.
 	 * @return StatusValue
 	 */
 	private function doStoreValidConfiguration(
-		$newConfig,
+		mixed $newConfig,
 		Authority $authority,
 		string $summary,
-		bool $bypassPermissionCheck
+		bool $bypassPermissionCheck,
+		?string $version = null
 	): StatusValue {
-		$validationStatus = $this->getValidator()->validateStrictly( $newConfig );
+		$validationStatus = $this->getValidator()->validateStrictly( $newConfig, $version );
 		if ( !$validationStatus->isGood() ) {
 			return $validationStatus;
 		}
 
 		$args = [
 			$newConfig,
-			$this->getValidator()->areSchemasSupported()
+			$version ?? ( $this->getValidator()->areSchemasSupported()
 				? $this->getValidator()->getSchemaVersion()
-				: null,
+				: null ),
 			$authority,
 			$summary,
 		];
@@ -154,9 +157,10 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	public function storeValidConfiguration(
 		$newConfig,
 		Authority $authority,
-		string $summary = ''
+		string $summary = '',
+		?string $version = null
 	): StatusValue {
-		return $this->doStoreValidConfiguration( $newConfig, $authority, $summary, false );
+		return $this->doStoreValidConfiguration( $newConfig, $authority, $summary, false, $version );
 	}
 
 	/**
@@ -165,9 +169,10 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	public function alwaysStoreValidConfiguration(
 		$newConfig,
 		Authority $authority,
-		string $summary = ''
+		string $summary = '',
+		?string $version = null
 	): StatusValue {
-		return $this->doStoreValidConfiguration( $newConfig, $authority, $summary, true );
+		return $this->doStoreValidConfiguration( $newConfig, $authority, $summary, true, $version );
 	}
 
 	/**

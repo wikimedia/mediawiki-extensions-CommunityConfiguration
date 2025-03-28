@@ -51,7 +51,7 @@ class ApiEditTest extends ApiTestCase {
 			'csrf'
 		);
 		$this->assertSame( 'success', $ret[0]['communityconfigurationedit']['result'] );
-		$status = $provider->loadValidConfiguration();
+		$status = $provider->loadValidConfigurationConvertedToLatest();
 		$this->assertStatusOK( $status );
 		$this->assertStatusValue(
 			(object)[

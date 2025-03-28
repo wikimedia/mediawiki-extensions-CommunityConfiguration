@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
+use MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore;
 use MediaWiki\Json\FormatJson;
 use MediaWikiIntegrationTestCase;
 
@@ -63,6 +64,32 @@ class ValidationHooksTest extends MediaWikiIntegrationTestCase {
 		] ) );
 		$this->assertStatusError(
 			'communityconfiguration-schema-validation-error',
+			$status
+		);
+	}
+
+	/**
+	 * A version that is not even a string is rejected before it reaches the validator, where
+	 * the ?string parameter would make it a TypeError.
+	 */
+	public function testMalformedVersionSave(): void {
+		$status = $this->editPage( 'MediaWiki:Foo.json', FormatJson::encode( [
+			'NumberWithDefault' => 42,
+			WikiPageStore::VERSION_FIELD_NAME => 1.1,
+		] ) );
+		$this->assertStatusError(
+			'communityconfiguration-malformed-schema-version',
+			$status
+		);
+	}
+
+	public function testInvalidVersionSave(): void {
+		$status = $this->editPage( 'MediaWiki:Foo.json', FormatJson::encode( [
+			'NumberWithDefault' => 42,
+			'$version' => '999.0.0',
+		] ) );
+		$this->assertStatusError(
+			'communityconfiguration-invalid-schema-version',
 			$status
 		);
 	}

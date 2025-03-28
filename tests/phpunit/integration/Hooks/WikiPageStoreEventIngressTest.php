@@ -42,7 +42,7 @@ class WikiPageStoreEventIngressTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusOK( $this->editPage( 'MediaWiki:Foo.json', FormatJson::encode( [
 			'Number' => 42,
 		] ) ), 'Failed to create MediaWiki:Foo.json' );
-		$status = $provider->loadValidConfiguration();
+		$status = $provider->loadValidConfigurationConvertedToLatest();
 		$this->assertStatusOK( $status );
 		$this->assertStatusValue( (object)[
 			'Number' => 42,
@@ -52,7 +52,7 @@ class WikiPageStoreEventIngressTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusOK( $this->editPage( 'MediaWiki:Foo.json', FormatJson::encode( [
 			'Number' => 43,
 		] ) ), 'Failed to edit MediaWiki:Foo.json' );
-		$status = $provider->loadValidConfiguration();
+		$status = $provider->loadValidConfigurationConvertedToLatest();
 		$this->assertStatusOK( $status, 'Failed to load configuration' );
 		$this->assertStatusValue( (object)[
 			'Number' => 43,

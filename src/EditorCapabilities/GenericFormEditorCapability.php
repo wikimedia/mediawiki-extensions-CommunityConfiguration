@@ -9,6 +9,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\CommunityConfiguration\Controls\ControlRegistry;
 use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
+use MediaWiki\Extension\CommunityConfiguration\Provider\IVersionedConfigurationProvider;
 use MediaWiki\Extension\CommunityConfiguration\Schema\UISchema;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\FormatterFactory;
@@ -143,7 +144,6 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		$out->addSubtitle( '&lt; ' . $this->linkRenderer->makeLink(
 			$this->getParentTitle()
 		) );
-
 		$helpPage = $this->provider->getOptionValue( 'helpPage' );
 		$helpURL = $this->provider->getOptionValue( 'helpURL' );
 
@@ -153,7 +153,11 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 			$out->addHelpLink( $helpURL, true );
 		}
 
-		$config = $this->provider->loadValidConfigurationUncached();
+		// The form renders against the most recent schema, so the configuration has to be
+		// converted to it. A provider without schema versions has nothing to convert.
+		$config = $this->provider instanceof IVersionedConfigurationProvider
+			? $this->provider->loadValidConfigurationUncachedConvertedToLatest()
+			: $this->provider->loadValidConfigurationUncached();
 		if ( !$config->isOK() ) {
 			$this->displayValidationError( $config );
 			$this->logger->error( ...$this->statusFormatter->getPsr3MessageAndContext( $config, [

@@ -38,6 +38,11 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 				'{}',
 				'{"CCExample_Numbers":{"IntegerNumber":42}}',
 			],
+			'changing old config' => [
+				'CCExample_OnOff',
+				'"on"',
+				'{"$version": "1.0.0"}',
+			],
 		];
 	}
 
@@ -220,10 +225,14 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()
 			->newProvider( 'CommunityConfigurationExample' );
-		$actualConfigStatus = $provider->getStore()->loadConfigurationUncached();
+		$actualConfigStatus = $provider->getStore()->loadVersionedConfigurationUncached();
 		$this->assertStatusGood( $actualConfigStatus );
-		$actualConfig = $actualConfigStatus->value;
-		$validationStatus = $provider->getValidator()->validateStrictly( $actualConfig );
+		$versionedConfiguration = $actualConfigStatus->getValue();
+		$actualConfig = $versionedConfiguration->getData();
+		$validationStatus = $provider->getValidator()->validateStrictly(
+			$actualConfig,
+			$versionedConfiguration->getVersion()
+		);
 		$this->assertStatusGood( $validationStatus );
 		return $actualConfig;
 	}
@@ -269,6 +278,35 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 			'CCExample_CustomControl' => 0,
 			'CCExample_ValueA' => 0,
 			'CCExample_ValueB' => '',
+		], $actualConfig );
+	}
+
+	public function testNullEditDoesNotAffectSchemaVersion(): void {
+		$initialEditStatus = $this->editPage( 'MediaWiki:CommunityConfigurationExample.json',
+			'{ "$version": "1.0.0", "CCExample_String": "pre-existing config" }'
+		);
+		$this->assertStatusGood( $initialEditStatus );
+		$this->maintenance->loadParamsAndArgs(
+			null,
+			[
+				'summary' => '(null-edit summary here)',
+				'null-edit' => '',
+			],
+			[ 'CommunityConfigurationExample' ]
+		);
+
+		$result = $this->maintenance->execute();
+		$this->assertTrue( $result );
+		$actualConfig = $this->getValidConfig();
+		$this->assertEquals( (object)[
+			'CCExample_FavoriteColors' => [],
+			'CCExample_String' => 'pre-existing config',
+			'CCExample_Numbers' => (object)[
+				'IntegerNumber' => 0,
+				'DecimalNumber' => 0.6,
+			],
+			'CCExample_RelevantPages' => [],
+			'CCExample_OnOff' => 'off',
 		], $actualConfig );
 	}
 

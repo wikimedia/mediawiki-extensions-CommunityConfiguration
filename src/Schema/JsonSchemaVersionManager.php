@@ -25,6 +25,7 @@ class JsonSchemaVersionManager implements SchemaVersionManager {
 	/**
 	 * @inheritDoc
 	 * @return JsonSchemaReader
+	 * @throws \ReflectionException if a Schema class with that version does not exist
 	 */
 	public function getVersionForSchema( string $version ): SchemaReader {
 		if ( $version == $this->jsonSchema->getVersion() ) {

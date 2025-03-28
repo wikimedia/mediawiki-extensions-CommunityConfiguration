@@ -6,6 +6,7 @@ use LogicException;
 use MediaWiki\Api\ApiRawMessage;
 use MediaWiki\Content\JsonContent;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
@@ -27,6 +28,12 @@ class WikiPageStore extends AbstractJsonStore {
 
 	public const VERSION_FIELD_NAME = '$version';
 	public const TAG_NAME = 'community configuration';
+
+	/**
+	 * Versions name a Schema class (see JsonSchemaVersionManager::getVersionForSchema(),
+	 * which maps dots to underscores), so they are restricted to what can appear there.
+	 */
+	private const VERSION_FIELD_PATTERN = '/^\d+\.\d+\.\d+$/';
 
 	private bool $isTestWithStorageDisabled;
 	private ?Title $configTitle = null;
@@ -111,26 +118,99 @@ class WikiPageStore extends AbstractJsonStore {
 
 	/**
 	 * @inheritDoc
-	 * @param bool $dropVersion Should version be dropped from the result?
 	 */
-	public function loadConfiguration( bool $dropVersion = true ): StatusValue {
-		$result = parent::loadConfiguration();
-		if ( $dropVersion ) {
-			$result = self::removeVersionDataFromStatus( $result );
-		}
-		return $result;
+	public function loadConfiguration(): StatusValue {
+		return self::removeVersionDataFromStatus( parent::loadConfiguration() );
 	}
 
 	/**
 	 * @inheritDoc
-	 * @param bool $dropVersion Should version be dropped from the result?
 	 */
-	public function loadConfigurationUncached( bool $dropVersion = true ): StatusValue {
-		$result = parent::loadConfigurationUncached();
-		if ( $dropVersion ) {
-			$result = self::removeVersionDataFromStatus( $result );
+	public function loadConfigurationUncached(): StatusValue {
+		return self::removeVersionDataFromStatus( parent::loadConfigurationUncached() );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function loadVersionedConfiguration(): StatusValue {
+		return self::splitVersionFromStatus( parent::loadConfiguration() );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function loadVersionedConfigurationUncached(): StatusValue {
+		return self::splitVersionFromStatus( parent::loadConfigurationUncached() );
+	}
+
+	/**
+	 * Split a raw load into the configuration and the version stored alongside it
+	 *
+	 * @param StatusValue $status As returned by AbstractJsonStore::loadConfiguration(Uncached),
+	 * that is, still carrying the version field
+	 * @return StatusValue
+	 */
+	private static function splitVersionFromStatus( StatusValue $status ): StatusValue {
+		if ( !$status->isOK() ) {
+			return $status;
 		}
-		return $result;
+		$versionStatus = self::readVersionField( $status->getValue() );
+		if ( !$versionStatus->isOK() ) {
+			return $versionStatus;
+		}
+		return self::newVersionedConfigurationStatus(
+			self::removeVersionDataFromStatus( $status ),
+			$versionStatus->getValue()
+		);
+	}
+
+	/**
+	 * Is $version something that may be stored in the version field?
+	 *
+	 * @see WikiPageStore::readVersionField()
+	 * @param mixed $version
+	 * @return bool
+	 */
+	public static function isVersionFieldValue( mixed $version ): bool {
+		return is_string( $version ) && (bool)preg_match( self::VERSION_FIELD_PATTERN, $version );
+	}
+
+	/**
+	 * Read the schema version stored alongside the configuration
+	 *
+	 * The field is arbitrary user-provided JSON, but every consumer of it takes ?string, so a
+	 * non-string value would reach them as an uncaught TypeError. Validating here keeps that
+	 * check in one place, next to the constant that names the field.
+	 *
+	 * A well-formed version is not necessarily a *known* one: there may be no Schema class
+	 * for it. That remains the validator's business, reported as
+	 * communityconfiguration-invalid-schema-version. This only rejects values that cannot be
+	 * a version at all.
+	 *
+	 * @internal Only public to be used from ValidationHooks
+	 * @param mixed $data Decoded configuration as loaded from the page
+	 * @return StatusValue If OK, the version string, or null when the field is absent
+	 */
+	public static function readVersionField( mixed $data ): StatusValue {
+		$version = is_object( $data ) ? ( $data->{self::VERSION_FIELD_NAME} ?? null ) : null;
+		if ( $version === null ) {
+			// Absent, or explicitly null: the configuration is unversioned, which is what this
+			// read has always reported for either.
+			return StatusValue::newGood( null );
+		}
+
+		if ( !self::isVersionFieldValue( $version ) ) {
+			return StatusValue::newFatal(
+				'communityconfiguration-malformed-schema-version',
+				// The value is user-provided and need not be a scalar; render it rather than
+				// passing it through, because a non-scalar message parameter is itself a
+				// fatal, which would defeat the point of this check.
+				FormatJson::encode( $version )
+			);
+		}
+
+		return StatusValue::newGood( $version );
 	}
 
 	/**
@@ -153,11 +233,11 @@ class WikiPageStore extends AbstractJsonStore {
 	 * @inheritDoc
 	 */
 	public function getVersion(): ?string {
-		$status = $this->loadConfiguration( false );
+		$status = $this->loadVersionedConfiguration();
 		if ( !$status->isOK() ) {
 			return null;
 		}
-		return $status->getValue()->{self::VERSION_FIELD_NAME} ?? null;
+		return $status->getValue()->getVersion();
 	}
 
 	/**
@@ -169,7 +249,16 @@ class WikiPageStore extends AbstractJsonStore {
 		Authority $authority,
 		string $summary = ''
 	): StatusValue {
-		if ( $version ) {
+		if ( $version !== null ) {
+			if ( !self::isVersionFieldValue( $version ) ) {
+				// Callers may pass a version straight from user input; see setVersionData.php
+				// and migrateConfig.php --version. Refuse to write what readVersionField()
+				// would then refuse to read back.
+				return StatusValue::newFatal(
+					'communityconfiguration-malformed-schema-version',
+					FormatJson::encode( $version )
+				);
+			}
 			$config->{self::VERSION_FIELD_NAME} = $version;
 		}
 

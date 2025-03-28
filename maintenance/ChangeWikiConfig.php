@@ -8,6 +8,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
+use MediaWiki\Extension\CommunityConfiguration\Provider\IVersionedConfigurationProvider;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\MessageLocalizer;
@@ -94,6 +95,14 @@ class ChangeWikiConfig extends Maintenance {
 
 		$provider = $this->providerFactory->newProvider( $this->getArg( 'provider' ) );
 
+		// NOTE: the version is read here and the configuration separately below, so the two do
+		// not come from a single read of the store. What matters is that this read is uncached,
+		// like every configuration load in this script: IConfigurationStore::getVersion() uses
+		// the cached path, and would pair a possibly stale version with freshly read data. Both
+		// reads being uncached, with nothing writing between them, makes them agree in practice;
+		// a load returning both would remove the second read. See VersionedConfiguration.
+		$versionStatus = $provider->getStore()->loadVersionedConfigurationUncached();
+		$storedVersion = $versionStatus->isOK() ? $versionStatus->getValue()->getVersion() : null;
 		if ( $this->hasOption( 'null-edit' ) ) {
 			$config = $this->executeNullEdit( $provider );
 		} elseif ( $this->hasOption( 'delete' ) ) {
@@ -110,7 +119,8 @@ class ChangeWikiConfig extends Maintenance {
 		if ( $this->hasOption( 'dry-run' ) ) {
 			$this->output( "Would save:\n" );
 			$this->output( FormatJson::encode( $config, true ) . "\n" );
-			$validationStatus = $provider->getValidator()->validateStrictly( $config );
+			$this->output( 'With version: ' . ( $storedVersion ?? '(none)' ) . "\n" );
+			$validationStatus = $provider->getValidator()->validateStrictly( $config, $storedVersion );
 			$this->output( "Validation status:\n" );
 			$this->output( $validationStatus->__toString() );
 			$this->output( "\n" );
@@ -122,7 +132,7 @@ class ChangeWikiConfig extends Maintenance {
 		)->params( $this->getOption( 'summary', '' ) )->inContentLanguage()->text();
 		$saveStatus = $provider->getStore()->alwaysStoreConfiguration(
 			$config,
-			null,
+			$storedVersion,
 			$user,
 			$summaryAsWikitext
 		);
@@ -283,8 +293,12 @@ class ChangeWikiConfig extends Maintenance {
 		return $configStatus->value;
 	}
 
-	private function loadFullConfigurationWithDefaultsAndNormalization( IConfigurationProvider $provider ): stdClass {
-		$configStatus = $provider->loadValidConfigurationUncached();
+	private function loadFullConfigurationWithDefaultsAndNormalization(
+		IConfigurationProvider $provider,
+	): stdClass {
+		$configStatus = $provider instanceof IVersionedConfigurationProvider
+			? $provider->loadValidConfigurationUncachedUnconverted()
+			: $provider->loadValidConfigurationUncached();
 		if ( !$configStatus->isGood() ) {
 			$this->output( "Failed to load config with validation:\n" );
 			$this->fatalError( $configStatus );

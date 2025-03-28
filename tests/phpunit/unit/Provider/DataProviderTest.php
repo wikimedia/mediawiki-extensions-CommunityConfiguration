@@ -119,7 +119,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( $defaultConfig );
 
 		$validatorMock = $this->createMock( JsonSchemaValidator::class );
-		$validatorMock->expects( $this->exactly( 4 ) )
+		$validatorMock->expects( $this->exactly( 6 ) )
 			->method( 'areSchemasSupported' )
 			->willReturn( true );
 		$validatorMock->expects( $this->exactly( 4 ) )
@@ -134,11 +134,11 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			new StaticStore( new stdClass() ),
-			$validatorMock
+			$validatorMock,
 		);
 
-		$this->assertConfigStatusOK( $defaultConfig, $provider->loadValidConfiguration() );
-		$this->assertConfigStatusOK( $defaultConfig, $provider->loadValidConfigurationUncached() );
+		$this->assertConfigStatusOK( $defaultConfig, $provider->loadValidConfigurationConvertedToLatest() );
+		$this->assertConfigStatusOK( $defaultConfig, $provider->loadValidConfigurationUncachedConvertedToLatest() );
 	}
 
 	public function testLoadConfigUsesInProcessCache(): void {
@@ -325,7 +325,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			$validatorStub
 		);
 
-		$this->assertConfigStatusOK( $expectedConfig, $provider->loadValidConfigurationUncached() );
+		$this->assertConfigStatusOK( $expectedConfig, $provider->loadValidConfigurationUncachedConvertedToLatest() );
 	}
 
 	public static function provideLoadInvalidConfig() {
@@ -379,14 +379,14 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		);
 		$provider->setLogger( $logger );
 
-		$this->assertStatusError( 'june', $provider->loadValidConfiguration() );
-		$this->assertStatusError( 'june', $provider->loadValidConfigurationUncached() );
+		$this->assertStatusError( 'june', $provider->loadValidConfigurationConvertedToLatest() );
+		$this->assertStatusError( 'june', $provider->loadValidConfigurationUncachedConvertedToLatest() );
 	}
 
 	public static function provideLoadFailedStore() {
 		return [
-			[ 'loadConfiguration', 'loadValidConfiguration' ],
-			[ 'loadConfigurationUncached', 'loadValidConfigurationUncached' ],
+			[ 'loadVersionedConfiguration', 'loadValidConfiguration' ],
+			[ 'loadVersionedConfigurationUncached', 'loadValidConfigurationUncached' ],
 		];
 	}
 
@@ -410,6 +410,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			ProviderServicesContainer::class,
 			[ 'getStatusFormatter' ]
 		);
+
 		$providerServicesContainer->expects( $this->once() )
 			->method( 'getStatusFormatter' )
 			->willReturn( $statusFormatter );
@@ -424,7 +425,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			$storeMock,
-			$this->createNoOpMock( IValidator::class )
+			$this->createNoOpMock( IValidator::class ),
 		);
 		$provider->setLogger( $logger );
 
@@ -459,7 +460,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			$storeMock,
-			$validatorMock
+			$validatorMock,
 		);
 
 		$status = $provider->storeValidConfiguration( (object)[ 'Foo' => 42 ], $authority );
@@ -509,7 +510,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			'foo',
 			[ 'excludeFromUI' => false ],
 			$storeMock,
-			$validatorMock
+			$validatorMock,
 		);
 
 		$status = $provider->storeValidConfiguration( $configData, $authority, 'summary' );
@@ -531,7 +532,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			$storeMock,
-			$validatorMock
+			$validatorMock,
 		);
 
 		$status = $provider->storeValidConfiguration( (object)[ 'Foo' => 42 ], $authority );
@@ -562,7 +563,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			$this->createNoOpMock( IConfigurationStore::class ),
-			$this->createNoOpMock( IValidator::class )
+			$this->createNoOpMock( IValidator::class ),
 		);
 		$this->assertTrue( $provider->getOptionValue( 'excludeFromUI' ) );
 		$this->assertNull( $provider->getOptionValue( 'nonExistentOption' ) );
@@ -593,7 +594,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			),
 		);
 
-		$this->assertConfigStatusOK( $expectedConfig, $provider->loadValidConfigurationUncached() );
+		$this->assertConfigStatusOK( $expectedConfig, $provider->loadValidConfigurationUncachedConvertedToLatest() );
 	}
 
 }

@@ -4,9 +4,11 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\CommunityConfiguration\Maintenance;
 
+use LogicException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
+use MediaWiki\Extension\CommunityConfiguration\Provider\IVersionedConfigurationProvider;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaMigrator;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Permissions\UltimateAuthority;
@@ -68,7 +70,7 @@ class MigrateConfig extends Maintenance {
 	/**
 	 * @inheritDoc
 	 */
-	public function execute() {
+	public function execute(): bool {
 		$this->initServices();
 
 		$providerId = $this->getArg( 'provider' );
@@ -76,6 +78,10 @@ class MigrateConfig extends Maintenance {
 			$this->fatalError( 'Provider ' . $providerId . ' is not supported' );
 		}
 		$provider = $this->providerFactory->newProvider( $providerId );
+		if ( !$provider instanceof IVersionedConfigurationProvider ) {
+			throw new LogicException( __CLASS__ . ' requires an IVersionedConfigurationProvider' );
+		}
+		$originalVersion = $provider->getStore()->getVersion();
 
 		$validator = $provider->getValidator();
 		if ( !$validator->areSchemasSupported() ) {
@@ -87,7 +93,7 @@ class MigrateConfig extends Maintenance {
 		// NOTE: We will be writing the data back; ensure we are not running into any cache
 		// issues by purging it.
 		$provider->invalidateCache();
-		$conversionStatus = $this->schemaMigrator->convertDataToVersion(
+		$conversionStatus = $this->schemaMigrator->loadAndConvertProviderDataToVersion(
 			$provider,
 			$targetVersion
 		);
@@ -99,19 +105,21 @@ class MigrateConfig extends Maintenance {
 		if ( $this->hasOption( 'dry-run' ) ) {
 			$this->output( 'Would save:' . PHP_EOL );
 			$this->output( var_export( $conversionStatus->getValue(), true ) . PHP_EOL );
-			return;
+			return true;
 		}
 
 		$status = $provider->storeValidConfiguration(
 			$conversionStatus->getValue(),
 			new UltimateAuthority( User::newSystemUser( User::MAINTENANCE_SCRIPT_USER ) ),
-			'Migrating data to new format'
+			"Migrating data to new format, {$originalVersion} &rarr; {$targetVersion}",
+			$targetVersion
 		);
 		if ( !$status->isOK() ) {
 			$this->fatalStatus( $status, 'Failed to update the store with new config' );
 		}
 
-		$this->output( 'All done!' . PHP_EOL );
+		$this->output( "All done!  Migrated from {$originalVersion} to {$targetVersion}" . PHP_EOL );
+		return true;
 	}
 }
 

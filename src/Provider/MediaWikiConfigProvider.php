@@ -8,11 +8,11 @@ use stdClass;
 
 class MediaWikiConfigProvider
 	extends DataProvider
-	implements IConfigurationProvider, Config
+	implements IVersionedConfigurationProvider, Config
 {
 
 	private function getValidConfigOrDefaults(): stdClass {
-		$status = $this->loadValidConfiguration();
+		$status = $this->loadValidConfigurationConvertedToLatest();
 		if ( !$status->isOK() ) {
 			$this->logger->error(
 				'CommunityConfiguration provider ' . $this->getId() . ' failed to load; '

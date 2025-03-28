@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
 use MediaWiki\DomainEvent\DomainEventDispatcher;
+use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaMigrator;
 use MediaWiki\Status\StatusFormatter;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -22,7 +23,8 @@ class ProviderServicesContainer {
 	public function __construct(
 		private readonly IConnectionProvider $connectionProvider,
 		private readonly DomainEventDispatcher $domainEventDispatcher,
-		private readonly StatusFormatter $statusFormatter
+		private readonly StatusFormatter $statusFormatter,
+		private readonly SchemaMigrator $schemaMigrator
 	) {
 	}
 
@@ -36,5 +38,9 @@ class ProviderServicesContainer {
 
 	public function getStatusFormatter(): StatusFormatter {
 		return $this->statusFormatter;
+	}
+
+	public function getSchemaMigrator(): SchemaMigrator {
+		return $this->schemaMigrator;
 	}
 }

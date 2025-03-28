@@ -41,8 +41,8 @@ class DataProviderIntegrationTest extends MediaWikiIntegrationTestCase {
 			->getConfigurationProviderFactory()
 			->newProvider( self::PROVIDER_ID );
 
-		// assert loadValidConfiguration() returns empty config initially
-		$result = $provider->loadValidConfiguration();
+		// assert loadValidConfigurationConvertedToLatest() returns empty config initially
+		$result = $provider->loadValidConfigurationConvertedToLatest();
 		$this->assertStatusOK( $result );
 		$this->assertStatusValue( (object)[
 			'NumberWithDefault' => 0,
@@ -53,7 +53,7 @@ class DataProviderIntegrationTest extends MediaWikiIntegrationTestCase {
 		$storeStatus = $provider->storeValidConfiguration( (object)[ 'NumberWithDefault' => 42 ], $authority );
 		$this->assertStatusOK( $storeStatus );
 
-		$result = $provider->loadValidConfiguration();
+		$result = $provider->loadValidConfigurationConvertedToLatest();
 		$this->assertStatusOK( $result );
 		$this->assertStatusValue( (object)[
 			'NumberWithDefault' => 42,
@@ -64,7 +64,7 @@ class DataProviderIntegrationTest extends MediaWikiIntegrationTestCase {
 		$storeStatus = $provider->storeValidConfiguration( (object)[ 'NumberWithDefault' => 'test' ], $authority );
 		$this->assertStatusNotOK( $storeStatus );
 
-		$result = $provider->loadValidConfiguration();
+		$result = $provider->loadValidConfigurationConvertedToLatest();
 		$this->assertStatusOK( $result );
 		$this->assertStatusValue( (object)[
 			'NumberWithDefault' => 42,
@@ -143,7 +143,7 @@ class DataProviderIntegrationTest extends MediaWikiIntegrationTestCase {
 		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()
 			->newProvider( self::PROVIDER_ID );
-		$result = $provider->loadValidConfigurationUncached();
+		$result = $provider->loadValidConfigurationUncachedConvertedToLatest();
 		$this->assertStatusOK( $result );
 		$this->assertStatusValue( (object)[
 			'NumberWithDefault' => 23,

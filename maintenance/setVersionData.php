@@ -2,9 +2,11 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Maintenance;
 
+use LogicException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
+use MediaWiki\Extension\CommunityConfiguration\Provider\IVersionedConfigurationProvider;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Status\StatusFormatter;
@@ -74,12 +76,14 @@ class SetVersionData extends Maintenance {
 		if ( $provider->getValidator()->getSchemaVersion() === null ) {
 			$this->fatalError( 'Provider ' . $provider->getId() . ' does not support versions' );
 		}
+		if ( !$provider instanceof IVersionedConfigurationProvider ) {
+			throw new LogicException( __CLASS__ . ' requires an IVersionedConfigurationProvider' );
+		}
 
-		$currentConfig = $provider->loadValidConfiguration();
+		$currentConfig = $provider->loadValidConfigurationUnconverted();
 		if ( !$currentConfig->isOK() ) {
 			$this->fatalStatus( $currentConfig, 'Failed to load configuration' );
 		}
-
 		$status = $provider->getStore()->storeConfiguration(
 			$currentConfig->getValue(),
 			$version,

@@ -58,7 +58,10 @@ class ApiQueryReadTest extends ApiTestCase {
 		$data = $ret['communityconfiguration']['data'];
 		$this->assertSame( 0, $data['NumberWithDefault'] );
 		$this->assertSame( [], $data['Mentors'] );
-		$this->assertArrayNotHasKey( 'version', $ret['communityconfiguration'] );
+		$this->assertSame(
+			JsonSchemaForTesting::VERSION,
+			$ret['communityconfiguration']['version']
+		);
 	}
 
 	public function testExecuteWithoutVersionAssertion() {

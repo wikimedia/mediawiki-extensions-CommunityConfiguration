@@ -166,6 +166,95 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $store->getVersion() );
 	}
 
+	/**
+	 * A page whose version field cannot be a version fails the load with a readable error
+	 * instead of a TypeError, on a real revision.
+	 *
+	 * JsonValidateSave would normally reject such a page on save, so it is cleared here. That
+	 * is not an artificial setup: XML import inserts revisions through RevisionStore directly,
+	 * bypassing PageUpdater and therefore the hook, and a version field can also become
+	 * unreadable long after it was saved.
+	 */
+	public function testLoadVersionedConfigurationWithMalformedVersion(): void {
+		$this->clearHook( 'JsonValidateSave' );
+		$this->editPage( self::CONFIG_PAGE_TITLE, FormatJson::encode( [
+			'Foo' => 42,
+			WikiPageStore::VERSION_FIELD_NAME => 1.1,
+		] ) );
+
+		$store = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+			->getConfigurationProviderFactory()
+			->newProvider( self::PROVIDER_ID )
+			->getStore();
+
+		foreach ( [ 'loadVersionedConfiguration', 'loadVersionedConfigurationUncached' ] as $method ) {
+			$this->assertStatusError(
+				'communityconfiguration-malformed-schema-version',
+				$store->$method(),
+				$method
+			);
+		}
+	}
+
+	public function testLoadVersionedConfiguration(): void {
+		$this->editPage( self::CONFIG_PAGE_TITLE, FormatJson::encode( [
+			'Foo' => 42,
+			WikiPageStore::VERSION_FIELD_NAME => '2.0.0',
+		] ) );
+
+		$store = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+			->getConfigurationProviderFactory()
+			->newProvider( self::PROVIDER_ID )
+			->getStore();
+
+		foreach ( [ 'loadVersionedConfiguration', 'loadVersionedConfigurationUncached' ] as $method ) {
+			$status = $store->$method();
+			$this->assertStatusOK( $status, $method );
+			$versionedConfiguration = $status->getValue();
+			$this->assertEquals( (object)[ 'Foo' => 42 ], $versionedConfiguration->getData(), $method );
+			$this->assertSame( '2.0.0', $versionedConfiguration->getVersion(), $method );
+		}
+	}
+
+	/**
+	 * An uncached load reports the data and the version of one and the same revision
+	 *
+	 * Obtaining the two through separate calls -- loadConfigurationUncached() for the data and
+	 * getVersion() for the version, say -- would pair the new revision's data with the version
+	 * still held in the caches primed below. Loading them together cannot.
+	 *
+	 * Note the cached load is deliberately not asserted on here: serving the primed revision
+	 * for a while after an edit is expected (see WikiPageStoreEventIngressTest), and doing so
+	 * does not break the pairing, as both halves then describe that older revision.
+	 */
+	public function testUncachedVersionedLoadSeesOneRevisionAsAWhole(): void {
+		$this->editPage( self::CONFIG_PAGE_TITLE, FormatJson::encode( [
+			'Foo' => 42,
+			WikiPageStore::VERSION_FIELD_NAME => '1.0.0',
+		] ) );
+
+		$store = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+			->getConfigurationProviderFactory()
+			->newProvider( self::PROVIDER_ID )
+			->getStore();
+
+		// prime both the in-process and the WAN cache with the first revision
+		$status = $store->loadVersionedConfiguration();
+		$this->assertStatusOK( $status );
+		$this->assertSame( '1.0.0', $status->getValue()->getVersion() );
+
+		$this->editPage( self::CONFIG_PAGE_TITLE, FormatJson::encode( [
+			'Foo' => 43,
+			WikiPageStore::VERSION_FIELD_NAME => '2.0.0',
+		] ) );
+
+		$status = $store->loadVersionedConfigurationUncached();
+		$this->assertStatusOK( $status );
+		$versionedConfiguration = $status->getValue();
+		$this->assertEquals( (object)[ 'Foo' => 43 ], $versionedConfiguration->getData() );
+		$this->assertSame( '2.0.0', $versionedConfiguration->getVersion() );
+	}
+
 	public function testGetVersionAfterLoad(): void {
 		$this->editPage( self::CONFIG_PAGE_TITLE, FormatJson::encode( [
 			'Foo' => 42,

@@ -33,9 +33,19 @@ class ValidationHooks implements JsonValidateSaveHook {
 			}
 
 			if ( $pageIdentity->isSamePageAs( $store->getConfigurationTitle() ) ) {
+				$configForValidation = $content->getData();
+				$versionStatus = WikiPageStore::readVersionField( $configForValidation->getValue() );
+				if ( !$versionStatus->isOK() ) {
+					// Without a usable version there is no schema to validate against; reject
+					// the save rather than falling back to the most recent one.
+					$status->merge( $versionStatus );
+					continue;
+				}
+				$configForValidation = WikiPageStore::removeVersionDataFromStatus( $configForValidation )->getValue();
 				$validator = $provider->getValidator();
 				$result = $validator->validateStrictly(
-					WikiPageStore::removeVersionDataFromStatus( $content->getData() )->getValue()
+					$configForValidation,
+					$versionStatus->getValue()
 				);
 				$status->merge( $result );
 			}

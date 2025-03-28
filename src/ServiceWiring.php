@@ -88,14 +88,16 @@ return [
 			$services->getMainConfig(),
 			$services->getExtensionRegistry(),
 			$services->getObjectFactory(),
-			$ccServices->getHookRunner()
+			$ccServices->getHookRunner(),
 		);
 	},
 	'CommunityConfiguration.ProviderServicesContainer' => static function ( MediaWikiServices $services ) {
+		$ccServices = CommunityConfigurationServices::wrap( $services );
 		return new ProviderServicesContainer(
 			$services->getConnectionProvider(),
 			$services->getDomainEventDispatcher(),
-			$services->getFormatterFactory()->getStatusFormatter( RequestContext::getMain() )
+			$services->getFormatterFactory()->getStatusFormatter( RequestContext::getMain() ),
+			$ccServices->getSchemaMigrator(),
 		);
 	},
 	'CommunityConfiguration.MediaWikiConfigReader' => static function ( MediaWikiServices $services ) {

@@ -43,7 +43,9 @@ class ApiQueryRead extends ApiQueryBase {
 			$this->dieStatus( $loadedConfig );
 		}
 
-		$version = $provider->getStore()->getVersion();
+		// loadValidConfiguration is an alias for convertToLatest in versioned providers, report the
+		// schema version rather than the stored, otherwise we'd return a miss-labeled config
+		$version = $provider->getValidator()->getSchemaVersion();
 		// The comparison is intentionally not guarded on $version: if the client asks for a
 		// specific version and no version data is available, it is reasonable to treat that as
 		// a version mismatch. It is guarded on the parameter instead, because a client that

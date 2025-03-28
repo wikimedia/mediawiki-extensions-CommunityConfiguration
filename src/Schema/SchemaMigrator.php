@@ -5,8 +5,10 @@ declare( strict_types = 1 );
 namespace MediaWiki\Extension\CommunityConfiguration\Schema;
 
 use LogicException;
-use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
+use MediaWiki\Extension\CommunityConfiguration\Provider\IVersionedConfigurationProvider;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
+use MediaWiki\Language\RawMessage;
+use ReflectionException;
 use StatusValue;
 use stdClass;
 
@@ -22,16 +24,19 @@ class SchemaMigrator {
 	/**
 	 * Convert data from a provider to a particular target version
 	 *
-	 * @param IConfigurationProvider $provider
+	 * A conversion that cannot be carried out, because a converter or schema class along the
+	 * way is missing, is reported as a fatal StatusValue rather than thrown.
+	 *
+	 * @param IVersionedConfigurationProvider $provider
 	 * @param string $targetVersion
-	 * @throws LogicException when not convertable due to missing version data/support
 	 * @return StatusValue
+	 * @throws LogicException when the stored configuration carries no version data at all
 	 */
-	public function convertDataToVersion(
-		IConfigurationProvider $provider,
+	public function loadAndConvertProviderDataToVersion(
+		IVersionedConfigurationProvider $provider,
 		string $targetVersion
 	): StatusValue {
-		$status = $provider->loadValidConfiguration();
+		$status = $provider->loadValidConfigurationUnconverted();
 		if ( !$status->isOK() ) {
 			return $status;
 		}
@@ -41,12 +46,33 @@ class SchemaMigrator {
 			throw new LogicException( __METHOD__ . ' lacks version data' );
 		}
 
-		return StatusValue::newGood( $this->doConvertDataToVersion(
+		return $this->convertDataToVersion(
 			$provider->getValidator(),
 			$status->getValue(),
 			$currentVersion,
 			$targetVersion
-		) );
+		);
+	}
+
+	/**
+	 * @internal for use in CommunityConfiguration only
+	 */
+	public function convertDataToVersion(
+		IValidator $validator,
+		stdClass $data,
+		string $currentVersion,
+		string $targetVersion
+	): StatusValue {
+		try {
+			return StatusValue::newGood( $this->doConvertDataToVersion(
+				$validator,
+				$data,
+				$currentVersion,
+				$targetVersion
+			) );
+		} catch ( LogicException | ReflectionException $e ) {
+			return StatusValue::newFatal( new RawMessage( $e->getMessage() ) );
+		}
 	}
 
 	/**

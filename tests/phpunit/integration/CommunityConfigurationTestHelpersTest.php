@@ -28,7 +28,7 @@ class CommunityConfigurationTestHelpersTest extends MediaWikiIntegrationTestCase
 			->getConfigurationProviderFactory()
 			->newProvider( 'CommunityConfigurationExample' );
 
-		$status = $provider->loadValidConfiguration();
+		$status = $provider->loadValidConfigurationConvertedToLatest();
 		$this->assertStatusOK( $status );
 
 		$value = $status->getValue();
