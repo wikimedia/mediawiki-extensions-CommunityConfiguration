@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace MediaWiki\Extension\CommunityConfiguration\Hooks;
 
 use MediaWiki\Content\Hook\JsonValidateSaveHook;
@@ -24,7 +26,7 @@ class ValidationHooks implements JsonValidateSaveHook {
 		JsonContent $content,
 		PageIdentity $pageIdentity,
 		StatusValue $status
-	) {
+	): void {
 		foreach ( $this->factory->getSupportedKeys() as $providerName ) {
 			$provider = $this->factory->newProvider( $providerName );
 			$store = $provider->getStore();
