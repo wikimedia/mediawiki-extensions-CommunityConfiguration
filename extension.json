@@ -65,8 +65,7 @@
 				"jsonschema": {
 					"class": "MediaWiki\\Extension\\CommunityConfiguration\\Validation\\JsonSchemaValidator",
 					"services": [
-						"StatsdDataFactory",
-						"StatsFactory"
+						"StatsdDataFactory"
 					]
 				}
 			}
