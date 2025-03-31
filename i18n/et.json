@@ -29,6 +29,6 @@
 	"communityconfiguration-editor-navigation-tab-viewform": "Vaata vormi",
 	"communityconfiguration-editor-client-notice-message": "See lehekülg on kaitstud. Selle funktsiooni häälestust saavad muuta ainult administraatorid.",
 	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Sa}} ei saa vormis tehtud muudatusi salvestada, sest selle funktsiooni häälestust saavad muuta ainult administraatorid.",
-	"tag-community_configuration": "[[mw:Community configuration|Kogukondlik häälestus]]",
+	"tag-community_configuration": "Kogukondlik häälestus",
 	"tag-community_configuration-description": "[[Special:CommunityConfiguration|Kohaliku viki häälestuse]] muudatused, mis tehti [[mw:Extension:CommunityConfiguration|kogukondliku häälestuse tarkvaralisa]] abil."
 }
