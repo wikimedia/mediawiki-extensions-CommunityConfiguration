@@ -89,7 +89,7 @@ abstract class AbstractJsonStore extends AbstractStore {
 		return clone $result;
 	}
 
-	private function loadFromWanCache() {
+	private function loadFromWanCache(): StatusValue {
 		return $this->cache->getWithSetCallback(
 			$this->makeCacheKey(),
 			ExpirationAwareness::TTL_DAY,

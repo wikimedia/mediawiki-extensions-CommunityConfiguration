@@ -25,6 +25,7 @@ class JsonSchemaIterator implements \Iterator {
 		}
 	}
 
+	/** @return array */
 	#[\ReturnTypeWillChange]
 	public function current() {
 		$this->initialize();
