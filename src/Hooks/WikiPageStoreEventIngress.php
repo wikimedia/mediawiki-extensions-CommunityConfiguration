@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Hooks;
 
-use MediaWiki\DomainEvent\EventSubscriberBase;
+use MediaWiki\DomainEvent\DomainEventIngress;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore;
-use MediaWiki\Storage\PageUpdatedEvent;
+use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 
-class WikiPageStorePageUpdatedSubscriber extends EventSubscriberBase {
+class WikiPageStoreEventIngress extends DomainEventIngress {
 
 	private ConfigurationProviderFactory $factory;
 
@@ -15,7 +15,7 @@ class WikiPageStorePageUpdatedSubscriber extends EventSubscriberBase {
 		$this->factory = $factory;
 	}
 
-	public function handlePageUpdatedEventAfterCommit( PageUpdatedEvent $event ): void {
+	public function handlePageRevisionUpdatedEvent( PageRevisionUpdatedEvent $event ): void {
 		foreach ( $this->factory->getSupportedKeys() as $providerName ) {
 			$provider = $this->factory->newProvider( $providerName );
 			$store = $provider->getStore();

@@ -135,12 +135,12 @@
 		"ChangeTagsListActive": "change-tags",
 		"ListDefinedTags": "change-tags"
 	},
-	"DomainEventSubscribers": [
+	"DomainEventIngresses": [
 		{
 			"events": [
-				"PageUpdated"
+				"PageRevisionUpdated"
 			],
-			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Hooks\\WikiPageStorePageUpdatedSubscriber",
+			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Hooks\\WikiPageStoreEventIngress",
 			"services": [
 				"CommunityConfiguration.ProviderFactory"
 			]

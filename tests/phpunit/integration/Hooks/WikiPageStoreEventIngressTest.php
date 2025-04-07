@@ -7,10 +7,10 @@ use MediaWiki\Json\FormatJson;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \MediaWiki\Extension\CommunityConfiguration\Hooks\WikiPageStorePageUpdatedSubscriber
+ * @covers \MediaWiki\Extension\CommunityConfiguration\Hooks\WikiPageStoreEventIngress
  * @group Database
  */
-class WikiPageStorePageUpdatedSubscriberTest extends MediaWikiIntegrationTestCase {
+class WikiPageStoreEventIngressTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
