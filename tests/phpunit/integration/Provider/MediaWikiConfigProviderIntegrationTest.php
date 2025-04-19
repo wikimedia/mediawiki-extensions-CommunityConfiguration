@@ -7,10 +7,10 @@ namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Provider\MediaWikiConfigProvider;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Tests\Unit\FakeQqxMessageLocalizer;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
-use WikiPage;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Provider\MediaWikiConfigProvider

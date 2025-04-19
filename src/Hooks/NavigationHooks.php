@@ -6,10 +6,10 @@ use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFac
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore;
 use MediaWiki\Hook\SkinTemplateNavigation__UniversalHook;
+use MediaWiki\Skin\SkinTemplate;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\MalformedTitleException;
-use SkinTemplate;
 
 class NavigationHooks implements SkinTemplateNavigation__UniversalHook {
 	private ConfigurationProviderFactory $providerFactory;

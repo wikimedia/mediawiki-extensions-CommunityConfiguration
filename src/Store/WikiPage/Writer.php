@@ -14,11 +14,11 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
-use RecentChange;
 
 class Writer {
 

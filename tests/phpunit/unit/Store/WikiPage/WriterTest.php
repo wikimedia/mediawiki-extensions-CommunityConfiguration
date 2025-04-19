@@ -7,17 +7,17 @@ use MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\SimpleAuthority;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
-use RecentChange;
-use WikiPage;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer
