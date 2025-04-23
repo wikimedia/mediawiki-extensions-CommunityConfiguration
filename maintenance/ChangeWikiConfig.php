@@ -37,7 +37,7 @@ class ChangeWikiConfig extends Maintenance {
 		$this->addOption(
 			'summary',
 			'Edit summary to use',
-			false,
+			true,
 			true
 		);
 		$this->addOption(
