@@ -38,7 +38,7 @@ function schemaTypeIs( expectedType ) {
 function isEnumControl( _uischema, schema ) {
 	const validEnumTypes = [ 'string', 'number' ];
 	// TODO: replace this indexOf with includes, once eslint config is updated
-	return validEnumTypes.indexOf( schema.type ) !== -1 && Array.isArray( schema.enum );
+	return validEnumTypes.includes( schema.type ) && Array.isArray( schema.enum );
 }
 
 function isSimpleStringArrayControl( _uischema, schema ) {
@@ -51,7 +51,7 @@ function isMultiSelectEnumControl( _uischema, schema ) {
 		schema.items &&
 		schema.items.enum &&
 		Array.isArray( schema.items.enum ) &&
-		validEnumTypes.indexOf( schema.items.type ) !== -1;
+		validEnumTypes.includes( schema.items.type );
 }
 
 /**
