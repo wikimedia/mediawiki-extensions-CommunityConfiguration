@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace MediaWiki\Extension\CommunityConfiguration\Schema;
 
 use LogicException;
@@ -18,9 +20,6 @@ class SchemaConverterFactory {
 
 	/**
 	 * Construct a ISchemaConverter from a class name
-	 *
-	 * @param string|null $className
-	 * @return ISchemaConverter|null
 	 */
 	private function getSchemaConverterFromClass( ?string $className ): ?ISchemaConverter {
 		if ( $className === null ) {

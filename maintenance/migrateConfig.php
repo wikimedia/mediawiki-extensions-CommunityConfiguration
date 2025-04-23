@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace MediaWiki\Extension\CommunityConfiguration\Maintenance;
 
 use MediaWiki\Context\RequestContext;
@@ -54,7 +56,10 @@ class MigrateConfig extends Maintenance {
 		$this->schemaMigrator = $ccServices->getSchemaMigrator();
 	}
 
-	private function fatalStatus( StatusValue $status, string $headline ) {
+	/**
+	 * @throws \MediaWiki\Maintenance\MaintenanceFatalError
+	 */
+	private function fatalStatus( StatusValue $status, string $headline ): void {
 		$this->fatalError(
 			"$headline.\n\n== Error details ==\n"
 			. $this->statusFormatter->getWikiText( $status )

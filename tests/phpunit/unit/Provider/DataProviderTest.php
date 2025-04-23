@@ -28,12 +28,12 @@ use Wikimedia\Stats\StatsFactory;
  */
 class DataProviderTest extends MediaWikiUnitTestCase {
 
-	private function assertConfigStatusOK( stdClass $expectedConfig, StatusValue $configStatus ) {
+	private function assertConfigStatusOK( stdClass $expectedConfig, StatusValue $configStatus ): void {
 		$this->assertStatusOK( $configStatus );
 		$this->assertStatusValue( $expectedConfig, $configStatus );
 	}
 
-	public function testConstruct() {
+	public function testConstruct(): void {
 		$provider = new DataProvider(
 			'ProviderId',
 			[ 'excludeFromUI' => false ],
@@ -47,7 +47,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $provider->getOptionValue( 'excludeFromUI' ) );
 	}
 
-	public function testGetId() {
+	public function testGetId(): void {
 		$provider = new DataProvider(
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
@@ -61,7 +61,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function testGetName() {
+	public function testGetName(): void {
 		$messageMock = $this->createNoOpMock( Message::class );
 
 		$localizer = $this->createMock( DerivativeContext::class );
@@ -83,7 +83,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function testGetObjects() {
+	public function testGetObjects(): void {
 		$storeMock = $this->createNoOpMock( IConfigurationStore::class );
 		$validatorMock = $this->createNoOpMock( IValidator::class );
 		$provider = new DataProvider(
@@ -103,7 +103,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function testLoadConfig() {
+	public function testLoadConfig(): void {
 		$defaultConfig = (object)[ 'Foo' => 42, 'Bar' => 'string' ];
 
 		$schemaBuilderMock = $this->createMock( JsonSchemaBuilder::class );
@@ -285,7 +285,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertConfigStatusOK( $expectedConfig, $provider->loadValidConfigurationUncached() );
 	}
 
-	public function testLoadInvalidConfig() {
+	public function testLoadInvalidConfig(): void {
 		$config = (object)[ 'Foo' => 42 ];
 
 		$validatorMock = $this->createMock( IValidator::class );
@@ -305,7 +305,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( 'june', $provider->loadValidConfigurationUncached() );
 	}
 
-	public function testLoadFailedStoreCached() {
+	public function testLoadFailedStoreCached(): void {
 		$storeMock = $this->createMock( IConfigurationStore::class );
 		$storeMock->expects( $this->once() )
 			->method( 'loadConfiguration' )
@@ -321,7 +321,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( 'june', $provider->loadValidConfiguration() );
 	}
 
-	public function testLoadFailedStoreUncached() {
+	public function testLoadFailedStoreUncached(): void {
 		$storeMock = $this->createMock( IConfigurationStore::class );
 		$storeMock->expects( $this->once() )
 			->method( 'loadConfigurationUncached' )
@@ -337,7 +337,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( 'june', $provider->loadValidConfigurationUncached() );
 	}
 
-	public function testStoreConfigValidNoSchemaSupport() {
+	public function testStoreConfigValidNoSchemaSupport(): void {
 		$authority = new UltimateAuthority( new UserIdentityValue( 1, 'Admin' ) );
 
 		$storeMock = $this->createMock( IConfigurationStore::class );
@@ -369,7 +369,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertStatusOK( $status );
 	}
 
-	public function testStoreConfigValidWithSchemaSupport() {
+	public function testStoreConfigValidWithSchemaSupport(): void {
 		$authority = new UltimateAuthority( new UserIdentityValue( 1, 'Admin' ) );
 		$configData = (object)[ 'Foo' => 42 ];
 		$version = '1.0.0';
@@ -416,7 +416,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertStatusOK( $status );
 	}
 
-	public function testStoreConfigInvalid() {
+	public function testStoreConfigInvalid(): void {
 		$authority = new UltimateAuthority( new UserIdentityValue( 1, 'Admin' ) );
 
 		$storeMock = $this->createNoOpMock( IConfigurationStore::class );
@@ -437,7 +437,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( 'june', $status );
 	}
 
-	public function testGetOption() {
+	public function testGetOption(): void {
 		$provider = new DataProvider(
 			'ProviderId',
 			[ 'excludeFromUI' => true ],

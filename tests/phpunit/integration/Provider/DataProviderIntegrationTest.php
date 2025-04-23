@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
@@ -33,7 +35,7 @@ class DataProviderIntegrationTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	public function testLoadStoreLoad() {
+	public function testLoadStoreLoad(): void {
 		$authority = $this->getTestSysop()->getAuthority();
 		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()
@@ -70,7 +72,7 @@ class DataProviderIntegrationTest extends MediaWikiIntegrationTestCase {
 		], $result );
 	}
 
-	public function testStoreNoPermissions() {
+	public function testStoreNoPermissions(): void {
 		$authority = $this->getTestUser()->getAuthority();
 		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()
@@ -80,7 +82,7 @@ class DataProviderIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusError( 'sitejsonprotected', $storeStatus );
 	}
 
-	public function testStoreBypassPermissions() {
+	public function testStoreBypassPermissions(): void {
 		$authority = $this->getTestUser()->getAuthority();
 		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()

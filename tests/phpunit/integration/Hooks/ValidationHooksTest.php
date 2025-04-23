@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use MediaWiki\Json\FormatJson;
@@ -39,7 +41,7 @@ class ValidationHooksTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	public function testSaveOtherPage() {
+	public function testSaveOtherPage(): void {
 		$this->assertStatusOK( $this->editPage(
 			'MediaWiki:Bar.json',
 			FormatJson::encode( [
@@ -49,13 +51,13 @@ class ValidationHooksTest extends MediaWikiIntegrationTestCase {
 		) );
 	}
 
-	public function testValidSave() {
+	public function testValidSave(): void {
 		$this->assertStatusOK( $this->editPage( 'MediaWiki:Foo.json', FormatJson::encode( [
 			'NumberWithDefault' => 42,
 		] ) ) );
 	}
 
-	public function testInvalidSave() {
+	public function testInvalidSave(): void {
 		$status = $this->editPage( 'MediaWiki:Foo.json', FormatJson::encode( [
 			'Number' => 'value',
 		] ) );

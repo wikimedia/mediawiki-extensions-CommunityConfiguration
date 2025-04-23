@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
@@ -32,7 +34,7 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	public static function provideDataIsMutable() {
+	public static function provideDataIsMutable(): iterable {
 		return [
 			'simple data' => [
 				(object)[
@@ -71,7 +73,7 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 	 * @param callable $manipulateStatus
 	 * @dataProvider provideDataIsMutable
 	 */
-	public function testDataIsMutableOK( stdClass $originalConfig, callable $manipulateStatus ) {
+	public function testDataIsMutableOK( stdClass $originalConfig, callable $manipulateStatus ): void {
 		$this->editPage( self::CONFIG_PAGE_TITLE, FormatJson::encode( $originalConfig ) );
 
 		$store = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
@@ -101,7 +103,7 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function testStatusIsMutableFail() {
+	public function testStatusIsMutableFail(): void {
 		$this->editPage( 'NotJsonContent', 'this is not JSON' );
 		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
 			self::PROVIDER_ID => [
@@ -134,7 +136,7 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusValue( null, $status );
 	}
 
-	public function testNonexistentPage() {
+	public function testNonexistentPage(): void {
 		// ensure CONFIG_PAGE_TITLE does not exist
 		$this->getNonexistingTestPage( self::CONFIG_PAGE_TITLE );
 		$store = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
@@ -147,7 +149,7 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusValue( (object)[], $status );
 	}
 
-	public function testNoVersion() {
+	public function testNoVersion(): void {
 		$this->editPage( self::CONFIG_PAGE_TITLE, FormatJson::encode( [
 			'Foo' => 42,
 		] ) );
@@ -160,7 +162,7 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $store->getVersion() );
 	}
 
-	public function testGetVersionAfterLoad() {
+	public function testGetVersionAfterLoad(): void {
 		$this->editPage( self::CONFIG_PAGE_TITLE, FormatJson::encode( [
 			'Foo' => 42,
 			WikiPageStore::VERSION_FIELD_NAME => '2.0.0',
@@ -180,7 +182,7 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '2.0.0', $store->getVersion() );
 	}
 
-	public function testNonObject() {
+	public function testNonObject(): void {
 		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()
 			->newProvider( self::PROVIDER_ID );
@@ -197,7 +199,7 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusValue( (object)[ 'Foo' => 42 ], $loadStatus );
 	}
 
-	public function testNoPermissions() {
+	public function testNoPermissions(): void {
 		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()
 			->newProvider( self::PROVIDER_ID );
@@ -211,7 +213,7 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusError( 'sitejsonprotected', $status );
 	}
 
-	public function testPermissionBypass() {
+	public function testPermissionBypass(): void {
 		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 			->getConfigurationProviderFactory()
 			->newProvider( self::PROVIDER_ID );
