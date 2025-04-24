@@ -65,11 +65,13 @@ abstract class SchemaProviderTestCase extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $version, 'Schema ' . $schema->getSchemaId() . ' must have a VERSION constant' );
 	}
 
-	final public function testSchemaHasConverter(): void {
-		$schema = $this->getProvider()->getValidator()->getSchemaBuilder()->getSchemaReader();
+	final public function testSchemaHasConvertersAndMigrations(): void {
+		$schemaBuilder = $this->getProvider()->getValidator()->getSchemaBuilder();
+
+		$schema = $schemaBuilder->getSchemaReader();
 		$prevVersion = $schema->getPreviousVersion();
 		$converterId = $schema->getSchemaConverterId();
-		if ( $prevVersion ) {
+		while ( $prevVersion ) {
 			$this->assertNotNull(
 				$converterId,
 				'Schema ' . $schema->getSchemaId() . ' must have a SCHEMA_CONVERTER constant'
@@ -79,9 +81,12 @@ abstract class SchemaProviderTestCase extends MediaWikiIntegrationTestCase {
 			] );
 
 			$this->assertInstanceOf( ISchemaConverter::class, $res );
-		} else {
-			$this->assertNull( $converterId );
+
+			$schema = $schemaBuilder->getVersionManager()->getVersionForSchema( $prevVersion );
+			$prevVersion = $schema->getPreviousVersion();
+			$converterId = $schema->getSchemaConverterId();
 		}
+		$this->assertNull( $converterId, 'The initial version of a schema must not have a converter.' );
 	}
 
 	final protected function getProvider(): IConfigurationProvider {
