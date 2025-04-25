@@ -16,7 +16,7 @@ function buildUISchema( schema, config, initialScope = '', data = {} ) {
 	const elements = [];
 	for ( const prop in schema.properties ) {
 		const scope = initialScope ? `${initialScope}/properties/${prop}` : `#/properties/${prop}`;
-		const required = schema.required && schema.required.indexOf( prop ) !== -1;
+		const required = schema.required && schema.required.includes( prop );
 		elements.push( buildUISubSchema(
 			schema.properties[ prop ], prop, scope, required, config.i18nPrefix
 		) );

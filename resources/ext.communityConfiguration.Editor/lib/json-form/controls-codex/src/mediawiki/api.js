@@ -48,7 +48,7 @@ MwForeignApi.prototype.searchCommonsFiles = function ( searchTerm, offset ) {
 	return this.api.get( params ).catch( ( err ) => {
 		err = err instanceof Error ? err : new Error( err );
 		mw.errorLogger.logError( err, 'error.communityconfiguration' );
-		return Promise.reject( err );
+		throw err;
 	} );
 };
 
