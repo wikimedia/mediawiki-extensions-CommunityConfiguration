@@ -28,6 +28,7 @@
 	"communityconfiguration-invalid-stored-config-error-with-link": "Error message shown when the Community configuration editor is unable to load a valid configuration\n\nParameters:\n* $1 - human readable provider name\n* $2 - provider ID\n* $3 - link to a page with more details",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "A headline shown in the error page for the Community configuration editor (when valid configuration cannot be displayed). Under this headline, the details of the error are displayed.",
 	"communityconfiguration-schema-validation-error": "Generic validation error",
+	"communityconfiguration-invalid-schema-version": "Error message when manually saving a json file for a schema with an invalid value in the $version key.\n\nParameters:\n* $1 - the user-provided version value\n* $2 - the technical id of the Schema including its most-recent version.",
 	"communityconfiguration-providers-list-title": "Title of the list of providers in the community configuration dashboard",
 	"communityconfiguration-provider-not-found": "Error for the configuration editor when a given provider is not found.\n\nParameters:\n* $1 - The name of the provider",
 	"communityconfigurationdashboard": "The title of Community Configuration Dashboard special page",

@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
@@ -16,7 +18,7 @@ use Wikimedia\Stats\StatsFactory;
  */
 class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 
-	private function newValidator( $schema ) {
+	private function newValidator( $schema ): JsonSchemaValidator {
 		return new JsonSchemaValidator(
 			$schema,
 			$this->createMock( IBufferingStatsdDataFactory::class ),
@@ -24,14 +26,7 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function testConstruct() {
-		$this->assertInstanceOf(
-			JsonSchemaValidator::class,
-			$this->newValidator( JsonSchemaForTesting::class )
-		);
-	}
-
-	public function testGetSchemaBuilder() {
+	public function testGetSchemaBuilder(): void {
 		$this->assertInstanceOf(
 			JsonSchemaBuilder::class,
 			$this->newValidator( JsonSchemaForTesting::class )->getSchemaBuilder()
@@ -339,7 +334,7 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 		bool $expectedIsPermissivelyOk,
 		bool $expectedIsPermissivelyGood,
 		array $expectedErrorData = []
-	) {
+	): void {
 		$validator = $this->newValidator( $testSchema );
 
 		$strictValidationResult = $validator->validateStrictly( (object)$json );
@@ -375,11 +370,17 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $expectedErrorData, $permissiveValidationResult->getValidationErrorsData() );
 	}
 
-	public function testGetSchemaVersion() {
+	public function testGetSchemaVersion(): void {
 		$validator = $this->newValidator( JsonSchemaForTesting::class );
 		$this->assertSame(
 			JsonSchemaForTesting::VERSION,
 			$validator->getSchemaVersion()
 		);
+	}
+
+	public function testInvalidVersion(): void {
+		$validator = $this->newValidator( JsonSchemaForTesting::class );
+		$actualValidationStatus = $validator->validateStrictly( (object)[], 'invalid' );
+		$this->assertStatusError( 'communityconfiguration-invalid-schema-version', $actualValidationStatus );
 	}
 }

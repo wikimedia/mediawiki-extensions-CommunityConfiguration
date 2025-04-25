@@ -12,6 +12,7 @@ use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaIterator;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
+use ReflectionException;
 use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 
@@ -72,23 +73,25 @@ class JsonSchemaValidator implements IValidator {
 	/**
 	 * @inheritDoc
 	 */
-	public function validateStrictly( $config ): ValidationStatus {
-		return $this->validate( $config, false );
+	public function validateStrictly( $config, ?string $version = null ): ValidationStatus {
+		return $this->validate( $config, false, $version );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function validatePermissively( $config ): ValidationStatus {
-		return $this->validate( $config, true );
+	public function validatePermissively( $config, ?string $version = null ): ValidationStatus {
+		return $this->validate( $config, true, $version );
 	}
 
 	/**
 	 * @param mixed $config
 	 * @param bool $modeForReading
+	 * @param string|null $withVersion
+	 *
 	 * @return ValidationStatus
 	 */
-	private function validate( $config, bool $modeForReading ): ValidationStatus {
+	private function validate( $config, bool $modeForReading, ?string $withVersion = null ): ValidationStatus {
 		$start = microtime( true );
 		$timing = $this->statsFactory->withComponent( 'CommunityConfiguration' )->getTiming(
 			'JsonSchemaValidator_validate_seconds'
@@ -97,10 +100,19 @@ class JsonSchemaValidator implements IValidator {
 			str_replace( [ '/', '.' ], '_', $this->jsonSchema->getSchemaId() ),
 		)->start();
 
+		try {
+			$rootSchema = $this->jsonSchemaBuilder->getRootSchema( $withVersion );
+		} catch ( ReflectionException $e ) {
+			return ValidationStatus::newFatal(
+				'communityconfiguration-invalid-schema-version',
+				$withVersion,
+				$this->jsonSchemaBuilder->getSchemaName()
+			);
+		}
 		$validator = new Validator();
 		$validator->validate(
 			$config,
-			$this->jsonSchemaBuilder->getRootSchema()
+			$rootSchema
 		);
 		if ( $validator->isValid() ) {
 			return ValidationStatus::newGood();
