@@ -22,7 +22,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 		return ChangeWikiConfig::class;
 	}
 
-	public static function setValueSuccessCases(): array {
+	public static function provideValueSuccessCases(): array {
 		return [
 			'string' => [ 'CCExample_String', '"expectedValue"' ],
 			'set full array' => [ 'CCExample_FavoriteColors', '["crimson","firebrick","gold"]' ],
@@ -37,7 +37,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 	}
 
 	/**
-	 * @dataProvider setValueSuccessCases
+	 * @dataProvider provideValueSuccessCases
 	 */
 	public function testSucceedsSettingValue(
 		string $fieldName,
@@ -70,7 +70,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 		$this->assertSame( 'Config changed by maintenance script: <custom summary here>', $actualSummary );
 	}
 
-	public static function deletingValueCases(): iterable {
+	public static function provideDeletingValueCases(): iterable {
 		yield 'delete top-level property' => [
 			'{ "CCExample_String": "value" }',
 			"CCExample_String",
@@ -99,7 +99,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 	}
 
 	/**
-	 * @dataProvider deletingValueCases
+	 * @dataProvider provideDeletingValueCases
 	 */
 	public function testSucceedsDeletingValue(
 		string $initialConfigValue,
@@ -132,7 +132,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 		$this->assertSame( 'Config changed by maintenance script: (custom summary here)', $actualSummary );
 	}
 
-	public static function noopCases() {
+	public static function provideNoopCases() {
 		yield 'setting value that exists' => [
 			'{ "CCExample_String": "value" }',
 			"CCExample_String",
@@ -146,7 +146,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 	}
 
 	/**
-	 * @dataProvider noopCases
+	 * @dataProvider provideNoopCases
 	 */
 	public function testNoops(
 		string $initialConfigValue,
