@@ -91,8 +91,8 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 			);
 		}
 
-		$this->provider = $this->providerFactory->newProvider( $subpage );
-		$providerId = $this->provider->getId();
+		$providerId = explode( '/', $subpage, 2 )[0];
+		$this->provider = $this->providerFactory->newProvider( $providerId );
 
 		$out = $this->getContext()->getOutput();
 
@@ -150,7 +150,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 				'schema' => $rootSchema,
 				'data' => $config->getValue(),
 				'config' => [
-					'i18nPrefix' => "communityconfiguration-" . strtolower( $subpage ),
+					'i18nPrefix' => "communityconfiguration-" . strtolower( $providerId ),
 					'i18nMessages' => $this->messagesProcessor->getMessages(
 						$providerId,
 						$this->provider->getValidator()->getSchemaIterator(),

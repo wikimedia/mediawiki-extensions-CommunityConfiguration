@@ -34,19 +34,22 @@ class SpecialCommunityConfiguration extends SpecialPage {
 		parent::execute( $subPage );
 		$out = $this->getContext()->getOutput();
 
-		if ( $subPage === null ) {
+		$parsedSubpage = explode( '/', $subPage ?? '', 2 );
+		$providerId = $parsedSubpage[0];
+
+		if ( $providerId === '' ) {
 			$capabilityName = self::CAPABILITY_DASHBOARD;
 		} else {
-			if ( !$this->isProviderSupported( $subPage ) ) {
-				$this->showErrorMessage( $out, 'communityconfiguration-provider-not-found', $subPage );
+			if ( !$this->isProviderSupported( $providerId ) ) {
+				$this->showErrorMessage( $out, 'communityconfiguration-provider-not-found', $providerId );
 				return;
 			}
 
-			$provider = $this->providerFactory->newProvider( $subPage );
+			$provider = $this->providerFactory->newProvider( $providerId );
 
 			// If not displayed on the dashboard, it doesn't necessarily mean it's not supported.
 			if ( $provider->getOptionValue( IConfigurationProvider::OPTION_EXCLUDE_FROM_UI ) ) {
-				$this->showErrorMessage( $out, 'communityconfiguration-provider-not-found', $subPage );
+				$this->showErrorMessage( $out, 'communityconfiguration-provider-not-found', $providerId );
 				return;
 			}
 

@@ -109,16 +109,22 @@ class SpecialCommunityConfigurationTest extends SpecialPageTestBase {
 			if ( in_array( $providerId, self::UNEDITABLE_PROVIDERS ) ) {
 				continue;
 			}
-			yield $providerId => [ $providerId ];
+			yield $providerId . ' (no subpage)' => [ $providerId, null ];
+			yield $providerId . ' (has subpage)' => [ $providerId, 'foo' ];
 		}
 	}
 
 	/**
 	 * @param string $providerId
+	 * @param string|null $subpage
 	 * @dataProvider provideEditableProviderIds
 	 */
-	public function testExecuteEditor( string $providerId ): void {
-		[ $output ] = $this->executeSpecialPage( $providerId );
+	public function testExecuteEditor( string $providerId, ?string $subpage ): void {
+		[ $output ] = $this->executeSpecialPage(
+			$subpage === null ?
+				$providerId :
+				$providerId . '/' . $subpage
+		);
 
 		$this->assertThatHamcrest(
 			"Shows the summary message",
