@@ -9,10 +9,10 @@ use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFac
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWikiUnitTestCase;
 use Psr\Log\NullLogger;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory
@@ -50,8 +50,8 @@ class ConfigurationProviderFactoryTest extends MediaWikiUnitTestCase {
 				'CommunityConfigurationProviderClasses' => [],
 			] ),
 			$this->getExtensionRegistry(),
-			$this->createNoOpMock( HookRunner::class, [ 'onCommunityConfigurationProvider_initList' ] ),
-			$this->createNoOpMock( MediaWikiServices::class )
+			$this->createNoOpMock( ObjectFactory::class ),
+			$this->createNoOpMock( HookRunner::class, [ 'onCommunityConfigurationProvider_initList' ] )
 		);
 
 		$this->assertEquals(
@@ -85,8 +85,8 @@ class ConfigurationProviderFactoryTest extends MediaWikiUnitTestCase {
 				'CommunityConfigurationProviderClasses' => [],
 			] ),
 			$this->getExtensionRegistry(),
-			$this->createNoOpMock( HookRunner::class, [ 'onCommunityConfigurationProvider_initList' ] ),
-			$this->createNoOpMock( MediaWikiServices::class )
+			$this->createNoOpMock( ObjectFactory::class ),
+			$this->createNoOpMock( HookRunner::class, [ 'onCommunityConfigurationProvider_initList' ] )
 		);
 
 		$this->assertEquals(
@@ -105,8 +105,8 @@ class ConfigurationProviderFactoryTest extends MediaWikiUnitTestCase {
 				'CommunityConfigurationProviderClasses' => [],
 			] ),
 			$this->getExtensionRegistry(),
-			$this->createNoOpMock( HookRunner::class, [ 'onCommunityConfigurationProvider_initList' ] ),
-			$this->createNoOpMock( MediaWikiServices::class )
+			$this->createNoOpMock( ObjectFactory::class ),
+			$this->createNoOpMock( HookRunner::class, [ 'onCommunityConfigurationProvider_initList' ] )
 		);
 
 		$this->expectException( InvalidArgumentException::class );
@@ -131,8 +131,8 @@ class ConfigurationProviderFactoryTest extends MediaWikiUnitTestCase {
 				'CommunityConfigurationProviderClasses' => [],
 			] ),
 			$this->getExtensionRegistry(),
-			$this->createNoOpMock( HookRunner::class, [ 'onCommunityConfigurationProvider_initList' ] ),
-			$this->createNoOpMock( MediaWikiServices::class )
+			$this->createNoOpMock( ObjectFactory::class ),
+			$this->createNoOpMock( HookRunner::class, [ 'onCommunityConfigurationProvider_initList' ] )
 		);
 
 		$this->expectException( InvalidArgumentException::class );

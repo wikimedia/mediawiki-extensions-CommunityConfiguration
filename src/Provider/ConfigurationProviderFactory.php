@@ -9,9 +9,9 @@ use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Utils;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
 use Psr\Log\LoggerInterface;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * Create a configuration provider
@@ -29,11 +29,10 @@ class ConfigurationProviderFactory {
 	private LoggerInterface $logger;
 	private StoreFactory $storeFactory;
 	private ValidatorFactory $validatorFactory;
-	/** Used to create the services associated to a provider */
-	private MediaWikiServices $services;
-	private HookRunner $hookRunner;
 	private Config $config;
 	private ExtensionRegistry $extensionRegistry;
+	private ObjectFactory $objectFactory;
+	private HookRunner $hookRunner;
 
 	public function __construct(
 		LoggerInterface $logger,
@@ -41,15 +40,15 @@ class ConfigurationProviderFactory {
 		ValidatorFactory $validatorFactory,
 		Config $config,
 		ExtensionRegistry $extensionRegistry,
-		HookRunner $hookRunner,
-		MediaWikiServices $services
+		ObjectFactory $objectFactory,
+		HookRunner $hookRunner
 	) {
 		$this->logger = $logger;
 		$this->storeFactory = $storeFactory;
 		$this->validatorFactory = $validatorFactory;
 		$this->config = $config;
 		$this->extensionRegistry = $extensionRegistry;
-		$this->services = $services;
+		$this->objectFactory = $objectFactory;
 		$this->hookRunner = $hookRunner;
 	}
 
@@ -112,10 +111,10 @@ class ConfigurationProviderFactory {
 	 * @throws InvalidArgumentException when the definition of provider is invalid
 	 */
 	private function constructProvider( string $providerId ): IConfigurationProvider {
-		$spec = $this->getProviderSpec( $providerId );
-		$storeType = $this->getConstructType( $spec, 'store' );
+		$providerSpec = $this->getProviderSpec( $providerId );
+		$storeType = $this->getConstructType( $providerSpec, 'store' );
 
-		$validatorType = $this->getConstructType( $spec, 'validator' );
+		$validatorType = $this->getConstructType( $providerSpec, 'validator' );
 		if ( $storeType === null ) {
 			throw new InvalidArgumentException(
 				"Wrong type for \"store\" property for \"$providerId\" provider. Allowed types are: string, object"
@@ -126,30 +125,36 @@ class ConfigurationProviderFactory {
 				"Wrong type for \"validator\" property for \"$providerId\" provider. Allowed types are: string, object"
 			);
 		}
-		$storeArgs = $this->getConstructArgs( $spec, 'store' );
-		$validatorArgs = $this->getConstructArgs( $spec, 'validator' );
-
+		$storeArgs = $this->getConstructArgs( $providerSpec, 'store' );
 		$store = $this->storeFactory->newStore( $providerId, $storeType, $storeArgs );
-		$store->setOptions( $this->getConstructOptions( $spec, 'store' ) );
-		$ctorArgs = [
+		$store->setOptions( $this->getConstructOptions( $providerSpec, 'store' ) );
+
+		$extraArgs = [
 			$providerId,
-			$spec['options'] ?? [],
+			$providerSpec['options'] ?? [],
 			$store,
-			$this->validatorFactory->newValidator( $providerId, $validatorType, $validatorArgs ),
+			$this->validatorFactory->newValidator(
+				$providerId, $validatorType,
+				$this->getConstructArgs( $providerSpec, 'validator' )
+			),
 		];
 
-		$classSpec = $this->getProviderClassSpec( $spec['type'] ?? self::DEFAULT_PROVIDER_TYPE );
+		$provider = $this->objectFactory->createObject(
+			$this->getProviderClassSpec( $providerSpec['type'] ?? self::DEFAULT_PROVIDER_TYPE ),
+			[
+				'assertClass' => IConfigurationProvider::class,
+				'extraArgs' => $extraArgs,
+			]
+		);
 
-		foreach ( $spec['services'] ?? [] as $serviceName ) {
-			$ctorArgs[] = $this->services->getService( $serviceName );
-		}
-		$ctorArgs = array_merge( $ctorArgs, $spec['args'] ?? [] );
-
-		$className = $classSpec['class'];
-		$provider = new $className( ...$ctorArgs );
 		if ( !$provider instanceof IConfigurationProvider ) {
-			throw new LogicException( "$className is not an instance of IConfigurationProvider" );
+			// @codeCoverageIgnoreStart
+			// should be impossible to happen, but it makes type-hinting possible
+			throw new LogicException(
+				'ObjectFactory asserted IConfigurationProvider, but returned something else'
+			);
 		}
+		// @codeCoverageIgnoreEnd
 		$provider->setLogger( $this->logger );
 		return $provider;
 	}

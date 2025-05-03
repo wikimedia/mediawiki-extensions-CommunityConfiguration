@@ -69,8 +69,8 @@ return [
 			$ccServices->getValidatorFactory(),
 			$services->getMainConfig(),
 			$services->getExtensionRegistry(),
-			$ccServices->getHookRunner(),
-			$services,
+			$services->getObjectFactory(),
+			$ccServices->getHookRunner()
 		);
 	},
 	'CommunityConfiguration.MediaWikiConfigReader' => static function ( MediaWikiServices $services ) {

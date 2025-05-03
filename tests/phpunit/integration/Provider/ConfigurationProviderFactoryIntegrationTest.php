@@ -76,4 +76,27 @@ class ConfigurationProviderFactoryIntegrationTest extends MediaWikiIntegrationTe
 			->getConfigurationProviderFactory()
 			->newProvider( 'unknown' );
 	}
+
+	public function testProviderWithService() {
+		$this->overrideConfigValue( 'CommunityConfigurationProviderClasses', [
+			'foo' => [
+				'class' => ProviderWithExtraServiceForTesting::class,
+				'services' => [
+					'UrlUtils',
+				],
+			],
+		] );
+		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
+			'foo' => [
+				'store' => [ 'type' => 'static', 'args' => [ [] ] ],
+				'validator' => [ 'type' => 'noop' ],
+				'type' => 'foo',
+			],
+		] );
+
+		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+			->getConfigurationProviderFactory()
+			->newProvider( 'foo' );
+		$this->assertInstanceOf( ProviderWithExtraServiceForTesting::class, $provider );
+	}
 }

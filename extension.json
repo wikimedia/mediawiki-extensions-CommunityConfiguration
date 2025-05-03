@@ -22,7 +22,8 @@
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\JsonSchemaForTesting": "tests/phpunit/JsonSchemaForTesting.php",
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\JsonConfigSchemaForTesting": "tests/phpunit/JsonConfigSchemaForTesting.php",
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\JsonSchemaForTestingNewerVersion": "tests/phpunit/JsonSchemaForTestingNewerVersion.php",
-		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\NoopValidatorWithSchemaForTesting": "tests/phpunit/NoopValidatorWithSchemaForTesting.php"
+		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\NoopValidatorWithSchemaForTesting": "tests/phpunit/NoopValidatorWithSchemaForTesting.php",
+		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\ProviderWithExtraServiceForTesting": "tests/phpunit/ProviderWithExtraServiceForTesting.php"
 	},
 	"config": {
 		"CommunityConfigurationCommonsApiURL": {
