@@ -2,11 +2,8 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\EditorCapabilities;
 
-use LogicException;
 use MediaWiki\Context\IContextSource;
-use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
 use MessageLocalizer;
@@ -60,34 +57,9 @@ abstract class AbstractEditorCapability implements IEditorCapability, MessageLoc
 		return $this->getContext()->msg( $key, ...$params );
 	}
 
-	public function execute( ?string $subpage ): void {
-		// HACK: temporary, to prevent an infinite loop
-		$alreadyHere = func_num_args() > 1 ? (bool)func_get_arg( 1 ) : false;
-		if ( $alreadyHere ) {
-			throw new LogicException( 'One of execute() and executeNew() must be implemented' );
-		}
-
-		$parsedSubpage = explode( '/', $subpage ?? '', 2 );
-		$provider = CommunityConfigurationServices::wrap( MediaWikiServices::getInstance() )
-			->getConfigurationProviderFactory()
-			->newProvider( $parsedSubpage[0] );
-		$this->executeNew( $provider, $parsedSubpage[1] ?? null, true );
-	}
-
 	/** @inheritDoc */
-	public function executeNew(
-		?IConfigurationProvider $provider, ?string $subpage = null
-	): void {
-		// HACK: temporary, to prevent an infinite loop
-		$alreadyHere = func_num_args() > 2 ? (bool)func_get_arg( 2 ) : false;
-		if ( $alreadyHere ) {
-			throw new LogicException( 'One of execute() and executeNew() must be implemented' );
-		}
-
-		$fullSubpage = implode( '/', array_filter( [
-			$provider ? $provider->getId() : null,
-			$subpage ]
-		) );
-		$this->execute( $fullSubpage, true );
+	public function execute( ?IConfigurationProvider $provider, ?string $subpage = null ): void {
+		// @phan-suppress-next-line PhanUndeclaredMethodInCallable
+		call_user_func( [ $this, 'executeNew' ], $provider, $subpage );
 	}
 }

@@ -60,7 +60,7 @@ class SpecialCommunityConfiguration extends SpecialPage {
 
 		$this->editorCapabilityFactory
 			->newCapability( $capabilityName, $this->getContext(), $this->getPageTitle() )
-			->executeNew( $provider, $parsedSubpage[1] ?? null );
+			->execute( $provider, $parsedSubpage[1] ?? null );
 	}
 
 	/** @inheritDoc */

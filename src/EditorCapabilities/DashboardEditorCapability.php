@@ -57,7 +57,7 @@ class DashboardEditorCapability extends AbstractEditorCapability {
 	/**
 	 * @inheritDoc
 	 */
-	public function execute( ?string $subpage ): void {
+	public function execute( ?IConfigurationProvider $provider, ?string $subpage = null ): void {
 		$out = $this->getContext()->getOutput();
 		$out->addModuleStyles( [ 'codex-styles' ] );
 		$out->addModuleStyles( [ 'ext.communityConfiguration.Dashboard' ] );

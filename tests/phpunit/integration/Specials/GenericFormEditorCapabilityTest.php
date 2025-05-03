@@ -8,6 +8,7 @@ use HamcrestPHPUnitIntegration;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\GenericFormEditorCapability;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
@@ -28,7 +29,6 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 	private const SPEC = [
 		'class' => GenericFormEditorCapability::class,
 		'services' => [
-			'CommunityConfiguration.ProviderFactory',
 			'LinkRenderer',
 			'FormatterFactory',
 			'CommunityConfiguration.HookRunner',
@@ -66,7 +66,11 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 			->method( $this->anything() );
 		$genericFormEditorCapability->setLogger( $mockLogger );
 
-		$genericFormEditorCapability->execute( self::PROVIDER_ID );
+		$genericFormEditorCapability->execute(
+			CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+				->getConfigurationProviderFactory()
+				->newProvider( self::PROVIDER_ID )
+		);
 
 		$output = $testContext->getOutput();
 		$this->assertSame(
@@ -115,7 +119,11 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 			->method( 'warning' );
 		$genericFormEditorCapability->setLogger( $mockLogger );
 
-		$genericFormEditorCapability->execute( self::PROVIDER_ID );
+		$genericFormEditorCapability->execute(
+			CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+				->getConfigurationProviderFactory()
+				->newProvider( self::PROVIDER_ID )
+		);
 
 		$output = $testContext->getOutput();
 		$this->assertThatHamcrest(
@@ -144,7 +152,11 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 			->method( 'error' );
 		$genericFormEditorCapability->setLogger( $mockLogger );
 
-		$genericFormEditorCapability->execute( self::PROVIDER_ID );
+		$genericFormEditorCapability->execute(
+			CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+				->getConfigurationProviderFactory()
+				->newProvider( self::PROVIDER_ID )
+		);
 
 		$output = $testContext->getOutput();
 		$html = $output->getHTML();

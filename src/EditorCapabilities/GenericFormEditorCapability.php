@@ -6,7 +6,6 @@ use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
-use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\FormatterFactory;
@@ -17,7 +16,6 @@ use StatusValue;
 
 class GenericFormEditorCapability extends AbstractEditorCapability {
 
-	private ConfigurationProviderFactory $providerFactory;
 	private LinkRenderer $linkRenderer;
 	private StatusFormatter $statusFormatter;
 	private IConfigurationProvider $provider;
@@ -28,7 +26,6 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 	public function __construct(
 		IContextSource $ctx,
 		Title $parentTitle,
-		ConfigurationProviderFactory $providerFactory,
 		LinkRenderer $linkRenderer,
 		FormatterFactory $formatterFactory,
 		HookRunner $hookRunner,
@@ -37,7 +34,6 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 	) {
 		parent::__construct( $ctx, $parentTitle );
 
-		$this->providerFactory = $providerFactory;
 		$this->linkRenderer = $linkRenderer;
 		$this->statusFormatter = $formatterFactory->getStatusFormatter( $ctx );
 		$this->hookRunner = $hookRunner;
@@ -84,15 +80,12 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 	/**
 	 * @inheritDoc
 	 */
-	public function execute( ?string $subpage ): void {
-		if ( $subpage === null ) {
-			throw new LogicException(
-				__CLASS__ . ' does not support $subpage param being null'
-			);
+	public function execute( ?IConfigurationProvider $provider, ?string $subpage = null ): void {
+		if ( $provider === null ) {
+			throw new LogicException( __CLASS__ . ' does not support $provider being null' );
 		}
 
-		$providerId = explode( '/', $subpage, 2 )[0];
-		$this->provider = $this->providerFactory->newProvider( $providerId );
+		$this->provider = $provider;
 
 		$out = $this->getContext()->getOutput();
 
@@ -122,7 +115,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		if ( !$config->isOK() ) {
 			$this->displayValidationError( $config );
 			$this->logger->error(
-				'Failed to load valid config from ' . $providerId,
+				'Failed to load valid config from ' . $this->provider->getId(),
 				[
 					'errors' => $config->getErrors(),
 				]
@@ -135,7 +128,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 			$this->logger->warning(
 				__METHOD__ . ': Loaded config with warnings for {provider}',
 				[
-					'provider' => $providerId,
+					'provider' => $this->provider->getId(),
 					'warnings' => $validationWarnings,
 				]
 			);
@@ -146,13 +139,13 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		$namespaceSelectorOptions = Html::namespaceSelectorOptions();
 		$out->addJsConfigVars( [
 			'communityConfigurationData' => [
-				'providerId' => $providerId,
+				'providerId' => $this->provider->getId(),
 				'schema' => $rootSchema,
 				'data' => $config->getValue(),
 				'config' => [
-					'i18nPrefix' => "communityconfiguration-" . strtolower( $providerId ),
+					'i18nPrefix' => "communityconfiguration-" . strtolower( $this->provider->getId() ),
 					'i18nMessages' => $this->messagesProcessor->getMessages(
-						$providerId,
+						$this->provider->getId(),
 						$this->provider->getValidator()->getSchemaIterator(),
 						'communityconfiguration'
 					),
@@ -164,7 +157,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 				],
 			],
 		] );
-		$infoTextKey = 'communityconfiguration-' . strtolower( $providerId ) . '-info-text';
+		$infoTextKey = 'communityconfiguration-' . strtolower( $this->provider->getId() ) . '-info-text';
 		if ( !$this->msg( $infoTextKey )->isDisabled() ) {
 			$out->addHTML( Html::rawElement(
 				'div',
