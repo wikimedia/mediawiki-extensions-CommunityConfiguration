@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
+use MediaWiki\Permissions\Authority;
 use StatusValue;
 use stdClass;
 
@@ -67,6 +68,33 @@ class DataProvider extends AbstractProvider {
 		return $config;
 	}
 
+	protected function normalizeTopLevelConfigData( stdClass $config ): stdClass {
+		if ( !$this->getValidator()->areSchemasSupported() ) {
+			return $config;
+		}
+
+		$schemaProperties = $this->getValidator()->getSchemaBuilder()->getRootProperties();
+
+		foreach ( $config as $configPropertyName => &$configPropertyValue ) {
+			if ( !isset( $schemaProperties[ $configPropertyName ] ) ) {
+				continue;
+			}
+
+			if ( $schemaProperties[ $configPropertyName ][ 'type' ] === 'object' ) {
+				if ( is_array( $configPropertyValue ) ) {
+					$configPropertyValue = (object)$configPropertyValue;
+				}
+			}
+		}
+
+		return $config;
+	}
+
+	/** @inheritDoc */
+	public function loadValidConfiguration(): StatusValue {
+		return $this->processStoreStatus( $this->getStore()->loadConfiguration() );
+	}
+
 	/**
 	 * Process a store status
 	 *
@@ -96,17 +124,36 @@ class DataProvider extends AbstractProvider {
 		return $result->setResult( true, $this->addAutocomputedProperties( $result->getValue() ) );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
-	public function loadValidConfiguration(): StatusValue {
-		return $this->processStoreStatus( $this->getStore()->loadConfiguration() );
-	}
-
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function loadValidConfigurationUncached(): StatusValue {
 		return $this->processStoreStatus( $this->getStore()->loadConfigurationUncached() );
+	}
+
+	/** @inheritDoc */
+	public function storeValidConfiguration(
+		$newConfig, Authority $authority, string $summary = ''
+	): StatusValue {
+		// Normalize the top level field first to avoid T379094
+		$normalizedConfig = $this->normalizeTopLevelConfigData( (object)$newConfig );
+		$validationStatus = $this->getValidator()->validateStrictly( $normalizedConfig );
+		if ( !$validationStatus->isGood() ) {
+			return $validationStatus;
+		}
+
+		return parent::storeValidConfiguration( $normalizedConfig, $authority, $summary );
+	}
+
+	/** @inheritDoc */
+	public function alwaysStoreValidConfiguration(
+		$newConfig, Authority $authority, string $summary = ''
+	): StatusValue {
+		// Normalize the top level field first to avoid T379094
+		$normalizedConfig = $this->normalizeTopLevelConfigData( (object)$newConfig );
+		$validationStatus = $this->getValidator()->validateStrictly( $normalizedConfig );
+		if ( !$validationStatus->isGood() ) {
+			return $validationStatus;
+		}
+
+		return parent::alwaysStoreValidConfiguration( $normalizedConfig, $authority, $summary );
 	}
 }

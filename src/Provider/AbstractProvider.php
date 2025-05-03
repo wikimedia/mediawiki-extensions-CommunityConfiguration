@@ -12,7 +12,6 @@ use MessageLocalizer;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use StatusValue;
-use stdClass;
 
 abstract class AbstractProvider implements IConfigurationProvider {
 	use LoggerAwareTrait;
@@ -103,15 +102,8 @@ abstract class AbstractProvider implements IConfigurationProvider {
 		string $summary,
 		bool $bypassPermissionCheck
 	): StatusValue {
-		// Normalize the top level field first to avoid T379094
-		$normalizedConfig = $this->normalizeTopLevelConfigData( (object)$newConfig );
-		$validationStatus = $this->getValidator()->validateStrictly( $normalizedConfig );
-		if ( !$validationStatus->isGood() ) {
-			return $validationStatus;
-		}
-
 		$args = [
-			$normalizedConfig,
+			$newConfig,
 			$this->getValidator()->areSchemasSupported()
 				? $this->getValidator()->getSchemaVersion()
 				: null,
@@ -146,28 +138,6 @@ abstract class AbstractProvider implements IConfigurationProvider {
 		string $summary = ''
 	): StatusValue {
 		return $this->doStoreValidConfiguration( $newConfig, $authority, $summary, true );
-	}
-
-	protected function normalizeTopLevelConfigData( stdClass $config ): stdClass {
-		if ( !$this->getValidator()->areSchemasSupported() ) {
-			return $config;
-		}
-
-		$schemaProperties = $this->getValidator()->getSchemaBuilder()->getRootProperties();
-
-		foreach ( $config as $configPropertyName => &$configPropertyValue ) {
-			if ( !isset( $schemaProperties[ $configPropertyName ] ) ) {
-				continue;
-			}
-
-			if ( $schemaProperties[ $configPropertyName ][ 'type' ] === 'object' ) {
-				if ( is_array( $configPropertyValue ) ) {
-					$configPropertyValue = (object)$configPropertyValue;
-				}
-			}
-		}
-
-		return $config;
 	}
 
 	/**
