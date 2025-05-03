@@ -6,6 +6,7 @@ use InvalidArgumentException;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory
@@ -72,6 +73,21 @@ class StoreFactoryTest extends MediaWikiIntegrationTestCase {
 			CommunityConfigurationServices::wrap( $this->getServiceContainer() )
 				->getStoreFactory()
 				->getSupportedKeys()
+		);
+	}
+
+	public function testStoreWithOptions() {
+		$store = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+			->getStoreFactory()
+			->newStore(
+				'static', 'static',
+				$this->getExtraArgsForStore( 'static' ),
+				[ 'foo' => 123 ]
+			);
+
+		$this->assertSame(
+			123,
+			TestingAccessWrapper::newFromObject( $store )->getOption( 'foo' )
 		);
 	}
 }

@@ -36,13 +36,12 @@ class StoreFactory {
 		$this->objectFactory = $objectFactory;
 	}
 
-	/**
-	 * @param string $name
-	 * @param string $type
-	 * @param array $storeArgs
-	 * @return IConfigurationStore
-	 */
-	public function newStore( string $name, string $type, array $storeArgs ): IConfigurationStore {
+	public function newStore(
+		string $name,
+		string $type,
+		array $storeArgs,
+		array $storeOptions = []
+	): IConfigurationStore {
 		if ( !array_key_exists( $type, $this->storeSpecs ) ) {
 			throw new InvalidArgumentException( "Store $type is not supported" );
 		}
@@ -55,6 +54,7 @@ class StoreFactory {
 					'extraArgs' => $storeArgs,
 				],
 			);
+			$this->stores[$storeKey]->setOptions( $storeOptions );
 		}
 		return $this->stores[$storeKey];
 	}

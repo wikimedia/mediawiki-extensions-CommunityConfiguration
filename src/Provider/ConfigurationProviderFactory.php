@@ -125,25 +125,27 @@ class ConfigurationProviderFactory {
 				"Wrong type for \"validator\" property for \"$providerId\" provider. Allowed types are: string, object"
 			);
 		}
-		$storeArgs = $this->getConstructArgs( $providerSpec, 'store' );
-		$store = $this->storeFactory->newStore( $providerId, $storeType, $storeArgs );
-		$store->setOptions( $this->getConstructOptions( $providerSpec, 'store' ) );
 
-		$extraArgs = [
-			$providerId,
-			$providerSpec['options'] ?? [],
-			$store,
-			$this->validatorFactory->newValidator(
-				$providerId, $validatorType,
-				$this->getConstructArgs( $providerSpec, 'validator' )
-			),
-		];
+		$store = $this->storeFactory->newStore(
+			$providerId, $storeType,
+			$this->getConstructArgs( $providerSpec, 'store' ),
+			$this->getConstructOptions( $providerSpec, 'store' )
+		);
+		$validator = $this->validatorFactory->newValidator(
+			$providerId, $validatorType,
+			$this->getConstructArgs( $providerSpec, 'validator' )
+		);
 
 		$provider = $this->objectFactory->createObject(
 			$this->getProviderClassSpec( $providerSpec['type'] ?? self::DEFAULT_PROVIDER_TYPE ),
 			[
 				'assertClass' => IConfigurationProvider::class,
-				'extraArgs' => $extraArgs,
+				'extraArgs' => [
+					$providerId,
+					$providerSpec['options'] ?? [],
+					$store,
+					$validator,
+				],
 			]
 		);
 
