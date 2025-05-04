@@ -15,18 +15,6 @@ use stdClass;
  */
 class StaticStoreTest extends MediaWikiUnitTestCase {
 
-	private StaticStore $store;
-	private stdClass $config;
-
-	/**
-	 * TODO: Review and update existing tests to utilize the centralized setup from this `setUp` method.
-	 */
-	protected function setUp(): void {
-		parent::setUp();
-		$this->config = (object)[ 'Number' => 42, 'String' => 'foo' ];
-		$this->store = new StaticStore( $this->config );
-	}
-
 	private function assertStoreStatusOK( stdClass $expectedValue, StatusValue $statusValue ) {
 		$this->assertStatusOK( $statusValue );
 		$this->assertStatusValue( $expectedValue, $statusValue );
