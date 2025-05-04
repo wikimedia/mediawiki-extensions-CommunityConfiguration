@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\CommunityConfiguration\EditorCapabilities;
 
 use MediaWiki\Context\IContextSource;
-use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
 use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
 use MessageLocalizer;
@@ -55,11 +54,5 @@ abstract class AbstractEditorCapability implements IEditorCapability, MessageLoc
 	 */
 	public function msg( $key, ...$params ) {
 		return $this->getContext()->msg( $key, ...$params );
-	}
-
-	/** @inheritDoc */
-	public function execute( ?IConfigurationProvider $provider, ?string $subpage = null ): void {
-		// @phan-suppress-next-line PhanUndeclaredMethodInCallable
-		call_user_func( [ $this, 'executeNew' ], $provider, $subpage );
 	}
 }
