@@ -14,23 +14,9 @@ interface IEditorCapability extends LoggerAwareInterface {
 	 * be called from SpecialPage::execute, and it can assume it has complete control over the
 	 * special page.
 	 *
-	 * @param string|null $subpage
+	 * @param IConfigurationProvider|null $provider Relevant provider, if applicable
+	 * @param string|null $subpage Subpage (usable by the capability for eg. routing)
 	 * @return void
 	 */
-	public function execute( ?string $subpage ): void;
-
-	/**
-	 * Code that executes the capability
-	 *
-	 * This method should render whatever interface is needed to create the capability. It will
-	 * be called from SpecialPage::execute, and it can assume it has complete control over the
-	 * special page.
-	 *
-	 * Replacement for @see execute().
-	 *
-	 * @param IConfigurationProvider|null $provider
-	 * @param string|null $subpage
-	 * @return void
-	 */
-	public function executeNew( ?IConfigurationProvider $provider, ?string $subpage = null ): void;
+	public function execute( ?IConfigurationProvider $provider, ?string $subpage = null ): void;
 }

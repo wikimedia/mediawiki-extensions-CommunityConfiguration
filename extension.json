@@ -98,7 +98,6 @@
 				"generic-editor": {
 					"class": "MediaWiki\\Extension\\CommunityConfiguration\\EditorCapabilities\\GenericFormEditorCapability",
 					"services": [
-						"CommunityConfiguration.ProviderFactory",
 						"LinkRenderer",
 						"FormatterFactory",
 						"CommunityConfiguration.HookRunner",
