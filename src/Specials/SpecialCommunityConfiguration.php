@@ -36,6 +36,7 @@ class SpecialCommunityConfiguration extends SpecialPage {
 
 		$parsedSubpage = explode( '/', $subPage ?? '', 2 );
 		$providerId = $parsedSubpage[0];
+		$provider = null;
 
 		if ( $providerId === '' ) {
 			$capabilityName = self::CAPABILITY_DASHBOARD;
@@ -59,7 +60,7 @@ class SpecialCommunityConfiguration extends SpecialPage {
 
 		$this->editorCapabilityFactory
 			->newCapability( $capabilityName, $this->getContext(), $this->getPageTitle() )
-			->execute( $subPage );
+			->executeNew( $provider, $parsedSubpage[1] ?? null );
 	}
 
 	/** @inheritDoc */
