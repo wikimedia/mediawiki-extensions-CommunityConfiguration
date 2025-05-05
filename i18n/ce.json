@@ -23,6 +23,7 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "ГӀалатан деталаш",
 	"communityconfiguration-schema-validation-error": "$2. ДогӀа: $1",
 	"communityconfiguration-providers-list-title": "Функцеш",
+	"communityconfiguration-provider-not-found": "Латторг $1 ца карийна",
 	"communityconfigurationdashboard": "Йукъараллин конфигураци",
 	"communityconfigurationeditor": "Хийцам: $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Дагадоуьйту</b> : ХӀокху хийцамо Ӏаткъам бан мега дуккха а йукъараллин декъашхошна. Дехар до, хаийта {{GENDER:$1|ахьа}} хийцамаш хӀунда беш бу, эшахь, йукъараллехь дӀахьочу муьлххачу а дийцаршна тӀетовжа.",
