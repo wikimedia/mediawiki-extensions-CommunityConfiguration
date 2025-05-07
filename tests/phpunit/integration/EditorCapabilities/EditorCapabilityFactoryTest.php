@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
-use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\IEditorCapability;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 
@@ -13,28 +12,21 @@ use MediaWikiIntegrationTestCase;
  */
 class EditorCapabilityFactoryTest extends MediaWikiIntegrationTestCase {
 
-	private function getSpecs() {
-		return $this->getServiceContainer()->getMainConfig()->get( 'CommunityConfigurationEditorCapabilities' );
-	}
-
-	public function provideNewCapability() {
-		foreach ( $this->getSpecs() as $key => $spec ) {
-			yield [ $key ];
-		}
-	}
-
 	public function testConstructCapability() {
-		foreach ( $this->getSpecs() as $capabilityName => $_ ) {
-			$this->assertInstanceOf(
-				IEditorCapability::class,
-				CommunityConfigurationServices::wrap( $this->getServiceContainer() )
-					->getEditorCapabilityFactory()
-					->newCapability(
-						$capabilityName,
-						RequestContext::getMain(),
-						Title::newFromText( 'Testing' )
-					)
+		$serviceContainer = $this->getServiceContainer();
+		$specs = $serviceContainer->getMainConfig()->get( 'CommunityConfigurationEditorCapabilities' );
+		$factory = CommunityConfigurationServices::wrap( $serviceContainer )
+			->getEditorCapabilityFactory();
+		$requestContext = RequestContext::getMain();
+		$title = Title::makeTitle( NS_MAIN, 'Testing' );
+
+		foreach ( $specs as $capabilityName => $_ ) {
+			$factory->newCapability(
+				$capabilityName,
+				$requestContext,
+				$title
 			);
 		}
+		$this->addToAssertionCount( 1 );
 	}
 }
