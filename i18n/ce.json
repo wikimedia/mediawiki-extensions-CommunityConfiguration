@@ -14,6 +14,7 @@
 	"communityconfiguration-guidelines-guideline2-title": "Тхоьга даийта {{GENDER:$1|хьайн}} хетарг",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "ГӀалатан деталаш",
 	"communityconfiguration-providers-list-title": "Функцеш",
+	"communityconfiguration-provider-not-found": "Латторг $1 ца карийна",
 	"communityconfigurationdashboard": "Йукъараллин конфигураци",
 	"communityconfiguration-edit-summary-reminder": "<b>Дагадоуьйту</b> : ХӀокху хийцамо Ӏаткъам бан мега дуккха а йукъараллин декъашхошна. Дехар до, хаийта {{GENDER:$1|ахьа}} хийцамаш хӀунда беш бу, эшахь, йукъараллехь дӀахьочу муьлххачу а дийцаршна тӀетовжа.",
 	"communityconfiguration-edit-summary-dialog-title": "Хийцамаш Ӏалашбе $1",
