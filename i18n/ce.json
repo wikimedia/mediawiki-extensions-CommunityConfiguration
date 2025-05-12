@@ -7,6 +7,8 @@
 	"communityconfiguration": "Йукъараллин конфигураци",
 	"communityconfiguration-desc": "Йукъараллин конфигурацин логика чулоцу",
 	"communityconfiguration-editor-chip-control-aria-chip-description": "\"Enter\" тӀетаӀайе хийцархьама, йа \"Delete\" тӀетаӀайе дӀадаккхархьама.",
+	"communityconfiguration-editor-client-generic-error": "Цхьа хӀума галделира конфигурацин редактор чуйоккхуш. Дехар до, тӀаьхьо йуха а хьажа.",
+	"communityconfiguration-editor-client-generic-error-description": "ГӀалаташ хилла '$2' чохь $1 компонентехь. Мадарра лахахь хьажа:",
 	"communityconfiguration-editor-client-post-feedback": "Нагахь санна проблема лаьтташ йелахь, [$1 хеттарг дита] дийцарийн агӀонан тӀехь.",
 	"communityconfiguration-editor-client-validation-errors": "Формехь {{PLURAL:$1|гӀалат ду|$1 гӀалаташ ду}}:",
 	"communityconfiguration-editor-form-submit-button-text": "Хийцамаш дӀаӀалашбан",
