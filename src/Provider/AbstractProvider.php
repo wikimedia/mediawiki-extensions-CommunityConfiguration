@@ -102,6 +102,11 @@ abstract class AbstractProvider implements IConfigurationProvider {
 		string $summary,
 		bool $bypassPermissionCheck
 	): StatusValue {
+		$validationStatus = $this->getValidator()->validateStrictly( $newConfig );
+		if ( !$validationStatus->isGood() ) {
+			return $validationStatus;
+		}
+
 		$args = [
 			$newConfig,
 			$this->getValidator()->areSchemasSupported()

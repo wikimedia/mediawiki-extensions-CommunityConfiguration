@@ -135,11 +135,6 @@ class DataProvider extends AbstractProvider {
 	): StatusValue {
 		// Normalize the top level field first to avoid T379094
 		$normalizedConfig = $this->normalizeTopLevelConfigData( (object)$newConfig );
-		$validationStatus = $this->getValidator()->validateStrictly( $normalizedConfig );
-		if ( !$validationStatus->isGood() ) {
-			return $validationStatus;
-		}
-
 		return parent::storeValidConfiguration( $normalizedConfig, $authority, $summary );
 	}
 
@@ -149,11 +144,6 @@ class DataProvider extends AbstractProvider {
 	): StatusValue {
 		// Normalize the top level field first to avoid T379094
 		$normalizedConfig = $this->normalizeTopLevelConfigData( (object)$newConfig );
-		$validationStatus = $this->getValidator()->validateStrictly( $normalizedConfig );
-		if ( !$validationStatus->isGood() ) {
-			return $validationStatus;
-		}
-
 		return parent::alwaysStoreValidConfiguration( $normalizedConfig, $authority, $summary );
 	}
 }
