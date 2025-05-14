@@ -7,7 +7,7 @@
 		"fix:css": "stylelint --fix \"**/*.{css,less,vue}\"",
 		"test": "npm-run-all test:*",
 		"test:lint": "eslint --cache --no-fix --max-warnings 0 .",
-		"test:lintcss": "stylelint \"**/*.{css,less,vue}\"",
+		"test:lintcss": "stylelint --cache \"**/*.{css,less,vue}\"",
 		"test:linti18n": "banana-checker i18n/",
 		"test:jest": "jest",
 		"coverage": "npm run test:jest",
