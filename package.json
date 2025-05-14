@@ -23,7 +23,7 @@
 		"@vue/compiler-dom": "3.4.19",
 		"@vue/test-utils": "2.4.6",
 		"@vue/vue3-jest": "29.2.6",
-		"@wikimedia/codex": "1.23.0",
+		"@wikimedia/codex": "2.0.0-rc.1",
 		"@wmde/eslint-config-wikimedia-typescript": "^0.2.13",
 		"api-testing": "1.7.1",
 		"cypress": "^13.14.2",
