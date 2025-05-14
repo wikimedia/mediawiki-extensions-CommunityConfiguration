@@ -9,5 +9,5 @@ use MediaWiki\Tests\ExtensionJsonTestBase;
  */
 class CommunityConfigurationExtensionJsonTest extends ExtensionJsonTestBase {
 	/** @inheritDoc */
-	protected string $extensionJsonPath = __DIR__ . '/../../../extension.json';
+	protected static string $extensionJsonPath = __DIR__ . '/../../../extension.json';
 }
