@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"communityconfiguration-editor-chip-control-aria-chip-description": "Pritisnite Enter da uredite ili Delete da uklonite",
+	"communityconfiguration-editor-form-submit-button-text": "Sačuvaj izmene",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Šaljem...",
+	"communityconfiguration-guidelines-guideline1-title": "Saznajte više",
+	"communityconfiguration-guidelines-guideline2-title": "Dajte nam {{GENDER:$1|Vaše}} mišljenje!",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Detalji greške",
+	"communityconfiguration-providers-list-title": "Mogućnosti",
+	"communityconfigurationeditor": "$1 — uređivanje",
+	"communityconfiguration-edit-summary-dialog-title": "Sačuvaj izmene za $1",
+	"communityconfiguration-edit-summary-dialog-save-button": "Sačuvaj izmene",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Otkaži",
+	"communityconfiguration-edit-summary-dialog-label": "Opis izmene",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Vaše}} izmene su sačuvane",
+	"communityconfiguration-editor-message-dismiss-button-label": "Zatvori",
+	"communityconfiguration-page-title-control-no-results": "Nema rezultata.",
+	"communityconfiguration-editor-loading-info-text": "Konfiguracioni editor se učitava",
+	"communityconfiguration-editor-nojs-fallback-text": "Konfiguracionom editoru je potreban JavaScript. Molimo omogućite JavaScript.",
+	"communityconfiguration-editor-navigation-tab-viewform": "Obrazac",
+	"communityconfiguration-editor-client-notice-message": "Ova stranica je zaštićena. Samo administratori mogu uređivati ovu mogućnost.",
+	"communityconfiguration-editor-error-validation-string-too-short": "Mora imati bar $1 karakter",
+	"communityconfiguration-editor-error-validation-string-too-long": "Najviše $1 karaktera"
+}
