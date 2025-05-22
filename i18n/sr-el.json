@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"communityconfiguration-editor-form-submit-button-text": "Sačuvaj izmene",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Šaljem...",
+	"communityconfiguration-guidelines-guideline1-title": "Saznajte više",
+	"communityconfiguration-guidelines-guideline2-title": "Dajte nam {{GENDER:$1|Vaše}} mišljenje!",
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Detalji greške",
+	"communityconfiguration-providers-list-title": "Mogućnosti",
+	"communityconfiguration-edit-summary-dialog-title": "Sačuvaj izmene za $1",
+	"communityconfiguration-edit-summary-dialog-save-button": "Sačuvaj izmene",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Otkaži",
+	"communityconfiguration-edit-summary-dialog-label": "Opis izmene",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Vaše}} izmene su sačuvane",
+	"communityconfiguration-editor-message-dismiss-button-label": "Zatvori",
+	"communityconfiguration-page-title-control-no-results": "Nema rezultata."
+}
