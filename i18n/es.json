@@ -7,7 +7,8 @@
 			"Martin Urbanec (WMF)",
 			"No se",
 			"Sergi0",
-			"Zapipedia (WMF)"
+			"Zapipedia (WMF)",
+			"JaimeDes"
 		]
 	},
 	"communityconfiguration": "Configuración Comunitaria",
@@ -23,7 +24,7 @@
 	"communityconfiguration-editor-array-fallback-add-element-button-label": "Añadir otro elemento",
 	"communityconfiguration-guidelines-title": "¿Qué es la Configuración Comunitaria?",
 	"communityconfiguration-guidelines-description": "Configuración Comunitaria es una herramienta que permite a las comunidades establecer y controlar la configuración de diferentes funcionalidades de {{SITENAME}}, facilitando que las personas bibliotecarias y administradoras de interfaz se adapten a las necesidades específicas de su comunidad.",
-	"communityconfiguration-guidelines-guideline1-title": "Aprender más",
+	"communityconfiguration-guidelines-guideline1-title": "Más información",
 	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Aprende más] sobre la Configuración comunitaria, qué es, cómo funciona, y en qué estamos trabajando.",
 	"communityconfiguration-guidelines-guideline2-title": "Envíanos {{GENDER:$1|tus}} comentarios",
 	"communityconfiguration-guidelines-guideline2-description": "¡Nos gustaría conocer {{GENDER:$1|tu}}  opinión! Contáctanos en la [https://www.mediawiki.org/wiki/Talk:Growth pagina de discusión].",
