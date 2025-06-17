@@ -121,8 +121,8 @@
 		"navigation": {
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Hooks\\NavigationHooks",
 			"services": [
-				"CommunityConfiguration.ProviderFactory",
-				"SpecialPageFactory"
+				"SpecialPageFactory",
+				"CommunityConfiguration.ProviderFactory"
 			]
 		},
 		"change-tags": {
