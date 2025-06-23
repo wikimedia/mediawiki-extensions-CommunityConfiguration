@@ -16,14 +16,14 @@ class NoopValidatorWithSchemaForTesting implements IValidator {
 	/**
 	 * @inheritDoc
 	 */
-	public function validateStrictly( $config ): ValidationStatus {
+	public function validateStrictly( $config, ?string $version = null ): ValidationStatus {
 		return ValidationStatus::newGood();
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function validatePermissively( $config ): ValidationStatus {
+	public function validatePermissively( $config, ?string $version = null ): ValidationStatus {
 		return ValidationStatus::newGood();
 	}
 
