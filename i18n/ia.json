@@ -25,6 +25,7 @@
 	"communityconfiguration-invalid-stored-config-error-with-link": "Non esseva possibile cargar un configuration valide desde le fornitor $1 (codice <code>$2</code>); consulta $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Detalios del error",
 	"communityconfiguration-schema-validation-error": "$2. Clave: $1",
+	"communityconfiguration-invalid-schema-version": "Version $1 non valide. Le schema actual es $2.",
 	"communityconfiguration-providers-list-title": "Functionalitate",
 	"communityconfiguration-provider-not-found": "Le fornitor $1 non ha essite trovate",
 	"communityconfigurationdashboard": "Configuration del communitate",

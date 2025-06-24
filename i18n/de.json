@@ -27,6 +27,7 @@
 	"communityconfiguration-invalid-stored-config-error-with-link": "Es konnte keine gültige Konfiguration vom Anbieter $1 (Code <code>$2</code>) geladen werden, siehe $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Fehlerdetails",
 	"communityconfiguration-schema-validation-error": "$2. Schlüssel: $1",
+	"communityconfiguration-invalid-schema-version": "Ungültige Version $1. Aktuelles Schema ist $2 .",
 	"communityconfiguration-providers-list-title": "Funktionen",
 	"communityconfiguration-provider-not-found": "Anbieter $1 wurde nicht gefunden",
 	"communityconfigurationdashboard": "Community-Konfiguration",
@@ -52,6 +53,6 @@
 	"communityconfiguration-editor-error-validation-string-too-short": "Muss mindestens $1 Zeichen lang sein",
 	"communityconfiguration-editor-error-validation-string-too-long": "Darf höchstens $1 Zeichen lang sein",
 	"communityconfiguration-maintenance-config-change-summary": "Konfiguration durch Wartungsskript geändert: $1",
-	"tag-community_configuration": "[[mw:Community configuration|Community-Konfiguration]]",
+	"tag-community_configuration": "Community-Konfiguration",
 	"tag-community_configuration-description": "Bearbeitungen, die die [[Special:CommunityConfiguration|lokale Wiki-Konfiguration]] einer Funktion mithilfe der [[mw:Extension:CommunityConfiguration|Community-Konfigurationserweiterung]] ändern."
 }
