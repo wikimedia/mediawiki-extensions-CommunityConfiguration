@@ -27,6 +27,7 @@
 	"communityconfiguration-invalid-stored-config-error-with-link": "فشلٌ في تحميل إعداد صالح من الموفّر $1 (ترميز <code>$2</code>)، شاهدوا $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "تفاصيل الخطأ",
 	"communityconfiguration-schema-validation-error": "$2. المفتاح: $1",
+	"communityconfiguration-invalid-schema-version": "نسخة خاطئة $1. المثال الحالي $2,",
 	"communityconfiguration-providers-list-title": "المزايا",
 	"communityconfiguration-provider-not-found": "لم يتم العثور على الموفِّر $1",
 	"communityconfigurationdashboard": "إعدادات المجتمع",
