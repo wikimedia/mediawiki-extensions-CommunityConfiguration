@@ -4,7 +4,8 @@
 			"Apple TD",
 			"Kokage si",
 			"Omotecho",
-			"かしわのはみん"
+			"かしわのはみん",
+			"Shirayuki"
 		]
 	},
 	"communityconfiguration": "コミュニティ設定",
@@ -24,8 +25,8 @@
 	"communityconfiguration-guidelines-guideline1-description": "コミュニティ設定とは何か、どのように機能するのか、チームが取り組んでいることについて[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration もっと知る]。",
 	"communityconfiguration-guidelines-guideline2-title": "{{GENDER:$1|あなたの}}フィードバックをお送りください",
 	"communityconfiguration-guidelines-guideline2-description": "{{GENDER:$1|あなたの}}ご意見を是非お聞かせください！[https://www.mediawiki.org/wiki/Talk:Growth トークページ]からご連絡ください。",
-	"communityconfiguration-invalid-stored-config-error": "$1（コード<code>$2</code>）プロバイダーから有効な設定をロードできませんでした。",
-	"communityconfiguration-invalid-stored-config-error-with-link": "$1（コード<code>$2</code>）プロバイダーから有効な構成をロードできませんでした。$3を参照してください。",
+	"communityconfiguration-invalid-stored-config-error": "$1 (コード <code>$2</code>) プロバイダーから有効な設定を読み込めませんでした。",
+	"communityconfiguration-invalid-stored-config-error-with-link": "$1 (コード <code>$2</code>) プロバイダーから有効な構成を読み込めませんでした。$3 を参照してください。",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "エラーの詳細",
 	"communityconfiguration-schema-validation-error": "$2。キー: $1",
 	"communityconfiguration-providers-list-title": "機能",
