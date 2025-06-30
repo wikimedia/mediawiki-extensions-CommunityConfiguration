@@ -26,6 +26,7 @@
 	"communityconfiguration-invalid-stored-config-error-with-link": "Не вдалося завантажити дійсну конфігурацію від постачальника $1 (код <code>$2</code>), див. $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Деталі помилки",
 	"communityconfiguration-schema-validation-error": "$2. Ключ: $1",
+	"communityconfiguration-invalid-schema-version": "Недійсна версія $1. Поточна схема — $2.",
 	"communityconfiguration-providers-list-title": "Функції",
 	"communityconfiguration-provider-not-found": "Постачальника $1 не знайдено",
 	"communityconfigurationdashboard": "Налаштування спільнотою",
