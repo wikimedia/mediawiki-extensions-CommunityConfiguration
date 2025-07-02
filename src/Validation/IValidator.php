@@ -24,9 +24,12 @@ interface IValidator {
 	 * via GrowthExperiments-provided interface), and by ConfigHooks for manual edits.
 	 *
 	 * @param mixed $config Associative array representing config that's going to be validated
+	 * @param string|null $version Version (of the schema) to use for validation, null for latest or if not supported.
+	 *                             Implementations SHOULD return a fatal ValidationStatus for invalid versions as they
+	 *                             might be user-provided.
 	 * @return ValidationStatus
 	 */
-	public function validateStrictly( $config ): ValidationStatus;
+	public function validateStrictly( $config, ?string $version = null ): ValidationStatus;
 
 	/**
 	 * Validate passed config permissively
@@ -41,9 +44,12 @@ interface IValidator {
 	 * When writing a config, use @see validateStrictly() instead of this.
 	 *
 	 * @param mixed $config Associative array representing config that's going to be validated
+	 * @param string|null $version Version (of the schema) to use for validation, null for latest or if not supported.
+	 *                             Implementations SHOULD return a fatal ValidationStatus for invalid versions as they
+	 *                             might be user-provided.
 	 * @return ValidationStatus
 	 */
-	public function validatePermissively( $config ): ValidationStatus;
+	public function validatePermissively( $config, ?string $version = null ): ValidationStatus;
 
 	/**
 	 * Are configuration schemas supported?
