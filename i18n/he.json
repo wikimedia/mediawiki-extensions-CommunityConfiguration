@@ -25,6 +25,7 @@
 	"communityconfiguration-invalid-stored-config-error-with-link": "טעינת תצורה תקינה מהספק $1 (קוד <code>$2</code>) נכשלה, ר' $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "פרטי השגיאה",
 	"communityconfiguration-schema-validation-error": "$2. מפתח: $1",
+	"communityconfiguration-invalid-schema-version": "גרסה בלתי־תקינה $1. הסכֵמה הנוכחית היא $2.",
 	"communityconfiguration-providers-list-title": "אפשרויות",
 	"communityconfiguration-provider-not-found": "הספק $1 לא נמצא",
 	"communityconfigurationdashboard": "תצורת קהילה",
