@@ -18,6 +18,7 @@
 		"MediaWiki\\Extension\\CommunityConfiguration\\Maintenance\\": "maintenance/"
 	},
 	"TestAutoloadClasses": {
+		"MediaWiki\\Extension\\CommunityConfiguration\\Maintenance\\MigrateConfig": "maintenance/migrateConfig.php",
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\CommunityConfigurationTestHelpers": "tests/phpunit/CommunityConfigurationTestHelpers.php",
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\EmptyUISchemaForTesting": "tests/phpunit/EmptyUISchemaForTesting.php",
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\JsonSchemaForTesting": "tests/phpunit/JsonSchemaForTesting.php",
