@@ -25,6 +25,7 @@
 	"communityconfiguration-invalid-stored-config-error-with-link": "Не успеав да вчитам важечка поставеност од услужникот $1 (код <code>$2</code>). Погл. $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Поединости за грешката",
 	"communityconfiguration-schema-validation-error": "$2. Клуч: $1",
+	"communityconfiguration-invalid-schema-version": "Неважечка верзија $1. Тековната шема е $2.",
 	"communityconfiguration-providers-list-title": "Функции",
 	"communityconfiguration-provider-not-found": "Не го пронајдов услужникот $1",
 	"communityconfigurationdashboard": "Поставки за заедницата",
