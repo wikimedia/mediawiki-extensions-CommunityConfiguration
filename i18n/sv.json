@@ -51,6 +51,6 @@
 	"communityconfiguration-editor-error-validation-string-too-short": "Måste vara minst $1 tecken långt",
 	"communityconfiguration-editor-error-validation-string-too-long": "Måste vara högst $1 tecken långt",
 	"communityconfiguration-maintenance-config-change-summary": "Konfig ändrade av underhållsskript: $1",
-	"tag-community_configuration": "[[mw:Community configuration|Gemenskapskonfigurering]]",
+	"tag-community_configuration": "Gemenskapskonfigurering",
 	"tag-community_configuration-description": "Redigeringar som ändrar [[Special:CommunityConfiguration|lokal wikikonfigurering]] hos en funktion med hjälp av [[mw:Extension:CommunityConfiguration|funktionen Gemenskapskonfigurering]]."
 }
