@@ -75,7 +75,7 @@ class MessagesProcessor {
 	private function getControlMessages( string $className, string $fieldName ): array {
 		try {
 			$value = constant( "$className::$fieldName" );
-		} catch ( Error $e ) {
+		} catch ( Error ) {
 			throw new RuntimeException(
 				"Failed resolving reference $fieldName in $className."
 			);

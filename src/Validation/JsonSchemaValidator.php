@@ -102,7 +102,7 @@ class JsonSchemaValidator implements IValidator {
 
 		try {
 			$rootSchema = $this->jsonSchemaBuilder->getRootSchema( $withVersion );
-		} catch ( ReflectionException $e ) {
+		} catch ( ReflectionException ) {
 			return ValidationStatus::newFatal(
 				'communityconfiguration-invalid-schema-version',
 				$withVersion,
