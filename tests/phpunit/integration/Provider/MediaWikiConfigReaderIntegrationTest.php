@@ -8,7 +8,6 @@ use MediaWiki\Config\ConfigException;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
-use stdClass;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader
@@ -51,8 +50,7 @@ class MediaWikiConfigReaderIntegrationTest extends MediaWikiIntegrationTestCase 
 		$this->assertSame( 0, $reader->get( 'NumberWithDefault' ) );
 
 		// after changing the value, the new ones are returned
-		$config = new stdClass();
-		$config->NumberWithDefault = 42;
+		$config = (object)[ 'NumberWithDefault' => 42 ];
 		$provider->storeValidConfiguration( $config, $authority );
 
 		$this->assertTrue( $reader->has( 'NumberWithDefault' ) );

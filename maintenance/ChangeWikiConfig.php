@@ -171,9 +171,7 @@ class ChangeWikiConfig extends Maintenance {
 		$valueKey = array_pop( $subKeys );
 		$target = &$config;
 		foreach ( $subKeys as $subKey ) {
-			if ( !isset( $target->$subKey ) ) {
-				$target->$subKey = new stdClass();
-			}
+			$target->$subKey ??= (object)[];
 			$target = &$target->$subKey;
 		}
 		$target->$valueKey = $value;
