@@ -17,11 +17,13 @@ use MediaWiki\User\User;
 use MessageLocalizer;
 use stdClass;
 
+// @codeCoverageIgnoreStart
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
 	$IP = __DIR__ . '/../../..';
 }
 require_once "$IP/maintenance/Maintenance.php";
+// @codeCoverageIgnoreEnd
 
 class ChangeWikiConfig extends Maintenance {
 
@@ -281,5 +283,7 @@ class ChangeWikiConfig extends Maintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ChangeWikiConfig::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

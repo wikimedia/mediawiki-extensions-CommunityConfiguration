@@ -14,11 +14,13 @@ use MediaWiki\Status\StatusFormatter;
 use MediaWiki\User\User;
 use StatusValue;
 
+// @codeCoverageIgnoreStart
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
 	$IP = __DIR__ . '/../../..';
 }
 require_once "$IP/maintenance/Maintenance.php";
+// @codeCoverageIgnoreEnd
 
 class MigrateConfig extends Maintenance {
 
@@ -116,5 +118,7 @@ class MigrateConfig extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = MigrateConfig::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

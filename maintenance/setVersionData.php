@@ -10,11 +10,13 @@ use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Status\StatusFormatter;
 use MediaWiki\User\User;
 
+// @codeCoverageIgnoreStart
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
 	$IP = __DIR__ . '/../../..';
 }
 require_once "$IP/maintenance/Maintenance.php";
+// @codeCoverageIgnoreEnd
 
 class SetVersionData extends Maintenance {
 
@@ -92,5 +94,7 @@ class SetVersionData extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = SetVersionData::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

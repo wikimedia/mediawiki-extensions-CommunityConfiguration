@@ -8,11 +8,13 @@ use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaul
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Maintenance\Maintenance;
 
+// @codeCoverageIgnoreStart
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
 	$IP = __DIR__ . '/../../..';
 }
 require_once "$IP/maintenance/Maintenance.php";
+// @codeCoverageIgnoreEnd
 
 class UpdateEmergencyDefaults extends Maintenance {
 
@@ -72,5 +74,7 @@ class UpdateEmergencyDefaults extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = UpdateEmergencyDefaults::class;
 require RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd
