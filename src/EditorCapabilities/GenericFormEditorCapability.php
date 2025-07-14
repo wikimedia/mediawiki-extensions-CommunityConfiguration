@@ -41,10 +41,6 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		$this->config = $config;
 	}
 
-	/**
-	 * @param StatusValue $validationError
-	 * @return void
-	 */
 	private function displayValidationError( StatusValue $validationError ): void {
 		$out = $this->getContext()->getOutput();
 		$infoPageLinkTarget = $this->provider->getStore()->getInfoPageLinkTarget();

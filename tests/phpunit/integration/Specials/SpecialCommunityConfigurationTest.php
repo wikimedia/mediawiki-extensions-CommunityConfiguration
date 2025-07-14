@@ -24,8 +24,6 @@ class SpecialCommunityConfigurationTest extends SpecialPageTestBase {
 	private const CONFIG_PAGE_TITLE = 'MediaWiki:CommunityFeatureOverrides.json';
 
 	/**
-	 * @var string[]
-	 *
 	 * List of providers that cannot be edited by GenericFormEditorCapability.
 	 */
 	private const UNEDITABLE_PROVIDERS = [ self::SKIPPED_PROVIDER_ID ];

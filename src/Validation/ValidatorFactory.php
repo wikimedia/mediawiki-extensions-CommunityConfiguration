@@ -29,7 +29,6 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 class ValidatorFactory {
 
 	/**
-	 * @var string[]
 	 * @internal for use in ServiceWiring only
 	 */
 	public const CONSTRUCTOR_OPTIONS = [

@@ -19,7 +19,6 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  */
 class ConfigurationProviderFactory {
 
-	/** @var string */
 	private const DEFAULT_PROVIDER_TYPE = 'data';
 
 	/** Lazy loaded in initList */

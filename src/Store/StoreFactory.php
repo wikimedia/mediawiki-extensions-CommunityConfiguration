@@ -13,7 +13,6 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 class StoreFactory {
 
 	/**
-	 * @var string[]
 	 * @internal for use in ServiceWiring only
 	 */
 	public const CONSTRUCTOR_OPTIONS = [

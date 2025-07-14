@@ -11,9 +11,6 @@ class MediaWikiConfigProvider
 	implements IConfigurationProvider, Config
 {
 
-	/**
-	 * @return stdClass
-	 */
 	private function getValidConfigOrDefaults(): stdClass {
 		$status = $this->loadValidConfiguration();
 		if ( !$status->isOK() ) {

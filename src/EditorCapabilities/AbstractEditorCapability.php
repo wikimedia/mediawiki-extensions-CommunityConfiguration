@@ -25,8 +25,6 @@ abstract class AbstractEditorCapability implements IEditorCapability, MessageLoc
 
 	/**
 	 * Return the context
-	 *
-	 * @return IContextSource
 	 */
 	final protected function getContext(): IContextSource {
 		return $this->ctx;
@@ -37,8 +35,6 @@ abstract class AbstractEditorCapability implements IEditorCapability, MessageLoc
 	 *
 	 * The capability is included in a special page; this method returns the root title for that
 	 * page, disregarding any subpages.
-	 *
-	 * @return Title
 	 */
 	final protected function getParentTitle(): Title {
 		return $this->parentTitle;
