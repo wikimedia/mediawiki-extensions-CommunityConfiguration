@@ -19,7 +19,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use StatusValue;
 use stdClass;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
+use Wikimedia\Stats\NullStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 
 /**
@@ -468,7 +468,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			new StaticStore( $storedConfig ),
 			new JsonSchemaValidator(
 				$schema,
-				$this->createStub( IBufferingStatsdDataFactory::class ),
+				new NullStatsdDataFactory(),
 				StatsFactory::newNull()
 			),
 		);

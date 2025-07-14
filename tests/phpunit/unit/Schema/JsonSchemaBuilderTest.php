@@ -8,7 +8,7 @@ use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader;
 use MediaWikiUnitTestCase;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
+use Wikimedia\Stats\NullStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 
 /**
@@ -189,7 +189,7 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 		$schemaReader->method( 'getSchemaId' )
 			->willReturn( 'schema/id' );
 		return new JsonSchemaBuilder(
-			$this->createMock( IBufferingStatsdDataFactory::class ),
+			new NullStatsdDataFactory(),
 			$schemaReader,
 			StatsFactory::newNull()
 		);

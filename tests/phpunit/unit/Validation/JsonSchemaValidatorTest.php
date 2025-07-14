@@ -8,7 +8,7 @@ use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
 use MediaWiki\Extension\CommunityConfiguration\Validation\JsonSchemaValidator;
 use MediaWikiUnitTestCase;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
+use Wikimedia\Stats\NullStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 
 /**
@@ -21,7 +21,7 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 	private function newValidator( $schema ): JsonSchemaValidator {
 		return new JsonSchemaValidator(
 			$schema,
-			$this->createMock( IBufferingStatsdDataFactory::class ),
+			new NullStatsdDataFactory(),
 			StatsFactory::newNull()
 		);
 	}
