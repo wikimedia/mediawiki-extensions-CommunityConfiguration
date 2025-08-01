@@ -12,8 +12,8 @@ describe( 'Community Configuration Example Page', () => {
 				'CCExample_Numbers',
 				'CCExample_FavoriteColors',
 			];
-			fields.forEach( field => {
-				cy.get( `#${field}` ).should( 'exist' );
+			fields.forEach( ( field ) => {
+				cy.get( `#${ field }` ).should( 'exist' );
 			} );
 
 			cy.get( '.communityconfiguration-info-section' )
@@ -74,9 +74,10 @@ describe( 'Community Configuration Example Page', () => {
 
 		cy.visit( 'index.php?title=Special:CommunityConfiguration/CommunityConfigurationExample' );
 
-		const testString = `Test string ${Date.now()}`;
+		const testString = `Test string ${ Date.now() }`;
 
-		cy.get( '#CCExample_String input[type="text"]' ).clear().type( testString );
+		cy.get( '#CCExample_String input[type="text"]' ).clear();
+		cy.get( '#CCExample_String input[type="text"]' ).type( testString );
 
 		cy.get( 'button' ).contains( 'Save changes' ).should( 'not.be.disabled' ).click();
 

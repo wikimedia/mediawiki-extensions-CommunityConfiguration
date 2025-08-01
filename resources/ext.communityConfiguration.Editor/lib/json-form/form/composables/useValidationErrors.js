@@ -63,7 +63,7 @@ module.exports = exports = ( schemaAndPrefix ) => {
 	 */
 	function getValidationErrorMessageForFormFieldId( pointer ) {
 		const validationError = state.validationErrors.find(
-			( error ) => error.formFieldId === pointer
+			( error ) => error.formFieldId === pointer,
 		);
 
 		return validationError ? validationError.messageLiteral : null;
@@ -100,12 +100,12 @@ module.exports = exports = ( schemaAndPrefix ) => {
 		state.validationErrors = response.errors.map( ( error ) => {
 			const adjustedPointer = adjustPointerForValidationErrors(
 				rootSchema,
-				error.data.pointer
+				error.data.pointer,
 			);
 			const labels = getLabelsChain(
 				rootSchema,
 				adjustedPointer,
-				i18nPrefix
+				i18nPrefix,
 			);
 			const formFieldId = adjustedPointer
 				.slice( 1 ) // Remove leading '/'
@@ -124,7 +124,7 @@ module.exports = exports = ( schemaAndPrefix ) => {
 	 */
 	function setValidationErrorForFieldId( fieldId, messageLiteral ) {
 		state.validationErrors = state.validationErrors.filter(
-			( error ) => error.formFieldId !== fieldId
+			( error ) => error.formFieldId !== fieldId,
 		);
 		const adjustedPointer = '/' + fieldId
 			.replace( /\./g, '/' );
@@ -132,7 +132,7 @@ module.exports = exports = ( schemaAndPrefix ) => {
 		const labels = getLabelsChain(
 			rootSchema,
 			adjustedPointer,
-			i18nPrefix
+			i18nPrefix,
 		);
 
 		state.validationErrors.push( {
@@ -149,7 +149,7 @@ module.exports = exports = ( schemaAndPrefix ) => {
 	 */
 	function clearValidationErrorForFieldId( fieldId ) {
 		state.validationErrors = state.validationErrors.filter(
-			( error ) => error.formFieldId !== fieldId
+			( error ) => error.formFieldId !== fieldId,
 		);
 	}
 
@@ -215,7 +215,7 @@ function adjustPointerForValidationErrors( rootSchema, pointer ) {
 function removeDeletedArrayItemErrors( pointerToArray, indexOfDeletedItem ) {
 	const idOfDeletedItem = pointerToArray + '.' + indexOfDeletedItem;
 	state.validationErrors = state.validationErrors.filter(
-		( error ) => !error.formFieldId.startsWith( idOfDeletedItem )
+		( error ) => !error.formFieldId.startsWith( idOfDeletedItem ),
 	);
 }
 
@@ -235,7 +235,7 @@ function decrementArrayItemErrorIndexes( pointerToArray, indexOfDeletedItem ) {
 				}
 			}
 			return error;
-		}
+		},
 	);
 }
 

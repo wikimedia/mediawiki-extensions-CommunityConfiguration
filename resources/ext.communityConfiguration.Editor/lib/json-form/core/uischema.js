@@ -18,13 +18,13 @@ function buildUISchema( schema, config, initialScope = '', data = {} ) {
 		const scope = initialScope ? `${initialScope}/properties/${prop}` : `#/properties/${prop}`;
 		const required = schema.required && schema.required.includes( prop );
 		elements.push( buildUISubSchema(
-			schema.properties[ prop ], prop, scope, required, config.i18nPrefix
+			schema.properties[ prop ], prop, scope, required, config.i18nPrefix,
 		) );
 	}
 
 	if ( schema.additionalProperties === false ) {
 		const dataPropertiesNotInSchema = Object.keys( data ).filter(
-			( key ) => !schema.properties[ key ]
+			( key ) => !schema.properties[ key ],
 		);
 		for ( const extraProp of dataPropertiesNotInSchema ) {
 			// TODO: consider adding a textual representation of the extra property to the elements
@@ -44,7 +44,7 @@ function buildUISubSchema( subschema, name, scope, required, i18nPrefix ) {
 	};
 
 	const additionalProps = Object.assign(
-		{}, getControlTextProps( name, i18nPrefix, subschema )
+		{}, getControlTextProps( name, i18nPrefix, subschema ),
 	);
 
 	return Object.assign( {}, defaults, additionalProps );

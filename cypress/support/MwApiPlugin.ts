@@ -23,7 +23,7 @@ function debugLog( ...args: unknown[] ): void {
 }
 
 function mwApiCommands( cypressConfig: Cypress.PluginConfigOptions ): {
-	'MwApi:UpdateConfiguration': ( param1: { provider: string; configData: Record<string, unknown>; summary: string } ) => Promise<null>;
+	'MwApi:UpdateConfiguration': ( param1: { provider: string; configData: Record<string, unknown>; summary: string } ) => Promise<void>;
 } {
 	// TODO: replace the `any` once the api-testing library type definitions available
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -65,10 +65,10 @@ function mwApiCommands( cypressConfig: Cypress.PluginConfigOptions ): {
 
 			if ( editResult.communityconfigurationedit.result !== 'success' ) {
 				console.error( 'Configuration update failed', editResult );
-				return Promise.reject( new Error( 'Configuration update failed: ' + editResult.communityconfigurationedit.result ) );
+				throw new Error( 'Configuration update failed: ' + editResult.communityconfigurationedit.result );
 			}
 
-			return Promise.resolve( null );
+			return null;
 		},
 	};
 }

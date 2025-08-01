@@ -139,7 +139,7 @@ function useJsonFormControl( props ) {
 		scope,
 	} = props.uischema;
 	const modelValue = ref(
-		getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs )
+		getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs ),
 	);
 	const pointer = scopeToJsonPointer( scope );
 	const otherAttrs = { required };
@@ -187,7 +187,7 @@ function useJsonFormArrayControl( props ) {
 	} = props.uischema;
 
 	const modelValue = computed(
-		() => getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs )
+		() => getConfigValueByScope( jsonform.data, scope, props.schema, jsonform.schema.$defs ),
 	);
 	const pointer = scopeToJsonPointer( scope );
 	const {
@@ -211,7 +211,7 @@ function useJsonFormArrayControl( props ) {
 		props.uischema.scope,
 		// TODO determine if an array item is required based on min/maxItems, T358659
 		false,
-		jsonform.config.i18nPrefix
+		jsonform.config.i18nPrefix,
 	);
 
 	function indexedChildUISchema( index ) {

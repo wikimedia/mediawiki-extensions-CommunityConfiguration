@@ -26,7 +26,7 @@ function getMessageOrNull( key ) {
 function getControlMessages( prefix, propName, messageNames ) {
 	return messageNames.reduce( ( acc, msgName ) => {
 		acc[ camelize( msgName ) ] = getMessageOrNull(
-			mapPropToTextKey( prefix, propName, msgName )
+			mapPropToTextKey( prefix, propName, msgName ),
 		);
 		return acc;
 	}, {} );
@@ -114,7 +114,7 @@ function getLabelsChainRec( schema, pointer, prefix ) {
 		const deeperLabels = getLabelsChainRec(
 			schema.properties[ path[ 1 ] ],
 			path.slice( 1 ).join( '/' ),
-			`${prefix}-${path[ 0 ]}`
+			`${prefix}-${path[ 0 ]}`,
 		);
 		return [ currentLabel, ...deeperLabels ];
 	}
@@ -124,7 +124,7 @@ function getLabelsChainRec( schema, pointer, prefix ) {
 		const deeperLabels = getLabelsChainRec(
 			schema.items,
 			path.slice( 2 ).join( '/' ),
-			`${prefix}-${path[ 0 ]}`
+			`${prefix}-${path[ 0 ]}`,
 		);
 		return [ currentLabel, itemLabel, ...deeperLabels ];
 	}
