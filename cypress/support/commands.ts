@@ -24,14 +24,26 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 Cypress.Commands.add( 'loginViaApi', (): void => {
+	const config = Cypress.env();
 	cy.visit( '/index.php' );
 	cy.window().should( 'have.property', 'mw' );
 	cy.window().its( 'mw' ).should( 'have.property', 'Api' );
 	cy.window().its( 'mw' ).then( async ( mw ): Promise<void> => {
 		const api = new mw.Api();
 		await api.login(
-			Cypress.config( 'mediawikiAdminUsername' ),
-			Cypress.config( 'mediawikiAdminPassword' )
+			config.mediawikiAdminUsername,
+			config.mediawikiAdminPassword,
 		);
 	} );
 } );
+
+/* eslint-disable @typescript-eslint/no-namespace */
+declare global {
+	namespace Cypress {
+		interface Chainable {
+			loginViaApi(): Chainable<JQuery<HTMLElement>>;
+		}
+	}
+}
+
+export {};
