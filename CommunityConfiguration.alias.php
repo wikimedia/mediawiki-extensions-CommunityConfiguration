@@ -4,7 +4,7 @@ $specialPageAliases = [];
 
 /** English (English) */
 $specialPageAliases['en'] = [
-	'CommunityConfiguration' => [ 'CommunityConfiguration' ],
+	'CommunityConfiguration' => [ 'CommunityConfiguration', 'CommunityConfig' ],
 ];
 
 /** Arabic */
