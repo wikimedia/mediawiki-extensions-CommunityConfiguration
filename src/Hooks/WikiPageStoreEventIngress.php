@@ -6,8 +6,9 @@ use MediaWiki\DomainEvent\DomainEventIngress;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
+use MediaWiki\Page\Event\PageRevisionUpdatedListener;
 
-class WikiPageStoreEventIngress extends DomainEventIngress {
+class WikiPageStoreEventIngress extends DomainEventIngress implements PageRevisionUpdatedListener {
 
 	private ConfigurationProviderFactory $factory;
 
