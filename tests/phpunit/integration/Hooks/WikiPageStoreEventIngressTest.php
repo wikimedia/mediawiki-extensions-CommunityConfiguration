@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -56,5 +57,34 @@ class WikiPageStoreEventIngressTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusValue( (object)[
 			'Number' => 43,
 		], $status, 'Failed to invalidate cache' );
+	}
+
+	public function testPageDeletion() {
+		// This is necessary to ensure loadValidConfiguration at the end of the test does not
+		// treat the cache key as volatile and sees the effect of deletePage and cache invalidation.
+		$mockWallClock = 1549343530.0;
+		$this->getServiceContainer()->getMainWANObjectCache()->setMockTime( $mockWallClock );
+
+		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+			->getConfigurationProviderFactory()
+			->newProvider( 'foo' );
+		$provider->storeValidConfiguration(
+			(object)[ 'Foo' => 42 ],
+			$this->getTestSysop()->getAuthority()
+		);
+
+		// 1. Ensure the cache is populated...
+		$this->assertStatusValue(
+			(object)[ 'Foo' => 42 ],
+			$provider->loadValidConfiguration()
+		);
+
+		// 2. ...and that deletion invalidated it.
+		$this->deletePage( Title::newFromText( 'MediaWiki:Foo.json' ) );
+		$mockWallClock += 10;
+		$this->assertStatusValue(
+			(object)[],
+			$provider->loadValidConfiguration()
+		);
 	}
 }
