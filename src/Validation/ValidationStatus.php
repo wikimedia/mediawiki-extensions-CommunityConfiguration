@@ -4,6 +4,10 @@ namespace MediaWiki\Extension\CommunityConfiguration\Validation;
 
 use StatusValue;
 
+/**
+ * @template T
+ * @inherits StatusValue<T>
+ */
 class ValidationStatus extends StatusValue {
 	private array $validationErrors = [];
 

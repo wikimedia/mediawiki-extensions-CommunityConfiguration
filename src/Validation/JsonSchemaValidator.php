@@ -117,7 +117,7 @@ class JsonSchemaValidator implements IValidator {
 		if ( $validator->isValid() ) {
 			return ValidationStatus::newGood();
 		}
-		$status = new ValidationStatus();
+		$status = ValidationStatus::newGood();
 		foreach ( $validator->getErrors() as $error ) {
 			if ( $modeForReading && in_array( $error['constraint'], [ 'required', 'additionalProp', 'enum' ] ) ) {
 				$status->addWarning(
