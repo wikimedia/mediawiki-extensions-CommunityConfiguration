@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ktchankt"
+		]
+	},
+	"communityconfiguration": "社群喜好設定",
+	"communityconfiguration-editor-form-submit-button-text": "儲存改動",
+	"communityconfiguration-editor-form-submit-button-loading-text": "傳送緊...",
+	"communityconfiguration-guidelines-guideline1-title": "知多啲",
+	"communityconfigurationdashboard": "社群喜好設定",
+	"communityconfiguration-edit-summary-dialog-save-button": "儲存改動",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "取消",
+	"communityconfiguration-edit-summary-dialog-label": "編輯摘要",
+	"communityconfiguration-editor-message-dismiss-button-label": "閂",
+	"communityconfiguration-page-title-control-no-results": "搵唔到結果。",
+	"tag-community_configuration-description": "用[[mw:Extension:CommunityConfiguration|社群喜好設定功能]]去改[[Special:CommunityConfiguration|本地wiki喜好設定]]嘅編輯"
+}
