@@ -13,6 +13,9 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\ObjectCache\BagOStuff;
 
+/**
+ * Service exclusive for configuration that belongs to CommunityConfiguration.
+ */
 class MediaWikiConfigReader implements Config {
 
 	private BagOStuff $cache;
