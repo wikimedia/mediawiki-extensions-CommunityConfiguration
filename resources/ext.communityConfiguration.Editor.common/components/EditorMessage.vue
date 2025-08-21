@@ -1,5 +1,6 @@
 <template>
 	<cdx-message
+		:allow-user-dismiss="isDismissable"
 		:dismiss-button-label="isDismissable ? $i18n(
 			'communityconfiguration-editor-message-dismiss-button-label' ).text() : ''"
 		:type="status"

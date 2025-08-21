@@ -55,7 +55,7 @@ describe( 'MultiSelectEnumControl', () => {
 		const inputEl = wrapper.get( 'input' );
 
 		await inputEl.trigger( 'click' );
-		expect( wrapper.getComponent( '.cdx-menu' ).isVisible() ).toBe( true );
+		expect( wrapper.get( '.cdx-menu' ).isVisible() ).toBe( true );
 
 		await inputEl.trigger( 'keydown.ArrowDown' );
 		await inputEl.trigger( 'keydown.ArrowDown' );
