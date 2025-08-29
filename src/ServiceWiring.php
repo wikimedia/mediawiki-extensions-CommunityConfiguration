@@ -124,7 +124,8 @@ return [
 	'CommunityConfiguration.StoreFactory' => static function ( MediaWikiServices $services ) {
 		return new StoreFactory(
 			new ServiceOptions( StoreFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
-			$services->getObjectFactory()
+			$services->getObjectFactory(),
+			$services->getExtensionRegistry()
 		);
 	},
 	'CommunityConfiguration.WikiPageStore.Writer' => static function ( MediaWikiServices $services ) {

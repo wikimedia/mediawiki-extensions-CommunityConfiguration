@@ -4,6 +4,8 @@ namespace MediaWiki\Extension\CommunityConfiguration\Store;
 
 use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Extension\CommunityConfiguration\Utils;
+use MediaWiki\Registration\ExtensionRegistry;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -27,10 +29,14 @@ class StoreFactory {
 
 	public function __construct(
 		ServiceOptions $options,
-		ObjectFactory $objectFactory
+		ObjectFactory $objectFactory,
+		ExtensionRegistry $extensionRegistry
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->storeSpecs = $options->get( 'CommunityConfigurationStores' );
+		$this->storeSpecs = Utils::getMergedAttribute(
+			$options, $extensionRegistry,
+			'CommunityConfigurationStores'
+		);
 
 		$this->objectFactory = $objectFactory;
 	}

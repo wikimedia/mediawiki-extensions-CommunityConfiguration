@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\CommunityConfiguration;
 
 use MediaWiki\Config\Config;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Registration\ExtensionRegistry;
 
 class Utils {
@@ -10,13 +11,13 @@ class Utils {
 	/**
 	 * Merge $key from config and attributes
 	 *
-	 * @param Config $config
+	 * @param Config|ServiceOptions $config
 	 * @param ExtensionRegistry $extensionRegistry
 	 * @param string $key
 	 * @return array
 	 */
 	public static function getMergedAttribute(
-		Config $config,
+		Config|ServiceOptions $config,
 		ExtensionRegistry $extensionRegistry,
 		string $key
 	) {
