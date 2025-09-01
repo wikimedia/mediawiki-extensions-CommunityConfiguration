@@ -26,6 +26,7 @@
 	"communityconfiguration-invalid-stored-config-error-with-link": "Et konnt keng gülteg Konfiguratioun vum Provider $1 (Code <code>$2</code>) geluede ginn, kuckt $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Feelerdetailer",
 	"communityconfiguration-schema-validation-error": "$2. Schlëssel: $1",
+	"communityconfiguration-invalid-schema-version": "Ongülteg Versioun $1. Dat aktuellt Scheema ass $2.",
 	"communityconfiguration-providers-list-title": "Funktiounen",
 	"communityconfiguration-provider-not-found": "De Provider $1 gouf net fonnt",
 	"communityconfigurationdashboard": "Community Configuration",
