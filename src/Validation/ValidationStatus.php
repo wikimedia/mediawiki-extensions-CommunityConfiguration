@@ -11,6 +11,12 @@ use StatusValue;
 class ValidationStatus extends StatusValue {
 	private array $validationErrors = [];
 
+	/**
+	 * @suppress PhanGenericConstructorTypes
+	 */
+	public function __construct() {
+	}
+
 	public function addWarning(
 		string $property,
 		string $pointer,
