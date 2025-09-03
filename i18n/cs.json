@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Martin Urbanec (WMF)",
+			"Matus cz",
 			"Matěj Suchánek"
 		]
 	},
@@ -17,11 +18,16 @@
 	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Odebrat prvek",
 	"communityconfiguration-editor-array-fallback-add-element-button-label": "Přidat další položku",
 	"communityconfiguration-guidelines-title": "Co je komunitní konfigurace?",
+	"communityconfiguration-guidelines-description": "Komunitní konfigurace je nástroj umožňující komunitě spravovat konfiguraci různých funkcionalit na {{GRAMMAR:6sg|{{SITENAME}}}} a umožňující administrátorům přizpůsobit funkce komunitním potřebám.",
 	"communityconfiguration-guidelines-guideline1-title": "Více informací",
+	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Zjistěte více] o komunitní konfiguraci: co to je, jak funguje a kdo na ni pracuje.",
 	"communityconfiguration-guidelines-guideline2-title": "Pošlete nám {{GENDER:$1|vaši}} zpětnou vazbu",
+	"communityconfiguration-guidelines-guideline2-description": "Rádi bychom slyšeli {{GENDER:$1|vaše}} názory! Ozvěte se nám na [https://www.mediawiki.org/wiki/Talk:Growth naší diskusní stránce].",
 	"communityconfiguration-invalid-stored-config-error": "Z poskytovatele $1 (kód <code>$2</code>) se nepodařilo načíst platnou konfiguraci.",
 	"communityconfiguration-invalid-stored-config-error-with-link": "Z poskytovatele $1 (kód <code>$2</code>) se nepodařilo načíst platnou konfiguraci, viz $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Podrobnosti o chybě",
+	"communityconfiguration-schema-validation-error": "$2. Klíč: $1",
+	"communityconfiguration-invalid-schema-version": "Neplatná verze $1. Aktuální schéma je $2.",
 	"communityconfiguration-providers-list-title": "Funkce",
 	"communityconfiguration-provider-not-found": "Poskytovatel $1 nenalezen.",
 	"communityconfigurationdashboard": "Komunitní konfigurace",
@@ -38,5 +44,6 @@
 	"communityconfiguration-editor-loading-info-text": "Editor konfigurace se načítá",
 	"communityconfiguration-editor-nojs-fallback-text": "Editor konfigurace vyžaduje JavaScript. Povolte JavaScript, abyste jej mohli používat.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Zobrazit formulář",
+	"communityconfiguration-editor-client-notice-message": "Tato stránka je uzamčena. Konfiguraci této funkcionality mohou editovat pouze správci.",
 	"tag-community_configuration": "Komunitní konfigurace"
 }
