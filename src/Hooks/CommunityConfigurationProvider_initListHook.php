@@ -13,7 +13,6 @@ namespace MediaWiki\Extension\CommunityConfiguration\Hooks;
  */
 interface CommunityConfigurationProvider_initListHook {
 	/**
-	 *
 	 * @param array &$providers List of registered providers, mapping of provider name to provider specification.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

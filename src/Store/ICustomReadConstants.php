@@ -5,7 +5,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Store;
 /**
  * @note Keep in sync with CustomReadConstantsTrait. This is only separate, because constants can
  * be defined within traits since PHP 8.2.
- * @todo: Move to CustomReadConstantsTrait once we run on PHP8.2.
+ * @todo Move to CustomReadConstantsTrait once we run on PHP8.2.
  */
 interface ICustomReadConstants {
 	/**
