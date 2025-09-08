@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"GilPe",
 			"Robby",
 			"Volvox"
 		]
@@ -36,7 +37,7 @@
 	"communityconfiguration-edit-summary-dialog-placeholder": "Beschreift d'Ännerungen, déi an den Astellunge gemaach goufen",
 	"communityconfiguration-edit-summary-dialog-save-button": "Ännerunge späicheren",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "Ofbriechen",
-	"communityconfiguration-edit-summary-dialog-label": "Resumé vun der Ännerung",
+	"communityconfiguration-edit-summary-dialog-label": "Resümmee vun der Ännerung",
 	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Är}} Ännerunge goufen gespäichert",
 	"communityconfiguration-editor-client-data-submission-error": "Beim Späichere vun {{GENDER:$1:Ären}} Ännerungen ass eppes schif gaangen. Probéiert wgl. méi spéit nach eng Kéier.",
 	"communityconfiguration-editor-message-dismiss-button-label": "Zoumaachen",
