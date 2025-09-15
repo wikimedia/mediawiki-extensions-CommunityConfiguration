@@ -25,6 +25,7 @@
 	"communityconfiguration-invalid-stored-config-error-with-link": "$1 кхоьхьургера (код <code>$2</code>) нийса конфигураци схьаэца аьтто ца баьлла, хьажа $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "ГӀалатан деталаш",
 	"communityconfiguration-schema-validation-error": "$2. ДогӀа: $1",
+	"communityconfiguration-invalid-schema-version": "Нийса йоцу верси $1. Карара схема — $2.",
 	"communityconfiguration-providers-list-title": "Функцеш",
 	"communityconfiguration-provider-not-found": "Латторг $1 ца карийна",
 	"communityconfigurationdashboard": "Йукъараллин конфигураци",
