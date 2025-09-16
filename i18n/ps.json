@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"communityconfiguration": "ټولنې جوړښت",
+	"communityconfiguration-desc": "د ټولنې جوړښت منطق لري",
+	"communityconfiguration-editor-chip-control-aria-chip-description": "د سمولو لپاره د Enter او د ړنگولو يا لرې‌کولو لپاره Delete تڼۍ کېکاږئ",
+	"communityconfiguration-editor-client-generic-error": "د ترتيب سمونگر بارولو پرمهال يوه تېروتنه پېښه شوه. مهرباني وکړئ وروسته بياهڅه وکړئ.",
+	"communityconfiguration-editor-client-generic-error-description": "د $1 برخې په '$2'  کې يوه تېروتنه رامنځته شوه. سپيناوی يې لاندې وگورئ:",
+	"communityconfiguration-guidelines-title": "د ټولنې جوړښت څه دی؟",
+	"communityconfiguration-editor-message-dismiss-button-label": "تړل",
+	"communityconfiguration-page-title-control-no-results": "هېڅ پايلې ونه موندل شوې.",
+	"communityconfiguration-editor-loading-info-text": "ترتيب سمونگر بارېږي",
+	"communityconfiguration-editor-navigation-tab-viewform": "فورمه کتل",
+	"communityconfiguration-editor-error-validation-string-too-short": "بايد لږترلږه $1 لوښې اوږد وي",
+	"communityconfiguration-editor-error-validation-string-too-long": "بايد لږترلږه $1 لوښې اوږد وي",
+	"communityconfiguration-maintenance-config-change-summary": "د ساتونکي سکريپټ له خوا ترتيب بدل شو: $1"
+}
