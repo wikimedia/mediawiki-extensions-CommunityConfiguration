@@ -37,6 +37,8 @@ class UpdateEmergencyDefaultsTest extends MaintenanceBaseTestCase {
 	}
 
 	public function testUpdateOK() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'CommunityConfigurationExample' );
+
 		$path = $this->getDefaultsPath();
 		if ( file_exists( $path ) ) {
 			// Ensure the file does not exist
