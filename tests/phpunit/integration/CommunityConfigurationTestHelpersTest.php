@@ -18,6 +18,8 @@ class CommunityConfigurationTestHelpersTest extends MediaWikiIntegrationTestCase
 	}
 
 	public function testOverrideProviderOK() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'CommunityConfigurationExample' );
+
 		$this->overrideProviderConfig( [
 			'CCExample_String' => 'foo',
 		], 'CommunityConfigurationExample' );

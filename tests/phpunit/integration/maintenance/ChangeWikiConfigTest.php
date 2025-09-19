@@ -18,6 +18,11 @@ use Wikimedia\Rdbms\IDBAccessObject;
  */
 class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 
+	protected function setUp(): void {
+		parent::setUp();
+		$this->markTestSkippedIfExtensionNotLoaded( 'CommunityConfigurationExample' );
+	}
+
 	protected function getMaintenanceClass(): string {
 		return ChangeWikiConfig::class;
 	}
