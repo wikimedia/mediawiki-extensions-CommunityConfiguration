@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Bean49"
 		]
 	},
 	"communityconfiguration": "Közösségi konfiguráció",
@@ -28,5 +29,6 @@
 	"communityconfiguration-edit-summary-dialog-label": "Szerkesztési összefoglaló",
 	"communityconfiguration-editor-message-dismiss-button-label": "Bezárás",
 	"communityconfiguration-page-title-control-no-results": "Nincs találat.",
-	"communityconfiguration-editor-loading-info-text": "A konfigurációszerkesztő betöltése…"
+	"communityconfiguration-editor-loading-info-text": "A konfigurációszerkesztő betöltése…",
+	"communityconfiguration-editor-navigation-tab-viewform": "Űrlap"
 }
