@@ -76,7 +76,10 @@ return [
 		);
 	},
 	'CommunityConfiguration.ProviderServicesContainer' => static function ( MediaWikiServices $services ) {
-		return new ProviderServicesContainer();
+		return new ProviderServicesContainer(
+			$services->getConnectionProvider(),
+			$services->getDomainEventDispatcher()
+		);
 	},
 	'CommunityConfiguration.MediaWikiConfigReader' => static function ( MediaWikiServices $services ) {
 		$ccServices = CommunityConfigurationServices::wrap( $services );

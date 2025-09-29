@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
+use MediaWiki\DomainEvent\DomainEventDispatcher;
+use Wikimedia\Rdbms\IConnectionProvider;
+
 /**
  * A service locator to be used by AbstractProvider implementations
  *
@@ -15,6 +18,17 @@ namespace MediaWiki\Extension\CommunityConfiguration\Provider;
  */
 class ProviderServicesContainer {
 
-	// NOTE: No services are necessary now, this is here just to facilitate constructor signature
-	// changes.
+	public function __construct(
+		private readonly IConnectionProvider $connectionProvider,
+		private readonly DomainEventDispatcher $domainEventDispatcher
+	) {
+	}
+
+	public function getConnectionProvider(): IConnectionProvider {
+		return $this->connectionProvider;
+	}
+
+	public function getDomainEventDispatcher(): DomainEventDispatcher {
+		return $this->domainEventDispatcher;
+	}
 }

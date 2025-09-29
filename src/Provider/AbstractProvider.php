@@ -4,6 +4,8 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Extension\CommunityConfiguration\DomainEvents\CommunityConfigurationChangedEvent;
 use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
 use MediaWiki\Message\Message;
@@ -122,10 +124,23 @@ abstract class AbstractProvider implements IConfigurationProvider {
 		];
 
 		if ( $bypassPermissionCheck ) {
-			return $this->getStore()->alwaysStoreConfiguration( ...$args );
+			$status = $this->getStore()->alwaysStoreConfiguration( ...$args );
 		} else {
-			return $this->getStore()->storeConfiguration( ...$args );
+			$status = $this->getStore()->storeConfiguration( ...$args );
 		}
+
+		if ( $status->isOK() ) {
+			DeferredUpdates::addCallableUpdate( function () {
+				$event = new CommunityConfigurationChangedEvent( $this );
+				$this->providerServicesContainer->getDomainEventDispatcher()
+					->dispatch(
+						$event,
+						$this->providerServicesContainer->getConnectionProvider()
+					);
+			} );
+		}
+
+		return $status;
 	}
 
 	/**
