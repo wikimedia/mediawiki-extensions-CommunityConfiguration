@@ -6,6 +6,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Extension\CommunityConfiguration\Provider\DataProvider;
+use MediaWiki\Extension\CommunityConfiguration\Provider\ProviderServicesContainer;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
 use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
@@ -35,6 +36,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 	public function testConstruct(): void {
 		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			'ProviderId',
 			[ 'excludeFromUI' => false ],
 			$this->createNoOpMock( IConfigurationStore::class ),
@@ -49,6 +51,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 	public function testGetId(): void {
 		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			$this->createNoOpMock( IConfigurationStore::class ),
@@ -71,6 +74,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( $messageMock );
 
 		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			$this->createNoOpMock( IConfigurationStore::class ),
@@ -87,6 +91,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$storeMock = $this->createNoOpMock( IConfigurationStore::class );
 		$validatorMock = $this->createNoOpMock( IValidator::class );
 		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			$storeMock,
@@ -123,6 +128,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( ValidationStatus::newGood() );
 
 		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			new StaticStore( new stdClass() ),
@@ -276,6 +282,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$validatorStub->method( 'validatePermissively' )
 			->willReturn( ValidationStatus::newGood() );
 		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			new StaticStore( $storedConfig ),
@@ -295,6 +302,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( ValidationStatus::newFatal( 'june' ) );
 
 		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			'ProviderId',
 			[ 'excludeFromUI' => false ],
 			new StaticStore( $config ),
@@ -312,6 +320,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( ValidationStatus::newFatal( 'june' ) );
 
 		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			$storeMock,
@@ -328,6 +337,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( ValidationStatus::newFatal( 'june' ) );
 
 		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			$storeMock,
@@ -359,6 +369,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( false );
 
 		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			$storeMock,
@@ -406,6 +417,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( $version );
 
 		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			'foo',
 			[ 'excludeFromUI' => false ],
 			$storeMock,
@@ -427,6 +439,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			->willReturn( ValidationStatus::newFatal( 'june' ) );
 
 		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			$storeMock,
@@ -439,6 +452,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 	public function testGetOption(): void {
 		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			$this->createNoOpMock( IConfigurationStore::class ),
@@ -463,6 +477,7 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		};
 
 		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			new StaticStore( $storedConfig ),

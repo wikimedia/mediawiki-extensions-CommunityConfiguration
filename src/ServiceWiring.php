@@ -12,6 +12,7 @@ use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaul
 use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaultsUpdater;
 use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
+use MediaWiki\Extension\CommunityConfiguration\Provider\ProviderServicesContainer;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaConverterFactory;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaMigrator;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
@@ -67,11 +68,15 @@ return [
 			$ccServices->getLogger(),
 			$ccServices->getStoreFactory(),
 			$ccServices->getValidatorFactory(),
+			$ccServices->getProviderServicesContainer(),
 			$services->getMainConfig(),
 			$services->getExtensionRegistry(),
 			$services->getObjectFactory(),
 			$ccServices->getHookRunner()
 		);
+	},
+	'CommunityConfiguration.ProviderServicesContainer' => static function ( MediaWikiServices $services ) {
+		return new ProviderServicesContainer();
 	},
 	'CommunityConfiguration.MediaWikiConfigReader' => static function ( MediaWikiServices $services ) {
 		$ccServices = CommunityConfigurationServices::wrap( $services );

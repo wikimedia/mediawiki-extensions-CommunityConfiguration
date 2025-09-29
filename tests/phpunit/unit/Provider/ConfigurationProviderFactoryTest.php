@@ -7,6 +7,7 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
+use MediaWiki\Extension\CommunityConfiguration\Provider\ProviderServicesContainer;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidatorFactory;
 use MediaWiki\Registration\ExtensionRegistry;
@@ -42,6 +43,7 @@ class ConfigurationProviderFactoryTest extends MediaWikiUnitTestCase {
 			new NullLogger(),
 			$this->createNoOpMock( StoreFactory::class ),
 			$this->createNoOpMock( ValidatorFactory::class ),
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			new HashConfig( [
 				'CommunityConfigurationProviders' => [
 					'foo' => self::PROVIDER_CONFIG_TEMPLATE,
@@ -68,6 +70,7 @@ class ConfigurationProviderFactoryTest extends MediaWikiUnitTestCase {
 			new NullLogger(),
 			$this->createNoOpMock( StoreFactory::class ),
 			$this->createNoOpMock( ValidatorFactory::class ),
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			new HashConfig( [
 				'CommunityConfigurationProviders' => [
 					'withUI' => self::PROVIDER_CONFIG_TEMPLATE,
@@ -100,6 +103,7 @@ class ConfigurationProviderFactoryTest extends MediaWikiUnitTestCase {
 			new NullLogger(),
 			$this->createNoOpMock( StoreFactory::class ),
 			$this->createNoOpMock( ValidatorFactory::class ),
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			new HashConfig( [
 				'CommunityConfigurationProviders' => [],
 				'CommunityConfigurationProviderClasses' => [],
@@ -119,6 +123,7 @@ class ConfigurationProviderFactoryTest extends MediaWikiUnitTestCase {
 			new NullLogger(),
 			$this->createNoOpMock( StoreFactory::class ),
 			$this->createNoOpMock( ValidatorFactory::class ),
+			$this->createNoOpMock( ProviderServicesContainer::class ),
 			new HashConfig( [
 				'CommunityConfigurationProviders' => [
 					'foo' => [

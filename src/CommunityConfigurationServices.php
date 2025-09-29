@@ -9,6 +9,7 @@ use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaul
 use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaultsUpdater;
 use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
+use MediaWiki\Extension\CommunityConfiguration\Provider\ProviderServicesContainer;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaConverterFactory;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaMigrator;
 use MediaWiki\Extension\CommunityConfiguration\Store\StoreFactory;
@@ -46,6 +47,10 @@ class CommunityConfigurationServices {
 
 	public function getConfigurationProviderFactory(): ConfigurationProviderFactory {
 		return $this->coreServices->getService( 'CommunityConfiguration.ProviderFactory' );
+	}
+
+	public function getProviderServicesContainer(): ProviderServicesContainer {
+		return $this->coreServices->getService( 'CommunityConfiguration.ProviderServicesContainer' );
 	}
 
 	public function getEmergencyDefaultsUpdater(): EmergencyDefaultsUpdater {

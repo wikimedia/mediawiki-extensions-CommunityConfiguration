@@ -28,6 +28,7 @@ class ConfigurationProviderFactory {
 	private LoggerInterface $logger;
 	private StoreFactory $storeFactory;
 	private ValidatorFactory $validatorFactory;
+	private ProviderServicesContainer $providerServicesContainer;
 	private Config $config;
 	private ExtensionRegistry $extensionRegistry;
 	private ObjectFactory $objectFactory;
@@ -37,6 +38,7 @@ class ConfigurationProviderFactory {
 		LoggerInterface $logger,
 		StoreFactory $storeFactory,
 		ValidatorFactory $validatorFactory,
+		ProviderServicesContainer $providerServicesContainer,
 		Config $config,
 		ExtensionRegistry $extensionRegistry,
 		ObjectFactory $objectFactory,
@@ -45,6 +47,7 @@ class ConfigurationProviderFactory {
 		$this->logger = $logger;
 		$this->storeFactory = $storeFactory;
 		$this->validatorFactory = $validatorFactory;
+		$this->providerServicesContainer = $providerServicesContainer;
 		$this->config = $config;
 		$this->extensionRegistry = $extensionRegistry;
 		$this->objectFactory = $objectFactory;
@@ -135,16 +138,45 @@ class ConfigurationProviderFactory {
 			$this->getConstructArgs( $providerSpec, 'validator' )
 		);
 
+		$classSpec = $this->getProviderClassSpec( $providerSpec['type'] ?? self::DEFAULT_PROVIDER_TYPE );
+		$className = $classSpec['class'] ?? null;
+		$supportsServices = false;
+		// NOTE: This does not work if something else than `class` (like a `factory` callable) is
+		// used in the specs. As of writing, no one does that, and this is essentially code we
+		// add to make CI happy, so this shouldn't be a problem, but I'm noting it here for
+		// completeness.
+		if ( $className ) {
+			$classReflection = new \ReflectionClass( $classSpec['class'] );
+			$classCtor = $classReflection->getConstructor();
+
+			if ( $classCtor->getDeclaringClass()->getName() === AbstractProvider::class ) {
+				// AbstractProvider supports both signatures, but we prefer the newer one
+				$supportsServices = true;
+			} else {
+				// If the first param is the services container, the new signature is in use.
+				$firstParam = $classCtor->getParameters()[0];
+				$firstParamType = $firstParam->getType();
+				$supportsServices = $firstParamType instanceof \ReflectionNamedType
+					&& !$firstParamType->isBuiltin()
+					&& $firstParamType->getName() === ProviderServicesContainer::class;
+			}
+		}
+
+		$extraArgs = [
+			$providerId,
+			$providerSpec['options'] ?? [],
+			$store,
+			$validator,
+		];
+		if ( $supportsServices ) {
+			array_unshift( $extraArgs, $this->providerServicesContainer );
+		}
+
 		$provider = $this->objectFactory->createObject(
-			$this->getProviderClassSpec( $providerSpec['type'] ?? self::DEFAULT_PROVIDER_TYPE ),
+			$classSpec,
 			[
 				'assertClass' => IConfigurationProvider::class,
-				'extraArgs' => [
-					$providerId,
-					$providerSpec['options'] ?? [],
-					$store,
-					$validator,
-				],
+				'extraArgs' => $extraArgs,
 			]
 		);
 
