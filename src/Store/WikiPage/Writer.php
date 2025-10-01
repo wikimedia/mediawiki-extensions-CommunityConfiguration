@@ -58,12 +58,8 @@ class Writer {
 		$tags = []
 	): Status {
 		// REVIEW: Should this validate $configPage is an acceptable target?
-
-		// Sort config alphabetically
-		$configSorted = (array)$newConfig;
-		ksort( $configSorted );
 		$status = Status::newGood();
-		$content = new JsonContent( FormatJson::encode( (object)$configSorted ) );
+		$content = new JsonContent( FormatJson::encode( $newConfig ) );
 
 		$page = $this->wikiPageFactory->newFromTitle( $configPage );
 

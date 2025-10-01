@@ -68,7 +68,16 @@ class DataProvider extends AbstractProvider {
 		return $config;
 	}
 
-	protected function normalizeTopLevelConfigData( stdClass $config ): stdClass {
+	/**
+	 * Normalize config to objects
+	 *
+	 * This method is a no-op if schemas are not supported. It is responsible for ensuring that
+	 * arrays passed for type `object` are converted into `object` via PHP typecasting.
+	 *
+	 * @param stdClass $config
+	 * @return stdClass
+	 */
+	private function normalizeConfigToObjects( stdClass $config ): stdClass {
 		if ( !$this->getValidator()->areSchemasSupported() ) {
 			return $config;
 		}
@@ -112,7 +121,7 @@ class DataProvider extends AbstractProvider {
 			return $storeStatus;
 		}
 
-		$normalizedConfiguration = $this->normalizeTopLevelConfigData( $storeStatus->getValue() );
+		$normalizedConfiguration = $this->normalizeConfigToObjects( $storeStatus->getValue() );
 		$result = $this->validateConfiguration(
 			$this->enhanceConfigPreValidation( $normalizedConfiguration )
 		);
@@ -129,12 +138,25 @@ class DataProvider extends AbstractProvider {
 		return $this->processStoreStatus( $this->getStore()->loadConfigurationUncached() );
 	}
 
+	/**
+	 * @param mixed $newConfig The configuration value; can be anything JSON-serializable
+	 * @return stdClass Normalized object
+	 */
+	private function normalizeConfigDataBeforeStore( $newConfig ): stdClass {
+		// Normalize the top level field first to avoid T379094
+		$newConfig = $this->normalizeConfigToObjects( (object)$newConfig );
+
+		// Sort config alphabetically
+		$configSorted = (array)$newConfig;
+		ksort( $configSorted );
+		return (object)$configSorted;
+	}
+
 	/** @inheritDoc */
 	public function storeValidConfiguration(
 		$newConfig, Authority $authority, string $summary = ''
 	): StatusValue {
-		// Normalize the top level field first to avoid T379094
-		$normalizedConfig = $this->normalizeTopLevelConfigData( (object)$newConfig );
+		$normalizedConfig = $this->normalizeConfigDataBeforeStore( $newConfig );
 		return parent::storeValidConfiguration( $normalizedConfig, $authority, $summary );
 	}
 
@@ -142,8 +164,7 @@ class DataProvider extends AbstractProvider {
 	public function alwaysStoreValidConfiguration(
 		$newConfig, Authority $authority, string $summary = ''
 	): StatusValue {
-		// Normalize the top level field first to avoid T379094
-		$normalizedConfig = $this->normalizeTopLevelConfigData( (object)$newConfig );
+		$normalizedConfig = $this->normalizeConfigDataBeforeStore( $newConfig );
 		return parent::alwaysStoreValidConfiguration( $normalizedConfig, $authority, $summary );
 	}
 }
