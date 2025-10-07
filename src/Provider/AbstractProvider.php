@@ -4,10 +4,8 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
-use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MessageLocalizer;
@@ -27,9 +25,9 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	/**
 	 * Constructs a new instance of a provider.
 	 *
-	 * @param ProviderServicesContainer|string $providerServicesContainerOrProviderId
-	 * @param string|array $providerIdOrOptions The unique identifier for the provider.
-	 * @param array|IConfigurationStore $optionsOrStore
+	 * @param ProviderServicesContainer $providerServicesContainer
+	 * @param string $providerId The unique identifier for the provider.
+	 * @param array $options
 	 * 		Configuration options for the provider, may be structured as follows:
 	 * 		- 'excludeFromUI' (bool, optional): Indicates whether this provider
 	 * 			should be skipped on the dashboard.
@@ -40,36 +38,22 @@ abstract class AbstractProvider implements IConfigurationProvider {
 	 * 			resource, e.g., 'https://www.mediawiki.org/wiki/Special:MyLanguage/Page#Section'. 'helpURL' should be a
 	 * 			full URL pointing to that section with an anchor.
 	 * 		- At most one of helpURL and helpPage should be provided, not both.
-	 * @param IConfigurationStore|IValidator $storeOrValidator The store used by the provider.
-	 * @param IValidator|null $validator The validator used by the provider.
-	 *
-	 * @note For B/C purposes, the first one argument can be skipped (starting with $providerId)
+	 * @param IConfigurationStore $store The store used by the provider.
+	 * @param IValidator $validator The validator used by the provider.
 	 * instead.
 	 */
 	public function __construct(
-		ProviderServicesContainer|string $providerServicesContainerOrProviderId,
-		string|array $providerIdOrOptions,
-		array|IConfigurationStore $optionsOrStore,
-		IConfigurationStore|IValidator $storeOrValidator,
-		?IValidator $validator = null
+		ProviderServicesContainer $providerServicesContainer,
+		string $providerId,
+		array $options,
+		IConfigurationStore $store,
+		IValidator $validator
 	) {
-		if ( $providerServicesContainerOrProviderId instanceof ProviderServicesContainer ) {
-			// new signature
-			$this->providerServicesContainer = $providerServicesContainerOrProviderId;
-			$this->providerId = $providerIdOrOptions;
-			$this->options = $optionsOrStore;
-			$this->store = $storeOrValidator;
-			$this->validator = $validator;
-		} else {
-			// old signature, get the services container from the global state
-			// TODO: Remove this branch
-			$this->providerServicesContainer = CommunityConfigurationServices::wrap( MediaWikiServices::getInstance() )
-				->getProviderServicesContainer();
-			$this->providerId = $providerServicesContainerOrProviderId;
-			$this->options = $providerIdOrOptions;
-			$this->store = $optionsOrStore;
-			$this->validator = $storeOrValidator;
-		}
+		$this->providerServicesContainer = $providerServicesContainer;
+		$this->providerId = $providerId;
+		$this->options = $options;
+		$this->store = $store;
+		$this->validator = $validator;
 		$this->setLogger( new NullLogger() );
 	}
 

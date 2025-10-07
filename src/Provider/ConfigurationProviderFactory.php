@@ -138,45 +138,17 @@ class ConfigurationProviderFactory {
 			$this->getConstructArgs( $providerSpec, 'validator' )
 		);
 
-		$classSpec = $this->getProviderClassSpec( $providerSpec['type'] ?? self::DEFAULT_PROVIDER_TYPE );
-		$className = $classSpec['class'] ?? null;
-		$supportsServices = false;
-		// NOTE: This does not work if something else than `class` (like a `factory` callable) is
-		// used in the specs. As of writing, no one does that, and this is essentially code we
-		// add to make CI happy, so this shouldn't be a problem, but I'm noting it here for
-		// completeness.
-		if ( $className ) {
-			$classReflection = new \ReflectionClass( $classSpec['class'] );
-			$classCtor = $classReflection->getConstructor();
-
-			if ( $classCtor->getDeclaringClass()->getName() === AbstractProvider::class ) {
-				// AbstractProvider supports both signatures, but we prefer the newer one
-				$supportsServices = true;
-			} else {
-				// If the first param is the services container, the new signature is in use.
-				$firstParam = $classCtor->getParameters()[0];
-				$firstParamType = $firstParam->getType();
-				$supportsServices = $firstParamType instanceof \ReflectionNamedType
-					&& !$firstParamType->isBuiltin()
-					&& $firstParamType->getName() === ProviderServicesContainer::class;
-			}
-		}
-
-		$extraArgs = [
-			$providerId,
-			$providerSpec['options'] ?? [],
-			$store,
-			$validator,
-		];
-		if ( $supportsServices ) {
-			array_unshift( $extraArgs, $this->providerServicesContainer );
-		}
-
 		$provider = $this->objectFactory->createObject(
-			$classSpec,
+			$this->getProviderClassSpec( $providerSpec['type'] ?? self::DEFAULT_PROVIDER_TYPE ),
 			[
 				'assertClass' => IConfigurationProvider::class,
-				'extraArgs' => $extraArgs,
+				'extraArgs' => [
+					$this->providerServicesContainer,
+					$providerId,
+					$providerSpec['options'] ?? [],
+					$store,
+					$validator,
+				],
 			]
 		);
 
