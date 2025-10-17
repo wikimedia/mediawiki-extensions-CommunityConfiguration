@@ -12,6 +12,7 @@ use SpecialPageTestBase;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Specials\SpecialCommunityConfiguration
+ * @covers \MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\DashboardEditorCapability
  * @group Database
  */
 class SpecialCommunityConfigurationTest extends SpecialPageTestBase {
@@ -160,6 +161,13 @@ class SpecialCommunityConfigurationTest extends SpecialPageTestBase {
 			$output,
 			'Does not show the box for the skipped provider'
 		);
+	}
+
+	public function testFrenchTitleParsesCorrectly(): void {
+		[ $output ] = $this->executeSpecialPage( subPage: null, language: 'fr' );
+
+		$this->assertStringNotContainsString( '&amp;#160;', $output,
+			message: 'Does not show a parsing error for unbreakable space' );
 	}
 
 	public function testSkippedProviderNotFoundError() {
