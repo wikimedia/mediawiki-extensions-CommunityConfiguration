@@ -22,6 +22,7 @@
 	"communityconfiguration-editor-form-submit-button-loading-text": "Enviando...",
 	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Eliminar Elemento",
 	"communityconfiguration-editor-array-fallback-add-element-button-label": "Añadir otro elemento",
+	"communityconfiguration-editor-validation-error-label-chain-joiner": "&#32;→&#32;",
 	"communityconfiguration-guidelines-title": "¿Qué es la Configuración Comunitaria?",
 	"communityconfiguration-guidelines-description": "Configuración Comunitaria es una herramienta que permite a las comunidades establecer y controlar la configuración de diferentes funcionalidades de {{SITENAME}}, facilitando que las personas bibliotecarias y administradoras de interfaz se adapten a las necesidades específicas de su comunidad.",
 	"communityconfiguration-guidelines-guideline1-title": "Más información",
