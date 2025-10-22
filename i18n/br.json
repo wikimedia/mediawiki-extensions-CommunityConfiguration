@@ -45,6 +45,6 @@
 	"communityconfiguration-editor-navigation-tab-viewform": "Gwelet ar furmskrid",
 	"communityconfiguration-editor-client-notice-message": "Gwarezet eo ar bajenn-mañ. N’eus nemet ar verourien a c’hall kemmañ kefluniadur an arc’hweladur-mañ.",
 	"communityconfiguration-editor-client-notice-footer-message": "Ne {{GENDER:$1|c’hallit}} ket enrollañ kemmoù d’ar furmskrit-mañ peogwir n’eus nemet ar verourier a c’hall kemmañ kefluniadur an arc’hweladur-mañ.",
-	"tag-community_configuration": "[[mw:Community configuration|Kefluniadur ar Gumuniezh]]",
+	"tag-community_configuration": "Kefluniadur ar Gumuniezh",
 	"tag-community_configuration-description": "Kemmoù e [[Special:CommunityConfiguration|kefluniadur lec’hel ar wikil]] d’un arc’hweladur a ra gant an [[mw:Extension:CommunityConfiguration|astenn Kefluniadur ar Gumuniezh]]."
 }
