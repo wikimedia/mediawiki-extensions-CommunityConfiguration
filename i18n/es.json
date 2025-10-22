@@ -22,6 +22,7 @@
 	"communityconfiguration-editor-form-submit-button-loading-text": "Enviando...",
 	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Eliminar Elemento",
 	"communityconfiguration-editor-array-fallback-add-element-button-label": "Añadir otro elemento",
+	"communityconfiguration-editor-validation-error-label-chain-joiner": "&#32;→&#32;",
 	"communityconfiguration-guidelines-title": "¿Qué es la Configuración Comunitaria?",
 	"communityconfiguration-guidelines-description": "Configuración Comunitaria es una herramienta que permite a las comunidades establecer y controlar la configuración de diferentes funcionalidades de {{SITENAME}}, facilitando que las personas bibliotecarias y administradoras de interfaz se adapten a las necesidades específicas de su comunidad.",
 	"communityconfiguration-guidelines-guideline1-title": "Más información",
@@ -57,6 +58,6 @@
 	"communityconfiguration-editor-error-validation-string-too-short": "Debe tener como mínimo $1 caracteres",
 	"communityconfiguration-editor-error-validation-string-too-long": "Debe tener como máximo $1 caracteres",
 	"communityconfiguration-maintenance-config-change-summary": "Configuración cambiada por el script de mantenimiento: $1",
-	"tag-community_configuration": "[[mw:Community configuration|Configuración Comunitaria]]",
+	"tag-community_configuration": "Configuración Comunitaria",
 	"tag-community_configuration-description": "Ediciones que cambian la [[Special:CommunityConfiguration|configuración local]] de una funcionalidad usando la [[mw:Extension:CommunityConfiguration|extensión Configuración de la Comunidad]]."
 }
