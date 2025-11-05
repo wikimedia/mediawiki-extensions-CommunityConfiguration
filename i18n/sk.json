@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Dušan Kreheľ"
+			"Dušan Kreheľ",
+			"Luky001"
 		]
 	},
-	"communityconfiguration": "Konfigurácia pre komunitu"
+	"communityconfiguration": "Komunitná konfigurácia",
+	"communityconfiguration-guidelines-title": "Čo je komunitná konfigurácia?",
+	"communityconfiguration-guidelines-description": "Komunitná konfigurácia je nástroj, ktorý umožňuje komunite spravovať konfiguráciu rôznych funkcií na {{GRAMMAR:lokál|{{SITENAME}}}} a správcom prispôsobovať funkcie potrebám komunity."
 }
