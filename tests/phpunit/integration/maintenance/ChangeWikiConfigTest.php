@@ -63,7 +63,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 
 		$result = $this->maintenance->execute();
 
-		$this->assertTrue( $result );
+		$this->assertTrue( $result, "Maintenance script failed, output:\n" . $this->getActualOutput() );
 		$actualConfig = $this->getValidConfig();
 		$this->assertEquals( $expectedConfigValue, json_encode( $actualConfig ) );
 		$latestRevision = $this->getServiceContainer()->getRevisionLookup()
@@ -124,7 +124,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 
 		$result = $this->maintenance->execute();
 
-		$this->assertTrue( $result );
+		$this->assertTrue( $result, "Maintenance script failed, output:\n" . $this->getActualOutput() );
 		$actualConfig = $this->getValidConfig();
 		$expectedConfigWithoutWhitespace = preg_replace( '/\s+/', '', $expectedConfigValue );
 		$this->assertEquals( $expectedConfigWithoutWhitespace, json_encode( $actualConfig ) );
@@ -182,7 +182,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 
 		$result = $this->maintenance->execute();
 
-		$this->assertTrue( $result );
+		$this->assertTrue( $result, "Maintenance script failed, output:\n" . $this->getActualOutput() );
 		$actualConfig = $this->getValidConfig();
 		$initialConfigValueWithoutWhitespace = preg_replace( '/\s+/', '', $initialConfigValue );
 		$this->assertEquals( $initialConfigValueWithoutWhitespace, json_encode( $actualConfig ) );
@@ -263,7 +263,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 		);
 
 		$result = $this->maintenance->execute();
-		$this->assertTrue( $result );
+		$this->assertTrue( $result, "Maintenance script failed, output:\n" . $this->getActualOutput() );
 		$actualConfig = $this->getValidConfig();
 		$this->assertEquals( (object)[
 			'CCExample_FavoriteColors' => [],
