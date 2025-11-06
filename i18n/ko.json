@@ -3,7 +3,8 @@
 		"authors": [
 			"YeBoy371",
 			"Ykhwong",
-			"아라"
+			"아라",
+			"Revi"
 		]
 	},
 	"communityconfiguration": "커뮤니티 구성",
@@ -27,6 +28,7 @@
 	"communityconfiguration-invalid-stored-config-error-with-link": "$1 (코드 <code>$2</code>) 공급자로부터 유효한 구성을 불러오지 못했습니다. $3 항목을 참고하세요.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "오류 상세 정보",
 	"communityconfiguration-schema-validation-error": "$2 . 키: $1",
+	"communityconfiguration-invalid-schema-version": "잘못된 버전 $1. 현재 스키마는 $2입니다.",
 	"communityconfiguration-providers-list-title": "기능",
 	"communityconfiguration-provider-not-found": "$1 공급자가 없습니다",
 	"communityconfigurationdashboard": "커뮤니티 구성",
