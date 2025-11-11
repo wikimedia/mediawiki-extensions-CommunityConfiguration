@@ -53,9 +53,7 @@ abstract class AbstractJsonStore extends AbstractStore {
 		$result = $this->inProcessCache->getWithSetCallback(
 			$this->makeCacheKey(),
 			ExpirationAwareness::TTL_INDEFINITE,
-			function () {
-				return $this->loadFromWanCache();
-			}
+			$this->loadFromWanCache( ... )
 		);
 
 		if ( $result->isOK() ) {

@@ -85,9 +85,7 @@ class MediaWikiConfigReader implements Config {
 				'VariableToProviderMap'
 			),
 			ExpirationAwareness::TTL_DAY,
-			function () {
-				return $this->computeVariableToProviderMap();
-			}
+			$this->computeVariableToProviderMap( ... )
 		);
 	}
 
