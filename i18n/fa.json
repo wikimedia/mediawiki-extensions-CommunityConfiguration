@@ -26,6 +26,7 @@
 	"communityconfiguration-invalid-stored-config-error-with-link": "ناتوان از بارگیری پیکربندی معتبر از ارائه‌دهندهٔ $1 (کد <code>$2</code>)، $3 را ببینید.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "جزئیات خطا",
 	"communityconfiguration-schema-validation-error": "$2. کلید: $1",
+	"communityconfiguration-invalid-schema-version": "نسخهٔ نامعتبر $1. طرحوارهٔ کنونی $2 است.",
 	"communityconfiguration-providers-list-title": "ویژگی‌ها",
 	"communityconfiguration-provider-not-found": "ارائه‌دهندهٔ $1 یافت نشد",
 	"communityconfigurationdashboard": "پیکربندی اجتماع",
