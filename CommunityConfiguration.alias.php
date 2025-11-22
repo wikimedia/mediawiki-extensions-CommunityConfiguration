@@ -26,6 +26,11 @@ $specialPageAliases['es'] = [
 	'CommunityConfiguration' => [ 'Configuración_comunitaria' ],
 ];
 
+/** Persian */
+$specialPageAliases['fa'] = [
+	'CommunityConfiguration' => [ 'پیکربندی_اجتماع' ],
+];
+
 /** French (français) */
 $specialPageAliases['fr'] = [
 	'CommunityConfiguration' => [ 'Configuration_communautaire' ],
