@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sveinn í Felli"
+		]
+	},
+	"communityconfiguration": "Stillingar samfélags",
+	"communityconfiguration-desc": "Inniheldur rökfræði Stillinga samfélags",
+	"communityconfiguration-guidelines-title": "Hvað eru Stillingar samfélags?",
+	"communityconfiguration-guidelines-description": "Stillingar samfélags er verkfæri sem gerir samfélögum kleift að setja upp og stjórna stillingum á mismunandi eiginleikum {{SITENAME}}, sem hjálpar stjórnendum að mæta þörfum samfélagsins.",
+	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Frekari upplýsingar] um Stillingar samfélags, hvað þær eru, hvernig þær virka og hvernig teymið vinnur að þeim.",
+	"communityconfigurationdashboard": "Stillingar samfélags",
+	"tag-community_configuration": "Stillingar samfélags"
+}
