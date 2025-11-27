@@ -27,7 +27,7 @@
 		"api-testing": "1.7.1",
 		"cypress": "^14.5.4",
 		"eslint": "8.57.0",
-		"eslint-config-wikimedia": "0.32.1",
+		"eslint-config-wikimedia": "0.32.2",
 		"eslint-plugin-chai-friendly": "^1.0.1",
 		"eslint-plugin-cypress": "^3.6.0",
 		"grunt-banana-checker": "0.13.0",
