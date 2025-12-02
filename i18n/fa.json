@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jeeputer"
+			"Jeeputer",
+			"Huji"
 		]
 	},
-	"communityconfiguration": "پیکربندی جامعه",
-	"communityconfiguration-desc": "حاوی منطق پیکربندی جامعه است",
+	"communityconfiguration": "پیکربندی اجتماع",
+	"communityconfiguration-desc": "حاوی منطق پیکربندی اجتماع است",
 	"communityconfiguration-editor-chip-control-aria-chip-description": "برای ویرایش کلید Enter و برای حذف کلید Delete را بفشارید",
 	"communityconfiguration-editor-client-generic-error": "هنگام بارگیری ویرایشگر پیکربندی مشکلی پیش آمد. لطفاً بعداً دوباره امتحان کنید.",
 	"communityconfiguration-editor-client-generic-error-description": "در بخش $1 از $2 خطایی رخ داد. جزئیات را در پایین ببینید:",

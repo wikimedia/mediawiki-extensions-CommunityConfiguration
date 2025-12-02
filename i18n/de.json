@@ -3,7 +3,8 @@
 		"authors": [
 			"Brettchenweber",
 			"TomatoCake",
-			"Schniggendiller"
+			"Schniggendiller",
+			"IWL04"
 		]
 	},
 	"communityconfiguration": "Community-Konfiguration",
@@ -18,7 +19,7 @@
 	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Element entfernen",
 	"communityconfiguration-editor-array-fallback-add-element-button-label": "Ein weiteres Element hinzufügen",
 	"communityconfiguration-guidelines-title": "Was ist Community-Konfiguration?",
-	"communityconfiguration-guidelines-description": "Community Configuration ist ein Tool, das es Communities ermöglicht, die Konfiguration verschiedener {{SITENAME}}-Funktionen einzurichten und zu steuern und so Administratoren dabei zu helfen, ihre Community-spezifischen Bedürfnisse zu erfüllen.",
+	"communityconfiguration-guidelines-description": "Community-Konfiguration ist ein Tool, das es Communities ermöglicht, die Konfiguration verschiedener {{SITENAME}}-Funktionen einzurichten und zu steuern und so Administratoren dabei zu helfen, ihre Community-spezifischen Bedürfnisse zu erfüllen.",
 	"communityconfiguration-guidelines-guideline1-title": "Mehr erfahren",
 	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Erfahre mehr] über die Community-Konfiguration, was sie ist, wie sie funktioniert und über die laufende Arbeit des Teams daran.",
 	"communityconfiguration-guidelines-guideline2-title": "Sende uns {{GENDER:$1|deine}} Rückmeldung",
