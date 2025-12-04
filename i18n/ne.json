@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"बडा काजी"
+		]
+	},
+	"communityconfiguration": "सामुदायिक संरचना",
+	"communityconfiguration-editor-form-submit-button-text": "परिवर्तनहरू सङ्ग्रह गर्नुहोस्",
+	"communityconfiguration-guidelines-guideline1-title": "थप जान्नुहोस्",
+	"communityconfiguration-guidelines-guideline2-title": "हामीलाई {{GENDER:$1| तपाईंको}} प्रतिक्रिया पठाउनुहोस्।",
+	"communityconfiguration-providers-list-title": "विशेषताहरू",
+	"communityconfigurationdashboard": "सामुदायिक संरचना",
+	"communityconfigurationeditor": "$1 सम्पादन गर्दै",
+	"communityconfiguration-edit-summary-dialog-save-button": "परिवर्तनहरू सङ्ग्रह गर्नुहोस्",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "रद्द गर्नुहोस्",
+	"communityconfiguration-edit-summary-dialog-label": "सम्पादन सारांश",
+	"communityconfiguration-editor-message-dismiss-button-label": "बन्द गर्नुहोस्",
+	"communityconfiguration-page-title-control-no-results": "कुनै नतिजाहरू भेटिएनन्",
+	"communityconfiguration-editor-navigation-tab-viewform": "फारम हेर्नुहोस्",
+	"tag-community_configuration": "सामुदायिक संरचना"
+}
