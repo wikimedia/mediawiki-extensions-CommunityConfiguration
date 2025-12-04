@@ -56,6 +56,13 @@ class ChangeWikiConfig extends Maintenance {
 			'print the config that would be saved and exit',
 		);
 
+		$this->addOption(
+			'file',
+			'name of file to load configuration value from (use php://stdin for standard input); ' .
+				'this is an alternative for the "value" argument',
+			withArg: true
+		);
+
 		$this->addArg(
 			'provider',
 			'Provider whose data that will be changed',
@@ -131,11 +138,39 @@ class ChangeWikiConfig extends Maintenance {
 		return true;
 	}
 
+	private function hasValue(): bool {
+		return $this->getArg( 'value' ) !== null ||
+			$this->getOption( 'file' ) !== null;
+	}
+
+	private function getValue(): mixed {
+		$value = null;
+
+		if ( $this->hasOption( 'file' ) && $this->hasArg( 'value' ) ) {
+			$this->fatalError( '"value" argument and --file cannot be provided together!' );
+		} elseif ( !$this->hasOption( 'file' ) && !$this->hasArg( 'value' ) ) {
+			$this->fatalError( 'One of "value" argument and --file must be provided!' );
+		} elseif ( $this->hasOption( 'file' ) ) {
+			// file is preferred, even if the value arg is present
+			$filename = $this->getOption( 'file' );
+			if ( $filename !== 'php://stdin' && !file_exists( $filename ) ) {
+				$this->fatalError( 'File "' . $filename . '" does not exist' );
+			}
+
+			$value = file_get_contents( $filename );
+		} elseif ( $this->hasArg( 'value' ) ) {
+			// value is provided
+			$value = $this->getArg( 'value' );
+		}
+
+		return $this->getValueFromString( $value );
+	}
+
 	/**
 	 * @throws MaintenanceFatalError
 	 * @return mixed The decoded json from the argument
 	 */
-	private function getValueFromArg( string $arg ) {
+	private function getValueFromString( string $arg ) {
 		$valueStatus = FormatJson::parse( $arg );
 
 		if ( !$valueStatus->isGood() ) {
@@ -207,8 +242,8 @@ class ChangeWikiConfig extends Maintenance {
 			$this->fatalError( '"key" argument is missing!' );
 		}
 
-		if ( $this->getArg( 'value' ) !== null ) {
-			$this->fatalError( '"value" argument must not be set when deleting a key!' );
+		if ( $this->hasValue() ) {
+			$this->fatalError( '"value" to store must not be set when deleting a key!' );
 		}
 
 		$config = $this->loadConfigurationDirectlyFromFile( $provider );
@@ -227,11 +262,7 @@ class ChangeWikiConfig extends Maintenance {
 			$this->fatalError( '"key" argument is missing!' );
 		}
 
-		if ( $this->getArg( 'value' ) === null ) {
-			$this->fatalError( '"value" argument must be set when adding a value!' );
-		}
-		$value = $this->getValueFromArg( $this->getArg( 'value' ) );
-
+		$value = $this->getValue();
 		$config = $this->loadConfigurationDirectlyFromFile( $provider );
 
 		$this->setConfigKeyToValue( $config, $key, $value );
@@ -246,7 +277,7 @@ class ChangeWikiConfig extends Maintenance {
 		if ( $this->getArg( 'key' ) !== null ) {
 			$this->fatalError( '"key" argument must not be set when performing a null-edit!' );
 		}
-		if ( $this->getArg( 'value' ) !== null ) {
+		if ( $this->hasValue() ) {
 			$this->fatalError( '"value" argument must not be set when performing a null-edit!' );
 		}
 		if ( $this->hasOption( 'delete' ) ) {

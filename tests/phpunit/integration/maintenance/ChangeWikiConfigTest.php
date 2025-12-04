@@ -6,6 +6,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Tests\Integration;
 
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Maintenance\ChangeWikiConfig;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Maintenance\MaintenanceFatalError;
 use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
 use MediaWiki\Title\Title;
@@ -274,5 +275,56 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 			],
 			'CCExample_RelevantPages' => [],
 		], $actualConfig );
+	}
+
+	public function testFileSuccessfulEdit() {
+		$fieldName = 'CCExample_String';
+		$newValue = '"expectedValue"';
+		$expectedConfigValue = FormatJson::encode( [ $fieldName => $newValue ] );
+		$initialEditStatus = $this->editPage(
+			'MediaWiki:CommunityConfigurationExample.json',
+			'{}'
+		);
+		$this->assertStatusGood( $initialEditStatus );
+
+		$file = $this->getServiceContainer()->getTempFSFileFactory()->newTempFSFile( 'config', 'json' );
+		file_put_contents( $file->getPath(), FormatJson::encode( $newValue ) );
+
+		$this->maintenance->loadParamsAndArgs(
+			null,
+			[ 'summary' => '<custom summary here>', 'file' => $file->getPath() ],
+			[ 'CommunityConfigurationExample', $fieldName ]
+		);
+
+		$result = $this->maintenance->execute();
+
+		$this->assertTrue( $result, "Maintenance script failed, output:\n" . $this->getActualOutput() );
+		$actualConfig = $this->getValidConfig();
+		$this->assertEquals( $expectedConfigValue, json_encode( $actualConfig ) );
+	}
+
+	public function testBothFileAndValue() {
+		$file = $this->getServiceContainer()->getTempFSFileFactory()->newTempFSFile( 'config', 'json' );
+		file_put_contents( $file->getPath(), FormatJson::encode( "foo" ) );
+
+		$this->maintenance->loadParamsAndArgs(
+			null,
+			[ 'summary' => 'custom', 'file' => $file->getPath() ],
+			[ 'CommunityConfigurationExample', 'CCExample_String', 'example' ],
+		);
+
+		$this->expectException( MaintenanceFatalError::class );
+		$result = $this->maintenance->execute();
+	}
+
+	public function testMissingFile() {
+		$this->maintenance->loadParamsAndArgs(
+			null,
+			[ 'summary' => 'custom', 'file' => '/this/file/is/not/here' ],
+			[ 'CommunityConfigurationExample', 'CCExample_String' ]
+		);
+
+		$this->expectException( MaintenanceFatalError::class );
+		$result = $this->maintenance->execute();
 	}
 }
