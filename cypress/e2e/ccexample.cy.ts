@@ -1,5 +1,21 @@
 describe( 'Community Configuration Example Page', () => {
 
+	before( function () {
+		cy.request( {
+			url: 'api.php',
+			qs: {
+				format: 'json',
+				action: 'query',
+				meta: 'siteinfo',
+				siprop: 'extensions',
+			},
+		} ).then( ( response ) => {
+			if ( !response.body.query.extensions.some( ( ext ) => ext.name === 'CommunityConfigurationExample' ) ) {
+				this.skip();
+			}
+		} );
+	} );
+
 	context( 'Form elements and basic functionality', () => {
 
 		beforeEach( () => {
