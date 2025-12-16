@@ -49,7 +49,7 @@ class DashboardEditorCapability extends AbstractEditorCapability {
 				'href' => $this->getParentTitle()->getSubpage( $providerName )->getLinkURL(),
 				'title' => $this->msg( 'communityconfiguration-' . $lowerCaseProviderName . '-title' )->text(),
 				'description' =>
-					$this->msg( 'communityconfiguration-' . $lowerCaseProviderName . '-description' )->text(),
+					$this->msg( 'communityconfiguration-' . $lowerCaseProviderName . '-description' )->parse(),
 			];
 		}
 		return $availableProviders;
