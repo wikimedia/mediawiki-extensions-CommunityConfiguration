@@ -7,6 +7,7 @@
 		]
 	},
 	"communityconfiguration": "Yhteisöasetukset",
+	"communityconfiguration-desc": "Sisältää Yhteistöasetusten logiikan",
 	"communityconfiguration-editor-chip-control-aria-chip-description": "Paina Enter muokataksesi tai Delete poistaaksesi",
 	"communityconfiguration-editor-client-generic-error": "Jotain meni pieleen asetusmuokkainta ladatessa. Kokeile myöhemmin uudelleen.",
 	"communityconfiguration-editor-client-post-feedback": "Jos ongelma jatkuu, voit [$1 jättää palautetta] keskustelusivulle.",

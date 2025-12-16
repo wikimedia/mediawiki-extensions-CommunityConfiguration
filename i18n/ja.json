@@ -20,7 +20,7 @@
 	"communityconfiguration-editor-array-remove-element-label-screen-reader": "要素を除去",
 	"communityconfiguration-editor-array-fallback-add-element-button-label": "別の要素を追加",
 	"communityconfiguration-guidelines-title": "コミュニティ設定とは",
-	"communityconfiguration-guidelines-description": "コミュニティ設定は様々な {{SITENAME}} 機能の設定を制御して、管理者がコミュニティ固有のニーズを満たすのに役立つツールです。",
+	"communityconfiguration-guidelines-description": "コミュニティ設定は、さまざまな {{SITENAME}} 機能の設定をコミュニティが制御できるようにして、管理者がコミュニティ固有のニーズに適合させるのに役立つツールです。",
 	"communityconfiguration-guidelines-guideline1-title": "詳細",
 	"communityconfiguration-guidelines-guideline1-description": "コミュニティ設定とは何か、どのように機能するのか、チームが取り組んでいることについて[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration もっと知る]。",
 	"communityconfiguration-guidelines-guideline2-title": "{{GENDER:$1|あなたの}}フィードバックをお送りください",
