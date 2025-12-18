@@ -4,7 +4,8 @@
 			"Diskdance",
 			"GuoPC",
 			"Lakejason0",
-			"沈澄心"
+			"沈澄心",
+			"Peterxy12"
 		]
 	},
 	"communityconfiguration": "社群配置",
@@ -28,6 +29,7 @@
 	"communityconfiguration-invalid-stored-config-error-with-link": "无法从提供者$1（代码<code>$2</code>）加载有效的配置，请见$3。",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "错误详情",
 	"communityconfiguration-schema-validation-error": "$2。键：$1",
+	"communityconfiguration-invalid-schema-version": "无效版本$1。当前架构为$2。",
 	"communityconfiguration-providers-list-title": "功能",
 	"communityconfiguration-provider-not-found": "无法找到提供者$1",
 	"communityconfigurationdashboard": "社群配置",

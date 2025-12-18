@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Srđan"
+		]
+	},
+	"communityconfiguration": "Postavke zajednice",
+	"communityconfiguration-desc": "Sadrži logiku za Postavke zajednice",
+	"communityconfiguration-editor-chip-control-aria-chip-description": "Pritisnite Enter za uređivanje ili Delete za uklanjanje",
+	"communityconfiguration-editor-client-generic-error": "Došlo je do greške prilikom učitavanja uređivača postavki. Pokušajte ponovo kasnije.",
+	"communityconfiguration-editor-form-submit-button-text": "Sačuvaj izmjene"
+}
