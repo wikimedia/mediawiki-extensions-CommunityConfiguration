@@ -64,7 +64,7 @@ class DashboardEditorCapability extends AbstractEditorCapability {
 		$out->addModuleStyles( [ 'ext.communityConfiguration.Dashboard' ] );
 		$data = [
 			'title' => $this->msg( 'communityconfiguration-guidelines-title' )->text(),
-			'description' => $this->msg( 'communityconfiguration-guidelines-description' )->text(),
+			'description' => $this->msg( 'communityconfiguration-guidelines-description' )->parse(),
 			'guidelines' => array_map( function ( array $guideline ): array {
 				return [
 					'title' => $this->msg( $guideline['title'] )->text(),
