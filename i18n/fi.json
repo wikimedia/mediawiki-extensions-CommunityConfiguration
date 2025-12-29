@@ -45,8 +45,8 @@
 	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Et}} voi tallentaa muutoksia tähän lomakkeeseen, koska tämän ominaisuuden asetukset ovat vain ylläpitäjien muokattavissa.",
 	"communityconfiguration-editor-error-validation-array-items-max": "Tässä kentässä tulee olla enintään {{PLURAL:$1|$1 kohde|$1 kohdetta}}",
 	"communityconfiguration-editor-error-validation-array-items-min": "Tässä kentässä tulee olla vähintään {{PLURAL:$1|$1 kohde|$1 kohdetta}}",
-	"communityconfiguration-editor-error-validation-string-too-short": "Tulee olla vähintään $1 merkkiä pitkä",
-	"communityconfiguration-editor-error-validation-string-too-long": "Tulee olla enintään $1 merkkiä pitkä",
+	"communityconfiguration-editor-error-validation-string-too-short": "Tulee olla vähintään {{PLURAL:$1|$1 merkin pituinen|$1 merkkiä pitkä}}",
+	"communityconfiguration-editor-error-validation-string-too-long": "Tulee olla enintään {{PLURAL:$1|$1 merkin pituinen|$1 merkkiä pitkä}}",
 	"communityconfiguration-maintenance-config-change-summary": "Asetuksia muutettu ylläpitoskriptillä: $1",
 	"tag-community_configuration": "Yhteisöasetukset",
 	"tag-community_configuration-description": "Muokkaukset, jotka muuttuvat ominaisuuden [[Special:CommunityConfiguration|paikallisia asetuksia]] [[mw:Extension:CommunityConfiguration|Yhteisöasetukset-laajennuksen]] avulla."

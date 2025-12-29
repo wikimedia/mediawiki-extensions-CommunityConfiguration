@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ainali",
-			"Sabelöga"
+			"Sabelöga",
+			"Stefan2255"
 		]
 	},
 	"communityconfiguration": "Gemenskapskonfigurering",
@@ -48,8 +49,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "Det måste finnas högst {{PLURAL:$1|$1 objekt}} i tabellen",
 	"communityconfiguration-editor-error-validation-array-items-min": "Det måste finnas minst {{PLURAL:$1|$1 objekt}} i tabellen",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Har inte ett värde i uppräkningen: $1",
-	"communityconfiguration-editor-error-validation-string-too-short": "Måste vara minst $1 tecken långt",
-	"communityconfiguration-editor-error-validation-string-too-long": "Måste vara högst $1 tecken långt",
+	"communityconfiguration-editor-error-validation-string-too-short": "Måste vara minst {{PLURAL:$1|$1 tecken}} långt",
+	"communityconfiguration-editor-error-validation-string-too-long": "Får vara högst {{PLURAL:$1|$1 tecken}} långt",
 	"communityconfiguration-maintenance-config-change-summary": "Konfig ändrade av underhållsskript: $1",
 	"tag-community_configuration": "Gemenskapskonfigurering",
 	"tag-community_configuration-description": "Redigeringar som ändrar [[Special:CommunityConfiguration|lokal wikikonfigurering]] hos en funktion med hjälp av [[mw:Extension:CommunityConfiguration|funktionen Gemenskapskonfigurering]]."

@@ -50,8 +50,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "Et däerf maximal {{PLURAL:$1|$1 Element|$1 Elementer}} am Array ginn.",
 	"communityconfiguration-editor-error-validation-array-items-min": "Et muss mindestens {{PLURAL:$1|$1 Element|$1 Elementer}} am Array ginn.",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Huet kee Wäert an der Opzielung: $1",
-	"communityconfiguration-editor-error-validation-string-too-short": "Muss op d'mannst $1 Zeeche laang sinn",
-	"communityconfiguration-editor-error-validation-string-too-long": "Däerf héchstens $1 Zeeche laang sinn",
+	"communityconfiguration-editor-error-validation-string-too-short": "Muss op d'mannst {{PLURAL:$1|$1 Zeeche}} laang sinn",
+	"communityconfiguration-editor-error-validation-string-too-long": "Däerf héchstens {{PLURAL:$1|$1 Zeeche}} laang sinn",
 	"communityconfiguration-maintenance-config-change-summary": "Konfiguratioun vun engem Maintenance-Skript geännert: $1",
 	"tag-community_configuration": "Community Configuration",
 	"tag-community_configuration-description": "Ännerungen, déi déi [[Special:CommunityConfiguration|lokal Wiki-Konfiguratioun]] vun enger Funktioun mat der [[mw:Extension:CommunityConfiguration|Community-Configuration-Erweiderung]] änneren."

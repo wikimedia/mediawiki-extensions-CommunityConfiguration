@@ -48,8 +48,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "Massivdə maksimum {{PLURAL:$1|$1 element}} olmalıdır.",
 	"communityconfiguration-editor-error-validation-array-items-min": "Massivdə minimum {{PLURAL:$1|$1 element}} olmalıdır.",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Sadalamada dəyəri yoxdur: $1",
-	"communityconfiguration-editor-error-validation-string-too-short": "Ən azı $1 simvol uzunluğunda olmalıdır",
-	"communityconfiguration-editor-error-validation-string-too-long": "Maksimum $1 simvol uzunluğunda olmalıdır",
+	"communityconfiguration-editor-error-validation-string-too-short": "Ən azı {{PLURAL:$1|$1 simvol}} uzunluğunda olmalıdır",
+	"communityconfiguration-editor-error-validation-string-too-long": "Maksimum {{PLURAL:$1|$1 simvol}} uzunluğunda olmalıdır",
 	"communityconfiguration-maintenance-config-change-summary": "Təmir skripti tərəfindən konfiqurasiya dəyişdirilir: $1",
 	"tag-community_configuration": "İcma Konfiqurasiyası",
 	"tag-community_configuration-description": "[[mw:Extension:CommunityConfiguration|İcma Konfiqurasiyası uzantısı]] istifadə edərək funksiyanın [[Special:CommunityConfiguration|lokal viki konfiqurasiyasını]] dəyişən redaktələr."

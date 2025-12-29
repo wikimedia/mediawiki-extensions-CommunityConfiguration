@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Avengium",
 			"Dgstranz",
 			"Eulalio",
 			"IZapico (WMF)",
@@ -56,8 +57,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "Debe haber un máximo de $1 elemento{{PLURAL:$1||s}} en la matriz",
 	"communityconfiguration-editor-error-validation-array-items-min": "Debe haber un mínimo de $1 elemento{{PLURAL:$1||s}} en la matriz",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "No tiene valor en la enumeración: $1",
-	"communityconfiguration-editor-error-validation-string-too-short": "Debe tener como mínimo $1 caracteres",
-	"communityconfiguration-editor-error-validation-string-too-long": "Debe tener como máximo $1 caracteres",
+	"communityconfiguration-editor-error-validation-string-too-short": "Debe ser de al menos {{PLURAL:$1|$1 carácter|$1 caracteres}} de largo",
+	"communityconfiguration-editor-error-validation-string-too-long": "Debe ser como máximo de {{PLURAL:$1|$1 carácter|$1 caracteres}} de largo",
 	"communityconfiguration-maintenance-config-change-summary": "Configuración cambiada por el script de mantenimiento: $1",
 	"tag-community_configuration": "Configuración Comunitaria",
 	"tag-community_configuration-description": "Ediciones que cambian la [[Special:CommunityConfiguration|configuración local]] de una funcionalidad usando la [[mw:Extension:CommunityConfiguration|extensión Configuración de la Comunidad]]."

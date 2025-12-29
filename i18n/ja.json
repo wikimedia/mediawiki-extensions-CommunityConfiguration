@@ -50,8 +50,8 @@
 	"communityconfiguration-editor-client-notice-footer-message": "この機能の設定は管理者のみ編集可能なため、{{GENDER:$1|あなたは}}このフォームへの変更を保存できません。",
 	"communityconfiguration-editor-error-validation-array-items-max": "配列に含めるアイテムは{{PLURAL:$1|$1}}件以内に収める必要があります",
 	"communityconfiguration-editor-error-validation-array-items-min": "配列には少なくとも{{PLURAL:$1|$1件のアイテム|}}が必要です",
-	"communityconfiguration-editor-error-validation-string-too-short": "少なくとも $1 文字以上必要です",
-	"communityconfiguration-editor-error-validation-string-too-long": "最大 $1 文字までです",
+	"communityconfiguration-editor-error-validation-string-too-short": "少なくとも {{PLURAL:$1|$1 文字}}以上必要です",
+	"communityconfiguration-editor-error-validation-string-too-long": "最大 {{PLURAL:$1|$1 文字}}までです",
 	"communityconfiguration-maintenance-config-change-summary": "メンテナンス スクリプトによって構成が変更されました: $1",
 	"tag-community_configuration": "コミュニティ設定",
 	"tag-community_configuration-description": "[[mw:Extension:CommunityConfiguration|コミュニティ設定拡張機能]]を使う機能の[[Special:CommunityConfiguration|ローカルウィキ設定]]を変更する編集。"

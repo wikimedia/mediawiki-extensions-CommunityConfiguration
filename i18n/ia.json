@@ -48,8 +48,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "Il non debe haber plus de $1 elemento{{PLURAL:$1||s}} in le matrice",
 	"communityconfiguration-editor-error-validation-array-items-min": "Il non debe haber minus de $1 elemento{{PLURAL:$1||s}} in le matrice",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Non ha un valor in le enumeration: $1",
-	"communityconfiguration-editor-error-validation-string-too-short": "Debe continer al minus $1 characteres",
-	"communityconfiguration-editor-error-validation-string-too-long": "Debe continer al plus $1 characteres",
+	"communityconfiguration-editor-error-validation-string-too-short": "Debe continer al minus $1 character{{PLURAL:$1||es}}",
+	"communityconfiguration-editor-error-validation-string-too-long": "Debe continer al plus $1 character{{PLURAL:$1||es}}",
 	"communityconfiguration-maintenance-config-change-summary": "Configuration cambiate per script de mantenentia: $1",
 	"tag-community_configuration": "Configuration communitari",
 	"tag-community_configuration-description": "Modificationes que cambia le [[Special:CommunityConfiguration|configuration del wiki local]] de un function que usa le [[mw:Extension:CommunityConfiguration|extension Community Configuration]]."

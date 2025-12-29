@@ -51,8 +51,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "Das Array darf maximal {{PLURAL:$1|$1 Element|$1 Elemente}} enthalten.",
 	"communityconfiguration-editor-error-validation-array-items-min": "Das Array muss mindestens {{PLURAL:$1|$1 Element|$1 Elemente}} enthalten.",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Hat keinen Wert in der Aufzählung: $1",
-	"communityconfiguration-editor-error-validation-string-too-short": "Muss mindestens $1 Zeichen lang sein",
-	"communityconfiguration-editor-error-validation-string-too-long": "Darf höchstens $1 Zeichen lang sein",
+	"communityconfiguration-editor-error-validation-string-too-short": "Muss mindestens {{PLURAL:$1|$1 Zeichen}} lang sein",
+	"communityconfiguration-editor-error-validation-string-too-long": "Darf höchstens {{PLURAL:$1|$1 Zeichen}} lang sein",
 	"communityconfiguration-maintenance-config-change-summary": "Konfiguration durch Wartungsskript geändert: $1",
 	"tag-community_configuration": "Community-Konfiguration",
 	"tag-community_configuration-description": "Bearbeitungen, die die [[Special:CommunityConfiguration|lokale Wiki-Konfiguration]] einer Funktion mithilfe der [[mw:Extension:CommunityConfiguration|Community-Konfigurationserweiterung]] ändern."

@@ -27,6 +27,6 @@
 	"communityconfiguration-editor-nojs-fallback-text": "Конфигурационом едитору је потребан JavaScript. Молимо омогућите JavaScript.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Образац",
 	"communityconfiguration-editor-client-notice-message": "Ова страница је заштићена. Само администратори могу уређивати ову могућност.",
-	"communityconfiguration-editor-error-validation-string-too-short": "Мора имати бар $1 карактер",
-	"communityconfiguration-editor-error-validation-string-too-long": "Највише $1 карактера"
+	"communityconfiguration-editor-error-validation-string-too-short": "Мора имати бар $1 {{PLURAL:$1|карактер}}",
+	"communityconfiguration-editor-error-validation-string-too-long": "Највише $1 {{PLURAL:$1|карактера}}"
 }

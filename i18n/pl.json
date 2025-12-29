@@ -26,7 +26,8 @@
 	"communityconfiguration-invalid-stored-config-error": "Nie udało się załadować prawidłowej konfiguracji od dostawcy „$1” (kod <code>$2</code>).",
 	"communityconfiguration-invalid-stored-config-error-with-link": "Nie udało się załadować prawidłowej konfiguracji od dostawcy „$1” (kod <code>$2</code>), zobacz $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Szczegóły błędu",
-	"communityconfiguration-schema-validation-error": "SZKIC: $2. Klucz: $1",
+	"communityconfiguration-schema-validation-error": "$2. Klucz: $1",
+	"communityconfiguration-invalid-schema-version": "Nieprawidłowa wersja $1. Aktualny schemat to $2.",
 	"communityconfiguration-providers-list-title": "Funkcje",
 	"communityconfiguration-provider-not-found": "Nie znaleziono dostawcy „$1”",
 	"communityconfigurationdashboard": "Konfiguracja przez społeczność",
@@ -46,6 +47,12 @@
 	"communityconfiguration-editor-navigation-tab-viewform": "Zobacz formularz",
 	"communityconfiguration-editor-client-notice-message": "Ta strona jest zabezpieczona. Konfiguracja tej funkcji jest edytowalna tylko przez administratorów.",
 	"communityconfiguration-editor-client-notice-footer-message": "Nie {{GENDER:$1|możesz}} zapisać zmian w tym formularzu, ponieważ konfiguracja tej funkcji jest edytowalna tylko przez administratorów.",
-	"tag-community_configuration": "[[mw:Community configuration|Konfigurowanie przez społeczność]]",
+	"communityconfiguration-editor-error-validation-array-items-max": "W tablicy może znajdować się maksymalnie $1 {{PLURAL:$1|element|elementy|elementów}}",
+	"communityconfiguration-editor-error-validation-array-items-min": "W tablicy może znajdować się co najmniej $1 {{PLURAL:$1|element|elementy|elementów}}",
+	"communityconfiguration-editor-error-validation-enum-invalid-value": "Nie zawiera wartości z zestawu: $1",
+	"communityconfiguration-editor-error-validation-string-too-short": "Musi mieć przynajmniej {{PLURAL:$1|jeden znak|$1 znaki|$1 znaków}}",
+	"communityconfiguration-editor-error-validation-string-too-long": "Musi mieć maksymalnie {{PLURAL:$1|jeden znak|$1 znaki|$1 znaków}}",
+	"communityconfiguration-maintenance-config-change-summary": "Konfiguracja zmieniona przez skrypt konserwacyjny: $1",
+	"tag-community_configuration": "Konfigurowanie przez społeczność",
 	"tag-community_configuration-description": "Edycje zmieniające [[Special:CommunityConfiguration|lokalna konfigurację wiki]] jakiejś funkcji poprzez [[mw:Extension:CommunityConfiguration|narzędzie do Konfigurowania przez Społeczność]]."
 }
