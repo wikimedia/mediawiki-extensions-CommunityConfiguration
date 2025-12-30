@@ -30,6 +30,7 @@
 	"communityconfiguration-provider-not-found": "Poskytovatel $1 nenalezen.",
 	"communityconfigurationdashboard": "Komunitní konfigurace",
 	"communityconfigurationeditor": "Editace $1",
+	"communityconfiguration-edit-summary-reminder": "<b>Připomenutí</b>: Vaše změna může ovlivnit velké množství členů komunity. Pokud je to možné, uveďte důvod, proč tuto změnu provádíte, a odkažte na jakékoli související komunitní diskuse.",
 	"communityconfiguration-edit-summary-dialog-title": "Uložit změny pro $1",
 	"communityconfiguration-edit-summary-dialog-title-span": "(volitelné)",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Popište změny, které jste v konfiguraci provedli",
@@ -44,5 +45,8 @@
 	"communityconfiguration-editor-nojs-fallback-text": "Editor konfigurace vyžaduje JavaScript. Povolte JavaScript, abyste jej mohli používat.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Zobrazit formulář",
 	"communityconfiguration-editor-client-notice-message": "Tato stránka je uzamčena. Konfiguraci této funkcionality mohou editovat pouze správci.",
+	"communityconfiguration-editor-client-notice-footer-message": "Nemůžete uložit změny v tomto formuláři, protože konfiguraci této funkcionality mohou měnit jen administrátoři.",
+	"communityconfiguration-editor-error-validation-array-items-max": "V poli musí být nejvýše {{PLURAL:$1|jeden prvek|$1 prvky|$1 prvků}}",
+	"communityconfiguration-editor-error-validation-array-items-min": "V poli musí být nejméně {{PLURAL:$1|jeden prvek|$1 prvky|$1 prvků}}",
 	"tag-community_configuration": "[[mw:Community configuration|Komunitní konfigurace]]"
 }
