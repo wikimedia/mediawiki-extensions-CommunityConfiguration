@@ -8,5 +8,9 @@
 	"communityconfiguration-editor-form-submit-button-text": "మార్పులను భద్రపరచు",
 	"communityconfiguration-guidelines-title": "కమ్యూనిటీ కాన్ఫిగరేషన్ అంటే ఏమిటి?",
 	"communityconfiguration-guidelines-guideline1-description": "సముదాయపు అమరికల గురించి, అసలు అవేంటి, ఎలా పనిచేస్తాయి, గ్రోత్ బృందం దానిపై ప్రస్తుతం చేస్తున్న పనులేంటి వగైరాల గురించి [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration మరింత తెలుసుకోండి].",
-	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|మీ}} మార్పులను భద్రపరచాం"
+	"communityconfigurationeditor": "$1 ను సవరిస్తున్నారు",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|మీ}} మార్పులను భద్రపరచాం",
+	"communityconfiguration-editor-client-notice-message": "ఈ పేజీ సంరక్షణలో ఉంది. ఈ విశేషపు కాన్ఫిగరేషన్ను నిర్వాహకులు మాత్రమే మార్చగలరు.",
+	"communityconfiguration-editor-client-notice-footer-message": "ఈ విశేషపు కాన్ఫిగరేషన్ను నిర్వాహకులు మాత్రమే మార్చగలరు కాబట్టి, {{GENDER:$1|మీరు}} ఈ ఫారములో మార్పుచేర్పులను భద్రపరచలేరు.",
+	"communityconfiguration-editor-error-validation-array-items-max": "అర్రేలో గరిష్ఠంగా {{PLURAL:$1|$1 అంశం|$1 అంశాలు}} ఉండాలి"
 }

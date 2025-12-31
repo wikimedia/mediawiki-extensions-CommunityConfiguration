@@ -50,8 +50,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "يجب أن يكون الحد الأقصى {{PLURAL:$1|$1 عنصر|$1 عنصرًا}} في المصفوفة",
 	"communityconfiguration-editor-error-validation-array-items-min": "يجب أن يكون الحد الأدنى {{PLURAL:$1|$1 عنصر|$1 عنصرًا}} في المصفوفة",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "لا يوجد قيمة في العدد: $1",
-	"communityconfiguration-editor-error-validation-string-too-short": "يجب أن يكون طوله $1 حرفًا على الأقل",
-	"communityconfiguration-editor-error-validation-string-too-long": "يجب أن يكون الحد الأقصى $1 حرفًا",
+	"communityconfiguration-editor-error-validation-string-too-short": "يلزم ألا يقل عن {{PLURAL:$1|$1|محرف واحد|محرفين|$1 محارف|$1 محرفًا|$1 محرف}}",
+	"communityconfiguration-editor-error-validation-string-too-long": "يلزم ألا يتجاوز الطول {{PLURAL:$1|$1|محرفًا واحدًا|محرفين|$1 محارف|$1 محرفًا|$1 محرف}}",
 	"communityconfiguration-maintenance-config-change-summary": "تم تغيير التكوين بواسطة البرنامج النصي للصيانة: $1",
 	"tag-community_configuration": "إعدادات المجتمع",
 	"tag-community_configuration-description": "التعديلات التي تغير [[Special:CommunityConfiguration|إعدادات الويكي المحلي]] لميزة باستخدام [[mw:Extension:CommunityConfiguration|امتداد إعدادات المجتمع]]."
