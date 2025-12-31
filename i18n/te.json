@@ -4,5 +4,9 @@
 			"Chaduvari"
 		]
 	},
-	"communityconfiguration-guidelines-guideline1-description": "సముదాయపు అమరికల గురించి, అసలు అవేంటి, ఎలా పనిచేస్తాయి, గ్రోత్ బృందం దానిపై ప్రస్తుతం చేస్తున్న పనులేంటి వగైరాల గురించి [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration మరింత తెలుసుకోండి]."
+	"communityconfiguration": "కమ్యూనిటీ కాన్ఫిగరేషను",
+	"communityconfiguration-editor-form-submit-button-text": "మార్పులను భద్రపరచు",
+	"communityconfiguration-guidelines-title": "కమ్యూనిటీ కాన్ఫిగరేషన్ అంటే ఏమిటి?",
+	"communityconfiguration-guidelines-guideline1-description": "సముదాయపు అమరికల గురించి, అసలు అవేంటి, ఎలా పనిచేస్తాయి, గ్రోత్ బృందం దానిపై ప్రస్తుతం చేస్తున్న పనులేంటి వగైరాల గురించి [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration మరింత తెలుసుకోండి].",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|మీ}} మార్పులను భద్రపరచాం"
 }
