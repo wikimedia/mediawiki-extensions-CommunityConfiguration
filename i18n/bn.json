@@ -28,5 +28,6 @@
 	"communityconfiguration-page-title-control-no-results": "কোনও ফলাফল পাওয়া যায়নি।",
 	"communityconfiguration-editor-navigation-tab-viewform": "ফরম দেখুন",
 	"communityconfiguration-editor-client-notice-message": "এই পাতাটি সুরক্ষিত। এই বৈশিষ্ট্যের কনফিগারেশন কেবল প্রশাসকগণ সম্পাদনা করতে পারবেন।",
+	"communityconfiguration-editor-error-validation-string-too-long": "অবশ্যই {{PLURAL:$1|এক অক্ষরের|$1 অক্ষরের}} চেয়ে বেশি হতে পারবে না",
 	"tag-community_configuration": "সম্প্রদায়ের কনফিগারেশন"
 }

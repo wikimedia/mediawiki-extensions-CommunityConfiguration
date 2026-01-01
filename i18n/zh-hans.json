@@ -52,8 +52,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "数组中最多可含有{{PLURAL:$1|$1项}}",
 	"communityconfiguration-editor-error-validation-array-items-min": "数组中最少可含有{{PLURAL:$1|$1项}}",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "提供的值不位于下列枚举中：$1",
-	"communityconfiguration-editor-error-validation-string-too-short": "长度必须大于等于$1个字符",
-	"communityconfiguration-editor-error-validation-string-too-long": "长度必须小于等于$1个字符",
+	"communityconfiguration-editor-error-validation-string-too-short": "长度必须大于等于{{PLURAL:$1|$1个字符}}",
+	"communityconfiguration-editor-error-validation-string-too-long": "长度必须小于等于{{PLURAL:$1|$1个字符}}",
 	"communityconfiguration-maintenance-config-change-summary": "维护脚本更改了配置：$1",
 	"tag-community_configuration": "社群配置",
 	"tag-community_configuration-description": "使用[[mw:Extension:CommunityConfiguration|社群配置扩展]]更改了某项功能的[[Special:CommunityConfiguration|本地wiki配置]]的编辑。"
