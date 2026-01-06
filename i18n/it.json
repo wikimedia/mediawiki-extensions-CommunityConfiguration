@@ -18,6 +18,6 @@
 	"communityconfiguration-page-title-control-no-results": "Nessun risultato trovato.",
 	"communityconfiguration-editor-loading-info-text": "L'editor di configurazione è in fase di caricamento",
 	"communityconfiguration-editor-navigation-tab-viewform": "Visualizza modulo",
-	"communityconfiguration-editor-error-validation-string-too-short": "Deve essere lungo almeno $1 caratteri",
-	"communityconfiguration-editor-error-validation-string-too-long": "Deve essere lungo al massimo $1 caratteri"
+	"communityconfiguration-editor-error-validation-string-too-short": "Deve essere lungo almeno $1 {{PLURAL:$1|carattere|caratteri}}",
+	"communityconfiguration-editor-error-validation-string-too-long": "Deve essere lungo al massimo $1 {{PLURAL:$1|carattere|caratteri}}"
 }
