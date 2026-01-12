@@ -50,8 +50,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "Er {{PLURAL:$1|mag|mogen}} maximaal $1 element{{PLURAL:$1||en}} in de array zitten",
 	"communityconfiguration-editor-error-validation-array-items-min": "Er moet{{PLURAL:$1||en}} minimaal $1 item{{PLURAL:$1||s}} in de array zitten",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Heeft geen waarde in de opsomming: $1",
-	"communityconfiguration-editor-error-validation-string-too-short": "Moet minimaal $1 tekens lang zijn",
-	"communityconfiguration-editor-error-validation-string-too-long": "Mag maximaal $1 tekens lang zijn",
+	"communityconfiguration-editor-error-validation-string-too-short": "Moet minimaal $1 teken{{PLURAL:$1||s}} lang zijn",
+	"communityconfiguration-editor-error-validation-string-too-long": "Mag maximaal $1 teken{{PLURAL:$1||s}} lang zijn",
 	"communityconfiguration-maintenance-config-change-summary": "Configuratie gewijzigd door onderhoudsscript: $1",
 	"tag-community_configuration": "Gemeenschapsinstellingen",
 	"tag-community_configuration-description": "Bewerkingen waarin de [[Special:CommunityConfiguration|lokale wiki-instellingen]] van een functie wordt gewijzigd met behulp van de [[mw:Extension:CommunityConfiguration|uitbreiding Gemeenschapsinstellingen]]."
