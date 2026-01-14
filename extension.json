@@ -213,6 +213,7 @@
 				"CdxLookup",
 				"CdxMenu",
 				"CdxMessage",
+				"CdxMultiselectLookup",
 				"CdxTextInput",
 				"CdxRadio",
 				"useFloatingMenu",

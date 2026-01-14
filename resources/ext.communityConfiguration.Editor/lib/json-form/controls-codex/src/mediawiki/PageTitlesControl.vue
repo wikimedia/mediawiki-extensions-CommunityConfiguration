@@ -1,28 +1,22 @@
 <template>
 	<control-wrapper v-bind="controlWrapper">
-		<cdx-chip-input
-			ref="input"
-			v-model:input-chips="selection"
-			:initial-value="initialValue"
+		<cdx-multiselect-lookup
+			v-model:input-chips="chips"
+			v-model:selected="selection"
+			v-model:input-value="inputValue"
 			:placeholder="$i18n( 'mw-widgets-titlesmultiselect-placeholder' ).text()"
 			:chip-aria-description="$i18n( 'communityconfiguration-editor-chip-control-aria-chip-description' ).text()"
 			remove-button-label="remove"
-			@blur="onBlur"
-			@focus="expanded = true"
-			@update:input-chips="onChipSelectionChange"
-		></cdx-chip-input>
-		<cdx-menu
-			v-model:selected="selectedValue"
-			v-model:expanded="expanded"
 			:menu-items="menuItems"
-			@update:selected="onItemSelected"
-		></cdx-menu>
+			@update:input-value="onInput"
+			@update:selected="onTitlesUpdated"
+		></cdx-multiselect-lookup>
 	</control-wrapper>
 </template>
 
 <script>
-const { ref, unref, onMounted } = require( 'vue' );
-const { CdxChipInput, CdxMenu } = require( '../../../../../../codex.js' );
+const { ref, unref } = require( 'vue' );
+const { CdxMultiselectLookup } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
 	useJsonFormControl,
@@ -30,15 +24,13 @@ const {
 const { debounce, useCodexControl } = require( '../utils.js' );
 const { search } = require( './api.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
-const chipToPageTitle = ( { value } ) => value;
 const filterSelection = ( selection ) => ( item ) => selection.map( ( x ) => x.value ).indexOf( item.value ) === -1;
 
 // @vue/component
 module.exports = exports = {
 	name: 'PageTitlesControl',
 	components: {
-		CdxChipInput,
-		CdxMenu,
+		CdxMultiselectLookup,
 		ControlWrapper,
 	},
 	props: Object.assign( {}, rendererProps(), {} ),
@@ -48,31 +40,28 @@ module.exports = exports = {
 			controlWrapper,
 			onChange,
 		} = useCodexControl( useJsonFormControl( props ) );
-		const input = ref();
-		const selectedValue = ref( null );
-		const expanded = ref( false );
+		const inputValue = ref( '' );
 		const menuItems = ref( [] );
 		const currentSearchTerm = ref( '' );
-		const initialValue = unref( control.modelValue ).map( ( pageTitle ) => ( {
-			value: pageTitle,
+		const initialValueChips = unref( control.modelValue ).map( ( pageTitle ) => ( {
 			label: pageTitle,
+			value: pageTitle,
 		} ) );
-		const selection = ref( initialValue );
-
+		const initialValueSelection = unref( control.modelValue ).map( ( pageTitle ) => ( pageTitle ) );
+		const selection = ref( initialValueSelection );
+		const chips = ref( initialValueChips );
 		/**
-		 * Handle onKeyUp.
+		 * Handle onInput.
 		 *
 		 * @param {string} value
 		 */
-		const onKeyUp = debounce( ( evt ) => {
-			const value = evt.srcElement.value;
+		const onInput = debounce( ( value ) => {
 			// Internally track the current search term.
 			currentSearchTerm.value = value;
 
 			// Do nothing if we have no input.
 			if ( !value ) {
 				menuItems.value = [];
-				expanded.value = false;
 				return;
 			}
 
@@ -83,9 +72,13 @@ module.exports = exports = {
 						return;
 					}
 
-					// Reset the menu items if there are no results.
+					// Add the user input as a menu item if there are no results.
+					// This supports custom input.
 					if ( !data.query || data.query.prefixsearch.length === 0 ) {
-						menuItems.value = [];
+						menuItems.value = [ {
+							label: value,
+							value: value,
+						} ];
 						return;
 					}
 
@@ -94,10 +87,14 @@ module.exports = exports = {
 						label: result.title,
 						value: result.title,
 					} ) );
+					// Check input not present in results.  If it is not present, add it as a menuItem.
+					const inputMissing = results.findIndex( ( template ) => template.value === value ) === -1;
+					if ( inputMissing ) {
+						results.unshift( { value, label: value } );
+					}
 
 					// Update menuItems.
 					menuItems.value = results.filter( filterSelection( selection.value ) );
-					expanded.value = true;
 				} )
 				.catch( () => {
 					// On error, set results to empty.
@@ -105,41 +102,17 @@ module.exports = exports = {
 				} );
 		}, 300 );
 
-		onMounted( () => {
-			input.value.input.addEventListener( 'keyup', onKeyUp );
-		} );
-
 		return {
 			controlWrapper,
-			expanded,
-			input,
+			chips,
 			selection,
-			// Not read as we use an updaet event handler onItemSelected instead of watching
-			// selectedValue. Needed to avoid CdxMenu prop validation warnings.
-			selectedValue,
-			initialValue,
 			menuItems,
-			onBlur() {
-				expanded.value = false;
-				currentSearchTerm.value = '';
-			},
-			onChipSelectionChange( newVal ) {
-				// map ChipInputItem model back to config model
-				onChange( newVal.map( chipToPageTitle ) );
-			},
-			onItemSelected( itemValue ) {
-				const index = menuItems.value.findIndex( ( menuItem ) => menuItem.value === itemValue );
-				selection.value = [ ...selection.value, {
-					label: menuItems.value[ index ].label,
-					value: menuItems.value[ index ].value,
-				} ];
-				onChange( selection.value.map( chipToPageTitle ) );
-				currentSearchTerm.value = '';
-				// HACK, bettwer way to remove the user typed text in ChipInput?
-				input.value.inputValue = '';
+			inputValue,
+			onInput,
+			onTitlesUpdated( newTitles ) {
+				onChange( newTitles );
 			},
 		};
 	},
 };
-
 </script>
