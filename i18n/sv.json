@@ -27,6 +27,7 @@
 	"communityconfiguration-invalid-stored-config-error-with-link": "Kunde inte ladda in en giltig konfiguration från $1-leverantören (kod <code>$2</code>), se $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Feldetaljer",
 	"communityconfiguration-schema-validation-error": "$2. Nyckel: $1",
+	"communityconfiguration-invalid-schema-version": "Ogiltig version $1. Nuvarande schema är $2.",
 	"communityconfiguration-providers-list-title": "Funktioner",
 	"communityconfiguration-provider-not-found": "Leverantören $1 hittades inte",
 	"communityconfigurationdashboard": "Gemenskapskonfigurering",
