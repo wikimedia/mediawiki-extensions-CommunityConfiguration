@@ -47,7 +47,7 @@ module.exports = exports = {
 			label: pageTitle,
 			value: pageTitle,
 		} ) );
-		const initialValueSelection = unref( control.modelValue ).map( ( pageTitle ) => ( pageTitle ) );
+		const initialValueSelection = unref( control.modelValue );
 		const selection = ref( initialValueSelection );
 		const chips = ref( initialValueChips );
 		/**
