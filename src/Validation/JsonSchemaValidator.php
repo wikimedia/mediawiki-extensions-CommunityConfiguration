@@ -105,10 +105,10 @@ class JsonSchemaValidator implements IValidator {
 		}
 		$status = ValidationStatus::newGood();
 		foreach ( $validator->getErrors() as $error ) {
-			// TODO: inline `$error['constraint']['name']` after upgrade to json-schema 6 is done
-			// @phan-suppress-next-line PhanTypeArraySuspiciousNull
-			$constraintName = is_string( $error['constraint'] ) ? $error['constraint'] : $error['constraint']['name'];
-			if ( $modeForReading && in_array( $constraintName, [ 'required', 'additionalProp', 'enum' ] ) ) {
+			if ( $modeForReading && in_array(
+				$error['constraint']['name'],
+				[ 'required', 'additionalProp', 'enum' ]
+			) ) {
 				$status->addWarning(
 					$error['property'],
 					$error['pointer'],

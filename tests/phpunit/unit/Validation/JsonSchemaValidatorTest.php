@@ -68,7 +68,13 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 			},
 			[ 'Number' => 'baz' ],
 			false,
-			[ 'type' ],
+			[ [
+				'name' => 'type',
+				'params' => [
+					'found' => 'string',
+					'expected' => 'a number',
+				],
+			] ],
 			false,
 			false,
 			[ [
@@ -76,7 +82,13 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 				'pointer' => '/Number',
 				'messageLiteral' => 'String value found, but a number is required',
 				'additionalData' => [
-					'constraint' => 'type',
+					'constraint' => [
+						'name' => 'type',
+						'params' => [
+							'found' => 'string',
+							'expected' => 'a number',
+						],
+					],
 				],
 			] ],
 		];
@@ -89,7 +101,12 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 			},
 			[ 'Number' => 1, 'Bar' => 1 ],
 			false,
-			[ 'additionalProp' ],
+			[ [
+				'name' => 'additionalProp',
+				'params' => [
+					'property' => 'Bar',
+				],
+			] ],
 			true,
 			false,
 			[ [
@@ -98,7 +115,12 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 				'messageLiteral' =>
 					'The property Bar is not defined and the definition does not allow additional properties',
 				'additionalData' => [
-					'constraint' => 'additionalProp',
+					'constraint' => [
+						'name' => 'additionalProp',
+						'params' => [
+							'property' => 'Bar',
+						],
+					],
 				],
 			] ],
 		];
@@ -143,7 +165,12 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 			},
 			[ 'ProposedIntroLinks' => (object)[ 'create' => 'foo', 'image' => 'bar', 'Extra' => 7 ] ],
 			false,
-			[ 'additionalProp' ],
+			[ [
+				'name' => 'additionalProp',
+				'params' => [
+					'property' => 'Extra',
+				],
+			] ],
 			true,
 			false,
 			[ [
@@ -152,7 +179,12 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 				'messageLiteral' =>
 					'The property Extra is not defined and the definition does not allow additional properties',
 				'additionalData' => [
-					'constraint' => 'additionalProp',
+					'constraint' => [
+						'name' => 'additionalProp',
+						'params' => [
+							'property' => 'Extra',
+						],
+					],
 				],
 			] ],
 		];
@@ -171,7 +203,12 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 			},
 			[ 'ProposedIntroLinks' => (object)[ 'create' => 'foo1' ] ],
 			false,
-			[ 'pattern' ],
+			[ [
+				'name' => 'pattern',
+				'params' => [
+					'pattern' => '^[a-z]+$',
+				],
+			] ],
 			false,
 			false,
 			[ [
@@ -179,7 +216,12 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 				'pointer' => '/ProposedIntroLinks/create',
 				'messageLiteral' => 'Does not match the regex pattern ^[a-z]+$',
 				'additionalData' => [
-					'constraint' => 'pattern',
+					'constraint' => [
+						'name' => 'pattern',
+						'params' => [
+							'pattern' => '^[a-z]+$',
+						],
+					],
 				],
 			] ],
 		];
@@ -203,15 +245,25 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 				(object)[ 'maxCount' => 10 ],
 			] ],
 			false,
-			[ 'maximum' ],
+			[ [
+				'name' => 'maximum',
+				'params' => [
+					'maximum' => 3,
+				],
+			] ],
 			false,
 			false,
 			[ [
 				'property' => 'ProposedIntroLinks[0].maxCount',
 				'pointer' => '/ProposedIntroLinks/0/maxCount',
-				'messageLiteral' => 'Must have a maximum value of 3',
+				'messageLiteral' => 'Must have a maximum value less than or equal to 3',
 				'additionalData' => [
-					'constraint' => 'maximum',
+					'constraint' => [
+						'name' => 'maximum',
+						'params' => [
+							'maximum' => 3,
+						],
+					],
 				],
 			] ],
 		];
@@ -240,7 +292,12 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 			},
 			[],
 			false,
-			[ 'required' ],
+			[ [
+				'name' => 'required',
+				'params' => [
+					'property' => 'Number',
+				],
+			] ],
 			true,
 			false,
 			[ [
@@ -248,7 +305,12 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 				'pointer' => '/Number',
 				'messageLiteral' => 'The property Number is required',
 				'additionalData' => [
-					'constraint' => 'required',
+					'constraint' => [
+						'name' => 'required',
+						'params' => [
+							'property' => 'Number',
+						],
+					],
 				],
 			] ],
 		];
@@ -264,7 +326,12 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 			},
 			[],
 			false,
-			[ 'required' ],
+			[ [
+				'name' => 'required',
+				'params' => [
+					'property' => 'Number',
+				],
+			] ],
 			true,
 			false,
 			[ [
@@ -272,7 +339,12 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 				'pointer' => '/Number',
 				'messageLiteral' => 'The property Number is required',
 				'additionalData' => [
-					'constraint' => 'required',
+					'constraint' => [
+						'name' => 'required',
+						'params' => [
+							'property' => 'Number',
+						],
+					],
 				],
 			] ],
 		];
@@ -301,7 +373,15 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 			},
 			[ 'OneOfThese' => 'not in list' ],
 			false,
-			[ 'enum' ],
+			[ [
+				'name' => 'enum',
+				'params' => [
+					'enum' => [
+						0 => 'foo',
+						1 => 'bar',
+					],
+				],
+			] ],
 			true,
 			false,
 			[ [
@@ -309,7 +389,15 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 				'pointer' => '/OneOfThese',
 				'messageLiteral' => 'Does not have a value in the enumeration ["foo","bar"]',
 				'additionalData' => [
-					'constraint' => 'enum',
+					'constraint' => [
+						'name' => 'enum',
+						'params' => [
+							'enum' => [
+								0 => 'foo',
+								1 => 'bar',
+							],
+						],
+					],
 				],
 			] ],
 		];
@@ -333,7 +421,6 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 		bool $expectedIsPermissivelyGood,
 		array $expectedErrorData = []
 	): void {
-		$this->markTestSkipped( 'T415261 - prepare for json-schema 6 update' );
 		$validator = $this->newValidator( $testSchema );
 
 		$strictValidationResult = $validator->validateStrictly( (object)$json );

@@ -70,7 +70,12 @@ function withArrayErrors() {
 				pointer: '/GEHelpPanelLinks/2/text',
 				messageLiteral: 'The property text is required',
 				additionalData: {
-					constraint: 'required',
+					constraint: {
+						name: 'required',
+						params: {
+							property: 'GEHelpPanelLinks[2].text',
+						},
+					},
 				},
 			},
 			module: 'communityconfigurationedit',
@@ -83,7 +88,12 @@ function withArrayErrors() {
 				pointer: '/GEHelpPanelLinks/3/title',
 				messageLiteral: 'The property title is required',
 				additionalData: {
-					constraint: 'required',
+					constraint: {
+						name: 'required',
+						params: {
+							property: 'GEHelpPanelLinks[3].title',
+						},
+					},
 				},
 			},
 			module: 'communityconfigurationedit',
@@ -120,8 +130,7 @@ global.mw = {
 	},
 };
 
-// T415261 - prepare for json-schema 6 update
-describe.skip( 'useValidationErrors', () => {
+describe( 'useValidationErrors', () => {
 	it( 'defaults to no errors', () => {
 		const { getAllValidationErrors } = withSetup();
 
@@ -181,7 +190,13 @@ describe.skip( 'useValidationErrors', () => {
 							pointer: '/GEHelpPanelExcludedNamespaces/0',
 							messageLiteral: 'NULL value found, but an integer is required',
 							additionalData: {
-								constraint: 'type',
+								constraint: {
+									name: 'type',
+									params: {
+										found: 'null',
+										expected: 'an integer',
+									},
+								},
 							},
 						},
 						module: 'communityconfigurationedit',
@@ -190,7 +205,13 @@ describe.skip( 'useValidationErrors', () => {
 				expectedErrors: [
 					{
 						additionalData: {
-							constraint: 'type',
+							constraint: {
+								name: 'type',
+								params: {
+									found: 'null',
+									expected: 'an integer',
+								},
+							},
 						},
 						formFieldId: 'GEHelpPanelExcludedNamespaces',
 						formFieldLabels: [
@@ -227,7 +248,10 @@ describe.skip( 'useValidationErrors', () => {
 							pointer: '/AutoModeratorSkipUserGroups/1',
 							messageLiteral: 'Does not have a value in the enumeration ["bot","sysop"]',
 							additionalData: {
-								constraint: 'enum',
+								constraint: {
+									name: 'enum',
+									enum: [ 'bot', 'sysop' ],
+								},
 							},
 						},
 						module: 'communityconfigurationedit',
@@ -236,7 +260,10 @@ describe.skip( 'useValidationErrors', () => {
 				expectedErrors: [
 					{
 						additionalData: {
-							constraint: 'enum',
+							constraint: {
+								name: 'enum',
+								enum: [ 'bot', 'sysop' ],
+							},
 						},
 						formFieldId: 'AutoModeratorSkipUserGroups',
 						formFieldLabels: [
@@ -279,14 +306,28 @@ describe.skip( 'useValidationErrors', () => {
 							pointer: '/link_recommendation/excludedSections',
 							messageLiteral: 'There must be a maximum of 3 items in the array',
 							additionalData: {
-								constraint: 'maxItems',
+								constraint: {
+									name: 'maxItems',
+									params: {
+										maxItems: 3,
+										found: 4,
+									},
+								},
 							},
 						},
 						module: 'communityconfigurationedit',
 					},
 				],
 				expectedErrors: [ {
-					additionalData: { constraint: 'maxItems' },
+					additionalData: {
+						constraint: {
+							name: 'maxItems',
+							params: {
+								maxItems: 3,
+								found: 4,
+							},
+						},
+					},
 					formFieldId: 'link_recommendation.excludedSections',
 					formFieldLabels: [
 						mw.message( 'prefix-link_recommendation-label' ),
@@ -332,7 +373,12 @@ describe.skip( 'useValidationErrors', () => {
 							pointer: '/GEHelpPanelLinks/3/title',
 							messageLiteral: 'The property title is required',
 							additionalData: {
-								constraint: 'required',
+								constraint: {
+									name: 'required',
+									params: {
+										property: 'GEHelpPanelLinks[3].title',
+									},
+								},
 							},
 						},
 						module: 'communityconfigurationedit',
@@ -341,7 +387,12 @@ describe.skip( 'useValidationErrors', () => {
 				expectedErrors: [
 					{
 						additionalData: {
-							constraint: 'required',
+							constraint: {
+								name: 'required',
+								params: {
+									property: 'GEHelpPanelLinks[3].title',
+								},
+							},
 						},
 						formFieldId: 'GEHelpPanelLinks.3.title',
 						formFieldLabels: [
