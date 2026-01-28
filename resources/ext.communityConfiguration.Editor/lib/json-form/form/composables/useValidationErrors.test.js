@@ -120,7 +120,8 @@ global.mw = {
 	},
 };
 
-describe( 'useValidationErrors', () => {
+// T415261 - prepare for json-schema 6 update
+describe.skip( 'useValidationErrors', () => {
 	it( 'defaults to no errors', () => {
 		const { getAllValidationErrors } = withSetup();
 

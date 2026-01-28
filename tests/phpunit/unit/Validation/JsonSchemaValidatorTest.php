@@ -333,6 +333,7 @@ class JsonSchemaValidatorTest extends MediaWikiUnitTestCase {
 		bool $expectedIsPermissivelyGood,
 		array $expectedErrorData = []
 	): void {
+		$this->markTestSkipped( 'T415261 - prepare for json-schema 6 update' );
 		$validator = $this->newValidator( $testSchema );
 
 		$strictValidationResult = $validator->validateStrictly( (object)$json );
