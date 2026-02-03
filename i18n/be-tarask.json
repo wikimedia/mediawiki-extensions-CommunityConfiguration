@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Renessaince"
+			"Renessaince",
+			"Ucukor"
 		]
 	},
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Скасаваць",
 	"tag-community_configuration": "Канфігурацыя супольнасьцю"
 }
