@@ -37,6 +37,7 @@ interface IConfigurationProvider extends LoggerAwareInterface {
 
 	public const OPTION_EXCLUDE_FROM_UI = 'excludeFromUI';
 	public const OPTION_EDITOR_CAPABILITY = 'editorCapability';
+	public const OPTION_READ_VALIDATION_LOG_LEVEL = 'readValidationLogLevel';
 
 	/**
 	 * Get a provider's ID (key under which it is defined)

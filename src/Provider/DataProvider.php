@@ -5,6 +5,7 @@ declare( strict_types = 1 );
 namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
 use MediaWiki\Permissions\Authority;
+use Psr\Log\LogLevel;
 use StatusValue;
 use stdClass;
 
@@ -118,6 +119,11 @@ class DataProvider extends AbstractProvider {
 	 */
 	private function processStoreStatus( StatusValue $storeStatus ): StatusValue {
 		if ( !$storeStatus->isOK() ) {
+			$this->logger->error( ...$this->getProviderServicesContainer()
+				->getStatusFormatter()
+				->getPsr3MessageAndContext( $storeStatus, [
+					'providerId' => $this->getId(),
+				] ) );
 			return $storeStatus;
 		}
 
@@ -126,6 +132,15 @@ class DataProvider extends AbstractProvider {
 			$this->enhanceConfigPreValidation( $normalizedConfiguration )
 		);
 		if ( !$result->isOK() ) {
+			$this->logger->log(
+				$this->getOptionValue( IConfigurationProvider::OPTION_READ_VALIDATION_LOG_LEVEL ) ?? LogLevel::DEBUG,
+				...$this->getProviderServicesContainer()
+					->getStatusFormatter()
+					->getPsr3MessageAndContext( $result, [
+						'providerId' => $this->getId(),
+					] )
+			);
+
 			// an issue occurred, return the StatusValue
 			return $result;
 		}

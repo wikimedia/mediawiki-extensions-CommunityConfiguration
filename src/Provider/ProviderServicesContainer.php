@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
 use MediaWiki\DomainEvent\DomainEventDispatcher;
+use MediaWiki\Status\StatusFormatter;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -20,7 +21,8 @@ class ProviderServicesContainer {
 
 	public function __construct(
 		private readonly IConnectionProvider $connectionProvider,
-		private readonly DomainEventDispatcher $domainEventDispatcher
+		private readonly DomainEventDispatcher $domainEventDispatcher,
+		private readonly StatusFormatter $statusFormatter
 	) {
 	}
 
@@ -30,5 +32,9 @@ class ProviderServicesContainer {
 
 	public function getDomainEventDispatcher(): DomainEventDispatcher {
 		return $this->domainEventDispatcher;
+	}
+
+	public function getStatusFormatter(): StatusFormatter {
+		return $this->statusFormatter;
 	}
 }

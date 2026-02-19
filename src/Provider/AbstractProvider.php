@@ -66,6 +66,10 @@ abstract class AbstractProvider implements IConfigurationProvider {
 		return $this->providerId;
 	}
 
+	protected function getProviderServicesContainer(): ProviderServicesContainer {
+		return $this->providerServicesContainer;
+	}
+
 	/**
 	 * @param MessageLocalizer $localizer
 	 * @inheritDoc
