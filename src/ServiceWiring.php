@@ -78,7 +78,8 @@ return [
 	'CommunityConfiguration.ProviderServicesContainer' => static function ( MediaWikiServices $services ) {
 		return new ProviderServicesContainer(
 			$services->getConnectionProvider(),
-			$services->getDomainEventDispatcher()
+			$services->getDomainEventDispatcher(),
+			$services->getFormatterFactory()->getStatusFormatter( RequestContext::getMain() )
 		);
 	},
 	'CommunityConfiguration.MediaWikiConfigReader' => static function ( MediaWikiServices $services ) {

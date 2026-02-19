@@ -6,6 +6,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Extension\CommunityConfiguration\Provider\DataProvider;
+use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ProviderServicesContainer;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
@@ -16,8 +17,10 @@ use MediaWiki\Extension\CommunityConfiguration\Validation\JsonSchemaValidator;
 use MediaWiki\Extension\CommunityConfiguration\Validation\ValidationStatus;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Status\StatusFormatter;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
+use Psr\Log\LoggerInterface;
 use StatusValue;
 use stdClass;
 use Wikimedia\Stats\NullStatsdDataFactory;
@@ -292,59 +295,107 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertConfigStatusOK( $expectedConfig, $provider->loadValidConfigurationUncached() );
 	}
 
-	public function testLoadInvalidConfig(): void {
+	public static function provideLoadInvalidConfig() {
+		return [
+			[ 'debug' ],
+			[ 'error' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideLoadInvalidConfig
+	 */
+	public function testLoadInvalidConfig( string $readValidationLogLevel ): void {
 		$config = (object)[ 'Foo' => 42 ];
 
+		$validatorStatus = ValidationStatus::newFatal( 'june' );
 		$validatorMock = $this->createMock( IValidator::class );
 		$validatorMock->expects( $this->exactly( 2 ) )
 			->method( 'validatePermissively' )
 			->with( $config )
-			->willReturn( ValidationStatus::newFatal( 'june' ) );
+			->willReturn( $validatorStatus );
+
+		$statusFormatter = $this->createNoOpMock( StatusFormatter::class, [ 'getPsr3MessageAndContext' ] );
+		$statusFormatter->expects( $this->exactly( 2 ) )
+			->method( 'getPsr3MessageAndContext' )
+			->with( $validatorStatus, [ 'providerId' => 'ProviderId' ] )
+			->willReturn( [ 'Foo log', [ 'context' => 'data' ] ] );
+
+		$providerServicesContainer = $this->createNoOpMock(
+			ProviderServicesContainer::class,
+			[ 'getStatusFormatter' ]
+		);
+		$providerServicesContainer->expects( $this->exactly( 2 ) )
+			->method( 'getStatusFormatter' )
+			->willReturn( $statusFormatter );
+
+		$logger = $this->createNoOpMock( LoggerInterface::class, [ 'log' ] );
+		$logger->expects( $this->exactly( 2 ) )
+			->method( 'log' )
+			->with( $readValidationLogLevel, 'Foo log', [ 'context' => 'data' ] );
 
 		$provider = new DataProvider(
-			$this->createNoOpMock( ProviderServicesContainer::class ),
+			$providerServicesContainer,
 			'ProviderId',
-			[ 'excludeFromUI' => false ],
+			[
+				IConfigurationProvider::OPTION_READ_VALIDATION_LOG_LEVEL => $readValidationLogLevel,
+				'excludeFromUI' => false,
+			],
 			new StaticStore( $config ),
 			$validatorMock
 		);
+		$provider->setLogger( $logger );
 
 		$this->assertStatusError( 'june', $provider->loadValidConfiguration() );
 		$this->assertStatusError( 'june', $provider->loadValidConfigurationUncached() );
 	}
 
-	public function testLoadFailedStoreCached(): void {
-		$storeMock = $this->createMock( IConfigurationStore::class );
-		$storeMock->expects( $this->once() )
-			->method( 'loadConfiguration' )
-			->willReturn( ValidationStatus::newFatal( 'june' ) );
-
-		$provider = new DataProvider(
-			$this->createNoOpMock( ProviderServicesContainer::class ),
-			'ProviderId',
-			[ 'excludeFromUI' => true ],
-			$storeMock,
-			$this->createNoOpMock( IValidator::class )
-		);
-
-		$this->assertStatusError( 'june', $provider->loadValidConfiguration() );
+	public static function provideLoadFailedStore() {
+		return [
+			[ 'loadConfiguration', 'loadValidConfiguration' ],
+			[ 'loadConfigurationUncached', 'loadValidConfigurationUncached' ],
+		];
 	}
 
-	public function testLoadFailedStoreUncached(): void {
-		$storeMock = $this->createMock( IConfigurationStore::class );
+	/**
+	 * @dataProvider provideLoadFailedStore
+	 */
+	public function testLoadFailedStore( string $storeMethod, string $providerMethod ): void {
+		$storeStatus = ValidationStatus::newFatal( 'june' );
+		$storeMock = $this->createMock( IConfigurationStore::class, [ $storeMethod ] );
 		$storeMock->expects( $this->once() )
-			->method( 'loadConfigurationUncached' )
-			->willReturn( ValidationStatus::newFatal( 'june' ) );
+			->method( $storeMethod )
+			->willReturn( $storeStatus );
+
+		$statusFormatter = $this->createMock( StatusFormatter::class );
+		$statusFormatter->expects( $this->once() )
+			->method( 'getPsr3MessageAndContext' )
+			->with( $storeStatus, [ 'providerId' => 'ProviderId' ] )
+			->willReturn( [ 'Foo', [ 'context' => 'data' ] ] );
+
+		$providerServicesContainer = $this->createNoOpMock(
+			ProviderServicesContainer::class,
+			[ 'getStatusFormatter' ]
+		);
+		$providerServicesContainer->expects( $this->once() )
+			->method( 'getStatusFormatter' )
+			->willReturn( $statusFormatter );
+
+		$logger = $this->createNoOpMock( LoggerInterface::class, [ 'error' ] );
+		$logger->expects( $this->once() )
+			->method( 'error' )
+			->with( 'Foo', [ 'context' => 'data' ] );
 
 		$provider = new DataProvider(
-			$this->createNoOpMock( ProviderServicesContainer::class ),
+			$providerServicesContainer,
 			'ProviderId',
 			[ 'excludeFromUI' => true ],
 			$storeMock,
 			$this->createNoOpMock( IValidator::class )
 		);
+		$provider->setLogger( $logger );
 
-		$this->assertStatusError( 'june', $provider->loadValidConfigurationUncached() );
+		$this->assertStatusError( 'june', $provider->$providerMethod() );
 	}
 
 	public function testStoreConfigValidNoSchemaSupport(): void {
