@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Cookai1205",
-			"Kly"
+			"Kly",
+			"LowensteinYang"
 		]
 	},
 	"communityconfiguration": "社群配置",
@@ -49,8 +50,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "陣列中最多為 {{PLURAL:$1|$1}} 個項",
 	"communityconfiguration-editor-error-validation-array-items-min": "陣列中最少為 {{PLURAL:$1|$1}} 個項",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "列舉中沒有值：$1",
-	"communityconfiguration-editor-error-validation-string-too-short": "長度最少 $1 個字元",
-	"communityconfiguration-editor-error-validation-string-too-long": "長度最多 $1 個字元",
+	"communityconfiguration-editor-error-validation-string-too-short": "長度最少{{PLURAL:$1|$1個字元}}",
+	"communityconfiguration-editor-error-validation-string-too-long": "長度最多{{PLURAL:$1|$1個字元}}",
 	"communityconfiguration-maintenance-config-change-summary": "維護腳本更改了組態：$1",
 	"tag-community_configuration": "社群配置",
 	"tag-community_configuration-description": "使用[[mw:Extension:CommunityConfiguration|社群配置擴充]]功能更改[[Special:CommunityConfiguration\n|本地端 wiki 配置]]的編輯。"
