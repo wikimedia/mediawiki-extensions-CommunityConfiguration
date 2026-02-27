@@ -52,13 +52,13 @@ class ApiEditTest extends ApiTestCase {
 		);
 		$this->assertSame( 'success', $ret[0]['communityconfigurationedit']['result'] );
 		$status = $provider->loadValidConfiguration();
-		$this->assertTrue( $status->isOK() );
-		$this->assertEquals(
+		$this->assertStatusOK( $status );
+		$this->assertStatusValue(
 			(object)[
 				'NumberWithDefault' => 42,
 				'Mentors' => (object)[],
 			],
-			$status->getValue()
+			$status
 		);
 	}
 
