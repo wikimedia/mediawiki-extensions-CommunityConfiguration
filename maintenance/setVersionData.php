@@ -48,7 +48,7 @@ class SetVersionData extends Maintenance {
 		$this->providerFactory = $ccServices->getConfigurationProviderFactory();
 	}
 
-	private function fatalStatus( \StatusValue $status, string $headline ) {
+	private function fatalStatus( \StatusValue $status, string $headline ): never {
 		$this->fatalError(
 			"$headline.\n\n== Error details ==\n"
 			. $this->statusFormatter->getWikiText( $status )

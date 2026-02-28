@@ -26,9 +26,6 @@ class SchemaConverterFactory {
 			return null;
 		}
 
-		// ObjectFactory::createObject supports arrays as its arguments, not just callables
-		// Link to Phan bug: https://github.com/phan/phan/issues/1648
-		// @phan-suppress-next-line PhanTypeInvalidCallableArraySize
 		$res = $this->objectFactory->createObject( [
 			'class' => $className,
 		], [

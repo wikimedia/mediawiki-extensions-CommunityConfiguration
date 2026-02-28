@@ -174,7 +174,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 				Html::rawElement(
 					'p',
 					[],
-					$this->msg( 'communityconfiguration-editor-loading-info-text' )
+					$this->msg( 'communityconfiguration-editor-loading-info-text' )->parse(),
 				),
 				Html::rawElement(
 					'div',
@@ -196,7 +196,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		$out->addHTML( Html::rawElement(
 			'p',
 			[ 'class' => 'ext-communityConfiguration-NoJSFallback' ],
-			$this->msg( 'communityconfiguration-editor-nojs-fallback-text' )
+			$this->msg( 'communityconfiguration-editor-nojs-fallback-text' )->parse(),
 		) );
 		$out->addHTML( Html::element( 'div', [ 'id' => 'ext-communityConfiguration-app-root' ] ) );
 	}

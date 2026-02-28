@@ -61,7 +61,7 @@ class MigrateConfig extends Maintenance {
 	/**
 	 * @throws \MediaWiki\Maintenance\MaintenanceFatalError
 	 */
-	private function fatalStatus( StatusValue $status, string $headline ): void {
+	private function fatalStatus( StatusValue $status, string $headline ): never {
 		$this->fatalError(
 			"$headline.\n\n== Error details ==\n"
 			. $this->statusFormatter->getWikiText( $status )
