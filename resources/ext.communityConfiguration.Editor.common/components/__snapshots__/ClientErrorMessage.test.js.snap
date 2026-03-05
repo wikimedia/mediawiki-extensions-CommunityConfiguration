@@ -52,6 +52,7 @@ exports[`ClientErrorMessage matches snapshot 1`] = `
       
       
     </div>
+    <!--v-if-->
     <button
       aria-label="communityconfiguration-editor-message-dismiss-button-label"
       class="cdx-button cdx-button--action-default cdx-button--weight-quiet cdx-button--size-medium cdx-button--icon-only cdx-message__dismiss-button"
