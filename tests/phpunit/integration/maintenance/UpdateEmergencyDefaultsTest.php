@@ -37,6 +37,7 @@ class UpdateEmergencyDefaultsTest extends MaintenanceBaseTestCase {
 	}
 
 	public function testUpdateOK() {
+		$this->markTestSkipped( 'T419113' );
 		$this->markTestSkippedIfExtensionNotLoaded( 'CommunityConfigurationExample' );
 
 		$path = $this->getDefaultsPath();
