@@ -37,7 +37,6 @@ class UpdateEmergencyDefaultsTest extends MaintenanceBaseTestCase {
 	}
 
 	public function testUpdateOK() {
-		$this->markTestSkipped( 'T419113' );
 		$this->markTestSkippedIfExtensionNotLoaded( 'CommunityConfigurationExample' );
 
 		$path = $this->getDefaultsPath();
@@ -61,7 +60,7 @@ class UpdateEmergencyDefaultsTest extends MaintenanceBaseTestCase {
 		$this->assertFileExists( $path );
 		$this->assertInstanceOf(
 			stdClass::class,
-			require_once $path
+			require $path
 		);
 		unlink( $path );
 	}
