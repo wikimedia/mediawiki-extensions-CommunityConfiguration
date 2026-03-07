@@ -139,7 +139,7 @@
 	"DomainEventIngresses": [
 		{
 			"events": [
-				"PageRevisionUpdated",
+				"PageLatestRevisionChanged",
 				"PageDeleted"
 			],
 			"class": "MediaWiki\\Extension\\CommunityConfiguration\\Hooks\\WikiPageStoreEventIngress",

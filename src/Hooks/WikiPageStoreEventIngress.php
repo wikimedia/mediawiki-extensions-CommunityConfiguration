@@ -7,13 +7,13 @@ use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFac
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore;
 use MediaWiki\Page\Event\PageDeletedEvent;
 use MediaWiki\Page\Event\PageDeletedListener;
-use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
-use MediaWiki\Page\Event\PageRevisionUpdatedListener;
+use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
+use MediaWiki\Page\Event\PageLatestRevisionChangedListener;
 use MediaWiki\Page\PageIdentity;
 
-class WikiPageStoreEventIngress
-	extends DomainEventIngress
-	implements PageRevisionUpdatedListener, PageDeletedListener
+class WikiPageStoreEventIngress extends DomainEventIngress implements
+	PageLatestRevisionChangedListener,
+	PageDeletedListener
 {
 	private ConfigurationProviderFactory $factory;
 
@@ -37,7 +37,9 @@ class WikiPageStoreEventIngress
 		}
 	}
 
-	public function handlePageRevisionUpdatedEvent( PageRevisionUpdatedEvent $event ): void {
+	public function handlePageLatestRevisionChangedEvent(
+		PageLatestRevisionChangedEvent $event
+	): void {
 		$this->invalidateForPage( $event->getPage() );
 	}
 
