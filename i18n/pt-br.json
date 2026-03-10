@@ -1,10 +1,35 @@
 {
 	"@metadata": {
 		"authors": [
-			"Lc97"
+			"Lc97",
+			"Eduardoaddad"
 		]
 	},
+	"communityconfiguration": "Configuração da comunidade",
+	"communityconfiguration-editor-form-submit-button-text": "Salvar alterações",
+	"communityconfiguration-editor-form-submit-button-loading-text": "Enviando...",
+	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Remover elemento",
+	"communityconfiguration-editor-array-fallback-add-element-button-label": "Adicionar outro elemento",
+	"communityconfiguration-editor-validation-error-label-chain-joiner": "&#32;→&#32;",
+	"communityconfiguration-guidelines-title": "O que é a configuração da comunidade?",
+	"communityconfiguration-guidelines-description": "A Configuração da comunidade é uma ferramenta que permite às comunidades definir e controlar a configuração de diferentes funcionalidades do {{SITENAME}}, ajudando os administradores a adequar-se às necessidades específicas da sua comunidade.",
+	"communityconfiguration-guidelines-guideline1-title": "Saiba mais",
+	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Saiba mais] sobre a Configuração da Comunidade, o que é, como funciona e o trabalho contínuo da equipe nesse sentido.",
+	"communityconfiguration-guidelines-guideline2-title": "Envie-nos {{GENDER:$1|seus}} comentários",
+	"communityconfiguration-guidelines-guideline2-description": "Gostaríamos muito de saber a {{GENDER:$1|sua}} opinião! Entre em contato conosco através da nossa [https://www.mediawiki.org/wiki/Talk:Growth página de discussão].",
 	"communityconfiguration-invalid-stored-config-error": "Falha ao carregar uma configuração valida do $1 (code <code>$2</code>) provedor.",
 	"communityconfiguration-invalid-stored-config-error-with-link": "Falha ao salvar uma configuração válida do $1 (code <code>$2</code>) provedor, veja $3.",
-	"communityconfiguration-invalid-stored-config-error-details-headline": "Detalhes do erro"
+	"communityconfiguration-invalid-stored-config-error-details-headline": "Detalhes do erro",
+	"communityconfiguration-providers-list-title": "Funcionalidades",
+	"communityconfigurationdashboard": "Configuração da comunidade",
+	"communityconfigurationeditor": "Editando $1",
+	"communityconfiguration-edit-summary-dialog-title": "Salve as alterações por $1",
+	"communityconfiguration-edit-summary-dialog-save-button": "Salvar alterações",
+	"communityconfiguration-edit-summary-dialog-cancel-button": "Cancelar",
+	"communityconfiguration-edit-summary-dialog-label": "Editar resumo",
+	"communityconfiguration-editor-client-success-message": "{{GENDER:$1|Suas}} alterações foram salvas",
+	"communityconfiguration-editor-message-dismiss-button-label": "Fechar",
+	"communityconfiguration-page-title-control-no-results": "Nenhum resultado encontrado.",
+	"communityconfiguration-editor-navigation-tab-viewform": "Ver formulário",
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Você}} não pode salvar as alterações neste formulário porque a configuração deste recurso só pode ser editada por administradores."
 }
