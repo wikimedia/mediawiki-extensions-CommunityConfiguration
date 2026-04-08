@@ -8,6 +8,7 @@
 			:chip-aria-description="$i18n( 'communityconfiguration-editor-chip-control-aria-chip-description' ).text()"
 			remove-button-label="remove"
 			:menu-items="menuItems"
+			:highlight-query="true"
 			@update:input-value="onInput"
 			@update:selected="onTitlesUpdated"
 		></cdx-multiselect-lookup>

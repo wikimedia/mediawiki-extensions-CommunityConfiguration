@@ -8,6 +8,7 @@
 			:chip-aria-description="$i18n( 'communityconfiguration-editor-chip-control-aria-chip-description' ).text()"
 			remove-button-label="remove"
 			:menu-items="menuItems"
+			:highlight-query="true"
 			@update:input-value="onInput"
 			@update:selected="onNamespacesUpdated"
 		>
@@ -25,7 +26,7 @@ const {
 	rendererProps,
 	useJsonFormControl,
 } = require( '../../config/index.js' );
-const { debounce, useCodexControl } = require( '../utils.js' );
+const { useCodexControl } = require( '../utils.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
 
 const filterSearchQuery = ( searchQuery ) => ( item ) => {
@@ -79,14 +80,14 @@ module.exports = exports = {
 		 *
 		 * @param {string} value
 		 */
-		const onInput = debounce( ( value ) => {
+		const onInput = ( value ) => {
 			// Restore initial list if we have no input.
 			if ( !value ) {
 				menuItems.value = NS_MENU_ITEMS;
 			} else {
 				menuItems.value = menuItems.value.filter( filterSearchQuery( value ) );
 			}
-		}, 300 );
+		};
 
 		return {
 			controlWrapper,
