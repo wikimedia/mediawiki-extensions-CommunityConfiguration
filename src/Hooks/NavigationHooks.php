@@ -5,7 +5,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Hooks;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
 use MediaWiki\Extension\CommunityConfiguration\Store\WikiPageStore;
-use MediaWiki\Hook\SkinTemplateNavigation__UniversalHook;
+use MediaWiki\Skin\Hook\SkinTemplateNavigation__UniversalHook;
 use MediaWiki\Skin\SkinTemplate;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;

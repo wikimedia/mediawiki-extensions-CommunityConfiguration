@@ -3,9 +3,9 @@
 namespace MediaWiki\Extension\CommunityConfiguration\EditorCapabilities;
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
-use MessageLocalizer;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use Wikimedia\Message\MessageSpecifier;

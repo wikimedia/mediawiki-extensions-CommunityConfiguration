@@ -8,7 +8,7 @@ use Generator;
 use HamcrestPHPUnitIntegration;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Specials\SpecialCommunityConfiguration;
-use SpecialPageTestBase;
+use MediaWiki\Tests\Specials\SpecialPageTestBase;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Specials\SpecialCommunityConfiguration

@@ -4,9 +4,9 @@ namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
 use MediaWiki\Extension\CommunityConfiguration\Store\IConfigurationStore;
 use MediaWiki\Extension\CommunityConfiguration\Validation\IValidator;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
-use MessageLocalizer;
 use Psr\Log\LoggerAwareInterface;
 use StatusValue;
 

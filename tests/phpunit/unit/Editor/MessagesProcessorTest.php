@@ -6,9 +6,9 @@ use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaIterator;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader;
 use MediaWiki\Extension\CommunityConfiguration\Schemas\MediaWiki\MediaWikiDefinitions;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Message\Message;
 use MediaWikiUnitTestCase;
-use MessageLocalizer;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
 

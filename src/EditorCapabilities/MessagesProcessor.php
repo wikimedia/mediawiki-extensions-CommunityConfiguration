@@ -6,7 +6,7 @@ use Error;
 use Iterator;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaIterator;
-use MessageLocalizer;
+use MediaWiki\Language\MessageLocalizer;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 

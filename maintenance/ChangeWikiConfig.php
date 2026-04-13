@@ -10,11 +10,11 @@ use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFac
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Language\FormatterFactory;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Maintenance\MaintenanceFatalError;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
-use MessageLocalizer;
 use stdClass;
 
 // @codeCoverageIgnoreStart
