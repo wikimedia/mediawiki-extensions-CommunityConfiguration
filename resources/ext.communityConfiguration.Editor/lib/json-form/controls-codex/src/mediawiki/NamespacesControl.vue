@@ -11,6 +11,7 @@
 			:highlight-query="true"
 			@update:input-value="onInput"
 			@update:selected="onNamespacesUpdated"
+			@focus="() => onInput( inputValue )"
 		>
 			<template #no-results>
 				{{ $i18n( 'communityconfiguration-page-title-control-no-results' ).text() }}
@@ -33,8 +34,8 @@ const filterSearchQuery = ( searchQuery ) => ( item ) => {
 	if ( !searchQuery ) {
 		return false;
 	}
-	return item.value.startsWith( searchQuery ) ||
-		item.value.startsWith( searchQuery.toLowerCase() );
+	return item.label.startsWith( searchQuery ) ||
+		item.label.startsWith( searchQuery.toLowerCase() );
 };
 
 // @vue/component
@@ -48,17 +49,11 @@ module.exports = exports = {
 	setup( props ) {
 		const EDITOR_FORM_CONFIG = inject( 'EDITOR_FORM_CONFIG' );
 		const formattedNamespaces = EDITOR_FORM_CONFIG.namespaceSelectorOptions;
-		const namespaceToMenuItem = ( value ) => ( { value: formattedNamespaces[ value ] } );
-		const findNamespaceByName = ( name ) => {
-			for ( const ns in formattedNamespaces ) {
-				if ( formattedNamespaces[ ns ] === name ) {
-					// formattedNamespaces keys are strings, convert them to numbers
-					return +ns;
-				}
-			}
-		};
+		const namespaceToMenuItem = ( value ) => ( {
+			value: Number( value ),
+			label: formattedNamespaces[ value ],
+		} );
 
-		const menuItemToNamespace = ( value ) => findNamespaceByName( value );
 		const NS_MENU_ITEMS = Object.keys( formattedNamespaces ).map( namespaceToMenuItem );
 		const {
 			control,
@@ -66,11 +61,11 @@ module.exports = exports = {
 			onChange,
 		} = useCodexControl( useJsonFormControl( props ) );
 		const inputValue = ref( '' );
-		const initialValueChips = unref( control.modelValue ).map( ( item ) => ( {
+		const initialValueSelection = unref( control.modelValue );
+		const initialValueChips = initialValueSelection.map( ( item ) => ( {
 			label: formattedNamespaces[ item ],
 			value: item,
 		} ) );
-		const initialValueSelection = unref( control.modelValue ).map( ( item ) => formattedNamespaces[ item ] );
 		const chips = ref( initialValueChips );
 		const selection = ref( initialValueSelection );
 		const menuItems = ref( NS_MENU_ITEMS );
@@ -97,7 +92,8 @@ module.exports = exports = {
 			chips,
 			selection,
 			onNamespacesUpdated( updatedNamespaces ) {
-				onChange( updatedNamespaces.map( menuItemToNamespace ) );
+				onChange( updatedNamespaces );
+				menuItems.value = [];
 			},
 		};
 	},
