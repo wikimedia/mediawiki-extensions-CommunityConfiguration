@@ -104,6 +104,10 @@ class WikiPageStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testStatusIsMutableFail(): void {
+		if ( $this->getDefaultWikitextNS() !== NS_MAIN ) {
+			$this->markTestSkipped( 'NS_MAIN is non-wikitext, skipping.' );
+		}
+
 		$this->editPage( 'NotJsonContent', 'this is not JSON' );
 		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
 			self::PROVIDER_ID => [

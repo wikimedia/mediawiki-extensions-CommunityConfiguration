@@ -50,6 +50,10 @@ class CommunityConfigurationChangedEventTest extends MediaWikiIntegrationTestCas
 	}
 
 	public function testNoDomainEventOnRegularEdit() {
+		if ( $this->getDefaultWikitextNS() !== NS_MAIN ) {
+			$this->markTestSkipped( 'NS_MAIN is non-wikitext, skipping.' );
+		}
+
 		$authority = $this->getTestSysop()->getAuthority();
 
 		// editing a regular page should NOT fire the CC event
