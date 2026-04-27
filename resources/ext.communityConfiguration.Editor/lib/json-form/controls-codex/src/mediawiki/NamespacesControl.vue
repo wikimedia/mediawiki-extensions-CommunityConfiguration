@@ -85,7 +85,7 @@ module.exports = exports = {
 			if ( !value ) {
 				menuItems.value = NS_MENU_ITEMS;
 			} else {
-				menuItems.value = menuItems.value.filter( filterSearchQuery( value ) );
+				menuItems.value = NS_MENU_ITEMS.filter( filterSearchQuery( value ) );
 			}
 		};
 
