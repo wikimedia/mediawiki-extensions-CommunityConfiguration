@@ -31,7 +31,7 @@ class ValidatorFactoryTest extends MediaWikiUnitTestCase {
 			],
 			'jsonschema' => [
 				'class' => JsonSchemaValidator::class,
-				'services' => [ 'StatsdDataFactory' ],
+				'services' => [],
 			],
 		];
 
@@ -63,7 +63,7 @@ class ValidatorFactoryTest extends MediaWikiUnitTestCase {
 			],
 			'jsonschema' => [
 				'class' => JsonSchemaValidator::class,
-				'services' => [ 'StatsdDataFactory' ],
+				'services' => [],
 			],
 			'Foo' => [
 				'class' => 'GrowthExperiments\Config\Validation\CommunityStructuredFooValidator',

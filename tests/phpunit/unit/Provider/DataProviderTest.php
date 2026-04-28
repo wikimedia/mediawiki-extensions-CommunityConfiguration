@@ -23,7 +23,6 @@ use MediaWikiUnitTestCase;
 use Psr\Log\LoggerInterface;
 use StatusValue;
 use stdClass;
-use Wikimedia\Stats\NullStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 
 /**
@@ -534,7 +533,6 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			new StaticStore( $storedConfig ),
 			new JsonSchemaValidator(
 				$schema,
-				new NullStatsdDataFactory(),
 				StatsFactory::newNull()
 			),
 		);

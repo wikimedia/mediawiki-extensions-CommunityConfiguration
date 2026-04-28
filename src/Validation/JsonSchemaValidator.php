@@ -13,7 +13,6 @@ use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaIterator;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader;
 use MediaWiki\Extension\CommunityConfiguration\Schema\SchemaBuilder;
 use ReflectionException;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 
 class JsonSchemaValidator implements IValidator {
@@ -21,39 +20,26 @@ class JsonSchemaValidator implements IValidator {
 	private JsonSchemaReader $jsonSchema;
 	private JsonSchemaBuilder $jsonSchemaBuilder;
 	private Iterator $jsonSchemaIterator;
-	private IBufferingStatsdDataFactory $statsdDataFactory;
-	private StatsFactory $statsFactory;
 
 	/**
 	 * @param JsonSchema|string $classNameOrClassInstance JsonSchema derived class name (instance only allowed in tests)
-	 * @param IBufferingStatsdDataFactory $statsdDataFactory
 	 * @param StatsFactory $statsFactory
 	 */
 	public function __construct(
-		$classNameOrClassInstance,
-		IBufferingStatsdDataFactory $statsdDataFactory,
-		StatsFactory $statsFactory
+		string|JsonSchema $classNameOrClassInstance,
+		private readonly StatsFactory $statsFactory
 	) {
 		// @codeCoverageIgnoreStart
-		if ( is_object( $classNameOrClassInstance ) ) {
-			if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-				throw new InvalidArgumentException(
-					'JsonSchema should never be instantiated in production code'
-				);
-			}
-			if ( !( $classNameOrClassInstance instanceof JsonSchema ) ) {
-				throw new InvalidArgumentException(
-					get_class( $classNameOrClassInstance ) . ' must be instance of ' . JsonSchema::class
-				);
-			}
+		if ( is_object( $classNameOrClassInstance ) && !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new InvalidArgumentException(
+				'JsonSchema should never be instantiated in production code'
+			);
 		}
 		// @codeCoverageIgnoreEnd
 
 		$this->jsonSchema = new JsonSchemaReader( $classNameOrClassInstance );
-		$this->jsonSchemaBuilder = new JsonSchemaBuilder( $statsdDataFactory, $this->jsonSchema, $statsFactory );
+		$this->jsonSchemaBuilder = new JsonSchemaBuilder( $this->jsonSchema, $statsFactory );
 		$this->jsonSchemaIterator = new JsonSchemaIterator( $this->jsonSchema );
-		$this->statsdDataFactory = $statsdDataFactory;
-		$this->statsFactory = $statsFactory;
 	}
 
 	/**
@@ -92,7 +78,6 @@ class JsonSchemaValidator implements IValidator {
 	 * @return ValidationStatus
 	 */
 	private function validate( $config, bool $modeForReading, ?string $withVersion = null ): ValidationStatus {
-		$start = microtime( true );
 		$timing = $this->statsFactory->withComponent( 'CommunityConfiguration' )->getTiming(
 			'JsonSchemaValidator_validate_seconds'
 		)->setLabel(
@@ -137,10 +122,6 @@ class JsonSchemaValidator implements IValidator {
 		}
 
 		$timing->stop();
-		$this->statsdDataFactory->timing(
-			'timing.communityConfiguration.JsonSchemaValidator.validate',
-			microtime( true ) - $start
-		);
 		return $status;
 	}
 

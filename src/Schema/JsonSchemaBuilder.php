@@ -5,25 +5,17 @@ declare( strict_types = 1 );
 namespace MediaWiki\Extension\CommunityConfiguration\Schema;
 
 use stdClass;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 
 class JsonSchemaBuilder implements SchemaBuilder {
 
-	private IBufferingStatsdDataFactory $statsdDataFactory;
-	private JsonSchemaReader $jsonSchema;
 	private JsonSchemaVersionManager $versionManager;
-	private StatsFactory $statsFactory;
 
 	public function __construct(
-		IBufferingStatsdDataFactory $statsdDataFactory,
-		JsonSchemaReader $jsonSchema,
-		StatsFactory $statsFactory
+		private readonly JsonSchemaReader $jsonSchema,
+		private readonly StatsFactory $statsFactory
 	) {
-		$this->statsdDataFactory = $statsdDataFactory;
-		$this->jsonSchema = $jsonSchema;
 		$this->versionManager = new JsonSchemaVersionManager( $this->jsonSchema );
-		$this->statsFactory = $statsFactory;
 	}
 
 	/**
@@ -67,7 +59,6 @@ class JsonSchemaBuilder implements SchemaBuilder {
 	 * @inheritDoc
 	 */
 	public function getRootSchema( ?string $version = null ): array {
-		$start = microtime( true );
 		$timing = $this->statsFactory->withComponent( 'CommunityConfiguration' )->getTiming(
 			'JsonSchemaBuilder_getRootSchema_seconds'
 		)->setLabel(
@@ -84,10 +75,6 @@ class JsonSchemaBuilder implements SchemaBuilder {
 			'required' => $reader->getRequiredTopLevelProperties(),
 		], $reader->getReflectionSchemaSource()->loadAsSchema( true ) );
 		$timing->stop();
-		$this->statsdDataFactory->timing(
-			'timing.communityConfiguration.JsonSchemaBuilder.getRootSchema',
-			microtime( true ) - $start
-		);
 		return $result;
 	}
 
@@ -136,7 +123,6 @@ class JsonSchemaBuilder implements SchemaBuilder {
 		?string $version = null,
 		bool $useDynamicDefaults = true
 	): stdClass {
-		$start = microtime( true );
 		$timing = $this->statsFactory->withComponent( 'CommunityConfiguration' )->getTiming(
 			'JsonSchemaBuilder_getDefaultsMap_seconds'
 		)->setLabel(
@@ -148,10 +134,6 @@ class JsonSchemaBuilder implements SchemaBuilder {
 			$res->{$key} = $this->getDefaultFromSchema( $specification, $useDynamicDefaults );
 		}
 		$timing->stop();
-		$this->statsdDataFactory->timing(
-			'timing.communityConfiguration.JsonSchemaBuilder.getDefaultsMap',
-			microtime( true ) - $start
-		);
 		return $res;
 	}
 }
