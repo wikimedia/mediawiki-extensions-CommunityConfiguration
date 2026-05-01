@@ -4,7 +4,8 @@
 			"Revi",
 			"YeBoy371",
 			"Ykhwong",
-			"아라"
+			"아라",
+			"Tensama0415"
 		]
 	},
 	"communityconfiguration": "커뮤니티 구성",
@@ -51,8 +52,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "배열에는 최대 {{PLURAL:$1|$1개 항목}}이 있어야 합니다",
 	"communityconfiguration-editor-error-validation-array-items-min": "배열에는 최소한 {{PLURAL:$1|$1개 항목}}이 있어야 합니다",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "열거형에 값이 없습니다: $1",
-	"communityconfiguration-editor-error-validation-string-too-short": "최소 $1자여야 합니다",
-	"communityconfiguration-editor-error-validation-string-too-long": "최대 $1자여야 합니다",
+	"communityconfiguration-editor-error-validation-string-too-short": "최소 {{PLURAL:$1|$1자}}여야 합니다",
+	"communityconfiguration-editor-error-validation-string-too-long": "최대 {{PLURAL:$1|$1자}}여야 합니다",
 	"communityconfiguration-maintenance-config-change-summary": "유지관리 스크립트에 의해 구성이 변경되었습니다: $1",
 	"tag-community_configuration": "커뮤니티 구성",
 	"tag-community_configuration-description": "[[mw:Extension:CommunityConfiguration|커뮤니티 구성 확장 기능]]을 사용하여 기능의 [[Special:CommunityConfiguration|로컬 위키 구성]]을 변경하는 편집입니다."
