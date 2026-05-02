@@ -6,13 +6,11 @@ use stdClass;
 
 class JsonSchemaIterator implements \Iterator {
 
-	private JsonSchemaReader $schema;
 	private int $position = 0;
 	private array $data = [];
 	private bool $initialized = false;
 
-	public function __construct( JsonSchemaReader $schema ) {
-		$this->schema = $schema;
+	public function __construct( private readonly JsonSchemaReader $schema ) {
 	}
 
 	private function initialize() {

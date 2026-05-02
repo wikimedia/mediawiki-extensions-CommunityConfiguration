@@ -11,15 +11,10 @@ use MediaWiki\Config\ConfigException;
  */
 class MediaWikiConfigRouter implements Config {
 
-	private MediaWikiConfigReader $configReader;
-	private Config $mainConfig;
-
 	public function __construct(
-		MediaWikiConfigReader $configReader,
-		Config $mainConfig
+		private readonly MediaWikiConfigReader $configReader,
+		private readonly Config $mainConfig
 	) {
-		$this->configReader = $configReader;
-		$this->mainConfig = $mainConfig;
 	}
 
 	/**

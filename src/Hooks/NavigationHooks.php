@@ -13,15 +13,10 @@ use MediaWiki\Title\MalformedTitleException;
 
 class NavigationHooks implements SkinTemplateNavigation__UniversalHook {
 
-	private SpecialPageFactory $specialPageFactory;
-	private ConfigurationProviderFactory $providerFactory;
-
 	public function __construct(
-		SpecialPageFactory $specialPageFactory,
-		ConfigurationProviderFactory $providerFactory
+		private readonly SpecialPageFactory $specialPageFactory,
+		private readonly ConfigurationProviderFactory $providerFactory
 	) {
-		$this->specialPageFactory = $specialPageFactory;
-		$this->providerFactory = $providerFactory;
 	}
 
 	/**

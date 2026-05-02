@@ -15,10 +15,7 @@ class WikiPageStoreEventIngress extends DomainEventIngress implements
 	PageLatestRevisionChangedListener,
 	PageDeletedListener
 {
-	private ConfigurationProviderFactory $factory;
-
-	public function __construct( ConfigurationProviderFactory $factory ) {
-		$this->factory = $factory;
+	public function __construct( private readonly ConfigurationProviderFactory $factory ) {
 	}
 
 	private function invalidateForPage( PageIdentity $page ) {

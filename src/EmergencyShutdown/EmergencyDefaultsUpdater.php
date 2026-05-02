@@ -9,10 +9,7 @@ use stdClass;
 
 class EmergencyDefaultsUpdater {
 
-	private EmergencyDefaultsPathBuilder $pathBuilder;
-
-	public function __construct( EmergencyDefaultsPathBuilder $pathBuilder ) {
-		$this->pathBuilder = $pathBuilder;
+	public function __construct( private readonly EmergencyDefaultsPathBuilder $pathBuilder ) {
 	}
 
 	/**

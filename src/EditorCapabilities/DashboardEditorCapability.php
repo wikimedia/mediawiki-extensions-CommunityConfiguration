@@ -6,13 +6,10 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\CommunityConfiguration\Provider\ConfigurationProviderFactory;
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
 use MediaWiki\Html\TemplateParser;
-use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
 
 class DashboardEditorCapability extends AbstractEditorCapability {
 
-	private ConfigurationProviderFactory $providerFactory;
-	private SpecialPageFactory $specialPageFactory;
 	private TemplateParser $templateParser;
 
 	private const GUIDELINES = [
@@ -29,11 +26,10 @@ class DashboardEditorCapability extends AbstractEditorCapability {
 	public function __construct(
 		IContextSource $ctx,
 		Title $parentTitle,
-		ConfigurationProviderFactory $providerFactory
+		private readonly ConfigurationProviderFactory $providerFactory
 	) {
 		parent::__construct( $ctx, $parentTitle );
 
-		$this->providerFactory = $providerFactory;
 		$this->templateParser = new TemplateParser( __DIR__ . '/templates' );
 	}
 

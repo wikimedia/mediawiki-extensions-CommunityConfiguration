@@ -13,19 +13,13 @@ use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiEdit extends ApiBase {
 
-	private LoggerInterface $logger;
-	private ConfigurationProviderFactory $configurationProviderFactory;
-
 	public function __construct(
 		ApiMain $mainModule,
 		string $moduleName,
-		LoggerInterface $logger,
-		ConfigurationProviderFactory $configurationProviderFactory
+		private readonly LoggerInterface $logger,
+		private readonly ConfigurationProviderFactory $configurationProviderFactory
 	) {
 		parent::__construct( $mainModule, $moduleName );
-
-		$this->logger = $logger;
-		$this->configurationProviderFactory = $configurationProviderFactory;
 	}
 
 	/**

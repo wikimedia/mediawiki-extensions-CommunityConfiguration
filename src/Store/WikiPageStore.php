@@ -28,27 +28,18 @@ class WikiPageStore extends AbstractJsonStore {
 	public const VERSION_FIELD_NAME = '$version';
 	public const TAG_NAME = 'community configuration';
 
-	private ?string $configLocation;
 	private bool $isTestWithStorageDisabled;
 	private ?Title $configTitle = null;
-	private TitleFactory $titleFactory;
-	private RevisionLookup $revisionLookup;
-	private Writer $writer;
 
 	public function __construct(
-		?string $configLocation,
+		private readonly ?string $configLocation,
 		WANObjectCache $cache,
-		TitleFactory $titleFactory,
-		RevisionLookup $revisionLookup,
-		Writer $writer,
+		private readonly TitleFactory $titleFactory,
+		private readonly RevisionLookup $revisionLookup,
+		private readonly Writer $writer,
 		?bool $isTestWithStorageDisabled = null
 	) {
 		parent::__construct( $cache );
-
-		$this->configLocation = $configLocation;
-		$this->titleFactory = $titleFactory;
-		$this->revisionLookup = $revisionLookup;
-		$this->writer = $writer;
 
 		if ( $isTestWithStorageDisabled === null ) {
 			$isTestWithStorageDisabled = defined( 'MW_PHPUNIT_TEST' ) &&

@@ -16,10 +16,7 @@ use stdClass;
  */
 class SchemaMigrator {
 
-	private SchemaConverterFactory $schemaConverterFactory;
-
-	public function __construct( SchemaConverterFactory $schemaConverterFactory ) {
-		$this->schemaConverterFactory = $schemaConverterFactory;
+	public function __construct( private readonly SchemaConverterFactory $schemaConverterFactory ) {
 	}
 
 	/**

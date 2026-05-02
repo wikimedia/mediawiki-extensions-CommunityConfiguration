@@ -13,13 +13,10 @@ use Wikimedia\Message\MessageSpecifier;
 abstract class AbstractEditorCapability implements IEditorCapability, MessageLocalizer {
 	use LoggerAwareTrait;
 
-	private IContextSource $ctx;
-	private Title $parentTitle;
-
-	public function __construct( IContextSource $ctx, Title $parentTitle ) {
-		$this->ctx = $ctx;
-		$this->parentTitle = $parentTitle;
-
+	public function __construct(
+		private readonly IContextSource $ctx,
+		private readonly Title $parentTitle
+	) {
 		$this->setLogger( new NullLogger() );
 	}
 

@@ -12,15 +12,10 @@ use RuntimeException;
 
 class MessagesProcessor {
 
-	private LoggerInterface $logger;
-	private MessageLocalizer $messageLocalizer;
-
 	public function __construct(
-		LoggerInterface $logger,
-		MessageLocalizer $messageLocalizer
+		private readonly LoggerInterface $logger,
+		private readonly MessageLocalizer $messageLocalizer
 	) {
-		$this->logger = $logger;
-		$this->messageLocalizer = $messageLocalizer;
 	}
 
 	/**

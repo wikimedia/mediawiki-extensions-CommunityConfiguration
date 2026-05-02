@@ -8,10 +8,7 @@ class JsonSchemaVersionManager implements SchemaVersionManager {
 
 	private const VERSIONS_NAMESPACE = 'Migrations';
 
-	private JsonSchemaReader $jsonSchema;
-
-	public function __construct( JsonSchemaReader $jsonSchema ) {
-		$this->jsonSchema = $jsonSchema;
+	public function __construct( private readonly JsonSchemaReader $jsonSchema ) {
 	}
 
 	private function getClassPrefix(): string {

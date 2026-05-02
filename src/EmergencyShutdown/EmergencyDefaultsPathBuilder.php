@@ -9,10 +9,7 @@ use MediaWiki\Registration\ExtensionRegistry;
 class EmergencyDefaultsPathBuilder {
 	private const DEFAULT_DIRECTORY_NAME = 'CommunityConfigurationFallbacks';
 
-	private ExtensionRegistry $registry;
-
-	public function __construct( ExtensionRegistry $registry ) {
-		$this->registry = $registry;
+	public function __construct( private readonly ExtensionRegistry $registry ) {
 	}
 
 	/**

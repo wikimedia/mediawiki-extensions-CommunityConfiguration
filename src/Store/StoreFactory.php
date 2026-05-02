@@ -25,11 +25,10 @@ class StoreFactory {
 	private array $storeSpecs;
 	/** @var IConfigurationStore[] validators indexed by name */
 	private array $stores = [];
-	private ObjectFactory $objectFactory;
 
 	public function __construct(
 		ServiceOptions $options,
-		ObjectFactory $objectFactory,
+		private readonly ObjectFactory $objectFactory,
 		ExtensionRegistry $extensionRegistry
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -37,8 +36,6 @@ class StoreFactory {
 			$options, $extensionRegistry,
 			'CommunityConfigurationStores'
 		);
-
-		$this->objectFactory = $objectFactory;
 	}
 
 	public function newStore(

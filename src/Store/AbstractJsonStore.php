@@ -13,11 +13,9 @@ use Wikimedia\ObjectCache\WANObjectCache;
  */
 abstract class AbstractJsonStore extends AbstractStore {
 
-	protected WANObjectCache $cache;
 	protected HashBagOStuff $inProcessCache;
 
-	public function __construct( WANObjectCache $cache ) {
-		$this->cache = $cache;
+	public function __construct( protected readonly WANObjectCache $cache ) {
 		$this->inProcessCache = new HashBagOStuff();
 	}
 

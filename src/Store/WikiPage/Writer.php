@@ -22,18 +22,11 @@ use MediaWiki\User\UserFactory;
 
 class Writer {
 
-	private WikiPageFactory $wikiPageFactory;
-	private UserFactory $userFactory;
-	private HookContainer $hookContainer;
-
 	public function __construct(
-		WikiPageFactory $wikiPageFactory,
-		UserFactory $userFactory,
-		HookContainer $hookContainer
+		private readonly WikiPageFactory $wikiPageFactory,
+		private readonly UserFactory $userFactory,
+		private readonly HookContainer $hookContainer
 	) {
-		$this->wikiPageFactory = $wikiPageFactory;
-		$this->userFactory = $userFactory;
-		$this->hookContainer = $hookContainer;
 	}
 
 	/**

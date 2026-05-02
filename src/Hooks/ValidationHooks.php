@@ -13,10 +13,7 @@ use StatusValue;
 
 class ValidationHooks implements JsonValidateSaveHook {
 
-	private ConfigurationProviderFactory $factory;
-
-	public function __construct( ConfigurationProviderFactory $factory ) {
-		$this->factory = $factory;
+	public function __construct( private readonly ConfigurationProviderFactory $factory ) {
 	}
 
 	/**

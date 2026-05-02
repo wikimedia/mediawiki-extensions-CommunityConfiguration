@@ -21,19 +21,13 @@ class EditorCapabilityFactory {
 	/** @var array ObjectFactory specs for validators, indexed by validator name */
 	private array $capabilitiesSpecs;
 
-	private ObjectFactory $objectFactory;
-	private LoggerInterface $logger;
-
 	public function __construct(
 		ServiceOptions $options,
-		ObjectFactory $objectFactory,
-		LoggerInterface $logger
+		private readonly ObjectFactory $objectFactory,
+		private readonly LoggerInterface $logger
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->capabilitiesSpecs = $options->get( 'CommunityConfigurationEditorCapabilities' );
-
-		$this->objectFactory = $objectFactory;
-		$this->logger = $logger;
 	}
 
 	/**

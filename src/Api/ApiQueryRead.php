@@ -11,19 +11,13 @@ use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiQueryRead extends ApiQueryBase {
 
-	private LoggerInterface $logger;
-	private ConfigurationProviderFactory $configurationProviderFactory;
-
 	public function __construct(
 		ApiQuery $queryModule,
 		string $moduleName,
-		LoggerInterface $logger,
-		ConfigurationProviderFactory $configurationProviderFactory
+		private readonly LoggerInterface $logger,
+		private readonly ConfigurationProviderFactory $configurationProviderFactory
 	) {
 		parent::__construct( $queryModule, $moduleName, 'ccr' );
-
-		$this->logger = $logger;
-		$this->configurationProviderFactory = $configurationProviderFactory;
 	}
 
 	/**

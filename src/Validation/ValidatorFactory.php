@@ -39,16 +39,13 @@ class ValidatorFactory {
 	private array $validatorSpecs;
 	/** @var array<string,IValidator> validators indexed by name */
 	private array $validators = [];
-	private ObjectFactory $objectFactory;
 
 	public function __construct(
 		ServiceOptions $options,
-		ObjectFactory $objectFactory
+		private readonly ObjectFactory $objectFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->validatorSpecs = $options->get( 'CommunityConfigurationValidators' );
-
-		$this->objectFactory = $objectFactory;
 	}
 
 	/**

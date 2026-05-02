@@ -18,18 +18,11 @@ use Wikimedia\ObjectCache\BagOStuff;
  */
 class MediaWikiConfigReader implements Config {
 
-	private BagOStuff $cache;
-	private ConfigurationProviderFactory $providerFactory;
-	private LoggerInterface $logger;
-
 	public function __construct(
-		BagOStuff $cache,
-		ConfigurationProviderFactory $providerFactory,
-		LoggerInterface $logger
+		private readonly BagOStuff $cache,
+		private readonly ConfigurationProviderFactory $providerFactory,
+		private readonly LoggerInterface $logger
 	) {
-		$this->cache = $cache;
-		$this->providerFactory = $providerFactory;
-		$this->logger = $logger;
 	}
 
 	private function addMediaWikiConfigProviderKeysToMap(
