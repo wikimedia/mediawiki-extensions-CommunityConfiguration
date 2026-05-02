@@ -110,12 +110,11 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		$config = $this->provider->loadValidConfigurationUncached();
 		if ( !$config->isOK() ) {
 			$this->displayValidationError( $config );
-			$this->logger->error(
-				'Failed to load valid config from ' . $this->provider->getId(),
-				[
-					'errors' => $config->getErrors(),
-				]
-			);
+			$this->logger->error( ...$this->statusFormatter->getPsr3MessageAndContext( $config, [
+				'exception' => new \RuntimeException,
+				'provider' => $this->provider->getId(),
+				'impact' => 'Community Configuration editor did not load',
+			] ) );
 			return;
 		}
 
