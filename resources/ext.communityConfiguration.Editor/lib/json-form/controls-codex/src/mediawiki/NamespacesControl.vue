@@ -34,8 +34,7 @@ const filterSearchQuery = ( searchQuery ) => ( item ) => {
 	if ( !searchQuery ) {
 		return false;
 	}
-	return item.label.startsWith( searchQuery ) ||
-		item.label.startsWith( searchQuery.toLowerCase() );
+	return item.label.toLowerCase().startsWith( searchQuery.toLowerCase() );
 };
 
 // @vue/component
