@@ -18,7 +18,7 @@ function camelize( str ) {
 }
 
 function getMessageOrNull( key ) {
-	// eslint-disable-next-line mediawiki/msg-doc
+
 	const msg = new mw.Message( mw.messages, key );
 	return msg.exists() ? msg : null;
 }

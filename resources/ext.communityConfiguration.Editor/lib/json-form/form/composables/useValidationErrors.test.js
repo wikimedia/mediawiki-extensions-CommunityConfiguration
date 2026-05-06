@@ -96,7 +96,7 @@ function withArrayErrors() {
 global.mw = {
 
 	message( key ) {
-		// eslint-disable-next-line mediawiki/msg-doc
+
 		return new mw.Message( {}, key );
 	},
 
