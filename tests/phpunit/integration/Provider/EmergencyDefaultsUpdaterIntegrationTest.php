@@ -31,17 +31,15 @@ class EmergencyDefaultsUpdaterIntegrationTest extends MediaWikiIntegrationTestCa
 		$updater = $ccServices->getEmergencyDefaultsUpdater();
 
 		$provider = $providerFactory->newProvider( 'foo' );
-		$tempFile = $this->getServiceContainer()->getTempFSFileFactory()->newTempFSFile(
-			__CLASS__, 'php'
-		);
+		$tempFile = $this->getNewTempFile();
 
-		file_put_contents( $tempFile->getPath(), $updater->getSerializedDefaults( $provider ) );
+		file_put_contents( $tempFile, $updater->getSerializedDefaults( $provider ) );
 		$this->assertEquals(
 			(object)[
 				'NumberWithDefault' => 0,
 				'Mentors' => (object)[],
 			],
-			require_once $tempFile->getPath()
+			require_once $tempFile
 		);
 	}
 }

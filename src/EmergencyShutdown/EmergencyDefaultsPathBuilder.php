@@ -26,8 +26,7 @@ class EmergencyDefaultsPathBuilder {
 			);
 		}
 		$extensionDir = dirname( $this->registry->getAllThings()[ $extension ]['path'] );
-		// TODO: Make DEFAULT_DIRECTORY_NAME customizable
-		return $extensionDir . DIRECTORY_SEPARATOR . self::DEFAULT_DIRECTORY_NAME;
+		return $extensionDir . '/' . self::DEFAULT_DIRECTORY_NAME;
 	}
 
 	/**
@@ -43,7 +42,7 @@ class EmergencyDefaultsPathBuilder {
 		IConfigurationProvider $provider,
 		string $extensionName
 	): string {
-		return $this->getDefaultsDirectory( $extensionName ) . DIRECTORY_SEPARATOR .
+		return $this->getDefaultsDirectory( $extensionName ) . '/' .
 			$provider->getId() . '.php';
 	}
 }
