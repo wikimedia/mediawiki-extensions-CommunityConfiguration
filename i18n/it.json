@@ -46,7 +46,7 @@
 	"communityconfiguration-editor-navigation-tab-viewform": "Visualizza modulo",
 	"communityconfiguration-editor-client-notice-message": "Questa pagina è protetta. La configurazione di questa funzionalità è modificabile solo dagli amministratori.",
 	"communityconfiguration-editor-client-notice-footer-message": "Non puoi salvare le modifiche a questo modulo perché la configurazione di questa funzionalità è riservata agli amministratori.",
-	"communityconfiguration-editor-error-validation-array-items-max": "L'array ha un massimo di $1 {{PLURAL:$1|elemento|elementi}}",
+	"communityconfiguration-editor-error-validation-array-items-max": "L'array deve avere un massimo di $1 {{PLURAL:$1|elemento|elementi}}",
 	"communityconfiguration-editor-error-validation-array-items-min": "L'array deve avere un minimo di $1 {{PLURAL:$1|elemento|elementi}}",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Non ha un valore nell'enumerazione: $1",
 	"communityconfiguration-editor-error-validation-string-too-short": "Deve essere lungo almeno $1 {{PLURAL:$1|carattere|caratteri}}",
