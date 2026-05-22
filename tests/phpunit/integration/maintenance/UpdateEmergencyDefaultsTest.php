@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\CommunityConfiguration\Tests\Integration;
 
 use MediaWiki\Extension\CommunityConfiguration\Maintenance\UpdateEmergencyDefaults;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
 use stdClass;
 
@@ -66,12 +67,7 @@ class UpdateEmergencyDefaultsTest extends MaintenanceBaseTestCase {
 	}
 
 	private function getDefaultsPath(): string {
-		// phpcs:disable: MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
-		global $IP;
-
-		return implode( DIRECTORY_SEPARATOR, [
-			$IP, 'extensions', 'CommunityConfigurationExample', 'CommunityConfigurationFallbacks',
-			'CommunityConfigurationExample.php',
-		] );
+		return $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::ExtensionDirectory )
+			. '/CommunityConfigurationExample/CommunityConfigurationFallbacks/CommunityConfigurationExample.php';
 	}
 }
