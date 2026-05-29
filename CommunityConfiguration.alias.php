@@ -65,3 +65,8 @@ $specialPageAliases['pl'] = [
 $specialPageAliases['sk'] = [
 	'CommunityConfiguration' => [ 'KomunitnáKonfigurácia' ],
 ];
+
+/** Ukrainian (Українська) */
+$specialPageAliases['uk'] = [
+	'CommunityConfiguration' => [ 'Налаштування_спільнотою' ],
+];
