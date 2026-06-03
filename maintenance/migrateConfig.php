@@ -58,9 +58,6 @@ class MigrateConfig extends Maintenance {
 		$this->schemaMigrator = $ccServices->getSchemaMigrator();
 	}
 
-	/**
-	 * @throws \MediaWiki\Maintenance\MaintenanceFatalError
-	 */
 	private function fatalStatus( StatusValue $status, string $headline ): never {
 		$this->fatalError(
 			"$headline.\n\n== Error details ==\n"

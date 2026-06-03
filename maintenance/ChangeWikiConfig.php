@@ -12,7 +12,6 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\Maintenance\MaintenanceFatalError;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 use stdClass;
@@ -90,7 +89,6 @@ class ChangeWikiConfig extends Maintenance {
 
 	/**
 	 * @inheritDoc
-	 * @throws MaintenanceFatalError
 	 */
 	public function execute(): bool {
 		$this->initServices();
@@ -167,7 +165,6 @@ class ChangeWikiConfig extends Maintenance {
 	}
 
 	/**
-	 * @throws MaintenanceFatalError
 	 * @return mixed The decoded json from the argument
 	 */
 	private function getValueFromString( string $arg ) {
@@ -233,9 +230,6 @@ class ChangeWikiConfig extends Maintenance {
 		}
 	}
 
-	/**
-	 * @throws MaintenanceFatalError
-	 */
 	public function executeDeleteOperation( IConfigurationProvider $provider ): stdClass {
 		$key = $this->getArg( 'key' );
 		if ( $key === null ) {
@@ -253,9 +247,6 @@ class ChangeWikiConfig extends Maintenance {
 		return $config;
 	}
 
-	/**
-	 * @throws MaintenanceFatalError
-	 */
 	public function executeSetOperation( IConfigurationProvider $provider ): stdClass {
 		$key = $this->getArg( 'key' );
 		if ( $key === null ) {
@@ -270,9 +261,6 @@ class ChangeWikiConfig extends Maintenance {
 		return $config;
 	}
 
-	/**
-	 * @throws MaintenanceFatalError
-	 */
 	private function executeNullEdit( IConfigurationProvider $provider ): stdClass {
 		if ( $this->getArg( 'key' ) !== null ) {
 			$this->fatalError( '"key" argument must not be set when performing a null-edit!' );
@@ -287,9 +275,6 @@ class ChangeWikiConfig extends Maintenance {
 		return $this->loadFullConfigurationWithDefaultsAndNormalization( $provider );
 	}
 
-	/**
-	 * @throws MaintenanceFatalError
-	 */
 	private function loadConfigurationDirectlyFromFile( IConfigurationProvider $provider ): stdClass {
 		$configStatus = $provider->getStore()->loadConfigurationUncached();
 		if ( !$configStatus->isGood() ) {
@@ -299,9 +284,6 @@ class ChangeWikiConfig extends Maintenance {
 		return $configStatus->value;
 	}
 
-	/**
-	 * @throws MaintenanceFatalError
-	 */
 	private function loadFullConfigurationWithDefaultsAndNormalization( IConfigurationProvider $provider ): stdClass {
 		$configStatus = $provider->loadValidConfigurationUncached();
 		if ( !$configStatus->isGood() ) {

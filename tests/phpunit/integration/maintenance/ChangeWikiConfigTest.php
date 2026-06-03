@@ -7,7 +7,6 @@ namespace MediaWiki\Extension\CommunityConfiguration\Tests\Integration;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
 use MediaWiki\Extension\CommunityConfiguration\Maintenance\ChangeWikiConfig;
 use MediaWiki\Json\FormatJson;
-use MediaWiki\Maintenance\MaintenanceFatalError;
 use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
 use MediaWiki\Title\Title;
 use stdClass;
@@ -236,13 +235,9 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 			[ 'CommunityConfigurationExample', 'NotValidJson', '{"bar"' ]
 		);
 
-		try {
-			$this->maintenance->execute();
-		} catch ( MaintenanceFatalError $e ) {
-			$this->assertSame( 1, $e->getCode() );
-		}
-
+		$this->expectCallToFatalError( 1 );
 		$this->expectOutputString( "`{\"bar\"` is not valid JSON: Syntax error\n" );
+		$this->maintenance->execute();
 	}
 
 	public function testNullEdit(): void {
@@ -310,8 +305,8 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 			[ 'CommunityConfigurationExample', 'CCExample_String', 'example' ],
 		);
 
-		$this->expectException( MaintenanceFatalError::class );
-		$result = $this->maintenance->execute();
+		$this->expectCallToFatalError();
+		$this->maintenance->execute();
 	}
 
 	public function testMissingFile() {
@@ -321,7 +316,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 			[ 'CommunityConfigurationExample', 'CCExample_String' ]
 		);
 
-		$this->expectException( MaintenanceFatalError::class );
-		$result = $this->maintenance->execute();
+		$this->expectCallToFatalError();
+		$this->maintenance->execute();
 	}
 }
