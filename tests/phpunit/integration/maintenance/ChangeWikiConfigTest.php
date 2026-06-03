@@ -214,7 +214,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 			// phpcs:ignore Generic.Files.LineLength.TooLong
 			'Error: The property NonExistingProperty is not defined and the definition does not allow additional properties. Key: ',
 		];
-		$this->assertOutputPrePostShutdown( implode( "\n", $expectedOutputLines ) . "\n", false );
+		$this->expectOutputString( implode( "\n", $expectedOutputLines ) . "\n" );
 	}
 
 	private function getValidConfig(): stdClass {
@@ -242,10 +242,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 			$this->assertSame( 1, $e->getCode() );
 		}
 
-		$this->assertOutputPrePostShutdown(
-			"`{\"bar\"` is not valid JSON: Syntax error\n",
-			false
-		);
+		$this->expectOutputString( "`{\"bar\"` is not valid JSON: Syntax error\n" );
 	}
 
 	public function testNullEdit(): void {
