@@ -3,6 +3,7 @@
 		"authors": [
 			"McDutchie",
 			"No se",
+			"Siebrand",
 			"Sjoerddebruin"
 		]
 	},
@@ -18,7 +19,7 @@
 	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Element verwijderen",
 	"communityconfiguration-editor-array-fallback-add-element-button-label": "Een ander element toevoegen",
 	"communityconfiguration-guidelines-title": "Wat is Gemeenschapsconfiguratie?",
-	"communityconfiguration-guidelines-description": "Gemeenschapsconfiguratie is een tool waarmee gemeenschappen de instellingen van verschillende {{SITENAME}}-functies kunnen wijzigen en beheren, waardoor beheerders kunnen voldoen aan de specifieke behoeften van hun gemeenschap.",
+	"communityconfiguration-guidelines-description": "Gemeenschapsconfiguratie is een hulpmiddel waarmee gemeenschappen de instellingen van verschillende {{SITENAME}}-functies kunnen wijzigen en beheren, waardoor beheerders kunnen voldoen aan de specifieke behoeften van hun gemeenschap.",
 	"communityconfiguration-guidelines-guideline1-title": "Meer lezen",
 	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Lees meer] over Gemeenschapsconfiguratie, wat het is, hoe het werkt, en de voortdurende werkzaamheden eraan van het team.",
 	"communityconfiguration-guidelines-guideline2-title": "Stuur ons {{GENDER:$1|uw}} terugkoppeling",
