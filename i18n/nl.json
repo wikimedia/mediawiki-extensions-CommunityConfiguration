@@ -3,7 +3,8 @@
 		"authors": [
 			"McDutchie",
 			"No se",
-			"Sjoerddebruin"
+			"Sjoerddebruin",
+			"Siebrand"
 		]
 	},
 	"communityconfiguration": "Gemeenschapsconfiguratie",
@@ -11,14 +12,14 @@
 	"communityconfiguration-editor-chip-control-aria-chip-description": "Druk op Enter om te bewerken of op Delete om te verwijderen",
 	"communityconfiguration-editor-client-generic-error": "Er is iets misgegaan bij het laden van de configuratie-editor. Probeer het later opnieuw.",
 	"communityconfiguration-editor-client-generic-error-description": "Er is een fout opgetreden in ‘$2’ in component $1. Zie de onderstaande details:",
-	"communityconfiguration-editor-client-post-feedback": "Als het probleem zich blijft voordoen, overweeg dan [$1 feedback achter te laten] op de overlegpagina.",
+	"communityconfiguration-editor-client-post-feedback": "Als het probleem zich blijft voordoen, overweeg dan [$1 terugkoppeling achter te laten] op de overlegpagina.",
 	"communityconfiguration-editor-client-validation-errors": "Er {{PLURAL:$1|zit een fout|zitten $1 fouten}} in het formulier:",
 	"communityconfiguration-editor-form-submit-button-text": "Wijzigingen opslaan",
 	"communityconfiguration-editor-form-submit-button-loading-text": "Wordt verzonden…",
 	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Element verwijderen",
 	"communityconfiguration-editor-array-fallback-add-element-button-label": "Een ander element toevoegen",
 	"communityconfiguration-guidelines-title": "Wat is Gemeenschapsconfiguratie?",
-	"communityconfiguration-guidelines-description": "Gemeenschapsconfiguratie is een tool waarmee gemeenschappen de instellingen van verschillende {{SITENAME}}-functies kunnen wijzigen en beheren, waardoor beheerders kunnen voldoen aan de specifieke behoeften van hun gemeenschap.",
+	"communityconfiguration-guidelines-description": "Gemeenschapsconfiguratie is een hulpmiddel waarmee gemeenschappen de instellingen van verschillende {{SITENAME}}-functies kunnen wijzigen en beheren, waardoor beheerders kunnen voldoen aan de specifieke behoeften van hun gemeenschap.",
 	"communityconfiguration-guidelines-guideline1-title": "Meer lezen",
 	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Lees meer] over Gemeenschapsconfiguratie, wat het is, hoe het werkt, en de voortdurende werkzaamheden eraan van het team.",
 	"communityconfiguration-guidelines-guideline2-title": "Stuur ons {{GENDER:$1|uw}} terugkoppeling",

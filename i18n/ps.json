@@ -49,8 +49,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "په کتار کې بايد ډېرترډېره {{PLURAL:$1|$1 توکی|$1 توکي}} وي",
 	"communityconfiguration-editor-error-validation-array-items-min": "په کتار کې بايد لږترلږه {{PLURAL:$1|$1 توکی|$1 توکي}} وي",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "په شمېرنه کې ارزښت نه لري: $1",
-	"communityconfiguration-editor-error-validation-string-too-short": "بايد لږترلږه $1 لوښې اوږد وي",
-	"communityconfiguration-editor-error-validation-string-too-long": "بايد لږترلږه $1 لوښې اوږد وي",
+	"communityconfiguration-editor-error-validation-string-too-short": "بايد لږترلږه {{PLURAL:$1|$1 لوښه|$1 لوښې}} اوږد وي",
+	"communityconfiguration-editor-error-validation-string-too-long": "بايد ډېر تر ډېره {{PLURAL:$1|$1 لوښه|$1 لوښې}} اوږد وي",
 	"communityconfiguration-maintenance-config-change-summary": "د ساتونکي سکريپټ له خوا ترتيب بدل شو: $1",
 	"tag-community_configuration": "ټولنې جوړښت",
 	"tag-community_configuration-description": "هغه سمونونه چې د [[mw:Extension:CommunityConfiguration|ټولنې چاروالۍ مختاړي]] په کارولو سره د يوې ځانگړنې لپاره د [[Special:CommunityConfiguration|ځايي ويکي چاروالي]] بدلوي."
