@@ -68,7 +68,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 		$this->assertEquals( $expectedConfigValue, json_encode( $actualConfig ) );
 		$latestRevision = $this->getServiceContainer()->getRevisionLookup()
 			->getRevisionById(
-				Title::newFromText( 'MediaWiki:CommunityConfigurationExample.json' )
+				Title::makeTitle( NS_MEDIAWIKI, 'CommunityConfigurationExample.json' )
 					->getLatestRevID( IDBAccessObject::READ_LATEST )
 			);
 		$actualSummary = $latestRevision->getComment()->text;
@@ -130,7 +130,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 		$this->assertEquals( $expectedConfigWithoutWhitespace, json_encode( $actualConfig ) );
 		$latestRevision = $this->getServiceContainer()->getRevisionLookup()
 			->getRevisionById(
-				Title::newFromText( 'MediaWiki:CommunityConfigurationExample.json' )
+				Title::makeTitle( NS_MEDIAWIKI, 'CommunityConfigurationExample.json' )
 					->getLatestRevID( IDBAccessObject::READ_LATEST )
 			);
 		$actualSummary = $latestRevision->getComment()->text;
@@ -188,7 +188,7 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 		$this->assertEquals( $initialConfigValueWithoutWhitespace, json_encode( $actualConfig ) );
 		$latestRevision = $this->getServiceContainer()->getRevisionLookup()
 			->getRevisionById(
-				Title::newFromText( 'MediaWiki:CommunityConfigurationExample.json' )
+				Title::makeTitle( NS_MEDIAWIKI, 'CommunityConfigurationExample.json' )
 					->getLatestRevID( IDBAccessObject::READ_LATEST )
 			);
 		$actualSummary = $latestRevision->getComment()->text;

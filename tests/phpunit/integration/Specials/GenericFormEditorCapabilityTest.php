@@ -43,7 +43,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 		$sut = $objectFactory->createObject(
 			self::SPEC,
 			[
-				'extraArgs' => [ $this->getContext(), Title::newFromText( 'Special:CommunityConfiguration' ) ],
+				'extraArgs' => [ $this->getContext(), Title::makeTitle( NS_SPECIAL, 'CommunityConfiguration' ) ],
 			]
 		);
 
@@ -207,7 +207,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 			'genericFormEditorCapability' => $this->getServiceContainer()->getObjectFactory()->createObject(
 				self::SPEC,
 				[
-					'extraArgs' => [ $testContext, Title::newFromText( 'Special:CommunityConfiguration' ) ],
+					'extraArgs' => [ $testContext, Title::makeTitle( NS_SPECIAL, 'CommunityConfiguration' ) ],
 				]
 			),
 		];

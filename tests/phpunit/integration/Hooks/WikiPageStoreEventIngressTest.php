@@ -80,7 +80,7 @@ class WikiPageStoreEventIngressTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// 2. ...and that deletion invalidated it.
-		$this->deletePage( Title::newFromText( 'MediaWiki:Foo.json' ) );
+		$this->deletePage( Title::makeTitle( NS_MEDIAWIKI, 'Foo.json' ) );
 		$mockWallClock += 10;
 		$this->assertStatusValue(
 			(object)[],
