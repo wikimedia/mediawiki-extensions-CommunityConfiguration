@@ -46,6 +46,11 @@ $specialPageAliases['id'] = [
 	'CommunityConfiguration' => [ 'Pengaturan_komunitas' ],
 ];
 
+/** Malay (Bahasa Melayu) */
+$specialPageAliases['ms'] = [
+	'CommunityConfiguration' => [ 'Konfigurasi_komuniti' ],
+];
+
 /** Norwegian Bokmål (norsk bokmål) */
 $specialPageAliases['nb'] = [
 	'CommunityConfiguration' => [ 'Fellesskapskonfigurasjon' ],
