@@ -3,10 +3,11 @@
 		"authors": [
 			"Cookai1205",
 			"Kly",
-			"LowensteinYang"
+			"LowensteinYang",
+			"Winston Sung"
 		]
 	},
-	"communityconfiguration": "社群配置",
+	"communityconfiguration": "社群組態",
 	"communityconfiguration-desc": "包含社群配置邏輯",
 	"communityconfiguration-editor-chip-control-aria-chip-description": "按Enter鍵編輯，或按Delete鍵移除",
 	"communityconfiguration-editor-client-generic-error": "載入配置編輯器時發生問題。請稍後再試。",
