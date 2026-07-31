@@ -81,7 +81,7 @@ module.exports = exports = {
 		}
 
 		const isMaxNumberOfItemsReached = computed(
-			() => control.schema.maxItems && data.value.length >= control.schema.maxItems
+			() => control.schema.maxItems && data.value.length >= control.schema.maxItems,
 		);
 
 		return {

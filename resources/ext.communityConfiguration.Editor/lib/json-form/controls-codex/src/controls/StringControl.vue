@@ -46,14 +46,14 @@ module.exports = exports = defineComponent( {
 			if ( control.schema.maxLength && stringLengthAsItIsCalculatedInJsonrainbow > control.schema.maxLength ) {
 				setValidationErrorForFieldId(
 					controlWrapper.id,
-					i18n( 'communityconfiguration-editor-error-validation-string-too-long', control.schema.maxLength ).text()
+					i18n( 'communityconfiguration-editor-error-validation-string-too-long', control.schema.maxLength ).text(),
 				);
 				return;
 			}
 			if ( control.schema.minLength && stringLengthAsItIsCalculatedInJsonrainbow < control.schema.minLength ) {
 				setValidationErrorForFieldId(
 					controlWrapper.id,
-					i18n( 'communityconfiguration-editor-error-validation-string-too-short', control.schema.minLength ).text()
+					i18n( 'communityconfiguration-editor-error-validation-string-too-short', control.schema.minLength ).text(),
 				);
 				return;
 			}

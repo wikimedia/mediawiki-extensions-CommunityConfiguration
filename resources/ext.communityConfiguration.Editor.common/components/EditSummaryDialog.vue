@@ -54,7 +54,7 @@ module.exports = exports = {
 		const wrappedEditSummary = useModelWrapper( toRef( props, 'summary' ), emit, 'update:summary' );
 		const i18n = inject( 'i18n' );
 		const providerName = computed(
-			() => i18n( `communityconfiguration-${props.providerId.toLowerCase()}-title` ).text()
+			() => i18n( `communityconfiguration-${props.providerId.toLowerCase()}-title` ).text(),
 		);
 
 		function saveChanges() {

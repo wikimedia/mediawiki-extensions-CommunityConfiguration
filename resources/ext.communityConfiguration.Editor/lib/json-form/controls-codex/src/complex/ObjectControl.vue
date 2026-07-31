@@ -58,7 +58,7 @@ module.exports = exports = {
 				i18nPrefix: `${jsonform.config.i18nPrefix}-${props.uischema.name}`,
 			} ),
 			props.uischema.scope,
-			unref( control.modelValue )
+			unref( control.modelValue ),
 		);
 		return {
 			control,

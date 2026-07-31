@@ -40,7 +40,7 @@ module.exports = exports = {
 			/* eslint-disable vue/no-undef-properties */
 			const renderer = maxBy(
 				this.renderer.renderers,
-				( r ) => r.tester( this.renderer.uischema, this.renderer.schema, this.rootSchema )
+				( r ) => r.tester( this.renderer.uischema, this.renderer.schema, this.rootSchema ),
 			);
 			/* eslint-enable vue/no-undef-properties */
 			if (
@@ -48,7 +48,7 @@ module.exports = exports = {
 				renderer.tester(
 					this.renderer.uischema,
 					this.renderer.schema,
-					this.rootSchema
+					this.rootSchema,
 				) === -1
 			) {
 				// REVIEW should we fail for unkown controls? Render something?

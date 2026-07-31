@@ -68,14 +68,14 @@ module.exports = exports = defineComponent( {
 
 		const { setValidationErrorForFieldId, clearValidationErrorForFieldId } = useValidationErrors();
 		function validateNewValues( newValues ) {
-			// eslint-disable-next-line es-x/no-array-prototype-includes
+
 			if ( !newValues.every( ( value ) => allowedValues.includes( value ) ) ) {
 				setValidationErrorForFieldId(
 					controlWrapper.id,
 					i18n(
 						'communityconfiguration-editor-error-validation-enum-invalid-value',
-						allowedValues.join( ', ' )
-					).text()
+						allowedValues.join( ', ' ),
+					).text(),
 				);
 				return;
 			}
@@ -83,7 +83,7 @@ module.exports = exports = defineComponent( {
 			if ( control.schema.maxItems && newValues.length > control.schema.maxItems ) {
 				setValidationErrorForFieldId(
 					controlWrapper.id,
-					i18n( 'communityconfiguration-editor-error-validation-array-items-max', control.schema.maxItems ).text()
+					i18n( 'communityconfiguration-editor-error-validation-array-items-max', control.schema.maxItems ).text(),
 				);
 				return;
 			}
@@ -91,7 +91,7 @@ module.exports = exports = defineComponent( {
 			if ( control.schema.minItems && newValues.length < control.schema.minItems ) {
 				setValidationErrorForFieldId(
 					controlWrapper.id,
-					i18n( 'communityconfiguration-editor-error-validation-array-items-min', control.schema.minItems ).text()
+					i18n( 'communityconfiguration-editor-error-validation-array-items-min', control.schema.minItems ).text(),
 				);
 				return;
 			}

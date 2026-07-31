@@ -179,7 +179,7 @@ module.exports = exports = {
 			submitOutcome.value = null;
 			clearValidationErrors();
 			writingRepository.writeConfigurationData(
-				providerId, tempFormData, summary.value
+				providerId, tempFormData, summary.value,
 			).then( () => {
 				isLoading.value = false;
 				submitOutcome.value = { success: true };

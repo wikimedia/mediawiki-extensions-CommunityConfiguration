@@ -25,7 +25,7 @@ const {
 const { debounce, useCodexControl } = require( '../utils.js' );
 const { search } = require( './api.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
-const filterSelection = ( selection ) => ( item ) => selection.map( ( x ) => x.value ).indexOf( item.value ) === -1;
+const filterSelection = ( selection ) => ( item ) => !selection.map( ( x ) => x.value ).includes( item.value );
 
 // @vue/component
 module.exports = exports = {
