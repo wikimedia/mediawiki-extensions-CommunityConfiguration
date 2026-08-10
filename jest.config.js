@@ -26,8 +26,12 @@ module.exports = {
 		customExportConditions: [ 'node', 'node-addons' ],
 	},
 	// A map from regular expressions to module names or to arrays of module
-	// names that allow to stub out resources with a single module
+	// names that allow to stub out resources with a single module.
+	// The map is first-match-wins, and the icons.json and codex.js patterns below are
+	// unanchored substrings. Keep anchored ResourceLoader module names above them.
 	moduleNameMapper: {
+		'^ext\\.communityConfiguration\\.Editor\\.common$':
+			'<rootDir>/resources/ext.communityConfiguration.Editor.common/index.js',
 		'icons.json': '@wikimedia/codex-icons',
 		'codex.js': '@wikimedia/codex',
 	},

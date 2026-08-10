@@ -3,10 +3,6 @@ jest.mock( './icons.json', () => ( {
 	cdxIconLinkExternal: 'link external',
 } ), { virtual: true } );
 jest.mock( '../lib/icons.json', () => ( {} ), { virtual: true } );
-jest.mock( 'ext.communityConfiguration.Editor.common',
-	() => require( '../../ext.communityConfiguration.Editor.common/index.js' ),
-	{ virtual: true },
-);
 const { mount } = require( '@vue/test-utils' );
 // FIXME the mock needs to be set before the require(App.vue)
 // statement, move the read of mw.config.get( 'wgFormattedNamespaces' )
