@@ -19,9 +19,9 @@
 const { CdxCheckbox } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
+	useCodexControl,
 	useJsonFormControl,
-} = require( '../../config/index.js' );
-const { useCodexControl } = require( '../utils.js' );
+} = require( 'ext.communityConfiguration.Editor.controls' );
 const ControlWrapper = require( './ControlWrapper.vue' );
 
 // @vue/component

@@ -32,6 +32,8 @@ module.exports = {
 	moduleNameMapper: {
 		'^ext\\.communityConfiguration\\.Editor\\.common$':
 			'<rootDir>/resources/ext.communityConfiguration.Editor.common/index.js',
+		'^ext\\.communityConfiguration\\.Editor\\.controls$':
+			'<rootDir>/resources/ext.communityConfiguration.Editor/lib/json-form/index.js',
 		'icons.json': '@wikimedia/codex-icons',
 		'codex.js': '@wikimedia/codex',
 	},

@@ -20,10 +20,10 @@ const { defineComponent } = require( 'vue' );
 const { CdxTextInput } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
+	useCodexControl,
 	useJsonFormControl,
 	useValidationErrors,
-} = require( '../../config/index.js' );
-const { useCodexControl } = require( '../utils.js' );
+} = require( 'ext.communityConfiguration.Editor.controls' );
 const ControlWrapper = require( './ControlWrapper.vue' );
 
 function getStepFromSchema( schema ) {

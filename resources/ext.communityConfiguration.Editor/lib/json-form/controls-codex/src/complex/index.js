@@ -5,13 +5,13 @@ const MultiselectEnumControl = require( './MultiselectEnumControl.vue' );
 const ChipStringsControl = require( './ChipStringsControl.vue' );
 
 const {
-	rankRenderer,
 	isArrayControl,
-	isObjectControl,
 	isEnumControl,
-	isSimpleStringArrayControl,
 	isMultiSelectEnumControl,
-} = require( '../../config/index.js' );
+	isObjectControl,
+	isSimpleStringArrayControl,
+	rankRenderer,
+} = require( 'ext.communityConfiguration.Editor.controls' );
 
 module.exports = exports = {
 	complex: [

@@ -19,10 +19,11 @@
 const { ref, unref } = require( 'vue' );
 const { CdxMultiselectLookup } = require( '../../../../../../codex.js' );
 const {
+	debounce,
 	rendererProps,
+	useCodexControl,
 	useJsonFormControl,
-} = require( '../../config/index.js' );
-const { debounce, useCodexControl } = require( '../utils.js' );
+} = require( 'ext.communityConfiguration.Editor.controls' );
 const { search } = require( './api.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
 const filterSelection = ( selection ) => ( item ) => !selection.map( ( x ) => x.value ).includes( item.value );

@@ -62,7 +62,7 @@ global.mw.config.get.mockImplementation( ( key ) => {
 	}
 } );
 const App = require( './App.vue' );
-const { JsonForm } = require( '../lib/json-form/form/index.js' );
+const { JsonForm } = require( '../lib/json-form/index.js' );
 const {
 	EditSummaryDialog,
 	EditorMessage,

@@ -33,11 +33,11 @@
 const { inject, unref } = require( 'vue' );
 const { CdxField } = require( '../../../../../../codex.js' );
 const {
-	rendererProps,
-	DispatchRenderer,
 	buildUISchema,
+	DispatchRenderer,
+	rendererProps,
 	useJsonFormControl,
-} = require( '../../config/index.js' );
+} = require( 'ext.communityConfiguration.Editor.controls' );
 
 // @vue/component
 module.exports = exports = {

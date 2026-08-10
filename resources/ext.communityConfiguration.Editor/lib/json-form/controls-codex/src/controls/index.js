@@ -2,12 +2,12 @@ const BooleanControl = require( './BooleanControl.vue' );
 const StringControl = require( './StringControl.vue' );
 const NumberControl = require( './NumberControl.vue' );
 const {
-	rankRenderer,
 	isBooleanControl,
 	isIntegerControl,
 	isNumberControl,
 	isStringControl,
-} = require( '../../config/index.js' );
+	rankRenderer,
+} = require( 'ext.communityConfiguration.Editor.controls' );
 
 const isNumberOrInteger = ( ...args ) => isIntegerControl( ...args ) || isNumberControl( ...args );
 

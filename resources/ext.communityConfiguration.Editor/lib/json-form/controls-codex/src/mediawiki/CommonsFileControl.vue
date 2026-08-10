@@ -20,11 +20,12 @@
 const { ref, unref, inject } = require( 'vue' );
 const { CdxLookup } = require( '../../../../../../codex.js' );
 const {
+	debounce,
 	rendererProps,
+	useCodexControl,
 	useJsonFormControl,
-} = require( '../../config/index.js' );
+} = require( 'ext.communityConfiguration.Editor.controls' );
 const { MwForeignApi } = require( './api.js' );
-const { debounce, useCodexControl } = require( '../utils.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
 
 // @vue/component

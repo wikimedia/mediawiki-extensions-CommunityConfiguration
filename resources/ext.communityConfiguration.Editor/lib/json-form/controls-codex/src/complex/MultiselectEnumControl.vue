@@ -28,8 +28,12 @@
 const { defineComponent, ref, computed, inject } = require( 'vue' );
 const { CdxChipInput, CdxMenu, useFloatingMenu, useGeneratedId } = require( '../../../../../../codex.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
-const { rendererProps, useJsonFormControl, useValidationErrors } = require( '../../config/index.js' );
-const { useCodexControl } = require( '../utils.js' );
+const {
+	rendererProps,
+	useCodexControl,
+	useJsonFormControl,
+	useValidationErrors,
+} = require( 'ext.communityConfiguration.Editor.controls' );
 
 module.exports = exports = defineComponent( {
 	name: 'MultiselectEnumControl',

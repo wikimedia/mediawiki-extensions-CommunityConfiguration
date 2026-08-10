@@ -48,7 +48,7 @@
 const { inject, ref, computed, onErrorCaptured } = require( 'vue' );
 const { CdxButton, CdxMessage } = require( '../../codex.js' );
 const { cdxIconInfoFilled } = require( './icons.json' );
-const { JsonForm, useValidationErrors } = require( '../lib/json-form/form/index.js' );
+const { JsonForm, useValidationErrors } = require( 'ext.communityConfiguration.Editor.controls' );
 const { renderers } = require( '../lib/json-form/controls-codex/src/index.js' );
 const {
 	SuccessMessage,

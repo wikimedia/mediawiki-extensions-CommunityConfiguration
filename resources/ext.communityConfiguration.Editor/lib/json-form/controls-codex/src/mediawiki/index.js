@@ -7,7 +7,7 @@ const CommonsFileControl = require( './CommonsFileControl.vue' );
 const {
 	rankRenderer,
 	schemaControlIs,
-} = require( '../../config/index.js' );
+} = require( 'ext.communityConfiguration.Editor.controls' );
 
 const isPageTitleControl = schemaControlIs( MEDIAWIKI_DEFINITIONS.PAGE_TITLE );
 const isPageTitlesControl = schemaControlIs( MEDIAWIKI_DEFINITIONS.PAGE_TITLES );

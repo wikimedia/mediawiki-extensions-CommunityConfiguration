@@ -24,8 +24,7 @@
 <script>
 const { CdxRadio } = require( '../../../../../../codex.js' );
 const ControlWrapper = require( '../controls/ControlWrapper.vue' );
-const { rendererProps, useJsonFormControl } = require( '../../config/index.js' );
-const { useCodexControl } = require( '../utils.js' );
+const { rendererProps, useCodexControl, useJsonFormControl } = require( 'ext.communityConfiguration.Editor.controls' );
 const { defineComponent } = require( 'vue' );
 
 // @vue/component

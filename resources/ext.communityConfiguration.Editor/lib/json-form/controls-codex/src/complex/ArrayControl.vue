@@ -52,10 +52,10 @@ const { ref, computed } = require( 'vue' );
 const { CdxField, CdxButton, CdxIcon } = require( '../../../../../../codex.js' );
 const { cdxIconAdd, cdxIconTrash } = require( '../../../../icons.json' );
 const {
-	rendererProps,
 	DispatchRenderer,
+	rendererProps,
 	useJsonFormArrayControl,
-} = require( '../../config/index.js' );
+} = require( 'ext.communityConfiguration.Editor.controls' );
 
 // @vue/component
 module.exports = exports = {
