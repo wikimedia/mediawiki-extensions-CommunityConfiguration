@@ -19,9 +19,12 @@
 	},
 	"TestAutoloadClasses": {
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\CommunityConfigurationTestHelpers": "tests/phpunit/CommunityConfigurationTestHelpers.php",
+		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\EmptyUISchemaForTesting": "tests/phpunit/EmptyUISchemaForTesting.php",
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\JsonSchemaForTesting": "tests/phpunit/JsonSchemaForTesting.php",
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\JsonConfigSchemaForTesting": "tests/phpunit/JsonConfigSchemaForTesting.php",
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\JsonSchemaForTestingNewerVersion": "tests/phpunit/JsonSchemaForTestingNewerVersion.php",
+		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\JsonSchemaWithUISchemaForTesting": "tests/phpunit/JsonSchemaWithUISchemaForTesting.php",
+		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\UISchemaForTesting": "tests/phpunit/UISchemaForTesting.php",
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\NoopValidatorWithSchemaForTesting": "tests/phpunit/NoopValidatorWithSchemaForTesting.php",
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\ProviderWithExtraServiceForTesting": "tests/phpunit/ProviderWithExtraServiceForTesting.php",
 		"MediaWiki\\Extension\\CommunityConfiguration\\Tests\\SchemaProviderTestCase": "tests/phpunit/integration/SchemaProviderTestCase.php"

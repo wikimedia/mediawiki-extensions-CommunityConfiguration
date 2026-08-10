@@ -180,6 +180,45 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 		], $builder->getDefaultsMap() );
 	}
 
+	public function testUiSchemaStaysOutOfTheDataSchema(): void {
+		$schema = new class() extends JsonSchema {
+			public const UI_SCHEMA = UISchemaForTesting::class;
+
+			public const ExampleNumber = [
+				JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+			];
+		};
+		$builder = $this->getNewJsonSchemaBuilder( $schema );
+
+		// UI_SCHEMA is a string, so ReflectionSchemaSource skips it. Presentation must never
+		// reach the validator, so the emitted data schema looks the same as without it.
+		$this->assertEquals( [
+			'$schema' => 'https://json-schema.org/draft-04/schema#',
+			'$id' => 'schema/id',
+			JsonSchema::ADDITIONAL_PROPERTIES => false,
+			'type' => 'object',
+			'properties' => [
+				'ExampleNumber' => [
+					JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+					JsonSchema::DEFAULT => null,
+				],
+			],
+			'required' => [],
+		], $builder->getRootSchema() );
+
+		$this->assertSame( UISchemaForTesting::ROOT, $builder->getUiSchema() );
+	}
+
+	public function testGetUiSchemaWhenNoneDeclared(): void {
+		$schema = new class() extends JsonSchema {
+			public const ExampleNumber = [
+				JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+			];
+		};
+
+		$this->assertNull( $this->getNewJsonSchemaBuilder( $schema )->getUiSchema() );
+	}
+
 	private function getNewJsonSchemaBuilder( JsonSchema $schema ): JsonSchemaBuilder {
 		$schemaReader = $this->getMockBuilder( JsonSchemaReader::class )
 			->setConstructorArgs( [ $schema ] )

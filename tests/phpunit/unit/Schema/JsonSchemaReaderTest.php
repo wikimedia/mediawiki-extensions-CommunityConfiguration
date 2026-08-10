@@ -137,4 +137,58 @@ class JsonSchemaReaderTest extends MediaWikiUnitTestCase {
 			( new JsonSchemaReader( $className ) )->getReflectionSchemaSource()
 		);
 	}
+
+	/**
+	 * @param string $className
+	 * @dataProvider provideJsonSchemaClasses
+	 */
+	public function testGetUiSchemaWhenNoneDeclared( string $className ) {
+		$this->assertNull(
+			( new JsonSchemaReader( $className ) )->getUiSchema()
+		);
+	}
+
+	public function testGetUiSchema() {
+		$this->assertSame(
+			UISchemaForTesting::ROOT,
+			( new JsonSchemaReader( JsonSchemaWithUISchemaForTesting::class ) )->getUiSchema()
+		);
+	}
+
+	public function testGetUiSchemaWithEmptyLayout() {
+		$schema = new class extends JsonSchemaForTesting {
+			public const UI_SCHEMA = EmptyUISchemaForTesting::class;
+		};
+
+		$this->assertNull( ( new JsonSchemaReader( $schema ) )->getUiSchema() );
+	}
+
+	public static function provideInvalidUiSchema(): array {
+		return [
+			'names no class' => [
+				new class extends JsonSchemaForTesting {
+					public const UI_SCHEMA = 'NoSuchUISchemaClass';
+				},
+			],
+			'names a class that is not a UISchema' => [
+				new class extends JsonSchemaForTesting {
+					public const UI_SCHEMA = JsonSchemaForTesting::class;
+				},
+			],
+			'is not a class name at all' => [
+				new class extends JsonSchemaForTesting {
+					public const UI_SCHEMA = [ 'elements' => [] ];
+				},
+			],
+		];
+	}
+
+	/**
+	 * @param JsonSchema $schema
+	 * @dataProvider provideInvalidUiSchema
+	 */
+	public function testGetUiSchemaRejectsInvalidClass( JsonSchema $schema ) {
+		$this->expectException( InvalidArgumentException::class );
+		( new JsonSchemaReader( $schema ) )->getUiSchema();
+	}
 }

@@ -81,6 +81,15 @@ class JsonSchemaBuilder implements SchemaBuilder {
 	/**
 	 * @inheritDoc
 	 */
+	public function getUiSchema( ?string $version = null ): ?array {
+		$reader = $this->getJsonSchemaReader( $version );
+		$reader->assertIsSchema();
+		return $reader->getUiSchema();
+	}
+
+	/**
+	 * @inheritDoc
+	 */
 	public function getRootProperties( ?string $version = null ): array {
 		return $this->getRootSchema( $version )[JsonSchema::PROPERTIES];
 	}

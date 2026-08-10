@@ -50,6 +50,13 @@ class NoopValidatorWithSchemaForTesting implements IValidator {
 			/**
 			 * @inheritDoc
 			 */
+			public function getUiSchema( ?string $version = null ): ?array {
+				return null;
+			}
+
+			/**
+			 * @inheritDoc
+			 */
 			public function getRootProperties( ?string $version = null ): array {
 				return [];
 			}

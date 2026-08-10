@@ -33,6 +33,16 @@ abstract class JsonSchema {
 	public const SCHEMA_CONVERTER = null;
 
 	/**
+	 * @var string|null Classname of a UISchema (or null, when the schema has no UI schema)
+	 * @stable to override
+	 *
+	 * A UI schema tells the editor how to show the form. It has no effect on validation.
+	 *
+	 * @see UISchema
+	 */
+	public const UI_SCHEMA = null;
+
+	/**
 	 * @var string|null A version of the next schema version (or null, when not
 	 * available/supported).
 	 * @stable to override

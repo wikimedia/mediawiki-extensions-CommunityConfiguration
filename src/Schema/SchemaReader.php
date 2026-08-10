@@ -77,4 +77,16 @@ interface SchemaReader {
 	 * @return string|null Classname of an ISchemaConverter implementation
 	 */
 	public function getSchemaConverterId(): ?string;
+
+	/**
+	 * Return the layout of the associated UI schema
+	 *
+	 * A UI schema tells the editor how to show the form. It has no effect on the stored value,
+	 * and no effect on validation. A schema declares its UI schema with the UI_SCHEMA constant.
+	 *
+	 * @see UISchema
+	 * @throws InvalidArgumentException when UI_SCHEMA does not name a UISchema subclass
+	 * @return array|null The UISchema::ROOT layout (or null when the schema declares none)
+	 */
+	public function getUiSchema(): ?array;
 }

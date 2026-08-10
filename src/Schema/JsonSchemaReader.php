@@ -95,4 +95,23 @@ class JsonSchemaReader implements SchemaReader {
 	public function getSchemaConverterId(): ?string {
 		return $this->getConstantValue( 'SCHEMA_CONVERTER', JsonSchema::SCHEMA_CONVERTER );
 	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getUiSchema(): ?array {
+		$uiSchemaClass = $this->getConstantValue( 'UI_SCHEMA', JsonSchema::UI_SCHEMA );
+		if ( $uiSchemaClass === null ) {
+			return null;
+		}
+		// A bad UI_SCHEMA is a coding error, not a runtime condition. Fail early and loudly,
+		// so that SchemaProviderTestCase catches it before the schema reaches a wiki.
+		if ( !is_string( $uiSchemaClass ) || !is_subclass_of( $uiSchemaClass, UISchema::class ) ) {
+			throw new InvalidArgumentException(
+				$this->class->getName() . '::UI_SCHEMA must name a subclass of ' . UISchema::class . '.'
+			);
+		}
+		// An empty layout has the same effect as no UI schema at all.
+		return $uiSchemaClass::ROOT ?: null;
+	}
 }

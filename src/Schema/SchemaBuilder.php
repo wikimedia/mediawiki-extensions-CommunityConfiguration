@@ -44,6 +44,18 @@ interface SchemaBuilder {
 	public function getRootSchema( ?string $version = null ): array;
 
 	/**
+	 * Get the layout of the associated UI schema, as a PHP associative array
+	 *
+	 * The UI schema is separate from the data schema on purpose. It holds presentation
+	 * information only, so it must never reach the validator.
+	 *
+	 * @see UISchema
+	 * @param string|null $version Schema version to use (null for newest)
+	 * @return array|null The layout (or null when the schema declares no UI schema)
+	 */
+	public function getUiSchema( ?string $version = null ): ?array;
+
+	/**
 	 * Return a list of properties supported by the schema (null for newest)
 	 *
 	 * @param string|null $version Schema version to use
