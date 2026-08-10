@@ -265,7 +265,10 @@ const useJsonFormRenderer = ( props ) => {
 	if ( props.schema.type === 'array' ) {
 		schema = schema.items;
 	}
-	if ( props.schema.type === 'object' ) {
+	// Only an element that points at a property has a subschema of its own. A layout element,
+	// such as a Group, has no scope, and it keeps the schema of its parent so that it can pass
+	// that schema on to the elements it holds.
+	if ( props.schema.type === 'object' && props.uischema.scope ) {
 		schema = props.schema.properties[ props.uischema.name ];
 	}
 	const renderer = {

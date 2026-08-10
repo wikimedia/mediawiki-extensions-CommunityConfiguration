@@ -51,7 +51,13 @@ module.exports = exports = {
 					this.rootSchema,
 				) === -1
 			) {
-				// REVIEW should we fail for unkown controls? Render something?
+				// An element with no renderer used to be impossible, because a tester always
+				// matched on the data type. A UI schema can now ask for a control that is not
+				// available, so say so instead of rendering nothing without a word.
+				mw.log.warn(
+					'json-form: no renderer matches the element',
+					this.renderer.uischema,
+				);
 				return () => {};
 			} else {
 				return renderer.renderer;

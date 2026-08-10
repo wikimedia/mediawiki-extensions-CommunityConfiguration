@@ -6,6 +6,7 @@
 			:data="configData"
 			:renderers="renderers"
 			:schema="schema"
+			:ui-schema="uiSchema"
 			@submit="onSubmit"
 		>
 			<template #submit>
@@ -82,8 +83,13 @@ module.exports = exports = {
 		const writingRepository = inject( 'WRITING_REPOSITORY' );
 		const configData = inject( 'CONFIG_DATA' );
 		const schema = inject( 'JSON_SCHEMA' );
+		const uiSchema = inject( 'UI_SCHEMA', null );
 		const providerId = inject( 'PROVIDER_ID' );
 		const editorFormConfig = inject( 'EDITOR_FORM_CONFIG' );
+		// The controls of other extensions come last, so that a UI schema can select one in
+		// place of a built-in control. The default keeps every existing test working without a
+		// change, and it means a control whose module failed to load simply is not here.
+		const allRenderers = [ ...renderers, ...inject( 'CUSTOM_RENDERERS', [] ) ];
 		const canEdit = inject( 'CAN_EDIT' );
 		const isLoading = ref( false );
 		const editSummaryOpen = ref( false );
@@ -220,9 +226,10 @@ module.exports = exports = {
 			isLoading,
 			onSubmit,
 			providerId,
-			renderers,
+			renderers: allRenderers,
 			schema,
 			summary,
+			uiSchema,
 		};
 	},
 };

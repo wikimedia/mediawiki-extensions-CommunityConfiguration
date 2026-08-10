@@ -14,6 +14,8 @@ const {
 	rankWith,
 	schemaControlIs,
 	schemaTypeIs,
+	uiControlIs,
+	uiTypeIs,
 } = require( './testers.js' );
 
 module.exports = exports = {
@@ -33,4 +35,6 @@ module.exports = exports = {
 	rankWith,
 	schemaControlIs,
 	schemaTypeIs,
+	uiControlIs,
+	uiTypeIs,
 };

@@ -66,7 +66,54 @@ function getCustomMultiSelectControlMessages( prefix, propName ) {
 	return getControlMessages( prefix, propName, [ 'label', 'help-text', 'description' ] );
 }
 
-function getControlTextProps( prop, prefix, schema ) {
+/**
+ * Resolve the heading messages of a layout Group.
+ *
+ * The keys follow the same convention as the control messages:
+ * `<prefix>-<label>-section-label` and `<prefix>-<label>-section-description`.
+ *
+ * @param {string} prefix The i18n prefix, eg 'communityconfiguration-mentorship'
+ * @param {string} label The label stem of the group, eg 'eligibility'
+ * @return {{ label: (mw.Message|null), description: (mw.Message|null) }}
+ */
+function getGroupTextProps( prefix, label ) {
+	return {
+		label: getMessageOrNull( mapPropToTextKey( prefix, label, 'section', 'label' ) ),
+		description: getMessageOrNull( mapPropToTextKey( prefix, label, 'section', 'description' ) ),
+	};
+}
+
+/**
+ * Messages for a control that the UI schema selects by name.
+ *
+ * Such a control can hold any type of data, so there is no way to guess which messages it
+ * needs. It gets the full set instead, and a message that does not exist becomes null. A
+ * control that needs more can ask for it with the MESSAGES key of the UI schema.
+ *
+ * @param {string} prefix
+ * @param {string} propName
+ * @return {Object}
+ */
+function getCustomControlMessages( prefix, propName ) {
+	return getControlMessages( prefix, propName, [
+		'label', 'control-label', 'help-text', 'placeholder', 'description',
+	] );
+}
+
+/**
+ * @param {string} prop The property name
+ * @param {string} prefix The i18n prefix
+ * @param {Object} schema The subschema of the property
+ * @param {string|null} uiControl The control the UI schema asks for, if it asks for one
+ * @return {Object} The text properties of the control
+ */
+function getControlTextProps( prop, prefix, schema, uiControl = null ) {
+	// The UI schema states which control to use, so there is nothing to guess from the data
+	// type. This also keeps the throw below out of reach for a type that the dispatch by data
+	// type does not know.
+	if ( uiControl ) {
+		return getCustomControlMessages( prefix, prop );
+	}
 	if ( schema.type === 'string' && schema.enum === undefined && schema.control === undefined ) {
 		return getStringControlMessages( prefix, prop );
 	}
@@ -131,6 +178,9 @@ function getLabelsChainRec( schema, pointer, prefix ) {
 }
 
 /**
+ * Note that this reaches getControlTextProps() without a UI schema element, so a property that
+ * has a custom control and a type the dispatch by data type does not know still throws here.
+ *
  * @param {Object} rootSchema
  * @param {string} pointer
  * @param {string} i18nPrefix
@@ -144,5 +194,6 @@ function getLabelsChain( rootSchema, pointer, i18nPrefix ) {
 
 module.exports = exports = {
 	getControlTextProps,
+	getGroupTextProps,
 	getLabelsChain,
 };

@@ -13,6 +13,9 @@ const mw = {
 	config: {
 		get: jest.fn(),
 	},
+	loader: {
+		using: jest.fn().mockResolvedValue( undefined ),
+	},
 	Message: MWMessageMock,
 	user: {
 		getId: jest.fn(),

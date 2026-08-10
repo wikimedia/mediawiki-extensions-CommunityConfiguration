@@ -44,6 +44,11 @@ module.exports = exports = {
 			required: true,
 			type: Array,
 		},
+		uiSchema: {
+			required: false,
+			type: Object,
+			default: null,
+		},
 	},
 	emits: [ 'submit' ],
 	setup( props, { emit } ) {
@@ -63,7 +68,10 @@ module.exports = exports = {
 				config: props.config,
 				renderers: props.renderers,
 				schema: props.schema,
-				uischema: buildUISchema( props.schema, props.config, '', dataClone ),
+				// This stays a plain call, not a computed. It deletes the data properties that
+				// the schema does not have, and it makes mw.Message objects that the code
+				// downstream compares by identity.
+				uischema: buildUISchema( props.schema, props.config, '', dataClone, props.uiSchema ),
 			},
 		};
 	},
