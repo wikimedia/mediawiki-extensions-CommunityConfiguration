@@ -34,6 +34,7 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 			'CommunityConfiguration.HookRunner',
 			'CommunityConfiguration.MessagesProcessor',
 			'MainConfig',
+			'CommunityConfiguration.ControlRegistry',
 		],
 	];
 
@@ -94,6 +95,11 @@ class GenericFormEditorCapabilityTest extends MediaWikiIntegrationTestCase {
 			],
 			$jsConfigVars['data']
 		);
+
+		// This schema declares no UI schema, so the editor keeps its previous behaviour and
+		// selects every control from the data schema.
+		$this->assertNull( $jsConfigVars['uiSchema'] );
+		$this->assertSame( [], $jsConfigVars['controls'] );
 
 		// This test should not bind against details of message generation.
 		$this->assertNotEmpty( $jsConfigVars['config']['i18nMessages'] );

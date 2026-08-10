@@ -6,6 +6,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigRouter;
 use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
+use MediaWiki\Extension\CommunityConfiguration\Controls\ControlRegistry;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\MessagesProcessor;
 use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaultsPathBuilder;
@@ -23,6 +24,21 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 return [
+	'CommunityConfiguration.ControlRegistry' => static function ( MediaWikiServices $services ) {
+		return new ControlRegistry(
+			new ServiceOptions(
+				ControlRegistry::CONSTRUCTOR_OPTIONS,
+				new HashConfig( [
+					'CommunityConfigurationControls' => Utils::getMergedAttribute(
+						$services->getMainConfig(), $services->getExtensionRegistry(),
+						'CommunityConfigurationControls'
+					),
+				] )
+			),
+			$services->getResourceLoader(),
+			CommunityConfigurationServices::wrap( $services )->getLogger()
+		);
+	},
 	'CommunityConfiguration.MessagesProcessor' => static function ( MediaWikiServices $services ) {
 		return new MessagesProcessor(
 			CommunityConfigurationServices::wrap( $services )->getLogger(),

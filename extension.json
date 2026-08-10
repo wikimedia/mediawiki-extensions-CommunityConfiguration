@@ -34,6 +34,10 @@
 			"description": "The Commons API base URL to configure the CommonsFileControl for searching files.",
 			"value": null
 		},
+		"CommunityConfigurationControls": {
+			"description": "The list of form controls the editor can use, beyond the ones CommunityConfiguration supplies itself. Specified as a mapping of control name to a mapping with a \"module\" key (a ResourceLoader module) and a \"component\" key (the name that module exports the Vue component under). A control name has an extension part and a control part, for example \"WikiLambda.FunctionLookup\". A UI schema selects a control by that name. Extensions can register their own controls through extension.json attribute \"CommunityConfiguration/Controls\"",
+			"value": {}
+		},
 		"CommunityConfigurationFeedbackURL": {
 			"description": "The URL to use for links targetting the feedback page for the extension.",
 			"value": null
@@ -105,7 +109,8 @@
 						"FormatterFactory",
 						"CommunityConfiguration.HookRunner",
 						"CommunityConfiguration.MessagesProcessor",
-						"MainConfig"
+						"MainConfig",
+						"CommunityConfiguration.ControlRegistry"
 					]
 				}
 			}

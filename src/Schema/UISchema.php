@@ -111,4 +111,32 @@ abstract class UISchema {
 	 * data schema.
 	 */
 	public const MESSAGES = 'messages';
+
+	/**
+	 * Return every element of a layout as a flat list, in document order.
+	 *
+	 * The function goes into the child elements of a Group, and keeps the Group itself in
+	 * the result. It drops the scope strings, because only an array element can hold a
+	 * control, options or messages.
+	 *
+	 * @internal for use in CommunityConfiguration only
+	 * @param array $root A layout, shaped as `[ self::ELEMENTS => [ ... ] ]`
+	 * @return array[] The array elements of the layout
+	 */
+	public static function flattenElements( array $root ): array {
+		$flat = [];
+		$walk = static function ( array $elements ) use ( &$walk, &$flat ): void {
+			foreach ( $elements as $element ) {
+				if ( !is_array( $element ) ) {
+					continue;
+				}
+				$flat[] = $element;
+				if ( ( $element[self::TYPE] ?? null ) === self::TYPE_GROUP ) {
+					$walk( $element[self::ELEMENTS] ?? [] );
+				}
+			}
+		};
+		$walk( $root[self::ELEMENTS] ?? [] );
+		return $flat;
+	}
 }

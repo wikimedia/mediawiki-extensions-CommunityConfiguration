@@ -6,6 +6,7 @@ use Error;
 use Iterator;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaIterator;
+use MediaWiki\Extension\CommunityConfiguration\Schema\UISchema;
 use MediaWiki\Language\MessageLocalizer;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
@@ -42,6 +43,57 @@ class MessagesProcessor {
 			}
 		}
 
+		return $messages;
+	}
+
+	/**
+	 * Resolve the messages that a UI schema needs.
+	 *
+	 * getMessages() walks the data schema, so it does not cover the messages that live in the
+	 * UI schema. Those are the heading of a Group, and the extra keys that a control asks for
+	 * with the MESSAGES key.
+	 *
+	 * The heading keys follow the same convention as the control messages:
+	 * `<prefix>-<providerId>-<label>-section-label`, and the same with `-section-description`.
+	 *
+	 * @param string $providerId
+	 * @param array $uiSchema A layout, shaped as `[ 'elements' => [ ... ] ]`
+	 * @param string $messagePrefix
+	 * @return array Map of message key to plain text, for messages that exist
+	 */
+	public function getUiSchemaMessages(
+		string $providerId, array $uiSchema, string $messagePrefix
+	): array {
+		$keys = [];
+		foreach ( UISchema::flattenElements( $uiSchema ) as $element ) {
+			$label = $element[UISchema::LABEL] ?? null;
+			if ( ( $element[UISchema::TYPE] ?? null ) === UISchema::TYPE_GROUP && $label !== null ) {
+				$baseKey = strtolower( $messagePrefix . '-' . $providerId . '-' . $label . '-section' );
+				$keys[] = $baseKey . '-label';
+				$keys[] = $baseKey . '-description';
+			}
+			foreach ( $element[UISchema::MESSAGES] ?? [] as $key ) {
+				if ( is_string( $key ) ) {
+					$keys[] = $key;
+				}
+			}
+		}
+
+		$messages = [];
+		foreach ( array_unique( $keys ) as $key ) {
+			$msg = $this->messageLocalizer->msg( $key );
+			if ( $msg->exists() ) {
+				$messages[$key] = $msg->plain();
+			} else {
+				// A control that asks for a message it does not have is a typo that is
+				// otherwise invisible, because the client falls back to the key.
+				$this->logger->info(
+					'CommunityConfiguration: the UI schema of {provider} asks for the message ' .
+						'{key}, which does not exist.',
+					[ 'provider' => $providerId, 'key' => $key ]
+				);
+			}
+		}
 		return $messages;
 	}
 

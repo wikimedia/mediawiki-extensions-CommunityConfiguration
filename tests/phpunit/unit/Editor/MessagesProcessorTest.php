@@ -5,6 +5,7 @@ use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\MessagesProces
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaIterator;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader;
+use MediaWiki\Extension\CommunityConfiguration\Schema\UISchema;
 use MediaWiki\Extension\CommunityConfiguration\Schemas\MediaWiki\MediaWikiDefinitions;
 use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Message\Message;
@@ -281,16 +282,19 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
+	 * @param string[]|null $existingKeys Keys that exist, or null when every key exists
 	 * @return MessageLocalizer|MockObject
 	 */
-	private function getMockMessageLocalizer() {
+	private function getMockMessageLocalizer( ?array $existingKeys = null ) {
 		$localizer = $this->getMockBuilder( MessageLocalizer::class )
 			->onlyMethods( [ 'msg' ] )
 			->getMockForAbstractClass();
 		$localizer->method( 'msg' )
-			->willReturnCallback( function ( $key, ...$params ) {
+			->willReturnCallback( function ( $key, ...$params ) use ( $existingKeys ) {
 				$message = $this->createMock( Message::class );
-				$message->method( 'exists' )->willReturn( true );
+				$message->method( 'exists' )->willReturn(
+					$existingKeys === null || in_array( $key, $existingKeys, true )
+				);
 				$message->method( 'plain' )->willReturnCallback(
 					static function () use ( $key ) {
 						return $key;
@@ -313,6 +317,102 @@ class MessagesProcessorTest extends MediaWikiUnitTestCase {
 		$this->assertEqualsCanonicalizing(
 			array_merge( $expected, $expectedSubControl ),
 			array_keys( $result )
+		);
+	}
+
+	public static function provideUiSchema(): iterable {
+		yield 'no elements' => [ [], [] ];
+		yield 'scope strings only' => [
+			[ UISchema::ELEMENTS => [ '#/properties/Foo' ] ],
+			[],
+		];
+		yield 'group with a label' => [
+			[ UISchema::ELEMENTS => [ [
+				UISchema::TYPE => UISchema::TYPE_GROUP,
+				UISchema::LABEL => 'Eligibility',
+				UISchema::ELEMENTS => [ '#/properties/Foo' ],
+			] ] ],
+			[ 'pfx-pid-eligibility-section-label', 'pfx-pid-eligibility-section-description' ],
+		];
+		yield 'group without a label' => [
+			[ UISchema::ELEMENTS => [ [
+				UISchema::TYPE => UISchema::TYPE_GROUP,
+				UISchema::ELEMENTS => [ '#/properties/Foo' ],
+			] ] ],
+			[],
+		];
+		yield 'nested group' => [
+			[ UISchema::ELEMENTS => [ [
+				UISchema::TYPE => UISchema::TYPE_GROUP,
+				UISchema::LABEL => 'Outer',
+				UISchema::ELEMENTS => [ [
+					UISchema::TYPE => UISchema::TYPE_GROUP,
+					UISchema::LABEL => 'Inner',
+					UISchema::ELEMENTS => [ '#/properties/Foo' ],
+				] ],
+			] ] ],
+			[
+				'pfx-pid-outer-section-label',
+				'pfx-pid-outer-section-description',
+				'pfx-pid-inner-section-label',
+				'pfx-pid-inner-section-description',
+			],
+		];
+		yield 'control messages' => [
+			[ UISchema::ELEMENTS => [ [
+				UISchema::TYPE => UISchema::TYPE_CONTROL,
+				UISchema::SCOPE => '#/properties/Foo',
+				UISchema::CONTROL => 'Test.Lookup',
+				UISchema::MESSAGES => [ 'test-lookup-no-results', 'test-lookup-placeholder' ],
+			] ] ],
+			[ 'test-lookup-no-results', 'test-lookup-placeholder' ],
+		];
+		yield 'control messages inside a group' => [
+			[ UISchema::ELEMENTS => [ [
+				UISchema::TYPE => UISchema::TYPE_GROUP,
+				UISchema::LABEL => 'Section',
+				UISchema::ELEMENTS => [ [
+					UISchema::TYPE => UISchema::TYPE_CONTROL,
+					UISchema::SCOPE => '#/properties/Foo',
+					UISchema::MESSAGES => [ 'test-lookup-no-results' ],
+				] ],
+			] ] ],
+			[
+				'pfx-pid-section-section-label',
+				'pfx-pid-section-section-description',
+				'test-lookup-no-results',
+			],
+		];
+	}
+
+	/**
+	 * @param array $uiSchema
+	 * @param array $expected
+	 * @dataProvider provideUiSchema
+	 */
+	public function testGetUiSchemaMessages( array $uiSchema, array $expected ) {
+		$processor = new MessagesProcessor( new NullLogger(), $this->getMockMessageLocalizer() );
+
+		$this->assertEqualsCanonicalizing(
+			$expected,
+			array_keys( $processor->getUiSchemaMessages( 'pid', $uiSchema, 'pfx' ) )
+		);
+	}
+
+	public function testGetUiSchemaMessagesSkipsMessagesThatDoNotExist() {
+		// A group commonly has a heading without a description, so a missing message is normal
+		// rather than an error.
+		$processor = new MessagesProcessor(
+			new NullLogger(),
+			$this->getMockMessageLocalizer( [ 'pfx-pid-eligibility-section-label' ] )
+		);
+
+		$this->assertSame(
+			[ 'pfx-pid-eligibility-section-label' => 'pfx-pid-eligibility-section-label' ],
+			$processor->getUiSchemaMessages( 'pid', [ UISchema::ELEMENTS => [ [
+				UISchema::TYPE => UISchema::TYPE_GROUP,
+				UISchema::LABEL => 'Eligibility',
+			] ] ], 'pfx' )
 		);
 	}
 

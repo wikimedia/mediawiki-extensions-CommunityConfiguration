@@ -2,11 +2,14 @@
 
 namespace MediaWiki\Extension\CommunityConfiguration\EditorCapabilities;
 
+use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Extension\CommunityConfiguration\Controls\ControlRegistry;
 use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
 use MediaWiki\Extension\CommunityConfiguration\Provider\IConfigurationProvider;
+use MediaWiki\Extension\CommunityConfiguration\Schema\UISchema;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Linker\LinkRenderer;
@@ -22,6 +25,7 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 	private HookRunner $hookRunner;
 	private MessagesProcessor $messagesProcessor;
 	private Config $config;
+	private ControlRegistry $controlRegistry;
 
 	public function __construct(
 		IContextSource $ctx,
@@ -30,7 +34,8 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		FormatterFactory $formatterFactory,
 		HookRunner $hookRunner,
 		MessagesProcessor $messagesProcessor,
-		Config $config
+		Config $config,
+		ControlRegistry $controlRegistry
 	) {
 		parent::__construct( $ctx, $parentTitle );
 
@@ -39,6 +44,47 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		$this->hookRunner = $hookRunner;
 		$this->messagesProcessor = $messagesProcessor;
 		$this->config = $config;
+		$this->controlRegistry = $controlRegistry;
+	}
+
+	/**
+	 * Return the layout of the provider's UI schema, or null when it has none.
+	 *
+	 * A schema that names a UI schema wrongly is a coding error, and the reader throws. Catch it
+	 * here, because a form that falls back to the controls of the data schema is much better
+	 * than a special page that shows an error instead of the configuration.
+	 *
+	 * @return array|null
+	 */
+	private function getUiSchema(): ?array {
+		$validator = $this->provider->getValidator();
+		if ( !$validator->areSchemasSupported() ) {
+			return null;
+		}
+		try {
+			return $validator->getSchemaBuilder()->getUiSchema();
+		} catch ( InvalidArgumentException $e ) {
+			$this->logger->error(
+				__METHOD__ . ': {provider} has an unusable UI schema, so the editor ignores it.',
+				[ 'provider' => $this->provider->getId(), 'exception' => $e ]
+			);
+			return null;
+		}
+	}
+
+	/**
+	 * @param array $uiSchema
+	 * @return string[] The control names the layout asks for
+	 */
+	private function getReferencedControlNames( array $uiSchema ): array {
+		$names = [];
+		foreach ( UISchema::flattenElements( $uiSchema ) as $element ) {
+			$name = $element[UISchema::CONTROL] ?? null;
+			if ( is_string( $name ) ) {
+				$names[] = $name;
+			}
+		}
+		return $names;
 	}
 
 	private function displayValidationError( StatusValue $validationError ): void {
@@ -132,18 +178,34 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 		$this->hookRunner->onCommunityConfigurationSchemaBeforeEditor( $this->provider, $rootSchema );
 		$canEdit = $this->provider->getStore()->definitelyCanEdit( $this->getContext()->getAuthority() );
 		$namespaceSelectorOptions = Html::namespaceSelectorOptions();
+		$uiSchema = $this->getUiSchema();
+		$controls = $uiSchema === null ? [] : $this->controlRegistry->getControls(
+			$this->getReferencedControlNames( $uiSchema )
+		);
+		$i18nMessages = $this->messagesProcessor->getMessages(
+			$this->provider->getId(),
+			$this->provider->getValidator()->getSchemaIterator(),
+			'communityconfiguration'
+		);
+		if ( $uiSchema !== null ) {
+			// The headings of a Group, and the extra keys a control asks for, live in the UI
+			// schema, so getMessages() does not cover them.
+			$i18nMessages += $this->messagesProcessor->getUiSchemaMessages(
+				$this->provider->getId(),
+				$uiSchema,
+				'communityconfiguration'
+			);
+		}
 		$out->addJsConfigVars( [
 			'communityConfigurationData' => [
 				'providerId' => $this->provider->getId(),
 				'schema' => $rootSchema,
+				'uiSchema' => $uiSchema,
+				'controls' => $controls,
 				'data' => $config->getValue(),
 				'config' => [
 					'i18nPrefix' => "communityconfiguration-" . strtolower( $this->provider->getId() ),
-					'i18nMessages' => $this->messagesProcessor->getMessages(
-						$this->provider->getId(),
-						$this->provider->getValidator()->getSchemaIterator(),
-						'communityconfiguration'
-					),
+					'i18nMessages' => $i18nMessages,
 					'feedbackURL' => $this->getContext()->getConfig()
 						->get( 'CommunityConfigurationFeedbackURL' ),
 					'canEdit' => $canEdit,
@@ -161,10 +223,10 @@ class GenericFormEditorCapability extends AbstractEditorCapability {
 			) );
 		}
 		$out->addModuleStyles( [ 'ext.communityConfiguration.Editor.styles' ] );
-		$out->addModules( [
+		$out->addModules( array_merge( [
 			'ext.communityConfiguration.Editor.common',
 			'ext.communityConfiguration.Editor',
-		] );
+		], array_unique( array_column( $controls, ControlRegistry::MODULE ) ) ) );
 
 		$out->addHTML( Html::rawElement(
 			'div',
