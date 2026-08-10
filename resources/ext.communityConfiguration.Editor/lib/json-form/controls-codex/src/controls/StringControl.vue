@@ -18,9 +18,9 @@ const { CdxTextInput } = require( '../../../../../../codex.js' );
 const {
 	rendererProps,
 	useJsonFormControl,
+	useValidationErrors,
 } = require( '../../config/index.js' );
 const { useCodexControl } = require( '../utils.js' );
-const { useValidationErrors } = require( '../../../form/index.js' );
 const ControlWrapper = require( './ControlWrapper.vue' );
 
 // @vue/component

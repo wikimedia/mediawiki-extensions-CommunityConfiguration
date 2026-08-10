@@ -5,18 +5,13 @@ const MultiselectEnumControl = require( './MultiselectEnumControl.vue' );
 const ChipStringsControl = require( './ChipStringsControl.vue' );
 
 const {
-	rankWith,
+	rankRenderer,
 	isArrayControl,
 	isObjectControl,
 	isEnumControl,
 	isSimpleStringArrayControl,
 	isMultiSelectEnumControl,
 } = require( '../../config/index.js' );
-
-const rankRenderer = ( rank, renderer, tester ) => ( {
-	renderer,
-	tester: rankWith( rank, tester ),
-} );
 
 module.exports = exports = {
 	complex: [

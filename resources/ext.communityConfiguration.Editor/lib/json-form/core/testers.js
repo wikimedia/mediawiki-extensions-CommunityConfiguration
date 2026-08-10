@@ -20,6 +20,22 @@ function rankWith( rank, tester ) {
 }
 
 /**
+ * Pair a renderer with a ranked tester, for a renderers collection.
+ *
+ * @param {number} rank the rank the tester returns when it matches. It must be
+ * 1 or more, because DispatchRenderer ignores a rank of 0.
+ * @param {Object} renderer a Vue component
+ * @param {Function} tester a tester function
+ * @return {{renderer: Object, tester: Function}} The renderers collection entry
+ */
+function rankRenderer( rank, renderer, tester ) {
+	return {
+		renderer,
+		tester: rankWith( rank, tester ),
+	};
+}
+
+/**
  * Tester function to check whether the given schema property is of
  * the expected type.
  *
@@ -92,6 +108,7 @@ module.exports = exports = {
 	isSimpleStringArrayControl,
 	isMultiSelectEnumControl,
 	extractRef,
+	rankRenderer,
 	rankWith,
 	schemaControlIs,
 	schemaTypeIs,

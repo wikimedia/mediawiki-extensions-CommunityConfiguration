@@ -1,5 +1,4 @@
 const { buildUISchema, buildUISubSchema } = require( './uischema.js' );
-const { getEditorTextKeys } = require( './i18n.js' );
 const {
 	isArrayControl,
 	isBooleanControl,
@@ -11,6 +10,7 @@ const {
 	isMultiSelectEnumControl,
 	isObjectControl,
 	extractRef,
+	rankRenderer,
 	rankWith,
 	schemaControlIs,
 	schemaTypeIs,
@@ -19,7 +19,6 @@ const {
 module.exports = exports = {
 	buildUISchema,
 	buildUISubSchema,
-	getEditorTextKeys,
 	isArrayControl,
 	isBooleanControl,
 	isIntegerControl,
@@ -30,6 +29,7 @@ module.exports = exports = {
 	isSimpleStringArrayControl,
 	isMultiSelectEnumControl,
 	extractRef,
+	rankRenderer,
 	rankWith,
 	schemaControlIs,
 	schemaTypeIs,

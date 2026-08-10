@@ -5,14 +5,9 @@ const NamespacesControl = require( './NamespacesControl.vue' );
 const CommonsFileControl = require( './CommonsFileControl.vue' );
 
 const {
-	rankWith,
+	rankRenderer,
 	schemaControlIs,
 } = require( '../../config/index.js' );
-
-const rankRenderer = ( rank, renderer, tester ) => ( {
-	renderer,
-	tester: rankWith( rank, tester ),
-} );
 
 const isPageTitleControl = schemaControlIs( MEDIAWIKI_DEFINITIONS.PAGE_TITLE );
 const isPageTitlesControl = schemaControlIs( MEDIAWIKI_DEFINITIONS.PAGE_TITLES );

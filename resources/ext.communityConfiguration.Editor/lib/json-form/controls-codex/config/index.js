@@ -1,6 +1,7 @@
 const {
 	buildUISchema,
 	buildUISubSchema,
+	rankRenderer,
 	rankWith,
 	schemaControlIs,
 	isArrayControl,
@@ -35,6 +36,7 @@ module.exports = exports = {
 	isMultiSelectEnumControl,
 	isNumberControl,
 	isObjectControl,
+	rankRenderer,
 	rankWith,
 	schemaControlIs,
 	rendererProps,
