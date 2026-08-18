@@ -111,18 +111,83 @@ class ApiEditTest extends ApiTestCase {
 		);
 	}
 
-	public function testNoPermission() {
+	public function testMultipleValidationErrors() {
+		try {
+			$this->doApiRequestWithToken(
+				[
+					'action' => 'communityconfigurationedit',
+					'provider' => 'foo',
+					'content' => FormatJson::encode( [
+						'NumberWithDefault' => 'not a number',
+						'Mentors' => 'not an object',
+					] ),
+					'summary' => 'testing',
+				],
+				null,
+				$this->getTestSysop()->getAuthority(),
+				'csrf'
+			);
+			$this->fail( 'Expected an ApiUsageException to be thrown' );
+		} catch ( ApiUsageException $e ) {
+			$this->assertTrue(
+				$e->getStatusValue()->hasMessage( 'communityconfiguration-schema-validation-error' )
+			);
+		}
+	}
+
+	public function testBrokenProvider() {
+		// A provider with an invalid spec is included in getAllowedParams(), but
+		// constructing it throws; execute() should convert that into an API error.
+		$this->overrideConfigValue( 'CommunityConfigurationProviders', [
+			'broken' => [
+				'store' => false,
+				'validator' => false,
+			],
+		] );
+
 		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Wrong type for "store" property for "broken" provider' );
+
 		$this->doApiRequestWithToken(
 			[
 				'action' => 'communityconfigurationedit',
-				'provider' => 'foo',
-				'content' => FormatJson::encode( [ 'Number' => 42 ] ),
+				'provider' => 'broken',
+				'content' => FormatJson::encode( [ 'NumberWithDefault' => 42 ] ),
 				'summary' => 'testing',
 			],
 			null,
-			$this->getTestUser()->getAuthority(),
+			$this->getTestSysop()->getAuthority(),
 			'csrf'
 		);
+	}
+
+	public function testNoPermission() {
+		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+			->getConfigurationProviderFactory()
+			->newProvider( 'foo' );
+
+		try {
+			$this->doApiRequestWithToken(
+				[
+					'action' => 'communityconfigurationedit',
+					'provider' => 'foo',
+					'content' => FormatJson::encode( [ 'NumberWithDefault' => 42 ] ),
+					'summary' => 'testing',
+				],
+				null,
+				$this->getTestUser()->getAuthority(),
+				'csrf'
+			);
+			$this->fail( 'Expected an ApiUsageException to be thrown' );
+		} catch ( ApiUsageException $e ) {
+			$this->assertFalse(
+				$e->getStatusValue()->hasMessage( 'communityconfiguration-schema-validation-error' ),
+				'The request should fail with a permission error, not a validation error'
+			);
+		}
+
+		$status = $provider->loadValidConfiguration();
+		$this->assertStatusOK( $status );
+		$this->assertSame( 0, $status->getValue()->NumberWithDefault );
 	}
 }
