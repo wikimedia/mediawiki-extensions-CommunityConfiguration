@@ -9,13 +9,13 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 
@@ -26,13 +26,13 @@ class WriterTest extends MediaWikiUnitTestCase {
 
 	private function getWikiPageFactory(
 		PageUpdater $updater,
-		Authority $authority,
+		UserIdentity $user,
 		PageIdentity $configPage
 	) {
 		$wikiPage = $this->createMock( WikiPage::class );
 		$wikiPage->expects( $this->once() )
 			->method( 'newPageUpdater' )
-			->with( $authority )
+			->with( $user )
 			->willReturn( $updater );
 		$wikiPageFactoryMock = $this->createMock( WikiPageFactory::class );
 		$wikiPageFactoryMock->expects( $this->once() )
@@ -105,7 +105,7 @@ class WriterTest extends MediaWikiUnitTestCase {
 			->willReturn( true );
 
 		$writer = new Writer(
-			$this->getWikiPageFactory( $updater, $authority, $configPageMock ),
+			$this->getWikiPageFactory( $updater, $authority->getUser(), $configPageMock ),
 			$userFactoryMock,
 			$hookContainer
 		);

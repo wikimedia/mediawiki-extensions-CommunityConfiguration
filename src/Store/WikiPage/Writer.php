@@ -73,7 +73,7 @@ class Writer {
 			return $status;
 		}
 
-		$updater = $page->newPageUpdater( $performer );
+		$updater = $page->newPageUpdater( $performer->getUser() );
 		if ( is_string( $tags ) ) {
 			$updater->addTag( $tags );
 		} elseif ( is_array( $tags ) ) {
