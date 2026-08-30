@@ -80,3 +80,8 @@ $specialPageAliases['sk'] = [
 $specialPageAliases['uk'] = [
 	'CommunityConfiguration' => [ 'Налаштування_спільнотою' ],
 ];
+
+/** Vietnamese (Tiếng Việt) */
+$specialPageAliases['vi'] = [
+	'CommunityConfiguration' => [ 'Cấu_hình_Cộng_đồng' ],
+];
