@@ -93,7 +93,7 @@ class ControlRegistry {
 		}
 		if ( !preg_match( self::NAME_PATTERN, $name ) ) {
 			$this->logger->warning(
-				'CommunityConfiguration: the control name {control} is not in the form ' .
+				'CommunityConfiguration: the control name {control} does not follow the format of ' .
 					'Extension.ControlName.',
 				[ 'control' => $name ]
 			);
