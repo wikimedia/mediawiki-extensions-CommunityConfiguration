@@ -3,7 +3,8 @@
 		"authors": [
 			"Msz2001",
 			"WaldiSt",
-			"Woytecr"
+			"Woytecr",
+			"PanWor"
 		]
 	},
 	"communityconfiguration": "Konfiguracja przez społeczność",
@@ -54,5 +55,5 @@
 	"communityconfiguration-editor-error-validation-string-too-long": "Musi mieć maksymalnie {{PLURAL:$1|jeden znak|$1 znaki|$1 znaków}}",
 	"communityconfiguration-maintenance-config-change-summary": "Konfiguracja zmieniona przez skrypt konserwacyjny: $1",
 	"tag-community_configuration": "Konfigurowanie przez społeczność",
-	"tag-community_configuration-description": "Edycje zmieniające [[Special:CommunityConfiguration|lokalna konfigurację wiki]] jakiejś funkcji poprzez [[mw:Extension:CommunityConfiguration|narzędzie do Konfigurowania przez Społeczność]]."
+	"tag-community_configuration-description": "Edycje zmieniające [[Special:CommunityConfiguration|lokalną konfigurację wiki]] jakiejś funkcji poprzez [[mw:Extension:CommunityConfiguration|narzędzie do konfigurowania przez społeczność]]."
 }

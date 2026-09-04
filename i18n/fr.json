@@ -10,7 +10,8 @@
 			"Sergi0",
 			"SleaY",
 			"Trizek (WMF)",
-			"Wladek92"
+			"Wladek92",
+			"Pamputt"
 		]
 	},
 	"communityconfiguration": "Configuration communautaire",
@@ -50,7 +51,7 @@
 	"communityconfiguration-editor-client-data-submission-error": "Une erreur s'est produite lors de l'enregistrement de {{GENDER:$1|vos}} modifications. Veuillez réessayer plus tard.",
 	"communityconfiguration-editor-message-dismiss-button-label": "Fermer",
 	"communityconfiguration-page-title-control-no-results": "Aucun résultat trouvé.",
-	"communityconfiguration-editor-loading-info-text": "Chargement de l'éditeur de configuration",
+	"communityconfiguration-editor-loading-info-text": "Chargement de l’éditeur de configuration",
 	"communityconfiguration-editor-nojs-fallback-text": "L'éditeur de configuration nécessite JavaScript. Activez ou autorisez Javascript pour pouvoir l'utiliser",
 	"communityconfiguration-editor-navigation-tab-viewform": "Voir le formulaire",
 	"communityconfiguration-editor-client-notice-message": "Cette page est protégée. La configuration de cette fonctionnalité n'est modifiable que par les administrateurs.",
