@@ -241,7 +241,6 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 	}
 
 	public function testNullEdit(): void {
-		$this->markTestSkipped( 'Skip for updating CommunityConfigurationExample' );
 		$initialEditStatus = $this->editPage( 'MediaWiki:CommunityConfigurationExample.json',
 			'{ "CCExample_String": "pre-existing config" }'
 		);
@@ -266,6 +265,10 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 				'DecimalNumber' => 0.6,
 			],
 			'CCExample_RelevantPages' => [],
+			'CCExample_OnOff' => false,
+			'CCExample_CustomControl' => 0,
+			'CCExample_ValueA' => 0,
+			'CCExample_ValueB' => '',
 		], $actualConfig );
 	}
 
