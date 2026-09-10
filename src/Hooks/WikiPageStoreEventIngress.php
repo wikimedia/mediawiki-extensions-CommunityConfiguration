@@ -28,7 +28,7 @@ class WikiPageStoreEventIngress extends DomainEventIngress implements
 			}
 
 			if ( $page->isSamePageAs( $store->getConfigurationTitle() ) ) {
-				$store->invalidate();
+				$provider->invalidateCache();
 				return;
 			}
 		}

@@ -86,7 +86,7 @@ class MigrateConfig extends Maintenance {
 
 		// NOTE: We will be writing the data back; ensure we are not running into any cache
 		// issues by purging it.
-		$provider->getStore()->invalidate();
+		$provider->invalidateCache();
 		$conversionStatus = $this->schemaMigrator->convertDataToVersion(
 			$provider,
 			$targetVersion
