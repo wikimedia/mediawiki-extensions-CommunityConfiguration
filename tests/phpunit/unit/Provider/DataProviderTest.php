@@ -402,7 +402,9 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$storeMock = $this->createMock( IConfigurationStore::class );
 		$storeMock->expects( $this->never() )
-			->method( $this->anythingBut( 'storeConfiguration' ) );
+			->method( $this->anythingBut( 'storeConfiguration', 'invalidate' ) );
+		$storeMock->expects( $this->once() )
+			->method( 'invalidate' );
 		$storeMock->expects( $this->once() )
 			->method( 'storeConfiguration' )
 			->with( (object)[ 'Foo' => 42 ], null, $authority, '' )
@@ -437,7 +439,9 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$storeMock = $this->createMock( IConfigurationStore::class );
 		$storeMock->expects( $this->never() )
-			->method( $this->anythingBut( 'storeConfiguration' ) );
+			->method( $this->anythingBut( 'storeConfiguration', 'invalidate' ) );
+		$storeMock->expects( $this->once() )
+			->method( 'invalidate' );
 		$storeMock->expects( $this->once() )
 			->method( 'storeConfiguration' )
 			->with(
@@ -498,6 +502,24 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 
 		$status = $provider->storeValidConfiguration( (object)[ 'Foo' => 42 ], $authority );
 		$this->assertStatusError( 'june', $status );
+	}
+
+	public function testInvalidateCache(): void {
+		$storeMock = $this->createMock( IConfigurationStore::class );
+		$storeMock->expects( $this->never() )
+			->method( $this->anythingBut( 'invalidate' ) );
+		$storeMock->expects( $this->once() )
+			->method( 'invalidate' );
+
+		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
+			'ProviderId',
+			[ 'excludeFromUI' => true ],
+			$storeMock,
+			$this->createNoOpMock( IValidator::class )
+		);
+
+		$provider->invalidateCache();
 	}
 
 	public function testGetOption(): void {
