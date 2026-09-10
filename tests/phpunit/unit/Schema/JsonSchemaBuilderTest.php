@@ -7,6 +7,7 @@ namespace MediaWiki\Extension\CommunityConfiguration\Tests;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchema;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaBuilder;
 use MediaWiki\Extension\CommunityConfiguration\Schema\JsonSchemaReader;
+use MediaWiki\Settings\Source\ReflectionSchemaSource;
 use MediaWikiUnitTestCase;
 use Wikimedia\Stats\StatsFactory;
 
@@ -217,6 +218,42 @@ class JsonSchemaBuilderTest extends MediaWikiUnitTestCase {
 		};
 
 		$this->assertNull( $this->getNewJsonSchemaBuilder( $schema )->getUiSchema() );
+	}
+
+	public function testGetRootSchemaUsesInProcessCache(): void {
+		$schema = new class() extends JsonSchema {
+			public const ExampleNumber = [
+				JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+			];
+		};
+		$schemaReader = $this->getMockBuilder( JsonSchemaReader::class )
+			->setConstructorArgs( [ $schema ] )
+			->onlyMethods( [ 'getSchemaId', 'getReflectionSchemaSource' ] )
+			->getMock();
+		$schemaReader->method( 'getSchemaId' )
+			->willReturn( 'schema/id' );
+		// The builder reads the class constants one time. The second call uses the cache.
+		$schemaReader->expects( $this->once() )
+			->method( 'getReflectionSchemaSource' )
+			->willReturn( new ReflectionSchemaSource( get_class( $schema ) ) );
+		$builder = new JsonSchemaBuilder( $schemaReader, StatsFactory::newNull() );
+
+		$expectedRootSchema = [
+			'$schema' => 'https://json-schema.org/draft-04/schema#',
+			'$id' => 'schema/id',
+			JsonSchema::ADDITIONAL_PROPERTIES => false,
+			'type' => 'object',
+			'properties' => [
+				'ExampleNumber' => [
+					JsonSchema::TYPE => JsonSchema::TYPE_NUMBER,
+					JsonSchema::DEFAULT => null,
+				],
+			],
+			'required' => [],
+		];
+
+		$this->assertEquals( $expectedRootSchema, $builder->getRootSchema() );
+		$this->assertEquals( $expectedRootSchema, $builder->getRootSchema() );
 	}
 
 	private function getNewJsonSchemaBuilder( JsonSchema $schema ): JsonSchemaBuilder {
