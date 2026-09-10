@@ -72,6 +72,33 @@ class DataProviderIntegrationTest extends MediaWikiIntegrationTestCase {
 		], $result );
 	}
 
+	public function testLoadReturnsCopy(): void {
+		$authority = $this->getTestSysop()->getAuthority();
+		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )
+			->getConfigurationProviderFactory()
+			->newProvider( self::PROVIDER_ID );
+
+		$storeStatus = $provider->storeValidConfiguration( (object)[ 'NumberWithDefault' => 42 ], $authority );
+		$this->assertStatusOK( $storeStatus );
+
+		$resultA = $provider->loadValidConfiguration();
+		$valueA = $resultA->getValue();
+		unset( $valueA->NumberWithDefault );
+
+		// Unsetting on $resultA's value should be visible in the status...
+		$this->assertStatusOK( $resultA );
+		$this->assertStatusValue( (object)[ 'Mentors' => (object)[] ], $resultA );
+
+		// ...but a fresh load should start from the beginning.
+		$resultB = $provider->loadValidConfiguration();
+		$this->assertNotSame( $resultB, $resultA );
+		$this->assertStatusOK( $resultB );
+		$this->assertStatusValue(
+			(object)[ 'NumberWithDefault' => 42, 'Mentors' => (object)[] ],
+			$resultB
+		);
+	}
+
 	public function testStoreNoPermissions(): void {
 		$authority = $this->getTestUser()->getAuthority();
 		$provider = CommunityConfigurationServices::wrap( $this->getServiceContainer() )

@@ -4,12 +4,19 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\CommunityConfiguration\Provider;
 
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Permissions\Authority;
 use Psr\Log\LogLevel;
 use StatusValue;
 use stdClass;
 
 class DataProvider extends AbstractProvider {
+
+	/**
+	 * @var StatusValue|null In process cache to ensure the computations happen only once per
+	 * request.
+	 */
+	private ?StatusValue $configInProcessCache = null;
 
 	/**
 	 * Process a StatusValue returned from IConfigurationStore
@@ -100,9 +107,27 @@ class DataProvider extends AbstractProvider {
 		return $config;
 	}
 
+	private function copyStatusValue( StatusValue $status ): StatusValue {
+		// Note this is a shallow copy, value needs to be copied separately.
+		$copy = clone $status;
+		if ( $copy->isOK() && $copy->getValue() ) {
+			// Copy the value, so each caller gets its own object. A caller that changes
+			// the config must not pollute the cache. See T364101.
+			$copy->setResult(
+				true,
+				FormatJson::decode( FormatJson::encode( $copy->getValue() ) )
+			);
+		}
+		return $copy;
+	}
+
 	/** @inheritDoc */
 	public function loadValidConfiguration(): StatusValue {
-		return $this->processStoreStatus( $this->getStore()->loadConfiguration() );
+		if ( $this->configInProcessCache === null ) {
+			$this->configInProcessCache = $this->processStoreStatus( $this->getStore()->loadConfiguration() );
+		}
+
+		return $this->copyStatusValue( $this->configInProcessCache );
 	}
 
 	/**
@@ -150,7 +175,8 @@ class DataProvider extends AbstractProvider {
 
 	/** @inheritDoc */
 	public function loadValidConfigurationUncached(): StatusValue {
-		return $this->processStoreStatus( $this->getStore()->loadConfigurationUncached() );
+		$this->configInProcessCache = $this->processStoreStatus( $this->getStore()->loadConfigurationUncached() );
+		return $this->copyStatusValue( $this->configInProcessCache );
 	}
 
 	/**
@@ -181,5 +207,11 @@ class DataProvider extends AbstractProvider {
 	): StatusValue {
 		$normalizedConfig = $this->normalizeConfigDataBeforeStore( $newConfig );
 		return parent::alwaysStoreValidConfiguration( $normalizedConfig, $authority, $summary );
+	}
+
+	/** @inheritDoc */
+	public function invalidateCache(): void {
+		parent::invalidateCache();
+		$this->configInProcessCache = null;
 	}
 }

@@ -141,6 +141,40 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 		$this->assertConfigStatusOK( $defaultConfig, $provider->loadValidConfigurationUncached() );
 	}
 
+	public function testLoadConfigUsesInProcessCache(): void {
+		$defaultConfig = (object)[ 'Foo' => 42, 'Bar' => 'string' ];
+
+		$schemaBuilderMock = $this->createMock( JsonSchemaBuilder::class );
+		$schemaBuilderMock->method( 'getDefaultsMap' )
+			->willReturn( $defaultConfig );
+
+		$validatorMock = $this->createMock( JsonSchemaValidator::class );
+		$validatorMock->method( 'areSchemasSupported' )
+			->willReturn( true );
+		$validatorMock->method( 'getSchemaBuilder' )
+			->willReturn( $schemaBuilderMock );
+		// Validation runs once per provider. The second load uses the in-process cache.
+		// The third load runs after invalidateCache() drops the cache.
+		$validatorMock->expects( $this->exactly( 2 ) )
+			->method( 'validatePermissively' )
+			->willReturn( ValidationStatus::newGood() );
+
+		$provider = new DataProvider(
+			$this->createNoOpMock( ProviderServicesContainer::class ),
+			'ProviderId',
+			[ 'excludeFromUI' => true ],
+			new StaticStore( new stdClass() ),
+			$validatorMock
+		);
+
+		$this->assertConfigStatusOK( $defaultConfig, $provider->loadValidConfiguration() );
+		$this->assertConfigStatusOK( $defaultConfig, $provider->loadValidConfiguration() );
+
+		$provider->invalidateCache();
+
+		$this->assertConfigStatusOK( $defaultConfig, $provider->loadValidConfiguration() );
+	}
+
 	public static function providePartialConfigTestingData(): iterable {
 		yield 'Object with multiple fields' => [
 			(object)[
@@ -189,28 +223,28 @@ class DataProviderTest extends MediaWikiUnitTestCase {
 			],
 			(object)[
 				"GEHelpPanelLinks" => [
-					[
+					(object)[
 						"text" => "Writing good articles",
 						"title" => "Help:How_to_write_an_Article",
 					],
-					[
+					(object)[
 						"text" => "Just a link title, no page",
 					],
-					[
+					(object)[
 						"title" => "Help:link_title_is_missing",
 					],
 				],
 			],
 			(object)[
 				"GEHelpPanelLinks" => [
-					[
+					(object)[
 						"text" => "Writing good articles",
 						"title" => "Help:How_to_write_an_Article",
 					],
-					[
+					(object)[
 						"text" => "Just a link title, no page",
 					],
-					[
+					(object)[
 						"title" => "Help:link_title_is_missing",
 					],
 				],
