@@ -144,6 +144,7 @@ abstract class AbstractProvider implements IConfigurationProvider {
 			} );
 		}
 
+		$this->invalidateCache();
 		return $status;
 	}
 
@@ -167,6 +168,13 @@ abstract class AbstractProvider implements IConfigurationProvider {
 		string $summary = ''
 	): StatusValue {
 		return $this->doStoreValidConfiguration( $newConfig, $authority, $summary, true );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function invalidateCache(): void {
+		$this->getStore()->invalidate();
 	}
 
 	/**

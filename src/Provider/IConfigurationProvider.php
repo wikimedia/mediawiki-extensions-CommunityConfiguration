@@ -128,6 +128,11 @@ interface IConfigurationProvider extends LoggerAwareInterface {
 	): StatusValue;
 
 	/**
+	 * Invalidate cache for the provider
+	 */
+	public function invalidateCache(): void;
+
+	/**
 	 * Retrieves the value of a specified option for a configuration provider.
 	 *
 	 * @param string $optionName The name of the option to retrieve.
