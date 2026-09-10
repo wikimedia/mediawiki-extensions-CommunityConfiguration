@@ -11,6 +11,11 @@ class JsonSchemaBuilder implements SchemaBuilder {
 
 	private JsonSchemaVersionManager $versionManager;
 
+	/**
+	 * @var array<string,array> Root schemas that this process built, keyed by version.
+	 */
+	private array $rootSchemaCache = [];
+
 	public function __construct(
 		private readonly JsonSchemaReader $jsonSchema,
 		private readonly StatsFactory $statsFactory
@@ -59,6 +64,15 @@ class JsonSchemaBuilder implements SchemaBuilder {
 	 * @inheritDoc
 	 */
 	public function getRootSchema( ?string $version = null ): array {
+		// The root schema comes from PHP class constants. It cannot change while the process
+		// runs. Thus, build it one time for each version. PHP copies arrays on assignment, so
+		// a caller cannot change the cached value.
+		$cacheKey = $version ?? '';
+		if ( isset( $this->rootSchemaCache[$cacheKey] ) ) {
+			return $this->rootSchemaCache[$cacheKey];
+		}
+
+		// Measure the build only. A cache hit does no work.
 		$timing = $this->statsFactory->withComponent( 'CommunityConfiguration' )->getTiming(
 			'JsonSchemaBuilder_getRootSchema_seconds'
 		)->setLabel(
@@ -75,6 +89,8 @@ class JsonSchemaBuilder implements SchemaBuilder {
 			'required' => $reader->getRequiredTopLevelProperties(),
 		], $reader->getReflectionSchemaSource()->loadAsSchema( true ) );
 		$timing->stop();
+
+		$this->rootSchemaCache[$cacheKey] = $result;
 		return $result;
 	}
 
