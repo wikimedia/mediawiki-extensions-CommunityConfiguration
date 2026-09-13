@@ -12,7 +12,6 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 use stdClass;
 
@@ -80,7 +79,7 @@ class ChangeWikiConfig extends Maintenance {
 	}
 
 	private function initServices(): void {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$ccServices = CommunityConfigurationServices::wrap( $services );
 		$this->providerFactory = $ccServices->getConfigurationProviderFactory();
 		$this->formatterFactory = $services->getFormatterFactory();
