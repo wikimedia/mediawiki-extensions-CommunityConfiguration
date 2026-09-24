@@ -44,10 +44,11 @@ class ApiQueryRead extends ApiQueryBase {
 		}
 
 		$version = $provider->getStore()->getVersion();
-		// intentionally outside the $version if, because if the client wants a specific
-		// version only, and no version data is available, then it's reasonable to treat that as
-		// a version mismatch
-		if ( $version !== $params['assertversion'] ) {
+		// The comparison is intentionally not guarded on $version: if the client asks for a
+		// specific version and no version data is available, it is reasonable to treat that as
+		// a version mismatch. It is guarded on the parameter instead, because a client that
+		// omits it is not asserting anything.
+		if ( $params['assertversion'] !== null && $version !== $params['assertversion'] ) {
 			$this->dieWithError( [
 				'apierror-communityconfiguration-version-assertion-failure',
 					$version,

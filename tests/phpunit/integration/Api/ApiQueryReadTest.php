@@ -61,6 +61,22 @@ class ApiQueryReadTest extends ApiTestCase {
 		$this->assertArrayNotHasKey( 'version', $ret['communityconfiguration'] );
 	}
 
+	public function testExecuteWithoutVersionAssertion() {
+		$this->storeConfiguration( [ 'NumberWithDefault' => 42 ] );
+
+		[ $ret ] = $this->doApiRequest( [
+			'action' => 'query',
+			'meta' => 'communityconfiguration',
+			'ccrprovider' => 'foo',
+		] );
+
+		$this->assertSame( 42, $ret['communityconfiguration']['data']['NumberWithDefault'] );
+		$this->assertSame(
+			JsonSchemaForTesting::VERSION,
+			$ret['communityconfiguration']['version']
+		);
+	}
+
 	public function testExecuteVersionAssertionOK() {
 		$this->storeConfiguration( [ 'NumberWithDefault' => 42 ] );
 
