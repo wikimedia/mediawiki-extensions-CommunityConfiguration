@@ -29,7 +29,6 @@
 	"communityconfiguration-invalid-schema-version": "Ugyldig versjon $1. Det gjeldende skjemaet er $2.",
 	"communityconfiguration-providers-list-title": "Funksjoner",
 	"communityconfiguration-provider-not-found": "Leverandøren $1 ble ikke funnet",
-	"communityconfigurationdashboard": "Fellesskapskonfigurasjon",
 	"communityconfigurationeditor": "Redigerer «$1»",
 	"communityconfiguration-edit-summary-reminder": "<b>Husk:</b> Denne endringen kan ha stor innvirkning på brukerne, så angi hvorfor {{GENDER:$1|du}} gjør endringen, og lenk til relevante diskusjoner om det er aktuelt.",
 	"communityconfiguration-edit-summary-dialog-title": "Lagre endringer for $1",

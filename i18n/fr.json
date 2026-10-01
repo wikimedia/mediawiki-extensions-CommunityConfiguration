@@ -39,7 +39,6 @@
 	"communityconfiguration-invalid-schema-version": "Version $1 non valide. Le schéma actuel est $2 .",
 	"communityconfiguration-providers-list-title": "Fonctionnalités",
 	"communityconfiguration-provider-not-found": "La configuration $1 est introuvable.",
-	"communityconfigurationdashboard": "Configuration communautaire",
 	"communityconfigurationeditor": "Modification de $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Rappel</b> : Ce changement est susceptible d'impacter un grand nombre de membres de la communauté. Merci d'indiquer le motif de {{GENDER:$1|vos}} changements et d'indiquer les liens vers les éventuelles discussions.",
 	"communityconfiguration-edit-summary-dialog-title": "Enregistrez les modifications pour $1",

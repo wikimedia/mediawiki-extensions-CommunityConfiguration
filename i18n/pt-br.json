@@ -21,7 +21,6 @@
 	"communityconfiguration-invalid-stored-config-error-with-link": "Falha ao salvar uma configuração válida do $1 (code <code>$2</code>) provedor, veja $3.",
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Detalhes do erro",
 	"communityconfiguration-providers-list-title": "Funcionalidades",
-	"communityconfigurationdashboard": "Configuração da comunidade",
 	"communityconfigurationeditor": "Editando $1",
 	"communityconfiguration-edit-summary-dialog-title": "Salve as alterações por $1",
 	"communityconfiguration-edit-summary-dialog-save-button": "Salvar alterações",

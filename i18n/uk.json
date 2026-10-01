@@ -29,7 +29,6 @@
 	"communityconfiguration-invalid-schema-version": "Недійсна версія $1. Поточна схема — $2.",
 	"communityconfiguration-providers-list-title": "Функції",
 	"communityconfiguration-provider-not-found": "Постачальника $1 не знайдено",
-	"communityconfigurationdashboard": "Налаштування спільнотою",
 	"communityconfigurationeditor": "Редагування розділу «$1»",
 	"communityconfiguration-edit-summary-reminder": "<b>Нагадування</b>: Ця зміна може вплинути на велику кількість членів спільноти. Вкажіть, будь ласка, чому {{GENDER:$1|ви}} робите цю зміну і дайте посилання на відповідне обговорення спільноти, де потрібно.",
 	"communityconfiguration-edit-summary-dialog-title": "Зберегти зміни до «$1»",

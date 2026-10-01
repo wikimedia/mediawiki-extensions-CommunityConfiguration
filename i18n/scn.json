@@ -27,7 +27,6 @@
 	"communityconfiguration-schema-validation-error": "$2. Chiavi: $1",
 	"communityconfiguration-providers-list-title": "Funziunalità",
 	"communityconfiguration-provider-not-found": "A confijurazzioni $1 nun cc'è",
-	"communityconfigurationdashboard": "Cunfijurazzioni cumunitaria",
 	"communityconfigurationeditor": "Canciu di $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Ricorda</b>: stu canciu po' nfruinzari un nùmmaru granni di mèmmira dâ cumunità. Schica picchì {{GENDER:$1|sta'}} facennu lu canciu e metti li lijami ê discurruti lijati, a quantu su'-su'.",
 	"communityconfiguration-edit-summary-dialog-title": "Riggistra i canci pi $1",

@@ -28,7 +28,6 @@
 	"communityconfiguration-invalid-schema-version": "Nooca $1 waa aan sax ahayn. Nidaamka hadda jira ee Schema waa $2.",
 	"communityconfiguration-providers-list-title": "Astaamaha",
 	"communityconfiguration-provider-not-found": "Bixiyaha $1 lama helin",
-	"communityconfigurationdashboard": "Dejinta Bulshada",
 	"communityconfigurationeditor": "Wax ka beddelka $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Xusuusin</b>: Isbeddelkan wuxuu saameyn karaa tiro badan oo ka tirsan xubnaha bulshada, fadlan tixgeli inaad sharaxdo sababta {{GENDER:$1|aad}} u sameyneyso isbeddelkan iyo inaad ku xusto doodaha bulshada ee la xiriira haddii ay habboon tahay.",
 	"communityconfiguration-edit-summary-dialog-title": "Kaydi isbeddellada $1",

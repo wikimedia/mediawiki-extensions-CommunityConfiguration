@@ -31,7 +31,6 @@
 	"communityconfiguration-invalid-schema-version": "Onjuiste versiewaarde $1. Het huidige schema is $2.",
 	"communityconfiguration-providers-list-title": "Functies",
 	"communityconfiguration-provider-not-found": "Provider $1 is niet gevonden",
-	"communityconfigurationdashboard": "Gemeenschapsconfiguratie",
 	"communityconfigurationeditor": "Bewerken van $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Herinnering</b>: deze wijziging kan van invloed zijn op een groot aantal gemeenschapsleden. Overweeg uit te leggen waarom {{GENDER:$1|u}} de wijziging aanbrengt en geef eventueel een koppeling naar het bijbehorende gemeenschapsoverleg mee.",
 	"communityconfiguration-edit-summary-dialog-title": "Wijzigingen opslaan voor $1",

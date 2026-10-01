@@ -28,7 +28,6 @@
 	"communityconfiguration-invalid-schema-version": "$1 yanlış versiyadır. Cari sxem: $2.",
 	"communityconfiguration-providers-list-title": "Xüsusiyyətlər",
 	"communityconfiguration-provider-not-found": "Provayder $1 tapılmadı",
-	"communityconfigurationdashboard": "İcma Konfiqurasiyası",
 	"communityconfigurationeditor": "$1 redaktə edilir",
 	"communityconfiguration-edit-summary-reminder": "<b>Xatırlatma</b>: Bu dəyişiklik çoxlu sayda icma üzvlərinə təsir edə bilər, zəhmət olmasa dəyişiklik etmə {{GENDER:$1|səbəbinizi}} qeyd edin və uyğun olarsa, hər hansı əlaqəli icma müzakirəsinə keçid əlavə edin.",
 	"communityconfiguration-edit-summary-dialog-title": "$1 üçün dəyişiklikləri yadda saxlayın",

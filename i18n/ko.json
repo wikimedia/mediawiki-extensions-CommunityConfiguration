@@ -32,7 +32,6 @@
 	"communityconfiguration-invalid-schema-version": "잘못된 버전 $1. 현재 스키마는 $2입니다.",
 	"communityconfiguration-providers-list-title": "기능",
 	"communityconfiguration-provider-not-found": "$1 공급자가 없습니다",
-	"communityconfigurationdashboard": "커뮤니티 구성",
 	"communityconfigurationeditor": "$1 편집 중",
 	"communityconfiguration-edit-summary-reminder": "<b>알림</b>: 이 변경사항은 많은 공동체 구성원에게 영향을 미칠 수 있으므로, {{GENDER:$1|귀하}}가 변경을 진행하는 이유를 명시하고, 필요한 경우 관련 공동체 토론에 링크를 달아주시기 바랍니다.",
 	"communityconfiguration-edit-summary-dialog-title": "$1의 변경사항 저장",

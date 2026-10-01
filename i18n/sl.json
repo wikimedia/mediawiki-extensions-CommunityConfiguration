@@ -29,7 +29,6 @@
 	"communityconfiguration-invalid-schema-version": "Neveljavna različica $1. Trenutna shema je $2.",
 	"communityconfiguration-providers-list-title": "Možnosti",
 	"communityconfiguration-provider-not-found": "Ponudnika $1 ni bilo mogoče najti",
-	"communityconfigurationdashboard": "Konfiguracija skupnosti",
 	"communityconfigurationeditor": "Urejanje $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Opomnik</b>: Ta sprememba lahko vpliva na številne člane skupnosti, zato prosimo, da navedete, zakaj {{GENDER:$1|izvajate}} spremembo, in po potrebi dodate povezavo na razpravo v skupnosti.",
 	"communityconfiguration-edit-summary-dialog-title": "Shranjevanje sprememb za $1",

@@ -28,7 +28,6 @@
 	"communityconfiguration-invalid-schema-version": "Phiên bản $1 không hợp lệ. Schema hiện tại là $2.",
 	"communityconfiguration-providers-list-title": "Tính năng",
 	"communityconfiguration-provider-not-found": "Không tìm thấy nhà cung cấp $1",
-	"communityconfigurationdashboard": "Cấu hình Cộng đồng",
 	"communityconfigurationeditor": "Sửa đổi $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Lưu ý</b>: Thay đổi này có thể ảnh hưởng đến một lượng lớn thành viên cộng đồng, vui lòng cân nhắc việc nêu lý do tại sao {{GENDER:$1|bạn}} thực hiện thay đổi này và liên kết đến bất kỳ thảo luận cộng đồng nào có liên quan nếu phù hợp.",
 	"communityconfiguration-edit-summary-dialog-title": "Lưu thay đổi cho $1",

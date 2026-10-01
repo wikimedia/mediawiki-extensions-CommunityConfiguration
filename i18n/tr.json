@@ -31,7 +31,6 @@
 	"communityconfiguration-invalid-schema-version": "Geçersiz sürüm $1. Mevcut şema $2.",
 	"communityconfiguration-providers-list-title": "Özellikler",
 	"communityconfiguration-provider-not-found": "Sağlayıcı $1 bulunamadı",
-	"communityconfigurationdashboard": "Topluluk Yapılandırması",
 	"communityconfigurationeditor": "$1 düzenleniyor",
 	"communityconfiguration-edit-summary-reminder": "<b>Hatırlatma</b>: Bu değişiklik çok sayıda topluluk üyesini etkileyebilir. Lütfen neden bu değişikliği {{GENDER:$1|yaptığınızı}} belirtmeyi ve uygunsa herhangi alakalı topluluk tartışmasına bağlanyı vermeyi düşünün.",
 	"communityconfiguration-edit-summary-dialog-title": "$1 için değişiklikleri kaydet",

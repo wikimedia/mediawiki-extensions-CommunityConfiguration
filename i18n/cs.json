@@ -30,7 +30,6 @@
 	"communityconfiguration-invalid-schema-version": "Neplatná verze $1. Aktuální schéma je $2.",
 	"communityconfiguration-providers-list-title": "Funkce",
 	"communityconfiguration-provider-not-found": "Poskytovatel $1 nenalezen.",
-	"communityconfigurationdashboard": "Komunitní konfigurace",
 	"communityconfigurationeditor": "Editace $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Připomenutí</b>: Vaše změna může ovlivnit velké množství členů komunity. Pokud je to možné, uveďte důvod, proč tuto změnu provádíte, a odkažte na jakékoli související komunitní diskuse.",
 	"communityconfiguration-edit-summary-dialog-title": "Uložit změny pro $1",

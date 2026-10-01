@@ -19,7 +19,6 @@
 	"communityconfiguration-invalid-schema-version": "সংস্করণ $1 অবৈধ। বর্তমান স্কিমা হলো $2।",
 	"communityconfiguration-providers-list-title": "বৈশিষ্ট্যাবলী",
 	"communityconfiguration-provider-not-found": "সরবরাহকারী $1 পাওয়া যায়নি",
-	"communityconfigurationdashboard": "সম্প্রদায়ের কনফিগারেশন",
 	"communityconfigurationeditor": "সম্পাদনা করছেন $1",
 	"communityconfiguration-edit-summary-dialog-save-button": "পরিবর্তন সংরক্ষণ করুন",
 	"communityconfiguration-edit-summary-dialog-cancel-button": "বাতিল",

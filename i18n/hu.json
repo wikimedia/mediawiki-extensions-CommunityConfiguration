@@ -21,7 +21,6 @@
 	"communityconfiguration-guidelines-guideline2-title": "{{GENDER:$1|Visszajelzés}}",
 	"communityconfiguration-guidelines-guideline2-description": "Szeretnénk hallani a {{GENDER:$1|gondolataid}}! Elérhetsz minket a [https://www.mediawiki.org/wiki/Talk:Growth vitalapunkon].",
 	"communityconfiguration-providers-list-title": "Funkciók",
-	"communityconfigurationdashboard": "Közösségi konfiguráció",
 	"communityconfigurationeditor": "$1 szerkesztése",
 	"communityconfiguration-edit-summary-dialog-title": "$1 módosításainak mentése",
 	"communityconfiguration-edit-summary-dialog-save-button": "Változtatások mentése",

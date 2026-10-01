@@ -29,7 +29,6 @@
 	"communityconfiguration-invalid-schema-version": "ناسمه بلبڼه $1. اوسنۍ بېلگه $2.",
 	"communityconfiguration-providers-list-title": "ځانگړنې",
 	"communityconfiguration-provider-not-found": "$1 چمتوکوونکی ونه موندل شو",
-	"communityconfigurationdashboard": "ټولنې جوړښت",
 	"communityconfigurationeditor": "$1 سمول",
 	"communityconfiguration-edit-summary-reminder": "<b>يادونه</b> دا بدلون ښايي د ټولنې په ډېرو غړو اغېز وکړي؛ مهرباني وکړئ په پام کې ونيسئ چې {{GENDER:$1|تاسو}} ولې دا بدلون راوړئ او که مناسبه وي؛ نو د ټولنې اړوند شننې سره تړونی ورکړئ.",
 	"communityconfiguration-edit-summary-dialog-title": "د $1 بدلونونه خوندي‌کول",

@@ -30,7 +30,6 @@
 	"communityconfiguration-invalid-schema-version": "Ogiltig version $1. Nuvarande schema är $2.",
 	"communityconfiguration-providers-list-title": "Funktioner",
 	"communityconfiguration-provider-not-found": "Leverantören $1 hittades inte",
-	"communityconfigurationdashboard": "Gemenskapskonfigurering",
 	"communityconfigurationeditor": "Redigerar $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Påminnelse</b>: Den här ändringen kan påverka ett stort antal gemenskapsmedlemmar, överväg att ange varför {{GENDER:$1|du}} gör ändringarna och länka till relaterade gemenskapsdiskussioner om lämpligt.",
 	"communityconfiguration-edit-summary-dialog-title": "Spara ändringar för $1",

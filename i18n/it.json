@@ -29,7 +29,6 @@
 	"communityconfiguration-invalid-schema-version": "Versione non valida $1. Lo schema attuale è $2.",
 	"communityconfiguration-providers-list-title": "Caratteristiche",
 	"communityconfiguration-provider-not-found": "Provider $1 non trovato",
-	"communityconfigurationdashboard": "Configurazione comunitaria",
 	"communityconfigurationeditor": "Modifica di $1",
 	"communityconfiguration-edit-summary-reminder": "<b>Promemoria</b>: questa modifica potrebbe avere un impatto su molti membri della comunità. Si prega di indicare il motivo per cui si sta apportando la modifica, eventualmente linkando le discussioni correlate nella comunità.",
 	"communityconfiguration-edit-summary-dialog-title": "Salva modifiche per $1",
