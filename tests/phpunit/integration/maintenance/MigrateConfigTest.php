@@ -19,6 +19,8 @@ class MigrateConfigTest extends MaintenanceBaseTestCase {
 	}
 
 	public function testUpgrade(): void {
+		$this->markTestSkippedIfExtensionNotLoaded( 'CommounityConfigurationExample' );
+
 		$pageStatus = $this->editPage( 'MediaWiki:CommunityConfigurationExample.json', '{
 	"$version": "1.0.0",
 	"CCExample_OnOff": "on"
@@ -58,6 +60,8 @@ class MigrateConfigTest extends MaintenanceBaseTestCase {
 	}
 
 	public function testDowngrade(): void {
+		$this->markTestSkippedIfExtensionNotLoaded( 'CommounityConfigurationExample' );
+
 		$pageStatus = $this->editPage( 'MediaWiki:CommunityConfigurationExample.json', '{
 	"$version": "1.1.0",
 	"CCExample_OnOff": true
