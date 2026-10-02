@@ -37,6 +37,7 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Détails de l'erreur",
 	"communityconfiguration-schema-validation-error": "$2. Clé : $1",
 	"communityconfiguration-invalid-schema-version": "Version $1 non valide. Le schéma actuel est $2 .",
+	"communityconfiguration-malformed-schema-version": "Version de schéma invalide : $1 . La version doit être une chaîne de caractères au format 1.0.0.",
 	"communityconfiguration-providers-list-title": "Fonctionnalités",
 	"communityconfiguration-provider-not-found": "La configuration $1 est introuvable.",
 	"communityconfigurationeditor": "Modification de $1",

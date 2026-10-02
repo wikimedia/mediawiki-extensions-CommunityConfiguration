@@ -28,6 +28,7 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "تفاصيل الخطأ",
 	"communityconfiguration-schema-validation-error": "$2. المفتاح: $1",
 	"communityconfiguration-invalid-schema-version": "نسخة خاطئة $1. المثال الحالي $2,",
+	"communityconfiguration-malformed-schema-version": "إصدار المخطط غير صالح: $1 . يجب أن يكون الإصدار سلسلة نصية على شكل 1.0.0.",
 	"communityconfiguration-providers-list-title": "المزايا",
 	"communityconfiguration-provider-not-found": "لم يتم العثور على الموفِّر $1",
 	"communityconfigurationeditor": "تعديل $1",

@@ -26,6 +26,7 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Xəta təfərrüatları",
 	"communityconfiguration-schema-validation-error": "$2. Açar: $1",
 	"communityconfiguration-invalid-schema-version": "$1 yanlış versiyadır. Cari sxem: $2.",
+	"communityconfiguration-malformed-schema-version": "Yanlış sxem versiyası: $1 . Versiya 1.0.0 formasında olmalıdır.",
 	"communityconfiguration-providers-list-title": "Xüsusiyyətlər",
 	"communityconfiguration-provider-not-found": "Provayder $1 tapılmadı",
 	"communityconfigurationeditor": "$1 redaktə edilir",

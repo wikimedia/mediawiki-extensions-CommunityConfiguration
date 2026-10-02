@@ -26,6 +26,7 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Faahfaahinta khaladka",
 	"communityconfiguration-schema-validation-error": "$2 . Furaha: $1",
 	"communityconfiguration-invalid-schema-version": "Nooca $1 waa aan sax ahayn. Nidaamka hadda jira ee Schema waa $2.",
+	"communityconfiguration-malformed-schema-version": "Nooca schema-da oo aan sax ahayn: $1. Noocu waa inuu ahaadaa xarfo qaabkan ah 1.0.0.",
 	"communityconfiguration-providers-list-title": "Astaamaha",
 	"communityconfiguration-provider-not-found": "Bixiyaha $1 lama helin",
 	"communityconfigurationeditor": "Wax ka beddelka $1",

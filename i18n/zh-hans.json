@@ -31,6 +31,7 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "错误详情",
 	"communityconfiguration-schema-validation-error": "$2。键：$1",
 	"communityconfiguration-invalid-schema-version": "无效版本$1。当前架构为$2。",
+	"communityconfiguration-malformed-schema-version": "无效的架构版本：$1。版本必须是形如1.0.0的字符串。",
 	"communityconfiguration-providers-list-title": "功能",
 	"communityconfiguration-provider-not-found": "无法找到提供者$1",
 	"communityconfigurationeditor": "编辑“︁$1”︁",
