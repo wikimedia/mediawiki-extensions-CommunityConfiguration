@@ -85,3 +85,17 @@ $specialPageAliases['uk'] = [
 $specialPageAliases['vi'] = [
 	'CommunityConfiguration' => [ 'Cấu_hình_Cộng_đồng' ],
 ];
+
+/** Chinese (中文) */
+$specialPageAliases['zh'] = [
+	'CommunityConfiguration' => [ 'CommunityConfiguration' ],
+];
+/** Simplified Chinese (中文（简体）) */
+$specialPageAliases['zh-hans'] = [
+	'CommunityConfiguration' => [ '社群配置', '社区配置' ],
+];
+
+/** Traditional Chinese (中文（繁體）) */
+$specialPageAliases['zh-hant'] = [
+	'CommunityConfiguration' => [ '社群組態', '社區組態' ],
+];
