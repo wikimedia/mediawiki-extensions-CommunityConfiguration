@@ -100,6 +100,7 @@ class JsonSchemaValidator implements IValidator {
 			$rootSchema
 		);
 		if ( $validator->isValid() ) {
+			$timing->stop();
 			return ValidationStatus::newGood();
 		}
 		$status = ValidationStatus::newGood();
