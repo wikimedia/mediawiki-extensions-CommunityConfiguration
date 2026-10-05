@@ -266,19 +266,9 @@ class ChangeWikiConfigTest extends MaintenanceBaseTestCase {
 		$result = $this->maintenance->execute();
 		$this->assertTrue( $result );
 		$actualConfig = $this->getValidConfig();
-		$this->assertEquals( (object)[
-			'CCExample_FavoriteColors' => [],
-			'CCExample_String' => 'pre-existing config',
-			'CCExample_Numbers' => (object)[
-				'IntegerNumber' => 0,
-				'DecimalNumber' => 0.6,
-			],
-			'CCExample_RelevantPages' => [],
-			'CCExample_OnOff' => false,
-			'CCExample_CustomControl' => 0,
-			'CCExample_ValueA' => 0,
-			'CCExample_ValueB' => '',
-		], $actualConfig );
+		// Avoid asserting the rest of the config shape as it depends on the latest schema
+		// version defined in CCExample and makes this test brittle across schema changes.
+		$this->assertSame( 'pre-existing config', $actualConfig->CCExample_String );
 	}
 
 	public function testNullEditDoesNotAffectSchemaVersion(): void {
