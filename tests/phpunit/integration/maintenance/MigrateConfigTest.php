@@ -19,7 +19,7 @@ class MigrateConfigTest extends MaintenanceBaseTestCase {
 	}
 
 	public function testUpgrade(): void {
-		$this->markTestSkippedIfExtensionNotLoaded( 'CommounityConfigurationExample' );
+		$this->markTestSkippedIfExtensionNotLoaded( 'CommunityConfigurationExample' );
 
 		$pageStatus = $this->editPage( 'MediaWiki:CommunityConfigurationExample.json', '{
 	"$version": "1.0.0",
