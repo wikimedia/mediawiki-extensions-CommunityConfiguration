@@ -9,6 +9,7 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\SlotRecord;
@@ -18,6 +19,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
+use Wikimedia\ScopedCallback;
 
 /**
  * @covers \MediaWiki\Extension\CommunityConfiguration\Store\WikiPage\Writer
@@ -104,10 +106,18 @@ class WriterTest extends MediaWikiUnitTestCase {
 			->with( 'EditFilterMergedContent', $this->anything() )
 			->willReturn( true );
 
+		// The captcha has no solution in this context, so the performer skips it (T439782).
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$permissionManager->expects( $this->once() )
+			->method( 'addTemporaryUserRights' )
+			->with( $this->anything(), 'skipcaptcha' )
+			->willReturn( new ScopedCallback( null ) );
+
 		$writer = new Writer(
 			$this->getWikiPageFactory( $updater, $authority->getUser(), $configPageMock ),
 			$userFactoryMock,
-			$hookContainer
+			$hookContainer,
+			$permissionManager
 		);
 		$status = $writer->save(
 			$configPageMock,

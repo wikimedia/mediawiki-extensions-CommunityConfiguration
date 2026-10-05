@@ -151,7 +151,8 @@ return [
 		return new Writer(
 			$services->getWikiPageFactory(),
 			$services->getUserFactory(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getPermissionManager()
 		);
 	},
 ];

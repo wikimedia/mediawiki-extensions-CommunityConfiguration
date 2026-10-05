@@ -13,6 +13,7 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\SlotRecord;
@@ -25,7 +26,8 @@ class Writer {
 	public function __construct(
 		private readonly WikiPageFactory $wikiPageFactory,
 		private readonly UserFactory $userFactory,
-		private readonly HookContainer $hookContainer
+		private readonly HookContainer $hookContainer,
+		private readonly PermissionManager $permissionManager
 	) {
 	}
 
@@ -112,6 +114,15 @@ class Writer {
 		bool $minor
 	): Status {
 		$performerUser = $this->userFactory->newFromAuthority( $performer );
+
+		// ConfirmEdit also handles this hook. A configuration write might be exposed by a
+		// form that shows no captcha. Then the captcha has no solution. Let the performer
+		// skip the captcha while the hook runs. As a long term fix, incorporate hCaptcha
+		// into those forms (T439782).
+		$captchaScope = $this->permissionManager->addTemporaryUserRights(
+			$performerUser,
+			'skipcaptcha'
+		);
 
 		// Ensure context has right values for title and performer, which are available to the
 		// config writer. Use the global context for the rest.
