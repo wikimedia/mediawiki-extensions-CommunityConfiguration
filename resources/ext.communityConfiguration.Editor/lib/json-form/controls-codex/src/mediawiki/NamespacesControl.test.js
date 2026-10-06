@@ -192,6 +192,68 @@ describe( 'NamespacesControl', () => {
 		expect( wrapper.vm.menuItems ).toHaveLength( 3 );
 
 		await wrapper.findComponent( '.cdx-menu-item' ).trigger( 'click' );
-		expect( reactiveData.GEHelpPanelExcludedNamespaces ).toEqual( [ 1, 0 ] );
+		expect( reactiveData.GEHelpPanelExcludedNamespaces ).toEqual( [ 0, 1 ] );
 	} );
+	it( 'displays namespaces sorted by their internal IDs after the user hits save and refreshes the page',
+		async () => {
+			const initialNamespaces = {
+				GEHelpPanelExcludedNamespaces: [],
+			};
+			const reactiveData = reactive( initialNamespaces );
+			const jsonform = {
+				schema,
+				uischema,
+				config: {
+					canEdit: true,
+					i18nPrefix: 'communityconfiguration-helppanel',
+					i18nMessages: { 'communityconfiguration-helppanel-title': 'Help panel' },
+					namespaceSelectorOptions: [
+						'(Main)',
+						'Talk',
+						'User',
+					],
+				},
+				data: reactiveData,
+				renderers: [],
+				errors: ref( [] ),
+			};
+			const wrapper = mount( NamespacesControl, {
+				props: {
+					id: 'GEHelpPanelExcludedNamespaces',
+					renderers: null,
+					uischema,
+					schema,
+				},
+				global: {
+					...global.getGlobalMediaWikiMountingOptions( { jsonform,
+						EDITOR_FORM_CONFIG: {
+							namespaceSelectorOptions: {
+								0: '(Main)',
+								1: 'Talk',
+								2: 'User',
+							},
+						},
+					} ),
+				},
+			} );
+
+			jest.runAllTimers();
+
+			expect( reactiveData.GEHelpPanelExcludedNamespaces ).toEqual( [ ] );
+
+			await wrapper.get( 'input' ).setValue( 'User' );
+
+			jest.advanceTimersByTime( 300 );
+			await wrapper.vm.onInput( 'User' );
+			await wrapper.vm.onNamespacesUpdated( [ 3 ] );
+
+			await wrapper.get( 'input' ).setValue( '(Main)' );
+
+			jest.advanceTimersByTime( 300 );
+			await wrapper.vm.onInput( '(Main)' );
+			await wrapper.vm.onNamespacesUpdated( [ 3, 0 ] );
+
+			wrapper.vm.$forceUpdate();
+			expect( reactiveData.GEHelpPanelExcludedNamespaces ).toEqual( [ 0, 3 ] );
+		} );
 } );

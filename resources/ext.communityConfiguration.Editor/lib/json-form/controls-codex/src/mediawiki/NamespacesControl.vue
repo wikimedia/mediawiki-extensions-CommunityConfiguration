@@ -83,6 +83,8 @@ module.exports = exports = {
 			}
 		};
 
+		const sortNamespacesByInternalId = ( namespaces ) => namespaces.sort( ( a, b ) => a - b );
+
 		return {
 			controlWrapper,
 			inputValue,
@@ -91,7 +93,7 @@ module.exports = exports = {
 			chips,
 			selection,
 			onNamespacesUpdated( updatedNamespaces ) {
-				onChange( updatedNamespaces );
+				onChange( sortNamespacesByInternalId( updatedNamespaces ) );
 				menuItems.value = [];
 			},
 		};
