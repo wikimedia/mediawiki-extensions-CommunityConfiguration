@@ -32,6 +32,13 @@ class ApiEdit extends ApiBase {
 	/**
 	 * @inheritDoc
 	 */
+	public function isWriteMode(): bool {
+		return true;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
 	public function execute() {
 		$params = $this->extractRequestParams();
 		try {
