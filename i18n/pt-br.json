@@ -30,6 +30,7 @@
 	"communityconfiguration-editor-message-dismiss-button-label": "Fechar",
 	"communityconfiguration-page-title-control-no-results": "Nenhum resultado encontrado.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Ver formulário",
+	"communityconfiguration-editor-client-notice-message": "Esta página está protegida. A configuração desse recurso só pode ser editada por administradores.",
 	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Você}} não pode salvar as alterações neste formulário porque a configuração deste recurso só pode ser editada por administradores.",
 	"tag-community_configuration": "Configuração da comunidade"
 }
