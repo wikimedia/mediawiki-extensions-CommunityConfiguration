@@ -29,6 +29,7 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Foutgegevens",
 	"communityconfiguration-schema-validation-error": "$2. Sleutel: $1",
 	"communityconfiguration-invalid-schema-version": "Onjuiste versiewaarde $1. Het huidige schema is $2.",
+	"communityconfiguration-malformed-schema-version": "Ongeldige schemaversie: $1. De versie moet een tekenreeks zijn in de vorm 1.0.0.",
 	"communityconfiguration-providers-list-title": "Functies",
 	"communityconfiguration-provider-not-found": "Provider $1 is niet gevonden",
 	"communityconfigurationeditor": "Bewerken van $1",
