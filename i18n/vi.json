@@ -47,8 +47,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "Phải có tối đa {{PLURAL:$1|$1 mục}} trong mảng",
 	"communityconfiguration-editor-error-validation-array-items-min": "Phải có tối thiểu {{PLURAL:$1|$1 mục}} trong mảng",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Không có giá trị trong phép liệt kê: $1",
-	"communityconfiguration-editor-error-validation-string-too-short": "Phải có độ dài tối thiểu $1 ký tự",
-	"communityconfiguration-editor-error-validation-string-too-long": "Phải có độ dài tối đa $1 ký tự",
+	"communityconfiguration-editor-error-validation-string-too-short": "Phải có độ dài tối thiểu {{PLURAL:$1|$1 ký tự}}",
+	"communityconfiguration-editor-error-validation-string-too-long": "Phải có độ dài tối đa {{PLURAL:$1|$1 ký tự}}",
 	"communityconfiguration-maintenance-config-change-summary": "Cấu hình đã được thay đổi bởi tập lệnh bảo trì: $1",
 	"tag-community_configuration": "Cấu hình Cộng đồng",
 	"tag-community_configuration-description": "Sửa đổi thay đổi [[Special:CommunityConfiguration|cấu hình wiki cục bộ]] của một tính năng sử dụng [[mw:Extension:CommunityConfiguration|phần mở rộng Cấu hình Cộng đồng]]."
