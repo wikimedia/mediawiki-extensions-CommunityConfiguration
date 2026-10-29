@@ -3,11 +3,12 @@
 		"authors": [
 			"Martin Urbanec (WMF)",
 			"Matus cz",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Mormegil"
 		]
 	},
 	"communityconfiguration": "Komunitní konfigurace",
-	"communityconfiguration-desc": "Logika pro komunitní konfiguraci.",
+	"communityconfiguration-desc": "Obsahuje logiku pro Komunitní konfiguraci",
 	"communityconfiguration-editor-chip-control-aria-chip-description": "Stiskněte Enter pro editaci anebo Delete pro odstranění.",
 	"communityconfiguration-editor-client-generic-error": "Při načítání editoru konfigurace se něco pokazilo. Prosím zkuste to znovu později.",
 	"communityconfiguration-editor-client-generic-error-description": "V komponentě '$1' v '$2' nastala chyba, viz detaily níže:",
@@ -17,7 +18,7 @@
 	"communityconfiguration-editor-form-submit-button-loading-text": "Odesílání...",
 	"communityconfiguration-editor-array-remove-element-label-screen-reader": "Odebrat prvek",
 	"communityconfiguration-editor-array-fallback-add-element-button-label": "Přidat další položku",
-	"communityconfiguration-guidelines-title": "Co je komunitní konfigurace?",
+	"communityconfiguration-guidelines-title": "Co je Komunitní konfigurace?",
 	"communityconfiguration-guidelines-description": "Komunitní konfigurace je nástroj umožňující komunitě spravovat konfiguraci různých funkcionalit na {{GRAMMAR:6sg|{{SITENAME}}}} a umožňující administrátorům přizpůsobit funkce komunitním potřebám.",
 	"communityconfiguration-guidelines-guideline1-title": "Více informací",
 	"communityconfiguration-guidelines-guideline1-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Community_configuration Zjistěte více] o komunitní konfiguraci: co to je, jak funguje a kdo na ni pracuje.",
@@ -32,7 +33,7 @@
 	"communityconfiguration-provider-not-found": "Poskytovatel $1 nenalezen.",
 	"communityconfigurationdashboard": "Komunitní konfigurace",
 	"communityconfigurationeditor": "Editace $1",
-	"communityconfiguration-edit-summary-reminder": "<b>Připomenutí</b>: Vaše změna může ovlivnit velké množství členů komunity. Pokud je to možné, uveďte důvod, proč tuto změnu provádíte, a odkažte na jakékoli související komunitní diskuse.",
+	"communityconfiguration-edit-summary-reminder": "<b>Připomenutí</b>: Tato změna může ovlivnit velké množství členů komunity. Pokud je to možné, uveďte důvod, proč tuto změnu {{GENDER:$1|provádíte}}, a odkažte na jakékoli související komunitní diskuse.",
 	"communityconfiguration-edit-summary-dialog-title": "Uložit změny pro $1",
 	"communityconfiguration-edit-summary-dialog-placeholder": "Popište změny, které jste v konfiguraci provedli",
 	"communityconfiguration-edit-summary-dialog-save-button": "Uložit změny",
@@ -46,8 +47,11 @@
 	"communityconfiguration-editor-nojs-fallback-text": "Editor konfigurace vyžaduje JavaScript. Povolte JavaScript, abyste jej mohli používat.",
 	"communityconfiguration-editor-navigation-tab-viewform": "Zobrazit formulář",
 	"communityconfiguration-editor-client-notice-message": "Tato stránka je uzamčena. Konfiguraci této funkcionality mohou editovat pouze správci.",
-	"communityconfiguration-editor-client-notice-footer-message": "Nemůžete uložit změny v tomto formuláři, protože konfiguraci této funkcionality mohou měnit jen administrátoři.",
+	"communityconfiguration-editor-client-notice-footer-message": "{{GENDER:$1|Nemůžete}} uložit změny v tomto formuláři, protože konfiguraci této funkcionality mohou měnit jen správci.",
 	"communityconfiguration-editor-error-validation-array-items-max": "V poli musí být nejvýše {{PLURAL:$1|jeden prvek|$1 prvky|$1 prvků}}",
 	"communityconfiguration-editor-error-validation-array-items-min": "V poli musí být nejméně {{PLURAL:$1|jeden prvek|$1 prvky|$1 prvků}}",
-	"tag-community_configuration": "Komunitní konfigurace"
+	"communityconfiguration-editor-error-validation-enum-invalid-value": "Nemá hodnotu z výčtu: $1",
+	"communityconfiguration-maintenance-config-change-summary": "Konfigurace změněna údržbovým skriptem: $1",
+	"tag-community_configuration": "Komunitní konfigurace",
+	"tag-community_configuration-description": "Editace, které mění [[Special:CommunityConfiguration|místní konfiguraci]] nějaké funkce wiki pomocí [[mw:Extension:CommunityConfiguration|rozšíření Komunitní konfigurace]]."
 }
