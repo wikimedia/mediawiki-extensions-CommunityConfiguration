@@ -26,6 +26,7 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Поединости за грешката",
 	"communityconfiguration-schema-validation-error": "$2. Клуч: $1",
 	"communityconfiguration-invalid-schema-version": "Неважечка верзија $1. Тековната шема е $2.",
+	"communityconfiguration-malformed-schema-version": "Неважечка верзија на шема: $1. Верзијата мора да биде низа од обликот 1.0.0.",
 	"communityconfiguration-providers-list-title": "Функции",
 	"communityconfiguration-provider-not-found": "Не го пронајдов услужникот $1",
 	"communityconfigurationeditor": "Уредување на $1",
@@ -47,8 +48,8 @@
 	"communityconfiguration-editor-error-validation-array-items-max": "Мора да има највеќе {{PLURAL:$1|$1 ставка|$1 ставки}} во стројот",
 	"communityconfiguration-editor-error-validation-array-items-min": "Мора да има најмалку {{PLURAL:$1|$1 ставка|$1 ставки}} во стројот",
 	"communityconfiguration-editor-error-validation-enum-invalid-value": "Нема вредност во пребројувањето: $1",
-	"communityconfiguration-editor-error-validation-string-too-short": "Мора да има барем $1 знаци",
-	"communityconfiguration-editor-error-validation-string-too-long": "Мора да има највеќе $1 знаци",
+	"communityconfiguration-editor-error-validation-string-too-short": "Мора да има барем {{PLURAL:$1|$1 знак|$1 знаци}}",
+	"communityconfiguration-editor-error-validation-string-too-long": "Мора да има највеќе {{PLURAL:$1|$1 знак|$1 знаци}}",
 	"communityconfiguration-maintenance-config-change-summary": "Сменети поставки од скрипта за одржување: $1",
 	"tag-community_configuration": "Поставки за заедницата",
 	"tag-community_configuration-description": "Уредувања кои ја менуваат [[Special:CommunityConfiguration|поставеноста на месното вики]] на функција што го користи додатокот „[[mw:Extension:CommunityConfiguration|Поставки за заедницата]]“."
