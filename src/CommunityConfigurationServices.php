@@ -4,7 +4,9 @@ namespace MediaWiki\Extension\CommunityConfiguration;
 
 use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigReader;
 use MediaWiki\Extension\CommunityConfiguration\Access\MediaWikiConfigRouter;
+use MediaWiki\Extension\CommunityConfiguration\Controls\ControlRegistry;
 use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\EditorCapabilityFactory;
+use MediaWiki\Extension\CommunityConfiguration\EditorCapabilities\MessagesProcessor;
 use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaultsPathBuilder;
 use MediaWiki\Extension\CommunityConfiguration\EmergencyShutdown\EmergencyDefaultsUpdater;
 use MediaWiki\Extension\CommunityConfiguration\Hooks\HookRunner;
@@ -34,7 +36,11 @@ class CommunityConfigurationServices {
 	}
 
 	public function getConfigurationProviderFactory(): ConfigurationProviderFactory {
-		return $this->coreServices->getService( 'CommunityConfiguration.ProviderFactory' );
+		return $this->coreServices->getService( 'CommunityConfiguration.ConfigurationProviderFactory' );
+	}
+
+	public function getControlRegistry(): ControlRegistry {
+		return $this->coreServices->get( 'CommunityConfiguration.ControlRegistry' );
 	}
 
 	public function getEditorCapabilityFactory(): EditorCapabilityFactory {
@@ -65,6 +71,10 @@ class CommunityConfigurationServices {
 		return $this->coreServices->getService( 'CommunityConfiguration.MediaWikiConfigRouter' );
 	}
 
+	public function getMessagesProcessor(): MessagesProcessor {
+		return $this->coreServices->getService( 'CommunityConfiguration.MessagesProcessor' );
+	}
+
 	public function getProviderServicesContainer(): ProviderServicesContainer {
 		return $this->coreServices->getService( 'CommunityConfiguration.ProviderServicesContainer' );
 	}
@@ -86,6 +96,6 @@ class CommunityConfigurationServices {
 	}
 
 	public function getWikiPageStoreWriter(): Writer {
-		return $this->coreServices->getService( 'CommunityConfiguration.WikiPageStore.Writer' );
+		return $this->coreServices->getService( 'CommunityConfiguration.WikiPageStoreWriter' );
 	}
 }

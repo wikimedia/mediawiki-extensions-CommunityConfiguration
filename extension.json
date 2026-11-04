@@ -60,7 +60,7 @@
 						"MainWANObjectCache",
 						"TitleFactory",
 						"RevisionLookup",
-						"CommunityConfiguration.WikiPageStore.Writer"
+						"CommunityConfiguration.WikiPageStoreWriter"
 					]
 				}
 			}

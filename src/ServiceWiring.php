@@ -24,6 +24,19 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 return [
+	'CommunityConfiguration.ConfigurationProviderFactory' => static function ( MediaWikiServices $services ) {
+		$ccServices = CommunityConfigurationServices::wrap( $services );
+		return new ConfigurationProviderFactory(
+			$ccServices->getLogger(),
+			$ccServices->getStoreFactory(),
+			$ccServices->getValidatorFactory(),
+			$ccServices->getProviderServicesContainer(),
+			$services->getMainConfig(),
+			$services->getExtensionRegistry(),
+			$services->getObjectFactory(),
+			$ccServices->getHookRunner(),
+		);
+	},
 	'CommunityConfiguration.ControlRegistry' => static function ( MediaWikiServices $services ) {
 		return new ControlRegistry(
 			new ServiceOptions(
@@ -94,17 +107,9 @@ return [
 		);
 	},
 	'CommunityConfiguration.ProviderFactory' => static function ( MediaWikiServices $services ) {
-		$ccServices = CommunityConfigurationServices::wrap( $services );
-		return new ConfigurationProviderFactory(
-			$ccServices->getLogger(),
-			$ccServices->getStoreFactory(),
-			$ccServices->getValidatorFactory(),
-			$ccServices->getProviderServicesContainer(),
-			$services->getMainConfig(),
-			$services->getExtensionRegistry(),
-			$services->getObjectFactory(),
-			$ccServices->getHookRunner(),
-		);
+		// Helper for B&C purposes;
+		// the actual service is under `CommunityConfiguration.ConfigurationProviderFactory`
+		return CommunityConfigurationServices::wrap( $services )->getConfigurationProviderFactory();
 	},
 	'CommunityConfiguration.ProviderServicesContainer' => static function ( MediaWikiServices $services ) {
 		$ccServices = CommunityConfigurationServices::wrap( $services );
@@ -147,7 +152,7 @@ return [
 			$services->getObjectFactory()
 		);
 	},
-	'CommunityConfiguration.WikiPageStore.Writer' => static function ( MediaWikiServices $services ) {
+	'CommunityConfiguration.WikiPageStoreWriter' => static function ( MediaWikiServices $services ) {
 		return new Writer(
 			$services->getWikiPageFactory(),
 			$services->getUserFactory(),
