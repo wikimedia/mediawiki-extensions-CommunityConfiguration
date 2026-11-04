@@ -39,12 +39,6 @@ return [
 			CommunityConfigurationServices::wrap( $services )->getLogger()
 		);
 	},
-	'CommunityConfiguration.MessagesProcessor' => static function ( MediaWikiServices $services ) {
-		return new MessagesProcessor(
-			CommunityConfigurationServices::wrap( $services )->getLogger(),
-			RequestContext::getMain()
-		);
-	},
 	'CommunityConfiguration.EditorCapabilityFactory' => static function ( MediaWikiServices $services ) {
 		return new EditorCapabilityFactory(
 			new ServiceOptions(
@@ -60,14 +54,14 @@ return [
 			CommunityConfigurationServices::wrap( $services )->getLogger()
 		);
 	},
-	'CommunityConfiguration.EmergencyDefaultsUpdater' => static function ( MediaWikiServices $services ) {
-		return new EmergencyDefaultsUpdater(
-			CommunityConfigurationServices::wrap( $services )->getEmergencyDefaultsPathBuilder()
-		);
-	},
 	'CommunityConfiguration.EmergencyDefaultsPathBuilder' => static function ( MediaWikiServices $services ) {
 		return new EmergencyDefaultsPathBuilder(
 			$services->getExtensionRegistry()
+		);
+	},
+	'CommunityConfiguration.EmergencyDefaultsUpdater' => static function ( MediaWikiServices $services ) {
+		return new EmergencyDefaultsUpdater(
+			CommunityConfigurationServices::wrap( $services )->getEmergencyDefaultsPathBuilder()
 		);
 	},
 	'CommunityConfiguration.HookRunner' => static function ( MediaWikiServices $services ) {
@@ -77,6 +71,27 @@ return [
 	},
 	'CommunityConfiguration.Logger' => static function ( MediaWikiServices $services ) {
 		return LoggerFactory::getInstance( 'CommunityConfiguration' );
+	},
+	'CommunityConfiguration.MediaWikiConfigReader' => static function ( MediaWikiServices $services ) {
+		$ccServices = CommunityConfigurationServices::wrap( $services );
+		return new MediaWikiConfigReader(
+			$services->getLocalServerObjectCache(),
+			$ccServices->getConfigurationProviderFactory(),
+			$ccServices->getLogger()
+		);
+	},
+	'CommunityConfiguration.MediaWikiConfigRouter' => static function ( MediaWikiServices $services ) {
+		$ccServices = CommunityConfigurationServices::wrap( $services );
+		return new MediaWikiConfigRouter(
+			$ccServices->getMediaWikiConfigReader(),
+			$services->getMainConfig()
+		);
+	},
+	'CommunityConfiguration.MessagesProcessor' => static function ( MediaWikiServices $services ) {
+		return new MessagesProcessor(
+			CommunityConfigurationServices::wrap( $services )->getLogger(),
+			RequestContext::getMain()
+		);
 	},
 	'CommunityConfiguration.ProviderFactory' => static function ( MediaWikiServices $services ) {
 		$ccServices = CommunityConfigurationServices::wrap( $services );
@@ -100,35 +115,6 @@ return [
 			$ccServices->getSchemaMigrator(),
 		);
 	},
-	'CommunityConfiguration.MediaWikiConfigReader' => static function ( MediaWikiServices $services ) {
-		$ccServices = CommunityConfigurationServices::wrap( $services );
-		return new MediaWikiConfigReader(
-			$services->getLocalServerObjectCache(),
-			$ccServices->getConfigurationProviderFactory(),
-			$ccServices->getLogger()
-		);
-	},
-	'CommunityConfiguration.MediaWikiConfigRouter' => static function ( MediaWikiServices $services ) {
-		$ccServices = CommunityConfigurationServices::wrap( $services );
-		return new MediaWikiConfigRouter(
-			$ccServices->getMediaWikiConfigReader(),
-			$services->getMainConfig()
-		);
-	},
-	'CommunityConfiguration.ValidatorFactory' => static function ( MediaWikiServices $services ) {
-		return new ValidatorFactory(
-			new ServiceOptions(
-				ValidatorFactory::CONSTRUCTOR_OPTIONS,
-				new HashConfig( [
-					'CommunityConfigurationValidators' => Utils::getMergedAttribute(
-						$services->getMainConfig(), $services->getExtensionRegistry(),
-						'CommunityConfigurationValidators'
-					),
-				] ),
-			),
-			$services->getObjectFactory()
-		);
-	},
 	'CommunityConfiguration.SchemaConverterFactory' => static function ( MediaWikiServices $services ) {
 		return new SchemaConverterFactory(
 			$services->getObjectFactory()
@@ -145,6 +131,20 @@ return [
 			new ServiceOptions( StoreFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getObjectFactory(),
 			$services->getExtensionRegistry()
+		);
+	},
+	'CommunityConfiguration.ValidatorFactory' => static function ( MediaWikiServices $services ) {
+		return new ValidatorFactory(
+			new ServiceOptions(
+				ValidatorFactory::CONSTRUCTOR_OPTIONS,
+				new HashConfig( [
+					'CommunityConfigurationValidators' => Utils::getMergedAttribute(
+						$services->getMainConfig(), $services->getExtensionRegistry(),
+						'CommunityConfigurationValidators'
+					),
+				] ),
+			),
+			$services->getObjectFactory()
 		);
 	},
 	'CommunityConfiguration.WikiPageStore.Writer' => static function ( MediaWikiServices $services ) {

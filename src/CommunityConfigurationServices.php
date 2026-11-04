@@ -33,8 +33,20 @@ class CommunityConfigurationServices {
 		return new static( $coreServices );
 	}
 
+	public function getConfigurationProviderFactory(): ConfigurationProviderFactory {
+		return $this->coreServices->getService( 'CommunityConfiguration.ProviderFactory' );
+	}
+
 	public function getEditorCapabilityFactory(): EditorCapabilityFactory {
 		return $this->coreServices->getService( 'CommunityConfiguration.EditorCapabilityFactory' );
+	}
+
+	public function getEmergencyDefaultsPathBuilder(): EmergencyDefaultsPathBuilder {
+		return $this->coreServices->getService( 'CommunityConfiguration.EmergencyDefaultsPathBuilder' );
+	}
+
+	public function getEmergencyDefaultsUpdater(): EmergencyDefaultsUpdater {
+		return $this->coreServices->getService( 'CommunityConfiguration.EmergencyDefaultsUpdater' );
 	}
 
 	public function getHookRunner(): HookRunner {
@@ -45,28 +57,16 @@ class CommunityConfigurationServices {
 		return $this->coreServices->getService( 'CommunityConfiguration.Logger' );
 	}
 
-	public function getConfigurationProviderFactory(): ConfigurationProviderFactory {
-		return $this->coreServices->getService( 'CommunityConfiguration.ProviderFactory' );
-	}
-
-	public function getProviderServicesContainer(): ProviderServicesContainer {
-		return $this->coreServices->getService( 'CommunityConfiguration.ProviderServicesContainer' );
-	}
-
-	public function getEmergencyDefaultsUpdater(): EmergencyDefaultsUpdater {
-		return $this->coreServices->getService( 'CommunityConfiguration.EmergencyDefaultsUpdater' );
-	}
-
-	public function getEmergencyDefaultsPathBuilder(): EmergencyDefaultsPathBuilder {
-		return $this->coreServices->getService( 'CommunityConfiguration.EmergencyDefaultsPathBuilder' );
-	}
-
 	public function getMediaWikiConfigReader(): MediaWikiConfigReader {
 		return $this->coreServices->getService( 'CommunityConfiguration.MediaWikiConfigReader' );
 	}
 
 	public function getMediaWikiConfigRouter(): MediaWikiConfigRouter {
 		return $this->coreServices->getService( 'CommunityConfiguration.MediaWikiConfigRouter' );
+	}
+
+	public function getProviderServicesContainer(): ProviderServicesContainer {
+		return $this->coreServices->getService( 'CommunityConfiguration.ProviderServicesContainer' );
 	}
 
 	public function getSchemaConverterFactory(): SchemaConverterFactory {
