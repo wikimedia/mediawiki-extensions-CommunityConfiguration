@@ -25,7 +25,7 @@
 		"@wikimedia/codex": "2.7.0",
 		"@wikimedia/types-wikimedia": "^0.4.4",
 		"api-testing": "1.8.1",
-		"cypress": "^15.11.0",
+		"cypress": "15.21.1",
 		"eslint-config-wikimedia": "0.32.6",
 		"eslint-plugin-chai-friendly": "^1.0.1",
 		"eslint-plugin-cypress": "^3.6.0",
