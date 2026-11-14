@@ -209,7 +209,7 @@ class ChangeWikiConfig extends Maintenance {
 	 * @param string $key
 	 * @param mixed $value
 	 */
-	private function setObjectSubKey( stdclass $config, string $key, $value ): void {
+	private function setObjectSubKey( stdClass $config, string $key, $value ): void {
 		$subKeys = explode( '.', $key );
 		$valueKey = array_pop( $subKeys );
 		$target = &$config;
