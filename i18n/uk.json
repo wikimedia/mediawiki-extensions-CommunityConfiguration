@@ -27,6 +27,7 @@
 	"communityconfiguration-invalid-stored-config-error-details-headline": "Деталі помилки",
 	"communityconfiguration-schema-validation-error": "$2. Ключ: $1",
 	"communityconfiguration-invalid-schema-version": "Недійсна версія $1. Поточна схема — $2.",
+	"communityconfiguration-malformed-schema-version": "Недійсна версія схеми: $1. Версія має бути рядком формату 1.0.0.",
 	"communityconfiguration-providers-list-title": "Функції",
 	"communityconfiguration-provider-not-found": "Постачальника $1 не знайдено",
 	"communityconfigurationeditor": "Редагування розділу «$1»",
